@@ -39,3 +39,37 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS generated files
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+logs
+*.log
+
+# Cache directories
+.cache/
+.parcel-cache/
+.turbo/
+
+# Temporary folders
+tmp/
+temp/
+
+# ESLint cache
+.eslintcache
+
+# Package manager locks (keeping pnpm-lock.yaml)
+package-lock.json
+yarn.lock
