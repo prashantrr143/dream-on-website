@@ -9,29 +9,15 @@ import {
  Database, 
  BarChart3, 
  Shield, 
- Zap,
- Server,
- Globe,
  TrendingUp,
  DollarSign,
- Clock,
  CheckCircle,
- ArrowUp,
  Gauge,
- Lock,
- Settings,
+ Target,
  Brain,
  Workflow,
- Monitor,
- Rocket,
- Target,
- LineChart,
- PieChart,
- Activity,
- Search,
- Filter
+ Activity
 } from 'lucide-react'
-import { cn } from '@/lib/utils'
 import SharedLayout from '@/components/shared-layout'
 
 const DataEngineeringAnalytics = () => {
@@ -52,8 +38,7 @@ const DataEngineeringAnalytics = () => {
      opacity: 1, 
      y: 0,
      transition: { 
-       duration: 0.6, 
-       ease: [0.25, 0.25, 0.25, 0.75]
+       duration: 0.6
      }
    }
  }

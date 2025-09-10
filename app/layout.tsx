@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import { Inter, JetBrains_Mono, Playfair_Display, Space_Grotesk } from 'next/font/google'
 import './globals.css'
+import { AsyncErrorBoundary } from '@/components/async-error-boundary'
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -30,13 +31,13 @@ const spaceGrotesk = Space_Grotesk({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Nexus - Premium IT Solutions',
-    template: '%s | Nexus Technologies'
+    default: 'Yati Sphere - Premium IT Solutions',
+    template: '%s | Yati Sphere Technologies'
   },
   description: 'Enterprise technology solutions with cutting-edge cloud infrastructure, AI, DevOps automation, and expert consulting services.',
   keywords: ['enterprise technology', 'cloud infrastructure', 'AI solutions', 'DevOps automation', 'data analytics', 'IT consulting'],
-  authors: [{ name: 'Nexus Technologies', url: 'https://nexustech.com' }],
-  creator: 'Nexus Technologies',
+  authors: [{ name: 'Yati Sphere Technologies', url: 'https://yatisphere.com' }],
+  creator: 'Yati Sphere Technologies',
   manifest: '/manifest.json',
   icons: {
     icon: [
@@ -51,14 +52,14 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://nexustech.com',
-    title: 'Nexus - Premium IT Solutions',
+    url: 'https://yatisphere.com',
+    title: 'Yati Sphere - Premium IT Solutions',
     description: 'Enterprise technology solutions with cutting-edge cloud infrastructure, AI, and expert consulting.',
-    siteName: 'Nexus Technologies',
+    siteName: 'Yati Sphere Technologies',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Nexus - Premium IT Solutions',
+    title: 'Yati Sphere - Premium IT Solutions',
     description: 'Enterprise technology solutions with cutting-edge cloud infrastructure, AI, and expert consulting.',
   },
   robots: {
@@ -105,9 +106,11 @@ export default function RootLayout({
           Skip to main content
         </a>
         
-        <div id="main-content" className="relative">
-          {children}
-        </div>
+        <AsyncErrorBoundary>
+          <div id="main-content" className="relative">
+            {children}
+          </div>
+        </AsyncErrorBoundary>
       </body>
     </html>
   )

@@ -1,10 +1,10 @@
-# Nexus Technologies - Enterprise Website
+# Yati Sphere Technologies - Enterprise Website
 
 A modern, high-performance enterprise website built with Next.js 15, showcasing technology consulting services with premium design and exceptional user experience.
 
 ## 🚀 Live Demo
 
-Visit the live website: [Nexus Technologies](https://github.com/prashantrr143/dream-on-website)
+Visit the live website: [Yati Sphere Technologies](https://github.com/prashantrr143/yati-sphere-website)
 
 ## ✨ Features
 
@@ -32,7 +32,7 @@ Visit the live website: [Nexus Technologies](https://github.com/prashantrr143/dr
 ## 📂 Project Structure
 
 ```
-dream-on/
+yati-sphere-website/
 ├── app/                    # Next.js 15 App Router
 │   ├── about-us/          # Company information and team
 │   ├── case-studies/      # Success stories and client testimonials
@@ -80,8 +80,8 @@ dream-on/
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/prashantrr143/dream-on-website.git
-   cd dream-on-website
+   git clone https://github.com/prashantrr143/yati-sphere-website.git
+   cd yati-sphere-website
    ```
 
 2. **Install dependencies**
@@ -239,7 +239,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **Prashant Singh**
 - GitHub: [@prashantrr143](https://github.com/prashantrr143)
-- Repository: [dream-on-website](https://github.com/prashantrr143/dream-on-website)
+- Repository: [yati-sphere-website](https://github.com/prashantrr143/yati-sphere-website)
 
 ## 🙏 Acknowledgments
 

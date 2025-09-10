@@ -11,14 +11,7 @@ import {
   BookOpen,
   Video,
   Newspaper,
-  Calendar,
-  Globe,
-  Users,
-  Trophy,
-  Lightbulb,
-  Target,
-  TrendingUp,
-  Sparkles
+  Calendar
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import SharedLayout from '@/components/shared-layout'
@@ -42,10 +35,6 @@ const Resources = () => {
     visible: {
       opacity: 1,
       y: 0,
-      transition: {
-        duration: 0.6,
-        ease: [0.25, 0.25, 0.25, 0.75]
-      }
     }
   }
 

@@ -1,5 +1,5 @@
 {
-  "name": "dream-on",
+  "name": "yati-sphere-website",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -7,9 +7,14 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "lint:fix": "next lint --fix",
+    "type-check": "tsc --noEmit",
+    "type-check:watch": "tsc --noEmit --watch",
     "analyze": "ANALYZE=true npm run build",
     "bundle-analyzer": "npm run build && npx @next/bundle-analyzer",
-    "perf": "next build && next start"
+    "perf": "next build && next start",
+    "check-all": "npm run type-check && npm run lint",
+    "build:analyze": "cross-env ANALYZE=true npm run build"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.15",
@@ -32,6 +37,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "autoprefixer": "^10.4.20",
+    "cross-env": "^7.0.3",
     "eslint": "^9",
     "eslint-config-next": "15.4.4",
     "postcss": "^8.4.49",

@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { ArrowLeft, ArrowRight, Award, Building2, Bot, BarChart3, Zap, Calendar, TrendingUp, Users, Clock, Shield, DollarSign, CheckCircle, Target, Lightbulb, Cog, BarChart } from 'lucide-react'
+import { ArrowLeft, ArrowRight, Building2, Bot, BarChart3, Zap, Calendar, TrendingUp, Users, Clock, Shield, DollarSign, CheckCircle, Target, Lightbulb, Cog, BarChart } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import AnimatedText from '@/components/animated-text'
 import Link from 'next/link'

@@ -75,12 +75,12 @@ export const themes: Record<string, Theme> = {
       input: "215 27.9% 16.9%",
       ring: "216 12.2% 83.9%",
       gradientPrimary: "#3b82f6",
-      gradientSecondary: "#8b5cf6",
+      gradientSecondary: "#10b981",
       gradientAccent: "#06b6d4",
       heroGradient: "linear-gradient(135deg, hsl(222.2 84% 4.9%) 0%, hsl(224 71.4% 4.1%) 25%, hsl(215 27.9% 16.9%) 50%, hsl(224 71.4% 4.1%) 75%, hsl(222.2 84% 4.9%) 100%)",
       glassBackground: "rgba(255, 255, 255, 0.02)",
       glassBorder: "rgba(255, 255, 255, 0.08)",
-      buttonGradient: "linear-gradient(135deg, #3b82f6, #8b5cf6, #06b6d4)"
+      buttonGradient: "linear-gradient(135deg, #3b82f6, #10b981, #06b6d4)"
     }
   },
 

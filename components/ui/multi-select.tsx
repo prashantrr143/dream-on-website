@@ -42,7 +42,6 @@ export function MultiSelect({
   className,
   maxCount = 3,
   disabled = false,
-  ...props
 }: MultiSelectProps) {
   const [open, setOpen] = React.useState(false)
   const [searchValue, setSearchValue] = React.useState("")

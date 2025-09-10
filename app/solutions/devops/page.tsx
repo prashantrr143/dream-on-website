@@ -9,17 +9,10 @@ import {
  Zap, 
  GitBranch, 
  Shield, 
- Database,
- Server,
- Globe,
- TrendingUp,
  DollarSign,
- Clock,
  CheckCircle,
  ArrowUp,
  Gauge,
- Lock,
- Settings,
  Code,
  Workflow,
  Monitor,
@@ -27,7 +20,6 @@ import {
  Target,
  BarChart3
 } from 'lucide-react'
-import { cn } from '@/lib/utils'
 import SharedLayout from '@/components/shared-layout'
 
 const DevOpsAutomation = () => {
@@ -48,8 +40,7 @@ const DevOpsAutomation = () => {
      opacity: 1, 
      y: 0,
      transition: { 
-       duration: 0.6, 
-       ease: [0.25, 0.25, 0.25, 0.75]
+       duration: 0.6
      }
    }
  }

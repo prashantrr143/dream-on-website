@@ -9,22 +9,18 @@ import {
   Settings,
   Target,
   TrendingUp,
-  Lightbulb,
   Users,
   BarChart3,
   Workflow,
   CheckCircle,
   Clock,
   DollarSign,
-  Award,
   Rocket,
   Map,
   Compass,
-  Zap,
   Globe,
   Shield,
   Code,
-  Database,
   ArrowLeft,
   FileText,
   Presentation,
@@ -53,8 +49,7 @@ const DigitalConsulting = () => {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.6,
-        ease: [0.25, 0.25, 0.25, 0.75]
+        duration: 0.6
       }
     }
   }

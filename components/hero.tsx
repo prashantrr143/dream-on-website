@@ -1,9 +1,9 @@
 "use client"
 
-import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion'
+import { motion, useMotionValue } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { ArrowRight, Sparkles, Cloud, Bot, Shield, Zap, BarChart3, Target, Users, Globe, Rocket, Award, CheckCircle, Play } from 'lucide-react'
+import { ArrowRight, Sparkles, Cloud, Bot, Shield, Zap, Target, Users, Globe, Rocket, Award, CheckCircle, Play } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import dynamic from 'next/dynamic'
 import { useEffect, useState, useMemo, useCallback } from 'react'
@@ -15,25 +15,19 @@ const AnimatedText = dynamic(() => import('@/components/animated-text'), {
 })
 
 const Hero = () => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
-  const [isHovered, setIsHovered] = useState(false)
+  const [, setMousePosition] = useState({ x: 0, y: 0 })
+  const [, setIsHovered] = useState(false)
   
   const mouseX = useMotionValue(0)
   const mouseY = useMotionValue(0)
   
-  const rotateX = useTransform(mouseY, [-300, 300], [10, -10])
-  const rotateY = useTransform(mouseX, [-300, 300], [-10, 10])
-  
-  const springConfig = { damping: 25, stiffness: 150 }
-  const x = useSpring(rotateX, springConfig)
-  const y = useSpring(rotateY, springConfig)
 
   // Memoize static data
   const services = useMemo(() => [
     { icon: Cloud, title: "Cloud Infrastructure", metric: "500+", label: "Migrations", bgColor: "bg-blue-500/10", textColor: "text-blue-600" },
-    { icon: Bot, title: "AI & Automation", metric: "300%", label: "Efficiency", bgColor: "bg-purple-500/10", textColor: "text-purple-600" },
-    { icon: Shield, title: "Security", metric: "99.9%", label: "Protection", bgColor: "bg-green-500/10", textColor: "text-green-600" },
-    { icon: Zap, title: "DevOps", metric: "90%", label: "Faster", bgColor: "bg-orange-500/10", textColor: "text-orange-600" }
+    { icon: Bot, title: "AI & Automation", metric: "300%", label: "Efficiency", bgColor: "bg-green-500/10", textColor: "text-green-600" },
+    { icon: Shield, title: "Security", metric: "99.9%", label: "Protection", bgColor: "bg-emerald-500/10", textColor: "text-emerald-600" },
+    { icon: Zap, title: "DevOps", metric: "90%", label: "Faster", bgColor: "bg-cyan-500/10", textColor: "text-cyan-600" }
   ], [])
 
   const achievements = useMemo(() => [
@@ -94,15 +88,18 @@ const Hero = () => {
       opacity: 1, 
       y: 0,
       scale: 1,
-      transition: { duration: 0.8, ease: [0.25, 0.25, 0.25, 0.75] }
+      transition: { duration: 0.8 }
     }
   }), [])
 
   return (
     <section 
       id="hero-section"
-      className="relative h-screen max-h-screen flex items-center overflow-hidden hero-gradient"
-      style={{ paddingTop: 'clamp(4rem, 8vh, 6rem)', paddingBottom: 'clamp(2rem, 4vh, 3rem)' }}
+      className="relative min-h-screen flex items-center overflow-hidden hero-gradient"
+      style={{ 
+        paddingTop: 'clamp(6rem, 12vh, 8rem)', // Increased top padding to account for header
+        paddingBottom: 'clamp(2rem, 4vh, 3rem)' 
+      }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -166,11 +163,6 @@ const Hero = () => {
                     text="Transform Your"
                     animation="splitWords"
                     className="block text-foreground font-heading"
-                    style={{ 
-                      fontSize: 'inherit',
-                      fontWeight: '600',
-                      letterSpacing: '0.01em'
-                    }}
                     delay={0.3}
                     stagger={0.15}
                   />
@@ -181,11 +173,6 @@ const Hero = () => {
                       text="Enterprise"
                       animation="splitChars"
                       className="gradient-text font-heading inline-block mr-4"
-                      style={{ 
-                        fontSize: 'inherit',
-                        fontWeight: '800',
-                        letterSpacing: '-0.01em'
-                      }}
                       delay={0.8}
                       stagger={0.08}
                     />
@@ -193,11 +180,6 @@ const Hero = () => {
                       text="Future"
                       animation="splitChars"
                       className="text-foreground font-heading inline-block"
-                      style={{ 
-                        fontSize: 'inherit',
-                        fontWeight: '600',
-                        letterSpacing: '0.005em'
-                      }}
                       delay={1.3}
                       stagger={0.08}
                     />
@@ -329,7 +311,6 @@ const Hero = () => {
               variants={itemVariants}
             >
               {achievements.map((stat, index) => {
-                const IconComponent = stat.icon
                 return (
                   <motion.div 
                     key={index} 

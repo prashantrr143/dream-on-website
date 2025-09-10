@@ -1,3 +1,8 @@
+interface LayoutShift extends PerformanceEntry {
+  value: number;
+  hadRecentInput: boolean;
+}
+
 // Performance monitoring utilities
 export const performanceMetrics = {
   // Web Vitals tracking
@@ -10,10 +15,10 @@ export const performanceMetrics = {
             console.log('LCP:', entry.startTime)
           }
           if (entry.entryType === 'first-input') {
-            console.log('FID:', entry.processingStart - entry.startTime)
+            console.log('FID:', (entry as PerformanceEventTiming).processingStart - entry.startTime)
           }
           if (entry.entryType === 'layout-shift') {
-            console.log('CLS:', entry.value)
+            console.log('CLS:', (entry as LayoutShift).value)
           }
         }
       })
@@ -36,7 +41,7 @@ export const performanceMetrics = {
 
       const scriptSizes = resources
         .filter((resource) => resource.name.includes('.js'))
-        .reduce((total, resource) => total + (resource.transferSize || 0), 0)
+        .reduce((total, resource) => total + ((resource as PerformanceResourceTiming).transferSize || 0), 0)
       
       console.log('Total JS bundle size:', Math.round(scriptSizes / 1024), 'KB')
     }
@@ -140,13 +145,13 @@ export const performanceWarnings = {
       setTimeout(() => {
         const resources = performance.getEntriesByType('resource')
         const largeResources = resources.filter(
-          (resource) => (resource.transferSize || 0) > threshold * 1024
+          (resource) => ((resource as PerformanceResourceTiming).transferSize || 0) > threshold * 1024
         )
         
         if (largeResources.length > 0) {
           console.warn('Large resources detected:', largeResources.map(r => ({
             name: r.name,
-            size: Math.round((r.transferSize || 0) / 1024) + 'KB'
+            size: Math.round(((r as PerformanceResourceTiming).transferSize || 0) / 1024) + 'KB'
           })))
         }
       }, 2000)

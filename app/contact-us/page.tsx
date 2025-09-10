@@ -81,10 +81,6 @@ const ContactUs = () => {
    visible: { 
      opacity: 1, 
      y: 0,
-     transition: { 
-       duration: 0.6, 
-       ease: [0.25, 0.25, 0.25, 0.75]
-     }
    }
  }
 
@@ -102,7 +98,7 @@ const ContactUs = () => {
      icon: Mail,
      title: "Email Us",
      subtitle: "Send us a message",
-     content: "hello@nexustech.com",
+     content: "hello@yatisphere.com",
      action: "Send Email",
      color: "from-blue-500 to-cyan-500",
      availability: "Response within 2 hours"
@@ -133,7 +129,7 @@ const ContactUs = () => {
      country: "USA",
      address: "100 California Street, Suite 500",
      phone: "+1 (555) 123-4567",
-     email: "usa@nexustech.com",
+     email: "usa@yatisphere.com",
      timezone: "PST (UTC-8)",
      isHeadquarters: true
    },
@@ -142,7 +138,7 @@ const ContactUs = () => {
      country: "UK",
      address: "25 Old Broad Street, EC2N 1HN",
      phone: "+44 20 7123 4567",
-     email: "uk@nexustech.com",
+     email: "uk@yatisphere.com",
      timezone: "GMT (UTC+0)"
    },
    {
@@ -150,7 +146,7 @@ const ContactUs = () => {
      country: "Singapore",
      address: "1 Raffles Place, #40-61",
      phone: "+65 6123 4567",
-     email: "sg@nexustech.com",
+     email: "sg@yatisphere.com",
      timezone: "SGT (UTC+8)"
    },
    {
@@ -158,7 +154,7 @@ const ContactUs = () => {
      country: "Australia",
      address: "Level 25, 100 Miller Street",
      phone: "+61 2 1234 5678",
-     email: "au@nexustech.com",
+     email: "au@yatisphere.com",
      timezone: "AEDT (UTC+11)"
    }
  ]
@@ -192,23 +188,23 @@ const ContactUs = () => {
    
    switch (name) {
      case 'name':
-       if (!value.trim()) errors.name = 'Name is required'
-       else if (value.trim().length < 2) errors.name = 'Name must be at least 2 characters'
+       if (!value.trim()) errors['name'] = 'Name is required'
+       else if (value.trim().length < 2) errors['name'] = 'Name must be at least 2 characters'
        break
      case 'email':
-       if (!value.trim()) errors.email = 'Email is required'
-       else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) errors.email = 'Please enter a valid email'
+       if (!value.trim()) errors['email'] = 'Email is required'
+       else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) errors['email'] = 'Please enter a valid email'
        break
      case 'subject':
-       if (!value.trim()) errors.subject = 'Please select a subject'
+       if (!value.trim()) errors['subject'] = 'Please select a subject'
        break
      case 'message':
-       if (!value.trim()) errors.message = 'Message is required'
-       else if (value.trim().length < 10) errors.message = 'Message must be at least 10 characters'
+       if (!value.trim()) errors['message'] = 'Message is required'
+       else if (value.trim().length < 10) errors['message'] = 'Message must be at least 10 characters'
        break
      case 'phone':
        if (value && !/^[\+]?[1-9][\d\s\(\)\-\.]{8,}$/.test(value)) {
-         errors.phone = 'Please enter a valid phone number'
+         errors['phone'] = 'Please enter a valid phone number'
        }
        break
    }
@@ -230,7 +226,7 @@ const ContactUs = () => {
      ...prev,
      errors: {
        ...prev.errors,
-       [name]: fieldErrors[name] || undefined
+       ...(fieldErrors[name] ? { [name]: fieldErrors[name] } : {})
      }
    }))
  }
@@ -314,7 +310,7 @@ const ContactUs = () => {
                variant="secondary" 
                className="bg-accent/10 text-accent hover:bg-accent/20 px-6 py-3 text-sm font-semibold border border-accent/20 rounded-full mb-8"
              >
-               Contact Nexus
+               Contact Yati Sphere
              </Badge>
            </motion.div>
 
@@ -456,10 +452,10 @@ const ContactUs = () => {
                  </motion.div>
                ) : (
                  <form onSubmit={handleSubmit} className="space-y-6">
-                   {formState.errors.submit && (
+                   {formState.errors['submit'] && (
                      <div className="flex items-center gap-2 p-4 bg-red-50 border border-red-200 rounded-lg text-red-600">
                        <AlertCircle className="w-5 h-5" />
-                       <span className="text-sm">{formState.errors.submit}</span>
+                       <span className="text-sm">{formState.errors['submit']}</span>
                      </div>
                    )}
                    
@@ -475,7 +471,7 @@ const ContactUs = () => {
                          onBlur={() => setFocusedField('')}
                          className={cn(
                            "w-full px-4 py-3 rounded-lg border bg-background transition-all duration-200 peer placeholder-transparent focus:outline-none focus:ring-2",
-                           formState.errors.name 
+                           formState.errors['name'] 
                              ? "border-red-500 focus:ring-red-500/50 focus:border-red-500" 
                              : "border-border focus:ring-accent/50 focus:border-accent"
                          )}
@@ -489,10 +485,10 @@ const ContactUs = () => {
                        )}>
                          Name *
                        </label>
-                       {formState.errors.name && (
+                       {formState.errors['name'] && (
                          <p className="mt-1 text-xs text-red-500 flex items-center gap-1">
                            <AlertCircle className="w-3 h-3" />
-                           {formState.errors.name}
+                           {formState.errors['name']}
                          </p>
                        )}
                      </div>
@@ -508,7 +504,7 @@ const ContactUs = () => {
                          onBlur={() => setFocusedField('')}
                          className={cn(
                            "w-full px-4 py-3 rounded-lg border bg-background transition-all duration-200 peer placeholder-transparent focus:outline-none focus:ring-2",
-                           formState.errors.email 
+                           formState.errors['email'] 
                              ? "border-red-500 focus:ring-red-500/50 focus:border-red-500" 
                              : "border-border focus:ring-accent/50 focus:border-accent"
                          )}
@@ -522,10 +518,10 @@ const ContactUs = () => {
                        )}>
                          Email *
                        </label>
-                       {formState.errors.email && (
+                       {formState.errors['email'] && (
                          <p className="mt-1 text-xs text-red-500 flex items-center gap-1">
                            <AlertCircle className="w-3 h-3" />
-                           {formState.errors.email}
+                           {formState.errors['email']}
                          </p>
                        )}
                      </div>
@@ -563,7 +559,7 @@ const ContactUs = () => {
                          onBlur={() => setFocusedField('')}
                          className={cn(
                            "w-full px-4 py-3 rounded-lg border bg-background transition-all duration-200 placeholder-transparent focus:outline-none focus:ring-2",
-                           formState.errors.phone 
+                           formState.errors['phone'] 
                              ? "border-red-500 focus:ring-red-500/50 focus:border-red-500" 
                              : "border-border focus:ring-accent/50 focus:border-accent"
                          )}
@@ -577,10 +573,10 @@ const ContactUs = () => {
                        )}>
                          Phone
                        </label>
-                       {formState.errors.phone && (
+                       {formState.errors['phone'] && (
                          <p className="mt-1 text-xs text-red-500 flex items-center gap-1">
                            <AlertCircle className="w-3 h-3" />
-                           {formState.errors.phone}
+                           {formState.errors['phone']}
                          </p>
                        )}
                      </div>
@@ -597,7 +593,7 @@ const ContactUs = () => {
                            ...prev,
                            errors: {
                              ...prev.errors,
-                             subject: fieldErrors.subject || undefined
+                             ...(fieldErrors['subject'] ? { subject: fieldErrors['subject'] } : {})
                            }
                          }))
                        }}
@@ -605,7 +601,7 @@ const ContactUs = () => {
                        <SelectTrigger 
                          className={cn(
                            "w-full h-12 px-4 rounded-lg border bg-background transition-all duration-200 focus:outline-none focus:ring-2",
-                           formState.errors.subject 
+                           formState.errors['subject'] 
                              ? "border-red-500 focus:ring-red-500/50 focus:border-red-500" 
                              : "border-border focus:ring-accent/50 focus:border-accent"
                          )}
@@ -630,10 +626,10 @@ const ContactUs = () => {
                      )}>
                        Subject *
                      </label>
-                     {formState.errors.subject && (
+                     {formState.errors['subject'] && (
                        <p className="mt-1 text-xs text-red-500 flex items-center gap-1">
                          <AlertCircle className="w-3 h-3" />
-                         {formState.errors.subject}
+                         {formState.errors['subject']}
                        </p>
                      )}
                    </div>
@@ -671,7 +667,7 @@ const ContactUs = () => {
                        onBlur={() => setFocusedField('')}
                        className={cn(
                          "w-full px-4 py-3 rounded-lg border bg-background transition-all duration-200 placeholder-transparent focus:outline-none focus:ring-2 resize-none",
-                         formState.errors.message 
+                         formState.errors['message'] 
                            ? "border-red-500 focus:ring-red-500/50 focus:border-red-500" 
                            : "border-border focus:ring-accent/50 focus:border-accent"
                        )}
@@ -685,10 +681,10 @@ const ContactUs = () => {
                      )}>
                        Message *
                      </label>
-                     {formState.errors.message && (
+                     {formState.errors['message'] && (
                        <p className="mt-1 text-xs text-red-500 flex items-center gap-1">
                          <AlertCircle className="w-3 h-3" />
-                         {formState.errors.message}
+                         {formState.errors['message']}
                        </p>
                      )}
                    </div>

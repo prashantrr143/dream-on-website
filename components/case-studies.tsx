@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { ArrowRight, Sparkles, TrendingUp, Users, Clock, Award, Shield, Cloud, Bot, Zap, BarChart3, Target, Building2 } from 'lucide-react'
+import { ArrowRight, Sparkles, TrendingUp, Users, Clock, Award, Shield, Bot, Zap, Building2 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import AnimatedText from '@/components/animated-text'
 import Link from 'next/link'
@@ -129,10 +129,7 @@ const CaseStudies = () => {
       y: 0,
       scale: 1,
       transition: { 
-        duration: 0.8, 
-        ease: [0.4, 0, 0.2, 1],
-        type: "spring",
-        stiffness: 100
+        duration: 0.8
       }
     }
   }
@@ -219,7 +216,7 @@ const CaseStudies = () => {
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
         >
-          {caseStudies.map((study, index) => {
+          {caseStudies.map((study) => {
             const IconComponent = study.icon
             return (
               <motion.div

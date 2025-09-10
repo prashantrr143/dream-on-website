@@ -13,17 +13,11 @@ import {
   CheckCircle,
   Users,
   Globe,
-  Database,
   Network,
   Fingerprint,
-  KeyRound,
-  Scan,
   FileCheck,
   TrendingUp,
-  DollarSign,
   Clock,
-  Target,
-  Zap,
   Award,
   ArrowLeft
 } from 'lucide-react'
@@ -50,8 +44,7 @@ const EnterpriseSecurity = () => {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.6,
-        ease: [0.25, 0.25, 0.25, 0.75]
+        duration: 0.6
       }
     }
   }

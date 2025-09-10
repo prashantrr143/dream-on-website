@@ -17,11 +17,8 @@ import {
     Clock,
     CheckCircle,
     ArrowUp,
-    Gauge,
-    Lock,
-    Settings
+    Gauge
 } from 'lucide-react'
-import { cn } from '@/lib/utils'
 import SharedLayout from '@/components/shared-layout'
 const CloudInfrastructure = () => {
     const containerVariants = {
@@ -37,14 +34,7 @@ const CloudInfrastructure = () => {
 
     const itemVariants = {
         hidden: { opacity: 0, y: 30 },
-        visible: {
-            opacity: 1,
-            y: 0,
-            transition: {
-                duration: 0.6,
-                ease: [0.25, 0.25, 0.25, 0.75]
-            }
-        }
+        visible: { opacity: 1, y: 0 }
     }
 
     const keyBenefits = [

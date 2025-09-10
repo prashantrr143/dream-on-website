@@ -6,14 +6,12 @@ import { Badge } from '@/components/ui/badge'
 import { Card } from '@/components/ui/card'
 import {
   ArrowRight,
-  Users,
   Handshake,
   Award,
   Globe,
   Target,
   TrendingUp,
   CheckCircle,
-  Sparkles,
   Building,
   Shield,
   Zap
@@ -40,10 +38,6 @@ const Partners = () => {
     visible: {
       opacity: 1,
       y: 0,
-      transition: {
-        duration: 0.6,
-        ease: [0.25, 0.25, 0.25, 0.75]
-      }
     }
   }
 

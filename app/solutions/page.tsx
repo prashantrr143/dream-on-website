@@ -21,11 +21,8 @@ import {
   Cpu,
   Settings,
   CheckCircle,
-  TrendingUp,
   Users,
-  Target,
   DollarSign,
-  Award,
   Sparkles,
   Globe
 } from 'lucide-react'
@@ -52,8 +49,7 @@ const Solutions = () => {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.6,
-        ease: [0.25, 0.25, 0.25, 0.75]
+        duration: 0.6
       }
     }
   }
@@ -244,7 +240,7 @@ const Solutions = () => {
             </motion.div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {coreServices.map((service, index) => {
+              {coreServices.map((service) => {
                 const IconComponent = service.icon
                 return (
                   <motion.div

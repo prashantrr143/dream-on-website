@@ -4,32 +4,43 @@
 
 @layer base {
   :root {
-    /* Professional Dark Theme */
+    /* Professional Dark Theme with Blue & Green Brand Colors */
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
     --card: 224 71.4% 4.1%;
     --card-foreground: 210 40% 98%;
     --popover: 224 71.4% 4.1%;
     --popover-foreground: 210 40% 98%;
-    --primary: 220.9 39.3% 11%;
+    --primary: 217 91% 60%; /* Blue primary */
     --primary-foreground: 210 40% 98%;
-    --secondary: 215 27.9% 16.9%;
+    --secondary: 142 76% 36%; /* Green secondary */
     --secondary-foreground: 210 40% 98%;
     --muted: 215 27.9% 16.9%;
     --muted-foreground: 217.9 10.6% 64.9%;
-    --accent: 216 12.2% 83.9%;
+    --accent: 142 76% 36%; /* Green accent */
     --accent-foreground: 222.2 84% 4.9%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
     --border: 215 27.9% 16.9%;
     --input: 215 27.9% 16.9%;
-    --ring: 216 12.2% 83.9%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
+    --ring: 217 91% 60%; /* Blue ring */
+    --chart-1: 217 91% 60%; /* Blue */
+    --chart-2: 142 76% 36%; /* Green */
+    --chart-3: 195 100% 50%; /* Cyan */
+    --chart-4: 160 84% 39%; /* Emerald */
+    --chart-5: 200 98% 39%; /* Sky Blue */
     --radius: 0.75rem;
+    
+    /* Brand Colors */
+    --brand-blue: 217 91% 60%;
+    --brand-blue-dark: 217 91% 50%;
+    --brand-blue-light: 217 91% 70%;
+    --brand-green: 142 76% 36%;
+    --brand-green-dark: 142 76% 26%;
+    --brand-green-light: 142 76% 46%;
+    --brand-cyan: 195 100% 50%;
+    --brand-emerald: 160 84% 39%;
+    --brand-teal: 173 80% 40%;
   }
 
   * {
@@ -61,9 +72,48 @@
     font-feature-settings: "ss01", "ss02", "cv01", "cv03";
   }
 
-  /* Smooth scrolling */
+  /* Smooth scrolling and section fixes */
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 5rem; /* Account for fixed header */
+  }
+
+  /* Ensure body doesn't have margin that could cause overlap */
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Fix viewport height issues */
+  .min-h-screen-safe {
+    min-height: 100vh;
+    min-height: 100dvh; /* Dynamic viewport height for mobile */
+  }
+
+  .h-screen-safe {
+    height: 100vh;
+    height: 100dvh; /* Dynamic viewport height for mobile */
+  }
+
+  /* Prevent content overflow */
+  .content-safe {
+    max-height: calc(100vh - 8rem);
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--muted-foreground)) transparent;
+  }
+
+  .content-safe::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .content-safe::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .content-safe::-webkit-scrollbar-thumb {
+    background-color: hsl(var(--muted-foreground));
+    border-radius: 3px;
   }
 
   /* Custom scrollbar */
@@ -85,25 +135,25 @@
 }
 
 @layer components {
-  /* Professional Hero Gradient */
+  /* Professional Hero Gradient - Dark with Blue & Green Accents */
   .hero-gradient {
     background: linear-gradient(135deg, 
       hsl(222.2 84% 4.9%) 0%, 
-      hsl(224 71.4% 4.1%) 25%,
-      hsl(215 27.9% 16.9%) 50%,
-      hsl(224 71.4% 4.1%) 75%,
+      hsla(var(--brand-blue), 0.05) 25%,
+      hsla(var(--brand-green), 0.03) 50%,
+      hsla(var(--brand-blue), 0.05) 75%,
       hsl(222.2 84% 4.9%) 100%
     );
   }
 
-  /* Premium Gradient Text */
+  /* Premium Gradient Text - Blue & Green Brand Theme */
   .gradient-text {
     background: linear-gradient(135deg, 
-      #60a5fa 0%, 
-      #a78bfa 25%, 
-      #34d399 50%, 
-      #fbbf24 75%, 
-      #60a5fa 100%
+      hsl(var(--brand-blue)) 0%, 
+      hsl(var(--brand-cyan)) 25%, 
+      hsl(var(--brand-green)) 50%, 
+      hsl(var(--brand-emerald)) 75%, 
+      hsl(var(--brand-blue)) 100%
     );
     background-clip: text;
     -webkit-background-clip: text;
@@ -112,7 +162,7 @@
     animation: gradient-shift 8s ease-in-out infinite;
   }
 
-  /* Professional Glass Card */
+  /* Professional Glass Card - Dark Theme */
   .glass-card {
     background: rgba(255, 255, 255, 0.02);
     backdrop-filter: blur(24px);
@@ -132,14 +182,18 @@
       inset 0 1px 0 rgba(255, 255, 255, 0.2);
   }
 
-  /* Professional Button Styles */
+  /* Professional Button Styles - Blue & Green Brand Theme */
   .enterprise-button {
     @apply relative overflow-hidden;
-    background: linear-gradient(135deg, #3b82f6, #8b5cf6, #06b6d4);
+    background: linear-gradient(135deg, 
+      hsl(var(--brand-blue)), 
+      hsl(var(--brand-green)), 
+      hsl(var(--brand-cyan))
+    );
     background-size: 200% 200%;
     animation: gradient-shift 3s ease-in-out infinite;
     box-shadow: 
-      0 8px 32px rgba(59, 130, 246, 0.3),
+      0 8px 32px hsla(var(--brand-blue), 0.3),
       inset 0 1px 0 rgba(255, 255, 255, 0.2);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
@@ -147,7 +201,7 @@
   .enterprise-button:hover {
     transform: translateY(-2px);
     box-shadow: 
-      0 12px 40px rgba(59, 130, 246, 0.4),
+      0 12px 40px hsla(var(--brand-blue), 0.4),
       inset 0 1px 0 rgba(255, 255, 255, 0.3);
   }
 
@@ -314,12 +368,18 @@
   .animate-typewriter {
     animation: typewriter 4s steps(40, end), blink-caret 0.75s step-end infinite;
     overflow: hidden;
-    border-right: 3px solid #60a5fa;
+    border-right: 3px solid #3b82f6;
     white-space: nowrap;
   }
 
   .animate-text-shimmer {
-    background: linear-gradient(-45deg, #60a5fa, #a78bfa, #34d399, #fbbf24, #60a5fa);
+    background: linear-gradient(-45deg, 
+      hsl(var(--brand-blue)), 
+      hsl(var(--brand-cyan)), 
+      hsl(var(--brand-green)), 
+      hsl(var(--brand-emerald)), 
+      hsl(var(--brand-blue))
+    );
     background-size: 400% 400%;
     animation: shimmer 3s ease-in-out infinite;
     background-clip: text;
@@ -353,7 +413,101 @@
   }
 
   .hover-glow:hover {
-    box-shadow: 0 0 30px rgba(59, 130, 246, 0.3);
+    box-shadow: 0 0 30px hsla(var(--brand-blue), 0.3), 0 0 20px hsla(var(--brand-green), 0.2);
+  }
+
+  /* Section spacing improvements */
+  .section-no-overlap {
+    position: relative;
+    z-index: 1;
+  }
+
+  .section-spacing-sm {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  .section-spacing-md {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  .section-spacing-lg {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  .section-spacing-xl {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+
+  @media (min-width: 768px) {
+    .section-spacing-sm {
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+    }
+    
+    .section-spacing-md {
+      padding-top: 4rem;
+      padding-bottom: 4rem;
+    }
+    
+    .section-spacing-lg {
+      padding-top: 6rem;
+      padding-bottom: 6rem;
+    }
+    
+    .section-spacing-xl {
+      padding-top: 8rem;
+      padding-bottom: 8rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .section-spacing-sm {
+      padding-top: 4rem;
+      padding-bottom: 4rem;
+    }
+    
+    .section-spacing-md {
+      padding-top: 6rem;
+      padding-bottom: 6rem;
+    }
+    
+    .section-spacing-lg {
+      padding-top: 8rem;
+      padding-bottom: 8rem;
+    }
+    
+    .section-spacing-xl {
+      padding-top: 10rem;
+      padding-bottom: 10rem;
+    }
+  }
+
+  /* Animation improvements */
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  /* Better hover transitions */
+  .hover-lift {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+                box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 
+                0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+
+  /* Improved focus states */
+  .focus-visible:focus-visible {
+    outline: 2px solid hsl(var(--primary));
+    outline-offset: 2px;
+    border-radius: 0.375rem;
   }
 }
 
@@ -428,7 +582,7 @@
       border-color: transparent; 
     }
     50% { 
-      border-color: #60a5fa; 
+      border-color: #3b82f6; 
     }
   }
 
@@ -470,10 +624,19 @@
 
   @keyframes textGlow {
     0% { 
-      text-shadow: 0 0 10px rgba(96, 165, 250, 0.5), 0 0 20px rgba(96, 165, 250, 0.3), 0 0 30px rgba(96, 165, 250, 0.1); 
+      text-shadow: 0 0 10px hsla(var(--brand-blue), 0.5), 0 0 20px hsla(var(--brand-green), 0.3), 0 0 30px hsla(var(--brand-blue), 0.1); 
     }
     100% { 
-      text-shadow: 0 0 20px rgba(96, 165, 250, 0.8), 0 0 30px rgba(96, 165, 250, 0.6), 0 0 40px rgba(96, 165, 250, 0.4); 
+      text-shadow: 0 0 20px hsla(var(--brand-blue), 0.8), 0 0 30px hsla(var(--brand-green), 0.6), 0 0 40px hsla(var(--brand-blue), 0.4); 
+    }
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
     }
   }
 
@@ -501,6 +664,14 @@
       linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
       linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
     background-size: 40px 40px;
+  }
+
+  /* Line clamp utility */
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 
   .dot-pattern {
@@ -627,6 +798,79 @@
   }
 
   /* Responsive Text Scaling */
+  .responsive-text-xs {
+    font-size: clamp(0.75rem, 1.5vw, 0.875rem);
+  }
+
+  .responsive-text-sm {
+    font-size: clamp(0.875rem, 2vw, 1rem);
+  }
+
+  .responsive-text-base {
+    font-size: clamp(1rem, 2.5vw, 1.125rem);
+  }
+
+  .responsive-text-lg {
+    font-size: clamp(1.125rem, 3vw, 1.25rem);
+  }
+
+  .responsive-text-xl {
+    font-size: clamp(1.25rem, 3.5vw, 1.5rem);
+  }
+
+  .responsive-text-2xl {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+  }
+
+  .responsive-text-3xl {
+    font-size: clamp(1.875rem, 5vw, 2.5rem);
+  }
+
+  .responsive-text-4xl {
+    font-size: clamp(2.25rem, 6vw, 3rem);
+  }
+
+  .responsive-text-5xl {
+    font-size: clamp(3rem, 7vw, 4rem);
+  }
+
+  /* Mobile-specific improvements */
+  @media (max-width: 767px) {
+    .mobile-center {
+      text-align: center;
+    }
+    
+    .mobile-stack > * + * {
+      margin-top: 1rem;
+    }
+    
+    .mobile-full-width {
+      width: 100%;
+    }
+    
+    .mobile-padding {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+  }
+
+  /* Accessibility improvements */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-float,
+    .animate-text-shimmer,
+    .gradient-text {
+      animation: none;
+    }
+    
+    .hover-lift {
+      transition: none;
+    }
+    
+    .hover-lift:hover {
+      transform: none;
+    }
+  }
+
   @media (max-height: 600px) {
     .fluid-text-6xl {
       font-size: clamp(2rem, 8vw, 3rem) !important;

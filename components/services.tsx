@@ -1,11 +1,15 @@
 "use client"
 
-import { motion } from 'framer-motion'
+import { motion, Variants } from 'framer-motion'
 import { Badge } from '@/components/ui/badge'
 import { ArrowRight, Sparkles } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import dynamic from 'next/dynamic'
 import { useMemo } from 'react'
+// import { ScrollAnimation, StaggerAnimation, HoverAnimation } from '@/components/optimized-animations'
+// import { CardLoadingSkeleton } from '@/components/loading-states'
+// import ErrorBoundary from '@/components/error-boundary'
+// import type { Service } from '@/types'
 
 // Lazy load AnimatedText component
 const AnimatedText = dynamic(() => import('@/components/animated-text'), {
@@ -28,7 +32,7 @@ const Services = () => {
       title: "AI & Automation",
       description: "Harness the power of generative AI and intelligent automation to revolutionize your business operations.",
       metrics: "300% efficiency gain",
-      gradient: "from-purple-500/20 to-pink-500/20"
+      gradient: "from-green-500/20 to-emerald-500/20"
     },
     {
       icon: "🔧",
@@ -42,21 +46,21 @@ const Services = () => {
       title: "Cybersecurity",
       description: "Protect your enterprise with zero-trust architecture and advanced threat detection systems.",
       metrics: "99.9% threat prevention",
-      gradient: "from-red-500/20 to-orange-500/20"
+      gradient: "from-emerald-500/20 to-teal-500/20"
     },
     {
       icon: "📊",
       title: "Data Intelligence",
       description: "Unlock insights with real-time analytics and business intelligence platforms.",
       metrics: "10x faster insights",
-      gradient: "from-yellow-500/20 to-amber-500/20"
+      gradient: "from-cyan-500/20 to-blue-500/20"
     },
     {
       icon: "💡",
       title: "Digital Strategy",
       description: "Navigate digital transformation with strategic consulting and innovation frameworks.",
       metrics: "200% ROI average",
-      gradient: "from-indigo-500/20 to-violet-500/20"
+      gradient: "from-blue-500/20 to-green-500/20"
     }
   ], [])
 
@@ -69,7 +73,7 @@ const Services = () => {
     }
   }), [])
 
-  const cardVariants = useMemo(() => ({
+  const cardVariants: Variants = useMemo(() => ({
     hidden: { opacity: 0, y: 40, scale: 0.95 },
     visible: { 
       opacity: 1, 
@@ -77,7 +81,7 @@ const Services = () => {
       scale: 1,
       transition: { 
         duration: 0.7, 
-        ease: [0.4, 0, 0.2, 1],
+        ease: "easeOut",
         type: "spring",
         stiffness: 100
       }
@@ -86,8 +90,11 @@ const Services = () => {
 
  return (
    <section 
-     className="relative overflow-hidden min-h-screen max-h-screen flex flex-col justify-center" 
-     style={{ padding: 'clamp(4rem, 8vh, 6rem) 0' }}
+     className="relative overflow-hidden min-h-[80vh] flex flex-col justify-center section-no-overlap" 
+     style={{ 
+       padding: 'clamp(4rem, 8vh, 6rem) 0',
+       marginTop: '2rem' // Add margin to prevent overlap
+     }}
      id="services"
    >
      {/* Background Elements */}
@@ -158,9 +165,7 @@ const Services = () => {
        <motion.div 
          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
          style={{ 
-           gap: 'clamp(1rem, 3vw, 1.5rem)',
-           maxHeight: '60vh',
-           overflow: 'hidden'
+           gap: 'clamp(1rem, 3vw, 1.5rem)'
          }}
          variants={containerVariants}
          initial="hidden"
@@ -182,8 +187,7 @@ const Services = () => {
                className="glass-card h-full relative overflow-hidden rounded-xl"
                style={{ 
                  padding: 'clamp(1rem, 2vh, 1.5rem)',
-                 minHeight: 'clamp(200px, 25vh, 280px)',
-                 maxHeight: 'clamp(200px, 25vh, 280px)'
+                 minHeight: 'clamp(200px, 20vh, 250px)'
                }}
              >
                {/* Gradient Background */}

@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Card } from '@/components/ui/card'
-import { ArrowRight, Users, Award, Globe, Target, Heart, Lightbulb, Shield, Rocket, ArrowLeft, Sparkles, TrendingUp, Building2, Bot, Zap, BarChart3, Cloud, CheckCircle } from 'lucide-react'
+import { ArrowRight, Award, Globe, Target, Heart, Lightbulb, Shield, Rocket, ArrowLeft, Sparkles, Bot, Zap, BarChart3, Cloud, CheckCircle } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import AnimatedText from '@/components/animated-text'
 import Link from 'next/link'
@@ -27,19 +27,9 @@ const AboutUs = () => {
    visible: { 
      opacity: 1, 
      y: 0,
-     transition: { 
-       duration: 0.6, 
-       ease: [0.25, 0.25, 0.25, 0.75]
-     }
    }
  }
 
- const stats = [
-   { value: "500+", label: "Enterprise Clients", subtitle: "Fortune 500 companies trust us" },
-   { value: "99.9%", label: "Success Rate", subtitle: "Project completion excellence" },
-   { value: "40+", label: "Countries", subtitle: "Global presence and support" },
-   { value: "10+", label: "Years Experience", subtitle: "Proven industry expertise" }
- ]
 
  const values = [
    {
@@ -137,7 +127,7 @@ const AboutUs = () => {
              }}
            >
              <Sparkles className="w-4 h-4 mr-2" />
-             About Nexus Technologies
+             About Yati Sphere Technologies
            </Badge>
            
            <h1 
@@ -634,7 +624,7 @@ const AboutUs = () => {
              className="text-lead mb-12"
              variants={itemVariants}
            >
-             Join hundreds of enterprise leaders who've accelerated their digital transformation with Nexus.
+             Join hundreds of enterprise leaders who've accelerated their digital transformation with Yati Sphere.
              Let's discuss how we can drive your business forward.
            </motion.p>
 

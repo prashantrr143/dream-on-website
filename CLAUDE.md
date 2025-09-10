@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is "Nexus Technologies" - a futuristic, high-performance Next.js 15 website for an enterprise technology consulting company. The project emphasizes modern web technologies, premium visual design, and exceptional user experience with lightweight animations and micro-interactions.
+This is "Yati Sphere Technologies" - a futuristic, high-performance Next.js 15 website for an enterprise technology consulting company. The project emphasizes modern web technologies, premium visual design, and exceptional user experience with lightweight animations and micro-interactions.
 
 ## Development Commands
 
@@ -147,7 +147,7 @@ app/
 ```
 
 ## Brand Identity
-- **Company**: Nexus Technologies
+- **Company**: Yati Sphere Technologies
 - **Aesthetic**: Futuristic, premium, enterprise-focused
 - **Colors**: Dark theme with violet/blue accents
 - **Personality**: Innovative, trustworthy, cutting-edge

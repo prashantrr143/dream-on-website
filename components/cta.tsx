@@ -1,9 +1,9 @@
 "use client"
 
-import { motion, useMotionValue, useTransform } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
-import { ArrowRight, Sparkles, Users, Trophy, Zap, Star, CheckCircle, Calendar, Phone, Rocket, Award, Globe, Shield } from 'lucide-react'
+import { ArrowRight, Sparkles, Users, Trophy, Zap, Star, Calendar, Rocket, Award, Globe, Shield } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useState, useEffect } from 'react'
 
@@ -57,10 +57,7 @@ const CTA = () => {
      y: 0,
      scale: 1,
      transition: { 
-       duration: 0.7, 
-       ease: [0.25, 0.25, 0.25, 0.75],
-       type: "spring",
-       stiffness: 100
+       duration: 0.7
      }
    }
  }

@@ -108,14 +108,7 @@ const CaseStudiesPage = () => {
 
   const cardVariants = {
     hidden: { opacity: 0, y: 30 },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      transition: { 
-        duration: 0.6, 
-        ease: [0.4, 0, 0.2, 1]
-      }
-    }
+    visible: { opacity: 1, y: 0 }
   }
 
   return (
@@ -184,7 +177,7 @@ const CaseStudiesPage = () => {
             initial="hidden"
             animate="visible"
           >
-            {allCaseStudies.map((study, index) => {
+            {allCaseStudies.map((study) => {
               const IconComponent = study.icon
               return (
                 <motion.div

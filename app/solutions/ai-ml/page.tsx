@@ -8,7 +8,6 @@ import {
     ArrowRight,
     Bot,
     Brain,
-    Zap,
     MessageSquare,
     FileText,
     Image,
@@ -16,16 +15,11 @@ import {
     DollarSign,
     Clock,
     CheckCircle,
-    ArrowUp,
-    Gauge,
-    Users,
     Target,
     Sparkles,
     Code,
-    BarChart3,
-    Shield
+    BarChart3
 } from 'lucide-react'
-import { cn } from '@/lib/utils'
 import SharedLayout from '@/components/shared-layout'
 
 const AIMachineLearning = () => {
@@ -42,14 +36,7 @@ const AIMachineLearning = () => {
 
     const itemVariants = {
         hidden: { opacity: 0, y: 30 },
-        visible: {
-            opacity: 1,
-            y: 0,
-            transition: {
-                duration: 0.6,
-                ease: [0.25, 0.25, 0.25, 0.75]
-            }
-        }
+        visible: { opacity: 1, y: 0 }
     }
 
     const keyBenefits = [

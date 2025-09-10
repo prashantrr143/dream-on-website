@@ -1,36 +1,9 @@
 "use client"
 
-import { motion } from 'framer-motion'
 import { Mail, Phone, Globe, ArrowRight, Users, Award, Sparkles, Shield, Zap, Target, MapPin, Star } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { useState, useEffect } from 'react'
-import dynamic from 'next/dynamic'
 
-// Lazy load AnimatedText to prevent hydration issues
-const AnimatedText = dynamic(() => import('@/components/animated-text'), {
-  ssr: false,
-  loading: () => <span>Loading...</span>
-})
-
-const Footer = () => {
-  const [isClient, setIsClient] = useState(false)
-
-  useEffect(() => {
-    setIsClient(true)
-  }, [])
-
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      transition: { 
-        duration: 0.8
-      }
-    }
-  }
-
+const FooterStatic = () => {
   const solutions = [
     { name: 'Cloud Infrastructure', href: '/solutions/cloud-infrastructure', icon: '☁️' },
     { name: 'DevOps & Automation', href: '/solutions/devops-automation', icon: '⚡' }, 
@@ -68,7 +41,6 @@ const Footer = () => {
     { name: 'GitHub', href: '#', icon: '🐙' }
   ]
 
-
   const trustBadges = [
     { text: "SOC 2 Type II", icon: Shield },
     { text: "ISO 27001", icon: Award },
@@ -80,31 +52,11 @@ const Footer = () => {
     <footer className="relative bg-background border-t border-border/30 overflow-hidden">
       {/* Professional Background Elements */}
       <div className="absolute inset-0">
-        {/* Subtle gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-br from-background via-muted/5 to-background" />
-        
-        {/* Floating orbs */}
-        <motion.div 
-          className="absolute top-0 left-1/4 w-64 sm:w-80 h-64 sm:h-80 bg-gradient-to-r from-blue-500/8 to-violet-500/8 rounded-full blur-3xl"
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.5, 0.3]
-          }}
-          transition={{ duration: 8, repeat: Infinity }}
-        />
-        <motion.div 
-          className="absolute bottom-0 right-1/4 w-48 sm:w-64 h-48 sm:h-64 bg-gradient-to-r from-purple-500/8 to-cyan-500/8 rounded-full blur-3xl"
-          animate={{
-            scale: [1, 1.1, 1],
-            opacity: [0.4, 0.6, 0.4]
-          }}
-          transition={{ duration: 10, repeat: Infinity, delay: 2 }}
-        />
-        
-        {/* Professional grid pattern */}
+        <div className="absolute top-0 left-1/4 w-64 sm:w-80 h-64 sm:h-80 bg-gradient-to-r from-blue-500/8 to-violet-500/8 rounded-full blur-3xl opacity-30" />
+        <div className="absolute bottom-0 right-1/4 w-48 sm:w-64 h-48 sm:h-64 bg-gradient-to-r from-purple-500/8 to-cyan-500/8 rounded-full blur-3xl opacity-40" />
         <div className="absolute inset-0 opacity-5 grid-pattern" />
       </div>
-
 
       {/* Main Footer Content */}
       <div className="relative z-10 section-container">
@@ -114,41 +66,22 @@ const Footer = () => {
             <div className="lg:col-span-4">
               <div className="mb-8">
                 <h3 className="text-3xl lg:text-4xl font-bold mb-6 font-heading">
-                  <span className="bg-gradient-to-r from-blue-500 via-violet-500 to-cyan-500 bg-clip-text text-transparent animate-text-shimmer">
+                  <span className="bg-gradient-to-r from-blue-500 via-violet-500 to-cyan-500 bg-clip-text text-transparent">
                     Yati Sphere
                   </span>
-                  {isClient && (
-                    <motion.span 
-                      className="text-blue-400 ml-1"
-                      animate={{ scale: [1, 1.2, 1] }}
-                      transition={{ duration: 2, repeat: Infinity }}
-                    >
-                      .
-                    </motion.span>
-                  )}
-                  {!isClient && <span className="text-blue-400 ml-1">.</span>}
+                  <span className="text-blue-400 ml-1">.</span>
                 </h3>
+              </div>
               
-              {isClient ? (
-                <AnimatedText
-                  text="Enterprise technology solutions that drive digital transformation and deliver measurable business results for Fortune 500 companies worldwide."
-                  animation="splitWords"
-                  className="text-muted-foreground leading-relaxed mb-8 text-base lg:text-lg"
-                  stagger={0.03}
-                  delay={0.5}
-                />
-              ) : (
-                <p className="text-muted-foreground leading-relaxed mb-8 text-base lg:text-lg">
-                  Enterprise technology solutions that drive digital transformation and deliver measurable business results for Fortune 500 companies worldwide.
-                </p>
-              )}
+              <p className="text-muted-foreground leading-relaxed mb-8 text-base lg:text-lg">
+                Enterprise technology solutions that drive digital transformation and deliver measurable business results for Fortune 500 companies worldwide.
+              </p>
               
               {/* Contact Info */}
               <div className="space-y-4 mb-8">
-                <motion.a
+                <a
                   href="mailto:hello@yatisphere.com"
                   className="flex items-center gap-3 text-muted-foreground hover:text-blue-400 transition-colors group"
-                  whileHover={{ x: 5 }}
                 >
                   <div className="w-10 h-10 bg-blue-500/10 rounded-xl flex items-center justify-center group-hover:bg-blue-500/20 transition-colors">
                     <Mail className="w-5 h-5 text-blue-500" />
@@ -157,12 +90,11 @@ const Footer = () => {
                     <div className="font-semibold font-heading">Email</div>
                     <div className="text-sm">hello@yatisphere.com</div>
                   </div>
-                </motion.a>
+                </a>
                 
-                <motion.a
+                <a
                   href="tel:+15551234567"
                   className="flex items-center gap-3 text-muted-foreground hover:text-green-400 transition-colors group"
-                  whileHover={{ x: 5 }}
                 >
                   <div className="w-10 h-10 bg-green-500/10 rounded-xl flex items-center justify-center group-hover:bg-green-500/20 transition-colors">
                     <Phone className="w-5 h-5 text-green-500" />
@@ -171,7 +103,7 @@ const Footer = () => {
                     <div className="font-semibold font-heading">Phone</div>
                     <div className="text-sm">+1 (555) 123-4567</div>
                   </div>
-                </motion.a>
+                </a>
                 
                 <div className="flex items-center gap-3 text-muted-foreground">
                   <div className="w-10 h-10 bg-purple-500/10 rounded-xl flex items-center justify-center">
@@ -191,120 +123,90 @@ const Footer = () => {
                   {trustBadges.map((badge, index) => {
                     const IconComponent = badge.icon
                     return (
-                      <motion.div 
+                      <div 
                         key={index}
                         className="flex items-center gap-2 px-3 py-2 bg-muted/30 rounded-lg border border-border/30 hover:border-blue-400/30 transition-colors group"
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        transition={{ delay: index * 0.1 + 1 }}
-                        whileHover={{ scale: 1.05, y: -2 }}
                       >
                         <IconComponent className="w-4 h-4 text-blue-400" />
                         <span className="text-xs font-semibold font-heading text-muted-foreground group-hover:text-foreground transition-colors">
                           {badge.text}
                         </span>
-                      </motion.div>
+                      </div>
                     )
                   })}
                 </div>
               </div>
-              </div>
             </div>
 
             {/* Solutions - 2 columns */}
-            <motion.div className="lg:col-span-2" variants={itemVariants}>
+            <div className="lg:col-span-2">
               <h4 className="text-xl font-bold text-foreground mb-6 font-heading">Solutions</h4>
               <ul className="space-y-4">
-                {solutions.map((item, index) => (
-                  <motion.li 
-                    key={item.name}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.05 }}
-                    viewport={{ once: true }}
-                  >
-                    <motion.a 
+                {solutions.map((item) => (
+                  <li key={item.name}>
+                    <a 
                       href={item.href} 
                       className="flex items-center gap-3 text-muted-foreground hover:text-blue-400 transition-colors group"
-                      whileHover={{ x: 5 }}
                     >
                       <span className="text-lg">{item.icon}</span>
                       <span className="font-medium font-heading">{item.name}</span>
                       <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity ml-auto" />
-                    </motion.a>
-                  </motion.li>
+                    </a>
+                  </li>
                 ))}
               </ul>
-            </motion.div>
+            </div>
 
             {/* Company - 2 columns */}
-            <motion.div className="lg:col-span-2" variants={itemVariants}>
+            <div className="lg:col-span-2">
               <h4 className="text-xl font-bold text-foreground mb-6 font-heading">Company</h4>
               <ul className="space-y-4">
-                {company.map((item, index) => {
+                {company.map((item) => {
                   const IconComponent = item.icon
                   return (
-                    <motion.li 
-                      key={item.name}
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.05 }}
-                      viewport={{ once: true }}
-                    >
-                      <motion.a 
+                    <li key={item.name}>
+                      <a 
                         href={item.href} 
                         className="flex items-center gap-3 text-muted-foreground hover:text-blue-400 transition-colors group"
-                        whileHover={{ x: 5 }}
                       >
                         <IconComponent className="w-4 h-4" />
                         <span className="font-medium font-heading">{item.name}</span>
                         <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity ml-auto" />
-                      </motion.a>
-                    </motion.li>
+                      </a>
+                    </li>
                   )
                 })}
               </ul>
-            </motion.div>
+            </div>
 
             {/* Resources - 2 columns */}
-            <motion.div className="lg:col-span-2" variants={itemVariants}>
+            <div className="lg:col-span-2">
               <h4 className="text-xl font-bold text-foreground mb-6 font-heading">Resources</h4>
               <ul className="space-y-4">
-                {resources.map((item, index) => (
-                  <motion.li 
-                    key={item.name}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.05 }}
-                    viewport={{ once: true }}
-                  >
-                    <motion.a 
+                {resources.map((item) => (
+                  <li key={item.name}>
+                    <a 
                       href={item.href} 
                       className="flex items-center gap-3 text-muted-foreground hover:text-blue-400 transition-colors group"
-                      whileHover={{ x: 5 }}
                     >
                       <span className="text-lg">{item.icon}</span>
                       <span className="font-medium font-heading">{item.name}</span>
                       <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity ml-auto" />
-                    </motion.a>
-                  </motion.li>
+                    </a>
+                  </li>
                 ))}
               </ul>
-            </motion.div>
+            </div>
 
             {/* Newsletter - 2 columns */}
-            <motion.div className="lg:col-span-2" variants={itemVariants}>
+            <div className="lg:col-span-2">
               <h4 className="text-xl font-bold text-foreground mb-6 font-heading">Stay Connected</h4>
               <p className="text-muted-foreground mb-6 leading-relaxed">
                 Get the latest enterprise insights, technology trends, and exclusive updates.
               </p>
               
               {/* Newsletter Form */}
-              <motion.div 
-                className="space-y-4 mb-8"
-                whileHover={{ scale: 1.01 }}
-                transition={{ duration: 0.2 }}
-              >
+              <div className="space-y-4 mb-8">
                 <input
                   type="email"
                   placeholder="Enter your business email"
@@ -318,71 +220,54 @@ const Footer = () => {
                   Subscribe to Updates
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
-              </motion.div>
+              </div>
 
               {/* Social Links */}
               <div>
                 <div className="text-sm font-semibold font-heading text-foreground mb-4">Follow Us</div>
                 <div className="flex gap-4">
                   {socialLinks.map((social) => (
-                    <motion.a
+                    <a
                       key={social.name}
                       href={social.href}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center gap-2 px-3 py-2 bg-muted/30 rounded-lg border border-border/30 hover:border-blue-400/30 hover:bg-blue-500/10 transition-colors group text-sm font-medium font-heading"
-                      whileHover={{ y: -2, scale: 1.05 }}
-                      transition={{ duration: 0.2 }}
                     >
                       <span>{social.icon}</span>
                       <span className="text-muted-foreground group-hover:text-blue-400 transition-colors">{social.name}</span>
-                    </motion.a>
+                    </a>
                   ))}
                 </div>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <motion.div 
-          className="border-t border-border/30 py-8"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          viewport={{ once: true }}
-        >
+        <div className="border-t border-border/30 py-8">
           <div className="flex flex-col lg:flex-row justify-between items-center gap-6">
-            <motion.div 
-              className="text-muted-foreground text-center lg:text-left font-heading"
-              whileHover={{ scale: 1.01 }}
-              transition={{ duration: 0.2 }}
-            >
+            <div className="text-muted-foreground text-center lg:text-left font-heading">
               &copy; 2025 Yati Sphere Technologies Inc. All rights reserved. | Enterprise technology solutions worldwide.
-            </motion.div>
+            </div>
             
             <div className="flex flex-wrap justify-center lg:justify-end gap-6 text-sm">
-              {legal.map((link, index) => (
-                <motion.a
+              {legal.map((link) => (
+                <a
                   key={link.name}
                   href={link.href}
                   className="text-muted-foreground hover:text-blue-400 transition-colors relative group font-medium font-heading"
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.05 }}
-                  viewport={{ once: true }}
-                  whileHover={{ y: -1 }}
                 >
                   {link.name}
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-500 transition-all group-hover:w-full rounded-full" />
-                </motion.a>
+                </a>
               ))}
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </footer>
   )
 }
 
-export default Footer
+export default FooterStatic

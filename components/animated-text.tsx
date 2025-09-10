@@ -46,6 +46,7 @@ const AnimatedText = ({
       }, 100)
       return () => clearTimeout(timer)
     }
+    return undefined
   }, [currentIndex, text, animation, isInView])
 
   const containerVariants = {
@@ -73,8 +74,7 @@ const AnimatedText = ({
       scale: 1,
       rotateX: 0,
       transition: {
-        duration,
-        ease: [0.25, 0.25, 0.25, 0.75]
+        duration
       }
     }
   }
@@ -93,8 +93,7 @@ const AnimatedText = ({
       scale: 1,
       transition: {
         delay: delay + (i * stagger),
-        duration: 0.6,
-        ease: [0.25, 0.25, 0.25, 0.75]
+        duration: 0.6
       }
     })
   }
@@ -130,7 +129,6 @@ const AnimatedText = ({
       const words = text.split(' ')
       return (
         <motion.span
-          ref={ref}
           className={className}
           variants={containerVariants}
           initial="hidden"
@@ -153,7 +151,6 @@ const AnimatedText = ({
       const chars = text.split('')
       return (
         <motion.span
-          ref={ref}
           className={className}
         >
           {chars.map((char, i) => (
@@ -176,7 +173,6 @@ const AnimatedText = ({
       const chars = text.split('')
       return (
         <motion.span
-          ref={ref}
           className={className}
         >
           {chars.map((char, i) => (
@@ -203,7 +199,6 @@ const AnimatedText = ({
 
     return (
       <motion.span
-        ref={ref}
         className={className}
         variants={itemVariants}
         initial="hidden"
