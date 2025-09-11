@@ -31,7 +31,7 @@ const spaceGrotesk = Space_Grotesk({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Yati Sphere - Premium IT Solutions',
+    default: 'Yati Sphere Technologies',
     template: '%s | Yati Sphere Technologies'
   },
   description: 'Enterprise technology solutions with cutting-edge cloud infrastructure, AI, DevOps automation, and expert consulting services.',

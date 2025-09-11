@@ -81,18 +81,18 @@ const ProfessionalCTA = () => {
         >
           <div className="text-center mb-20">
             <motion.div 
-              className="inline-flex items-center glass-card px-8 py-3 mb-8"
+              className="inline-flex items-center glass-card px-8 py-3 mb-8 bg-primary/5 border border-primary/20"
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <BarChart3 className="w-5 h-5 mr-3 text-blue-600" />
-              <span className="text-sm font-semibold text-slate-700 tracking-wide uppercase">PROVEN ENTERPRISE RESULTS</span>
+              <BarChart3 className="w-5 h-5 mr-3 text-primary" />
+              <span className="text-sm font-semibold text-foreground tracking-wide uppercase">PROVEN ENTERPRISE RESULTS</span>
             </motion.div>
             
             <h2 className="heading-section mb-8">
-              <span className="block mb-2">Delivering Measurable</span>
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-green-600 to-blue-700 animate-text-shimmer">
+              <span className="block mb-2 text-foreground">Delivering Measurable</span>
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-primary animate-text-shimmer">
                 Business Impact
               </span>
             </h2>
@@ -113,19 +113,19 @@ const ProfessionalCTA = () => {
                   <div className="w-20 h-20 glass-card rounded-3xl flex items-center justify-center mx-auto group-hover:scale-110 transition-all duration-500">
                     {(() => {
                       const IconComponent = achievement.icon
-                      return <IconComponent className="w-8 h-8 text-blue-600 group-hover:text-green-600 transition-all duration-500" />
+                      return <IconComponent className="w-8 h-8 text-primary group-hover:text-accent transition-all duration-500" />
                     })()}
                   </div>
                   {/* Premium glow effect */}
-                  <div className="absolute inset-0 w-20 h-20 mx-auto bg-gradient-to-r from-blue-600/20 to-green-600/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="absolute inset-0 w-20 h-20 mx-auto bg-gradient-to-r from-primary/20 to-accent/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 </div>
-                <div className="text-3xl font-bold text-slate-900 mb-4">
+                <div className="text-3xl font-bold text-foreground mb-4">
                   {achievement.value}
                 </div>
-                <div className="text-base font-bold text-slate-700 mb-3 tracking-tight">
+                <div className="text-base font-bold text-foreground mb-3 tracking-tight">
                   {achievement.label}
                 </div>
-                <div className="text-sm text-slate-600 leading-relaxed">
+                <div className="text-sm text-muted-foreground leading-relaxed">
                   {achievement.description}
                 </div>
               </motion.div>
@@ -226,26 +226,26 @@ const ProfessionalCTA = () => {
           viewport={{ once: true }}
           className="text-center"
         >
-          <h3 className="text-2xl font-bold text-slate-900 mb-12">
+          <h3 className="text-2xl font-bold text-foreground mb-12">
             What Enterprise Leaders Say
           </h3>
           
           <div className="bg-card border border-border rounded-2xl p-8 lg:p-12 shadow-lg max-w-4xl mx-auto">
             <div className="mb-8">
-              <div className="text-2xl text-slate-400 mb-4">"</div>
-              <p className="text-lg text-slate-700 leading-relaxed mb-6">
+              <div className="text-2xl text-muted-foreground mb-4">"</div>
+              <p className="text-lg text-foreground leading-relaxed mb-6">
                 {testimonials[currentTestimonial]?.quote || 'Loading testimonial...'}
               </p>
               <div className="flex items-center justify-center gap-4">
-                <div className="w-12 h-12 bg-slate-200 rounded-full flex items-center justify-center">
-                  <span className="text-slate-600 font-bold text-sm">
+                <div className="w-12 h-12 bg-muted rounded-full flex items-center justify-center">
+                  <span className="text-muted-foreground font-bold text-sm">
                     {testimonials[currentTestimonial]?.author?.split(' ').map(n => n[0]).join('') || 'NN'}
                   </span>
                 </div>
                 <div className="text-left">
-                  <div className="font-bold text-slate-900">{testimonials[currentTestimonial]?.author || 'Name'}</div>
-                  <div className="text-sm text-slate-600">{testimonials[currentTestimonial]?.title || 'Title'}</div>
-                  <div className="text-sm text-blue-600">{testimonials[currentTestimonial]?.company || 'Company'}</div>
+                  <div className="font-bold text-foreground">{testimonials[currentTestimonial]?.author || 'Name'}</div>
+                  <div className="text-sm text-muted-foreground">{testimonials[currentTestimonial]?.title || 'Title'}</div>
+                  <div className="text-sm text-primary">{testimonials[currentTestimonial]?.company || 'Company'}</div>
                 </div>
               </div>
             </div>
@@ -257,8 +257,8 @@ const ProfessionalCTA = () => {
                   onClick={() => setCurrentTestimonial(index)}
                   className={`w-3 h-3 rounded-full transition-all duration-300 ${
                     index === currentTestimonial 
-                      ? 'bg-blue-600' 
-                      : 'bg-slate-300 hover:bg-slate-400'
+                      ? 'bg-primary' 
+                      : 'bg-muted hover:bg-muted-foreground/50'
                   }`}
                 />
               ))}
@@ -266,7 +266,7 @@ const ProfessionalCTA = () => {
           </div>
 
           {/* Trust Indicators */}
-          <div className="mt-12 flex flex-wrap justify-center gap-8 text-sm text-slate-500">
+          <div className="mt-12 flex flex-wrap justify-center gap-8 text-sm text-muted-foreground">
             <div className="flex items-center gap-2">
               <Shield className="w-4 h-4" />
               <span>SOC 2 Type II Certified</span>

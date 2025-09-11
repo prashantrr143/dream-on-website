@@ -155,7 +155,7 @@ const Navigation = () => {
             >
               <a href="/" className="flex items-center group">
                 <motion.div 
-                  className="relative overflow-hidden rounded-xl shadow-lg group-hover:shadow-xl transition-all duration-300"
+                  className="relative overflow-hidden rounded-xl shadow-lg group-hover:shadow-xl transition-all duration-300 group"
                   whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.3 }}
                 >
@@ -164,7 +164,11 @@ const Navigation = () => {
                     alt="Yati Sphere Technologies"
                     width={scrolled ? 140 : 160}
                     height={scrolled ? 35 : 40}
-                    className="transition-all duration-500"
+                    className="transition-all duration-500 group-hover:brightness-90 group-hover:opacity-100"
+                    style={{ 
+                      filter: 'brightness(0.75)', 
+                      opacity: '0.9'
+                    }}
                     priority
                   />
                 </motion.div>
@@ -199,43 +203,86 @@ const Navigation = () => {
                         </motion.div>
                       </motion.button>
                       
-                      {/* Concise Dropdown Menu */}
+                      {/* Modern Solutions Mega Menu */}
                       <AnimatePresence>
                         {activeDropdown === item.name && (
                           <motion.div
-                            className="absolute top-full left-0 mt-1 w-64 bg-card rounded-lg shadow-lg border border-border py-2 z-50"
+                            className="absolute top-full left-1/2 transform -translate-x-1/2 mt-3 w-[800px] bg-card/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-border/50 p-8 z-50"
                             onMouseLeave={closeDropdown}
-                            initial={{ opacity: 0, y: -5, scale: 0.95 }}
+                            initial={{ opacity: 0, y: -10, scale: 0.95 }}
                             animate={{ opacity: 1, y: 0, scale: 1 }}
-                            exit={{ opacity: 0, y: -5, scale: 0.95 }}
-                            transition={{ duration: 0.15 }}
+                            exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                            transition={{ duration: 0.2, ease: "easeOut" }}
                           >
-                            {item.dropdown.map((dropdownItem, idx) => {
-                              const IconComponent = dropdownItem.icon
-                              return (
-                                <motion.a
-                                  key={dropdownItem.name}
-                                  href={dropdownItem.href}
-                                  className="flex items-center px-3 py-2 hover:bg-muted transition-colors group"
-                                  onClick={closeDropdown}
-                                  initial={{ opacity: 0 }}
-                                  animate={{ opacity: 1 }}
-                                  transition={{ delay: idx * 0.03 }}
-                                >
-                                  <div className={cn("w-8 h-8 rounded-md flex items-center justify-center mr-3", dropdownItem.bgColor)}>
-                                    <IconComponent className={cn("w-4 h-4", dropdownItem.color)} />
-                                  </div>
-                                  <div className="flex-1 min-w-0">
-                                    <div className="font-medium text-card-foreground text-sm truncate group-hover:text-primary transition-colors">
-                                      {dropdownItem.name}
+                            {/* Header */}
+                            <div className="text-center mb-6">
+                              <h3 className="text-lg font-bold text-foreground mb-2">Enterprise Solutions</h3>
+                              <p className="text-sm text-muted-foreground">Comprehensive technology solutions for modern enterprises</p>
+                            </div>
+
+                            {/* Solutions Grid */}
+                            <div className="grid grid-cols-3 gap-4 mb-6">
+                              {item.dropdown.map((dropdownItem, idx) => {
+                                const IconComponent = dropdownItem.icon
+                                return (
+                                  <motion.a
+                                    key={dropdownItem.name}
+                                    href={dropdownItem.href}
+                                    className="group relative p-4 rounded-xl hover:bg-muted/50 transition-all duration-300 border border-transparent hover:border-primary/20"
+                                    onClick={closeDropdown}
+                                    initial={{ opacity: 0, y: 10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: idx * 0.05, duration: 0.3 }}
+                                    whileHover={{ y: -2 }}
+                                  >
+                                    {/* Icon with gradient background */}
+                                    <div className="relative mb-3">
+                                      <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center group-hover:from-primary/20 group-hover:to-accent/20 transition-all duration-300">
+                                        <IconComponent className="w-6 h-6 text-primary group-hover:text-accent transition-colors duration-300" />
+                                      </div>
+                                      {/* Glow effect */}
+                                      <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-primary/20 to-accent/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl" />
                                     </div>
-                                    <div className={cn("text-xs font-medium", dropdownItem.color)}>
-                                      {dropdownItem.metric}
+
+                                    {/* Content */}
+                                    <div>
+                                      <h4 className="font-semibold text-foreground text-sm mb-1 group-hover:text-primary transition-colors">
+                                        {dropdownItem.name}
+                                      </h4>
+                                      <p className="text-xs text-muted-foreground mb-2 leading-relaxed">
+                                        {dropdownItem.desc}
+                                      </p>
+                                      <div className="flex items-center gap-1">
+                                        <div className="w-1.5 h-1.5 rounded-full bg-green-500"></div>
+                                        <span className="text-xs font-medium text-green-600 group-hover:text-green-500 transition-colors">
+                                          {dropdownItem.metric}
+                                        </span>
+                                      </div>
                                     </div>
-                                  </div>
-                                </motion.a>
-                              )
-                            })}
+
+                                    {/* Hover border effect */}
+                                    <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-primary/10 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+                                  </motion.a>
+                                )
+                              })}
+                            </div>
+
+                            {/* CTA Footer */}
+                            <div className="pt-6 border-t border-border/50 flex items-center justify-between">
+                              <div className="text-sm text-muted-foreground">
+                                Need custom solutions? 
+                                <span className="text-primary font-medium ml-1">Let's discuss your needs</span>
+                              </div>
+                              <motion.a
+                                href="/contact-us"
+                                className="px-4 py-2 bg-gradient-to-r from-primary to-accent text-primary-foreground text-sm font-medium rounded-lg hover:shadow-lg transition-all duration-300"
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                                onClick={closeDropdown}
+                              >
+                                Get Started
+                              </motion.a>
+                            </div>
                           </motion.div>
                         )}
                       </AnimatePresence>

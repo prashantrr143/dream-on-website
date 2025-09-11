@@ -1,16 +1,16 @@
 "use client"
 
 import { motion } from 'framer-motion'
-import { Mail, Phone, Globe, ArrowRight, Users, Award, Sparkles, Shield, Zap, Target, Star } from 'lucide-react'
+import { Mail, Phone, Globe, ArrowRight, Users, Award, Sparkles, Shield, Zap, Target, Star, Cloud, Bot, BarChart3, Lock, ExternalLink } from 'lucide-react'
 import Image from 'next/image'
 const Footer = () => {
 
   const solutions = [
-    { name: 'Cloud Infrastructure', href: '/solutions/cloud-infrastructure', icon: '☁️' },
-    { name: 'DevOps & Automation', href: '/solutions/devops-automation', icon: '⚡' }, 
-    { name: 'Data Analytics', href: '/solutions/data-analytics', icon: '📊' },
-    { name: 'Enterprise Security', href: '/solutions/security', icon: '🔒' },
-    { name: 'AI & Machine Learning', href: '/solutions/ai-ml', icon: '🤖' }
+    { name: 'Cloud Infrastructure', href: '/solutions/cloud-infrastructure', icon: Cloud },
+    { name: 'DevOps & Automation', href: '/solutions/devops-automation', icon: Zap }, 
+    { name: 'Data Analytics', href: '/solutions/data-analytics', icon: BarChart3 },
+    { name: 'Enterprise Security', href: '/solutions/security', icon: Lock },
+    { name: 'AI & Machine Learning', href: '/solutions/ai-ml', icon: Bot }
   ]
 
   const company = [
@@ -30,9 +30,9 @@ const Footer = () => {
   ]
 
   const socialLinks = [
-    { name: 'LinkedIn', href: '#', icon: '💼' },
-    { name: 'Twitter', href: '#', icon: '🐦' },
-    { name: 'GitHub', href: '#', icon: '🐙' }
+    { name: 'LinkedIn', href: '#', icon: ExternalLink },
+    { name: 'Twitter', href: '#', icon: ExternalLink },
+    { name: 'GitHub', href: '#', icon: ExternalLink }
   ]
 
   const trustBadges = [
@@ -89,6 +89,10 @@ const Footer = () => {
                     width={200}
                     height={50}
                     className="mb-4"
+                    style={{ 
+                      filter: 'brightness(0.75)', 
+                      opacity: '0.9'
+                    }}
                   />
                 </div>
                 
@@ -163,26 +167,29 @@ const Footer = () => {
             >
               <h4 className="text-lg font-bold text-foreground mb-6 tracking-tight">Solutions</h4>
               <ul className="space-y-3">
-                {solutions.map((item, index) => (
-                  <motion.li 
-                    key={item.name}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.05 }}
-                    viewport={{ once: true }}
-                  >
-                    <motion.a 
-                      href={item.href} 
-                      className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors group"
-                      whileHover={{ x: 5 }}
-                      transition={{ duration: 0.2 }}
+                {solutions.map((item, index) => {
+                  const IconComponent = item.icon
+                  return (
+                    <motion.li 
+                      key={item.name}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.05 }}
+                      viewport={{ once: true }}
                     >
-                      <span className="text-base">{item.icon}</span>
+                      <motion.a 
+                        href={item.href} 
+                        className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors group"
+                        whileHover={{ x: 5 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        <IconComponent className="w-4 h-4 text-primary" />
                       <span className="font-medium text-sm">{item.name}</span>
-                      <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity ml-auto" />
-                    </motion.a>
-                  </motion.li>
-                ))}
+                        <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity ml-auto" />
+                      </motion.a>
+                    </motion.li>
+                  )
+                })}
               </ul>
             </motion.div>
 
@@ -255,20 +262,23 @@ const Footer = () => {
               <div>
                 <div className="text-sm font-bold text-foreground mb-4">Follow Us</div>
                 <div className="flex gap-2">
-                  {socialLinks.map((social) => (
-                    <motion.a
-                      key={social.name}
-                      href={social.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="glass-card w-10 h-10 flex items-center justify-center rounded-xl hover:scale-110 hover:border-blue-300 transition-all duration-300 group"
-                      whileHover={{ y: -2 }}
-                      transition={{ duration: 0.2 }}
-                      title={social.name}
-                    >
-                      <span className="text-sm">{social.icon}</span>
-                    </motion.a>
-                  ))}
+                  {socialLinks.map((social) => {
+                    const IconComponent = social.icon
+                    return (
+                      <motion.a
+                        key={social.name}
+                        href={social.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="glass-card w-10 h-10 flex items-center justify-center rounded-xl hover:scale-110 hover:border-primary transition-all duration-300 group"
+                        whileHover={{ y: -2 }}
+                        transition={{ duration: 0.2 }}
+                        title={social.name}
+                      >
+                        <IconComponent className="w-4 h-4 text-primary" />
+                      </motion.a>
+                    )
+                  })}
                 </div>
               </div>
             </motion.div>

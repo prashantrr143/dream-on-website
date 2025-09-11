@@ -139,11 +139,11 @@ const CaseStudies = () => {
     >
       {/* Premium Enterprise Background */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-white via-slate-50/20 to-blue-50/10" />
-        <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-600 via-green-600 to-blue-700" />
+        <div className="absolute inset-0 bg-gradient-to-br from-background via-muted/20 to-primary/5" />
+        <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-primary via-accent to-primary" />
         {/* Sophisticated geometric patterns */}
-        <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-gradient-to-br from-blue-500/3 to-green-500/2 rounded-full blur-3xl animate-float" />
-        <div className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-gradient-to-br from-green-500/2 to-blue-500/3 rounded-full blur-3xl animate-float" style={{ animationDelay: '3s' }} />
+        <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-gradient-to-br from-primary/3 to-accent/2 rounded-full blur-3xl animate-float" />
+        <div className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-gradient-to-br from-accent/2 to-primary/3 rounded-full blur-3xl animate-float" style={{ animationDelay: '3s' }} />
       </div>
       
       <div className="adaptive-container relative z-10 h-full flex flex-col justify-center ultra-wide-spacing ultra-4k-spacing">
@@ -157,22 +157,22 @@ const CaseStudies = () => {
           viewport={{ once: true }}
         >
           <motion.div
-            className="inline-flex items-center glass-card px-8 py-3 mb-8"
+            className="inline-flex items-center glass-card px-8 py-3 mb-8 bg-primary/5 border border-primary/20"
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <Award className="w-5 h-5 mr-3 text-blue-600" />
-            <span className="text-sm font-semibold text-slate-700 tracking-wide uppercase">SUCCESS STORIES</span>
+            <Award className="w-5 h-5 mr-3 text-primary" />
+            <span className="text-sm font-semibold text-foreground tracking-wide uppercase">SUCCESS STORIES</span>
           </motion.div>
           
           <h2 className="heading-section mb-8 max-w-4xl mx-auto">
-            <span className="block mb-2">Real Results,</span>
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-green-600 to-blue-700 animate-text-shimmer">
+            <span className="block mb-2 text-foreground">Real Results,</span>
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-primary animate-text-shimmer">
               Proven Impact
             </span>
           </h2>
-          <p className="text-lead max-w-3xl mx-auto">
+          <p className="text-lead text-muted-foreground max-w-3xl mx-auto">
             Discover how we've transformed businesses across industries with measurable results
           </p>
         </motion.div>
@@ -281,7 +281,7 @@ const CaseStudies = () => {
                           </motion.div>
                           <div className="glass-card px-4 py-2">
                             <span 
-                              className="text-xs font-semibold text-slate-700 uppercase tracking-wider"
+                              className="text-xs font-semibold text-muted-foreground uppercase tracking-wider"
                               style={{ fontSize: 'clamp(0.625rem, 1.25vw, 0.75rem)' }}
                             >
                               {study.industry}
@@ -300,7 +300,7 @@ const CaseStudies = () => {
                       {/* Premium Title & Company */}
                       <div style={{ marginBottom: 'clamp(1rem, 2vh, 1.5rem)' }}>
                         <h3 
-                          className="font-bold text-slate-900 group-hover:text-blue-600 transition-colors duration-400 leading-tight tracking-tight"
+                          className="font-bold text-foreground group-hover:text-primary transition-colors duration-400 leading-tight tracking-tight"
                           style={{ 
                             fontSize: 'clamp(1rem, 1.5vw, 1.25rem)',
                             marginBottom: 'clamp(0.5rem, 1vh, 0.75rem)'
@@ -309,7 +309,7 @@ const CaseStudies = () => {
                           {study.title}
                         </h3>
                         <p 
-                          className="text-slate-600 font-semibold"
+                          className="text-muted-foreground font-semibold"
                           style={{ fontSize: 'clamp(0.875rem, 1.75vw, 1rem)' }}
                         >
                           {study.company}
@@ -331,7 +331,7 @@ const CaseStudies = () => {
                           </p>
                         </div>
                         <div>
-                          <span className="text-xs font-semibold text-green-400 uppercase tracking-wider">Solution:</span>
+                          <span className="text-xs font-semibold text-accent uppercase tracking-wider">Solution:</span>
                           <p 
                             className="text-muted-foreground leading-snug"
                             style={{ fontSize: 'clamp(0.75rem, 1.4vw, 0.875rem)' }}
