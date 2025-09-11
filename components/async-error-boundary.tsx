@@ -35,10 +35,13 @@ export function AsyncErrorBoundary({ children, onError }: AsyncErrorBoundaryProp
 
     // Global error handler for runtime errors
     const handleError = (event: ErrorEvent) => {
-      console.error('Global error:', event.error)
-      
-      if (onError) {
-        onError(event.error)
+      // Only log and handle actual errors, ignore null/undefined
+      if (event.error) {
+        console.error('Global error:', event.error)
+        
+        if (onError) {
+          onError(event.error)
+        }
       }
     }
 

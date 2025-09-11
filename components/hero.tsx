@@ -95,7 +95,7 @@ const Hero = () => {
   return (
     <section 
       id="hero-section"
-      className="relative min-h-screen flex items-center overflow-hidden hero-gradient"
+      className="relative min-h-screen flex items-center overflow-hidden bg-white"
       style={{ 
         paddingTop: 'clamp(6rem, 12vh, 8rem)', // Increased top padding to account for header
         paddingBottom: 'clamp(2rem, 4vh, 3rem)' 
@@ -103,19 +103,58 @@ const Hero = () => {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Clean Professional Background */}
+      {/* Futuristic Professional Background */}
       <div className="absolute inset-0">
-        {/* Subtle gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-background via-background/95 to-background" />
+        {/* Premium white overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-white via-white to-blue-50/30" />
+        
+        {/* Futuristic Grid Pattern */}
+        <div className="absolute inset-0 opacity-[0.02]">
+          <div 
+            className="w-full h-full"
+            style={{
+              backgroundImage: `
+                linear-gradient(rgba(59, 130, 246, 0.4) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(59, 130, 246, 0.4) 1px, transparent 1px)
+              `,
+              backgroundSize: '60px 60px'
+            }}
+          />
+        </div>
+        
+        {/* Floating Tech Elements */}
+        {[...Array(12)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute opacity-10"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              fontSize: '1.5rem'
+            }}
+            animate={{
+              y: [0, -30, 0],
+              rotate: [0, 360],
+              scale: [1, 1.2, 1]
+            }}
+            transition={{
+              duration: 8 + Math.random() * 4,
+              repeat: Infinity,
+              delay: Math.random() * 5
+            }}
+          >
+            {['⚡', '🚀', '💎', '⭐', '🔮', '💫'][i % 6]}
+          </motion.div>
+        ))}
         
         {/* Minimal grid pattern */}
         <div className="absolute inset-0 opacity-[0.02] grid-pattern" />
         
-        {/* Clean accent gradient */}
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-500/20 to-transparent" />
+        {/* Premium accent gradient */}
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-300/40 to-transparent" />
       </div>
 
-      <div className="section-container relative z-20 h-full flex items-center">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 h-full flex items-center">
         <div className="grid lg:grid-cols-12 gap-6 lg:gap-8 items-center w-full">
           {/* Left Content - Responsive columns */}
           <motion.div
@@ -135,14 +174,14 @@ const Hero = () => {
             <motion.div variants={itemVariants}>
               <Badge 
                 variant="secondary" 
-                className="inline-flex items-center gap-2 bg-blue-50/10 border border-blue-500/20 text-blue-400 font-medium rounded-full transition-all duration-300 hover:bg-blue-50/20 hover:border-blue-400/30"
+                className="inline-flex items-center gap-2 bg-blue-50 border border-blue-200 text-blue-700 font-medium rounded-full transition-all duration-300 hover:bg-green-50 hover:border-green-200 hover:text-green-700"
                 style={{
                   padding: 'clamp(0.5rem, 1vh, 0.75rem) clamp(1rem, 3vw, 1.5rem)',
                   fontSize: 'clamp(0.8rem, 1.5vw, 0.95rem)',
                   letterSpacing: '0.025em'
                 }}
               >
-                <Sparkles className="w-4 h-4 text-blue-400" />
+                <Sparkles className="w-4 h-4 text-blue-600" />
                 Enterprise Technology Solutions
               </Badge>
             </motion.div>
@@ -162,7 +201,7 @@ const Hero = () => {
                   <AnimatedText
                     text="Transform Your"
                     animation="splitWords"
-                    className="block text-foreground font-heading"
+                    className="block text-gray-900 font-heading"
                     delay={0.3}
                     stagger={0.15}
                   />
@@ -179,7 +218,7 @@ const Hero = () => {
                     <AnimatedText
                       text="Future"
                       animation="splitChars"
-                      className="text-foreground font-heading inline-block"
+                      className="text-gray-900 font-heading inline-block"
                       delay={1.3}
                       stagger={0.08}
                     />
@@ -200,7 +239,7 @@ const Hero = () => {
             {/* Professional Description */}
             <motion.div variants={itemVariants}>
               <div 
-                className="text-muted-foreground leading-relaxed max-w-none lg:max-w-2xl"
+                className="text-gray-600 leading-relaxed max-w-none lg:max-w-2xl"
                 style={{ 
                   fontSize: 'clamp(1.125rem, 2.5vw, 1.375rem)',
                   lineHeight: '1.6',
@@ -231,7 +270,7 @@ const Hero = () => {
               >
                 <Button 
                   size="lg"
-                  className="enterprise-button text-white font-medium group relative overflow-hidden w-full sm:w-auto"
+                  className="bg-blue-600 hover:bg-green-600 text-white font-medium group relative overflow-hidden w-full sm:w-auto transition-all duration-400 shadow-lg hover:shadow-xl"
                   style={{
                     padding: 'clamp(1rem, 2.5vh, 1.25rem) clamp(2rem, 5vw, 2.5rem)',
                     fontSize: 'clamp(1rem, 2vw, 1.125rem)',
@@ -256,7 +295,7 @@ const Hero = () => {
                 <Button 
                   variant="outline" 
                   size="lg"
-                  className="border-2 border-foreground/20 hover:border-blue-400/60 hover:bg-blue-400/5 text-foreground hover:text-blue-400 font-medium group transition-all duration-300 w-full sm:w-auto"
+                  className="border-2 border-blue-200 hover:border-green-400 hover:bg-green-50 text-blue-600 hover:text-green-600 font-medium group transition-all duration-300 w-full sm:w-auto"
                   style={{
                     padding: 'clamp(1rem, 2.5vh, 1.25rem) clamp(2rem, 5vw, 2.5rem)',
                     fontSize: 'clamp(1rem, 2vw, 1.125rem)',
@@ -285,7 +324,7 @@ const Hero = () => {
                 return (
                   <motion.div 
                     key={index}
-                    className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors duration-300"
+                    className="flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors duration-300"
                     style={{
                       fontSize: 'clamp(0.875rem, 1.75vw, 1rem)',
                       fontWeight: '500',
@@ -295,7 +334,7 @@ const Hero = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.1 + 3.5 }}
                   >
-                    <IconComponent className="w-4 h-4 text-blue-400" />
+                    <IconComponent className="w-4 h-4 text-blue-500" />
                     <span className="whitespace-nowrap">
                       {badge.text}
                     </span>
@@ -321,7 +360,7 @@ const Hero = () => {
                   >
                     <div className="space-y-1">
                       <div 
-                        className="font-bold text-foreground"
+                        className="font-bold text-gray-900"
                         style={{ 
                           fontSize: 'clamp(1.5rem, 3.5vw, 2.25rem)',
                           fontWeight: '700',
@@ -331,7 +370,7 @@ const Hero = () => {
                         {stat.value}
                       </div>
                       <div 
-                        className="font-medium text-muted-foreground"
+                        className="font-medium text-gray-600"
                         style={{ 
                           fontSize: 'clamp(0.875rem, 1.75vw, 1rem)',
                           fontWeight: '500',
@@ -375,7 +414,7 @@ const Hero = () => {
                     className="group"
                   >
                     <div 
-                      className="border border-border/20 hover:border-blue-400/30 bg-card/50 backdrop-blur-sm rounded-xl transition-all duration-300 hover:bg-card/80"
+                      className="bg-white border border-gray-200 hover:border-blue-300 hover:shadow-lg transition-all duration-300 rounded-xl hover:-translate-y-1"
                       style={{ padding: 'clamp(1rem, 2.5vh, 1.5rem)' }}
                     >
                       <div className="space-y-3">
@@ -404,7 +443,7 @@ const Hero = () => {
                         </div>
                         
                         <h3 
-                          className="font-semibold text-foreground group-hover:text-blue-400 transition-colors duration-300"
+                          className="font-semibold text-gray-900 group-hover:text-green-600 transition-colors duration-300"
                           style={{ 
                             fontSize: 'clamp(0.875rem, 1.75vw, 1rem)',
                             fontWeight: '600',
@@ -420,8 +459,8 @@ const Hero = () => {
               })}
             </div>
 
-            {/* Clean accent line */}
-            <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-500/20 to-transparent" />
+            {/* Premium accent line */}
+            <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-green-300/40 to-transparent" />
           </motion.div>
         </div>
       </div>

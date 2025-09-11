@@ -65,14 +65,14 @@ const CTA = () => {
  return (
    <section 
      id="cta-section"
-     className="relative py-20 lg:py-32 xl:py-40 overflow-hidden"
+     className="relative py-20 lg:py-32 xl:py-40 overflow-hidden bg-white"
      onMouseEnter={() => setIsHovered(true)}
      onMouseLeave={() => setIsHovered(false)}
    >
      {/* Revolutionary Background */}
      <div className="absolute inset-0">
        {/* Base Gradient */}
-       <div className="absolute inset-0 bg-gradient-to-br from-background via-muted/30 to-background" />
+       <div className="absolute inset-0 bg-gradient-to-br from-white via-blue-50/30 to-green-50/20" />
        
        {/* Dynamic Mesh Gradient */}
        <motion.div 
@@ -150,7 +150,7 @@ const CTA = () => {
        </div>
      </div>
 
-     <div className="section-container relative z-10">
+     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
        <motion.div
          className="max-w-7xl mx-auto"
          variants={containerVariants}
@@ -166,7 +166,7 @@ const CTA = () => {
              className="inline-block mb-8"
            >
              <motion.div
-               className="inline-flex items-center gap-3 px-6 py-3 bg-card/80 backdrop-blur-xl border border-accent/20 rounded-full group relative overflow-hidden"
+               className="inline-flex items-center gap-3 px-6 py-3 bg-white/90 backdrop-blur-xl border border-blue-200 rounded-full group relative overflow-hidden"
                whileHover={{ scale: 1.05 }}
                transition={{ type: "spring", stiffness: 400, damping: 17 }}
              >
@@ -176,8 +176,8 @@ const CTA = () => {
                  whileHover={{ x: "100%" }}
                  transition={{ duration: 0.6 }}
                />
-               <Sparkles className="w-5 h-5 text-accent animate-pulse" />
-               <span className="relative font-semibold text-foreground">Ready to Transform?</span>
+               <Sparkles className="w-5 h-5 text-blue-600 animate-pulse" />
+               <span className="relative font-semibold text-gray-900">Ready to Transform?</span>
              </motion.div>
            </motion.div>
            
@@ -210,13 +210,13 @@ const CTA = () => {
            </motion.h2>
            
            <motion.p 
-             className="text-lead max-w-4xl mx-auto mb-12"
+             className="text-gray-600 text-xl leading-relaxed max-w-4xl mx-auto mb-12"
              variants={itemVariants}
            >
              Join 500+ enterprise leaders who've transformed their technology infrastructure 
              with our cutting-edge solutions. Experience{" "}
              <motion.span 
-               className="font-semibold text-accent"
+               className="font-semibold text-blue-600"
                whileHover={{ scale: 1.05 }}
              >
                measurable results
@@ -235,7 +235,7 @@ const CTA = () => {
              >
                <Button 
                  size="xl" 
-                 className="enterprise-button group h-16 px-12 text-xl font-bold relative overflow-hidden shadow-2xl"
+                 className="bg-blue-600 hover:bg-green-600 transition-all duration-400 text-white group h-16 px-12 text-xl font-bold relative overflow-hidden shadow-2xl"
                >
                  <motion.div
                    className="absolute inset-0 bg-gradient-to-r from-accent via-chart-1 to-accent"

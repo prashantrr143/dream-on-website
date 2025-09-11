@@ -331,8 +331,8 @@ const AIMachineLearning = () => {
                                     const IconComponent = benefit.icon
                                     return (
                                         <Card key={index} className="enterprise-card enterprise-card-hover p-6 text-center group">
-                                            <IconComponent className="w-8 h-8 text-purple-500 mx-auto mb-4 group-hover:scale-110 transition-transform" />
-                                            <div className="text-3xl font-bold text-foreground mb-2 group-hover:text-purple-500 transition-colors">
+                                            <IconComponent className="w-6 h-6 text-purple-500 mx-auto mb-4 group-hover:scale-110 transition-transform" />
+                                            <div className="text-xl font-bold text-foreground mb-2 group-hover:text-purple-500 transition-colors">
                                                 {benefit.metric}
                                             </div>
                                             <div className="text-sm font-semibold text-foreground mb-1">
@@ -412,7 +412,7 @@ const AIMachineLearning = () => {
                                                     className="w-16 h-16 mx-auto rounded-2xl bg-muted/50 flex items-center justify-center mb-6 group-hover:bg-purple-500/10 transition-colors"
                                                     whileHover={{ rotate: 5, scale: 1.1 }}
                                                 >
-                                                    <IconComponent className="w-8 h-8 text-purple-500" />
+                                                    <IconComponent className="w-6 h-6 text-purple-500" />
                                                 </motion.div>
 
                                                 <h3 className="text-xl font-bold mb-6 group-hover:text-purple-500 transition-colors">
@@ -474,7 +474,7 @@ const AIMachineLearning = () => {
                                                         className="w-16 h-16 rounded-2xl bg-muted/50 flex items-center justify-center group-hover:bg-purple-500/10 transition-colors flex-shrink-0"
                                                         whileHover={{ rotate: 5, scale: 1.1 }}
                                                     >
-                                                        <IconComponent className="w-8 h-8 text-purple-500" />
+                                                        <IconComponent className="w-6 h-6 text-purple-500" />
                                                     </motion.div>
                                                     <div className="flex-1">
                                                         <div className="flex items-center gap-3 mb-3">

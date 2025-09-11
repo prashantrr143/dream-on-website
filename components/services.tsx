@@ -3,7 +3,6 @@
 import { motion, Variants } from 'framer-motion'
 import { Badge } from '@/components/ui/badge'
 import { ArrowRight, Sparkles } from 'lucide-react'
-import { cn } from '@/lib/utils'
 import dynamic from 'next/dynamic'
 import { useMemo } from 'react'
 // import { ScrollAnimation, StaggerAnimation, HoverAnimation } from '@/components/optimized-animations'
@@ -90,20 +89,20 @@ const Services = () => {
 
  return (
    <section 
-     className="relative overflow-hidden min-h-[80vh] flex flex-col justify-center section-no-overlap" 
+     className="relative overflow-hidden min-h-[80vh] flex flex-col justify-center section-no-overlap bg-white" 
      style={{ 
        padding: 'clamp(4rem, 8vh, 6rem) 0',
        marginTop: '2rem' // Add margin to prevent overlap
      }}
      id="services"
    >
-     {/* Background Elements */}
+     {/* Premium Background Elements */}
      <div className="absolute inset-0">
-       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-violet-500/5 rounded-full blur-3xl animate-float" />
-       <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-blue-500/5 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }} />
+       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-100/60 rounded-full blur-3xl animate-float" />
+       <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-green-100/60 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }} />
      </div>
      
-     <div className="section-container relative z-10 h-full flex flex-col justify-center">
+     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 h-full flex flex-col justify-center">
        {/* Header */}
        <motion.div 
          className="text-center"
@@ -119,14 +118,14 @@ const Services = () => {
          >
            <Badge 
              variant="secondary" 
-             className="glass-card rounded-full"
+             className="bg-white border border-blue-200 hover:border-green-200 hover:bg-green-50 transition-all duration-300 shadow-sm rounded-full"
              style={{
                padding: 'clamp(0.5rem, 1vh, 0.75rem) clamp(1rem, 3vw, 1.5rem)',
                fontSize: 'clamp(0.75rem, 1.5vw, 0.875rem)',
                marginBottom: 'clamp(1rem, 3vh, 2rem)'
              }}
            >
-             <Sparkles className="w-4 h-4 mr-2 animate-pulse" />
+             <Sparkles className="w-4 h-4 mr-2 animate-pulse text-blue-600" />
              Our Expertise
            </Badge>
          </motion.div>
@@ -153,7 +152,7 @@ const Services = () => {
            />
          </h2>
          <p 
-           className="text-muted-foreground leading-relaxed max-w-3xl mx-auto"
+           className="text-gray-600 leading-relaxed max-w-3xl mx-auto"
            style={{ fontSize: 'clamp(1rem, 2vw, 1.125rem)' }}
          >
            Comprehensive technology solutions designed for enterprise excellence, 
@@ -183,21 +182,38 @@ const Services = () => {
              }}
              className="group"
            >
-             <div 
-               className="glass-card h-full relative overflow-hidden rounded-xl"
+             <motion.div 
+               className="bg-white border border-gray-200 hover:border-green-300 group-hover:shadow-2xl h-full relative overflow-hidden rounded-xl transition-all duration-300 transform-gpu"
                style={{ 
                  padding: 'clamp(1rem, 2vh, 1.5rem)',
-                 minHeight: 'clamp(200px, 20vh, 250px)'
+                 minHeight: 'clamp(200px, 20vh, 250px)',
+                 transformStyle: 'preserve-3d'
                }}
+               whileHover={{ 
+                 rotateY: 5,
+                 scale: 1.02,
+                 z: 30
+               }}
+               transition={{ type: "spring", stiffness: 300, damping: 30 }}
              >
                {/* Gradient Background */}
-               <div className={cn(
-                 "absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-100 transition-opacity duration-500",
-                 service.gradient
-               )} />
+               <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-green-50/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                
-               {/* Accent Border */}
-               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-violet-500 via-blue-500 to-cyan-500 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700" />
+               {/* Futuristic Accent Border */}
+               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-green-500 to-blue-500 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700" />
+               
+               {/* Holographic Glow Effect */}
+               <motion.div
+                 className="absolute inset-0 bg-gradient-to-br from-blue-400/5 via-transparent to-green-400/5 opacity-0 group-hover:opacity-100"
+                 animate={{ 
+                   background: [
+                     "radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.1) 0%, transparent 50%)",
+                     "radial-gradient(circle at 80% 80%, rgba(34, 197, 94, 0.1) 0%, transparent 50%)",
+                     "radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.1) 0%, transparent 50%)"
+                   ]
+                 }}
+                 transition={{ duration: 3, repeat: Infinity }}
+               />
                
                {/* Content */}
                <div className="relative h-full flex flex-col">
@@ -207,7 +223,7 @@ const Services = () => {
                    style={{ marginBottom: 'clamp(0.75rem, 2vh, 1rem)' }}
                  >
                    <motion.div 
-                     className="rounded-2xl bg-muted/50 flex items-center justify-center group-hover:bg-accent/10 group-hover:scale-110 transition-all duration-300"
+                     className="rounded-2xl bg-blue-50 flex items-center justify-center group-hover:bg-green-100 group-hover:scale-110 transition-all duration-300"
                      style={{
                        width: 'clamp(2.5rem, 4vw, 3rem)',
                        height: 'clamp(2.5rem, 4vw, 3rem)',
@@ -219,13 +235,13 @@ const Services = () => {
                    </motion.div>
                    <div className="text-right">
                      <div 
-                       className="font-semibold text-accent uppercase tracking-wider"
+                       className="font-semibold text-blue-600 uppercase tracking-wider"
                        style={{ fontSize: 'clamp(0.625rem, 1.25vw, 0.75rem)' }}
                      >
                        Success Rate
                      </div>
                      <div 
-                       className="font-bold text-foreground"
+                       className="font-bold text-gray-900"
                        style={{ fontSize: 'clamp(0.75rem, 1.5vw, 0.875rem)' }}
                      >
                        {service.metrics}
@@ -235,7 +251,7 @@ const Services = () => {
                  
                  {/* Title */}
                  <h3 
-                   className="font-bold text-foreground group-hover:text-accent transition-colors duration-300"
+                   className="font-bold text-gray-900 group-hover:text-green-600 transition-colors duration-300"
                    style={{ 
                      fontSize: 'clamp(1rem, 2vw, 1.25rem)',
                      marginBottom: 'clamp(0.5rem, 1vh, 0.75rem)'
@@ -246,7 +262,7 @@ const Services = () => {
                  
                  {/* Description */}
                  <p 
-                   className="text-muted-foreground leading-relaxed flex-grow"
+                   className="text-gray-600 leading-relaxed flex-grow"
                    style={{ 
                      fontSize: 'clamp(0.875rem, 1.5vw, 1rem)',
                      marginBottom: 'clamp(0.75rem, 2vh, 1rem)'
@@ -257,15 +273,15 @@ const Services = () => {
                  
                  {/* CTA */}
                  <motion.div 
-                   className="flex items-center justify-between pt-6 border-t border-gray-700/50"
+                   className="flex items-center justify-between pt-6 border-t border-gray-200"
                    whileHover={{ x: 5 }}
                    transition={{ duration: 0.2 }}
                  >
-                   <span className="text-accent font-semibold group-hover:text-accent">
+                   <span className="text-blue-600 font-semibold group-hover:text-green-600 transition-colors duration-300">
                      Learn More
                    </span>
                    <motion.div
-                     className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center group-hover:bg-accent group-hover:text-white transition-all duration-300"
+                     className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center group-hover:bg-green-500 group-hover:text-white transition-all duration-300"
                      whileHover={{ scale: 1.1 }}
                      whileTap={{ scale: 0.95 }}
                    >
@@ -278,7 +294,7 @@ const Services = () => {
                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-1000" />
                </div>
-             </div>
+             </motion.div>
            </motion.div>
          ))}
        </motion.div>

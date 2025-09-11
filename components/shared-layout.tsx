@@ -7,8 +7,8 @@ import { ArrowUp } from 'lucide-react'
 // import ErrorBoundary from '@/components/error-boundary'
 // import { LoadingSpinner } from '@/components/loading-states'
 
-// Import static footer to prevent hydration issues
-import FooterStatic from '@/components/footer-static'
+// Import footer 
+import Footer from '@/components/footer'
 
 // Scroll to top component
 function ScrollToTop() {
@@ -59,12 +59,12 @@ export default function SharedLayout({ children, className = "" }: SharedLayoutP
       <Navigation />
       
       {/* Main content with proper spacing to account for fixed header */}
-      <main className={`relative pt-16 sm:pt-18 lg:pt-20 xl:pt-24 ${className}`}>
+      <main className={`relative ${className}`}>
         {children}
       </main>
       
-      {/* Footer - Static to prevent hydration issues */}
-      <FooterStatic />
+      {/* Footer */}
+      <Footer />
       
       {/* Scroll to top button */}
       <ScrollToTop />

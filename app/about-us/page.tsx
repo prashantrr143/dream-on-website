@@ -222,7 +222,7 @@ const AboutUs = () => {
            className="max-w-6xl mx-auto"
          >
            <div className="text-center mb-12">
-             <h2 className="text-3xl font-bold text-foreground mb-4">
+             <h2 className="text-2xl font-bold text-foreground mb-4">
                Our <span className="gradient-text">Expertise</span>
              </h2>
              <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
@@ -318,7 +318,7 @@ const AboutUs = () => {
            className="max-w-6xl mx-auto"
          >
            <div className="text-center mb-12">
-             <h2 className="text-3xl font-bold text-foreground mb-4">
+             <h2 className="text-2xl font-bold text-foreground mb-4">
                Industry <span className="gradient-text">Recognition</span>
              </h2>
              <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
@@ -361,7 +361,7 @@ const AboutUs = () => {
                  >
                    <div className="glass-card p-6 rounded-xl hover:border-blue-400/30 transition-all duration-300">
                      <div className="bg-blue-500/10 rounded-lg p-3 w-fit mx-auto mb-4">
-                       <IconComponent className="w-8 h-8 text-blue-500" />
+                       <IconComponent className="w-6 h-6 text-blue-500" />
                      </div>
                      <h3 className="text-lg font-semibold text-foreground mb-2">
                        {achievement.title}
@@ -405,7 +405,7 @@ const AboutUs = () => {
              <motion.div variants={itemVariants}>
                <Card className="enterprise-card enterprise-card-hover p-8 lg:p-10 h-full">
                  <div className="w-16 h-16 rounded-2xl bg-accent/10 flex items-center justify-center mb-6">
-                   <Target className="w-8 h-8 text-accent" />
+                   <Target className="w-6 h-6 text-accent" />
                  </div>
                  <h3 className="heading-card mb-4">Our Vision</h3>
                  <p className="text-body leading-relaxed">
@@ -419,7 +419,7 @@ const AboutUs = () => {
              <motion.div variants={itemVariants}>
                <Card className="enterprise-card enterprise-card-hover p-8 lg:p-10 h-full">
                  <div className="w-16 h-16 rounded-2xl bg-accent/10 flex items-center justify-center mb-6">
-                   <Globe className="w-8 h-8 text-accent" />
+                   <Globe className="w-6 h-6 text-accent" />
                  </div>
                  <h3 className="heading-card mb-4">Global Impact</h3>
                  <p className="text-body leading-relaxed">
@@ -469,7 +469,7 @@ const AboutUs = () => {
                        className="w-16 h-16 mx-auto rounded-2xl bg-muted/50 flex items-center justify-center mb-6 group-hover:bg-accent/10 transition-colors"
                        whileHover={{ rotate: 5, scale: 1.1 }}
                      >
-                       <IconComponent className="w-8 h-8 text-accent" />
+                       <IconComponent className="w-6 h-6 text-accent" />
                      </motion.div>
                      <h3 className="text-xl font-bold mb-4 group-hover:text-accent transition-colors">
                        {value.title}

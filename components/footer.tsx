@@ -1,35 +1,9 @@
 "use client"
 
 import { motion } from 'framer-motion'
-import { Mail, Phone, Globe, ArrowRight, Users, Award, Sparkles, Shield, Zap, Target, MapPin, Star } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { useState, useEffect } from 'react'
-import dynamic from 'next/dynamic'
-
-// Lazy load AnimatedText to prevent hydration issues
-const AnimatedText = dynamic(() => import('@/components/animated-text'), {
-  ssr: false,
-  loading: () => <span>Loading...</span>
-})
-
+import { Mail, Phone, Globe, ArrowRight, Users, Award, Sparkles, Shield, Zap, Target, Star } from 'lucide-react'
+import Image from 'next/image'
 const Footer = () => {
-  const [isClient, setIsClient] = useState(false)
-
-  useEffect(() => {
-    setIsClient(true)
-  }, [])
-
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      transition: { 
-        duration: 0.8
-      }
-    }
-  }
 
   const solutions = [
     { name: 'Cloud Infrastructure', href: '/solutions/cloud-infrastructure', icon: '☁️' },
@@ -47,13 +21,6 @@ const Footer = () => {
     { name: 'Contact', href: '/contact-us', icon: Phone }
   ]
 
-  const resources = [
-    { name: 'Documentation', href: '/docs', icon: '📚' },
-    { name: 'API Reference', href: '/api', icon: '🔧' },
-    { name: 'Best Practices', href: '/best-practices', icon: '✨' },
-    { name: 'White Papers', href: '/resources', icon: '📄' },
-    { name: 'Blog', href: '/blog', icon: '📝' }
-  ]
 
   const legal = [
     { name: 'Privacy Policy', href: '/policy' },
@@ -68,7 +35,6 @@ const Footer = () => {
     { name: 'GitHub', href: '#', icon: '🐙' }
   ]
 
-
   const trustBadges = [
     { text: "SOC 2 Type II", icon: Shield },
     { text: "ISO 27001", icon: Award },
@@ -77,144 +43,126 @@ const Footer = () => {
   ]
 
   return (
-    <footer className="relative bg-background border-t border-border/30 overflow-hidden">
-      {/* Professional Background Elements */}
+    <footer className="relative bg-background overflow-hidden">
+      {/* Premium Enterprise Background */}
       <div className="absolute inset-0">
-        {/* Subtle gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-background via-muted/5 to-background" />
+        <div className="absolute inset-0 bg-gradient-to-br from-background via-muted/30 to-primary/5" />
+        <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-primary via-accent to-primary" />
         
-        {/* Floating orbs */}
+        {/* Sophisticated geometric patterns */}
         <motion.div 
-          className="absolute top-0 left-1/4 w-64 sm:w-80 h-64 sm:h-80 bg-gradient-to-r from-blue-500/8 to-violet-500/8 rounded-full blur-3xl"
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.5, 0.3]
-          }}
-          transition={{ duration: 8, repeat: Infinity }}
-        />
-        <motion.div 
-          className="absolute bottom-0 right-1/4 w-48 sm:w-64 h-48 sm:h-64 bg-gradient-to-r from-purple-500/8 to-cyan-500/8 rounded-full blur-3xl"
+          className="absolute top-0 left-1/4 w-80 h-80 bg-gradient-to-r from-blue-500/3 to-green-500/2 rounded-full blur-3xl"
           animate={{
             scale: [1, 1.1, 1],
-            opacity: [0.4, 0.6, 0.4]
+            opacity: [0.2, 0.3, 0.2]
           }}
-          transition={{ duration: 10, repeat: Infinity, delay: 2 }}
+          transition={{ duration: 15, repeat: Infinity }}
         />
-        
-        {/* Professional grid pattern */}
-        <div className="absolute inset-0 opacity-5 grid-pattern" />
+        <motion.div 
+          className="absolute bottom-0 right-1/4 w-64 h-64 bg-gradient-to-r from-green-500/2 to-blue-500/3 rounded-full blur-3xl"
+          animate={{
+            scale: [1, 1.15, 1],
+            opacity: [0.3, 0.4, 0.3]
+          }}
+          transition={{ duration: 12, repeat: Infinity, delay: 3 }}
+        />
       </div>
 
-
       {/* Main Footer Content */}
-      <div className="relative z-10 section-container">
-        <div className="py-16 lg:py-20">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12">
-            {/* Company Info - 4 columns */}
-            <div className="lg:col-span-4">
-              <div className="mb-8">
-                <h3 className="text-3xl lg:text-4xl font-bold mb-6 font-heading">
-                  <span className="bg-gradient-to-r from-blue-500 via-violet-500 to-cyan-500 bg-clip-text text-transparent animate-text-shimmer">
-                    Yati Sphere
-                  </span>
-                  {isClient && (
-                    <motion.span 
-                      className="text-blue-400 ml-1"
-                      animate={{ scale: [1, 1.2, 1] }}
-                      transition={{ duration: 2, repeat: Infinity }}
-                    >
-                      .
-                    </motion.span>
-                  )}
-                  {!isClient && <span className="text-blue-400 ml-1">.</span>}
-                </h3>
-              
-              {isClient ? (
-                <AnimatedText
-                  text="Enterprise technology solutions that drive digital transformation and deliver measurable business results for Fortune 500 companies worldwide."
-                  animation="splitWords"
-                  className="text-muted-foreground leading-relaxed mb-8 text-base lg:text-lg"
-                  stagger={0.03}
-                  delay={0.5}
-                />
-              ) : (
-                <p className="text-muted-foreground leading-relaxed mb-8 text-base lg:text-lg">
-                  Enterprise technology solutions that drive digital transformation and deliver measurable business results for Fortune 500 companies worldwide.
+      <div className="relative z-10 adaptive-container">
+        <div className="py-20 ultra-wide-spacing ultra-4k-spacing">
+          {/* Main Grid - Responsive */}
+          <div className="footer-grid-balanced grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 2xl:grid-cols-5 gap-12 lg:gap-16 2xl:gap-12 mb-16">
+            
+            {/* Company Info - Takes 2 columns on large screens */}
+            <div className="lg:col-span-2">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                viewport={{ once: true }}
+              >
+                <div className="mb-6">
+                  <Image 
+                    src="/yati-sphere-logo.png"
+                    alt="Yati Sphere Technologies"
+                    width={200}
+                    height={50}
+                    className="mb-4"
+                  />
+                </div>
+                
+                <p className="text-lead text-muted-foreground mb-8 max-w-md">
+                  Enterprise technology solutions that drive digital transformation and deliver measurable business results.
                 </p>
-              )}
-              
-              {/* Contact Info */}
-              <div className="space-y-4 mb-8">
-                <motion.a
-                  href="mailto:hello@yatisphere.com"
-                  className="flex items-center gap-3 text-muted-foreground hover:text-blue-400 transition-colors group"
-                  whileHover={{ x: 5 }}
-                >
-                  <div className="w-10 h-10 bg-blue-500/10 rounded-xl flex items-center justify-center group-hover:bg-blue-500/20 transition-colors">
-                    <Mail className="w-5 h-5 text-blue-500" />
-                  </div>
-                  <div>
-                    <div className="font-semibold font-heading">Email</div>
-                    <div className="text-sm">hello@yatisphere.com</div>
-                  </div>
-                </motion.a>
                 
-                <motion.a
-                  href="tel:+15551234567"
-                  className="flex items-center gap-3 text-muted-foreground hover:text-green-400 transition-colors group"
-                  whileHover={{ x: 5 }}
-                >
-                  <div className="w-10 h-10 bg-green-500/10 rounded-xl flex items-center justify-center group-hover:bg-green-500/20 transition-colors">
-                    <Phone className="w-5 h-5 text-green-500" />
-                  </div>
-                  <div>
-                    <div className="font-semibold font-heading">Phone</div>
-                    <div className="text-sm">+1 (555) 123-4567</div>
-                  </div>
-                </motion.a>
+                {/* Premium Contact Info */}
+                <div className="space-y-4 mb-8">
+                  <motion.a
+                    href="mailto:hello@yatisphere.com"
+                    className="flex items-center gap-4 text-muted-foreground hover:text-primary transition-colors group"
+                    whileHover={{ x: 8 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <div className="glass-card w-12 h-12 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                      <Mail className="w-5 h-5 text-blue-600" />
+                    </div>
+                    <div>
+                      <div className="font-bold text-foreground">hello@yatisphere.com</div>
+                      <div className="text-sm font-medium">Enterprise Inquiries</div>
+                    </div>
+                  </motion.a>
+                  
+                  <motion.a
+                    href="tel:+15551234567"
+                    className="flex items-center gap-4 text-muted-foreground hover:text-accent transition-colors group"
+                    whileHover={{ x: 8 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <div className="glass-card w-12 h-12 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                      <Phone className="w-5 h-5 text-green-600" />
+                    </div>
+                    <div>
+                      <div className="font-bold text-foreground">+1 (555) 123-4567</div>
+                      <div className="text-sm font-medium">24/7 Enterprise Support</div>
+                    </div>
+                  </motion.a>
+                </div>
                 
-                <div className="flex items-center gap-3 text-muted-foreground">
-                  <div className="w-10 h-10 bg-purple-500/10 rounded-xl flex items-center justify-center">
-                    <MapPin className="w-5 h-5 text-purple-500" />
-                  </div>
-                  <div>
-                    <div className="font-semibold font-heading">Global</div>
-                    <div className="text-sm">40+ Countries Worldwide</div>
+                {/* Premium Trust Badges */}
+                <div>
+                  <div className="text-lg font-bold text-foreground mb-4">Security & Compliance</div>
+                  <div className="flex flex-wrap gap-3">
+                    {trustBadges.slice(0, 2).map((badge, index) => {
+                      const IconComponent = badge.icon
+                      return (
+                        <motion.div 
+                          key={index}
+                          className="glass-card flex items-center gap-2 px-3 py-2 hover:scale-105 transition-all duration-300 group"
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          whileInView={{ opacity: 1, scale: 1 }}
+                          transition={{ delay: index * 0.1, duration: 0.5 }}
+                          whileHover={{ y: -2 }}
+                        >
+                          <IconComponent className="w-4 h-4 text-blue-600" />
+                          <span className="text-xs font-bold text-foreground">{badge.text}</span>
+                        </motion.div>
+                      )
+                    })}
                   </div>
                 </div>
-              </div>
-
-              {/* Trust Badges */}
-              <div>
-                <div className="text-sm font-semibold font-heading text-foreground mb-4">Security & Compliance</div>
-                <div className="flex flex-wrap gap-3">
-                  {trustBadges.map((badge, index) => {
-                    const IconComponent = badge.icon
-                    return (
-                      <motion.div 
-                        key={index}
-                        className="flex items-center gap-2 px-3 py-2 bg-muted/30 rounded-lg border border-border/30 hover:border-blue-400/30 transition-colors group"
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        transition={{ delay: index * 0.1 + 1 }}
-                        whileHover={{ scale: 1.05, y: -2 }}
-                      >
-                        <IconComponent className="w-4 h-4 text-blue-400" />
-                        <span className="text-xs font-semibold font-heading text-muted-foreground group-hover:text-foreground transition-colors">
-                          {badge.text}
-                        </span>
-                      </motion.div>
-                    )
-                  })}
-                </div>
-              </div>
-              </div>
+              </motion.div>
             </div>
 
-            {/* Solutions - 2 columns */}
-            <motion.div className="lg:col-span-2" variants={itemVariants}>
-              <h4 className="text-xl font-bold text-foreground mb-6 font-heading">Solutions</h4>
-              <ul className="space-y-4">
+            {/* Solutions */}
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              <h4 className="text-lg font-bold text-foreground mb-6 tracking-tight">Solutions</h4>
+              <ul className="space-y-3">
                 {solutions.map((item, index) => (
                   <motion.li 
                     key={item.name}
@@ -225,11 +173,12 @@ const Footer = () => {
                   >
                     <motion.a 
                       href={item.href} 
-                      className="flex items-center gap-3 text-muted-foreground hover:text-blue-400 transition-colors group"
+                      className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors group"
                       whileHover={{ x: 5 }}
+                      transition={{ duration: 0.2 }}
                     >
-                      <span className="text-lg">{item.icon}</span>
-                      <span className="font-medium font-heading">{item.name}</span>
+                      <span className="text-base">{item.icon}</span>
+                      <span className="font-medium text-sm">{item.name}</span>
                       <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity ml-auto" />
                     </motion.a>
                   </motion.li>
@@ -237,10 +186,15 @@ const Footer = () => {
               </ul>
             </motion.div>
 
-            {/* Company - 2 columns */}
-            <motion.div className="lg:col-span-2" variants={itemVariants}>
-              <h4 className="text-xl font-bold text-foreground mb-6 font-heading">Company</h4>
-              <ul className="space-y-4">
+            {/* Company */}
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              viewport={{ once: true }}
+            >
+              <h4 className="text-lg font-bold text-foreground mb-6 tracking-tight">Company</h4>
+              <ul className="space-y-3">
                 {company.map((item, index) => {
                   const IconComponent = item.icon
                   return (
@@ -253,11 +207,12 @@ const Footer = () => {
                     >
                       <motion.a 
                         href={item.href} 
-                        className="flex items-center gap-3 text-muted-foreground hover:text-blue-400 transition-colors group"
+                        className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors group"
                         whileHover={{ x: 5 }}
+                        transition={{ duration: 0.2 }}
                       >
                         <IconComponent className="w-4 h-4" />
-                        <span className="font-medium font-heading">{item.name}</span>
+                        <span className="font-medium text-sm">{item.name}</span>
                         <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity ml-auto" />
                       </motion.a>
                     </motion.li>
@@ -266,120 +221,96 @@ const Footer = () => {
               </ul>
             </motion.div>
 
-            {/* Resources - 2 columns */}
-            <motion.div className="lg:col-span-2" variants={itemVariants}>
-              <h4 className="text-xl font-bold text-foreground mb-6 font-heading">Resources</h4>
-              <ul className="space-y-4">
-                {resources.map((item, index) => (
-                  <motion.li 
-                    key={item.name}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.05 }}
-                    viewport={{ once: true }}
-                  >
-                    <motion.a 
-                      href={item.href} 
-                      className="flex items-center gap-3 text-muted-foreground hover:text-blue-400 transition-colors group"
-                      whileHover={{ x: 5 }}
-                    >
-                      <span className="text-lg">{item.icon}</span>
-                      <span className="font-medium font-heading">{item.name}</span>
-                      <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity ml-auto" />
-                    </motion.a>
-                  </motion.li>
-                ))}
-              </ul>
-            </motion.div>
-
-            {/* Newsletter - 2 columns */}
-            <motion.div className="lg:col-span-2" variants={itemVariants}>
-              <h4 className="text-xl font-bold text-foreground mb-6 font-heading">Stay Connected</h4>
-              <p className="text-muted-foreground mb-6 leading-relaxed">
-                Get the latest enterprise insights, technology trends, and exclusive updates.
+            {/* Resources & Newsletter */}
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              viewport={{ once: true }}
+            >
+              <h4 className="text-lg font-bold text-foreground mb-6 tracking-tight">Stay Connected</h4>
+              <p className="text-muted-foreground mb-6 leading-relaxed text-sm">
+                Get enterprise insights and technology updates.
               </p>
               
-              {/* Newsletter Form */}
+              {/* Premium Newsletter Form */}
               <motion.div 
                 className="space-y-4 mb-8"
-                whileHover={{ scale: 1.01 }}
-                transition={{ duration: 0.2 }}
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.3 }}
               >
                 <input
                   type="email"
-                  placeholder="Enter your business email"
-                  className="w-full px-4 py-3 text-sm rounded-xl border border-border bg-background/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-500 transition-all font-heading"
+                  placeholder="Enter business email"
+                  className="w-full px-4 py-3 text-sm glass-card focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-500 transition-all font-medium rounded-xl"
                 />
-                <Button 
-                  size="lg" 
-                  className="w-full enterprise-button text-white font-semibold font-heading"
-                >
-                  <Sparkles className="w-4 h-4 mr-2" />
-                  Subscribe to Updates
-                  <ArrowRight className="w-4 h-4 ml-2" />
-                </Button>
+                <button className="w-full enterprise-button py-3 text-white font-semibold text-sm flex items-center justify-center gap-2">
+                  <Sparkles className="w-4 h-4" />
+                  Subscribe
+                  <ArrowRight className="w-4 h-4" />
+                </button>
               </motion.div>
 
               {/* Social Links */}
               <div>
-                <div className="text-sm font-semibold font-heading text-foreground mb-4">Follow Us</div>
-                <div className="flex gap-4">
+                <div className="text-sm font-bold text-foreground mb-4">Follow Us</div>
+                <div className="flex gap-2">
                   {socialLinks.map((social) => (
                     <motion.a
                       key={social.name}
                       href={social.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 px-3 py-2 bg-muted/30 rounded-lg border border-border/30 hover:border-blue-400/30 hover:bg-blue-500/10 transition-colors group text-sm font-medium font-heading"
-                      whileHover={{ y: -2, scale: 1.05 }}
+                      className="glass-card w-10 h-10 flex items-center justify-center rounded-xl hover:scale-110 hover:border-blue-300 transition-all duration-300 group"
+                      whileHover={{ y: -2 }}
                       transition={{ duration: 0.2 }}
+                      title={social.name}
                     >
-                      <span>{social.icon}</span>
-                      <span className="text-muted-foreground group-hover:text-blue-400 transition-colors">{social.name}</span>
+                      <span className="text-sm">{social.icon}</span>
                     </motion.a>
                   ))}
                 </div>
               </div>
             </motion.div>
           </div>
-        </div>
 
-        {/* Bottom Bar */}
-        <motion.div 
-          className="border-t border-border/30 py-8"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          viewport={{ once: true }}
-        >
-          <div className="flex flex-col lg:flex-row justify-between items-center gap-6">
-            <motion.div 
-              className="text-muted-foreground text-center lg:text-left font-heading"
-              whileHover={{ scale: 1.01 }}
-              transition={{ duration: 0.2 }}
-            >
-              &copy; 2025 Yati Sphere Technologies Inc. All rights reserved. | Enterprise technology solutions worldwide.
-            </motion.div>
-            
-            <div className="flex flex-wrap justify-center lg:justify-end gap-6 text-sm">
-              {legal.map((link, index) => (
-                <motion.a
-                  key={link.name}
-                  href={link.href}
-                  className="text-muted-foreground hover:text-blue-400 transition-colors relative group font-medium font-heading"
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.05 }}
-                  viewport={{ once: true }}
-                  whileHover={{ y: -1 }}
-                >
-                  {link.name}
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-500 transition-all group-hover:w-full rounded-full" />
-                </motion.a>
-              ))}
+          {/* Bottom Bar */}
+          <motion.div 
+            className="border-t-2 border-slate-200/50 pt-8"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+            viewport={{ once: true }}
+          >
+            <div className="flex flex-col lg:flex-row justify-between items-center gap-6">
+              <motion.div 
+                className="text-muted-foreground text-center lg:text-left font-medium"
+                whileHover={{ scale: 1.01 }}
+                transition={{ duration: 0.3 }}
+              >
+                &copy; 2025 Yati Sphere Technologies Inc. All rights reserved. | Enterprise solutions worldwide.
+              </motion.div>
+              
+              <div className="flex flex-wrap justify-center lg:justify-end gap-6 text-sm">
+                {legal.map((link, index) => (
+                  <motion.a
+                    key={link.name}
+                    href={link.href}
+                    className="text-muted-foreground hover:text-primary transition-colors relative group font-semibold"
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.05, duration: 0.4 }}
+                    viewport={{ once: true }}
+                    whileHover={{ y: -1 }}
+                  >
+                    {link.name}
+                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full rounded-full" />
+                  </motion.a>
+                ))}
+              </div>
             </div>
-          </div>
-        </motion.div>
+          </motion.div>
+        </div>
       </div>
     </footer>
   )

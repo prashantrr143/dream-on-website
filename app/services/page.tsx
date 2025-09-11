@@ -321,7 +321,7 @@ const Services = () => {
                 const IconComponent = stat.icon
                 return (
                   <div key={index} className="text-center">
-                    <IconComponent className="w-8 h-8 text-blue-500 mx-auto mb-2" />
+                    <IconComponent className="w-6 h-6 text-blue-500 mx-auto mb-2" />
                     <div className="text-2xl font-bold text-foreground">{stat.metric}</div>
                     <div className="text-sm font-medium text-foreground">{stat.label}</div>
                     <div className="text-xs text-muted-foreground">{stat.description}</div>
@@ -370,7 +370,7 @@ const Services = () => {
                             className="w-16 h-16 rounded-2xl bg-accent/10 group-hover:bg-accent/20 flex items-center justify-center flex-shrink-0"
                             whileHover={{ rotate: 5, scale: 1.1 }}
                           >
-                            <IconComponent className="w-8 h-8 text-accent" />
+                            <IconComponent className="w-6 h-6 text-accent" />
                           </motion.div>
                           
                           <div className="flex-1">

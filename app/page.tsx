@@ -3,16 +3,15 @@
 import { Suspense, useEffect } from 'react'
 import dynamic from 'next/dynamic'
 import SharedLayout from '@/components/shared-layout'
-import ThemeSwitcher from '@/components/theme-switcher'
 import { performanceMetrics, performanceWarnings } from '@/lib/performance'
 import ErrorBoundary from '@/components/error-boundary'
 import { CardLoadingSkeleton } from '@/components/loading-states'
 
-// Import original components
-import Hero from '@/components/hero'
+// Import professional components
+import ProfessionalHero from '@/components/hero-professional'
 import { SectionSeparator } from '@/components/section-layout-fix'
 
-const DynamicServices = dynamic(() => import('@/components/services'), {
+const DynamicServices = dynamic(() => import('@/components/services-professional'), {
   loading: () => (
     <div className="w-full py-16 lg:py-24">
       <div className="section-container">
@@ -48,7 +47,7 @@ const DynamicCaseStudies = dynamic(() => import('@/components/case-studies'), {
   ),
 })
 
-const DynamicCTA = dynamic(() => import('@/components/cta'), {
+const DynamicCTA = dynamic(() => import('@/components/cta-professional'), {
   loading: () => (
     <div className="w-full py-16 lg:py-24 bg-muted/20">
       <div className="section-container">
@@ -88,11 +87,11 @@ export default function Home() {
   return (
     <SharedLayout>
       {/* Theme Switcher */}
-      <ThemeSwitcher />
+      {/* <ThemeSwitcher /> */}
 
-      {/* Hero Section */}
+      {/* Professional Hero Section */}
       <section className="relative w-full">
-        <Hero />
+        <ProfessionalHero />
       </section>
 
       {/* Section Separator */}

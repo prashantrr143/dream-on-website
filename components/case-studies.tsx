@@ -1,11 +1,8 @@
 "use client"
 
 import { motion } from 'framer-motion'
-import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
 import { ArrowRight, Sparkles, TrendingUp, Users, Clock, Award, Shield, Bot, Zap, Building2 } from 'lucide-react'
 import { cn } from '@/lib/utils'
-import AnimatedText from '@/components/animated-text'
 import Link from 'next/link'
 
 const CaseStudies = () => {
@@ -136,69 +133,46 @@ const CaseStudies = () => {
 
   return (
     <section 
-      className="relative overflow-hidden min-h-screen max-h-screen flex flex-col justify-center" 
+      className="relative overflow-hidden min-h-screen flex flex-col justify-center bg-background" 
       style={{ padding: 'clamp(4rem, 8vh, 6rem) 0' }}
       id="case-studies"
     >
-      {/* Background Elements */}
+      {/* Premium Enterprise Background */}
       <div className="absolute inset-0">
-        <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl animate-float" />
-        <div className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-violet-500/5 rounded-full blur-3xl animate-float" style={{ animationDelay: '3s' }} />
+        <div className="absolute inset-0 bg-gradient-to-br from-white via-slate-50/20 to-blue-50/10" />
+        <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-600 via-green-600 to-blue-700" />
+        {/* Sophisticated geometric patterns */}
+        <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-gradient-to-br from-blue-500/3 to-green-500/2 rounded-full blur-3xl animate-float" />
+        <div className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-gradient-to-br from-green-500/2 to-blue-500/3 rounded-full blur-3xl animate-float" style={{ animationDelay: '3s' }} />
       </div>
       
-      <div className="section-container relative z-10 h-full flex flex-col justify-center">
-        {/* Header */}
+      <div className="adaptive-container relative z-10 h-full flex flex-col justify-center ultra-wide-spacing ultra-4k-spacing">
+        {/* Premium Header */}
         <motion.div 
           className="text-center"
           style={{ marginBottom: 'clamp(2rem, 5vh, 3rem)' }}
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 1, ease: [0.4, 0, 0.2, 1] }}
           viewport={{ once: true }}
         >
           <motion.div
-            whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 400, damping: 17 }}
+            className="inline-flex items-center glass-card px-8 py-3 mb-8"
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <Badge 
-              variant="secondary" 
-              className="glass-card rounded-full"
-              style={{
-                padding: 'clamp(0.5rem, 1vh, 0.75rem) clamp(1rem, 3vw, 1.5rem)',
-                fontSize: 'clamp(0.75rem, 1.5vw, 0.875rem)',
-                marginBottom: 'clamp(1rem, 2vh, 1.5rem)'
-              }}
-            >
-              <Award className="w-4 h-4 mr-2 animate-pulse" />
-              Success Stories
-            </Badge>
+            <Award className="w-5 h-5 mr-3 text-blue-600" />
+            <span className="text-sm font-semibold text-slate-700 tracking-wide uppercase">SUCCESS STORIES</span>
           </motion.div>
           
-          <h2 
-            className="leading-tight text-balance max-w-4xl mx-auto font-heading"
-            style={{ 
-              fontSize: 'clamp(1.5rem, 4vw, 2.5rem)',
-              marginBottom: 'clamp(1rem, 2vh, 1.5rem)'
-            }}
-          >
-            <AnimatedText
-              text="Real Results, "
-              animation="splitWords"
-              className="inline-block"
-              stagger={0.15}
-            />
-            <AnimatedText
-              text="Proven Impact"
-              animation="splitChars"
-              className="gradient-text animate-text-shimmer inline-block font-display"
-              delay={0.5}
-              stagger={0.1}
-            />
+          <h2 className="heading-section mb-8 max-w-4xl mx-auto">
+            <span className="block mb-2">Real Results,</span>
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-green-600 to-blue-700 animate-text-shimmer">
+              Proven Impact
+            </span>
           </h2>
-          <p 
-            className="text-muted-foreground leading-relaxed max-w-3xl mx-auto"
-            style={{ fontSize: 'clamp(1rem, 2vw, 1.125rem)' }}
-          >
+          <p className="text-lead max-w-3xl mx-auto">
             Discover how we've transformed businesses across industries with measurable results
           </p>
         </motion.div>
@@ -207,7 +181,7 @@ const CaseStudies = () => {
         <motion.div 
           className="grid grid-cols-1 lg:grid-cols-2"
           style={{ 
-            gap: 'clamp(1rem, 2.5vw, 1.5rem)',
+            gap: 'clamp(0.75rem, 1.5vw, 1rem)',
             maxHeight: '65vh',
             overflow: 'hidden'
           }}
@@ -223,19 +197,19 @@ const CaseStudies = () => {
                 key={study.id}
                 variants={cardVariants}
                 whileHover={{ 
-                  y: -8, 
-                  scale: 1.02,
-                  transition: { duration: 0.3, ease: "easeOut" }
+                  y: -12, 
+                  scale: 1.03,
+                  transition: { duration: 0.4, ease: [0.4, 0, 0.2, 1] }
                 }}
                 className="group"
               >
                 <Link href={`/case-studies/${study.id}`} className="block">
                   <div 
-                    className="glass-card h-full relative overflow-hidden rounded-xl cursor-pointer"
+                    className="enterprise-card h-full relative overflow-hidden cursor-pointer"
                     style={{ 
-                      padding: 'clamp(1rem, 2vh, 1.5rem)',
-                      minHeight: 'clamp(280px, 30vh, 350px)',
-                      maxHeight: 'clamp(280px, 30vh, 350px)'
+                      padding: 'clamp(1.5rem, 3vh, 2rem)',
+                      minHeight: 'clamp(320px, 35vh, 400px)',
+                      maxHeight: 'clamp(320px, 35vh, 400px)'
                     }}
                   >
                     {/* Gradient Background */}
@@ -262,10 +236,10 @@ const CaseStudies = () => {
                         className="flex items-start justify-between"
                         style={{ marginBottom: 'clamp(0.75rem, 1.5vh, 1rem)' }}
                       >
-                        <div className="flex items-center gap-3">
+                        <div className="flex items-center gap-4">
                           <motion.div 
                             className={cn(
-                              "rounded-xl flex items-center justify-center group-hover:scale-110 transition-all duration-300",
+                              "glass-card rounded-3xl flex items-center justify-center group-hover:scale-115 transition-all duration-500 relative",
                               study.accentColor === 'blue' && "bg-blue-500/10 group-hover:bg-blue-500/20",
                               study.accentColor === 'purple' && "bg-purple-500/10 group-hover:bg-purple-500/20",
                               study.accentColor === 'green' && "bg-green-500/10 group-hover:bg-green-500/20",
@@ -274,34 +248,44 @@ const CaseStudies = () => {
                               study.accentColor === 'cyan' && "bg-cyan-500/10 group-hover:bg-cyan-500/20"
                             )}
                             style={{
-                              width: 'clamp(2.5rem, 4vw, 3rem)',
-                              height: 'clamp(2.5rem, 4vw, 3rem)'
+                              width: 'clamp(3rem, 5vw, 3.5rem)',
+                              height: 'clamp(3rem, 5vw, 3.5rem)'
                             }}
-                            whileHover={{ rotate: 5 }}
+                            whileHover={{ rotate: 10 }}
                           >
+                            {/* Premium glow effect */}
+                            <div className={cn(
+                              "absolute inset-0 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500",
+                              study.accentColor === 'blue' && "bg-gradient-to-r from-blue-600/20 to-cyan-600/20",
+                              study.accentColor === 'purple' && "bg-gradient-to-r from-purple-600/20 to-pink-600/20",
+                              study.accentColor === 'green' && "bg-gradient-to-r from-green-600/20 to-emerald-600/20",
+                              study.accentColor === 'orange' && "bg-gradient-to-r from-orange-600/20 to-red-600/20",
+                              study.accentColor === 'violet' && "bg-gradient-to-r from-violet-600/20 to-indigo-600/20",
+                              study.accentColor === 'cyan' && "bg-gradient-to-r from-cyan-600/20 to-teal-600/20"
+                            )} />
                             <IconComponent 
                               className={cn(
-                                study.accentColor === 'blue' && "text-blue-500",
-                                study.accentColor === 'purple' && "text-purple-500",
-                                study.accentColor === 'green' && "text-green-500",
-                                study.accentColor === 'orange' && "text-orange-500",
-                                study.accentColor === 'violet' && "text-violet-500",
-                                study.accentColor === 'cyan' && "text-cyan-500"
+                                "transition-colors duration-500",
+                                study.accentColor === 'blue' && "text-blue-500 group-hover:text-blue-600",
+                                study.accentColor === 'purple' && "text-purple-500 group-hover:text-purple-600",
+                                study.accentColor === 'green' && "text-green-500 group-hover:text-green-600",
+                                study.accentColor === 'orange' && "text-orange-500 group-hover:text-orange-600",
+                                study.accentColor === 'violet' && "text-violet-500 group-hover:text-violet-600",
+                                study.accentColor === 'cyan' && "text-cyan-500 group-hover:text-cyan-600"
                               )}
                               style={{
-                                width: 'clamp(1rem, 2vw, 1.25rem)',
-                                height: 'clamp(1rem, 2vw, 1.25rem)'
+                                width: 'clamp(1rem, 1.5vw, 1.25rem)',
+                                height: 'clamp(1rem, 1.5vw, 1.25rem)'
                               }}
                             />
                           </motion.div>
-                          <div>
-                            <Badge 
-                              variant="secondary" 
-                              className="text-xs bg-muted/50 border-0"
+                          <div className="glass-card px-4 py-2">
+                            <span 
+                              className="text-xs font-semibold text-slate-700 uppercase tracking-wider"
                               style={{ fontSize: 'clamp(0.625rem, 1.25vw, 0.75rem)' }}
                             >
                               {study.industry}
-                            </Badge>
+                            </span>
                           </div>
                         </div>
                         
@@ -313,20 +297,20 @@ const CaseStudies = () => {
                         </motion.div>
                       </div>
                       
-                      {/* Title & Company */}
-                      <div style={{ marginBottom: 'clamp(0.75rem, 1.5vh, 1rem)' }}>
+                      {/* Premium Title & Company */}
+                      <div style={{ marginBottom: 'clamp(1rem, 2vh, 1.5rem)' }}>
                         <h3 
-                          className="font-bold text-foreground group-hover:text-accent transition-colors duration-300 leading-tight"
+                          className="font-bold text-slate-900 group-hover:text-blue-600 transition-colors duration-400 leading-tight tracking-tight"
                           style={{ 
-                            fontSize: 'clamp(1rem, 2vw, 1.25rem)',
-                            marginBottom: 'clamp(0.25rem, 0.5vh, 0.5rem)'
+                            fontSize: 'clamp(1rem, 1.5vw, 1.25rem)',
+                            marginBottom: 'clamp(0.5rem, 1vh, 0.75rem)'
                           }}
                         >
                           {study.title}
                         </h3>
                         <p 
-                          className="text-muted-foreground font-medium"
-                          style={{ fontSize: 'clamp(0.75rem, 1.5vw, 0.875rem)' }}
+                          className="text-slate-600 font-semibold"
+                          style={{ fontSize: 'clamp(0.875rem, 1.75vw, 1rem)' }}
                         >
                           {study.company}
                         </p>
@@ -440,7 +424,7 @@ const CaseStudies = () => {
                         </div>
                         <motion.div
                           className={cn(
-                            "w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300",
+                            "w-6 h-6 rounded-full flex items-center justify-center transition-all duration-300",
                             study.accentColor === 'blue' && "bg-blue-500/10 group-hover:bg-blue-500 group-hover:text-white",
                             study.accentColor === 'purple' && "bg-purple-500/10 group-hover:bg-purple-500 group-hover:text-white",
                             study.accentColor === 'green' && "bg-green-500/10 group-hover:bg-green-500 group-hover:text-white",
@@ -477,21 +461,17 @@ const CaseStudies = () => {
           viewport={{ once: true }}
         >
           <Link href="/case-studies">
-            <Button 
-              variant="outline" 
-              size="lg"
-              className="enterprise-button border-2 border-blue-400/30 hover:border-blue-400/60 hover:bg-blue-400/10 text-blue-300 hover:text-blue-200 font-semibold group transition-all duration-500"
+            <button 
+              className="enterprise-button px-12 py-4 text-white text-base font-semibold flex items-center gap-4 mx-auto"
               style={{
                 padding: 'clamp(1rem, 2vh, 1.25rem) clamp(2rem, 4vw, 2.5rem)',
                 fontSize: 'clamp(1rem, 2vw, 1.125rem)'
               }}
             >
-              <span className="flex items-center gap-3">
-                <Sparkles className="w-5 h-5" />
-                <span>View All Case Studies</span>
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-              </span>
-            </Button>
+              <Sparkles className="w-5 h-5" />
+              <span>View All Case Studies</span>
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+            </button>
           </Link>
         </motion.div>
       </div>
