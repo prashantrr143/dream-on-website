@@ -11,12 +11,12 @@ const ProfessionalHero = () => {
   const [typedText, setTypedText] = useState('')
   const [currentStat, setCurrentStat] = useState(0)
   
-  const fullText = "Enterprise Technology Solutions"
+  const fullText = "Enterprise Technology Excellence"
   const stats = [
-    { value: "500+", label: "Fortune 500 Clients", icon: Users },
-    { value: "99.9%", label: "Success Rate", icon: TrendingUp },
-    { value: "40+", label: "Countries Served", icon: Globe },
-    { value: "24/7", label: "Enterprise Support", icon: Shield }
+    { value: "50+", label: "Enterprise Solutions", icon: Users },
+    { value: "20+", label: "Products Delivered", icon: TrendingUp },
+    { value: "99.9%", label: "System Reliability", icon: Shield },
+    { value: "Global", label: "Enterprise Reach", icon: Globe }
   ]
 
   // Professional typewriter effect
@@ -77,7 +77,7 @@ const ProfessionalHero = () => {
             >
               <div className="inline-flex items-center glass-card px-8 py-3">
                 <Shield className="w-5 h-5 mr-3 text-blue-600" />
-                <span className="text-sm font-semibold text-muted-foreground tracking-wide">TRUSTED BY FORTUNE 500 COMPANIES</span>
+                <span className="text-sm font-semibold text-muted-foreground tracking-wide">ENTERPRISE TECHNOLOGY ARCHITECTS</span>
                 <CheckCircle className="w-5 h-5 ml-3 text-green-600" />
               </div>
             </motion.div>
@@ -90,9 +90,9 @@ const ProfessionalHero = () => {
               className="mb-10"
             >
               <h1 className="heading-hero ultra-wide-text ultra-4k-text">
-                <span className="block mb-3 2xl:mb-4">Transform Your</span>
+                <span className="block mb-3 2xl:mb-4">Enterprise Technology</span>
                 <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-green-600 to-blue-700 animate-text-shimmer">
-                  Digital Infrastructure
+                  Product Development
                 </span>
               </h1>
             </motion.div>
@@ -117,9 +117,9 @@ const ProfessionalHero = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 1, ease: [0.4, 0, 0.2, 1] }}
             >
-              Accelerate your digital transformation with enterprise-grade cloud infrastructure, 
-              AI-powered automation, and strategic consulting. Delivering measurable ROI and 
-              operational excellence for global enterprises.
+              We architect and build enterprise-grade technology products that power business transformation. 
+              From concept to deployment, our solutions deliver measurable results and competitive advantage 
+              for growing enterprises.
             </motion.p>
 
             {/* Premium CTA Buttons */}
@@ -130,12 +130,12 @@ const ProfessionalHero = () => {
               transition={{ duration: 1, delay: 1.2, ease: [0.4, 0, 0.2, 1] }}
             >
               <button className="enterprise-button px-10 py-4 text-white text-lg font-semibold">
-                Schedule Consultation
+                Explore Our Capabilities
                 <ArrowRight className="w-5 h-5 ml-3 inline" />
               </button>
               
               <button className="enterprise-card px-10 py-4 text-slate-700 font-semibold text-lg border-2 border-slate-200 hover:border-blue-300 transition-all duration-400">
-                View Case Studies
+                Enterprise Consultation
               </button>
             </motion.div>
 
@@ -147,9 +147,9 @@ const ProfessionalHero = () => {
               transition={{ duration: 1, delay: 1.4, ease: [0.4, 0, 0.2, 1] }}
             >
               {[
-                { icon: Shield, text: "SOC 2 Type II Certified" },
-                { icon: Award, text: "ISO 27001 Compliant" },
-                { icon: CheckCircle, text: "99.9% SLA Guarantee" }
+                { icon: Shield, text: "Enterprise Security" },
+                { icon: Award, text: "ISO Certified" },
+                { icon: CheckCircle, text: "Global Operations" }
               ].map((item, index) => (
                 <motion.div 
                   key={index}
@@ -216,10 +216,10 @@ const ProfessionalHero = () => {
               {/* Premium Metrics Grid */}
               <div className="grid grid-cols-2 gap-6">
                 {[
-                  { value: "$2.3B", label: "Cost Savings" },
-                  { value: "15ms", label: "Avg Response" },
-                  { value: "300%", label: "ROI Increase" },
-                  { value: "1PB+", label: "Data Processed" }
+                  { value: "60%", label: "Cost Reduction" },
+                  { value: "15ms", label: "Response Time" },
+                  { value: "10x", label: "Faster Deploy" },
+                  { value: "24/7", label: "Monitoring" }
                 ].map((metric, index) => (
                   <motion.div 
                     key={index}
@@ -242,7 +242,7 @@ const ProfessionalHero = () => {
               transition={{ duration: 0.8, delay: 1.6 }}
               className="mt-8 text-center"
             >
-              <p className="text-sm text-muted-foreground mb-4 font-medium">Trusted by industry leaders</p>
+              <p className="text-sm text-muted-foreground mb-4 font-medium">Enterprise technology leaders</p>
               <div className="flex justify-center items-center gap-6 opacity-60">
                 {[...Array(4)].map((_, i) => (
                   <div 

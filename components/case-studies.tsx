@@ -1,476 +1,60 @@
 "use client"
 
 import { motion } from 'framer-motion'
-import { ArrowRight, Sparkles, TrendingUp, Users, Clock, Award, Shield, Bot, Zap, Building } from 'lucide-react'
-import { cn } from '@/lib/utils'
+import { ArrowRight, Award, TrendingUp, Users, Clock, Shield } from 'lucide-react'
 import Link from 'next/link'
 
 const CaseStudies = () => {
-  const caseStudies = [
-    {
-      id: "enterprise-ai-knowledge-assistant",
-      title: "Enterprise AI Knowledge Assistant",
-      company: "Fortune 100 Technology Corporation",
-      category: "Generative AI & Knowledge Management",
-      challenge: "Knowledge silos preventing innovation at enterprise scale",
-      solution: "AI-powered knowledge assistant serving 200K+ employees",
-      results: {
-        primary: "200K+ Users",
-        secondary: "75% Time Savings",
-        tertiary: "$120M Value"
-      },
-      metrics: [
-        { icon: Users, label: "Active Users", value: "200K+" },
-        { icon: Clock, label: "Time Savings", value: "75%" },
-        { icon: TrendingUp, label: "Productivity Gain", value: "300%" },
-        { icon: Award, label: "Annual Value", value: "$120M" }
-      ],
-      technologies: ["GPT-4", "LangChain", "Pinecone", "Azure OpenAI"],
-      gradient: "from-violet-500/20 to-indigo-500/20",
-      accentColor: "violet",
-      icon: Bot,
-      timeline: "14 months",
-      industry: "Technology"
-    },
-    {
-      id: "ai-powered-customer-service",
-      title: "AI-Powered Customer Service",
-      company: "Global Telecommunications Provider",
-      category: "Generative AI & Customer Experience",
-      challenge: "Managing 80M+ customers with quality service at scale",
-      solution: "AI-powered omnichannel customer experience platform",
-      results: {
-        primary: "80M+ Customers",
-        secondary: "92% Satisfaction",
-        tertiary: "$320M Savings"
-      },
-      metrics: [
-        { icon: Users, label: "Customers Served", value: "80M+" },
-        { icon: Clock, label: "Response Time", value: "30 Sec" },
-        { icon: TrendingUp, label: "Satisfaction", value: "92%" },
-        { icon: Award, label: "Annual Savings", value: "$320M" }
-      ],
-      technologies: ["GPT-4 Turbo", "Azure Cognitive", "Rasa", "Twilio"],
-      gradient: "from-cyan-500/20 to-teal-500/20",
-      accentColor: "cyan",
-      icon: Users,
-      timeline: "16 months",
-      industry: "Telecommunications"
-    },
-    {
-      id: "global-bank-transformation",
-      title: "Global Bank Digital Transformation",
-      company: "Fortune 500 Financial Institution",
-      category: "Cloud Architecture & Security",
-      challenge: "Legacy infrastructure migration to cloud with zero downtime",
-      solution: "Multi-cloud strategy with advanced security protocols",
-      results: {
-        primary: "99.99% Uptime",
-        secondary: "60% Cost Reduction",
-        tertiary: "3x Performance"
-      },
-      metrics: [
-        { icon: Users, label: "50M+ Users Migrated", value: "50M+" },
-        { icon: Clock, label: "Zero Downtime", value: "0h" },
-        { icon: Shield, label: "Security Compliance", value: "100%" },
-        { icon: TrendingUp, label: "Performance Gain", value: "300%" }
-      ],
-      technologies: ["AWS", "Kubernetes", "Terraform", "Zero Trust"],
-      gradient: "from-blue-500/20 to-cyan-500/20",
-      accentColor: "blue",
-      icon: Building,
-      timeline: "18 months",
-      industry: "Financial Services"
-    },
-    {
-      id: "ai-automation-manufacturing",
-      title: "AI-Powered Manufacturing Optimization",
-      company: "Leading Automotive Manufacturer",
-      category: "AI & Automation",
-      challenge: "Manual quality control causing production delays",
-      solution: "Computer vision AI for real-time defect detection",
-      results: {
-        primary: "95% Defect Reduction",
-        secondary: "40% Faster Production",
-        tertiary: "$50M Savings"
-      },
-      metrics: [
-        { icon: Bot, label: "AI Models Deployed", value: "25+" },
-        { icon: TrendingUp, label: "Quality Improvement", value: "95%" },
-        { icon: Zap, label: "Speed Increase", value: "40%" },
-        { icon: Award, label: "Annual Savings", value: "$50M" }
-      ],
-      technologies: ["TensorFlow", "OpenCV", "MLOps", "Edge Computing"],
-      gradient: "from-purple-500/20 to-pink-500/20",
-      accentColor: "purple",
-      icon: Bot,
-      timeline: "12 months",
-      industry: "Manufacturing"
-    }
+  const stats = [
+    { value: "50+", label: "Solutions", icon: Users },
+    { value: "99.9%", label: "Uptime", icon: Shield },
+    { value: "200%", label: "ROI", icon: TrendingUp },
+    { value: "24/7", label: "Support", icon: Clock }
   ]
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15
-      }
-    }
-  }
-
-  const cardVariants = {
-    hidden: { opacity: 0, y: 50, scale: 0.95 },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      scale: 1,
-      transition: { 
-        duration: 0.8
-      }
-    }
-  }
-
   return (
-    <section 
-      className="relative overflow-hidden min-h-screen flex flex-col justify-center bg-background" 
-      style={{ padding: 'clamp(4rem, 8vh, 6rem) 0' }}
-      id="case-studies"
-    >
-      {/* Premium Enterprise Background */}
-      <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-background via-muted/20 to-primary/5" />
-        <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-primary via-accent to-primary" />
-        {/* Sophisticated geometric patterns */}
-        <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-gradient-to-br from-primary/3 to-accent/2 rounded-full blur-3xl animate-float" />
-        <div className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-gradient-to-br from-accent/2 to-primary/3 rounded-full blur-3xl animate-float" style={{ animationDelay: '3s' }} />
-      </div>
-      
-      <div className="adaptive-container relative z-10 h-full flex flex-col justify-center ultra-wide-spacing ultra-4k-spacing">
-        {/* Premium Header */}
+    <section className="py-8 bg-background">
+      <div className="section-container">
         <motion.div 
           className="text-center"
-          style={{ marginBottom: 'clamp(2rem, 5vh, 3rem)' }}
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: [0.4, 0, 0.2, 1] }}
-          viewport={{ once: true }}
-        >
-          <motion.div
-            className="inline-flex items-center glass-card px-8 py-3 mb-8 bg-primary/5 border border-primary/20"
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            <Award className="w-5 h-5 mr-3 text-primary" />
-            <span className="text-sm font-semibold text-foreground tracking-wide uppercase">SUCCESS STORIES</span>
-          </motion.div>
-          
-          <h2 className="heading-section mb-8 max-w-4xl mx-auto">
-            <span className="block mb-2 text-foreground">Real Results,</span>
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-primary animate-text-shimmer">
-              Proven Impact
-            </span>
-          </h2>
-          <p className="text-lead text-muted-foreground max-w-3xl mx-auto">
-            Discover how we've transformed businesses across industries with measurable results
-          </p>
-        </motion.div>
-
-        {/* Case Studies Grid */}
-        <motion.div 
-          className="grid grid-cols-1 lg:grid-cols-2"
-          style={{ 
-            gap: 'clamp(0.75rem, 1.5vw, 1rem)',
-            maxHeight: '65vh',
-            overflow: 'hidden'
-          }}
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-        >
-          {caseStudies.map((study) => {
-            const IconComponent = study.icon
-            return (
-              <motion.div
-                key={study.id}
-                variants={cardVariants}
-                whileHover={{ 
-                  y: -12, 
-                  scale: 1.03,
-                  transition: { duration: 0.4, ease: [0.4, 0, 0.2, 1] }
-                }}
-                className="group"
-              >
-                <Link href={`/case-studies/${study.id}`} className="block">
-                  <div 
-                    className="enterprise-card h-full relative overflow-hidden cursor-pointer"
-                    style={{ 
-                      padding: 'clamp(1.5rem, 3vh, 2rem)',
-                      minHeight: 'clamp(320px, 35vh, 400px)',
-                      maxHeight: 'clamp(320px, 35vh, 400px)'
-                    }}
-                  >
-                    {/* Gradient Background */}
-                    <div className={cn(
-                      "absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-100 transition-opacity duration-500",
-                      study.gradient
-                    )} />
-                    
-                    {/* Accent Border */}
-                    <div className={cn(
-                      "absolute top-0 left-0 right-0 h-1 bg-gradient-to-r transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700",
-                      study.accentColor === 'blue' && "from-blue-500 via-cyan-500 to-blue-600",
-                      study.accentColor === 'purple' && "from-purple-500 via-pink-500 to-purple-600",
-                      study.accentColor === 'green' && "from-green-500 via-emerald-500 to-green-600",
-                      study.accentColor === 'orange' && "from-orange-500 via-red-500 to-orange-600",
-                      study.accentColor === 'violet' && "from-violet-500 via-indigo-500 to-violet-600",
-                      study.accentColor === 'cyan' && "from-cyan-500 via-teal-500 to-cyan-600"
-                    )} />
-                    
-                    {/* Content */}
-                    <div className="relative h-full flex flex-col">
-                      {/* Header */}
-                      <div 
-                        className="flex items-start justify-between"
-                        style={{ marginBottom: 'clamp(0.75rem, 1.5vh, 1rem)' }}
-                      >
-                        <div className="flex items-center gap-4">
-                          <motion.div 
-                            className={cn(
-                              "glass-card rounded-3xl flex items-center justify-center group-hover:scale-115 transition-all duration-500 relative",
-                              study.accentColor === 'blue' && "bg-blue-500/10 group-hover:bg-blue-500/20",
-                              study.accentColor === 'purple' && "bg-purple-500/10 group-hover:bg-purple-500/20",
-                              study.accentColor === 'green' && "bg-green-500/10 group-hover:bg-green-500/20",
-                              study.accentColor === 'orange' && "bg-orange-500/10 group-hover:bg-orange-500/20",
-                              study.accentColor === 'violet' && "bg-violet-500/10 group-hover:bg-violet-500/20",
-                              study.accentColor === 'cyan' && "bg-cyan-500/10 group-hover:bg-cyan-500/20"
-                            )}
-                            style={{
-                              width: 'clamp(3rem, 5vw, 3.5rem)',
-                              height: 'clamp(3rem, 5vw, 3.5rem)'
-                            }}
-                            whileHover={{ rotate: 10 }}
-                          >
-                            {/* Premium glow effect */}
-                            <div className={cn(
-                              "absolute inset-0 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500",
-                              study.accentColor === 'blue' && "bg-gradient-to-r from-blue-600/20 to-cyan-600/20",
-                              study.accentColor === 'purple' && "bg-gradient-to-r from-purple-600/20 to-pink-600/20",
-                              study.accentColor === 'green' && "bg-gradient-to-r from-green-600/20 to-emerald-600/20",
-                              study.accentColor === 'orange' && "bg-gradient-to-r from-orange-600/20 to-red-600/20",
-                              study.accentColor === 'violet' && "bg-gradient-to-r from-violet-600/20 to-indigo-600/20",
-                              study.accentColor === 'cyan' && "bg-gradient-to-r from-cyan-600/20 to-teal-600/20"
-                            )} />
-                            <IconComponent 
-                              className={cn(
-                                "transition-colors duration-500",
-                                study.accentColor === 'blue' && "text-blue-500 group-hover:text-blue-600",
-                                study.accentColor === 'purple' && "text-purple-500 group-hover:text-purple-600",
-                                study.accentColor === 'green' && "text-green-500 group-hover:text-green-600",
-                                study.accentColor === 'orange' && "text-orange-500 group-hover:text-orange-600",
-                                study.accentColor === 'violet' && "text-violet-500 group-hover:text-violet-600",
-                                study.accentColor === 'cyan' && "text-cyan-500 group-hover:text-cyan-600"
-                              )}
-                              style={{
-                                width: 'clamp(1rem, 1.5vw, 1.25rem)',
-                                height: 'clamp(1rem, 1.5vw, 1.25rem)'
-                              }}
-                            />
-                          </motion.div>
-                          <div className="glass-card px-4 py-2">
-                            <span 
-                              className="text-xs font-semibold text-muted-foreground uppercase tracking-wider"
-                              style={{ fontSize: 'clamp(0.625rem, 1.25vw, 0.75rem)' }}
-                            >
-                              {study.industry}
-                            </span>
-                          </div>
-                        </div>
-                        
-                        <motion.div
-                          className="opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                          whileHover={{ scale: 1.1 }}
-                        >
-                          <ArrowRight className="w-5 h-5 text-muted-foreground" />
-                        </motion.div>
-                      </div>
-                      
-                      {/* Premium Title & Company */}
-                      <div style={{ marginBottom: 'clamp(1rem, 2vh, 1.5rem)' }}>
-                        <h3 
-                          className="font-bold text-foreground group-hover:text-primary transition-colors duration-400 leading-tight tracking-tight"
-                          style={{ 
-                            fontSize: 'clamp(1rem, 1.5vw, 1.25rem)',
-                            marginBottom: 'clamp(0.5rem, 1vh, 0.75rem)'
-                          }}
-                        >
-                          {study.title}
-                        </h3>
-                        <p 
-                          className="text-muted-foreground font-semibold"
-                          style={{ fontSize: 'clamp(0.875rem, 1.75vw, 1rem)' }}
-                        >
-                          {study.company}
-                        </p>
-                      </div>
-                      
-                      {/* Challenge & Solution */}
-                      <div 
-                        className="space-y-2 flex-grow"
-                        style={{ marginBottom: 'clamp(0.75rem, 1.5vh, 1rem)' }}
-                      >
-                        <div>
-                          <span className="text-xs font-semibold text-red-400 uppercase tracking-wider">Challenge:</span>
-                          <p 
-                            className="text-muted-foreground leading-snug"
-                            style={{ fontSize: 'clamp(0.75rem, 1.4vw, 0.875rem)' }}
-                          >
-                            {study.challenge}
-                          </p>
-                        </div>
-                        <div>
-                          <span className="text-xs font-semibold text-accent uppercase tracking-wider">Solution:</span>
-                          <p 
-                            className="text-muted-foreground leading-snug"
-                            style={{ fontSize: 'clamp(0.75rem, 1.4vw, 0.875rem)' }}
-                          >
-                            {study.solution}
-                          </p>
-                        </div>
-                      </div>
-                      
-                      {/* Key Results */}
-                      <div 
-                        className="grid grid-cols-3 gap-2 pt-3 border-t border-border/50"
-                        style={{ marginBottom: 'clamp(0.75rem, 1.5vh, 1rem)' }}
-                      >
-                        <div className="text-center">
-                          <div 
-                            className={cn(
-                              "font-bold",
-                              study.accentColor === 'blue' && "text-blue-400",
-                              study.accentColor === 'purple' && "text-purple-400",
-                              study.accentColor === 'green' && "text-green-400",
-                              study.accentColor === 'orange' && "text-orange-400",
-                              study.accentColor === 'violet' && "text-violet-400",
-                              study.accentColor === 'cyan' && "text-cyan-400"
-                            )}
-                            style={{ fontSize: 'clamp(0.875rem, 1.75vw, 1rem)' }}
-                          >
-                            {study.results.primary}
-                          </div>
-                          <div 
-                            className="text-muted-foreground text-xs"
-                            style={{ fontSize: 'clamp(0.625rem, 1.25vw, 0.7rem)' }}
-                          >
-                            Primary KPI
-                          </div>
-                        </div>
-                        <div className="text-center">
-                          <div 
-                            className="font-bold text-foreground"
-                            style={{ fontSize: 'clamp(0.875rem, 1.75vw, 1rem)' }}
-                          >
-                            {study.results.secondary}
-                          </div>
-                          <div 
-                            className="text-muted-foreground text-xs"
-                            style={{ fontSize: 'clamp(0.625rem, 1.25vw, 0.7rem)' }}
-                          >
-                            Impact
-                          </div>
-                        </div>
-                        <div className="text-center">
-                          <div 
-                            className="font-bold text-foreground"
-                            style={{ fontSize: 'clamp(0.875rem, 1.75vw, 1rem)' }}
-                          >
-                            {study.results.tertiary}
-                          </div>
-                          <div 
-                            className="text-muted-foreground text-xs"
-                            style={{ fontSize: 'clamp(0.625rem, 1.25vw, 0.7rem)' }}
-                          >
-                            Additional
-                          </div>
-                        </div>
-                      </div>
-                      
-                      {/* CTA */}
-                      <motion.div 
-                        className="flex items-center justify-between pt-3 border-t border-border/50"
-                        whileHover={{ x: 5 }}
-                        transition={{ duration: 0.2 }}
-                      >
-                        <div className="flex items-center gap-2">
-                          <span 
-                            className={cn(
-                              "font-semibold",
-                              study.accentColor === 'blue' && "text-blue-400 group-hover:text-blue-300",
-                              study.accentColor === 'purple' && "text-purple-400 group-hover:text-purple-300",
-                              study.accentColor === 'green' && "text-green-400 group-hover:text-green-300",
-                              study.accentColor === 'orange' && "text-orange-400 group-hover:text-orange-300",
-                              study.accentColor === 'violet' && "text-violet-400 group-hover:text-violet-300",
-                              study.accentColor === 'cyan' && "text-cyan-400 group-hover:text-cyan-300"
-                            )}
-                            style={{ fontSize: 'clamp(0.875rem, 1.75vw, 1rem)' }}
-                          >
-                            View Full Case Study
-                          </span>
-                          <Clock className="w-3 h-3 text-muted-foreground" />
-                          <span className="text-xs text-muted-foreground">{study.timeline}</span>
-                        </div>
-                        <motion.div
-                          className={cn(
-                            "w-6 h-6 rounded-full flex items-center justify-center transition-all duration-300",
-                            study.accentColor === 'blue' && "bg-blue-500/10 group-hover:bg-blue-500 group-hover:text-white",
-                            study.accentColor === 'purple' && "bg-purple-500/10 group-hover:bg-purple-500 group-hover:text-white",
-                            study.accentColor === 'green' && "bg-green-500/10 group-hover:bg-green-500 group-hover:text-white",
-                            study.accentColor === 'orange' && "bg-orange-500/10 group-hover:bg-orange-500 group-hover:text-white",
-                            study.accentColor === 'violet' && "bg-violet-500/10 group-hover:bg-violet-500 group-hover:text-white",
-                            study.accentColor === 'cyan' && "bg-cyan-500/10 group-hover:bg-cyan-500 group-hover:text-white"
-                          )}
-                          whileHover={{ scale: 1.1 }}
-                          whileTap={{ scale: 0.95 }}
-                        >
-                          <ArrowRight className="w-4 h-4" />
-                        </motion.div>
-                      </motion.div>
-                    </div>
-                    
-                    {/* Shine Effect */}
-                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-1000" />
-                    </div>
-                  </div>
-                </Link>
-              </motion.div>
-            )
-          })}
-        </motion.div>
-
-        {/* View All CTA */}
-        <motion.div 
-          className="text-center"
-          style={{ marginTop: 'clamp(2rem, 4vh, 3rem)' }}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
+          transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
+          <div className="inline-flex items-center glass-card px-4 py-1 mb-4">
+            <Award className="w-4 h-4 mr-2 text-primary" />
+            <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">RESULTS</span>
+          </div>
+          
+          <h2 className="text-2xl font-bold mb-6 text-foreground">
+            Enterprise Technology <span className="text-primary">Delivery</span>
+          </h2>
+
+          <div className="grid grid-cols-4 gap-4 max-w-2xl mx-auto mb-8">
+            {stats.map((stat, index) => {
+              const IconComponent = stat.icon
+              return (
+                <motion.div
+                  key={index}
+                  className="text-center glass-card p-3 rounded-lg"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1, duration: 0.5 }}
+                  viewport={{ once: true }}
+                >
+                  <IconComponent className="w-4 h-4 mx-auto mb-1 text-primary" />
+                  <div className="text-lg font-bold text-foreground">{stat.value}</div>
+                  <div className="text-xs text-muted-foreground">{stat.label}</div>
+                </motion.div>
+              )
+            })}
+          </div>
+
           <Link href="/case-studies">
-            <button 
-              className="enterprise-button px-12 py-4 text-white text-base font-semibold flex items-center gap-4 mx-auto"
-              style={{
-                padding: 'clamp(1rem, 2vh, 1.25rem) clamp(2rem, 4vw, 2.5rem)',
-                fontSize: 'clamp(1rem, 2vw, 1.125rem)'
-              }}
-            >
-              <Sparkles className="w-5 h-5" />
-              <span>View All Case Studies</span>
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+            <button className="px-4 py-2 bg-primary text-white rounded-lg font-medium hover:bg-primary/90 transition-colors inline-flex items-center gap-2 text-sm">
+              View Portfolio
+              <ArrowRight className="w-3 h-3" />
             </button>
           </Link>
         </motion.div>

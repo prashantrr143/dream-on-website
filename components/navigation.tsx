@@ -5,10 +5,83 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { 
   Phone, ArrowRight, ChevronDown, Menu, X,
-  Cloud, Bot,
-  FileText, Users, Award, MessageSquare, Zap, Database,
-  Lock, Briefcase, TrendingUp
+  FileText, Users, Award, MessageSquare,
+  Briefcase
 } from 'lucide-react'
+
+// Professional Custom Icons for Solutions
+const CloudInfrastructureIcon = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/>
+    <circle cx="12" cy="12" r="2"/>
+    <path d="m14.5 9.5-5 5"/>
+    <path d="m9.5 9.5 5 5"/>
+    <path d="M8 16v2"/>
+    <path d="M16 16v2"/>
+    <path d="M12 20v2"/>
+  </svg>
+)
+
+const DevOpsIcon = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <circle cx="12" cy="12" r="10"/>
+    <path d="M8 12l2 2 4-4"/>
+    <path d="m3 12 3-3v6l-3-3z"/>
+    <path d="m21 12-3-3v6l3-3z"/>
+    <path d="M12 3v6"/>
+    <path d="M12 15v6"/>
+  </svg>
+)
+
+const DataAnalyticsIcon = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <path d="M3 3v18h18"/>
+    <path d="M7 16l4-4 4 4 6-6"/>
+    <circle cx="7" cy="16" r="1"/>
+    <circle cx="11" cy="12" r="1"/>
+    <circle cx="15" cy="16" r="1"/>
+    <circle cx="21" cy="10" r="1"/>
+    <path d="M3 12h6"/>
+    <path d="M9 8h6"/>
+    <path d="M15 4h6"/>
+  </svg>
+)
+
+const AIMLIcon = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <path d="M12 2L2 7v10c0 5.55 3.84 9.74 9 11 5.16-1.26 9-5.46 9-11V7l-10-5Z"/>
+    <path d="M9 12l2 2 4-4"/>
+    <circle cx="12" cy="10" r="3"/>
+    <path d="M12 1v6"/>
+    <path d="m4.93 6.93 4.24 4.24"/>
+    <path d="m14.83 11.17 4.24-4.24"/>
+  </svg>
+)
+
+const SecurityIcon = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <path d="M12 2L2 7v10c0 5.55 3.84 9.74 9 11 5.16-1.26 9-5.46 9-11V7l-10-5Z"/>
+    <circle cx="12" cy="11" r="2"/>
+    <path d="M12 8v2"/>
+    <path d="M12 14v2"/>
+    <path d="M9.5 9.5L8 8"/>
+    <path d="M16 8l-1.5 1.5"/>
+    <path d="M9.5 14.5L8 16"/>
+    <path d="M16 16l-1.5-1.5"/>
+  </svg>
+)
+
+const DigitalTransformationIcon = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <path d="M21.5 2v6h-6"/>
+    <path d="M21.34 6.34a10 10 0 0 1-7.14 15.66c-4.42 0-8.05-2.58-9.8-6.34"/>
+    <path d="M2.5 22v-6h6"/>
+    <path d="M2.66 17.66a10 10 0 0 1 7.14-15.66c4.42 0 8.05 2.58 9.8 6.34"/>
+    <circle cx="12" cy="12" r="2"/>
+    <path d="M12 8v8"/>
+    <path d="M8 12h8"/>
+  </svg>
+)
 import Image from 'next/image'
 import { cn } from '@/lib/utils'
 
@@ -51,7 +124,7 @@ const Navigation = () => {
           href: '/solutions/cloud', 
           desc: 'Enterprise-grade cloud migration, optimization & multi-cloud strategy',
           metric: '500+ Migrations',
-          icon: Cloud,
+          icon: CloudInfrastructureIcon,
           color: 'text-blue-600',
           bgColor: 'bg-gradient-to-br from-blue-50 to-blue-100',
           hoverColor: 'hover:from-blue-100 hover:to-blue-150'
@@ -61,7 +134,7 @@ const Navigation = () => {
           href: '/solutions/devops', 
           desc: 'CI/CD pipelines, infrastructure as code & automated deployments', 
           metric: '90% Faster',
-          icon: Zap,
+          icon: DevOpsIcon,
           color: 'text-green-600',
           bgColor: 'bg-gradient-to-br from-green-50 to-green-100',
           hoverColor: 'hover:from-green-100 hover:to-green-150'
@@ -71,7 +144,7 @@ const Navigation = () => {
           href: '/solutions/data', 
           desc: 'Real-time dashboards, predictive modeling & business intelligence', 
           metric: '10x Insights',
-          icon: Database,
+          icon: DataAnalyticsIcon,
           color: 'text-purple-600',
           bgColor: 'bg-gradient-to-br from-purple-50 to-purple-100',
           hoverColor: 'hover:from-purple-100 hover:to-purple-150'
@@ -81,7 +154,7 @@ const Navigation = () => {
           href: '/solutions/ai-ml', 
           desc: 'Custom AI models, process automation & intelligent analytics', 
           metric: '300% ROI',
-          icon: Bot,
+          icon: AIMLIcon,
           color: 'text-orange-600',
           bgColor: 'bg-gradient-to-br from-orange-50 to-orange-100',
           hoverColor: 'hover:from-orange-100 hover:to-orange-150'
@@ -91,7 +164,7 @@ const Navigation = () => {
           href: '/solutions/security', 
           desc: 'Zero-trust architecture, threat detection & compliance management', 
           metric: '99.9% Protected',
-          icon: Lock,
+          icon: SecurityIcon,
           color: 'text-red-600',
           bgColor: 'bg-gradient-to-br from-red-50 to-red-100',
           hoverColor: 'hover:from-red-100 hover:to-red-150'
@@ -101,7 +174,7 @@ const Navigation = () => {
           href: '/solutions/consulting', 
           desc: 'Strategic consulting, change management & technology roadmaps', 
           metric: '200% Growth',
-          icon: TrendingUp,
+          icon: DigitalTransformationIcon,
           color: 'text-teal-600',
           bgColor: 'bg-gradient-to-br from-teal-50 to-teal-100',
           hoverColor: 'hover:from-teal-100 hover:to-teal-150'
@@ -236,13 +309,15 @@ const Navigation = () => {
                                     transition={{ delay: idx * 0.05, duration: 0.3 }}
                                     whileHover={{ y: -2 }}
                                   >
-                                    {/* Icon with gradient background */}
-                                    <div className="relative mb-3">
-                                      <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center group-hover:from-primary/20 group-hover:to-accent/20 transition-all duration-300">
-                                        <IconComponent className="w-6 h-6 text-primary group-hover:text-accent transition-colors duration-300" />
+                                    {/* Professional Icon with enhanced styling */}
+                                    <div className="relative mb-4">
+                                      <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-white/80 to-white/40 backdrop-blur-sm border border-white/30 shadow-lg flex items-center justify-center group-hover:scale-110 group-hover:shadow-xl transition-all duration-500">
+                                        <IconComponent className="w-7 h-7 text-primary group-hover:text-accent transition-colors duration-300 stroke-2" />
                                       </div>
-                                      {/* Glow effect */}
-                                      <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-primary/20 to-accent/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl" />
+                                      {/* Enhanced glow effect */}
+                                      <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/30 to-accent/30 opacity-0 group-hover:opacity-80 transition-opacity duration-500 blur-2xl" />
+                                      {/* Additional shine effect */}
+                                      <div className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                                     </div>
 
                                     {/* Content */}
@@ -428,8 +503,8 @@ const Navigation = () => {
                                     transition={{ delay: idx * 0.05 }}
                                     whileTap={{ scale: 0.98 }}
                                   >
-                                    <div className="w-10 h-10 bg-background rounded-lg flex items-center justify-center flex-shrink-0 shadow-sm border border-border">
-                                      <IconComponent className="w-5 h-5 text-primary" />
+                                    <div className="w-12 h-12 bg-gradient-to-br from-white/60 to-white/30 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg border border-white/20 backdrop-blur-sm">
+                                      <IconComponent className="w-6 h-6 text-primary stroke-2" />
                                     </div>
                                     <div className="flex-1 min-w-0">
                                       <div className="font-semibold text-foreground text-sm mb-1 truncate">

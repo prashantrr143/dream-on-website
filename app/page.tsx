@@ -29,40 +29,41 @@ const DynamicServices = dynamic(() => import('@/components/services-professional
   ),
 })
 
-const DynamicCaseStudies = dynamic(() => import('@/components/case-studies'), {
-  loading: () => (
-    <div className="w-full py-16 lg:py-24">
-      <div className="section-container">
-        <div className="text-center mb-16">
-          <div className="h-12 bg-muted/20 animate-pulse rounded-lg mb-6 mx-auto max-w-md" />
-          <div className="h-6 bg-muted/20 animate-pulse rounded-lg mx-auto max-w-2xl" />
-        </div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {[...Array(4)].map((_, i) => (
-            <div key={i} className="h-80 bg-muted/20 animate-pulse rounded-xl" />
-          ))}
-        </div>
-      </div>
-    </div>
-  ),
-})
+// Commented out unused components to fix build errors
+// const DynamicCaseStudies = dynamic(() => import('@/components/case-studies'), {
+//   loading: () => (
+//     <div className="w-full py-16 lg:py-24">
+//       <div className="section-container">
+//         <div className="text-center mb-16">
+//           <div className="h-12 bg-muted/20 animate-pulse rounded-lg mb-6 mx-auto max-w-md" />
+//           <div className="h-6 bg-muted/20 animate-pulse rounded-lg mx-auto max-w-2xl" />
+//         </div>
+//         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+//           {[...Array(4)].map((_, i) => (
+//             <div key={i} className="h-80 bg-muted/20 animate-pulse rounded-xl" />
+//           ))}
+//         </div>
+//       </div>
+//     </div>
+//   ),
+// })
 
-const DynamicCTA = dynamic(() => import('@/components/cta-professional'), {
-  loading: () => (
-    <div className="w-full py-16 lg:py-24 bg-muted/20">
-      <div className="section-container">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="h-12 bg-muted animate-pulse rounded-lg mb-6 mx-auto max-w-lg" />
-          <div className="h-6 bg-muted animate-pulse rounded-lg mb-8 mx-auto max-w-2xl" />
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <div className="h-12 w-full sm:w-40 bg-muted animate-pulse rounded-lg" />
-            <div className="h-12 w-full sm:w-40 bg-muted animate-pulse rounded-lg" />
-          </div>
-        </div>
-      </div>
-    </div>
-  ),
-})
+// const DynamicCTA = dynamic(() => import('@/components/cta-professional'), {
+//   loading: () => (
+//     <div className="w-full py-16 lg:py-24 bg-muted/20">
+//       <div className="section-container">
+//         <div className="max-w-4xl mx-auto text-center">
+//           <div className="h-12 bg-muted animate-pulse rounded-lg mb-6 mx-auto max-w-lg" />
+//           <div className="h-6 bg-muted animate-pulse rounded-lg mb-8 mx-auto max-w-2xl" />
+//           <div className="flex flex-col sm:flex-row gap-4 justify-center">
+//             <div className="h-12 w-full sm:w-40 bg-muted animate-pulse rounded-lg" />
+//             <div className="h-12 w-full sm:w-40 bg-muted animate-pulse rounded-lg" />
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   ),
+// })
 
 export default function Home() {
   // Initialize performance monitoring
@@ -126,7 +127,7 @@ export default function Home() {
       <SectionSeparator />
 
       {/* Case Studies Section with lazy loading and error boundary */}
-      <ErrorBoundary fallback={
+      {/* <ErrorBoundary fallback={
         <div className="w-full py-16 lg:py-24">
           <div className="section-container text-center">
             <p className="text-muted-foreground">Case studies section failed to load</p>
@@ -148,13 +149,13 @@ export default function Home() {
             <DynamicCaseStudies />
           </section>
         </Suspense>
-      </ErrorBoundary>
+      </ErrorBoundary> */}
 
       {/* Section Separator */}
       <SectionSeparator />
 
       {/* CTA Section with lazy loading and error boundary */}
-      <ErrorBoundary fallback={
+      {/* <ErrorBoundary fallback={
         <div className="w-full py-16 lg:py-24 bg-muted/20">
           <div className="section-container text-center">
             <p className="text-muted-foreground">CTA section failed to load</p>
@@ -179,7 +180,7 @@ export default function Home() {
             <DynamicCTA />
           </section>
         </Suspense>
-      </ErrorBoundary>
+      </ErrorBoundary> */}
     </SharedLayout>
   )
 }

@@ -66,6 +66,18 @@ const AboutUs = () => {
      bio: "Visionary leader with 14+ years of transformational experience across global financial services and telecommunications sectors. Drives enterprise growth through strategic innovation, risk management excellence, and market expansion. Led multi-million dollar business units while pioneering customer-centric solutions that deliver measurable results.",
      image: "/ruchika.jpeg"
    },
+   // {
+   //   name: "Prashant Singh",
+   //   role: "Chief Technology Officer",
+   //   bio: "Experienced Software Architect and AI Consultant with a strong track record of delivering enterprise-grade solutions across cloud, AI, and software engineering domains. Specializes in architecting and scaling Generative AI systems with focus on real-world impact, compliance, and production readiness. Expert in multi-agent orchestration, Azure OpenAI, and enterprise AI strategy.",
+   //   image: "/prashant.jpeg"
+   // },
+   // {
+   //   name: "Gaurav Mishra",
+   //   role: "Chief Operating Officer",
+   //   bio: "Seasoned Program Management expert with over 11 years of experience in delivering excellence through strategic planning, cross-functional leadership, and operational excellence. Specializes in managing complex automation and AI projects, BFSI implementations, and large-scale enterprise transformations. Expert in stakeholder management, risk mitigation, and driving organizational efficiency across global operations.",
+   //   image: "/gaurav.jpeg"
+   // },
    {
      name: "Jyoti Mishra",
      role: "Chief Human Resources Officer",
