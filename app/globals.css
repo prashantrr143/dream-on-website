@@ -204,20 +204,20 @@
   }
   
   .premium-text-blue-green {
-    color: hsl(var(--brand-blue));
+    color: hsl(var(--enterprise-blue));
     transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
   
   .premium-text-blue-green:hover {
-    color: hsl(var(--brand-green));
+    color: hsl(var(--enterprise-green));
   }
   /* Premium White Hero Gradient with Blue & Green Accents */
   .hero-gradient {
     background: linear-gradient(135deg, 
       hsl(var(--premium-white)) 0%, 
-      hsla(var(--brand-blue), 0.03) 25%,
-      hsla(var(--brand-green), 0.02) 50%,
-      hsla(var(--brand-blue), 0.03) 75%,
+      hsla(var(--enterprise-blue), 0.03) 25%,
+      hsla(var(--enterprise-green), 0.02) 50%,
+      hsla(var(--enterprise-blue), 0.03) 75%,
       hsl(var(--premium-white-soft)) 100%
     );
   }
@@ -225,17 +225,27 @@
   /* Premium Gradient Text - Blue & Green Brand Theme */
   .gradient-text {
     background: linear-gradient(135deg, 
-      hsl(var(--brand-blue)) 0%, 
-      hsl(var(--brand-cyan)) 25%, 
-      hsl(var(--brand-green)) 50%, 
-      hsl(var(--brand-emerald)) 75%, 
-      hsl(var(--brand-blue)) 100%
+      hsl(var(--enterprise-blue)) 0%, 
+      hsl(var(--enterprise-cyan)) 25%, 
+      hsl(var(--enterprise-green)) 50%, 
+      hsl(var(--primary)) 75%, 
+      hsl(var(--accent)) 100%
     );
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    color: transparent;
     background-size: 300% 300%;
     animation: gradient-shift 8s ease-in-out infinite;
+  }
+
+  @keyframes gradient-shift {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
   }
 
   /* Premium Dark Glass Morphism */
@@ -558,17 +568,18 @@
 
   .animate-text-shimmer {
     background: linear-gradient(-45deg, 
-      hsl(var(--brand-blue)), 
-      hsl(var(--brand-cyan)), 
-      hsl(var(--brand-green)), 
-      hsl(var(--brand-emerald)), 
-      hsl(var(--brand-blue))
+      hsl(var(--enterprise-blue)), 
+      hsl(var(--enterprise-cyan)), 
+      hsl(var(--enterprise-green)), 
+      hsl(var(--primary)), 
+      hsl(var(--accent))
     );
     background-size: 400% 400%;
     animation: shimmer 3s ease-in-out infinite;
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    color: transparent;
   }
 
   .animate-text-wave {
@@ -598,8 +609,8 @@
 
   .hover-glow:hover {
     box-shadow: 
-      0 0 30px hsla(var(--brand-blue), 0.15), 
-      0 0 20px hsla(var(--brand-green), 0.1),
+      0 0 30px hsla(var(--enterprise-blue), 0.15), 
+      0 0 20px hsla(var(--enterprise-green), 0.1),
       0 4px 24px hsla(var(--premium-shadow), 0.1);
   }
 
@@ -688,7 +699,7 @@
     transform: translateY(-4px);
     box-shadow: 
       0 20px 32px hsla(var(--premium-shadow), 0.12), 
-      0 8px 16px hsla(var(--brand-blue), 0.08),
+      0 8px 16px hsla(var(--enterprise-blue), 0.08),
       0 4px 8px hsla(var(--premium-shadow), 0.04);
   }
 
@@ -813,10 +824,10 @@
 
   @keyframes textGlow {
     0% { 
-      text-shadow: 0 0 10px hsla(var(--brand-blue), 0.5), 0 0 20px hsla(var(--brand-green), 0.3), 0 0 30px hsla(var(--brand-blue), 0.1); 
+      text-shadow: 0 0 10px hsla(var(--enterprise-blue), 0.5), 0 0 20px hsla(var(--enterprise-green), 0.3), 0 0 30px hsla(var(--enterprise-blue), 0.1); 
     }
     100% { 
-      text-shadow: 0 0 20px hsla(var(--brand-blue), 0.8), 0 0 30px hsla(var(--brand-green), 0.6), 0 0 40px hsla(var(--brand-blue), 0.4); 
+      text-shadow: 0 0 20px hsla(var(--enterprise-blue), 0.8), 0 0 30px hsla(var(--enterprise-green), 0.6), 0 0 40px hsla(var(--enterprise-blue), 0.4); 
     }
   }
 

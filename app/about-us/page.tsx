@@ -8,6 +8,7 @@ import { ArrowRight, Award, Globe, Target, Heart, Lightbulb, Shield, Rocket, Arr
 import { cn } from '@/lib/utils'
 import AnimatedText from '@/components/animated-text'
 import Link from 'next/link'
+import Image from 'next/image'
 import SharedLayout from '@/components/shared-layout'
 
 const AboutUs = () => {
@@ -60,38 +61,25 @@ const AboutUs = () => {
 
  const team = [
    {
-     name: "Sarah Chen",
+     name: "Ruchika Raturi",
      role: "Chief Executive Officer",
-     bio: "15+ years leading enterprise transformations at Fortune 500 companies. Expert in strategic technology planning.",
-     education: "MBA Stanford, MS Computer Science MIT"
+     bio: "Visionary leader with 14+ years of transformational experience across global financial services and telecommunications sectors. Drives enterprise growth through strategic innovation, risk management excellence, and market expansion. Led multi-million dollar business units while pioneering customer-centric solutions that deliver measurable results.",
+     image: "/ruchika.jpeg"
    },
    {
-     name: "Marcus Rodriguez",
-     role: "Chief Technology Officer", 
-     bio: "Former Google Cloud architect with deep expertise in AI/ML and cloud infrastructure at enterprise scale.",
-     education: "PhD Computer Science, MS Artificial Intelligence"
-   },
-   {
-     name: "Emily Thompson",
-     role: "VP of Engineering",
-     bio: "DevOps pioneer with 12+ years building scalable systems. Led engineering teams at multiple unicorn startups.",
-     education: "MS Software Engineering, Certified Cloud Architect"
-   },
-   {
-     name: "David Park",
-     role: "Head of Security",
-     bio: "Cybersecurity expert with government and enterprise experience. Specializes in zero-trust architecture.",
-     education: "MS Cybersecurity, CISSP, CISM Certified"
+     name: "Jyoti Mishra",
+     role: "Chief Human Resources Officer",
+     bio: "Strategic HR executive with 8+ years of building world-class organizations through innovative talent strategies and cultural transformation. Specializes in scaling high-performance teams, driving employee engagement, and implementing cutting-edge HR technologies that enable business growth and operational excellence."
    }
  ]
 
  const milestones = [
-   { year: "2014", title: "Company Founded", description: "Started with a vision to transform enterprise technology" },
-   { year: "2016", title: "First Fortune 500 Client", description: "Secured major enterprise partnership" },
-   { year: "2018", title: "Global Expansion", description: "Opened offices in Europe and Asia-Pacific" },
-   { year: "2020", title: "AI Innovation Lab", description: "Launched dedicated AI research and development center" },
-   { year: "2022", title: "Cloud Excellence", description: "Achieved AWS Advanced Partner and Microsoft Gold status" },
-   { year: "2024", title: "500+ Clients", description: "Reached milestone of 500+ enterprise clients globally" }
+   { year: "2024", title: "Company Founded", description: "Started with a vision to transform enterprise technology and deliver cutting-edge solutions" },
+   { year: "2024", title: "Leadership Team Established", description: "Assembled world-class executive team with decades of combined industry experience" },
+   { year: "2024", title: "Technology Platform Launch", description: "Deployed advanced AI-driven enterprise solutions and cloud infrastructure capabilities" },
+   { year: "2024", title: "Strategic Partnerships", description: "Secured key technology partnerships with leading cloud providers and innovation labs" },
+   { year: "2025", title: "Market Expansion", description: "Scaling operations and expanding enterprise client portfolio across multiple industries" },
+   { year: "2025", title: "Innovation Roadmap", description: "Continuing to pioneer next-generation solutions in AI, cloud, and digital transformation" }
  ]
 
  return (
@@ -153,7 +141,7 @@ const AboutUs = () => {
              className="text-muted-foreground leading-relaxed max-w-3xl mb-8"
              style={{ fontSize: 'clamp(1.125rem, 2.5vw, 1.375rem)' }}
            >
-             For over a decade, we've been at the forefront of enterprise technology transformation, 
+             Since our founding, we've rapidly established ourselves at the forefront of enterprise technology transformation, 
              helping Fortune 500 companies leverage cutting-edge solutions including AI, cloud infrastructure, 
              and digital innovation to drive growth and competitive advantage.
            </p>
@@ -508,30 +496,89 @@ const AboutUs = () => {
              </p>
            </motion.div>
 
-           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+           <div className="space-y-16">
              {team.map((member, index) => (
                <motion.div
                  key={index}
                  variants={itemVariants}
-                 whileHover={{ y: -5 }}
+                 className={`flex flex-col lg:flex-row ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''} items-center gap-12 lg:gap-16`}
                >
-                 <Card className="enterprise-card enterprise-card-hover p-6 lg:p-8 h-full group text-center">
-                   <div className="w-24 h-24 mx-auto rounded-full bg-gradient-to-br from-accent to-chart-1 mb-6 flex items-center justify-center text-white text-2xl font-bold">
-                     {member.name.split(' ').map(n => n[0]).join('')}
+                 {/* Executive Photo Section */}
+                 <div className="flex-shrink-0">
+                   <div className="relative w-56 h-56 lg:w-64 lg:h-64">
+                     {member.image ? (
+                       <div className="relative w-full h-full group/image">
+                         {/* Premium border with animated gradient */}
+                         <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary via-accent to-primary p-1 animate-gradient-shift">
+                           <div className="w-full h-full rounded-2xl overflow-hidden bg-background">
+                             <Image
+                               src={member.image}
+                               alt={member.name}
+                               width={256}
+                               height={256}
+                               className="w-full h-full object-cover object-center transition-all duration-500 group-hover/image:scale-105 filter saturate-110"
+                               priority
+                             />
+                           </div>
+                         </div>
+                         {/* Executive overlay */}
+                         <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-primary/10 to-transparent opacity-0 group-hover/image:opacity-100 transition-opacity duration-500" />
+                         {/* Premium shadow */}
+                         <div className="absolute inset-0 rounded-2xl shadow-2xl group-hover/image:shadow-3xl group-hover/image:shadow-primary/20 transition-all duration-500" />
+                       </div>
+                     ) : (
+                       <div className="relative w-full h-full group/image">
+                         <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary via-accent to-primary p-1 animate-gradient-shift">
+                           <div className="w-full h-full rounded-2xl bg-gradient-to-br from-muted to-background flex items-center justify-center text-4xl font-bold text-primary group-hover/image:text-accent transition-colors duration-500">
+                             {member.name.split(' ').map(n => n[0]).join('')}
+                           </div>
+                         </div>
+                         <div className="absolute inset-0 rounded-2xl shadow-2xl group-hover/image:shadow-3xl group-hover/image:shadow-accent/20 transition-all duration-500" />
+                       </div>
+                     )}
                    </div>
-                   <h3 className="text-xl font-bold mb-2 group-hover:text-accent transition-colors">
-                     {member.name}
-                   </h3>
-                   <div className="text-accent font-semibold mb-4">
-                     {member.role}
+                 </div>
+
+                 {/* Executive Information Section */}
+                 <div className={`flex-1 ${index % 2 === 1 ? 'lg:text-right' : 'lg:text-left'} text-center lg:space-y-6`}>
+                   <div className="space-y-4 mb-8">
+                     {/* Executive Badge */}
+                     <motion.div 
+                       className={`inline-flex items-center px-6 py-2 rounded-full bg-accent/10 border border-accent/20 text-accent font-semibold text-sm tracking-wide uppercase ${index % 2 === 1 ? 'lg:ml-auto' : ''}`}
+                       whileHover={{ scale: 1.05 }}
+                     >
+                       C-Suite Executive
+                     </motion.div>
+                     
+                     {/* Name & Title */}
+                     <h3 className="text-3xl lg:text-4xl font-bold mb-3 bg-gradient-to-r from-foreground to-accent bg-clip-text text-transparent">
+                       {member.name}
+                     </h3>
+                     <div className="text-xl lg:text-2xl text-accent font-semibold mb-6">
+                       {member.role}
+                     </div>
                    </div>
-                   <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
-                     {member.bio}
-                   </p>
-                   <div className="text-xs text-muted-foreground font-medium">
-                     {member.education}
+
+                   {/* Executive Bio */}
+                   <div className="space-y-6">
+                     <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                       {member.bio}
+                     </p>
+                     
+                     {/* Executive Credentials */}
+                     <div className={`flex flex-wrap gap-3 ${index % 2 === 1 ? 'lg:justify-end' : 'lg:justify-start'} justify-center`}>
+                       <div className="px-4 py-2 rounded-lg bg-muted/50 border border-border text-sm font-medium text-foreground">
+                         Strategic Leadership
+                       </div>
+                       <div className="px-4 py-2 rounded-lg bg-muted/50 border border-border text-sm font-medium text-foreground">
+                         Enterprise Technology
+                       </div>
+                       <div className="px-4 py-2 rounded-lg bg-muted/50 border border-border text-sm font-medium text-foreground">
+                         Global Operations
+                       </div>
+                     </div>
                    </div>
-                 </Card>
+                 </div>
                </motion.div>
              ))}
            </div>
@@ -556,7 +603,7 @@ const AboutUs = () => {
                Our <span className="gradient-text">Journey</span>
              </h2>
              <p className="text-lead max-w-3xl mx-auto">
-               A decade of innovation, growth, and enterprise transformation
+               Our journey of innovation, rapid growth, and enterprise transformation
              </p>
            </motion.div>
 
