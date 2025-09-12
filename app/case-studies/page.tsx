@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { Badge } from '@/components/ui/badge'
-import { ArrowLeft, ArrowRight, Award, Building2, Bot, BarChart3, Zap, Calendar, TrendingUp, Users } from 'lucide-react'
+import { ArrowLeft, ArrowRight, Award, Building, Bot, BarChart3, Zap, Calendar, TrendingUp, Users } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import AnimatedText from '@/components/animated-text'
 import Link from 'next/link'
@@ -50,7 +50,7 @@ const CaseStudiesPage = () => {
       technologies: ["AWS", "Kubernetes", "Terraform", "Zero Trust"],
       gradient: "from-blue-500/20 to-cyan-500/20",
       accentColor: "blue",
-      icon: Building2
+      icon: Building
     },
     {
       id: "ai-automation-manufacturing",

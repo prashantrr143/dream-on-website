@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { ArrowLeft, ArrowRight, Building2, Bot, BarChart3, Zap, Calendar, TrendingUp, Users, Clock, Shield, DollarSign, CheckCircle, Target, Lightbulb, Cog, BarChart } from 'lucide-react'
+import { ArrowLeft, ArrowRight, Building, Bot, BarChart3, Zap, Calendar, TrendingUp, Users, Clock, Shield, DollarSign, CheckCircle, Target, Lightbulb, Cog, BarChart } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import AnimatedText from '@/components/animated-text'
 import Link from 'next/link'
@@ -31,7 +31,7 @@ const CaseStudyPage = ({ params }: CaseStudyPageProps) => {
       client: "Leading global bank with $2.1T in assets",
       gradient: "from-blue-500/20 to-cyan-500/20",
       accentColor: "blue",
-      icon: Building2,
+      icon: Building,
       
       // Executive Summary
       overview: "Complete digital transformation of legacy banking infrastructure across 50+ countries, migrating mission-critical systems to multi-cloud architecture while maintaining 24/7 operations and regulatory compliance.",

@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from 'framer-motion'
-import { ArrowRight, Sparkles, TrendingUp, Users, Clock, Award, Shield, Bot, Zap, Building2 } from 'lucide-react'
+import { ArrowRight, Sparkles, TrendingUp, Users, Clock, Award, Shield, Bot, Zap, Building } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import Link from 'next/link'
 
@@ -78,7 +78,7 @@ const CaseStudies = () => {
       technologies: ["AWS", "Kubernetes", "Terraform", "Zero Trust"],
       gradient: "from-blue-500/20 to-cyan-500/20",
       accentColor: "blue",
-      icon: Building2,
+      icon: Building,
       timeline: "18 months",
       industry: "Financial Services"
     },

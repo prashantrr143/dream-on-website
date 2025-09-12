@@ -30,44 +30,67 @@ const spaceGrotesk = Space_Grotesk({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://yatisphere.com'),
   title: {
-    default: 'Yati Sphere Technologies',
+    default: 'Yati Sphere Technologies - Enterprise Technology Solutions',
     template: '%s | Yati Sphere Technologies'
   },
-  description: 'Enterprise technology solutions with cutting-edge cloud infrastructure, AI, DevOps automation, and expert consulting services.',
-  keywords: ['enterprise technology', 'cloud infrastructure', 'AI solutions', 'DevOps automation', 'data analytics', 'IT consulting'],
+  description: 'Leading enterprise technology consulting company specializing in cloud infrastructure, AI solutions, DevOps automation, data analytics, and digital transformation services.',
+  keywords: [
+    'enterprise technology', 'cloud infrastructure', 'AI solutions', 'DevOps automation', 
+    'data analytics', 'IT consulting', 'digital transformation', 'cloud migration',
+    'machine learning', 'enterprise software', 'technology consulting', 'cloud services'
+  ],
   authors: [{ name: 'Yati Sphere Technologies', url: 'https://yatisphere.com' }],
   creator: 'Yati Sphere Technologies',
+  publisher: 'Yati Sphere Technologies',
+  applicationName: 'Yati Sphere Technologies',
+  category: 'Technology',
+  classification: 'Business',
   manifest: '/manifest.json',
+  alternates: {
+    canonical: 'https://yatisphere.com',
+  },
   icons: {
-    icon: [
-      { url: '/favicon.ico', sizes: '32x32', type: 'image/x-icon' },
-      { url: '/icon-192.png', sizes: '192x192', type: 'image/png' },
-      { url: '/icon-512.png', sizes: '512x512', type: 'image/png' },
-    ],
-    apple: [
-      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
-    ],
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
+    apple: '/favicon.ico',
   },
   openGraph: {
     type: 'website',
     locale: 'en_US',
     url: 'https://yatisphere.com',
-    title: 'Yati Sphere - Premium IT Solutions',
-    description: 'Enterprise technology solutions with cutting-edge cloud infrastructure, AI, and expert consulting.',
+    title: 'Yati Sphere Technologies - Enterprise Technology Solutions',
+    description: 'Leading enterprise technology consulting company specializing in cloud infrastructure, AI solutions, DevOps automation, and digital transformation services.',
     siteName: 'Yati Sphere Technologies',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Yati Sphere Technologies - Enterprise Technology Solutions',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Yati Sphere - Premium IT Solutions',
-    description: 'Enterprise technology solutions with cutting-edge cloud infrastructure, AI, and expert consulting.',
+    site: '@YatiSphere',
+    creator: '@YatiSphere',
+    title: 'Yati Sphere Technologies - Enterprise Technology Solutions',
+    description: 'Leading enterprise technology consulting company specializing in cloud infrastructure, AI solutions, DevOps automation, and digital transformation services.',
+    images: ['/twitter-image.png'],
   },
   robots: {
     index: true,
     follow: true,
+    noarchive: false,
+    nositelinkssearchbox: false,
+    notranslate: false,
+    indexifembedded: true,
     googleBot: {
       index: true,
       follow: true,
+      noimageindex: false,
       'max-video-preview': -1,
       'max-image-preview': 'large',
       'max-snippet': -1,

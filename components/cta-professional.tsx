@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import { 
   ArrowRight, Calendar, Users, Award, Shield, Globe,
-  TrendingUp, BarChart3, CheckCircle, Building2, Phone
+  TrendingUp, BarChart3, CheckCircle, Building, Phone
 } from 'lucide-react'
 import { useState } from 'react'
 
@@ -276,7 +276,7 @@ const ProfessionalCTA = () => {
               <span>ISO 27001 Compliant</span>
             </div>
             <div className="flex items-center gap-2">
-              <Building2 className="w-4 h-4" />
+              <Building className="w-4 h-4" />
               <span>Fortune 500 Trusted</span>
             </div>
             <div className="flex items-center gap-2">

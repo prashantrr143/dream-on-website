@@ -14,8 +14,13 @@ import { cn } from '@/lib/utils'
 
 const Navigation = () => {
   const [scrolled, setScrolled] = useState(false)
+  const [mounted, setMounted] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -128,7 +133,7 @@ const Navigation = () => {
       <motion.nav
         className={cn(
           "fixed top-0 left-0 right-0 w-full z-50 transition-all duration-500",
-          scrolled 
+          mounted && scrolled 
             ? "bg-background/95 shadow-xl border-b border-border/80 backdrop-blur-xl" 
             : "bg-background/90 backdrop-blur-lg border-b border-border/20"
         )}
@@ -140,10 +145,10 @@ const Navigation = () => {
           <motion.div 
             className="flex items-center justify-between transition-all duration-500"
             animate={{
-              height: scrolled ? "60px" : "72px"
+              height: mounted && scrolled ? "60px" : "72px"
             }}
             style={{
-              height: scrolled ? "60px" : "72px"
+              height: mounted && scrolled ? "60px" : "72px"
             }}
           >
             
@@ -162,13 +167,9 @@ const Navigation = () => {
                   <Image 
                     src="/yati-sphere-logo.png"
                     alt="Yati Sphere Technologies"
-                    width={scrolled ? 140 : 160}
-                    height={scrolled ? 35 : 40}
-                    className="transition-all duration-500 group-hover:brightness-90 group-hover:opacity-100"
-                    style={{ 
-                      filter: 'brightness(0.75)', 
-                      opacity: '0.9'
-                    }}
+                    width={mounted && scrolled ? 140 : 160}
+                    height={mounted && scrolled ? 35 : 40}
+                    className="transition-all duration-500 brightness-75 opacity-90 group-hover:brightness-90 group-hover:opacity-100"
                     priority
                   />
                 </motion.div>
@@ -207,7 +208,7 @@ const Navigation = () => {
                       <AnimatePresence>
                         {activeDropdown === item.name && (
                           <motion.div
-                            className="absolute top-full left-1/2 transform -translate-x-1/2 mt-3 w-[800px] bg-card/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-border/50 p-8 z-50"
+                            className="absolute top-full left-1/2 transform -translate-x-1/2 mt-3 w-[800px] bg-background rounded-2xl shadow-2xl border border-border p-8 z-50"
                             onMouseLeave={closeDropdown}
                             initial={{ opacity: 0, y: -10, scale: 0.95 }}
                             animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -373,13 +374,16 @@ const Navigation = () => {
         <AnimatePresence>
           {mobileMenuOpen && (
             <motion.div
-              className="lg:hidden bg-background/95 backdrop-blur-xl border-t border-border"
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
+              className={cn(
+                "lg:hidden fixed inset-x-0 bg-background border-t border-border shadow-xl overflow-y-auto z-40",
+                mounted && scrolled ? "top-[60px] max-h-[calc(100vh-60px)]" : "top-[72px] max-h-[calc(100vh-72px)]"
+              )}
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.3, ease: "easeInOut" }}
             >
-              <div className="adaptive-container py-6 space-y-4">
+              <div className="px-4 py-6 space-y-2">
                 {navItems.map((item, index) => (
                   <motion.div
                     key={item.name}
@@ -388,24 +392,24 @@ const Navigation = () => {
                     transition={{ delay: index * 0.05 }}
                   >
                     {item.dropdown ? (
-                      <div>
+                      <div className="border-b border-border/30 last:border-b-0">
                         <motion.button
                           onClick={() => handleDropdownToggle(item.name)}
-                          className="flex items-center justify-between w-full text-left text-foreground font-bold py-3 text-lg"
-                          whileTap={{ scale: 0.95 }}
+                          className="flex items-center justify-between w-full text-left text-foreground hover:text-primary font-semibold py-4 text-base transition-colors"
+                          whileTap={{ scale: 0.98 }}
                         >
                           <span>{item.name}</span>
                           <motion.div
                             animate={{ rotate: activeDropdown === item.name ? 180 : 0 }}
                             transition={{ duration: 0.3 }}
                           >
-                            <ChevronDown className="w-5 h-5" />
+                            <ChevronDown className="w-4 h-4" />
                           </motion.div>
                         </motion.button>
                         <AnimatePresence>
                           {activeDropdown === item.name && (
                             <motion.div
-                              className="mt-3 ml-4 space-y-3"
+                              className="pb-4 space-y-2"
                               initial={{ opacity: 0, height: 0 }}
                               animate={{ opacity: 1, height: "auto" }}
                               exit={{ opacity: 0, height: 0 }}
@@ -417,28 +421,28 @@ const Navigation = () => {
                                   <motion.a
                                     key={dropdownItem.name}
                                     href={dropdownItem.href}
-                                    className={cn(
-                                      "flex items-start space-x-4 p-3 rounded-xl transition-all duration-300",
-                                      dropdownItem.bgColor
-                                    )}
+                                    className="flex items-start space-x-3 p-3 rounded-xl bg-muted hover:bg-muted/80 transition-all duration-300 border border-border"
                                     onClick={closeMobileMenu}
                                     initial={{ opacity: 0, x: -10 }}
                                     animate={{ opacity: 1, x: 0 }}
                                     transition={{ delay: idx * 0.05 }}
-                                    whileTap={{ scale: 0.95 }}
+                                    whileTap={{ scale: 0.98 }}
                                   >
-                                    <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center flex-shrink-0 shadow-sm">
-                                      <IconComponent className={cn("w-5 h-5", dropdownItem.color)} />
+                                    <div className="w-10 h-10 bg-background rounded-lg flex items-center justify-center flex-shrink-0 shadow-sm border border-border">
+                                      <IconComponent className="w-5 h-5 text-primary" />
                                     </div>
-                                    <div className="flex-1">
-                                      <div className="font-bold text-slate-900 text-sm mb-1">
+                                    <div className="flex-1 min-w-0">
+                                      <div className="font-semibold text-foreground text-sm mb-1 truncate">
                                         {dropdownItem.name}
                                       </div>
-                                      <div className="text-xs text-slate-600 mb-1">
+                                      <div className="text-xs text-muted-foreground mb-1 leading-relaxed line-clamp-2">
                                         {dropdownItem.desc}
                                       </div>
-                                      <div className={cn("text-xs font-semibold", dropdownItem.color)}>
-                                        {dropdownItem.metric}
+                                      <div className="flex items-center gap-1">
+                                        <div className="w-1.5 h-1.5 rounded-full bg-green-500"></div>
+                                        <span className="text-xs font-medium text-green-600">
+                                          {dropdownItem.metric}
+                                        </span>
                                       </div>
                                     </div>
                                   </motion.a>
@@ -451,13 +455,13 @@ const Navigation = () => {
                     ) : (
                       <motion.a
                         href={item.href}
-                        className="flex items-center space-x-4 text-foreground hover:text-primary font-bold py-3 text-lg transition-colors"
+                        className="flex items-center space-x-3 text-foreground hover:text-primary font-semibold py-4 text-base transition-colors border-b border-border/30 last:border-b-0"
                         onClick={closeMobileMenu}
-                        whileTap={{ scale: 0.95 }}
+                        whileTap={{ scale: 0.98 }}
                       >
                         {item.icon && (
-                          <div className="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center">
-                            <item.icon className="w-5 h-5 text-blue-600" />
+                          <div className="w-10 h-10 bg-muted rounded-lg flex items-center justify-center">
+                            <item.icon className="w-5 h-5 text-primary" />
                           </div>
                         )}
                         <span>{item.name}</span>
@@ -468,28 +472,29 @@ const Navigation = () => {
                 
                 {/* Premium Mobile CTA */}
                 <motion.div 
-                  className="pt-6 border-t border-slate-200 space-y-4"
+                  className="pt-6 border-t border-border/50 space-y-4"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.3 }}
                 >
                   <motion.a
                     href="/contact-us"
-                    className="flex items-center space-x-4 text-slate-600 hover:text-blue-600 font-semibold p-3 bg-slate-50 rounded-xl transition-colors"
-                    whileTap={{ scale: 0.95 }}
+                    className="flex items-center space-x-3 text-muted-foreground hover:text-primary font-semibold p-3 bg-muted rounded-xl transition-colors"
+                    onClick={closeMobileMenu}
+                    whileTap={{ scale: 0.98 }}
                   >
-                    <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center shadow-sm">
-                      <Phone className="w-5 h-5 text-blue-600" />
+                    <div className="w-10 h-10 bg-background rounded-lg flex items-center justify-center shadow-sm border border-border">
+                      <Phone className="w-5 h-5 text-primary" />
                     </div>
-                    <span>+1 (555) 123-4567</span>
+                    <span className="text-sm">+1 (555) 123-4567</span>
                   </motion.a>
-                  <motion.div whileTap={{ scale: 0.95 }}>
+                  <motion.div whileTap={{ scale: 0.98 }}>
                     <Button 
-                      className="w-full bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700 text-white font-bold py-4 text-lg rounded-xl shadow-lg"
+                      className="w-full bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-primary-foreground font-semibold py-3 text-base rounded-xl shadow-lg transition-all duration-300"
                       onClick={closeMobileMenu}
                     >
                       Get Started
-                      <ArrowRight className="w-5 h-5 ml-2" />
+                      <ArrowRight className="w-4 h-4 ml-2" />
                     </Button>
                   </motion.div>
                 </motion.div>

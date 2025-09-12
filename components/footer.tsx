@@ -88,11 +88,7 @@ const Footer = () => {
                     alt="Yati Sphere Technologies"
                     width={200}
                     height={50}
-                    className="mb-4"
-                    style={{ 
-                      filter: 'brightness(0.75)', 
-                      opacity: '0.9'
-                    }}
+                    className="mb-4 brightness-75 opacity-90"
                   />
                 </div>
                 

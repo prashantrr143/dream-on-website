@@ -13,8 +13,15 @@ import Footer from '@/components/footer'
 // Scroll to top component
 function ScrollToTop() {
   const [isVisible, setIsVisible] = useState(false)
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  useEffect(() => {
+    if (!mounted) return
+    
     const toggleVisibility = () => {
       if (window.pageYOffset > 300) {
         setIsVisible(true)
@@ -25,7 +32,7 @@ function ScrollToTop() {
 
     window.addEventListener('scroll', toggleVisibility)
     return () => window.removeEventListener('scroll', toggleVisibility)
-  }, [])
+  }, [mounted])
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -34,7 +41,7 @@ function ScrollToTop() {
     })
   }
 
-  if (!isVisible) return null
+  if (!mounted || !isVisible) return null
 
   return (
     <button

@@ -5,7 +5,7 @@ import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { 
   ArrowRight, Award, Users, TrendingUp, Zap, Shield, Bot, 
-  Building2, Globe, Target, Clock, ChevronLeft, ChevronRight
+  Building, Globe, Target, Clock, ChevronLeft, ChevronRight
 } from 'lucide-react'
 import { useState, useRef, useEffect } from 'react'
 
@@ -53,7 +53,7 @@ const FuturisticCaseStudies = () => {
       results: {
         primary: { value: "95%", label: "Defect Reduction", icon: Award },
         secondary: { value: "40%", label: "Faster Production", icon: Clock },
-        tertiary: { value: "$150M", label: "Annual Value", icon: Building2 },
+        tertiary: { value: "$150M", label: "Annual Value", icon: Building },
         quaternary: { value: "24/7", label: "Autonomous Operation", icon: Bot }
       },
       technologies: ["Computer Vision", "Predictive Analytics", "IoT Sensors", "Digital Twins"],
