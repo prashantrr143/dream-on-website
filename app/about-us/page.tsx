@@ -69,7 +69,8 @@ const AboutUs = () => {
    {
      name: "Jyoti Mishra",
      role: "Chief Human Resources Officer",
-     bio: "Strategic HR executive with 8+ years of building world-class organizations through innovative talent strategies and cultural transformation. Specializes in scaling high-performance teams, driving employee engagement, and implementing cutting-edge HR technologies that enable business growth and operational excellence."
+     bio: "Strategic HR executive with 8+ years of building world-class organizations through innovative talent strategies and cultural transformation. Specializes in scaling high-performance teams, driving employee engagement, and implementing cutting-edge HR technologies that enable business growth and operational excellence.",
+     image: "/jyoti.jpeg"
    }
  ]
 
@@ -516,7 +517,7 @@ const AboutUs = () => {
                                alt={member.name}
                                width={256}
                                height={256}
-                               className="w-full h-full object-cover object-center transition-all duration-500 group-hover/image:scale-105 filter saturate-110"
+                               className="w-full h-full object-cover object-top transition-all duration-500 group-hover/image:scale-105 filter saturate-110"
                                priority
                              />
                            </div>
