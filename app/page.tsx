@@ -1,27 +1,49 @@
 "use client"
 
-import { Suspense, useEffect } from 'react'
+import { Suspense } from 'react'
 import dynamic from 'next/dynamic'
 import SharedLayout from '@/components/shared-layout'
-import { performanceMetrics, performanceWarnings } from '@/lib/performance'
-import ErrorBoundary from '@/components/error-boundary'
-import { CardLoadingSkeleton } from '@/components/loading-states'
 
-// Import professional components
-import ProfessionalHero from '@/components/hero-professional'
-import { SectionSeparator } from '@/components/section-layout-fix'
-
-const DynamicServices = dynamic(() => import('@/components/services-professional'), {
+// Import enterprise components with dynamic loading for performance
+const HeroSection = dynamic(() => import('@/components/enterprise/HeroSection'), {
   loading: () => (
-    <div className="w-full py-16 lg:py-24">
-      <div className="section-container">
-        <div className="text-center mb-16">
-          <div className="h-12 bg-muted/20 animate-pulse rounded-lg mb-6 mx-auto max-w-md" />
-          <div className="h-6 bg-muted/20 animate-pulse rounded-lg mx-auto max-w-2xl" />
+    <div className="min-h-[80vh] flex items-center bg-background pt-24 pb-20">
+      <div className="enterprise-container-wide">
+        <div className="max-w-3xl space-y-6">
+          <div className="h-16 bg-gray-100 animate-pulse rounded" />
+          <div className="h-8 bg-gray-100 animate-pulse rounded max-w-2xl" />
+          <div className="h-12 w-48 bg-gray-100 animate-pulse rounded" />
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {[...Array(6)].map((_, i) => (
-            <div key={i} className="h-64 bg-muted/20 animate-pulse rounded-xl" />
+      </div>
+    </div>
+  ),
+})
+
+const WorkWeDoSection = dynamic(() => import('@/components/enterprise/WorkWeDoSection'), {
+  loading: () => (
+    <div className="py-20 bg-gray-50">
+      <div className="enterprise-container-wide">
+        <div className="grid lg:grid-cols-2 gap-16">
+          <div className="h-32 bg-gray-100 animate-pulse rounded" />
+          <div className="space-y-4">
+            {[...Array(5)].map((_, i) => (
+              <div key={i} className="h-6 bg-gray-100 animate-pulse rounded" />
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  ),
+})
+
+const AudienceSection = dynamic(() => import('@/components/enterprise/AudienceSection'), {
+  loading: () => (
+    <div className="py-20 bg-background">
+      <div className="enterprise-container-wide">
+        <div className="h-8 bg-gray-100 animate-pulse rounded max-w-md mb-12" />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {[...Array(4)].map((_, i) => (
+            <div key={i} className="h-40 bg-gray-100 animate-pulse rounded" />
           ))}
         </div>
       </div>
@@ -29,158 +51,97 @@ const DynamicServices = dynamic(() => import('@/components/services-professional
   ),
 })
 
-// Commented out unused components to fix build errors
-// const DynamicCaseStudies = dynamic(() => import('@/components/case-studies'), {
-//   loading: () => (
-//     <div className="w-full py-16 lg:py-24">
-//       <div className="section-container">
-//         <div className="text-center mb-16">
-//           <div className="h-12 bg-muted/20 animate-pulse rounded-lg mb-6 mx-auto max-w-md" />
-//           <div className="h-6 bg-muted/20 animate-pulse rounded-lg mx-auto max-w-2xl" />
-//         </div>
-//         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-//           {[...Array(4)].map((_, i) => (
-//             <div key={i} className="h-80 bg-muted/20 animate-pulse rounded-xl" />
-//           ))}
-//         </div>
-//       </div>
-//     </div>
-//   ),
-// })
+const HowWeWorkSection = dynamic(() => import('@/components/enterprise/HowWeWorkSection'), {
+  loading: () => (
+    <div className="py-20 bg-gray-900">
+      <div className="enterprise-container-wide">
+        <div className="grid lg:grid-cols-2 gap-16">
+          <div className="h-32 bg-gray-800 animate-pulse rounded" />
+          <div className="space-y-6">
+            {[...Array(4)].map((_, i) => (
+              <div key={i} className="h-16 bg-gray-800 animate-pulse rounded" />
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  ),
+})
 
-// const DynamicCTA = dynamic(() => import('@/components/cta-professional'), {
-//   loading: () => (
-//     <div className="w-full py-16 lg:py-24 bg-muted/20">
-//       <div className="section-container">
-//         <div className="max-w-4xl mx-auto text-center">
-//           <div className="h-12 bg-muted animate-pulse rounded-lg mb-6 mx-auto max-w-lg" />
-//           <div className="h-6 bg-muted animate-pulse rounded-lg mb-8 mx-auto max-w-2xl" />
-//           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-//             <div className="h-12 w-full sm:w-40 bg-muted animate-pulse rounded-lg" />
-//             <div className="h-12 w-full sm:w-40 bg-muted animate-pulse rounded-lg" />
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   ),
-// })
+const CapabilitiesSection = dynamic(() => import('@/components/enterprise/CapabilitiesSection'), {
+  loading: () => (
+    <div className="py-20 bg-gray-50">
+      <div className="enterprise-container-wide">
+        <div className="h-8 bg-gray-200 animate-pulse rounded max-w-md mb-12" />
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {[...Array(3)].map((_, i) => (
+            <div key={i} className="h-48 bg-gray-200 animate-pulse rounded" />
+          ))}
+        </div>
+      </div>
+    </div>
+  ),
+})
+
+const FinalCTASection = dynamic(() => import('@/components/enterprise/FinalCTASection'), {
+  loading: () => (
+    <div className="py-20 bg-background">
+      <div className="enterprise-container-wide text-center">
+        <div className="h-10 bg-gray-100 animate-pulse rounded max-w-md mx-auto mb-4" />
+        <div className="h-6 bg-gray-100 animate-pulse rounded max-w-lg mx-auto mb-10" />
+        <div className="h-12 w-48 bg-gray-100 animate-pulse rounded mx-auto" />
+      </div>
+    </div>
+  ),
+})
+
+const FooterMinimal = dynamic(() => import('@/components/enterprise/FooterMinimal'), {
+  loading: () => (
+    <div className="py-16 border-t border-gray-200">
+      <div className="enterprise-container-wide">
+        <div className="h-16 bg-gray-100 animate-pulse rounded" />
+      </div>
+    </div>
+  ),
+})
 
 export default function Home() {
-  // Initialize performance monitoring
-  useEffect(() => {
-    performanceMetrics.trackWebVitals()
-    performanceMetrics.trackBundleSize()
-    performanceWarnings.warnLargeBundle()
-    performanceWarnings.warnSlowRender()
-
-    // Track memory usage periodically in development
-    if (process.env.NODE_ENV === 'development') {
-      const interval = setInterval(() => {
-        performanceMetrics.trackMemoryUsage()
-      }, 30000) // Every 30 seconds
-
-      return () => clearInterval(interval)
-    }
-    
-    return () => {}
-  }, [])
-
   return (
-    <SharedLayout>
-      {/* Theme Switcher */}
-      {/* <ThemeSwitcher /> */}
+    <SharedLayout hideFooter>
+      {/* Hero Section - Systems-first headline */}
+      <Suspense fallback={null}>
+        <HeroSection />
+      </Suspense>
 
-      {/* Professional Hero Section */}
-      <section className="relative w-full">
-        <ProfessionalHero />
-      </section>
+      {/* The Kind of Work We Do - Long-term systems narrative */}
+      <Suspense fallback={null}>
+        <WorkWeDoSection />
+      </Suspense>
 
-      {/* Section Separator */}
-      <SectionSeparator />
+      {/* Who We Work With - Enterprise audience, less AI-centric */}
+      <Suspense fallback={null}>
+        <AudienceSection />
+      </Suspense>
 
-      {/* Services Section with lazy loading and error boundary */}
-      <ErrorBoundary fallback={
-        <div className="w-full py-16 lg:py-24">
-          <div className="section-container text-center">
-            <p className="text-muted-foreground">Services section failed to load</p>
-          </div>
-        </div>
-      }>
-        <Suspense fallback={
-          <div className="w-full py-16 lg:py-24">
-            <div className="section-container">
-              <div className="text-center mb-16">
-                <div className="h-12 bg-muted/20 animate-pulse rounded-lg mb-6 mx-auto max-w-md" />
-                <div className="h-6 bg-muted/20 animate-pulse rounded-lg mx-auto max-w-2xl" />
-              </div>
-              <CardLoadingSkeleton count={6} />
-            </div>
-          </div>
-        }>
-          <section className="relative w-full">
-            <DynamicServices />
-          </section>
-        </Suspense>
-      </ErrorBoundary>
+      {/* How We Work - Structured delivery for enterprise */}
+      <Suspense fallback={null}>
+        <HowWeWorkSection />
+      </Suspense>
 
-      {/* Section Separator */}
-      <SectionSeparator />
+      {/* Capabilities - Enterprise Software, Cloud, then AI (last) */}
+      <Suspense fallback={null}>
+        <CapabilitiesSection />
+      </Suspense>
 
-      {/* Case Studies Section with lazy loading and error boundary */}
-      {/* <ErrorBoundary fallback={
-        <div className="w-full py-16 lg:py-24">
-          <div className="section-container text-center">
-            <p className="text-muted-foreground">Case studies section failed to load</p>
-          </div>
-        </div>
-      }>
-        <Suspense fallback={
-          <div className="w-full py-16 lg:py-24">
-            <div className="section-container">
-              <div className="text-center mb-16">
-                <div className="h-12 bg-muted/20 animate-pulse rounded-lg mb-6 mx-auto max-w-md" />
-                <div className="h-6 bg-muted/20 animate-pulse rounded-lg mx-auto max-w-2xl" />
-              </div>
-              <CardLoadingSkeleton count={4} />
-            </div>
-          </div>
-        }>
-          <section className="relative w-full">
-            <DynamicCaseStudies />
-          </section>
-        </Suspense>
-      </ErrorBoundary> */}
+      {/* Final CTA - Start with a Conversation */}
+      <Suspense fallback={null}>
+        <FinalCTASection />
+      </Suspense>
 
-      {/* Section Separator */}
-      <SectionSeparator />
-
-      {/* CTA Section with lazy loading and error boundary */}
-      {/* <ErrorBoundary fallback={
-        <div className="w-full py-16 lg:py-24 bg-muted/20">
-          <div className="section-container text-center">
-            <p className="text-muted-foreground">CTA section failed to load</p>
-          </div>
-        </div>
-      }>
-        <Suspense fallback={
-          <div className="w-full py-16 lg:py-24 bg-muted/20">
-            <div className="section-container">
-              <div className="max-w-4xl mx-auto text-center">
-                <div className="h-12 bg-muted animate-pulse rounded-lg mb-6 mx-auto max-w-lg" />
-                <div className="h-6 bg-muted animate-pulse rounded-lg mb-8 mx-auto max-w-2xl" />
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <div className="h-12 w-full sm:w-40 bg-muted animate-pulse rounded-lg" />
-                  <div className="h-12 w-full sm:w-40 bg-muted animate-pulse rounded-lg" />
-                </div>
-              </div>
-            </div>
-          </div>
-        }>
-          <section className="relative w-full">
-            <DynamicCTA />
-          </section>
-        </Suspense>
-      </ErrorBoundary> */}
+      {/* Footer - Minimal, serious */}
+      <Suspense fallback={null}>
+        <FooterMinimal />
+      </Suspense>
     </SharedLayout>
   )
 }

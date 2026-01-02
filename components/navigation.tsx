@@ -183,7 +183,7 @@ const Navigation = () => {
     },
     { name: 'Services', href: '/services', icon: Briefcase },
     { name: 'Case Studies', href: '/case-studies', icon: Award },
-    { name: 'Resources', href: '/resources', icon: FileText },
+    { name: 'Perspectives', href: '/perspectives', icon: FileText },
     { name: 'About', href: '/about-us', icon: Users },
     { name: 'Contact', href: '/contact-us', icon: MessageSquare }
   ]

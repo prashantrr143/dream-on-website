@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yati Sphere Technologies - Enterprise Presentation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Premium Dark Enterprise Color System */
+            --background: 222 47% 4%;
+            --foreground: 210 40% 98%;
+            --card: 222 47% 6%;
+            --primary: 213 87% 51%;
+            --primary-foreground: 0 0% 100%;
+            --accent: 142 69% 58%;
+            --muted: 222 47% 10%;
+            --muted-foreground: 215.4 16.3% 65%;
+            --border: 222 47% 12%;
+            --enterprise-blue: 213 87% 51%;
+            --enterprise-green: 142 69% 58%;
+            --enterprise-gold: 43 96% 56%;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Geist', 'Inter', sans-serif;
+            background: hsl(var(--background));
+            color: hsl(var(--foreground));
+            overflow-x: hidden;
+        }
+
+        .presentation-container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+
+        .slide {
+            width: 100%;
+            height: 100vh;
+            display: none;
+            padding: 60px;
+            position: relative;
+            background: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(var(--card)) 100%);
+            overflow: hidden;
+        }
+
+        .slide.active {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .slide-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 20%, hsl(var(--enterprise-blue) / 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, hsl(var(--enterprise-green) / 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 60% 40%, hsl(var(--enterprise-gold) / 0.05) 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        .grid-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(59, 130, 246, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(59, 130, 246, 0.03) 1px, transparent 1px);
+            background-size: 100px 100px;
+            z-index: -1;
+        }
+
+        .slide-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .slide-title {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 800;
+            background: linear-gradient(135deg, hsl(var(--enterprise-blue)), hsl(var(--enterprise-green)));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+
+        .slide-subtitle {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            color: hsl(var(--muted-foreground));
+            font-weight: 500;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .slide-content {
+            max-width: 1200px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .service-card {
+            background: hsl(var(--card));
+            border: 1px solid hsl(var(--border));
+            border-radius: 20px;
+            padding: 40px;
+            text-align: left;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px hsl(var(--background) / 0.3);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, hsl(var(--enterprise-blue)), hsl(var(--enterprise-green)));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .service-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: hsl(var(--foreground));
+        }
+
+        .service-description {
+            color: hsl(var(--muted-foreground));
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .service-technologies {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .tech-tag {
+            background: hsl(var(--muted));
+            color: hsl(var(--muted-foreground));
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .service-roi {
+            background: hsl(var(--enterprise-green) / 0.1);
+            border: 1px solid hsl(var(--enterprise-green) / 0.2);
+            border-radius: 10px;
+            padding: 12px;
+            color: hsl(var(--enterprise-green));
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+
+        .stat-card {
+            background: hsl(var(--card));
+            border: 1px solid hsl(var(--border));
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-value {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, hsl(var(--enterprise-blue)), hsl(var(--enterprise-green)));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: hsl(var(--muted-foreground));
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            gap: 15px;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: hsl(var(--card));
+            border: 1px solid hsl(var(--border));
+            color: hsl(var(--foreground));
+            padding: 15px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: hsl(var(--enterprise-blue));
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .slide-counter {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            background: hsl(var(--card));
+            border: 1px solid hsl(var(--border));
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+
+        .logo {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, hsl(var(--enterprise-blue)), hsl(var(--enterprise-green)));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            z-index: 1000;
+        }
+
+        .contact-info {
+            background: hsl(var(--card));
+            border: 1px solid hsl(var(--border));
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px auto;
+            max-width: 600px;
+            text-align: left;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .contact-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 15px;
+            color: hsl(var(--enterprise-blue));
+        }
+
+        @media (max-width: 768px) {
+            .slide {
+                padding: 30px 20px;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <div class="logo">YATI SPHERE</div>
+        <div class="slide-counter">
+            <span id="current-slide">1</span> / <span id="total-slides">7</span>
+        </div>
+
+        <!-- Slide 1: Title Slide -->
+        <div class="slide active">
+            <div class="slide-background"></div>
+            <div class="grid-pattern"></div>
+            <div class="slide-content">
+                <h1 class="slide-title">YATI SPHERE TECHNOLOGIES</h1>
+                <p class="slide-subtitle">Enterprise Technology Product Development</p>
+                <div style="margin-top: 60px;">
+                    <div style="background: hsl(var(--card)); border: 1px solid hsl(var(--border)); border-radius: 20px; padding: 30px; max-width: 500px; margin: 0 auto; backdrop-filter: blur(10px);">
+                        <div style="color: hsl(var(--muted-foreground)); font-size: 1rem; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 2px;">Enterprise Solutions</div>
+                        <div style="font-size: 1.3rem; font-weight: 600;">Transforming Business Through Technology</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Company Overview -->
+        <div class="slide">
+            <div class="slide-background"></div>
+            <div class="grid-pattern"></div>
+            <div class="slide-header">
+                <h2 class="slide-title">WHO WE ARE</h2>
+                <p class="slide-subtitle">Enterprise Technology Architects</p>
+            </div>
+            <div class="slide-content">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value">50+</div>
+                        <div class="stat-label">Enterprise Solutions</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">99.9%</div>
+                        <div class="stat-label">System Reliability</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">20+</div>
+                        <div class="stat-label">Products Delivered</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">Global</div>
+                        <div class="stat-label">Enterprise Reach</div>
+                    </div>
+                </div>
+                <p style="font-size: 1.3rem; color: hsl(var(--muted-foreground)); max-width: 800px; margin: 0 auto; line-height: 1.6;">
+                    We architect and build enterprise-grade technology products that power business transformation. 
+                    From concept to deployment, our solutions deliver measurable results and competitive advantage.
+                </p>
+            </div>
+        </div>
+
+        <!-- Slide 3: Services Part 1 -->
+        <div class="slide">
+            <div class="slide-background"></div>
+            <div class="grid-pattern"></div>
+            <div class="slide-header">
+                <h2 class="slide-title">OUR SOLUTIONS</h2>
+                <p class="slide-subtitle">Enterprise Technology Products</p>
+            </div>
+            <div class="slide-content">
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">🚀</div>
+                        <h3 class="service-title">Custom Product Development</h3>
+                        <p class="service-description">Enterprise-grade software products from concept to deployment.</p>
+                        <div class="service-technologies">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Kubernetes</span>
+                        </div>
+                        <div class="service-roi">✅ Platform deployed in 12 weeks</div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">☁️</div>
+                        <h3 class="service-title">Cloud Infrastructure</h3>
+                        <p class="service-description">Scalable cloud architectures with 99.9% uptime reliability.</p>
+                        <div class="service-technologies">
+                            <span class="tech-tag">AWS</span>
+                            <span class="tech-tag">Azure</span>
+                            <span class="tech-tag">GCP</span>
+                            <span class="tech-tag">Terraform</span>
+                        </div>
+                        <div class="service-roi">✅ 60% cost reduction achieved</div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🤖</div>
+                        <h3 class="service-title">AI Agentic Systems</h3>
+                        <p class="service-description">Intelligent autonomous agents that execute complex business workflows.</p>
+                        <div class="service-technologies">
+                            <span class="tech-tag">OpenAI</span>
+                            <span class="tech-tag">LangChain</span>
+                            <span class="tech-tag">CrewAI</span>
+                            <span class="tech-tag">Azure AI</span>
+                        </div>
+                        <div class="service-roi">✅ 300% process automation</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Services Part 2 -->
+        <div class="slide">
+            <div class="slide-background"></div>
+            <div class="grid-pattern"></div>
+            <div class="slide-header">
+                <h2 class="slide-title">OUR SOLUTIONS</h2>
+                <p class="slide-subtitle">Continued</p>
+            </div>
+            <div class="slide-content">
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">🛡️</div>
+                        <h3 class="service-title">Enterprise Security</h3>
+                        <p class="service-description">Comprehensive security solutions with compliance management.</p>
+                        <div class="service-technologies">
+                            <span class="tech-tag">Zero-Trust</span>
+                            <span class="tech-tag">SIEM</span>
+                            <span class="tech-tag">MFA</span>
+                            <span class="tech-tag">SOC 2</span>
+                        </div>
+                        <div class="service-roi">✅ Zero security breaches</div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">📊</div>
+                        <h3 class="service-title">Data Analytics</h3>
+                        <p class="service-description">Real-time insights and predictive analytics platforms.</p>
+                        <div class="service-technologies">
+                            <span class="tech-tag">Power BI</span>
+                            <span class="tech-tag">Tableau</span>
+                            <span class="tech-tag">Snowflake</span>
+                            <span class="tech-tag">Python</span>
+                        </div>
+                        <div class="service-roi">✅ 30% revenue increase</div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">⚡</div>
+                        <h3 class="service-title">DevOps Solutions</h3>
+                        <p class="service-description">Automated CI/CD pipelines with zero-downtime deployments.</p>
+                        <div class="service-technologies">
+                            <span class="tech-tag">Docker</span>
+                            <span class="tech-tag">Kubernetes</span>
+                            <span class="tech-tag">Jenkins</span>
+                            <span class="tech-tag">GitLab</span>
+                        </div>
+                        <div class="service-roi">✅ 10x faster deployments</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Key Metrics -->
+        <div class="slide">
+            <div class="slide-background"></div>
+            <div class="grid-pattern"></div>
+            <div class="slide-header">
+                <h2 class="slide-title">KEY METRICS</h2>
+                <p class="slide-subtitle">Measurable Business Impact</p>
+            </div>
+            <div class="slide-content">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value">60%</div>
+                        <div class="stat-label">Cost Reduction</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">15ms</div>
+                        <div class="stat-label">Response Time</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">10x</div>
+                        <div class="stat-label">Faster Deploy</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">24/7</div>
+                        <div class="stat-label">Monitoring</div>
+                    </div>
+                </div>
+                <div style="background: hsl(var(--card)); border: 1px solid hsl(var(--border)); border-radius: 20px; padding: 40px; margin-top: 40px; text-align: left; max-width: 800px; margin-left: auto; margin-right: auto;">
+                    <h3 style="font-size: 1.5rem; margin-bottom: 20px; color: hsl(var(--enterprise-green));">✅ Enterprise Security</h3>
+                    <h3 style="font-size: 1.5rem; margin-bottom: 20px; color: hsl(var(--enterprise-green));">✅ ISO Certified</h3>
+                    <h3 style="font-size: 1.5rem; margin-bottom: 0; color: hsl(var(--enterprise-green));">✅ Global Operations</h3>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Technology Stack -->
+        <div class="slide">
+            <div class="slide-background"></div>
+            <div class="grid-pattern"></div>
+            <div class="slide-header">
+                <h2 class="slide-title">TECHNOLOGY STACK</h2>
+                <p class="slide-subtitle">Modern Enterprise Architecture</p>
+            </div>
+            <div class="slide-content">
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">🎨</div>
+                        <h3 class="service-title">Frontend Technologies</h3>
+                        <div class="service-technologies">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Next.js 15</span>
+                            <span class="tech-tag">TypeScript</span>
+                            <span class="tech-tag">TailwindCSS</span>
+                            <span class="tech-tag">Framer Motion</span>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">⚙️</div>
+                        <h3 class="service-title">Backend Technologies</h3>
+                        <div class="service-technologies">
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">PostgreSQL</span>
+                            <span class="tech-tag">MongoDB</span>
+                            <span class="tech-tag">Redis</span>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">☁️</div>
+                        <h3 class="service-title">Cloud & DevOps</h3>
+                        <div class="service-technologies">
+                            <span class="tech-tag">AWS</span>
+                            <span class="tech-tag">Azure</span>
+                            <span class="tech-tag">Docker</span>
+                            <span class="tech-tag">Kubernetes</span>
+                            <span class="tech-tag">Terraform</span>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🤖</div>
+                        <h3 class="service-title">AI & Machine Learning</h3>
+                        <div class="service-technologies">
+                            <span class="tech-tag">OpenAI</span>
+                            <span class="tech-tag">LangChain</span>
+                            <span class="tech-tag">TensorFlow</span>
+                            <span class="tech-tag">PyTorch</span>
+                            <span class="tech-tag">Hugging Face</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Contact -->
+        <div class="slide">
+            <div class="slide-background"></div>
+            <div class="grid-pattern"></div>
+            <div class="slide-header">
+                <h2 class="slide-title">LET'S CONNECT</h2>
+                <p class="slide-subtitle">Ready to Transform Your Enterprise?</p>
+            </div>
+            <div class="slide-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">📧</div>
+                        <div>enterprise@yatisphere.com</div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📱</div>
+                        <div>+1 (555) 123-4567</div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">🌐</div>
+                        <div>www.yatisphere.com</div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div>Global Technology Centers</div>
+                    </div>
+                </div>
+                <div style="margin-top: 40px;">
+                    <p style="font-size: 1.3rem; color: hsl(var(--muted-foreground)); margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.6;">
+                        Schedule a consultation with our enterprise solution architects to discuss 
+                        your specific requirements and create a customized transformation roadmap.
+                    </p>
+                    <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                        <button style="background: hsl(var(--enterprise-blue)); color: white; padding: 15px 30px; border: none; border-radius: 10px; font-weight: 600; cursor: pointer; font-size: 1.1rem;">
+                            Schedule Consultation
+                        </button>
+                        <button style="background: hsl(var(--card)); color: hsl(var(--foreground)); border: 1px solid hsl(var(--border)); padding: 15px 30px; border-radius: 10px; font-weight: 600; cursor: pointer; font-size: 1.1rem;">
+                            Download Portfolio
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="navigation">
+            <button class="nav-btn" onclick="previousSlide()">← Previous</button>
+            <button class="nav-btn" onclick="nextSlide()">Next →</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        document.getElementById('total-slides').textContent = totalSlides;
+
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[n].classList.add('active');
+            document.getElementById('current-slide').textContent = n + 1;
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            showSlide(currentSlide);
+        }
+
+        function previousSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            showSlide(currentSlide);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'ArrowRight' || event.key === ' ') {
+                nextSlide();
+            } else if (event.key === 'ArrowLeft') {
+                previousSlide();
+            }
+        });
+
+        // Auto-advance slides every 10 seconds (optional)
+        // setInterval(nextSlide, 10000);
+    </script>
+</body>
+</html>

@@ -7,61 +7,118 @@
 
 @layer base {
   :root {
-    /* Premium Dark Enterprise Color System */
-    --background: 222 47% 4%; /* Rich dark slate background */
-    --foreground: 210 40% 98%; /* Crisp white text */
-    --card: 222 47% 6%; /* Slightly lighter dark cards */
-    --card-foreground: 210 40% 95%; /* White text on cards */
-    --popover: 222 47% 7%; /* Dark popovers */
-    --popover-foreground: 210 40% 95%; /* White text on popovers */
-    --primary: 213 87% 51%; /* Professional blue (keep vibrant) */
+    /* Premium Enterprise Light Theme - Calm, Confident, Architectural */
+    --background: 0 0% 98%; /* Off-white background */
+    --foreground: 240 10% 6%; /* Deep charcoal text (#0E0E11) */
+    --card: 0 0% 100%; /* Pure white cards */
+    --card-foreground: 240 10% 6%; /* Charcoal text on cards */
+    --popover: 0 0% 100%; /* White popovers */
+    --popover-foreground: 240 10% 6%; /* Charcoal text on popovers */
+    --primary: 240 10% 6%; /* Deep charcoal as primary (#0E0E11) */
     --primary-foreground: 0 0% 100%; /* White text on primary */
-    --secondary: 221 39% 11%; /* Dark secondary */
-    --secondary-foreground: 210 40% 98%; /* Light text on secondary */
-    --muted: 222 47% 10%; /* Dark muted background */
-    --muted-foreground: 215.4 16.3% 65%; /* Light gray text */
-    --accent: 142 69% 58%; /* Trust green (keep vibrant) */
+    --secondary: 220 13% 91%; /* Light slate gray */
+    --secondary-foreground: 240 10% 6%; /* Charcoal text on secondary */
+    --muted: 220 14% 96%; /* Very light gray */
+    --muted-foreground: 220 9% 46%; /* Medium slate gray */
+    --accent: 213 50% 45%; /* Restrained cool blue accent */
     --accent-foreground: 0 0% 100%; /* White text on accent */
-    --destructive: 0 72% 51%; /* Enterprise red */
+    --destructive: 0 72% 51%; /* Alert red */
     --destructive-foreground: 0 0% 100%; /* White text on destructive */
-    --border: 222 47% 12%; /* Dark borders */
-    --input: 222 47% 8%; /* Dark input background */
-    --ring: 213 87% 51%; /* Professional blue ring */
-    --chart-1: 213 87% 51%; /* Professional blue */
-    --chart-2: 142 69% 58%; /* Trust green */
-    --chart-3: 195 100% 50%; /* Cyan */
-    --chart-4: 160 84% 39%; /* Emerald */
-    --chart-5: 43 96% 56%; /* Premium gold */
-    --radius: 0.75rem;
-    
-    /* Premium Enterprise Brand Colors */
-    --enterprise-slate: 221 39% 11%; /* Deep authority slate */
-    --enterprise-blue: 213 87% 51%; /* Professional blue */
-    --enterprise-blue-dark: 213 87% 41%; /* Darker professional blue */
-    --enterprise-blue-light: 213 87% 61%; /* Lighter professional blue */
-    --enterprise-green: 142 69% 58%; /* Trust green */
-    --enterprise-green-dark: 142 69% 48%; /* Darker trust green */
-    --enterprise-green-light: 142 69% 68%; /* Lighter trust green */
-    --enterprise-gold: 43 96% 56%; /* Premium gold for achievements */
-    --enterprise-red: 0 72% 51%; /* Enterprise red for CTAs */
-    --enterprise-cyan: 195 100% 50%; /* Tech cyan */
-    --enterprise-emerald: 160 84% 39%; /* Success emerald */
-    --enterprise-amber: 43 96% 56%; /* Warning amber */
-    
-    /* Premium Dark Enterprise Grays */
-    --premium-white: 210 40% 98%; /* Off-white for dark theme */
-    --premium-white-soft: 210 40% 95%; /* Softer white */
-    --premium-gray-50: 222 47% 15%; /* Light dark backgrounds */
-    --premium-gray-100: 222 47% 12%; /* Card backgrounds */
-    --premium-gray-200: 222 47% 18%; /* Borders with presence */
-    --premium-gray-300: 222 47% 25%; /* Stronger borders */
-    --premium-gray-400: 215.4 16.3% 45%; /* Medium text */
-    --premium-gray-500: 215.4 16.3% 65%; /* Strong text */
-    --premium-gray-600: 210 40% 80%; /* Very strong text */
-    --premium-gray-700: 210 40% 90%; /* Near white */
-    --premium-gray-800: 210 40% 95%; /* Light authority */
-    --premium-gray-900: 210 40% 98%; /* Maximum contrast */
-    --premium-shadow: 0 0% 0%; /* Black shadow base */
+    --border: 220 13% 91%; /* Light border */
+    --input: 220 13% 91%; /* Light input background */
+    --ring: 213 50% 45%; /* Cool blue ring */
+    --chart-1: 213 50% 45%; /* Cool blue */
+    --chart-2: 220 9% 46%; /* Slate */
+    --chart-3: 240 10% 6%; /* Charcoal */
+    --chart-4: 220 13% 91%; /* Light slate */
+    --chart-5: 36 45% 50%; /* Muted amber (optional accent) */
+    --radius: 0.5rem;
+
+    /* ========================================
+       TYPOGRAPHY SYSTEM - 1.25 Modular Scale
+       Base: 16px | Scale: 1.25
+       ======================================== */
+
+    /* Font Sizes (1.25 scale) */
+    --text-xs: 0.8rem;      /* 12.8px - Meta, labels */
+    --text-sm: 0.875rem;    /* 14px - Small text */
+    --text-base: 1rem;      /* 16px - Body */
+    --text-lg: 1.125rem;    /* 18px - Lead text */
+    --text-xl: 1.25rem;     /* 20px - Subheadings */
+    --text-2xl: 1.5rem;     /* 24px - H4 */
+    --text-3xl: 1.875rem;   /* 30px - H3 */
+    --text-4xl: 2.25rem;    /* 36px - H2 */
+    --text-5xl: 2.75rem;    /* 44px - H1 */
+    --text-6xl: 3.25rem;    /* 52px - Hero */
+
+    /* Line Heights */
+    --leading-tight: 1.1;
+    --leading-snug: 1.25;
+    --leading-normal: 1.5;
+    --leading-relaxed: 1.7;
+
+    /* Letter Spacing */
+    --tracking-tight: -0.02em;
+    --tracking-normal: 0;
+    --tracking-wide: 0.05em;
+
+    /* Font Weights (Limited: 400, 500, 600 only) */
+    --font-normal: 400;
+    --font-medium: 500;
+    --font-semibold: 600;
+
+    /* ========================================
+       SPACING SYSTEM - 8px Base Unit
+       ======================================== */
+    --space-1: 0.25rem;   /* 4px */
+    --space-2: 0.5rem;    /* 8px */
+    --space-3: 0.75rem;   /* 12px */
+    --space-4: 1rem;      /* 16px */
+    --space-5: 1.25rem;   /* 20px */
+    --space-6: 1.5rem;    /* 24px */
+    --space-8: 2rem;      /* 32px */
+    --space-10: 2.5rem;   /* 40px */
+    --space-12: 3rem;     /* 48px */
+    --space-16: 4rem;     /* 64px */
+    --space-20: 5rem;     /* 80px */
+    --space-24: 6rem;     /* 96px */
+    --space-32: 8rem;     /* 128px */
+
+    /* Semantic Spacing */
+    --section-gap: var(--space-24);       /* 96px between sections */
+    --heading-gap: var(--space-6);        /* 24px heading to content */
+    --paragraph-gap: var(--space-4);      /* 16px between paragraphs */
+    --list-gap: var(--space-3);           /* 12px between list items */
+    --cta-gap: var(--space-10);           /* 40px around CTAs */
+
+    /* Max Widths for Readability */
+    --prose-width: 65ch;                  /* Optimal reading width */
+    --hero-width: 48rem;                  /* 768px for hero text */
+    --container-width: 72rem;             /* 1152px max container */
+
+    /* Enterprise Brand Colors - Restrained Palette */
+    --enterprise-charcoal: 240 10% 6%; /* Primary dark (#0E0E11) */
+    --enterprise-slate: 220 9% 46%; /* Professional slate */
+    --enterprise-slate-light: 220 13% 91%; /* Light slate */
+    --enterprise-blue: 213 50% 45%; /* Restrained cool blue - ONLY accent */
+    --enterprise-blue-dark: 213 50% 35%; /* Darker blue */
+    --enterprise-blue-light: 213 50% 55%; /* Lighter blue */
+    --enterprise-amber: 36 45% 50%; /* Muted amber (alternative accent) */
+
+    /* Premium Gray Scale - Subtle and Professional */
+    --premium-white: 0 0% 100%; /* Pure white */
+    --premium-off-white: 0 0% 98%; /* Off-white backgrounds */
+    --premium-gray-50: 220 14% 96%; /* Lightest gray */
+    --premium-gray-100: 220 13% 91%; /* Light gray */
+    --premium-gray-200: 220 13% 86%; /* Subtle borders */
+    --premium-gray-300: 220 11% 78%; /* Medium borders */
+    --premium-gray-400: 220 9% 60%; /* Medium text */
+    --premium-gray-500: 220 9% 46%; /* Body text */
+    --premium-gray-600: 220 10% 30%; /* Strong text */
+    --premium-gray-700: 220 10% 20%; /* Headings */
+    --premium-gray-800: 240 10% 10%; /* Near black */
+    --premium-gray-900: 240 10% 6%; /* Deep charcoal */
+    --premium-shadow: 220 13% 10%; /* Shadow base */
   }
 
   * {
@@ -70,34 +127,69 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family: 'Geist', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    font-feature-settings: "rlig" 1, "calt" 1, "kern" 1, "liga" 1;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-feature-settings: "kern" 1, "liga" 1;
     font-optical-sizing: auto;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+    font-size: var(--text-base);
+    line-height: var(--leading-relaxed);
+    font-weight: var(--font-normal);
   }
 
-  /* Professional Typography */
-  .font-display {
-    font-family: var(--font-display);
-  }
-  
+  /* Enterprise Typography - One Font, Weight/Size for Hierarchy */
+  .font-display,
   .font-heading {
-    font-family: var(--font-heading);
+    font-family: 'Inter', sans-serif;
   }
-  
+
   .font-mono {
     font-family: var(--font-mono);
   }
 
+  /* Heading Hierarchy - Strict Scale */
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Geist', 'Inter', sans-serif;
-    @apply font-semibold tracking-tight;
-    line-height: 1.1;
-    font-feature-settings: "ss01", "ss02", "cv01", "cv03", "kern", "liga";
+    font-family: 'Inter', sans-serif;
+    letter-spacing: var(--tracking-tight);
+    line-height: var(--leading-snug);
     color: hsl(var(--premium-gray-900));
-    font-optical-sizing: auto;
+    margin: 0;
+  }
+
+  h1 {
+    font-size: var(--text-5xl);
+    font-weight: var(--font-semibold);
+    line-height: var(--leading-tight);
+  }
+
+  h2 {
+    font-size: var(--text-4xl);
+    font-weight: var(--font-semibold);
+  }
+
+  h3 {
+    font-size: var(--text-3xl);
+    font-weight: var(--font-medium);
+  }
+
+  h4 {
+    font-size: var(--text-2xl);
+    font-weight: var(--font-medium);
+  }
+
+  /* Body Text */
+  p {
+    font-size: var(--text-base);
+    line-height: var(--leading-relaxed);
+    color: hsl(var(--premium-gray-500));
+    max-width: var(--prose-width);
+  }
+
+  /* Responsive Typography */
+  @media (min-width: 768px) {
+    h1 { font-size: var(--text-6xl); }
+    h2 { font-size: var(--text-5xl); }
   }
 
   /* Smooth scrolling and section fixes */
@@ -163,44 +255,365 @@
 }
 
 @layer components {
-  /* Premium Enterprise Hover Effects */
+  /* ========================================
+     ENTERPRISE PREMIUM COMPONENTS
+     Typography & Spacing Refined
+     ======================================== */
+
+  /* Enterprise Section - Using Spacing Tokens */
+  .enterprise-section {
+    padding-top: var(--section-gap);
+    padding-bottom: var(--section-gap);
+  }
+
+  .enterprise-section-dark {
+    padding-top: var(--section-gap);
+    padding-bottom: var(--section-gap);
+    background-color: hsl(var(--premium-gray-900));
+    color: hsl(var(--premium-white));
+  }
+
+  .enterprise-section-dark p {
+    color: hsl(var(--premium-gray-300));
+  }
+
+  /* ========================================
+     ENTERPRISE LAYOUT SYSTEM
+     Designed for large and ultrawide screens
+     ======================================== */
+
+  /* Enterprise Container - Standard content width */
+  .enterprise-container {
+    max-width: var(--container-width);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--space-6);
+    padding-right: var(--space-6);
+  }
+
+  @media (min-width: 768px) {
+    .enterprise-container {
+      padding-left: var(--space-8);
+      padding-right: var(--space-8);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .enterprise-container {
+      padding-left: var(--space-12);
+      padding-right: var(--space-12);
+    }
+  }
+
+  /* Enterprise Container Wide - For content that needs more breathing room */
+  .enterprise-container-wide {
+    max-width: 90rem; /* 1440px - increased from 1280px */
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--space-6);
+    padding-right: var(--space-6);
+  }
+
+  @media (min-width: 768px) {
+    .enterprise-container-wide {
+      padding-left: var(--space-8);
+      padding-right: var(--space-8);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .enterprise-container-wide {
+      padding-left: var(--space-12);
+      padding-right: var(--space-12);
+    }
+  }
+
+  @media (min-width: 1440px) {
+    .enterprise-container-wide {
+      padding-left: var(--space-16);
+      padding-right: var(--space-16);
+    }
+  }
+
+  @media (min-width: 1920px) {
+    .enterprise-container-wide {
+      max-width: 100rem; /* 1600px on ultrawide */
+      padding-left: var(--space-20);
+      padding-right: var(--space-20);
+    }
+  }
+
+  /* Enterprise Container Ultrawide - Maximum content width for dashboards/data-heavy */
+  .enterprise-container-ultrawide {
+    max-width: 100rem; /* 1600px */
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--space-6);
+    padding-right: var(--space-6);
+  }
+
+  @media (min-width: 768px) {
+    .enterprise-container-ultrawide {
+      padding-left: var(--space-8);
+      padding-right: var(--space-8);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .enterprise-container-ultrawide {
+      padding-left: var(--space-12);
+      padding-right: var(--space-12);
+    }
+  }
+
+  @media (min-width: 1440px) {
+    .enterprise-container-ultrawide {
+      padding-left: var(--space-16);
+      padding-right: var(--space-16);
+    }
+  }
+
+  @media (min-width: 1920px) {
+    .enterprise-container-ultrawide {
+      max-width: 112rem; /* 1792px on ultrawide */
+      padding-left: var(--space-24);
+      padding-right: var(--space-24);
+    }
+  }
+
+  /* Enterprise Section - Full-width wrapper for backgrounds */
+  .enterprise-section {
+    width: 100%;
+    position: relative;
+  }
+
+  /* Enterprise Section with minimum height for hero areas */
+  .enterprise-section-hero {
+    width: 100%;
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  @media (min-width: 1024px) {
+    .enterprise-section-hero {
+      min-height: 80vh;
+    }
+  }
+
+  /* Content constraint for readable text */
+  .enterprise-prose {
+    max-width: 45rem; /* 720px - optimal for reading */
+  }
+
+  .enterprise-prose-wide {
+    max-width: 56rem; /* 896px - for wider prose */
+  }
+
+  /* Enterprise Card - Flat, Minimal */
+  .enterprise-card-flat {
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
+    border-radius: 6px;
+    transition: border-color 0.2s ease;
+  }
+
+  .enterprise-card-flat:hover {
+    border-color: hsl(var(--premium-gray-300));
+  }
+
+  /* Enterprise Button - Primary */
+  .enterprise-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-3) var(--space-6);
+    font-size: var(--text-base);
+    font-weight: var(--font-medium);
+    background-color: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+  }
+
+  .enterprise-btn-primary:hover {
+    background-color: hsl(var(--premium-gray-800));
+  }
+
+  /* Enterprise Button - Secondary (Text only) */
+  .enterprise-btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    font-size: var(--text-base);
+    font-weight: var(--font-medium);
+    color: hsl(var(--premium-gray-600));
+    transition: color 0.2s ease;
+  }
+
+  .enterprise-btn-secondary:hover {
+    color: hsl(var(--primary));
+  }
+
+  /* Enterprise Text Link */
+  .enterprise-link {
+    font-size: var(--text-sm);
+    font-weight: var(--font-medium);
+    color: hsl(var(--premium-gray-500));
+    transition: color 0.2s ease;
+  }
+
+  .enterprise-link:hover {
+    color: hsl(var(--accent));
+  }
+
+  /* Enterprise Badge - Minimal, Uppercase */
+  .enterprise-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: var(--space-1) var(--space-3);
+    font-size: var(--text-xs);
+    font-weight: var(--font-medium);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: hsl(var(--premium-gray-500));
+    border: 1px solid hsl(var(--border));
+    border-radius: 4px;
+  }
+
+  /* ========================================
+     TYPOGRAPHY CLASSES - Token-Based
+     ======================================== */
+
+  /* Hero Heading - 44-52px */
+  .enterprise-heading-xl {
+    font-size: var(--text-5xl);
+    font-weight: var(--font-semibold);
+    letter-spacing: var(--tracking-tight);
+    line-height: var(--leading-tight);
+    color: hsl(var(--premium-gray-900));
+    max-width: var(--hero-width);
+  }
+
+  @media (min-width: 768px) {
+    .enterprise-heading-xl {
+      font-size: var(--text-6xl);
+    }
+  }
+
+  /* Section Heading - 28-36px */
+  .enterprise-heading-lg {
+    font-size: var(--text-3xl);
+    font-weight: var(--font-semibold);
+    letter-spacing: var(--tracking-tight);
+    line-height: var(--leading-snug);
+    color: hsl(var(--premium-gray-900));
+  }
+
+  @media (min-width: 768px) {
+    .enterprise-heading-lg {
+      font-size: var(--text-4xl);
+    }
+  }
+
+  /* Subheading - 24-30px */
+  .enterprise-heading-md {
+    font-size: var(--text-2xl);
+    font-weight: var(--font-medium);
+    letter-spacing: var(--tracking-tight);
+    line-height: var(--leading-snug);
+    color: hsl(var(--premium-gray-900));
+  }
+
+  @media (min-width: 768px) {
+    .enterprise-heading-md {
+      font-size: var(--text-3xl);
+    }
+  }
+
+  /* Lead/Subhead Text - 18-20px */
+  .enterprise-body-lg {
+    font-size: var(--text-lg);
+    font-weight: var(--font-normal);
+    line-height: var(--leading-relaxed);
+    color: hsl(var(--premium-gray-500));
+    max-width: var(--prose-width);
+  }
+
+  @media (min-width: 768px) {
+    .enterprise-body-lg {
+      font-size: var(--text-xl);
+    }
+  }
+
+  /* Body Text - 15-16px */
+  .enterprise-body {
+    font-size: var(--text-base);
+    font-weight: var(--font-normal);
+    line-height: var(--leading-relaxed);
+    color: hsl(var(--premium-gray-500));
+    max-width: var(--prose-width);
+  }
+
+  /* Small/Meta Text - 13-14px */
+  .enterprise-meta {
+    font-size: var(--text-sm);
+    font-weight: var(--font-normal);
+    line-height: var(--leading-normal);
+    color: hsl(var(--premium-gray-400));
+  }
+
+  /* Enterprise List - Proper Spacing */
+  .enterprise-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--list-gap);
+  }
+
+  .enterprise-list li {
+    display: flex;
+    align-items: flex-start;
+    color: hsl(var(--premium-gray-600));
+  }
+
+  .enterprise-list li::before {
+    content: "—";
+    margin-right: var(--space-3);
+    color: hsl(var(--premium-gray-400));
+  }
+
+  /* Divider */
+  .enterprise-divider {
+    width: 100%;
+    height: 1px;
+    background-color: hsl(var(--border));
+  }
+
+  /* ========================================
+     LEGACY COMPONENTS (kept for compatibility)
+     ======================================== */
+
+  /* Premium Enterprise Hover Effects - Simplified */
   .enterprise-hover-effect {
-    background: linear-gradient(135deg, hsl(var(--enterprise-blue)), hsl(var(--enterprise-blue)));
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    border: 1px solid hsla(var(--enterprise-blue), 0.2);
+    background: hsl(var(--primary));
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
   }
-  
+
   .enterprise-hover-effect:hover {
-    background: linear-gradient(135deg, hsl(var(--enterprise-green)), hsl(var(--enterprise-emerald)));
-    transform: translateY(-4px);
-    border: 1px solid hsla(var(--enterprise-green), 0.4);
-    box-shadow: 
-      0 20px 40px hsla(var(--enterprise-green), 0.2),
-      0 8px 24px hsla(var(--premium-shadow), 0.12);
+    background: hsl(var(--premium-gray-800));
   }
-  
-  /* Enterprise Dark Card with Sophisticated Effects */
+
+  /* Enterprise Card - Simplified for Light Theme */
   .enterprise-card {
-    background: hsla(var(--card), 0.95);
-    backdrop-filter: blur(16px) saturate(180%);
-    border: 1px solid hsla(var(--border), 1);
-    border-radius: 16px;
-    box-shadow: 
-      0 8px 32px hsla(var(--premium-shadow), 0.2),
-      0 2px 16px hsla(var(--premium-shadow), 0.1),
-      inset 0 1px 0 hsla(var(--premium-white), 0.1);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
+    border-radius: 8px;
+    transition: all 0.3s ease;
   }
-  
+
   .enterprise-card:hover {
-    background: hsla(var(--card), 0.98);
-    border-color: hsla(var(--primary), 0.4);
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: 
-      0 24px 64px hsla(var(--premium-shadow), 0.3),
-      0 12px 32px hsla(var(--primary), 0.15),
-      0 4px 16px hsla(var(--premium-shadow), 0.15),
-      inset 0 1px 0 hsla(var(--premium-white), 0.15);
+    border-color: hsl(var(--premium-gray-300));
   }
   
   .premium-text-blue-green {
@@ -322,33 +735,49 @@
     left: 100%;
   }
 
-  /* Fluid Container System */
+  /* Fluid Container System - Updated for large screens */
   .section-container {
-    max-width: 1400px;
+    max-width: 90rem; /* 1440px - increased from 1400px */
     margin: 0 auto;
-    padding-left: clamp(1rem, 2.5vw, 4rem);
-    padding-right: clamp(1rem, 2.5vw, 4rem);
+    padding-left: clamp(1.5rem, 4vw, 5rem);
+    padding-right: clamp(1.5rem, 4vw, 5rem);
+  }
+
+  @media (min-width: 1920px) {
+    .section-container {
+      max-width: 100rem; /* 1600px on ultrawide */
+      padding-left: clamp(3rem, 5vw, 6rem);
+      padding-right: clamp(3rem, 5vw, 6rem);
+    }
   }
 
   .fluid-container {
     max-width: 100%;
     margin: 0 auto;
-    padding-left: clamp(1rem, 4vw, 6rem);
-    padding-right: clamp(1rem, 4vw, 6rem);
+    padding-left: clamp(1.5rem, 5vw, 8rem);
+    padding-right: clamp(1.5rem, 5vw, 8rem);
   }
 
   .narrow-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding-left: clamp(1rem, 3vw, 3rem);
-    padding-right: clamp(1rem, 3vw, 3rem);
+    padding-left: clamp(1.5rem, 4vw, 4rem);
+    padding-right: clamp(1.5rem, 4vw, 4rem);
   }
 
   .wide-container {
-    max-width: 1600px;
+    max-width: 100rem; /* 1600px */
     margin: 0 auto;
-    padding-left: clamp(1rem, 2vw, 2rem);
-    padding-right: clamp(1rem, 2vw, 2rem);
+    padding-left: clamp(1.5rem, 3vw, 4rem);
+    padding-right: clamp(1.5rem, 3vw, 4rem);
+  }
+
+  @media (min-width: 1920px) {
+    .wide-container {
+      max-width: 112rem; /* 1792px on ultrawide */
+      padding-left: clamp(3rem, 4vw, 6rem);
+      padding-right: clamp(3rem, 4vw, 6rem);
+    }
   }
 
   /* Enhanced Containers for Ultra-wide & 4K Displays */
@@ -1257,5 +1686,27 @@
       padding-top: 2rem !important;
       padding-bottom: 1rem !important;
     }
+  }
+}
+
+/* Delivery Diagram - Responsive Grid */
+.delivery-diagram-grid {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+@media (max-width: 900px) {
+  .delivery-diagram-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .delivery-diagram-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .delivery-diagram-foundation {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
