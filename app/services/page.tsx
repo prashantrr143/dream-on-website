@@ -1,515 +1,473 @@
 "use client"
 
-import { motion } from 'framer-motion'
-import { Button } from '@/components/ui/button'
-import { Badge } from '@/components/ui/badge'
-import { Card } from '@/components/ui/card'
-import {
-  ArrowRight,
-  Cloud,
-  Bot,
-  Shield,
-  Workflow,
-  BarChart3,
-  Database,
-  Smartphone,
-  Code,
-  Monitor,
-  Zap,
-  Lock,
-  Palette,
-  Cpu,
-  Settings,
-  CheckCircle,
-  Users,
-  Award,
-  Sparkles,
-  Globe,
-  Building,
-  Headphones,
-  FileText,
-  Search,
-  Calendar
-} from 'lucide-react'
-import { cn } from '@/lib/utils'
-import SharedLayout from '@/components/shared-layout'
+import { motion, type Variants } from 'framer-motion'
 import Link from 'next/link'
-import AnimatedText from '@/components/animated-text'
+import SharedLayout from '@/components/shared-layout'
 
-const Services = () => {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2
+// Animation variants
+const fadeUp: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: "easeOut" as const }
+  }
+}
+
+const staggerContainer: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.1
+    }
+  }
+}
+
+// Capability pillars data
+const capabilityPillars = [
+  {
+    title: "Foundational Technology Platforms",
+    value: "Modern, scalable cloud and platform engineering that becomes a stable foundation for all business systems.",
+    outcomes: ["Reduce infrastructure complexity", "Improve deployment velocity", "Enable horizontal scaling"],
+    capabilities: [
+      {
+        name: "Cloud Architecture & Strategy",
+        description: "Multi-cloud design, migration planning, and infrastructure optimization across AWS, Azure, and GCP."
+      },
+      {
+        name: "DevOps & Platform Engineering",
+        description: "CI/CD pipelines, infrastructure as code, container orchestration, and environment automation."
+      },
+      {
+        name: "Database & Data Infrastructure",
+        description: "Database design, performance tuning, migration services, and high-availability configurations."
+      },
+      {
+        name: "Observability & Monitoring",
+        description: "Real-time monitoring, alerting systems, capacity planning, and operational visibility."
       }
-    }
+    ]
+  },
+  {
+    title: "Intelligent Systems & Data Engineering",
+    value: "AI-powered systems and data platforms that transform information into reliable, actionable intelligence.",
+    outcomes: ["Increase data reliability", "Enable predictive capabilities", "Automate decision support"],
+    capabilities: [
+      {
+        name: "AI Systems & Automation",
+        description: "Custom AI model development, process automation, and intelligent workflow integration."
+      },
+      {
+        name: "Data Platforms & Analytics",
+        description: "Data warehousing, real-time analytics, business intelligence, and self-service reporting."
+      },
+      {
+        name: "System Integration",
+        description: "API development, enterprise service bus, data synchronization, and legacy modernization."
+      }
+    ]
+  },
+  {
+    title: "Secure & Governed Operations",
+    value: "Security architecture and compliance frameworks that protect systems and satisfy regulatory requirements.",
+    outcomes: ["Reduce operational risk", "Achieve compliance posture", "Enable secure collaboration"],
+    capabilities: [
+      {
+        name: "Security Engineering",
+        description: "Zero-trust architecture, threat detection, security audits, and vulnerability management."
+      },
+      {
+        name: "Compliance & Risk Frameworks",
+        description: "SOC 2, HIPAA, PCI DSS, GDPR compliance, risk assessment, and audit preparation."
+      },
+      {
+        name: "Identity & Access Management",
+        description: "Authentication systems, authorization frameworks, and privileged access controls."
+      }
+    ]
+  },
+  {
+    title: "Build & Delivery Excellence",
+    value: "Custom engineering and design that delivers production-ready systems built for maintainability and scale.",
+    outcomes: ["Accelerate time to production", "Improve system quality", "Reduce technical debt"],
+    capabilities: [
+      {
+        name: "Custom Software Engineering",
+        description: "Web applications, APIs, microservices, and enterprise system development."
+      },
+      {
+        name: "UX & Product Design",
+        description: "User research, interface design, design systems, and accessibility compliance."
+      },
+      {
+        name: "Performance & Optimization",
+        description: "Performance audits, code optimization, database tuning, and scalability improvements."
+      }
+    ]
+  },
+  {
+    title: "Strategic Advisory & Enablement",
+    value: "Technology strategy and organizational enablement that aligns technical decisions with business outcomes.",
+    outcomes: ["Align technology with strategy", "Build internal capability", "Reduce transformation risk"],
+    capabilities: [
+      {
+        name: "Technology Strategy",
+        description: "Digital strategy development, technology roadmaps, and architecture governance."
+      },
+      {
+        name: "Assessment & Transformation",
+        description: "Current state analysis, gap assessment, and transformation program design."
+      },
+      {
+        name: "Training & Knowledge Transfer",
+        description: "Custom training programs, hands-on workshops, and capability building."
+      }
+    ]
   }
+]
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0 }
-  }
-
-  const serviceCategories = [
-    {
-      category: "Infrastructure & Platform Services",
-      description: "Foundational technology services that power your digital transformation",
-      services: [
-        {
-          title: "Cloud Infrastructure",
-          description: "Multi-cloud strategy, migration, and optimization services",
-          icon: Cloud,
-          features: ["AWS, Azure, GCP expertise", "Migration & modernization", "Cost optimization", "Security & compliance"],
-          pricing: "Starting from $5,000/month",
-          href: "/solutions/cloud"
-        },
-        {
-          title: "DevOps & Automation",
-          description: "CI/CD pipelines, infrastructure as code, and deployment automation",
-          icon: Workflow,
-          features: ["CI/CD pipeline setup", "Infrastructure as Code", "Container orchestration", "Monitoring & alerting"],
-          pricing: "Starting from $8,000/month",
-          href: "/solutions/devops"
-        },
-        {
-          title: "Database Management",
-          description: "High-performance database solutions and optimization",
-          icon: Database,
-          features: ["Database design & optimization", "Migration services", "Performance tuning", "Backup & recovery"],
-          pricing: "Starting from $3,000/month",
-          href: "/contact-us"
-        },
-        {
-          title: "Infrastructure Monitoring",
-          description: "Comprehensive monitoring and observability solutions",
-          icon: Monitor,
-          features: ["Real-time monitoring", "Performance analytics", "Alerting & notifications", "Capacity planning"],
-          pricing: "Starting from $2,500/month",
-          href: "/contact-us"
-        }
-      ]
-    },
-    {
-      category: "AI & Data Services",
-      description: "Intelligent solutions that drive innovation and data-driven decisions",
-      services: [
-        {
-          title: "AI & Machine Learning",
-          description: "Custom AI models, automation, and intelligent solutions",
-          icon: Bot,
-          features: ["Custom AI model development", "Process automation", "Predictive analytics", "MLOps platforms"],
-          pricing: "Starting from $15,000/project",
-          href: "/solutions/ai-ml"
-        },
-        {
-          title: "Data Analytics & BI",
-          description: "Transform data into actionable insights and business intelligence",
-          icon: BarChart3,
-          features: ["Real-time dashboards", "Predictive modeling", "Data warehousing", "Self-service analytics"],
-          pricing: "Starting from $10,000/month",
-          href: "/solutions/data"
-        },
-        {
-          title: "System Integration",
-          description: "Connect disparate systems and create unified data flows",
-          icon: Cpu,
-          features: ["API development & management", "Enterprise service bus", "Data synchronization", "Legacy system integration"],
-          pricing: "Starting from $12,000/project",
-          href: "/contact-us"
-        }
-      ]
-    },
-    {
-      category: "Security & Compliance Services",
-      description: "Comprehensive cybersecurity and regulatory compliance solutions",
-      services: [
-        {
-          title: "Enterprise Security",
-          description: "Advanced cybersecurity solutions and threat protection",
-          icon: Shield,
-          features: ["Zero-trust architecture", "Threat detection & response", "Security audits", "Compliance automation"],
-          pricing: "Starting from $7,500/month",
-          href: "/solutions/security"
-        },
-        {
-          title: "Compliance & Governance",
-          description: "Regulatory compliance and data governance frameworks",
-          icon: Lock,
-          features: ["SOC 2, HIPAA, PCI DSS", "Risk assessment", "Policy development", "Audit preparation"],
-          pricing: "Starting from $5,000/month",
-          href: "/contact-us"
-        }
-      ]
-    },
-    {
-      category: "Development & Design Services",
-      description: "Custom software development and user experience design",
-      services: [
-        {
-          title: "Web Development",
-          description: "Modern web applications and progressive web apps",
-          icon: Code,
-          features: ["React, Angular, Vue.js", "Progressive web apps", "E-commerce platforms", "API development"],
-          pricing: "Starting from $20,000/project",
-          href: "/contact-us"
-        },
-        {
-          title: "Mobile App Development",
-          description: "Native and cross-platform mobile applications",
-          icon: Smartphone,
-          features: ["iOS & Android native", "React Native & Flutter", "Backend integration", "App store deployment"],
-          pricing: "Starting from $25,000/project",
-          href: "/contact-us"
-        },
-        {
-          title: "UI/UX Design",
-          description: "User-centered design and experience optimization",
-          icon: Palette,
-          features: ["User research & testing", "Wireframing & prototyping", "Design systems", "Accessibility compliance"],
-          pricing: "Starting from $8,000/project",
-          href: "/contact-us"
-        },
-        {
-          title: "Performance Optimization",
-          description: "Application and system performance tuning",
-          icon: Zap,
-          features: ["Performance audits", "Code optimization", "Database tuning", "CDN implementation"],
-          pricing: "Starting from $5,000/project",
-          href: "/contact-us"
-        }
-      ]
-    },
-    {
-      category: "Consulting & Strategy Services",
-      description: "Strategic guidance and transformation consulting",
-      services: [
-        {
-          title: "Digital Transformation",
-          description: "Strategic consulting for comprehensive digital transformation",
-          icon: Settings,
-          features: ["Digital strategy development", "Process optimization", "Change management", "Technology roadmaps"],
-          pricing: "Starting from $25,000/engagement",
-          href: "/solutions/consulting"
-        },
-        {
-          title: "Technology Assessment",
-          description: "Comprehensive technology audits and recommendations",
-          icon: Search,
-          features: ["Current state analysis", "Gap assessment", "Technology recommendations", "ROI analysis"],
-          pricing: "Starting from $10,000/assessment",
-          href: "/contact-us"
-        }
-      ]
-    }
-  ]
-
-  const supportServices = [
-    {
-      title: "24/7 Technical Support",
-      description: "Round-the-clock technical support and monitoring",
-      icon: Headphones,
-      features: ["24/7 monitoring", "Incident response", "Escalation management", "Performance reporting"]
-    },
-    {
-      title: "Training & Enablement",
-      description: "Comprehensive training programs for your teams",
-      icon: Users,
-      features: ["Custom training programs", "Certification preparation", "Hands-on workshops", "Knowledge transfer"]
-    },
-    {
-      title: "Documentation & Knowledge",
-      description: "Complete documentation and knowledge management",
-      icon: FileText,
-      features: ["Technical documentation", "User guides", "Best practices", "Knowledge base creation"]
-    },
-    {
-      title: "Strategic Planning",
-      description: "Long-term technology planning and roadmap development",
-      icon: Calendar,
-      features: ["Technology roadmaps", "Budget planning", "Risk assessment", "Innovation strategy"]
-    }
-  ]
-
-  const serviceStats = [
-    { icon: Building, metric: "500+", label: "Enterprise Clients", description: "Successful implementations" },
-    { icon: Globe, metric: "40+", label: "Countries", description: "Global presence" },
-    { icon: Award, metric: "99.9%", label: "Uptime SLA", description: "Service reliability" },
-    { icon: Users, metric: "1000+", label: "Certified Experts", description: "Technical specialists" }
-  ]
-
+export default function ServicesPage() {
   return (
     <SharedLayout>
       {/* Hero Section */}
-      <section className="relative overflow-hidden py-20 lg:py-32">
-        <div className="absolute inset-0">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl" />
-          <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-purple-500/5 rounded-full blur-3xl" />
-        </div>
-
-        <div className="section-container relative z-10">
-          <motion.div
-            className="max-w-4xl mx-auto text-center"
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
+      <section
+        style={{
+          paddingTop: 'var(--space-32)',
+          paddingBottom: 'var(--space-20)',
+          backgroundColor: 'hsl(var(--premium-gray-50))'
+        }}
+      >
+        <motion.div
+          className="enterprise-container-wide"
+          initial="hidden"
+          animate="visible"
+          variants={staggerContainer}
+        >
+          <motion.p
+            variants={fadeUp}
+            style={{
+              fontSize: 'var(--text-xs)',
+              fontWeight: 'var(--font-medium)',
+              textTransform: 'uppercase',
+              letterSpacing: 'var(--tracking-wide)',
+              color: 'hsl(var(--premium-gray-400))',
+              marginBottom: 'var(--space-4)'
+            }}
           >
-            <motion.div variants={itemVariants}>
-              <Badge 
-                variant="secondary" 
-                className="bg-blue-50/10 text-blue-400 hover:bg-blue-50/20 px-6 py-3 text-sm font-semibold border border-blue-500/20 rounded-full mb-8"
-              >
-                <Sparkles className="w-4 h-4 mr-2" />
-                Complete Service Portfolio
-              </Badge>
-            </motion.div>
-
-            <motion.h1 
-              className="heading-hero mb-8 text-balance"
-              variants={itemVariants}
+            Capabilities
+          </motion.p>
+          <motion.h1
+            variants={fadeUp}
+            style={{
+              fontSize: 'clamp(2.5rem, 5vw, 3.5rem)',
+              fontWeight: 'var(--font-semibold)',
+              letterSpacing: 'var(--tracking-tight)',
+              color: 'hsl(var(--premium-gray-900))',
+              marginBottom: 'var(--space-6)',
+              maxWidth: '800px'
+            }}
+          >
+            Our Capabilities & Services
+          </motion.h1>
+          <motion.p
+            variants={fadeUp}
+            style={{
+              fontSize: 'var(--text-xl)',
+              lineHeight: 'var(--leading-relaxed)',
+              color: 'hsl(var(--premium-gray-500))',
+              maxWidth: '720px',
+              marginBottom: 'var(--space-10)'
+            }}
+          >
+            Delivering technology outcomes that matter—trusted systems, platforms that scale, and operations that are secure and governed.
+          </motion.p>
+          <motion.div
+            variants={fadeUp}
+            style={{ display: 'flex', gap: 'var(--space-4)', flexWrap: 'wrap' }}
+          >
+            <Link
+              href="/contact-us"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 'var(--space-2)',
+                padding: 'var(--space-4) var(--space-8)',
+                backgroundColor: 'hsl(var(--premium-gray-900))',
+                color: 'white',
+                fontSize: 'var(--text-base)',
+                fontWeight: 'var(--font-medium)',
+                borderRadius: '8px',
+                textDecoration: 'none',
+                transition: 'background-color 0.2s ease'
+              }}
             >
-              <AnimatedText
-                text="Comprehensive Technology"
-                animation="splitWords"
-                className="block mb-2"
-                stagger={0.1}
-              />
-              <AnimatedText
-                text="Services Portfolio"
-                animation="splitWords"
-                className="gradient-text inline-block"
-                stagger={0.1}
-                delay={0.5}
-              />
-            </motion.h1>
-
-            <motion.p 
-              className="text-lead max-w-3xl mx-auto mb-12"
-              variants={itemVariants}
+              Start a Conversation
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style={{ marginLeft: '4px' }}>
+                <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </Link>
+            <Link
+              href="/how-we-work"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                padding: 'var(--space-4) var(--space-8)',
+                backgroundColor: 'transparent',
+                color: 'hsl(var(--premium-gray-600))',
+                fontSize: 'var(--text-base)',
+                fontWeight: 'var(--font-medium)',
+                borderRadius: '8px',
+                textDecoration: 'none',
+                border: '1px solid hsl(var(--premium-gray-200))',
+                transition: 'all 0.2s ease'
+              }}
             >
-              From infrastructure and cloud services to AI solutions and strategic consulting, 
-              we provide end-to-end technology services that drive innovation and business growth.
-            </motion.p>
-
-            <motion.div 
-              className="flex flex-col sm:flex-row gap-4 justify-center mb-16"
-              variants={itemVariants}
-            >
-              <Link href="/contact-us">
-                <Button size="lg" className="enterprise-button text-white font-semibold group">
-                  <span className="flex items-center gap-2">
-                    Discuss Your Needs
-                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-                  </span>
-                </Button>
-              </Link>
-              <Link href="/solutions">
-                <Button variant="outline" size="lg" className="font-semibold">
-                  Explore Solutions
-                </Button>
-              </Link>
-            </motion.div>
-
-            {/* Service Stats */}
-            <motion.div 
-              className="grid grid-cols-2 md:grid-cols-4 gap-6"
-              variants={itemVariants}
-            >
-              {serviceStats.map((stat, index) => {
-                const IconComponent = stat.icon
-                return (
-                  <div key={index} className="text-center">
-                    <IconComponent className="w-6 h-6 text-blue-500 mx-auto mb-2" />
-                    <div className="text-2xl font-bold text-foreground">{stat.metric}</div>
-                    <div className="text-sm font-medium text-foreground">{stat.label}</div>
-                    <div className="text-xs text-muted-foreground">{stat.description}</div>
-                  </div>
-                )
-              })}
-            </motion.div>
+              How We Work
+            </Link>
           </motion.div>
-        </div>
+        </motion.div>
       </section>
 
-      {/* Service Categories */}
-      {serviceCategories.map((category, categoryIndex) => (
-        <section key={categoryIndex} className={cn("py-16 lg:py-24", categoryIndex % 2 === 1 && "bg-muted/20")}>
-          <div className="section-container">
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-            >
-              <motion.div 
-                className="text-center mb-16"
-                variants={itemVariants}
-              >
-                <h2 className="heading-section mb-6">
-                  {category.category.split(' ').slice(0, -1).join(' ')} <span className="gradient-text">{category.category.split(' ').slice(-1)}</span>
-                </h2>
-                <p className="text-lead max-w-3xl mx-auto">
-                  {category.description}
-                </p>
-              </motion.div>
+      {/* Introduction */}
+      <section
+        style={{
+          paddingTop: 'var(--space-20)',
+          paddingBottom: 'var(--space-20)'
+        }}
+      >
+        <motion.div
+          className="enterprise-container-wide"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={fadeUp}
+        >
+          <p
+            style={{
+              fontSize: 'var(--text-lg)',
+              lineHeight: 'var(--leading-relaxed)',
+              color: 'hsl(var(--premium-gray-600))',
+              maxWidth: '800px'
+            }}
+          >
+            We group our expertise into capability pillars that enable secure, scalable, and governable enterprise systems. Each pillar represents a strategic domain where we deliver measurable outcomes—not just services, but lasting improvements to how your technology operates.
+          </p>
+        </motion.div>
+      </section>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {category.services.map((service, serviceIndex) => {
-                  const IconComponent = service.icon
-                  return (
-                    <motion.div
-                      key={serviceIndex}
-                      variants={itemVariants}
-                      whileHover={{ y: -8 }}
-                    >
-                      <Card className="enterprise-card enterprise-card-hover p-8 h-full group">
-                        <div className="flex items-start gap-6">
-                          <motion.div 
-                            className="w-16 h-16 rounded-2xl bg-accent/10 group-hover:bg-accent/20 flex items-center justify-center flex-shrink-0"
-                            whileHover={{ rotate: 5, scale: 1.1 }}
-                          >
-                            <IconComponent className="w-6 h-6 text-accent" />
-                          </motion.div>
-                          
-                          <div className="flex-1">
-                            <div className="flex items-start justify-between mb-3">
-                              <h3 className="text-xl font-bold group-hover:text-accent transition-colors">
-                                {service.title}
-                              </h3>
-                              <div className="text-right">
-                                <div className="text-sm font-semibold text-accent">{service.pricing}</div>
-                              </div>
-                            </div>
-                            
-                            <p className="text-muted-foreground mb-6">
-                              {service.description}
-                            </p>
-                            
-                            <ul className="space-y-2 mb-6">
-                              {service.features.map((feature, featureIndex) => (
-                                <li key={featureIndex} className="flex items-center gap-2 text-sm text-muted-foreground">
-                                  <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
-                                  {feature}
-                                </li>
-                              ))}
-                            </ul>
-                            
-                            <Link href={service.href}>
-                              <div className="flex items-center text-accent font-medium group-hover:text-accent-foreground transition-colors">
-                                Learn More
-                                <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                              </div>
-                            </Link>
-                          </div>
-                        </div>
-                      </Card>
-                    </motion.div>
-                  )
-                })}
-              </div>
-            </motion.div>
-          </div>
-        </section>
-      ))}
-
-      {/* Support Services */}
-      <section className="py-16 lg:py-24 bg-muted/20">
-        <div className="section-container">
+      {/* Capability Pillars */}
+      {capabilityPillars.map((pillar, pillarIndex) => (
+        <section
+          key={pillarIndex}
+          style={{
+            paddingTop: 'var(--space-20)',
+            paddingBottom: 'var(--space-20)',
+            backgroundColor: pillarIndex % 2 === 0 ? 'hsl(var(--premium-gray-50))' : 'white'
+          }}
+        >
           <motion.div
-            variants={containerVariants}
+            className="enterprise-container-wide"
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-50px" }}
+            variants={staggerContainer}
           >
-            <motion.div 
-              className="text-center mb-16"
-              variants={itemVariants}
-            >
-              <h2 className="heading-section mb-6">
-                Support & <span className="gradient-text">Enablement</span>
+            {/* Pillar Header */}
+            <motion.div variants={fadeUp} style={{ marginBottom: 'var(--space-10)' }}>
+              <h2
+                style={{
+                  fontSize: 'var(--text-3xl)',
+                  fontWeight: 'var(--font-semibold)',
+                  color: 'hsl(var(--premium-gray-900))',
+                  marginBottom: 'var(--space-4)'
+                }}
+              >
+                {pillar.title}
               </h2>
-              <p className="text-lead max-w-3xl mx-auto">
-                Comprehensive support services to ensure your success
+              <p
+                style={{
+                  fontSize: 'var(--text-lg)',
+                  lineHeight: 'var(--leading-relaxed)',
+                  color: 'hsl(var(--premium-gray-600))',
+                  maxWidth: '720px'
+                }}
+              >
+                {pillar.value}
               </p>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {supportServices.map((service, index) => {
-                const IconComponent = service.icon
-                return (
-                  <motion.div
-                    key={index}
-                    variants={itemVariants}
-                    whileHover={{ y: -4 }}
+            {/* Strategic Outcomes */}
+            <motion.div
+              variants={fadeUp}
+              style={{
+                display: 'flex',
+                gap: 'var(--space-8)',
+                flexWrap: 'wrap',
+                marginBottom: 'var(--space-12)'
+              }}
+            >
+              {pillar.outcomes.map((outcome, outcomeIndex) => (
+                <div
+                  key={outcomeIndex}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 'var(--space-3)',
+                    fontSize: 'var(--text-base)',
+                    color: 'hsl(var(--premium-gray-600))',
+                    fontWeight: 'var(--font-medium)'
+                  }}
+                >
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    style={{ color: 'hsl(var(--premium-gray-400))' }}
                   >
-                    <Card className="enterprise-card p-6 h-full text-center group">
-                      <motion.div 
-                        className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-accent/20 transition-colors"
-                        whileHover={{ scale: 1.1 }}
-                      >
-                        <IconComponent className="w-6 h-6 text-accent" />
-                      </motion.div>
-                      <h3 className="font-semibold text-foreground mb-3 group-hover:text-accent transition-colors">
-                        {service.title}
-                      </h3>
-                      <p className="text-sm text-muted-foreground mb-4">
-                        {service.description}
-                      </p>
-                      <ul className="space-y-1">
-                        {service.features.map((feature, featureIndex) => (
-                          <li key={featureIndex} className="text-xs text-muted-foreground">
-                            {feature}
-                          </li>
-                        ))}
-                      </ul>
-                    </Card>
-                  </motion.div>
-                )
-              })}
-            </div>
+                    <path
+                      d="M16.5 5.5L7.5 14.5L3.5 10.5"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                  {outcome}
+                </div>
+              ))}
+            </motion.div>
+
+            {/* Capabilities Grid */}
+            <motion.div
+              variants={staggerContainer}
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+                gap: 'var(--space-6)'
+              }}
+            >
+              {pillar.capabilities.map((capability, capIndex) => (
+                <motion.div
+                  key={capIndex}
+                  variants={fadeUp}
+                  style={{
+                    padding: 'var(--space-8)',
+                    backgroundColor: pillarIndex % 2 === 0 ? 'white' : 'hsl(var(--premium-gray-50))',
+                    borderRadius: '12px',
+                    border: '1px solid hsl(var(--premium-gray-100))'
+                  }}
+                >
+                  <h3
+                    style={{
+                      fontSize: 'var(--text-lg)',
+                      fontWeight: 'var(--font-semibold)',
+                      color: 'hsl(var(--premium-gray-900))',
+                      marginBottom: 'var(--space-3)'
+                    }}
+                  >
+                    {capability.name}
+                  </h3>
+                  <p
+                    style={{
+                      fontSize: 'var(--text-base)',
+                      lineHeight: 'var(--leading-relaxed)',
+                      color: 'hsl(var(--premium-gray-500))'
+                    }}
+                  >
+                    {capability.description}
+                  </p>
+                </motion.div>
+              ))}
+            </motion.div>
           </motion.div>
-        </div>
-      </section>
+        </section>
+      ))}
 
       {/* CTA Section */}
-      <section className="py-16 lg:py-24">
-        <div className="section-container">
-          <motion.div
-            className="max-w-4xl mx-auto text-center"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
+      <section
+        style={{
+          paddingTop: 'var(--space-20)',
+          paddingBottom: 'var(--space-32)',
+          backgroundColor: 'hsl(var(--premium-gray-900))'
+        }}
+      >
+        <motion.div
+          className="enterprise-container-wide"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeUp}
+          style={{ textAlign: 'center' }}
+        >
+          <h2
+            style={{
+              fontSize: 'var(--text-3xl)',
+              fontWeight: 'var(--font-semibold)',
+              color: 'white',
+              marginBottom: 'var(--space-4)'
+            }}
           >
-            <h2 className="heading-section mb-6">
-              Ready to Get Started?
-            </h2>
-            <p className="text-lead mb-8">
-              Let's discuss your technology needs and create a customized service plan 
-              that delivers measurable business results.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/contact-us">
-                <Button size="lg" className="enterprise-button text-white font-semibold group">
-                  <span className="flex items-center gap-2">
-                    Schedule Consultation
-                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-                  </span>
-                </Button>
-              </Link>
-              <Link href="/case-studies">
-                <Button variant="outline" size="lg" className="font-semibold">
-                  View Client Success Stories
-                </Button>
-              </Link>
-            </div>
-          </motion.div>
-        </div>
+            Ready to discuss how we can tailor these capabilities to your organization?
+          </h2>
+          <p
+            style={{
+              fontSize: 'var(--text-lg)',
+              lineHeight: 'var(--leading-relaxed)',
+              color: 'hsl(var(--premium-gray-400))',
+              marginBottom: 'var(--space-10)',
+              maxWidth: '640px',
+              marginLeft: 'auto',
+              marginRight: 'auto'
+            }}
+          >
+            Every engagement starts with understanding your context—your systems, your constraints, and your goals.
+          </p>
+          <div style={{ display: 'flex', gap: 'var(--space-4)', justifyContent: 'center', flexWrap: 'wrap' }}>
+            <Link
+              href="/contact-us"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 'var(--space-2)',
+                padding: 'var(--space-4) var(--space-8)',
+                backgroundColor: 'white',
+                color: 'hsl(var(--premium-gray-900))',
+                fontSize: 'var(--text-base)',
+                fontWeight: 'var(--font-medium)',
+                borderRadius: '8px',
+                textDecoration: 'none',
+                transition: 'all 0.2s ease'
+              }}
+            >
+              Start a Conversation
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style={{ marginLeft: '4px' }}>
+                <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </Link>
+            <Link
+              href="/how-we-work"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                padding: 'var(--space-4) var(--space-8)',
+                backgroundColor: 'transparent',
+                color: 'white',
+                fontSize: 'var(--text-base)',
+                fontWeight: 'var(--font-medium)',
+                borderRadius: '8px',
+                textDecoration: 'none',
+                border: '1px solid hsl(var(--premium-gray-600))',
+                transition: 'all 0.2s ease'
+              }}
+            >
+              View How We Work
+            </Link>
+          </div>
+        </motion.div>
       </section>
     </SharedLayout>
   )
 }
-
-export default Services

@@ -1,466 +1,510 @@
 "use client"
 
-import { motion } from 'framer-motion'
-import { Button } from '@/components/ui/button'
-import { Badge } from '@/components/ui/badge'
-import { Card } from '@/components/ui/card'
-import {
-  ArrowRight,
-  Cloud,
-  Bot,
-  Shield,
-  Workflow,
-  BarChart3,
-  Database,
-  Smartphone,
-  Code,
-  Monitor,
-  Zap,
-  Lock,
-  Palette,
-  Cpu,
-  Settings,
-  CheckCircle,
-  Users,
-  DollarSign,
-  Sparkles,
-  Globe
-} from 'lucide-react'
-import { cn } from '@/lib/utils'
-import SharedLayout from '@/components/shared-layout'
+import { motion, type Variants } from 'framer-motion'
 import Link from 'next/link'
-import AnimatedText from '@/components/animated-text'
+import SharedLayout from '@/components/shared-layout'
 
-const Solutions = () => {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2
-      }
+// Animation variants
+const fadeUp: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: "easeOut" as const }
+  }
+}
+
+const staggerContainer: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.1
     }
   }
+}
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6
-      }
-    }
+// Capability pillars data
+const capabilityPillars = [
+  {
+    title: "Enterprise Software & Platform Engineering",
+    description: "Designing and building core software systems and platforms that form the backbone of enterprise operations.",
+    capabilities: [
+      "Custom enterprise software development",
+      "Platform and service architecture",
+      "Integration with existing systems"
+    ]
+  },
+  {
+    title: "Cloud & Infrastructure Foundations",
+    description: "Establishing secure, scalable cloud and infrastructure foundations that support long-term growth and operational stability.",
+    capabilities: [
+      "Cloud architecture and migration",
+      "Infrastructure as code and environment automation",
+      "Observability, reliability, and performance"
+    ]
+  },
+  {
+    title: "Data & Intelligent Systems",
+    description: "Building data platforms and applied AI systems that are reliable, governable, and suitable for production use.",
+    capabilities: [
+      "Data platforms and pipelines",
+      "Applied AI and automation",
+      "Document and workflow intelligence"
+    ]
+  },
+  {
+    title: "Security, Risk & Governance",
+    description: "Embedding security, compliance, and governance into system design and delivery from the outset.",
+    capabilities: [
+      "Secure system architecture",
+      "Regulatory and audit readiness",
+      "Responsible AI and data practices"
+    ]
   }
+]
 
-  const coreServices = [
-    {
-      id: "cloud",
-      title: "Cloud Infrastructure",
-      description: "Scalable, secure cloud solutions that transform your infrastructure for the modern era",
-      icon: Cloud,
-      gradient: "from-blue-500/20 to-cyan-500/20",
-      accentColor: "blue",
-      features: ["Multi-cloud strategy", "Migration & modernization", "Cost optimization", "24/7 monitoring"],
-      href: "/solutions/cloud",
-      stats: { metric: "99.99%", label: "Uptime SLA" }
-    },
-    {
-      id: "ai-ml",
-      title: "AI & Machine Learning",
-      description: "Intelligent automation and AI solutions that drive innovation and competitive advantage",
-      icon: Bot,
-      gradient: "from-purple-500/20 to-pink-500/20",
-      accentColor: "purple",
-      features: ["Custom AI models", "Process automation", "Predictive analytics", "MLOps platforms"],
-      href: "/solutions/ai-ml",
-      stats: { metric: "300%", label: "ROI Increase" }
-    },
-    {
-      id: "devops",
-      title: "DevOps & Automation",
-      description: "Streamlined development pipelines and automated infrastructure for rapid deployment",
-      icon: Workflow,
-      gradient: "from-orange-500/20 to-red-500/20",
-      accentColor: "orange",
-      features: ["CI/CD pipelines", "Infrastructure as Code", "Container orchestration", "Monitoring & alerting"],
-      href: "/solutions/devops",
-      stats: { metric: "10x", label: "Faster Deployments" }
-    },
-    {
-      id: "security",
-      title: "Enterprise Security",
-      description: "Comprehensive cybersecurity solutions protecting your digital assets and compliance",
-      icon: Shield,
-      gradient: "from-green-500/20 to-emerald-500/20",
-      accentColor: "green",
-      features: ["Zero-trust architecture", "Threat detection", "Compliance automation", "Security audits"],
-      href: "/solutions/security",
-      stats: { metric: "100%", label: "Compliance Rate" }
-    },
-    {
-      id: "data",
-      title: "Data Analytics & BI",
-      description: "Transform raw data into actionable insights with advanced analytics and visualization",
-      icon: BarChart3,
-      gradient: "from-violet-500/20 to-indigo-500/20",
-      accentColor: "violet",
-      features: ["Real-time dashboards", "Predictive modeling", "Data warehousing", "Self-service analytics"],
-      href: "/solutions/data",
-      stats: { metric: "85%", label: "Better Decisions" }
-    },
-    {
-      id: "digital-consulting",
-      title: "Digital Transformation",
-      description: "Strategic consulting and implementation for comprehensive digital transformation",
-      icon: Settings,
-      gradient: "from-cyan-500/20 to-teal-500/20",
-      accentColor: "cyan",
-      features: ["Digital strategy", "Process optimization", "Change management", "Technology roadmaps"],
-      href: "/solutions/consulting",
-      stats: { metric: "60%", label: "Efficiency Gain" }
-    }
-  ]
+// What this enables
+const outcomes = [
+  "Reduced delivery and operational risk",
+  "Systems that scale predictably",
+  "Clear data ownership and accountability",
+  "Audit-friendly architectures",
+  "Long-term maintainability"
+]
 
-  const additionalServices = [
-    { title: "Database Management", icon: Database, description: "High-performance database solutions and optimization" },
-    { title: "Mobile App Development", icon: Smartphone, description: "Native and cross-platform mobile applications" },
-    { title: "Web Development", icon: Code, description: "Modern web applications and progressive web apps" },
-    { title: "Infrastructure Monitoring", icon: Monitor, description: "Comprehensive monitoring and observability" },
-    { title: "Performance Optimization", icon: Zap, description: "Application and system performance tuning" },
-    { title: "Compliance & Governance", icon: Lock, description: "Regulatory compliance and data governance" },
-    { title: "UI/UX Design", icon: Palette, description: "User-centered design and experience optimization" },
-    { title: "System Integration", icon: Cpu, description: "Enterprise system integration and APIs" }
-  ]
-
-  const industries = [
-    { name: "Financial Services", icon: DollarSign, count: "50+" },
-    { name: "Healthcare", icon: Users, count: "30+" },
-    { name: "Manufacturing", icon: Settings, count: "40+" },
-    { name: "Technology", icon: Code, count: "60+" },
-    { name: "E-commerce", icon: Globe, count: "35+" },
-    { name: "Government", icon: Shield, count: "25+" }
-  ]
-
+export default function WhatWeDoPage() {
   return (
     <SharedLayout>
       {/* Hero Section */}
-      <section className="relative overflow-hidden py-20 lg:py-32">
-        <div className="absolute inset-0">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl" />
-          <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-purple-500/5 rounded-full blur-3xl" />
-        </div>
-
-        <div className="section-container relative z-10">
-          <motion.div
-            className="max-w-4xl mx-auto text-center"
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
+      <section
+        style={{
+          paddingTop: 'var(--space-32)',
+          paddingBottom: 'var(--space-20)',
+          backgroundColor: 'hsl(var(--premium-gray-50))'
+        }}
+      >
+        <motion.div
+          className="enterprise-container-wide"
+          initial="hidden"
+          animate="visible"
+          variants={staggerContainer}
+        >
+          <motion.p
+            variants={fadeUp}
+            style={{
+              fontSize: 'var(--text-xs)',
+              fontWeight: 'var(--font-medium)',
+              textTransform: 'uppercase',
+              letterSpacing: 'var(--tracking-wide)',
+              color: 'hsl(var(--premium-gray-400))',
+              marginBottom: 'var(--space-4)'
+            }}
           >
-            <motion.div variants={itemVariants}>
-              <Badge 
-                variant="secondary" 
-                className="bg-blue-50/10 text-blue-400 hover:bg-blue-50/20 px-6 py-3 text-sm font-semibold border border-blue-500/20 rounded-full mb-8"
+            Capabilities
+          </motion.p>
+          <motion.h1
+            variants={fadeUp}
+            style={{
+              fontSize: 'clamp(2.5rem, 5vw, 3.5rem)',
+              fontWeight: 'var(--font-semibold)',
+              letterSpacing: 'var(--tracking-tight)',
+              color: 'hsl(var(--premium-gray-900))',
+              marginBottom: 'var(--space-6)',
+              maxWidth: '800px'
+            }}
+          >
+            What We Do
+          </motion.h1>
+          <motion.p
+            variants={fadeUp}
+            style={{
+              fontSize: 'var(--text-xl)',
+              lineHeight: 'var(--leading-relaxed)',
+              color: 'hsl(var(--premium-gray-500))',
+              maxWidth: '720px',
+              marginBottom: 'var(--space-10)'
+            }}
+          >
+            We design and deliver enterprise software, cloud, and AI systems for organizations operating in complex, regulated, and high-trust environments.
+          </motion.p>
+          <motion.div variants={fadeUp}>
+            <Link
+              href="/contact-us"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 'var(--space-2)',
+                padding: 'var(--space-4) var(--space-8)',
+                backgroundColor: 'hsl(var(--premium-gray-900))',
+                color: 'white',
+                fontSize: 'var(--text-base)',
+                fontWeight: 'var(--font-medium)',
+                borderRadius: '8px',
+                textDecoration: 'none',
+                transition: 'background-color 0.2s ease'
+              }}
+            >
+              Start a Conversation
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style={{ marginLeft: '4px' }}>
+                <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </Link>
+          </motion.div>
+        </motion.div>
+      </section>
+
+      {/* Positioning Block */}
+      <section
+        style={{
+          paddingTop: 'var(--space-20)',
+          paddingBottom: 'var(--space-16)'
+        }}
+      >
+        <motion.div
+          className="enterprise-container-wide"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={fadeUp}
+        >
+          <h2
+            style={{
+              fontSize: 'var(--text-2xl)',
+              fontWeight: 'var(--font-semibold)',
+              color: 'hsl(var(--premium-gray-900))',
+              marginBottom: 'var(--space-4)'
+            }}
+          >
+            Our Focus
+          </h2>
+          <p
+            style={{
+              fontSize: 'var(--text-lg)',
+              lineHeight: 'var(--leading-relaxed)',
+              color: 'hsl(var(--premium-gray-600))',
+              maxWidth: '800px'
+            }}
+          >
+            We group our work into a small number of capability areas that reflect the kinds of problems we take responsibility for—not a list of tools or services. Each engagement is shaped by organizational context, regulatory requirements, and long-term system goals.
+          </p>
+        </motion.div>
+      </section>
+
+      {/* Capability Pillars */}
+      <section
+        style={{
+          paddingTop: 'var(--space-8)',
+          paddingBottom: 'var(--space-20)',
+          backgroundColor: 'hsl(var(--premium-gray-50))'
+        }}
+      >
+        <motion.div
+          className="enterprise-container-wide"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={staggerContainer}
+        >
+          <motion.div
+            variants={fadeUp}
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+              gap: 'var(--space-8)'
+            }}
+          >
+            {capabilityPillars.map((pillar, index) => (
+              <motion.div
+                key={index}
+                variants={fadeUp}
+                style={{
+                  padding: 'var(--space-8)',
+                  backgroundColor: 'white',
+                  borderRadius: '12px',
+                  border: '1px solid hsl(var(--premium-gray-100))'
+                }}
               >
-                <Sparkles className="w-4 h-4 mr-2" />
-                Enterprise Solutions
-              </Badge>
-            </motion.div>
-
-            <motion.h1 
-              className="heading-hero mb-8 text-balance"
-              variants={itemVariants}
-            >
-              <AnimatedText
-                text="Transform Your Business with"
-                animation="splitWords"
-                className="block mb-2"
-                stagger={0.1}
-              />
-              <AnimatedText
-                text="Enterprise Technology Solutions"
-                animation="splitWords"
-                className="gradient-text inline-block"
-                stagger={0.1}
-                delay={0.5}
-              />
-            </motion.h1>
-
-            <motion.p 
-              className="text-lead max-w-3xl mx-auto mb-12"
-              variants={itemVariants}
-            >
-              From cloud infrastructure to AI automation, we deliver comprehensive technology solutions 
-              that drive innovation, reduce costs, and accelerate your digital transformation journey.
-            </motion.p>
-
-            <motion.div 
-              className="flex flex-col sm:flex-row gap-4 justify-center"
-              variants={itemVariants}
-            >
-              <Link href="/contact-us">
-                <Button size="lg" className="enterprise-button text-white font-semibold group">
-                  <span className="flex items-center gap-2">
-                    Start Your Transformation
-                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-                  </span>
-                </Button>
-              </Link>
-              <Link href="/case-studies">
-                <Button variant="outline" size="lg" className="font-semibold">
-                  View Success Stories
-                </Button>
-              </Link>
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Core Services */}
-      <section className="py-16 lg:py-24">
-        <div className="section-container">
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
-            <motion.div 
-              className="text-center mb-16"
-              variants={itemVariants}
-            >
-              <h2 className="heading-section mb-6">
-                Core <span className="gradient-text">Solutions</span>
-              </h2>
-              <p className="text-lead max-w-3xl mx-auto">
-                Comprehensive technology solutions designed to address your most critical business challenges
-              </p>
-            </motion.div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {coreServices.map((service) => {
-                const IconComponent = service.icon
-                return (
-                  <motion.div
-                    key={service.id}
-                    variants={itemVariants}
-                    whileHover={{ y: -8 }}
+                <h3
+                  style={{
+                    fontSize: 'var(--text-xl)',
+                    fontWeight: 'var(--font-semibold)',
+                    color: 'hsl(var(--premium-gray-900))',
+                    marginBottom: 'var(--space-4)'
+                  }}
+                >
+                  {pillar.title}
+                </h3>
+                <p
+                  style={{
+                    fontSize: 'var(--text-base)',
+                    lineHeight: 'var(--leading-relaxed)',
+                    color: 'hsl(var(--premium-gray-600))',
+                    marginBottom: 'var(--space-6)'
+                  }}
+                >
+                  {pillar.description}
+                </p>
+                <div
+                  style={{
+                    borderTop: '1px solid hsl(var(--premium-gray-100))',
+                    paddingTop: 'var(--space-4)'
+                  }}
+                >
+                  <p
+                    style={{
+                      fontSize: 'var(--text-xs)',
+                      fontWeight: 'var(--font-medium)',
+                      textTransform: 'uppercase',
+                      letterSpacing: 'var(--tracking-wide)',
+                      color: 'hsl(var(--premium-gray-400))',
+                      marginBottom: 'var(--space-3)'
+                    }}
                   >
-                    <Link href={service.href}>
-                      <Card className="enterprise-card enterprise-card-hover p-8 h-full group cursor-pointer">
-                        <div className={cn("absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-5 transition-opacity rounded-xl", service.gradient)} />
-                        
-                        <div className="relative z-10">
-                          <div className="flex items-center justify-between mb-6">
-                            <motion.div 
-                              className={cn(
-                                "w-16 h-16 rounded-2xl flex items-center justify-center",
-                                service.accentColor === 'blue' && "bg-blue-500/10 group-hover:bg-blue-500/20",
-                                service.accentColor === 'purple' && "bg-purple-500/10 group-hover:bg-purple-500/20",
-                                service.accentColor === 'orange' && "bg-orange-500/10 group-hover:bg-orange-500/20",
-                                service.accentColor === 'green' && "bg-green-500/10 group-hover:bg-green-500/20",
-                                service.accentColor === 'violet' && "bg-violet-500/10 group-hover:bg-violet-500/20",
-                                service.accentColor === 'cyan' && "bg-cyan-500/10 group-hover:bg-cyan-500/20"
-                              )}
-                              whileHover={{ rotate: 5, scale: 1.1 }}
-                            >
-                              <IconComponent className={cn(
-                                "w-8 h-8",
-                                service.accentColor === 'blue' && "text-blue-500",
-                                service.accentColor === 'purple' && "text-purple-500",
-                                service.accentColor === 'orange' && "text-orange-500",
-                                service.accentColor === 'green' && "text-green-500",
-                                service.accentColor === 'violet' && "text-violet-500",
-                                service.accentColor === 'cyan' && "text-cyan-500"
-                              )} />
-                            </motion.div>
-                            
-                            <div className="text-right">
-                              <div className={cn(
-                                "text-2xl font-bold",
-                                service.accentColor === 'blue' && "text-blue-500",
-                                service.accentColor === 'purple' && "text-purple-500",
-                                service.accentColor === 'orange' && "text-orange-500",
-                                service.accentColor === 'green' && "text-green-500",
-                                service.accentColor === 'violet' && "text-violet-500",
-                                service.accentColor === 'cyan' && "text-cyan-500"
-                              )}>
-                                {service.stats.metric}
-                              </div>
-                              <div className="text-sm text-muted-foreground">{service.stats.label}</div>
-                            </div>
-                          </div>
-                          
-                          <h3 className="text-xl font-bold mb-3 group-hover:text-accent transition-colors">
-                            {service.title}
-                          </h3>
-                          
-                          <p className="text-muted-foreground mb-6 line-clamp-2">
-                            {service.description}
-                          </p>
-                          
-                          <ul className="space-y-2 mb-6">
-                            {service.features.map((feature, featureIndex) => (
-                              <li key={featureIndex} className="flex items-center gap-2 text-sm text-muted-foreground">
-                                <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
-                                {feature}
-                              </li>
-                            ))}
-                          </ul>
-                          
-                          <div className="flex items-center text-accent font-medium group-hover:text-accent-foreground transition-colors">
-                            Learn More
-                            <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                          </div>
-                        </div>
-                      </Card>
-                    </Link>
-                  </motion.div>
-                )
-              })}
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Additional Services */}
-      <section className="py-16 lg:py-24 bg-muted/20">
-        <div className="section-container">
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
-            <motion.div 
-              className="text-center mb-16"
-              variants={itemVariants}
-            >
-              <h2 className="heading-section mb-6">
-                Additional <span className="gradient-text">Capabilities</span>
-              </h2>
-              <p className="text-lead max-w-3xl mx-auto">
-                Specialized services to complement your technology transformation
-              </p>
-            </motion.div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {additionalServices.map((service, index) => {
-                const IconComponent = service.icon
-                return (
-                  <motion.div
-                    key={index}
-                    variants={itemVariants}
-                    whileHover={{ y: -4 }}
+                    Includes
+                  </p>
+                  <ul
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      gap: 'var(--space-2)'
+                    }}
                   >
-                    <Card className="enterprise-card p-6 h-full text-center group cursor-pointer">
-                      <motion.div 
-                        className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-accent/20 transition-colors"
-                        whileHover={{ scale: 1.1 }}
+                    {pillar.capabilities.map((capability, capIndex) => (
+                      <li
+                        key={capIndex}
+                        style={{
+                          fontSize: 'var(--text-sm)',
+                          color: 'hsl(var(--premium-gray-500))',
+                          display: 'flex',
+                          alignItems: 'flex-start',
+                          gap: 'var(--space-2)'
+                        }}
                       >
-                        <IconComponent className="w-6 h-6 text-accent" />
-                      </motion.div>
-                      <h3 className="font-semibold text-foreground mb-2 group-hover:text-accent transition-colors">
-                        {service.title}
-                      </h3>
-                      <p className="text-sm text-muted-foreground line-clamp-2">
-                        {service.description}
-                      </p>
-                    </Card>
-                  </motion.div>
-                )
-              })}
-            </div>
+                        <span style={{ color: 'hsl(var(--premium-gray-300))', marginTop: '2px' }}>•</span>
+                        {capability}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </motion.div>
+            ))}
           </motion.div>
-        </div>
+        </motion.div>
       </section>
 
-      {/* Industries Served */}
-      <section className="py-16 lg:py-24">
-        <div className="section-container">
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
+      {/* What This Enables */}
+      <section
+        style={{
+          paddingTop: 'var(--space-20)',
+          paddingBottom: 'var(--space-20)'
+        }}
+      >
+        <motion.div
+          className="enterprise-container-wide"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={staggerContainer}
+        >
+          <motion.h2
+            variants={fadeUp}
+            style={{
+              fontSize: 'var(--text-2xl)',
+              fontWeight: 'var(--font-semibold)',
+              color: 'hsl(var(--premium-gray-900))',
+              marginBottom: 'var(--space-8)'
+            }}
           >
-            <motion.div 
-              className="text-center mb-16"
-              variants={itemVariants}
+            What This Enables
+          </motion.h2>
+          <motion.div
+            variants={fadeUp}
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+              gap: 'var(--space-4)'
+            }}
+          >
+            {outcomes.map((outcome, index) => (
+              <div
+                key={index}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 'var(--space-3)',
+                  fontSize: 'var(--text-base)',
+                  color: 'hsl(var(--premium-gray-600))'
+                }}
+              >
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  style={{ flexShrink: 0, color: 'hsl(var(--premium-gray-400))' }}
+                >
+                  <path
+                    d="M16.5 5.5L7.5 14.5L3.5 10.5"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+                {outcome}
+              </div>
+            ))}
+          </motion.div>
+        </motion.div>
+      </section>
+
+      {/* Bridge to How We Work */}
+      <section
+        style={{
+          paddingTop: 'var(--space-16)',
+          paddingBottom: 'var(--space-16)',
+          backgroundColor: 'hsl(var(--premium-gray-50))'
+        }}
+      >
+        <motion.div
+          className="enterprise-container-wide"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeUp}
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'flex-start',
+            gap: 'var(--space-6)'
+          }}
+        >
+          <div>
+            <h2
+              style={{
+                fontSize: 'var(--text-2xl)',
+                fontWeight: 'var(--font-semibold)',
+                color: 'hsl(var(--premium-gray-900))',
+                marginBottom: 'var(--space-3)'
+              }}
             >
-              <h2 className="heading-section mb-6">
-                Industries <span className="gradient-text">We Serve</span>
-              </h2>
-              <p className="text-lead max-w-3xl mx-auto">
-                Trusted by leading organizations across diverse industries
-              </p>
-            </motion.div>
-
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-              {industries.map((industry, index) => {
-                const IconComponent = industry.icon
-                return (
-                  <motion.div
-                    key={index}
-                    variants={itemVariants}
-                    whileHover={{ y: -4 }}
-                  >
-                    <Card className="enterprise-card p-6 text-center group cursor-pointer">
-                      <IconComponent className="w-8 h-8 text-accent mx-auto mb-3" />
-                      <h3 className="font-semibold text-foreground mb-1 text-sm group-hover:text-accent transition-colors">
-                        {industry.name}
-                      </h3>
-                      <p className="text-xs text-muted-foreground">
-                        {industry.count} clients
-                      </p>
-                    </Card>
-                  </motion.div>
-                )
-              })}
-            </div>
-          </motion.div>
-        </div>
+              How This Work Is Delivered
+            </h2>
+            <p
+              style={{
+                fontSize: 'var(--text-lg)',
+                lineHeight: 'var(--leading-relaxed)',
+                color: 'hsl(var(--premium-gray-600))',
+                maxWidth: '640px'
+              }}
+            >
+              Our capabilities are delivered through a structured, collaborative delivery model designed for enterprise environments.
+            </p>
+          </div>
+          <Link
+            href="/how-we-work"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 'var(--space-2)',
+              fontSize: 'var(--text-base)',
+              fontWeight: 'var(--font-medium)',
+              color: 'hsl(var(--premium-gray-900))',
+              textDecoration: 'none'
+            }}
+          >
+            View How We Work
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </Link>
+        </motion.div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-16 lg:py-24 bg-muted/20">
-        <div className="section-container">
-          <motion.div
-            className="max-w-4xl mx-auto text-center"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
+      {/* Final CTA */}
+      <section
+        style={{
+          paddingTop: 'var(--space-20)',
+          paddingBottom: 'var(--space-24)',
+          backgroundColor: 'hsl(var(--premium-gray-900))'
+        }}
+      >
+        <motion.div
+          className="enterprise-container-wide"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeUp}
+          style={{ textAlign: 'center' }}
+        >
+          <h2
+            style={{
+              fontSize: 'var(--text-3xl)',
+              fontWeight: 'var(--font-semibold)',
+              color: 'white',
+              marginBottom: 'var(--space-4)'
+            }}
           >
-            <h2 className="heading-section mb-6">
-              Ready to Transform Your Business?
-            </h2>
-            <p className="text-lead mb-8">
-              Let's discuss how our enterprise solutions can accelerate your digital transformation 
-              and drive measurable business results.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/contact-us">
-                <Button size="lg" className="enterprise-button text-white font-semibold group">
-                  <span className="flex items-center gap-2">
-                    Get Started Today
-                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-                  </span>
-                </Button>
-              </Link>
-              <Link href="/case-studies">
-                <Button variant="outline" size="lg" className="font-semibold">
-                  Explore Case Studies
-                </Button>
-              </Link>
-            </div>
-          </motion.div>
-        </div>
+            Start with a Conversation
+          </h2>
+          <p
+            style={{
+              fontSize: 'var(--text-lg)',
+              lineHeight: 'var(--leading-relaxed)',
+              color: 'hsl(var(--premium-gray-400))',
+              marginBottom: 'var(--space-10)',
+              maxWidth: '640px',
+              marginLeft: 'auto',
+              marginRight: 'auto'
+            }}
+          >
+            If you're planning or evolving a critical software, cloud, or AI initiative and want to approach it with clarity and discipline, we're happy to talk.
+          </p>
+          <div style={{ display: 'flex', gap: 'var(--space-4)', justifyContent: 'center', flexWrap: 'wrap' }}>
+            <Link
+              href="/contact-us"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 'var(--space-2)',
+                padding: 'var(--space-4) var(--space-8)',
+                backgroundColor: 'white',
+                color: 'hsl(var(--premium-gray-900))',
+                fontSize: 'var(--text-base)',
+                fontWeight: 'var(--font-medium)',
+                borderRadius: '8px',
+                textDecoration: 'none',
+                transition: 'all 0.2s ease'
+              }}
+            >
+              Start a Conversation
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style={{ marginLeft: '4px' }}>
+                <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </Link>
+            <Link
+              href="/contact-us"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                padding: 'var(--space-4) var(--space-8)',
+                backgroundColor: 'transparent',
+                color: 'white',
+                fontSize: 'var(--text-base)',
+                fontWeight: 'var(--font-medium)',
+                borderRadius: '8px',
+                textDecoration: 'none',
+                border: '1px solid hsl(var(--premium-gray-600))',
+                transition: 'all 0.2s ease'
+              }}
+            >
+              Talk to an Architect
+            </Link>
+          </div>
+        </motion.div>
       </section>
     </SharedLayout>
   )
 }
-
-export default Solutions

@@ -2,13 +2,13 @@
 
 import { useState, useEffect } from 'react'
 // import dynamic from 'next/dynamic'
-import Navigation from '@/components/navigation'
+import { NavigationEnterprise } from '@/components/enterprise'
 import { ArrowUp } from 'lucide-react'
 // import ErrorBoundary from '@/components/error-boundary'
 // import { LoadingSpinner } from '@/components/loading-states'
 
-// Import footer 
-import Footer from '@/components/footer'
+// Import enterprise footer
+import { FooterMinimal } from '@/components/enterprise'
 
 // Scroll to top component
 function ScrollToTop() {
@@ -46,7 +46,7 @@ function ScrollToTop() {
   return (
     <button
       onClick={scrollToTop}
-      className="fixed bottom-6 right-6 z-50 p-3 bg-gradient-to-r from-blue-600 to-green-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:ring-offset-2 sm:bottom-8 sm:right-8"
+      className="fixed bottom-6 right-6 z-50 p-3 bg-gray-900 text-white rounded-md shadow-sm hover:bg-gray-800 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 sm:bottom-8 sm:right-8"
       aria-label="Scroll to top"
     >
       <ArrowUp className="w-5 h-5" />
@@ -57,22 +57,23 @@ function ScrollToTop() {
 interface SharedLayoutProps {
   children: React.ReactNode
   className?: string
+  hideFooter?: boolean
 }
 
-export default function SharedLayout({ children, className = "" }: SharedLayoutProps) {
+export default function SharedLayout({ children, className = "", hideFooter = false }: SharedLayoutProps) {
   return (
     <div className="min-h-screen w-full overflow-x-hidden bg-background">
       {/* Navigation - Always visible */}
-      <Navigation />
-      
+      <NavigationEnterprise />
+
       {/* Main content with proper spacing to account for fixed header */}
       <main className={`relative ${className}`}>
         {children}
       </main>
-      
+
       {/* Footer */}
-      <Footer />
-      
+      {!hideFooter && <FooterMinimal />}
+
       {/* Scroll to top button */}
       <ScrollToTop />
     </div>
