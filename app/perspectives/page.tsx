@@ -2,14 +2,15 @@
 
 import { motion, type Variants } from 'framer-motion'
 import Link from 'next/link'
+import { ArrowRight } from 'lucide-react'
 import SharedLayout from '@/components/shared-layout'
 
 const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 16 },
+  hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.5, ease: "easeOut" as const }
+    transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }
   }
 }
 
@@ -19,28 +20,56 @@ const staggerContainer: Variants = {
     opacity: 1,
     transition: {
       staggerChildren: 0.08,
-      delayChildren: 0.1
+      delayChildren: 0.15
     }
   }
 }
 
-// Content pillars
 const pillars = [
   {
     title: "System Design & Architecture",
-    description: "How we approach the design of systems that need to last, scale, and remain maintainable under real-world conditions."
+    description: "How we approach the design of systems that need to last, scale, and remain maintainable under real-world conditions.",
+    accent: "#635BFF",
+    iconSvg: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="3" y="3" width="7" height="7" rx="1" />
+        <rect x="14" y="3" width="7" height="7" rx="1" />
+        <rect x="3" y="14" width="7" height="7" rx="1" />
+        <rect x="14" y="14" width="7" height="7" rx="1" />
+      </svg>
+    )
   },
   {
     title: "Delivery & Governance",
-    description: "Observations on what makes enterprise delivery succeed or fail—particularly in regulated and high-trust environments."
+    description: "Observations on what makes enterprise delivery succeed or fail — particularly in regulated and high-trust environments.",
+    accent: "hsl(192, 80%, 55%)",
+    iconSvg: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+      </svg>
+    )
   },
   {
     title: "AI in Production",
-    description: "Practical considerations for deploying AI systems that are reliable, governable, and suitable for enterprise use."
+    description: "Practical considerations for deploying AI systems that are reliable, governable, and suitable for enterprise use.",
+    accent: "hsl(155, 65%, 50%)",
+    iconSvg: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 2a4 4 0 0 1 4 4c0 1.5-.8 2.8-2 3.4V11h3a4 4 0 0 1 4 4v1" />
+        <path d="M8 9.4A4 4 0 1 1 14 6" />
+        <circle cx="12" cy="18" r="4" />
+        <path d="M12 14v-3" />
+      </svg>
+    )
   }
 ]
 
-// Perspective articles
+const pillarColors: Record<string, string> = {
+  "System Design & Architecture": "#635BFF",
+  "Delivery & Governance": "hsl(192, 80%, 55%)",
+  "AI in Production": "hsl(155, 65%, 50%)"
+}
+
 const perspectives = [
   {
     pillar: "System Design & Architecture",
@@ -57,7 +86,7 @@ const perspectives = [
   {
     pillar: "AI in Production",
     title: "Data boundaries in enterprise AI systems",
-    summary: "When deploying AI in regulated environments, the question isn't whether the model works—it's whether you can explain what data it touched, why, and what happens when it's wrong.",
+    summary: "When deploying AI in regulated environments, the question isn't whether the model works — it's whether you can explain what data it touched, why, and what happens when it's wrong.",
     readTime: "10 min"
   },
   {
@@ -69,7 +98,7 @@ const perspectives = [
   {
     pillar: "Delivery & Governance",
     title: "What we mean by 'production-ready'",
-    summary: "A system that works in demo is not production-ready. A system that works under load is closer. A system that can be operated, monitored, and recovered by someone who didn't build it—that's production-ready.",
+    summary: "A system that works in demo is not production-ready. A system that works under load is closer. A system that can be operated, monitored, and recovered by someone who didn't build it — that's production-ready.",
     readTime: "7 min"
   },
   {
@@ -95,16 +124,40 @@ const perspectives = [
 export default function PerspectivesPage() {
   return (
     <SharedLayout>
-      {/* Hero */}
+      {/* Hero — Dark navy header matching homepage */}
       <section
+        className="relative overflow-hidden"
         style={{
-          paddingTop: 'var(--space-32)',
-          paddingBottom: 'var(--space-16)',
-          backgroundColor: 'hsl(var(--premium-gray-50))'
+          paddingTop: '160px',
+          paddingBottom: '80px',
+          backgroundColor: '#0A2540',
         }}
       >
+        {/* Subtle gradient accent */}
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            background: 'radial-gradient(ellipse 60% 50% at 70% 50%, hsla(243, 100%, 68%, 0.1), transparent)',
+            pointerEvents: 'none'
+          }}
+          aria-hidden="true"
+        />
+        {/* Grid pattern */}
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            backgroundImage: 'linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px)',
+            backgroundSize: '60px 60px',
+            pointerEvents: 'none'
+          }}
+          aria-hidden="true"
+        />
+
         <motion.div
-          className="enterprise-container-wide"
+          className="enterprise-container-wide relative"
+          style={{ zIndex: 1 }}
           initial="hidden"
           animate="visible"
           variants={staggerContainer}
@@ -112,12 +165,12 @@ export default function PerspectivesPage() {
           <motion.p
             variants={fadeUp}
             style={{
-              fontSize: 'var(--text-xs)',
-              fontWeight: 'var(--font-medium)',
+              fontSize: '14px',
+              fontWeight: 600,
               textTransform: 'uppercase',
-              letterSpacing: 'var(--tracking-wide)',
-              color: 'hsl(var(--premium-gray-400))',
-              marginBottom: 'var(--space-4)'
+              letterSpacing: '0.1em',
+              color: '#635BFF',
+              marginBottom: '20px'
             }}
           >
             Thinking
@@ -125,11 +178,12 @@ export default function PerspectivesPage() {
           <motion.h1
             variants={fadeUp}
             style={{
-              fontSize: 'clamp(2.5rem, 5vw, 3.5rem)',
-              fontWeight: 'var(--font-semibold)',
-              letterSpacing: 'var(--tracking-tight)',
-              color: 'hsl(var(--premium-gray-900))',
-              marginBottom: 'var(--space-6)',
+              fontSize: 'clamp(2.5rem, 5vw, 3.75rem)',
+              fontWeight: 700,
+              letterSpacing: '-0.03em',
+              lineHeight: 1.05,
+              color: 'white',
+              marginBottom: '24px',
               maxWidth: '600px'
             }}
           >
@@ -138,10 +192,10 @@ export default function PerspectivesPage() {
           <motion.p
             variants={fadeUp}
             style={{
-              fontSize: 'var(--text-xl)',
-              lineHeight: 'var(--leading-relaxed)',
-              color: 'hsl(var(--premium-gray-500))',
-              maxWidth: '640px'
+              fontSize: '19px',
+              lineHeight: 1.65,
+              color: 'rgba(255, 255, 255, 0.6)',
+              maxWidth: '560px'
             }}
           >
             Notes on system design, delivery, and applied AI from our work with enterprise teams.
@@ -149,11 +203,12 @@ export default function PerspectivesPage() {
         </motion.div>
       </section>
 
-      {/* How We Think */}
+      {/* How We Think — Editorial statement */}
       <section
         style={{
-          paddingTop: 'var(--space-20)',
-          paddingBottom: 'var(--space-16)'
+          paddingTop: '80px',
+          paddingBottom: '64px',
+          backgroundColor: 'white'
         }}
       >
         <motion.div
@@ -163,43 +218,62 @@ export default function PerspectivesPage() {
           viewport={{ once: true, margin: "-50px" }}
           variants={fadeUp}
         >
-          <h2
-            style={{
-              fontSize: 'var(--text-xl)',
-              fontWeight: 'var(--font-semibold)',
-              color: 'hsl(var(--premium-gray-900))',
-              marginBottom: 'var(--space-4)'
-            }}
-          >
-            How We Think
-          </h2>
           <div
-            style={{
-              fontSize: 'var(--text-lg)',
-              lineHeight: 'var(--leading-relaxed)',
-              color: 'hsl(var(--premium-gray-600))',
-              maxWidth: '720px',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: 'var(--space-4)'
-            }}
+            className="grid lg:grid-cols-12 items-start"
+            style={{ gap: '48px' }}
           >
-            <p>
-              These are observations from our work—patterns we've seen across engagements, lessons from systems that succeeded and ones that didn't, and frameworks we use when advising clients on difficult decisions.
-            </p>
-            <p>
-              We share them because good thinking should be visible, and because enterprise buyers deserve more than marketing copy when evaluating a partner.
-            </p>
+            <div className="lg:col-span-4">
+              <h2
+                style={{
+                  fontSize: '13px',
+                  fontWeight: 600,
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.1em',
+                  color: '#635BFF',
+                  marginBottom: '12px'
+                }}
+              >
+                How We Think
+              </h2>
+              <div
+                style={{
+                  width: '32px',
+                  height: '3px',
+                  borderRadius: '2px',
+                  backgroundColor: '#635BFF',
+                  opacity: 0.4
+                }}
+              />
+            </div>
+            <div
+              className="lg:col-span-8"
+              style={{
+                fontSize: '17px',
+                lineHeight: 1.7,
+                color: '#425466',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '20px',
+                maxWidth: '640px'
+              }}
+            >
+              <p>
+                These are observations from our work — patterns we&apos;ve seen across engagements, lessons from systems that succeeded and ones that didn&apos;t, and frameworks we use when advising clients on difficult decisions.
+              </p>
+              <p>
+                We share them because good thinking should be visible, and because enterprise buyers deserve more than marketing copy when evaluating a partner.
+              </p>
+            </div>
           </div>
         </motion.div>
       </section>
 
-      {/* Content Pillars */}
+      {/* Content Pillars — Three focus areas as cards */}
       <section
         style={{
-          paddingTop: 'var(--space-12)',
-          paddingBottom: 'var(--space-20)',
-          backgroundColor: 'hsl(var(--premium-gray-50))'
+          paddingTop: '64px',
+          paddingBottom: '80px',
+          backgroundColor: '#F6F9FC'
         }}
       >
         <motion.div
@@ -209,52 +283,67 @@ export default function PerspectivesPage() {
           viewport={{ once: true, margin: "-50px" }}
           variants={staggerContainer}
         >
-          <motion.h2
+          <motion.p
             variants={fadeUp}
             style={{
-              fontSize: 'var(--text-sm)',
-              fontWeight: 'var(--font-semibold)',
-              color: 'hsl(var(--premium-gray-400))',
+              fontSize: '13px',
+              fontWeight: 600,
               textTransform: 'uppercase',
-              letterSpacing: 'var(--tracking-wide)',
-              marginBottom: 'var(--space-8)'
+              letterSpacing: '0.1em',
+              color: '#635BFF',
+              marginBottom: '40px'
             }}
           >
             Areas of Focus
-          </motion.h2>
+          </motion.p>
           <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-              gap: 'var(--space-8)'
-            }}
+            className="grid grid-cols-1 md:grid-cols-3"
+            style={{ gap: '20px' }}
           >
             {pillars.map((pillar, index) => (
               <motion.div
                 key={index}
                 variants={fadeUp}
                 style={{
-                  padding: 'var(--space-6)',
+                  padding: '28px',
                   backgroundColor: 'white',
-                  borderRadius: '8px',
-                  border: '1px solid hsl(var(--premium-gray-100))'
+                  borderRadius: '16px',
+                  border: '1px solid rgba(10, 37, 64, 0.08)',
+                  transition: 'box-shadow 0.2s ease, transform 0.2s ease'
                 }}
               >
+                {/* Icon */}
+                <div
+                  style={{
+                    width: '40px',
+                    height: '40px',
+                    borderRadius: '10px',
+                    backgroundColor: `${pillar.accent}15`,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: pillar.accent,
+                    marginBottom: '20px'
+                  }}
+                >
+                  {pillar.iconSvg}
+                </div>
                 <h3
                   style={{
-                    fontSize: 'var(--text-base)',
-                    fontWeight: 'var(--font-semibold)',
-                    color: 'hsl(var(--premium-gray-900))',
-                    marginBottom: 'var(--space-2)'
+                    fontSize: '17px',
+                    fontWeight: 600,
+                    color: '#0A2540',
+                    marginBottom: '8px',
+                    letterSpacing: '-0.01em'
                   }}
                 >
                   {pillar.title}
                 </h3>
                 <p
                   style={{
-                    fontSize: 'var(--text-sm)',
-                    color: 'hsl(var(--premium-gray-500))',
-                    lineHeight: 'var(--leading-relaxed)'
+                    fontSize: '14px',
+                    color: '#425466',
+                    lineHeight: 1.65
                   }}
                 >
                   {pillar.description}
@@ -265,11 +354,12 @@ export default function PerspectivesPage() {
         </motion.div>
       </section>
 
-      {/* Perspectives List */}
+      {/* Perspectives List — Articles */}
       <section
         style={{
-          paddingTop: 'var(--space-20)',
-          paddingBottom: 'var(--space-24)'
+          paddingTop: '80px',
+          paddingBottom: '100px',
+          backgroundColor: 'white'
         }}
       >
         <motion.div
@@ -279,33 +369,50 @@ export default function PerspectivesPage() {
           viewport={{ once: true, margin: "-50px" }}
           variants={staggerContainer}
         >
-          <motion.h2
+          <motion.div
             variants={fadeUp}
-            style={{
-              fontSize: 'var(--text-2xl)',
-              fontWeight: 'var(--font-semibold)',
-              color: 'hsl(var(--premium-gray-900))',
-              marginBottom: 'var(--space-12)'
-            }}
+            style={{ marginBottom: '48px' }}
           >
-            Recent Perspectives
-          </motion.h2>
+            <p
+              style={{
+                fontSize: '13px',
+                fontWeight: 600,
+                textTransform: 'uppercase',
+                letterSpacing: '0.1em',
+                color: '#635BFF',
+                marginBottom: '16px'
+              }}
+            >
+              Recent Perspectives
+            </p>
+            <h2
+              style={{
+                fontSize: 'clamp(1.5rem, 3vw, 2rem)',
+                fontWeight: 700,
+                letterSpacing: '-0.02em',
+                color: '#0A2540'
+              }}
+            >
+              From our work with enterprise teams.
+            </h2>
+          </motion.div>
 
           <div
             style={{
               display: 'flex',
               flexDirection: 'column',
-              gap: 'var(--space-1)'
             }}
           >
             {perspectives.map((article, index) => (
               <motion.article
                 key={index}
                 variants={fadeUp}
+                className="group"
                 style={{
-                  padding: 'var(--space-6) 0',
-                  borderBottom: index < perspectives.length - 1 ? '1px solid hsl(var(--premium-gray-100))' : 'none',
-                  cursor: 'pointer'
+                  padding: '28px 0',
+                  borderBottom: index < perspectives.length - 1 ? '1px solid rgba(10, 37, 64, 0.08)' : 'none',
+                  cursor: 'pointer',
+                  transition: 'background-color 0.15s ease'
                 }}
               >
                 <div
@@ -313,54 +420,93 @@ export default function PerspectivesPage() {
                     display: 'flex',
                     alignItems: 'flex-start',
                     justifyContent: 'space-between',
-                    gap: 'var(--space-8)'
+                    gap: '32px'
                   }}
                 >
                   <div style={{ flex: 1 }}>
-                    <p
+                    {/* Pillar badge */}
+                    <div
                       style={{
-                        fontSize: 'var(--text-xs)',
-                        fontWeight: 'var(--font-medium)',
-                        color: 'hsl(var(--premium-gray-400))',
-                        textTransform: 'uppercase',
-                        letterSpacing: 'var(--tracking-wide)',
-                        marginBottom: 'var(--space-2)'
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '6px',
+                        marginBottom: '10px'
                       }}
                     >
-                      {article.pillar}
-                    </p>
+                      <div
+                        style={{
+                          width: '6px',
+                          height: '6px',
+                          borderRadius: '50%',
+                          backgroundColor: pillarColors[article.pillar] || '#635BFF',
+                          opacity: 0.7
+                        }}
+                      />
+                      <span
+                        style={{
+                          fontSize: '12px',
+                          fontWeight: 600,
+                          textTransform: 'uppercase',
+                          letterSpacing: '0.06em',
+                          color: pillarColors[article.pillar] || '#635BFF',
+                        }}
+                      >
+                        {article.pillar}
+                      </span>
+                    </div>
+                    {/* Title */}
                     <h3
                       style={{
-                        fontSize: 'var(--text-lg)',
-                        fontWeight: 'var(--font-semibold)',
-                        color: 'hsl(var(--premium-gray-900))',
-                        marginBottom: 'var(--space-2)',
-                        lineHeight: 'var(--leading-tight)'
+                        fontSize: '19px',
+                        fontWeight: 600,
+                        color: '#0A2540',
+                        marginBottom: '8px',
+                        lineHeight: 1.3,
+                        letterSpacing: '-0.01em',
+                        transition: 'color 0.15s ease'
                       }}
                     >
                       {article.title}
                     </h3>
+                    {/* Summary */}
                     <p
                       style={{
-                        fontSize: 'var(--text-base)',
-                        color: 'hsl(var(--premium-gray-500))',
-                        lineHeight: 'var(--leading-relaxed)',
-                        maxWidth: '720px'
+                        fontSize: '15px',
+                        color: '#425466',
+                        lineHeight: 1.65,
+                        maxWidth: '680px'
                       }}
                     >
                       {article.summary}
                     </p>
                   </div>
-                  <span
+                  {/* Read time + arrow */}
+                  <div
                     style={{
-                      fontSize: 'var(--text-sm)',
-                      color: 'hsl(var(--premium-gray-400))',
-                      whiteSpace: 'nowrap',
-                      marginTop: 'var(--space-6)'
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'flex-end',
+                      gap: '8px',
+                      marginTop: '28px',
+                      flexShrink: 0
                     }}
                   >
-                    {article.readTime}
-                  </span>
+                    <span
+                      style={{
+                        fontSize: '13px',
+                        color: '#425466',
+                        opacity: 0.6,
+                        whiteSpace: 'nowrap'
+                      }}
+                    >
+                      {article.readTime}
+                    </span>
+                    <ArrowRight
+                      className="w-4 h-4 transition-transform group-hover:translate-x-1"
+                      style={{ color: '#635BFF', opacity: 0 }}
+                      strokeWidth={2}
+                    />
+                  </div>
                 </div>
               </motion.article>
             ))}
@@ -368,16 +514,32 @@ export default function PerspectivesPage() {
         </motion.div>
       </section>
 
-      {/* Footer Note */}
+      {/* Footer CTA — Dark navy, matching FinalCTASection */}
       <section
         style={{
-          paddingTop: 'var(--space-12)',
-          paddingBottom: 'var(--space-20)',
-          backgroundColor: 'hsl(var(--premium-gray-50))'
+          paddingTop: '80px',
+          paddingBottom: '80px',
+          backgroundColor: '#0A2540',
+          position: 'relative',
+          overflow: 'hidden'
         }}
       >
+        <div
+          style={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            width: '600px',
+            height: '400px',
+            background: 'radial-gradient(ellipse, hsla(243, 100%, 68%, 0.08), transparent 60%)',
+            pointerEvents: 'none'
+          }}
+          aria-hidden="true"
+        />
         <motion.div
-          className="enterprise-container-wide"
+          className="enterprise-container-wide relative"
+          style={{ zIndex: 1 }}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
@@ -385,31 +547,33 @@ export default function PerspectivesPage() {
         >
           <p
             style={{
-              fontSize: 'var(--text-base)',
-              color: 'hsl(var(--premium-gray-500))',
-              lineHeight: 'var(--leading-relaxed)',
-              maxWidth: '640px'
+              fontSize: '17px',
+              color: 'rgba(255, 255, 255, 0.5)',
+              lineHeight: 1.65,
+              maxWidth: '560px',
+              marginBottom: '28px'
             }}
           >
-            These perspectives reflect our current thinking and are updated as we learn. If something here resonates—or if you disagree—we'd be interested to hear from you.
+            These perspectives reflect our current thinking and are updated as we learn. If something here resonates — or if you disagree — we&apos;d be interested to hear from you.
           </p>
           <Link
             href="/contact-us"
+            className="group"
             style={{
               display: 'inline-flex',
               alignItems: 'center',
-              gap: 'var(--space-2)',
-              marginTop: 'var(--space-6)',
-              fontSize: 'var(--text-base)',
-              fontWeight: 'var(--font-medium)',
-              color: 'hsl(var(--premium-gray-900))',
+              gap: '8px',
+              fontSize: '15px',
+              fontWeight: 600,
+              color: '#635BFF',
               textDecoration: 'none'
             }}
           >
             Start a conversation
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-              <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
+            <ArrowRight
+              className="w-4 h-4 transition-transform group-hover:translate-x-1"
+              strokeWidth={2.5}
+            />
           </Link>
         </motion.div>
       </section>

@@ -2,196 +2,211 @@
 
 import { motion } from 'framer-motion'
 
-const navigation = [
-  { name: "What We Do", href: "/solutions" },
-  { name: "How We Work", href: "/how-we-work" },
-  { name: "Perspectives", href: "/perspectives" },
-  { name: "About", href: "/about-us" },
-  { name: "Contact", href: "/contact-us" },
-]
-
-const legal = [
-  { name: "Privacy", href: "/privacy" },
-  { name: "Security", href: "/security" },
-  { name: "Terms", href: "/terms" },
-  { name: "Responsible AI", href: "/responsible-ai" },
+const footerColumns = [
+  {
+    title: "Solutions",
+    links: [
+      { name: "Cloud & Infrastructure", href: "/solutions/cloud" },
+      { name: "DevOps & Automation", href: "/solutions/devops" },
+      { name: "Data & Analytics", href: "/solutions/data" },
+      { name: "AI & Machine Learning", href: "/solutions/ai-ml" },
+      { name: "Enterprise Security", href: "/solutions/security" },
+      { name: "Digital Transformation", href: "/solutions/consulting" },
+    ]
+  },
+  {
+    title: "Company",
+    links: [
+      { name: "About Us", href: "/about-us" },
+      { name: "How We Work", href: "/how-we-work" },
+      { name: "Case Studies", href: "/case-studies" },
+      { name: "Perspectives", href: "/perspectives" },
+      { name: "Partners", href: "/partners" },
+      { name: "Contact", href: "/contact-us" },
+    ]
+  },
+  {
+    title: "Resources",
+    links: [
+      { name: "Perspectives Blog", href: "/perspectives" },
+      { name: "Case Studies", href: "/case-studies" },
+      { name: "Solutions Overview", href: "/solutions" },
+      { name: "Responsible AI", href: "/responsible-ai" },
+    ]
+  },
+  {
+    title: "Legal",
+    links: [
+      { name: "Privacy Policy", href: "/privacy" },
+      { name: "Security", href: "/security" },
+      { name: "Terms of Service", href: "/terms" },
+      { name: "Responsible AI", href: "/responsible-ai" },
+      { name: "Cookie Policy", href: "/policy" },
+    ]
+  }
 ]
 
 const FooterMinimal = () => {
   return (
     <footer
       style={{
-        backgroundColor: 'hsl(var(--premium-gray-50))',
-        borderTop: '1px solid hsl(var(--premium-gray-100))'
+        backgroundColor: 'hsl(210, 76%, 12%)',
+        color: 'white'
       }}
     >
       <div
         className="enterprise-container-wide"
         style={{
-          paddingTop: 'var(--space-20)',
-          paddingBottom: 'var(--space-12)'
+          paddingTop: '80px',
+          paddingBottom: '48px'
         }}
       >
-        {/* Main Footer Content - 3 Column Grid */}
+        {/* Main Footer Content */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
-          style={{ gap: 'var(--space-12)' }}
+          className="footer-grid-comprehensive"
         >
-          {/* Column 1 - Brand Anchor */}
-          <div style={{ maxWidth: '20rem' }}>
+          {/* Brand Column */}
+          <div style={{ maxWidth: '24rem' }}>
             <h3
               style={{
-                fontSize: 'var(--text-lg)',
-                fontWeight: 'var(--font-semibold)',
-                letterSpacing: 'var(--tracking-tight)',
-                color: 'hsl(var(--premium-gray-900))',
-                marginBottom: 'var(--space-4)'
+                fontSize: '20px',
+                fontWeight: 700,
+                letterSpacing: '-0.02em',
+                color: 'white',
+                marginBottom: '16px'
               }}
             >
               Yatisphere
             </h3>
             <p
               style={{
-                fontSize: 'var(--text-sm)',
-                lineHeight: 'var(--leading-relaxed)',
-                color: 'hsl(var(--premium-gray-500))'
+                fontSize: '14px',
+                lineHeight: 1.65,
+                color: 'rgba(255, 255, 255, 0.45)',
+                marginBottom: '24px'
               }}
             >
-              Enterprise software, cloud, and AI systems — engineered for trust and scale.
+              Enterprise software, cloud, and AI systems — engineered for trust, scale, and long-term maintainability.
             </p>
+            <a
+              href="mailto:hello@yatisphere.com"
+              style={{
+                fontSize: '14px',
+                color: 'rgba(255, 255, 255, 0.5)',
+                transition: 'color 200ms ease',
+                textDecoration: 'none'
+              }}
+            >
+              hello@yatisphere.com
+            </a>
           </div>
 
-          {/* Column 2 - Navigation */}
-          <div>
-            <h4
-              style={{
-                fontSize: 'var(--text-xs)',
-                fontWeight: 'var(--font-medium)',
-                textTransform: 'uppercase',
-                letterSpacing: 'var(--tracking-wide)',
-                color: 'hsl(var(--premium-gray-400))',
-                marginBottom: 'var(--space-4)'
-              }}
-            >
-              Navigate
-            </h4>
-            <nav
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                gap: 'var(--space-3)'
-              }}
-            >
-              {navigation.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  style={{
-                    fontSize: 'var(--text-sm)',
-                    color: 'hsl(var(--premium-gray-600))',
-                    transition: 'color 200ms ease'
-                  }}
-                  className="hover:text-gray-900"
-                >
-                  {item.name}
-                </a>
-              ))}
-            </nav>
-          </div>
-
-          {/* Column 3 - Contact & Meta */}
-          <div>
-            <h4
-              style={{
-                fontSize: 'var(--text-xs)',
-                fontWeight: 'var(--font-medium)',
-                textTransform: 'uppercase',
-                letterSpacing: 'var(--tracking-wide)',
-                color: 'hsl(var(--premium-gray-400))',
-                marginBottom: 'var(--space-4)'
-              }}
-            >
-              Contact
-            </h4>
-            <div
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                gap: 'var(--space-3)'
-              }}
-            >
-              <a
-                href="mailto:hello@yatisphere.com"
+          {/* Link Columns */}
+          {footerColumns.map((column) => (
+            <div key={column.title}>
+              <h4
                 style={{
-                  fontSize: 'var(--text-sm)',
-                  color: 'hsl(var(--premium-gray-600))',
-                  transition: 'color 200ms ease'
-                }}
-                className="hover:text-gray-900"
-              >
-                hello@yatisphere.com
-              </a>
-              <p
-                style={{
-                  fontSize: 'var(--text-sm)',
-                  color: 'hsl(var(--premium-gray-500))'
+                  fontSize: '12px',
+                  fontWeight: 600,
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.08em',
+                  color: 'rgba(255, 255, 255, 0.35)',
+                  marginBottom: '16px'
                 }}
               >
-                Serving global, regulated enterprises
-              </p>
+                {column.title}
+              </h4>
+              <nav
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '12px'
+                }}
+              >
+                {column.links.map((link) => (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    style={{
+                      fontSize: '14px',
+                      color: 'rgba(255, 255, 255, 0.5)',
+                      transition: 'color 200ms ease',
+                      textDecoration: 'none'
+                    }}
+                  >
+                    {link.name}
+                  </a>
+                ))}
+              </nav>
             </div>
-          </div>
+          ))}
         </motion.div>
 
-        {/* Bottom Bar - Divider + Meta */}
+        {/* Bottom Bar */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.1 }}
           viewport={{ once: true }}
           style={{
-            marginTop: 'var(--space-16)',
-            paddingTop: 'var(--space-6)',
-            borderTop: '1px solid hsl(var(--premium-gray-200))'
+            marginTop: '64px',
+            paddingTop: '24px',
+            borderTop: '1px solid rgba(255, 255, 255, 0.08)'
           }}
         >
           <div
             className="flex flex-col sm:flex-row justify-between items-start sm:items-center"
-            style={{ gap: 'var(--space-4)' }}
+            style={{ gap: '16px' }}
           >
-            {/* Copyright */}
             <p
               style={{
-                fontSize: 'var(--text-xs)',
-                color: 'hsl(var(--premium-gray-400))'
+                fontSize: '12px',
+                color: 'rgba(255, 255, 255, 0.3)'
               }}
             >
-              © {new Date().getFullYear()} Yatisphere Technologies
+              &copy; {new Date().getFullYear()} Yatisphere Technologies. All rights reserved.
             </p>
-
-            {/* Legal Links */}
             <div
               className="flex items-center"
-              style={{ gap: 'var(--space-6)' }}
+              style={{ gap: '24px' }}
             >
-              {legal.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  style={{
-                    fontSize: 'var(--text-xs)',
-                    color: 'hsl(var(--premium-gray-400))',
-                    transition: 'color 200ms ease'
-                  }}
-                  className="hover:text-gray-600"
-                >
-                  {item.name}
-                </a>
-              ))}
+              <a
+                href="/privacy"
+                style={{
+                  fontSize: '12px',
+                  color: 'rgba(255, 255, 255, 0.3)',
+                  transition: 'color 200ms ease',
+                  textDecoration: 'none'
+                }}
+              >
+                Privacy
+              </a>
+              <a
+                href="/terms"
+                style={{
+                  fontSize: '12px',
+                  color: 'rgba(255, 255, 255, 0.3)',
+                  transition: 'color 200ms ease',
+                  textDecoration: 'none'
+                }}
+              >
+                Terms
+              </a>
+              <a
+                href="/security"
+                style={{
+                  fontSize: '12px',
+                  color: 'rgba(255, 255, 255, 0.3)',
+                  transition: 'color 200ms ease',
+                  textDecoration: 'none'
+                }}
+              >
+                Security
+              </a>
             </div>
           </div>
         </motion.div>

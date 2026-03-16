@@ -1,13 +1,14 @@
 "use client"
 
 import { motion, type Variants } from 'framer-motion'
+import { ArrowRight } from 'lucide-react'
 
 const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 12 },
+  hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.5, ease: "easeOut" as const }
+    transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }
   }
 }
 
@@ -17,126 +18,274 @@ const staggerContainer: Variants = {
     opacity: 1,
     transition: {
       staggerChildren: 0.08,
-      delayChildren: 0.1
+      delayChildren: 0.15
     }
   }
 }
 
-// Systems-first work areas - architecture and delivery driven
-const workAreas = [
-  "Building and modernizing core software platforms",
-  "Designing secure, scalable cloud foundations",
-  "Embedding governance and compliance into system architecture",
-  "Developing production-grade AI and data systems",
-  "Creating operational frameworks for long-term maintainability"
+const solutions = [
+  {
+    title: "Enterprise Software & Platforms",
+    description:
+      "Reliable platforms at scale — designed for long operational lifetimes, not short-term experiments.",
+    href: "/solutions",
+    size: "large" as const,
+    gradient: "linear-gradient(135deg, #635BFF 0%, #0A2540 100%)",
+    iconSvg: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="3" y="3" width="7" height="7" rx="1" />
+        <rect x="14" y="3" width="7" height="7" rx="1" />
+        <rect x="3" y="14" width="7" height="7" rx="1" />
+        <rect x="14" y="14" width="7" height="7" rx="1" />
+      </svg>
+    )
+  },
+  {
+    title: "Cloud & Infrastructure",
+    description:
+      "Secure, scalable cloud foundations across multi-cloud, hybrid, and on-premise environments.",
+    href: "/solutions/cloud",
+    size: "normal" as const,
+    gradient: "linear-gradient(135deg, #11C5DB 0%, #0A2540 100%)",
+    iconSvg: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z" />
+      </svg>
+    )
+  },
+  {
+    title: "DevOps & Automation",
+    description:
+      "CI/CD pipelines, infrastructure as code, and operational maturity frameworks.",
+    href: "/solutions/devops",
+    size: "normal" as const,
+    gradient: "linear-gradient(135deg, #3ECF8E 0%, #0A2540 100%)",
+    iconSvg: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <polyline points="16 18 22 12 16 6" />
+        <polyline points="8 6 2 12 8 18" />
+      </svg>
+    )
+  },
+  {
+    title: "Data & Analytics",
+    description:
+      "Governed data platforms and analytics pipelines with compliance and auditability built in.",
+    href: "/solutions/data",
+    size: "normal" as const,
+    gradient: "linear-gradient(135deg, #FF7A00 0%, #0A2540 100%)",
+    iconSvg: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <ellipse cx="12" cy="5" rx="9" ry="3" />
+        <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5" />
+        <path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3" />
+      </svg>
+    )
+  },
+  {
+    title: "Applied AI & Machine Learning",
+    description:
+      "Production-grade AI systems with governance, auditability, and compliance woven in from day one.",
+    href: "/solutions/ai-ml",
+    size: "large" as const,
+    gradient: "linear-gradient(135deg, #A259FF 0%, #0A2540 100%)",
+    iconSvg: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 2a4 4 0 0 1 4 4c0 1.5-.8 2.8-2 3.4V11h3a4 4 0 0 1 4 4v1" />
+        <path d="M8 9.4A4 4 0 1 1 14 6" />
+        <circle cx="12" cy="18" r="4" />
+        <path d="M12 14v-3" />
+      </svg>
+    )
+  }
 ]
 
 const WorkWeDoSection = () => {
   return (
     <section
       style={{
-        paddingTop: 'var(--space-20)',
-        paddingBottom: 'var(--space-20)',
-        backgroundColor: 'hsl(var(--premium-gray-50))'
+        paddingTop: '120px',
+        paddingBottom: '120px',
+        backgroundColor: '#F6F9FC'
       }}
     >
       <div className="enterprise-container-wide">
-        <div
-          className="grid lg:grid-cols-2 items-start"
-          style={{ gap: 'var(--space-16)' }}
+        {/* Section Header - Stripe style: left-aligned, bold, clear hierarchy */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+          style={{
+            marginBottom: '72px',
+            maxWidth: '640px'
+          }}
         >
-          {/* Left Column - Header */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-          >
-            <p
-              style={{
-                fontSize: 'var(--text-xs)',
-                fontWeight: 'var(--font-medium)',
-                textTransform: 'uppercase',
-                letterSpacing: 'var(--tracking-wide)',
-                color: 'hsl(var(--premium-gray-400))',
-                marginBottom: 'var(--space-4)'
-              }}
-            >
-              The Kind of Work We Do
-            </p>
-            <h2
-              style={{
-                fontSize: 'var(--text-3xl)',
-                fontWeight: 'var(--font-semibold)',
-                letterSpacing: 'var(--tracking-tight)',
-                lineHeight: 'var(--leading-snug)',
-                color: 'hsl(var(--premium-gray-900))',
-                marginBottom: 'var(--space-6)'
-              }}
-            >
-              Long-term systems, not short-term experiments.
-            </h2>
-            <p
-              style={{
-                fontSize: 'var(--text-lg)',
-                lineHeight: 'var(--leading-relaxed)',
-                color: 'hsl(var(--premium-gray-500))',
-                maxWidth: 'var(--prose-width)'
-              }}
-            >
-              We take on work that matters to organizations over years, not months.
-              Our focus is on building systems that can evolve, scale, and withstand
-              the scrutiny of auditors, regulators, and operations teams.
-            </p>
-          </motion.div>
-
-          {/* Right Column - Work Areas List */}
-          <motion.div
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
+          <p
             style={{
-              display: 'flex',
-              flexDirection: 'column',
-              gap: 'var(--space-4)'
+              fontSize: '15px',
+              fontWeight: 600,
+              textTransform: 'uppercase',
+              letterSpacing: '0.1em',
+              color: '#635BFF',
+              marginBottom: '20px'
             }}
           >
-            {workAreas.map((area, index) => (
-              <motion.div
+            What we build
+          </p>
+          <h2
+            style={{
+              fontSize: 'clamp(2rem, 3.5vw, 3rem)',
+              fontWeight: 700,
+              letterSpacing: '-0.03em',
+              lineHeight: 1.1,
+              color: '#0A2540',
+              marginBottom: '20px'
+            }}
+          >
+            Infrastructure for every critical layer.
+          </h2>
+          <p
+            style={{
+              fontSize: '19px',
+              lineHeight: 1.65,
+              color: '#425466',
+              maxWidth: '520px'
+            }}
+          >
+            Long-term systems, not short-term experiments. From cloud foundations to AI — built to endure.
+          </p>
+        </motion.div>
+
+        {/* Bento Grid */}
+        <motion.div
+          className="bento-grid"
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
+          {solutions.map((solution, index) => {
+            return (
+              <motion.a
                 key={index}
+                href={solution.href}
                 variants={fadeUp}
+                className={`group ${solution.size === 'large' ? 'bento-card-lg' : ''}`}
                 style={{
                   display: 'flex',
-                  alignItems: 'flex-start',
-                  gap: 'var(--space-4)'
+                  flexDirection: 'column',
+                  backgroundColor: 'white',
+                  borderRadius: '16px',
+                  overflow: 'hidden',
+                  textDecoration: 'none',
+                  border: '1px solid rgba(10, 37, 64, 0.08)',
+                  transition: 'box-shadow 0.3s ease, transform 0.3s ease',
                 }}
               >
-                <span
+                {/* Colored gradient header strip with icon */}
+                <div
                   style={{
-                    fontSize: 'var(--text-sm)',
-                    fontWeight: 'var(--font-medium)',
-                    color: 'hsl(var(--premium-gray-300))',
-                    marginTop: '4px',
-                    fontVariantNumeric: 'tabular-nums'
+                    background: solution.gradient,
+                    padding: '32px 32px 28px',
+                    position: 'relative',
+                    overflow: 'hidden'
                   }}
                 >
-                  0{index + 1}
-                </span>
-                <span
+                  {/* Decorative circle */}
+                  <div
+                    style={{
+                      position: 'absolute',
+                      top: '-20px',
+                      right: '-20px',
+                      width: '100px',
+                      height: '100px',
+                      borderRadius: '50%',
+                      background: 'rgba(255, 255, 255, 0.08)',
+                    }}
+                    aria-hidden="true"
+                  />
+                  <div
+                    style={{
+                      position: 'absolute',
+                      bottom: '-30px',
+                      right: '40px',
+                      width: '60px',
+                      height: '60px',
+                      borderRadius: '50%',
+                      background: 'rgba(255, 255, 255, 0.05)',
+                    }}
+                    aria-hidden="true"
+                  />
+                  {/* Icon */}
+                  <div
+                    style={{
+                      width: '48px',
+                      height: '48px',
+                      borderRadius: '12px',
+                      backgroundColor: 'rgba(255, 255, 255, 0.15)',
+                      backdropFilter: 'blur(8px)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}
+                  >
+                    {solution.iconSvg}
+                  </div>
+                </div>
+
+                {/* Card content */}
+                <div
                   style={{
-                    fontSize: 'var(--text-lg)',
-                    fontWeight: 'var(--font-normal)',
-                    color: 'hsl(var(--premium-gray-700))',
-                    lineHeight: 'var(--leading-relaxed)'
+                    padding: '28px 32px 32px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    flex: 1
                   }}
                 >
-                  {area}
-                </span>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
+                  <h3
+                    style={{
+                      fontSize: '19px',
+                      fontWeight: 700,
+                      letterSpacing: '-0.02em',
+                      lineHeight: 1.3,
+                      color: '#0A2540',
+                      marginBottom: '10px'
+                    }}
+                  >
+                    {solution.title}
+                  </h3>
+                  <p
+                    style={{
+                      fontSize: '15px',
+                      lineHeight: 1.65,
+                      color: '#425466',
+                      marginBottom: '24px',
+                      flex: 1
+                    }}
+                  >
+                    {solution.description}
+                  </p>
+                  <span
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      fontSize: '15px',
+                      fontWeight: 600,
+                      color: '#635BFF',
+                    }}
+                  >
+                    Learn more
+                    <ArrowRight
+                      className="w-4 h-4 ml-1.5 transition-transform group-hover:translate-x-1"
+                      strokeWidth={2.5}
+                    />
+                  </span>
+                </div>
+              </motion.a>
+            )
+          })}
+        </motion.div>
       </div>
     </section>
   )

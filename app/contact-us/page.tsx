@@ -5,11 +5,11 @@ import { useState } from 'react'
 import SharedLayout from '@/components/shared-layout'
 
 const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 16 },
+  hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.5, ease: "easeOut" as const }
+    transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }
   }
 }
 
@@ -18,19 +18,47 @@ const staggerContainer: Variants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.08,
-      delayChildren: 0.1
+      staggerChildren: 0.12,
+      delayChildren: 0.15
     }
   }
 }
 
-// When to reach out scenarios
 const reachOutScenarios = [
   "You're planning or modernizing a critical software, cloud, or AI system",
   "You want a second opinion on architecture, delivery, or risk",
   "You're operating in a regulated or security-sensitive environment",
   "You're looking for a long-term technology partner, not a quick build"
 ]
+
+const contactChannels = [
+  {
+    label: "General inquiries",
+    value: "hello@yatisphere.com",
+    href: "mailto:hello@yatisphere.com",
+    iconPath: "M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+  },
+  {
+    label: "Architecture reviews",
+    value: "architects@yatisphere.com",
+    href: "mailto:architects@yatisphere.com",
+    iconPath: "M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+  }
+]
+
+/* ── Shared input styles ── */
+const inputBase: React.CSSProperties = {
+  width: '100%',
+  padding: '14px 16px',
+  fontSize: '15px',
+  border: '1px solid rgba(10, 37, 64, 0.12)',
+  borderRadius: '10px',
+  backgroundColor: 'white',
+  color: '#0A2540',
+  outline: 'none',
+  transition: 'border-color 0.2s ease, box-shadow 0.2s ease',
+  fontFamily: 'inherit'
+}
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -45,229 +73,224 @@ export default function ContactPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
-
-    // Simulate submission
     await new Promise(resolve => setTimeout(resolve, 1500))
-
     setIsSubmitting(false)
     setIsSubmitted(true)
   }
 
   return (
     <SharedLayout>
-      {/* Hero - Context Setting */}
+      {/* ── Hero — Dark Navy ── */}
       <section
+        className="relative overflow-hidden"
         style={{
-          paddingTop: 'var(--space-32)',
-          paddingBottom: 'var(--space-16)',
-          backgroundColor: 'hsl(var(--premium-gray-50))'
+          paddingTop: '160px',
+          paddingBottom: '80px',
+          backgroundColor: '#0A2540'
         }}
       >
+        <div
+          style={{
+            position: 'absolute',
+            top: '10%',
+            right: '-5%',
+            width: '600px',
+            height: '600px',
+            background: 'radial-gradient(circle, rgba(99, 91, 255, 0.12), transparent 60%)',
+            borderRadius: '50%',
+            filter: 'blur(80px)',
+            pointerEvents: 'none'
+          }}
+          aria-hidden="true"
+        />
+
         <motion.div
-          className="enterprise-container-wide"
+          className="enterprise-container-wide relative"
+          style={{ zIndex: 1 }}
           initial="hidden"
           animate="visible"
           variants={staggerContainer}
         >
-          <motion.p
-            variants={fadeUp}
-            style={{
-              fontSize: 'var(--text-xs)',
-              fontWeight: 'var(--font-medium)',
-              textTransform: 'uppercase',
-              letterSpacing: 'var(--tracking-wide)',
-              color: 'hsl(var(--premium-gray-400))',
-              marginBottom: 'var(--space-4)'
-            }}
-          >
-            Contact
-          </motion.p>
-          <motion.h1
-            variants={fadeUp}
-            style={{
-              fontSize: 'clamp(2.5rem, 5vw, 3.5rem)',
-              fontWeight: 'var(--font-semibold)',
-              letterSpacing: 'var(--tracking-tight)',
-              color: 'hsl(var(--premium-gray-900))',
-              marginBottom: 'var(--space-6)',
-              maxWidth: '600px'
-            }}
-          >
-            Start a Conversation
-          </motion.h1>
-          <motion.div
-            variants={fadeUp}
-            style={{
-              fontSize: 'var(--text-lg)',
-              lineHeight: 'var(--leading-relaxed)',
-              color: 'hsl(var(--premium-gray-500))',
-              maxWidth: '640px',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: 'var(--space-4)'
-            }}
-          >
-            <p>
-              We work with teams navigating complex software, cloud, and AI initiatives—often in regulated or high-trust environments.
+          <motion.div variants={fadeUp} style={{ maxWidth: '640px' }}>
+            <p
+              style={{
+                fontSize: '13px',
+                fontWeight: 600,
+                textTransform: 'uppercase',
+                letterSpacing: '0.1em',
+                color: '#635BFF',
+                marginBottom: '24px'
+              }}
+            >
+              Contact
             </p>
-            <p>
-              If you're exploring a new initiative, assessing risk, or looking for a delivery partner, we're happy to talk.
+            <h1
+              style={{
+                fontSize: 'clamp(2.5rem, 5vw, 3.5rem)',
+                fontWeight: 700,
+                letterSpacing: '-0.035em',
+                lineHeight: 1.05,
+                color: 'white',
+                marginBottom: '24px'
+              }}
+            >
+              Start a conversation.
+            </h1>
+            <p
+              style={{
+                fontSize: '20px',
+                lineHeight: 1.65,
+                color: 'rgba(255, 255, 255, 0.55)',
+                maxWidth: '520px'
+              }}
+            >
+              We work with teams navigating complex software, cloud, and AI initiatives — often in regulated or high-trust environments.
             </p>
           </motion.div>
         </motion.div>
       </section>
 
-      {/* Main Content - Two Column */}
-      <section
-        style={{
-          paddingTop: 'var(--space-20)',
-          paddingBottom: 'var(--space-24)'
-        }}
-      >
+      {/* ── Main Content — Two Column ── */}
+      <section style={{ paddingTop: '80px', paddingBottom: '120px', backgroundColor: 'white' }}>
         <div className="enterprise-container-wide">
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))',
-              gap: 'var(--space-16)',
+              gridTemplateColumns: '1fr 1fr',
+              gap: '80px',
               alignItems: 'start'
             }}
+            className="max-lg:!grid-cols-1 max-lg:!gap-12"
           >
-            {/* Left Column - When to Reach Out + CTAs */}
+            {/* ── Left Column — Context ── */}
             <motion.div
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-50px" }}
               variants={staggerContainer}
             >
-              {/* When to Reach Out */}
-              <motion.div variants={fadeUp} style={{ marginBottom: 'var(--space-12)' }}>
+              {/* When to reach out */}
+              <motion.div variants={fadeUp} style={{ marginBottom: '48px' }}>
                 <h2
                   style={{
-                    fontSize: 'var(--text-xl)',
-                    fontWeight: 'var(--font-semibold)',
-                    color: 'hsl(var(--premium-gray-900))',
-                    marginBottom: 'var(--space-6)'
+                    fontSize: '22px',
+                    fontWeight: 700,
+                    letterSpacing: '-0.02em',
+                    color: '#0A2540',
+                    marginBottom: '24px'
                   }}
                 >
-                  When It Makes Sense to Reach Out
+                  When it makes sense to reach out
                 </h2>
-                <ul
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: 'var(--space-4)'
-                  }}
-                >
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                   {reachOutScenarios.map((scenario, index) => (
-                    <li
+                    <div
                       key={index}
                       style={{
                         display: 'flex',
                         alignItems: 'flex-start',
-                        gap: 'var(--space-3)',
-                        fontSize: 'var(--text-base)',
-                        color: 'hsl(var(--premium-gray-600))',
-                        lineHeight: 'var(--leading-relaxed)'
+                        gap: '14px',
+                        padding: '16px 20px',
+                        backgroundColor: '#F6F9FC',
+                        borderRadius: '12px',
+                        border: '1px solid rgba(10, 37, 64, 0.04)'
                       }}
                     >
-                      <span
-                        style={{
-                          width: '6px',
-                          height: '6px',
-                          borderRadius: '50%',
-                          backgroundColor: 'hsl(var(--premium-gray-300))',
-                          marginTop: '10px',
-                          flexShrink: 0
-                        }}
-                      />
-                      {scenario}
-                    </li>
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ marginTop: '2px', flexShrink: 0 }}>
+                        <path d="M13.333 4L6 11.333 2.667 8" stroke="#635BFF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                      <span style={{ fontSize: '15px', color: '#425466', lineHeight: 1.6 }}>
+                        {scenario}
+                      </span>
+                    </div>
                   ))}
-                </ul>
-              </motion.div>
-
-              {/* Primary CTA */}
-              <motion.div variants={fadeUp} style={{ marginBottom: 'var(--space-8)' }}>
-                <h3
-                  style={{
-                    fontSize: 'var(--text-base)',
-                    fontWeight: 'var(--font-semibold)',
-                    color: 'hsl(var(--premium-gray-900))',
-                    marginBottom: 'var(--space-4)'
-                  }}
-                >
-                  Ready to talk?
-                </h3>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-3)' }}>
-                  <a
-                    href="mailto:hello@yatisphere.com"
-                    style={{
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: 'var(--space-2)',
-                      padding: 'var(--space-4) var(--space-6)',
-                      backgroundColor: 'hsl(var(--premium-gray-900))',
-                      color: 'white',
-                      fontSize: 'var(--text-base)',
-                      fontWeight: 'var(--font-medium)',
-                      borderRadius: '8px',
-                      textDecoration: 'none',
-                      width: 'fit-content',
-                      transition: 'background-color 0.2s ease'
-                    }}
-                  >
-                    Start a Conversation
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                      <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                  </a>
-                  <a
-                    href="mailto:architects@yatisphere.com"
-                    style={{
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: 'var(--space-2)',
-                      padding: 'var(--space-4) var(--space-6)',
-                      backgroundColor: 'transparent',
-                      color: 'hsl(var(--premium-gray-700))',
-                      fontSize: 'var(--text-base)',
-                      fontWeight: 'var(--font-medium)',
-                      borderRadius: '8px',
-                      border: '1px solid hsl(var(--premium-gray-200))',
-                      textDecoration: 'none',
-                      width: 'fit-content',
-                      transition: 'all 0.2s ease'
-                    }}
-                  >
-                    Talk to an Architect
-                  </a>
                 </div>
               </motion.div>
 
-              {/* Direct Email */}
-              <motion.div variants={fadeUp}>
-                <p
+              {/* Contact channels */}
+              <motion.div variants={fadeUp} style={{ marginBottom: '48px' }}>
+                <h2
                   style={{
-                    fontSize: 'var(--text-sm)',
-                    color: 'hsl(var(--premium-gray-500))'
+                    fontSize: '22px',
+                    fontWeight: 700,
+                    letterSpacing: '-0.02em',
+                    color: '#0A2540',
+                    marginBottom: '24px'
                   }}
                 >
-                  Or email us directly at{' '}
-                  <a
-                    href="mailto:hello@yatisphere.com"
-                    style={{
-                      color: 'hsl(var(--premium-gray-900))',
-                      textDecoration: 'underline'
-                    }}
-                  >
-                    hello@yatisphere.com
-                  </a>
+                  Reach us directly
+                </h2>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                  {contactChannels.map((channel) => (
+                    <a
+                      key={channel.label}
+                      href={channel.href}
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '16px',
+                        padding: '20px 24px',
+                        backgroundColor: '#F6F9FC',
+                        borderRadius: '12px',
+                        border: '1px solid rgba(10, 37, 64, 0.04)',
+                        textDecoration: 'none',
+                        transition: 'box-shadow 0.2s ease, transform 0.2s ease'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.boxShadow = '0 4px 16px rgba(10, 37, 64, 0.06)'
+                        e.currentTarget.style.transform = 'translateY(-1px)'
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.boxShadow = 'none'
+                        e.currentTarget.style.transform = 'translateY(0)'
+                      }}
+                    >
+                      <div
+                        style={{
+                          width: '44px',
+                          height: '44px',
+                          borderRadius: '10px',
+                          backgroundColor: 'rgba(99, 91, 255, 0.08)',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          flexShrink: 0
+                        }}
+                      >
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#635BFF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                          <path d={channel.iconPath} />
+                        </svg>
+                      </div>
+                      <div>
+                        <p style={{ fontSize: '12px', fontWeight: 600, color: '#425466', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '2px' }}>
+                          {channel.label}
+                        </p>
+                        <p style={{ fontSize: '15px', fontWeight: 600, color: '#0A2540' }}>
+                          {channel.value}
+                        </p>
+                      </div>
+                    </a>
+                  ))}
+                </div>
+              </motion.div>
+
+              {/* Reassurance */}
+              <motion.div
+                variants={fadeUp}
+                style={{
+                  padding: '20px 24px',
+                  backgroundColor: 'rgba(99, 91, 255, 0.04)',
+                  borderRadius: '12px',
+                  borderLeft: '3px solid #635BFF'
+                }}
+              >
+                <p style={{ fontSize: '14px', lineHeight: 1.7, color: '#425466' }}>
+                  We respect your time and information. All conversations are confidential and exploratory — no pressure, no obligation.
                 </p>
               </motion.div>
             </motion.div>
 
-            {/* Right Column - Minimal Form */}
+            {/* ── Right Column — Form ── */}
             <motion.div
               initial="hidden"
               whileInView="visible"
@@ -276,87 +299,78 @@ export default function ContactPage() {
             >
               <div
                 style={{
-                  backgroundColor: 'hsl(var(--premium-gray-50))',
-                  borderRadius: '12px',
-                  padding: 'var(--space-8)',
-                  border: '1px solid hsl(var(--premium-gray-100))'
+                  backgroundColor: '#F6F9FC',
+                  borderRadius: '20px',
+                  padding: '40px',
+                  border: '1px solid rgba(10, 37, 64, 0.06)'
                 }}
               >
                 <h2
                   style={{
-                    fontSize: 'var(--text-lg)',
-                    fontWeight: 'var(--font-semibold)',
-                    color: 'hsl(var(--premium-gray-900))',
-                    marginBottom: 'var(--space-2)'
+                    fontSize: '22px',
+                    fontWeight: 700,
+                    letterSpacing: '-0.02em',
+                    color: '#0A2540',
+                    marginBottom: '6px'
                   }}
                 >
-                  Send a Message
+                  Send a message
                 </h2>
                 <p
                   style={{
-                    fontSize: 'var(--text-sm)',
-                    color: 'hsl(var(--premium-gray-500))',
-                    marginBottom: 'var(--space-6)'
+                    fontSize: '15px',
+                    color: '#425466',
+                    marginBottom: '32px'
                   }}
                 >
-                  We'll get back to you within one business day.
+                  We&apos;ll get back to you within one business day.
                 </p>
 
                 {isSubmitted ? (
-                  <div
-                    style={{
-                      textAlign: 'center',
-                      padding: 'var(--space-8) 0'
-                    }}
-                  >
+                  <div style={{ textAlign: 'center', padding: '40px 0' }}>
                     <div
                       style={{
-                        width: '48px',
-                        height: '48px',
+                        width: '56px',
+                        height: '56px',
                         borderRadius: '50%',
-                        backgroundColor: 'hsl(var(--premium-gray-900))',
+                        backgroundColor: '#635BFF',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        margin: '0 auto var(--space-4)'
+                        margin: '0 auto 20px'
                       }}
                     >
                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" style={{ color: 'white' }}>
-                        <path d="M20 6L9 17L4 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M20 6L9 17L4 12" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
                     </div>
                     <h3
                       style={{
-                        fontSize: 'var(--text-lg)',
-                        fontWeight: 'var(--font-semibold)',
-                        color: 'hsl(var(--premium-gray-900))',
-                        marginBottom: 'var(--space-2)'
+                        fontSize: '20px',
+                        fontWeight: 700,
+                        color: '#0A2540',
+                        marginBottom: '8px'
                       }}
                     >
-                      Message Sent
+                      Message sent
                     </h3>
-                    <p
-                      style={{
-                        fontSize: 'var(--text-sm)',
-                        color: 'hsl(var(--premium-gray-500))'
-                      }}
-                    >
-                      Thank you. We'll be in touch soon.
+                    <p style={{ fontSize: '15px', color: '#425466' }}>
+                      Thank you. We&apos;ll be in touch soon.
                     </p>
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit}>
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-4)' }}>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
                       {/* Name */}
                       <div>
                         <label
                           htmlFor="name"
                           style={{
                             display: 'block',
-                            fontSize: 'var(--text-sm)',
-                            fontWeight: 'var(--font-medium)',
-                            color: 'hsl(var(--premium-gray-700))',
-                            marginBottom: 'var(--space-2)'
+                            fontSize: '13px',
+                            fontWeight: 600,
+                            color: '#0A2540',
+                            marginBottom: '8px'
                           }}
                         >
                           Name
@@ -368,16 +382,14 @@ export default function ContactPage() {
                           required
                           value={formData.name}
                           onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
-                          style={{
-                            width: '100%',
-                            padding: 'var(--space-3) var(--space-4)',
-                            fontSize: 'var(--text-base)',
-                            border: '1px solid hsl(var(--premium-gray-200))',
-                            borderRadius: '8px',
-                            backgroundColor: 'white',
-                            color: 'hsl(var(--premium-gray-900))',
-                            outline: 'none',
-                            transition: 'border-color 0.2s ease'
+                          style={inputBase}
+                          onFocus={(e) => {
+                            e.currentTarget.style.borderColor = '#635BFF'
+                            e.currentTarget.style.boxShadow = '0 0 0 3px rgba(99, 91, 255, 0.1)'
+                          }}
+                          onBlur={(e) => {
+                            e.currentTarget.style.borderColor = 'rgba(10, 37, 64, 0.12)'
+                            e.currentTarget.style.boxShadow = 'none'
                           }}
                         />
                       </div>
@@ -388,10 +400,10 @@ export default function ContactPage() {
                           htmlFor="email"
                           style={{
                             display: 'block',
-                            fontSize: 'var(--text-sm)',
-                            fontWeight: 'var(--font-medium)',
-                            color: 'hsl(var(--premium-gray-700))',
-                            marginBottom: 'var(--space-2)'
+                            fontSize: '13px',
+                            fontWeight: 600,
+                            color: '#0A2540',
+                            marginBottom: '8px'
                           }}
                         >
                           Email
@@ -403,16 +415,14 @@ export default function ContactPage() {
                           required
                           value={formData.email}
                           onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
-                          style={{
-                            width: '100%',
-                            padding: 'var(--space-3) var(--space-4)',
-                            fontSize: 'var(--text-base)',
-                            border: '1px solid hsl(var(--premium-gray-200))',
-                            borderRadius: '8px',
-                            backgroundColor: 'white',
-                            color: 'hsl(var(--premium-gray-900))',
-                            outline: 'none',
-                            transition: 'border-color 0.2s ease'
+                          style={inputBase}
+                          onFocus={(e) => {
+                            e.currentTarget.style.borderColor = '#635BFF'
+                            e.currentTarget.style.boxShadow = '0 0 0 3px rgba(99, 91, 255, 0.1)'
+                          }}
+                          onBlur={(e) => {
+                            e.currentTarget.style.borderColor = 'rgba(10, 37, 64, 0.12)'
+                            e.currentTarget.style.boxShadow = 'none'
                           }}
                         />
                       </div>
@@ -423,14 +433,14 @@ export default function ContactPage() {
                           htmlFor="role"
                           style={{
                             display: 'block',
-                            fontSize: 'var(--text-sm)',
-                            fontWeight: 'var(--font-medium)',
-                            color: 'hsl(var(--premium-gray-700))',
-                            marginBottom: 'var(--space-2)'
+                            fontSize: '13px',
+                            fontWeight: 600,
+                            color: '#0A2540',
+                            marginBottom: '8px'
                           }}
                         >
                           Role
-                          <span style={{ fontWeight: 'var(--font-normal)', color: 'hsl(var(--premium-gray-400))' }}> (optional)</span>
+                          <span style={{ fontWeight: 400, color: '#425466', marginLeft: '4px' }}>(optional)</span>
                         </label>
                         <input
                           type="text"
@@ -439,16 +449,14 @@ export default function ContactPage() {
                           placeholder="e.g., CTO, VP Engineering, Architect"
                           value={formData.role}
                           onChange={(e) => setFormData(prev => ({ ...prev, role: e.target.value }))}
-                          style={{
-                            width: '100%',
-                            padding: 'var(--space-3) var(--space-4)',
-                            fontSize: 'var(--text-base)',
-                            border: '1px solid hsl(var(--premium-gray-200))',
-                            borderRadius: '8px',
-                            backgroundColor: 'white',
-                            color: 'hsl(var(--premium-gray-900))',
-                            outline: 'none',
-                            transition: 'border-color 0.2s ease'
+                          style={{ ...inputBase, color: formData.role ? '#0A2540' : '#94a3b8' }}
+                          onFocus={(e) => {
+                            e.currentTarget.style.borderColor = '#635BFF'
+                            e.currentTarget.style.boxShadow = '0 0 0 3px rgba(99, 91, 255, 0.1)'
+                          }}
+                          onBlur={(e) => {
+                            e.currentTarget.style.borderColor = 'rgba(10, 37, 64, 0.12)'
+                            e.currentTarget.style.boxShadow = 'none'
                           }}
                         />
                       </div>
@@ -459,14 +467,14 @@ export default function ContactPage() {
                           htmlFor="context"
                           style={{
                             display: 'block',
-                            fontSize: 'var(--text-sm)',
-                            fontWeight: 'var(--font-medium)',
-                            color: 'hsl(var(--premium-gray-700))',
-                            marginBottom: 'var(--space-2)'
+                            fontSize: '13px',
+                            fontWeight: 600,
+                            color: '#0A2540',
+                            marginBottom: '8px'
                           }}
                         >
                           Context
-                          <span style={{ fontWeight: 'var(--font-normal)', color: 'hsl(var(--premium-gray-400))' }}> (optional but helpful)</span>
+                          <span style={{ fontWeight: 400, color: '#425466', marginLeft: '4px' }}>(optional but helpful)</span>
                         </label>
                         <textarea
                           id="context"
@@ -476,17 +484,18 @@ export default function ContactPage() {
                           value={formData.context}
                           onChange={(e) => setFormData(prev => ({ ...prev, context: e.target.value }))}
                           style={{
-                            width: '100%',
-                            padding: 'var(--space-3) var(--space-4)',
-                            fontSize: 'var(--text-base)',
-                            border: '1px solid hsl(var(--premium-gray-200))',
-                            borderRadius: '8px',
-                            backgroundColor: 'white',
-                            color: 'hsl(var(--premium-gray-900))',
-                            outline: 'none',
-                            resize: 'vertical',
-                            minHeight: '100px',
-                            transition: 'border-color 0.2s ease'
+                            ...inputBase,
+                            resize: 'vertical' as const,
+                            minHeight: '120px',
+                            color: formData.context ? '#0A2540' : '#94a3b8'
+                          }}
+                          onFocus={(e) => {
+                            e.currentTarget.style.borderColor = '#635BFF'
+                            e.currentTarget.style.boxShadow = '0 0 0 3px rgba(99, 91, 255, 0.1)'
+                          }}
+                          onBlur={(e) => {
+                            e.currentTarget.style.borderColor = 'rgba(10, 37, 64, 0.12)'
+                            e.currentTarget.style.boxShadow = 'none'
                           }}
                         />
                       </div>
@@ -497,17 +506,29 @@ export default function ContactPage() {
                         disabled={isSubmitting}
                         style={{
                           width: '100%',
-                          padding: 'var(--space-4)',
-                          backgroundColor: 'hsl(var(--premium-gray-900))',
+                          padding: '16px',
+                          backgroundColor: '#635BFF',
                           color: 'white',
-                          fontSize: 'var(--text-base)',
-                          fontWeight: 'var(--font-medium)',
-                          borderRadius: '8px',
+                          fontSize: '15px',
+                          fontWeight: 600,
+                          borderRadius: '10px',
                           border: 'none',
                           cursor: isSubmitting ? 'not-allowed' : 'pointer',
                           opacity: isSubmitting ? 0.7 : 1,
-                          transition: 'opacity 0.2s ease',
-                          marginTop: 'var(--space-2)'
+                          transition: 'background-color 0.2s ease, opacity 0.2s ease, transform 0.2s ease',
+                          marginTop: '4px',
+                          fontFamily: 'inherit',
+                          letterSpacing: '-0.01em'
+                        }}
+                        onMouseEnter={(e) => {
+                          if (!isSubmitting) {
+                            e.currentTarget.style.backgroundColor = '#5349E0'
+                            e.currentTarget.style.transform = 'translateY(-1px)'
+                          }
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.backgroundColor = '#635BFF'
+                          e.currentTarget.style.transform = 'translateY(0)'
                         }}
                       >
                         {isSubmitting ? 'Sending...' : 'Send Message'}
@@ -516,18 +537,6 @@ export default function ContactPage() {
                   </form>
                 )}
               </div>
-
-              {/* Reassurance */}
-              <p
-                style={{
-                  fontSize: 'var(--text-sm)',
-                  color: 'hsl(var(--premium-gray-400))',
-                  marginTop: 'var(--space-6)',
-                  lineHeight: 'var(--leading-relaxed)'
-                }}
-              >
-                We respect your time and information. Conversations are confidential and exploratory.
-              </p>
             </motion.div>
           </div>
         </div>
