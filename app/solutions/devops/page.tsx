@@ -1,554 +1,675 @@
 "use client"
 
-import { motion } from 'framer-motion'
-import { Button } from '@/components/ui/button'
-import { Badge } from '@/components/ui/badge'
-import { Card } from '@/components/ui/card'
-import { 
- ArrowRight, 
- Zap, 
- GitBranch, 
- Shield, 
- DollarSign,
- CheckCircle,
- ArrowUp,
- Gauge,
- Code,
- Workflow,
- Monitor,
- Rocket,
- Target,
- BarChart3
-} from 'lucide-react'
+import { motion, type Variants } from 'framer-motion'
+import Link from 'next/link'
 import SharedLayout from '@/components/shared-layout'
+import { ArrowRight } from 'lucide-react'
+
+const fadeUp: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }
+  }
+}
+
+const staggerContainer: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.15
+    }
+  }
+}
+
+/* ── Data ─────────────────────────────────────────── */
+
+const heroStats = [
+  { value: "90%", label: "Faster Deployments", sub: "Automated CI/CD pipelines" },
+  { value: "99.5%", label: "Deployment Success", sub: "Reliable automated releases" },
+  { value: "70%", label: "Cost Reduction", sub: "Infrastructure optimization" },
+  { value: "5x", label: "Developer Velocity", sub: "Streamlined workflows" }
+]
+
+const solutions = [
+  {
+    title: "CI/CD Pipeline Automation",
+    description: "Complete continuous integration and deployment pipelines with automated testing, quality gates, and rollback capabilities.",
+    capabilities: ["Automated build & test pipelines", "Multi-environment deployments", "Quality gate enforcement", "Automated rollback strategies"],
+    metric: "90% faster deployments",
+    technologies: ["Jenkins", "GitLab CI", "GitHub Actions", "Azure DevOps"],
+    iconPath: "M6 3v12M18 9a3 3 0 100-6 3 3 0 000 6zM6 21a3 3 0 100-6 3 3 0 000 6zM18 9a9 9 0 01-9 9"
+  },
+  {
+    title: "Infrastructure as Code",
+    description: "Version-controlled, automated infrastructure provisioning with consistent environments and disaster recovery.",
+    capabilities: ["Environment provisioning", "Infrastructure versioning", "Disaster recovery automation", "Configuration management"],
+    metric: "10x faster provisioning",
+    technologies: ["Terraform", "CloudFormation", "Ansible", "Pulumi"],
+    iconPath: "M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+  },
+  {
+    title: "Monitoring & Observability",
+    description: "Comprehensive monitoring, logging, and alerting systems with real-time insights and predictive analytics.",
+    capabilities: ["Application performance monitoring", "Infrastructure health tracking", "Log aggregation & analysis", "Predictive alerting"],
+    metric: "75% faster resolution",
+    technologies: ["Prometheus", "Grafana", "ELK Stack", "Datadog"],
+    iconPath: "M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+  },
+  {
+    title: "Security & Compliance Automation",
+    description: "Automated security scanning, compliance checks, and vulnerability management integrated into development workflows.",
+    capabilities: ["Security scanning automation", "Compliance policy enforcement", "Vulnerability assessment", "Secret management"],
+    metric: "100% automated scans",
+    technologies: ["SonarQube", "HashiCorp Vault", "OWASP ZAP", "Snyk"],
+    iconPath: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+  },
+  {
+    title: "Container Orchestration",
+    description: "Kubernetes-based container orchestration with auto-scaling, service mesh, and advanced deployment strategies.",
+    capabilities: ["Container orchestration", "Auto-scaling policies", "Service mesh implementation", "Blue-green deployments"],
+    metric: "Zero-downtime deploys",
+    technologies: ["Kubernetes", "Docker", "Istio", "Helm"],
+    iconPath: "M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"
+  },
+  {
+    title: "Performance Optimization",
+    description: "Application and infrastructure performance optimization with automated load testing and capacity planning.",
+    capabilities: ["Automated load testing", "Performance benchmarking", "Capacity planning", "Resource optimization"],
+    metric: "50% faster response",
+    technologies: ["JMeter", "K6", "New Relic", "AppDynamics"],
+    iconPath: "M13 10V3L4 14h7v7l9-11h-7z"
+  }
+]
+
+const caseStudies = [
+  {
+    client: "SaaS Platform Provider",
+    challenge: "Manual deployments causing frequent outages",
+    solution: "Automated CI/CD with blue-green deployments and comprehensive rollback strategies",
+    results: ["Zero-downtime deployments achieved", "95% reduction in deployment failures", "10x faster feature delivery"]
+  },
+  {
+    client: "E-commerce Marketplace",
+    challenge: "Scaling infrastructure during peak traffic",
+    solution: "Kubernetes auto-scaling with real-time monitoring and predictive capacity planning",
+    results: ["Automatic traffic scaling", "60% reduction in infrastructure costs", "99.9% uptime during peak seasons"]
+  },
+  {
+    client: "Financial Technology",
+    challenge: "Complex compliance and security requirements",
+    solution: "Automated security scanning and continuous compliance monitoring across all environments",
+    results: ["100% automated security compliance", "SOC2 Type II certification", "80% faster security audits"]
+  }
+]
+
+/* ── Component ────────────────────────────────────── */
 
 const DevOpsAutomation = () => {
- const containerVariants = {
-   hidden: { opacity: 0 },
-   visible: {
-     opacity: 1,
-     transition: {
-       staggerChildren: 0.1,
-       delayChildren: 0.2
-     }
-   }
- }
-
- const itemVariants = {
-   hidden: { opacity: 0, y: 30 },
-   visible: { 
-     opacity: 1, 
-     y: 0,
-     transition: { 
-       duration: 0.6
-     }
-   }
- }
-
- const keyBenefits = [
-   { 
-     icon: ArrowUp, 
-     metric: "90%", 
-     label: "Faster Deployments",
-     description: "Automated CI/CD pipelines"
-   },
-   { 
-     icon: Target, 
-     metric: "99.5%", 
-     label: "Deployment Success",
-     description: "Reliable automated releases"
-   },
-   { 
-     icon: DollarSign, 
-     metric: "70%", 
-     label: "Cost Reduction",
-     description: "Infrastructure optimization"
-   },
-   { 
-     icon: Gauge, 
-     metric: "5x", 
-     label: "Developer Velocity",
-     description: "Streamlined workflows"
-   }
- ]
-
- const solutions = [
-   {
-     icon: GitBranch,
-     title: "CI/CD Pipeline Automation",
-     description: "Complete continuous integration and deployment pipelines with automated testing, quality gates, and rollback capabilities.",
-     useCases: [
-       "Automated build & test pipelines",
-       "Multi-environment deployments",
-       "Quality gate enforcement",
-       "Automated rollback strategies"
-     ],
-     impact: {
-       deployment: "90% faster deployments",
-       quality: "95% reduction in bugs",
-       efficiency: "80% less manual effort"
-     },
-     technologies: ["Jenkins", "GitLab CI", "GitHub Actions", "Azure DevOps"],
-     color: "from-orange-500 to-red-500"
-   },
-   {
-     icon: Code,
-     title: "Infrastructure as Code",
-     description: "Version-controlled, automated infrastructure provisioning with consistent environments and disaster recovery capabilities.",
-     useCases: [
-       "Environment provisioning",
-       "Infrastructure versioning",
-       "Disaster recovery automation",
-       "Configuration management"
-     ],
-     impact: {
-       provisioning: "10x faster provisioning",
-       consistency: "100% environment consistency",
-       recovery: "15-min disaster recovery"
-     },
-     technologies: ["Terraform", "CloudFormation", "Ansible", "Pulumi"],
-     color: "from-blue-500 to-purple-500"
-   },
-   {
-     icon: Monitor,
-     title: "Monitoring & Observability",
-     description: "Comprehensive monitoring, logging, and alerting systems with real-time insights and predictive analytics.",
-     useCases: [
-       "Application performance monitoring",
-       "Infrastructure health tracking",
-       "Log aggregation & analysis",
-       "Predictive alerting"
-     ],
-     impact: {
-       visibility: "360° system visibility",
-       mttr: "75% faster issue resolution",
-       uptime: "99.9% system availability"
-     },
-     technologies: ["Prometheus", "Grafana", "ELK Stack", "Datadog"],
-     color: "from-green-500 to-teal-500"
-   },
-   {
-     icon: Shield,
-     title: "Security & Compliance Automation",
-     description: "Automated security scanning, compliance checks, and vulnerability management integrated into development workflows.",
-     useCases: [
-       "Security scanning automation",
-       "Compliance policy enforcement",
-       "Vulnerability assessment",
-       "Secret management"
-     ],
-     impact: {
-       security: "100% automated security scans",
-       compliance: "Continuous compliance monitoring",
-       vulnerabilities: "90% faster vulnerability fixes"
-     },
-     technologies: ["SonarQube", "HashiCorp Vault", "OWASP ZAP", "Snyk"],
-     color: "from-red-500 to-pink-500"
-   },
-   {
-     icon: Workflow,
-     title: "Container Orchestration",
-     description: "Kubernetes-based container orchestration with auto-scaling, service mesh, and advanced deployment strategies.",
-     useCases: [
-       "Container orchestration",
-       "Auto-scaling policies",
-       "Service mesh implementation",
-       "Blue-green deployments"
-     ],
-     impact: {
-       scalability: "Automatic resource scaling",
-       efficiency: "60% resource optimization",
-       deployment: "Zero-downtime deployments"
-     },
-     technologies: ["Kubernetes", "Docker", "Istio", "Helm"],
-     color: "from-purple-500 to-indigo-500"
-   },
-   {
-     icon: BarChart3,
-     title: "Performance Optimization",
-     description: "Application and infrastructure performance optimization with automated load testing and capacity planning.",
-     useCases: [
-       "Automated load testing",
-       "Performance benchmarking",
-       "Capacity planning",
-       "Resource optimization"
-     ],
-     impact: {
-       performance: "50% faster response times",
-       capacity: "Predictive scaling",
-       costs: "40% infrastructure cost savings"
-     },
-     technologies: ["JMeter", "K6", "New Relic", "AppDynamics"],
-     color: "from-yellow-500 to-orange-500"
-   }
- ]
-
- const caseStudyHighlights = [
-   {
-     company: "SaaS Platform Provider",
-     challenge: "Manual deployments causing frequent outages",
-     solution: "Automated CI/CD with blue-green deployments",
-     results: [
-       "Zero-downtime deployments achieved",
-       "95% reduction in deployment failures", 
-       "10x faster feature delivery"
-     ]
-   },
-   {
-     company: "E-commerce Marketplace",
-     challenge: "Scaling infrastructure during peak traffic",
-     solution: "Kubernetes auto-scaling with monitoring",
-     results: [
-       "Automatic traffic scaling",
-       "60% reduction in infrastructure costs",
-       "99.9% uptime during peak seasons"
-     ]
-   },
-   {
-     company: "Financial Technology",
-     challenge: "Complex compliance and security requirements",
-     solution: "Automated security scanning and compliance",
-     results: [
-       "100% automated security compliance",
-       "SOC2 Type II certification",
-       "80% faster security audits"
-     ]
-   }
- ]
-
- return (
+  return (
     <SharedLayout>
-   <div className="min-h-screen bg-gradient-to-br from-background via-muted/10 to-background">
-     {/* Hero Section */}
-     <section className="relative py-20 lg:py-32 overflow-hidden">
-       <div className="absolute inset-0">
-         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-orange-500/5 rounded-full blur-3xl" />
-         <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-red-500/5 rounded-full blur-3xl" />
-       </div>
+      {/* ── Hero — Dark Navy ── */}
+      <section
+        className="relative overflow-hidden"
+        style={{
+          paddingTop: '160px',
+          paddingBottom: '100px',
+          backgroundColor: '#0A2540'
+        }}
+      >
+        <div
+          style={{
+            position: 'absolute',
+            top: '5%',
+            right: '-8%',
+            width: '650px',
+            height: '650px',
+            background: 'radial-gradient(circle, rgba(99, 91, 255, 0.12), transparent 60%)',
+            borderRadius: '50%',
+            filter: 'blur(80px)',
+            pointerEvents: 'none'
+          }}
+          aria-hidden="true"
+        />
+        <div
+          style={{
+            position: 'absolute',
+            bottom: '-10%',
+            left: '5%',
+            width: '400px',
+            height: '400px',
+            background: 'radial-gradient(circle, rgba(46, 196, 182, 0.08), transparent 60%)',
+            borderRadius: '50%',
+            filter: 'blur(60px)',
+            pointerEvents: 'none'
+          }}
+          aria-hidden="true"
+        />
 
-       <div className="section-container relative z-10">
-         <motion.div
-           className="max-w-5xl mx-auto"
-           variants={containerVariants}
-           initial="hidden"
-           animate="visible"
-         >
-           <motion.div 
-             className="text-center mb-12"
-             variants={itemVariants}
-           >
-             <Badge 
-               variant="secondary" 
-               className="bg-orange-500/10 text-orange-600 hover:bg-orange-500/20 px-6 py-3 text-sm font-semibold border border-orange-500/20 rounded-full mb-8"
-             >
-               <Zap className="w-4 h-4 mr-2" />
-               DevOps & Automation Solutions
-             </Badge>
+        <motion.div
+          className="enterprise-container-wide relative"
+          style={{ zIndex: 1 }}
+          initial="hidden"
+          animate="visible"
+          variants={staggerContainer}
+        >
+          <motion.div variants={fadeUp} style={{ maxWidth: '720px' }}>
+            <p
+              style={{
+                fontSize: '13px',
+                fontWeight: 600,
+                textTransform: 'uppercase',
+                letterSpacing: '0.1em',
+                color: '#635BFF',
+                marginBottom: '24px'
+              }}
+            >
+              DevOps &amp; Automation
+            </p>
+            <h1
+              style={{
+                fontSize: 'clamp(2.5rem, 5vw, 4rem)',
+                fontWeight: 700,
+                letterSpacing: '-0.035em',
+                lineHeight: 1.05,
+                color: 'white',
+                marginBottom: '24px'
+              }}
+            >
+              Ship faster without breaking things.
+            </h1>
+            <p
+              style={{
+                fontSize: '20px',
+                lineHeight: 1.65,
+                color: 'rgba(255, 255, 255, 0.55)',
+                maxWidth: '560px',
+                marginBottom: '40px'
+              }}
+            >
+              Enterprise-grade DevOps practices, automated pipelines, and intelligent monitoring — engineered to reduce deployment time by 90% and eliminate manual errors.
+            </p>
 
-             <h1 className="heading-hero mb-8 text-balance">
-               DevOps & Automation
-               <span className="block bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent mt-2">
-                 Excellence at Scale
-               </span>
-             </h1>
+            <div className="flex flex-col sm:flex-row" style={{ gap: '16px' }}>
+              <Link href="/contact-us" className="stripe-btn-light group">
+                Get DevOps Assessment
+                <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" strokeWidth={2.5} />
+              </Link>
+              <Link href="/case-studies" className="stripe-btn-ghost">
+                View Success Stories
+              </Link>
+            </div>
+          </motion.div>
 
-             <p className="text-lead max-w-4xl mx-auto mb-12">
-               Accelerate your software delivery with enterprise-grade DevOps practices, automated pipelines, 
-               and intelligent monitoring that reduce deployment time by 90% and eliminate manual errors.
-             </p>
-           </motion.div>
+          {/* Stats bar */}
+          <motion.div
+            variants={fadeUp}
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(4, 1fr)',
+              gap: '1px',
+              marginTop: '80px',
+              backgroundColor: 'rgba(255, 255, 255, 0.08)',
+              borderRadius: '16px',
+              overflow: 'hidden'
+            }}
+            className="max-md:!grid-cols-2"
+          >
+            {heroStats.map((stat) => (
+              <div
+                key={stat.label}
+                style={{
+                  padding: '32px',
+                  backgroundColor: 'rgba(10, 37, 64, 0.95)',
+                  textAlign: 'center'
+                }}
+              >
+                <div
+                  style={{
+                    fontSize: 'clamp(2rem, 3vw, 2.5rem)',
+                    fontWeight: 700,
+                    color: 'white',
+                    letterSpacing: '-0.03em',
+                    lineHeight: 1,
+                    marginBottom: '8px'
+                  }}
+                >
+                  {stat.value}
+                </div>
+                <div style={{ fontSize: '14px', fontWeight: 600, color: '#635BFF', marginBottom: '4px' }}>
+                  {stat.label}
+                </div>
+                <div style={{ fontSize: '13px', color: 'rgba(255, 255, 255, 0.4)' }}>
+                  {stat.sub}
+                </div>
+              </div>
+            ))}
+          </motion.div>
+        </motion.div>
+      </section>
 
-           {/* Key Benefits */}
-           <motion.div 
-             className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-12"
-             variants={itemVariants}
-           >
-             {keyBenefits.map((benefit, index) => {
-               const IconComponent = benefit.icon
-               return (
-                 <Card key={index} className="enterprise-card enterprise-card-hover p-6 text-center group">
-                   <IconComponent className="w-8 h-8 text-orange-500 mx-auto mb-4 group-hover:scale-110 transition-transform" />
-                   <div className="text-3xl font-bold text-foreground mb-2 group-hover:text-orange-500 transition-colors">
-                     {benefit.metric}
-                   </div>
-                   <div className="text-sm font-semibold text-foreground mb-1">
-                     {benefit.label}
-                   </div>
-                   <div className="text-xs text-muted-foreground">
-                     {benefit.description}
-                   </div>
-                 </Card>
-               )
-             })}
-           </motion.div>
+      {/* ── Solutions — White ── */}
+      <section style={{ paddingTop: '120px', paddingBottom: '120px', backgroundColor: 'white' }}>
+        <motion.div
+          className="enterprise-container-wide"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={staggerContainer}
+        >
+          <motion.div variants={fadeUp} style={{ marginBottom: '64px', maxWidth: '640px' }}>
+            <p
+              style={{
+                fontSize: '13px',
+                fontWeight: 600,
+                textTransform: 'uppercase',
+                letterSpacing: '0.1em',
+                color: '#635BFF',
+                marginBottom: '20px'
+              }}
+            >
+              What we deliver
+            </p>
+            <h2
+              style={{
+                fontSize: 'clamp(2rem, 3.5vw, 3rem)',
+                fontWeight: 700,
+                letterSpacing: '-0.03em',
+                lineHeight: 1.1,
+                color: '#0A2540',
+                marginBottom: '20px'
+              }}
+            >
+              The complete DevOps ecosystem.
+            </h2>
+            <p
+              style={{
+                fontSize: '19px',
+                lineHeight: 1.65,
+                color: '#425466',
+                maxWidth: '520px'
+              }}
+            >
+              End-to-end automation that transforms your development lifecycle from commit to production.
+            </p>
+          </motion.div>
 
-           <motion.div 
-             className="flex flex-col sm:flex-row gap-6 justify-center"
-             variants={itemVariants}
-           >
-             <Button 
-               size="xl" 
-               className="bg-orange-500 hover:bg-orange-600 text-white h-14 px-12 text-lg group"
-             >
-               Get DevOps Assessment
-               <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-             </Button>
-             <Button 
-               variant="outline" 
-               size="xl"
-               className="border-2 border-orange-500/30 hover:border-orange-500 hover:text-orange-500 h-14 px-12 text-lg"
-             >
-               View Success Stories
-             </Button>
-           </motion.div>
-         </motion.div>
-       </div>
-     </section>
+          <motion.div
+            variants={staggerContainer}
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(380px, 1fr))',
+              gap: '24px'
+            }}
+            className="max-sm:!grid-cols-1"
+          >
+            {solutions.map((solution, index) => (
+              <motion.div
+                key={index}
+                variants={fadeUp}
+                style={{
+                  padding: '36px',
+                  backgroundColor: '#F6F9FC',
+                  borderRadius: '16px',
+                  border: '1px solid rgba(10, 37, 64, 0.06)',
+                  transition: 'box-shadow 0.3s ease, transform 0.3s ease',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  position: 'relative',
+                  overflow: 'hidden'
+                }}
+                className="group"
+                whileHover={{ y: -3, boxShadow: '0 12px 40px rgba(10, 37, 64, 0.08)' }}
+              >
+                {/* Icon */}
+                <div
+                  style={{
+                    width: '48px',
+                    height: '48px',
+                    borderRadius: '12px',
+                    backgroundColor: 'rgba(99, 91, 255, 0.08)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginBottom: '24px',
+                    flexShrink: 0
+                  }}
+                >
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#635BFF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d={solution.iconPath} />
+                  </svg>
+                </div>
 
-     {/* Solutions Grid */}
-     <section className="py-16 lg:py-24">
-       <div className="section-container">
-         <motion.div
-           variants={containerVariants}
-           initial="hidden"
-           whileInView="visible"
-           viewport={{ once: true }}
-         >
-           <motion.div 
-             className="text-center mb-16"
-             variants={itemVariants}
-           >
-             <h2 className="heading-section mb-6">
-               Complete <span className="gradient-text">DevOps Ecosystem</span>
-             </h2>
-             <p className="text-lead max-w-3xl mx-auto">
-               End-to-end DevOps and automation solutions that transform your development lifecycle
-             </p>
-           </motion.div>
+                <h3
+                  style={{
+                    fontSize: '20px',
+                    fontWeight: 700,
+                    letterSpacing: '-0.02em',
+                    color: '#0A2540',
+                    marginBottom: '12px'
+                  }}
+                >
+                  {solution.title}
+                </h3>
+                <p
+                  style={{
+                    fontSize: '15px',
+                    lineHeight: 1.65,
+                    color: '#425466',
+                    marginBottom: '24px'
+                  }}
+                >
+                  {solution.description}
+                </p>
 
-           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
-             {solutions.map((solution, index) => {
-               const IconComponent = solution.icon
-               return (
-                 <motion.div
-                   key={index}
-                   variants={itemVariants}
-                   whileHover={{ y: -5 }}
-                 >
-                   <Card className="enterprise-card enterprise-card-hover p-8 lg:p-10 h-full group">
-                     <div className="flex items-start gap-6 mb-6">
-                       <motion.div 
-                         className="w-16 h-16 rounded-2xl bg-muted/50 flex items-center justify-center group-hover:bg-orange-500/10 transition-colors flex-shrink-0"
-                         whileHover={{ rotate: 5, scale: 1.1 }}
-                       >
-                         <IconComponent className="w-8 h-8 text-orange-500" />
-                       </motion.div>
-                       <div className="flex-1">
-                         <h3 className="text-2xl font-bold mb-3 group-hover:text-orange-500 transition-colors">
-                           {solution.title}
-                         </h3>
-                         <p className="text-muted-foreground leading-relaxed">
-                           {solution.description}
-                         </p>
-                       </div>
-                     </div>
+                {/* Capabilities */}
+                <div style={{ marginBottom: '24px', flex: 1 }}>
+                  {solution.capabilities.map((cap) => (
+                    <div
+                      key={cap}
+                      style={{
+                        display: 'flex',
+                        alignItems: 'flex-start',
+                        gap: '10px',
+                        marginBottom: '10px'
+                      }}
+                    >
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ marginTop: '2px', flexShrink: 0 }}>
+                        <path d="M13.333 4L6 11.333 2.667 8" stroke="#635BFF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                      <span style={{ fontSize: '14px', color: '#425466', lineHeight: 1.5 }}>{cap}</span>
+                    </div>
+                  ))}
+                </div>
 
-                     {/* Use Cases */}
-                     <div className="mb-6">
-                       <h4 className="text-sm font-semibold text-foreground mb-3 uppercase tracking-wider">
-                         Key Capabilities
-                       </h4>
-                       <div className="grid grid-cols-2 gap-2">
-                         {solution.useCases.map((useCase, idx) => (
-                           <div key={idx} className="flex items-center gap-2 text-sm">
-                             <CheckCircle className="w-3 h-3 text-orange-500 flex-shrink-0" />
-                             <span className="text-muted-foreground">{useCase}</span>
-                           </div>
-                         ))}
-                       </div>
-                     </div>
+                {/* Bottom: metric + tech */}
+                <div
+                  style={{
+                    paddingTop: '20px',
+                    borderTop: '1px solid rgba(10, 37, 64, 0.06)',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '16px'
+                  }}
+                >
+                  <div style={{ fontSize: '14px', fontWeight: 700, color: '#635BFF', letterSpacing: '-0.01em' }}>
+                    {solution.metric}
+                  </div>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
+                    {solution.technologies.map((tech) => (
+                      <span
+                        key={tech}
+                        style={{
+                          fontSize: '11px',
+                          fontWeight: 600,
+                          color: '#0A2540',
+                          backgroundColor: 'white',
+                          padding: '4px 10px',
+                          borderRadius: '100px',
+                          border: '1px solid rgba(10, 37, 64, 0.08)',
+                          letterSpacing: '0.01em'
+                        }}
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </motion.div>
+      </section>
 
-                     {/* Impact Metrics */}
-                     <div className="mb-6">
-                       <h4 className="text-sm font-semibold text-foreground mb-3 uppercase tracking-wider">
-                         Performance Impact
-                       </h4>
-                       <div className="grid grid-cols-1 gap-2">
-                         {Object.entries(solution.impact).map(([key, value], idx) => (
-                           <div key={idx} className="flex items-center justify-between text-sm">
-                             <span className="text-muted-foreground capitalize">{key}:</span>
-                             <span className="font-semibold text-orange-500">{value}</span>
-                           </div>
-                         ))}
-                       </div>
-                     </div>
+      {/* ── Case Studies — Dark Navy ── */}
+      <section
+        className="relative overflow-hidden"
+        style={{
+          paddingTop: '120px',
+          paddingBottom: '120px',
+          backgroundColor: '#0A2540'
+        }}
+      >
+        <div
+          style={{
+            position: 'absolute',
+            top: '30%',
+            left: '-10%',
+            width: '500px',
+            height: '500px',
+            background: 'radial-gradient(circle, rgba(99, 91, 255, 0.1), transparent 65%)',
+            borderRadius: '50%',
+            filter: 'blur(60px)',
+            pointerEvents: 'none'
+          }}
+          aria-hidden="true"
+        />
 
-                     {/* Technologies */}
-                     <div className="mb-6">
-                       <h4 className="text-sm font-semibold text-foreground mb-3 uppercase tracking-wider">
-                         Core Technologies
-                       </h4>
-                       <div className="flex flex-wrap gap-2">
-                         {solution.technologies.map((tech, idx) => (
-                           <Badge 
-                             key={idx} 
-                             variant="secondary" 
-                             className="bg-orange-500/10 text-orange-600 hover:bg-orange-500/20 text-xs"
-                           >
-                             {tech}
-                           </Badge>
-                         ))}
-                       </div>
-                     </div>
+        <motion.div
+          className="enterprise-container-wide relative"
+          style={{ zIndex: 1 }}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={staggerContainer}
+        >
+          <motion.div variants={fadeUp} style={{ marginBottom: '64px', maxWidth: '640px' }}>
+            <p
+              style={{
+                fontSize: '13px',
+                fontWeight: 600,
+                textTransform: 'uppercase',
+                letterSpacing: '0.1em',
+                color: '#635BFF',
+                marginBottom: '20px'
+              }}
+            >
+              Proven results
+            </p>
+            <h2
+              style={{
+                fontSize: 'clamp(2rem, 3.5vw, 3rem)',
+                fontWeight: 700,
+                letterSpacing: '-0.03em',
+                lineHeight: 1.1,
+                color: 'white',
+                marginBottom: '20px'
+              }}
+            >
+              DevOps transformations that delivered.
+            </h2>
+            <p
+              style={{
+                fontSize: '19px',
+                lineHeight: 1.65,
+                color: 'rgba(255, 255, 255, 0.55)',
+                maxWidth: '520px'
+              }}
+            >
+              Real-world outcomes from teams that accelerated their delivery with our DevOps practices.
+            </p>
+          </motion.div>
 
-                     {/* CTA */}
-                     <Button 
-                       className="w-full group-hover:bg-orange-500 group-hover:text-white transition-colors group border border-orange-500/20"
-                       variant="outline"
-                     >
-                       Explore Solution
-                       <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                     </Button>
+          <motion.div
+            variants={staggerContainer}
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+              gap: '24px'
+            }}
+          >
+            {caseStudies.map((study, index) => (
+              <motion.div
+                key={index}
+                variants={fadeUp}
+                style={{
+                  padding: '36px',
+                  backgroundColor: 'rgba(255, 255, 255, 0.04)',
+                  backdropFilter: 'blur(16px)',
+                  borderRadius: '16px',
+                  border: '1px solid rgba(255, 255, 255, 0.06)',
+                  display: 'flex',
+                  flexDirection: 'column'
+                }}
+              >
+                <p
+                  style={{
+                    fontSize: '12px',
+                    fontWeight: 600,
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.08em',
+                    color: '#635BFF',
+                    marginBottom: '16px'
+                  }}
+                >
+                  {study.client}
+                </p>
 
-                     <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-orange-500 to-red-500 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
-                   </Card>
-                 </motion.div>
-               )
-             })}
-           </div>
-         </motion.div>
-       </div>
-     </section>
+                <h3
+                  style={{
+                    fontSize: '19px',
+                    fontWeight: 700,
+                    letterSpacing: '-0.02em',
+                    color: 'white',
+                    marginBottom: '12px',
+                    lineHeight: 1.3
+                  }}
+                >
+                  {study.challenge}
+                </h3>
+                <p
+                  style={{
+                    fontSize: '15px',
+                    lineHeight: 1.65,
+                    color: 'rgba(255, 255, 255, 0.45)',
+                    marginBottom: '28px'
+                  }}
+                >
+                  {study.solution}
+                </p>
 
-     {/* Case Study Highlights */}
-     <section className="py-16 lg:py-24 bg-muted/20">
-       <div className="section-container">
-         <motion.div
-           variants={containerVariants}
-           initial="hidden"
-           whileInView="visible"
-           viewport={{ once: true }}
-         >
-           <motion.div 
-             className="text-center mb-16"
-             variants={itemVariants}
-           >
-             <h2 className="heading-section mb-6">
-               Transformation <span className="gradient-text">Success Stories</span>
-             </h2>
-             <p className="text-lead max-w-3xl mx-auto">
-               Real DevOps transformations that delivered measurable business impact
-             </p>
-           </motion.div>
+                <div style={{ marginTop: 'auto', paddingTop: '20px', borderTop: '1px solid rgba(255, 255, 255, 0.06)' }}>
+                  {study.results.map((result) => (
+                    <div
+                      key={result}
+                      style={{
+                        display: 'flex',
+                        alignItems: 'flex-start',
+                        gap: '10px',
+                        marginBottom: '10px'
+                      }}
+                    >
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ marginTop: '2px', flexShrink: 0 }}>
+                        <path d="M4 8l3.5 3.5L12 4" stroke="#2EC4B6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                      <span style={{ fontSize: '14px', color: 'rgba(255, 255, 255, 0.65)', lineHeight: 1.5 }}>{result}</span>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </motion.div>
+      </section>
 
-           <div className="grid lg:grid-cols-3 gap-8">
-             {caseStudyHighlights.map((study, index) => (
-               <motion.div
-                 key={index}
-                 variants={itemVariants}
-                 whileHover={{ y: -5 }}
-               >
-                 <Card className="enterprise-card enterprise-card-hover p-8 h-full group">
-                   <h3 className="text-lg font-bold mb-4 group-hover:text-orange-500 transition-colors">
-                     {study.company}
-                   </h3>
-                   
-                   <div className="mb-4">
-                     <h4 className="text-sm font-semibold text-foreground mb-2 uppercase tracking-wider">
-                       Challenge
-                     </h4>
-                     <p className="text-sm text-muted-foreground">
-                       {study.challenge}
-                     </p>
-                   </div>
+      {/* ── CTA — Dark Navy ── */}
+      <section
+        className="relative overflow-hidden"
+        style={{
+          paddingTop: '100px',
+          paddingBottom: '120px',
+          backgroundColor: '#0A2540'
+        }}
+      >
+        <div
+          style={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            width: '600px',
+            height: '600px',
+            background: 'radial-gradient(circle, rgba(99, 91, 255, 0.08), transparent 60%)',
+            borderRadius: '50%',
+            pointerEvents: 'none'
+          }}
+          aria-hidden="true"
+        />
 
-                   <div className="mb-6">
-                     <h4 className="text-sm font-semibold text-foreground mb-2 uppercase tracking-wider">
-                       Solution
-                     </h4>
-                     <p className="text-sm text-muted-foreground">
-                       {study.solution}
-                     </p>
-                   </div>
+        <motion.div
+          className="enterprise-container-wide relative"
+          style={{ zIndex: 1, textAlign: 'center' }}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={staggerContainer}
+        >
+          <motion.h2
+            variants={fadeUp}
+            style={{
+              fontSize: 'clamp(2rem, 4vw, 3rem)',
+              fontWeight: 700,
+              letterSpacing: '-0.03em',
+              lineHeight: 1.1,
+              color: 'white',
+              marginBottom: '20px'
+            }}
+          >
+            Ready to accelerate your delivery?
+          </motion.h2>
+          <motion.p
+            variants={fadeUp}
+            style={{
+              fontSize: '19px',
+              lineHeight: 1.65,
+              color: 'rgba(255, 255, 255, 0.55)',
+              marginBottom: '40px',
+              maxWidth: '560px',
+              marginLeft: 'auto',
+              marginRight: 'auto'
+            }}
+          >
+            Get a comprehensive DevOps maturity assessment and discover how automated pipelines can transform your software delivery.
+          </motion.p>
 
-                   <div>
-                     <h4 className="text-sm font-semibold text-foreground mb-3 uppercase tracking-wider">
-                       Results
-                     </h4>
-                     <div className="space-y-2">
-                       {study.results.map((result, idx) => (
-                         <div key={idx} className="flex items-center gap-2 text-sm">
-                           <Rocket className="w-3 h-3 text-green-500 flex-shrink-0" />
-                           <span className="text-muted-foreground">{result}</span>
-                         </div>
-                       ))}
-                     </div>
-                   </div>
+          <motion.div
+            variants={fadeUp}
+            className="flex flex-col sm:flex-row justify-center items-center"
+            style={{ gap: '16px', marginBottom: '40px' }}
+          >
+            <Link href="/contact-us" className="stripe-btn-light group">
+              Get DevOps Assessment
+              <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" strokeWidth={2.5} />
+            </Link>
+            <Link href="/contact-us" className="stripe-btn-ghost">
+              Book Strategy Session
+            </Link>
+          </motion.div>
 
-                   <div className="accent-border absolute top-0 left-0 right-0 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
-                 </Card>
-               </motion.div>
-             ))}
-           </div>
-         </motion.div>
-       </div>
-     </section>
-
-     {/* CTA Section */}
-     <section className="py-16 lg:py-24">
-       <div className="section-container">
-         <motion.div
-           className="max-w-4xl mx-auto text-center"
-           initial={{ opacity: 0, y: 30 }}
-           whileInView={{ opacity: 1, y: 0 }}
-           transition={{ duration: 0.6 }}
-           viewport={{ once: true }}
-         >
-           <h2 className="heading-section mb-6">
-             Ready to Accelerate Your <span className="gradient-text">Development Velocity</span>?
-           </h2>
-           
-           <p className="text-lead mb-12">
-             Get a comprehensive DevOps maturity assessment and discover how automated pipelines 
-             can transform your software delivery process.
-           </p>
-
-           <div className="flex flex-col sm:flex-row gap-6 justify-center mb-12">
-             <Button 
-               size="xl" 
-               className="bg-orange-500 hover:bg-orange-600 text-white h-14 px-12 text-lg group"
-             >
-               Get DevOps Assessment
-               <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-             </Button>
-             <Button 
-               variant="outline" 
-               size="xl"
-               className="border-2 border-orange-500/30 hover:border-orange-500 hover:text-orange-500 h-14 px-12 text-lg"
-             >
-               Book Strategy Session
-             </Button>
-           </div>
-
-           <div className="flex flex-wrap justify-center gap-6 text-sm text-muted-foreground">
-             {[
-               "Free maturity assessment",
-               "Custom automation roadmap",
-               "ROI calculation included",
-               "No long-term commitment"
-             ].map((feature, index) => (
-               <div key={index} className="flex items-center gap-2">
-                 <CheckCircle className="w-4 h-4 text-orange-500" />
-                 <span>{feature}</span>
-               </div>
-             ))}
-           </div>
-         </motion.div>
-       </div>
-     </section>
-   </div>
-   </SharedLayout>
- )
+          <motion.div
+            variants={fadeUp}
+            className="flex flex-wrap justify-center"
+            style={{ gap: '24px' }}
+          >
+            {["Free maturity assessment", "Custom automation roadmap", "ROI calculation included", "No long-term commitment"].map((item) => (
+              <div
+                key={item}
+                style={{ display: 'flex', alignItems: 'center', gap: '8px' }}
+              >
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path d="M13.333 4L6 11.333 2.667 8" stroke="#635BFF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+                <span style={{ fontSize: '14px', color: 'rgba(255, 255, 255, 0.5)' }}>{item}</span>
+              </div>
+            ))}
+          </motion.div>
+        </motion.div>
+      </section>
+    </SharedLayout>
+  )
 }
 
 export default DevOpsAutomation

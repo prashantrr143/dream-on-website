@@ -119,6 +119,21 @@
     --premium-gray-800: 240 10% 10%; /* Near black */
     --premium-gray-900: 240 10% 6%; /* Deep charcoal */
     --premium-shadow: 220 13% 10%; /* Shadow base */
+
+    /* Stripe Brand Colors */
+    --stripe-navy: 210 76% 15%;       /* #0A2540 - Stripe's dark navy */
+    --stripe-indigo: 243 100% 68%;    /* #635BFF - Stripe's signature purple */
+    --stripe-indigo-hover: 243 100% 60%;
+    --stripe-cyan: 192 80% 55%;       /* Accent cyan */
+    --stripe-green: 155 65% 50%;      /* Accent green */
+    --stripe-bg: 213 33% 97%;         /* #F6F9FC - Stripe's off-white */
+
+    /* Stripe-inspired spacing tokens */
+    --space-28: 7rem;     /* 112px */
+    --space-36: 9rem;     /* 144px */
+    --space-40: 10rem;    /* 160px */
+    --section-gap-lg: var(--space-32);
+    --section-gap-xl: var(--space-40);
   }
 
   * {
@@ -1137,6 +1152,251 @@
     outline: 2px solid hsl(var(--primary));
     outline-offset: 2px;
     border-radius: 0.375rem;
+  }
+
+  /* ========================================
+     STRIPE-INSPIRED COMPONENTS
+     Using actual Stripe brand colors & patterns
+     ======================================== */
+
+  /* Stripe button - Primary (Indigo #635BFF) */
+  .stripe-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    font-size: var(--text-base);
+    font-weight: var(--font-semibold);
+    background-color: hsl(var(--stripe-indigo));
+    color: white;
+    border-radius: 9999px;
+    transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  .stripe-btn-primary:hover {
+    background-color: hsl(var(--stripe-indigo-hover));
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px hsla(var(--stripe-indigo), 0.35);
+  }
+
+  /* Stripe button - Secondary (White with border) */
+  .stripe-btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    font-size: var(--text-base);
+    font-weight: var(--font-semibold);
+    background-color: white;
+    color: hsl(var(--stripe-navy));
+    border: 1px solid hsl(var(--premium-gray-200));
+    border-radius: 9999px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+    text-decoration: none;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  .stripe-btn-secondary:hover {
+    border-color: hsl(var(--premium-gray-300));
+    box-shadow: 0 2px 8px hsla(var(--premium-shadow), 0.08);
+    transform: translateY(-1px);
+  }
+
+  /* Stripe button - On dark backgrounds */
+  .stripe-btn-light {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    font-size: var(--text-base);
+    font-weight: var(--font-semibold);
+    background-color: white;
+    color: hsl(var(--stripe-navy));
+    border-radius: 9999px;
+    transition: transform 0.15s ease, box-shadow 0.2s ease;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  .stripe-btn-light:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(255, 255, 255, 0.2);
+  }
+
+  /* Stripe ghost button on dark */
+  .stripe-btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    font-size: var(--text-base);
+    font-weight: var(--font-semibold);
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 9999px;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+    text-decoration: none;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  .stripe-btn-ghost:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+
+  /* Trust/logo bar */
+  .trust-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-12);
+    flex-wrap: wrap;
+    opacity: 0.4;
+    transition: opacity 0.3s ease;
+  }
+
+  .trust-bar:hover {
+    opacity: 0.6;
+  }
+
+  /* Stats grid */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-8);
+  }
+
+  @media (min-width: 768px) {
+    .stats-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  /* Bento grid layout */
+  .bento-grid {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 768px) {
+    .bento-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .bento-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .bento-grid > a:hover,
+  .bento-grid > div:hover {
+    box-shadow: 0 12px 40px rgba(10, 37, 64, 0.12);
+    transform: translateY(-3px);
+  }
+
+  .bento-card-lg {
+    grid-column: span 1;
+  }
+
+  @media (min-width: 768px) {
+    .bento-card-lg {
+      grid-column: span 2;
+    }
+  }
+
+  /* Testimonial card */
+  .testimonial-card {
+    background: white;
+    border: 1px solid hsl(var(--premium-gray-100));
+    border-radius: 12px;
+    padding: var(--space-8) var(--space-8) var(--space-6);
+    transition: box-shadow 0.25s ease, transform 0.25s ease;
+  }
+
+  .testimonial-card:hover {
+    box-shadow: 0 8px 24px hsla(var(--premium-shadow), 0.08);
+    transform: translateY(-2px);
+  }
+
+  /* Stripe-level generous section padding */
+  .stripe-section {
+    padding-top: var(--space-24);
+    padding-bottom: var(--space-24);
+  }
+
+  @media (min-width: 768px) {
+    .stripe-section {
+      padding-top: var(--space-32);
+      padding-bottom: var(--space-32);
+    }
+  }
+
+  /* Alternating content blocks */
+  .alternating-block {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-12);
+    align-items: center;
+  }
+
+  @media (min-width: 1024px) {
+    .alternating-block {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-16);
+    }
+  }
+
+  /* Comprehensive footer grid */
+  .footer-grid-comprehensive {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-8);
+  }
+
+  @media (min-width: 768px) {
+    .footer-grid-comprehensive {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .footer-grid-comprehensive {
+      grid-template-columns: 2fr repeat(4, 1fr);
+      gap: var(--space-12);
+    }
+  }
+
+  /* Mega-menu navigation panel */
+  .mega-menu-panel {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border-top: 1px solid hsl(var(--premium-gray-100));
+    box-shadow: 0 8px 32px hsla(var(--premium-shadow), 0.12);
+    z-index: 50;
+  }
+
+  /* Stripe hero gradient mesh - the signature visual */
+  .stripe-hero-gradient {
+    background-color: #0A2540;
+    background-image:
+      radial-gradient(ellipse at 20% 50%, rgba(46, 196, 182, 0.15) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 20%, rgba(99, 91, 255, 0.25) 0%, transparent 50%),
+      radial-gradient(ellipse at 60% 80%, rgba(60, 179, 113, 0.1) 0%, transparent 50%);
   }
 }
 

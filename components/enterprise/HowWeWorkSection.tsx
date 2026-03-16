@@ -24,23 +24,26 @@ const staggerContainer: Variants = {
   }
 }
 
-// Delivery principles - systems-first, architecture-driven
 const deliveryPrinciples = [
   {
     title: "Architecture before implementation",
-    description: "We design systems thoughtfully before writing code."
+    description: "We design systems thoughtfully before writing code.",
+    accent: "hsl(243, 100%, 68%)"
   },
   {
     title: "Governance and security by design",
-    description: "Security and compliance are built in from day one."
+    description: "Security and compliance are built in from day one.",
+    accent: "hsl(192, 80%, 55%)"
   },
   {
     title: "Incremental, production-ready delivery",
-    description: "We ship working software regularly, not everything at the end."
+    description: "We ship working software regularly, not everything at the end.",
+    accent: "hsl(155, 65%, 50%)"
   },
   {
     title: "Collaboration over hand-offs",
-    description: "We work alongside your teams, not in isolation."
+    description: "We work alongside your teams, not in isolation.",
+    accent: "hsl(243, 100%, 68%)"
   }
 ]
 
@@ -48,15 +51,31 @@ const HowWeWorkSection = () => {
   return (
     <section
       style={{
-        paddingTop: 'var(--space-20)',
-        paddingBottom: 'var(--space-20)',
-        backgroundColor: 'hsl(var(--premium-gray-900))'
+        paddingTop: '100px',
+        paddingBottom: '100px',
+        backgroundColor: '#0A2540',
+        position: 'relative',
+        overflow: 'hidden'
       }}
     >
-      <div className="enterprise-container-wide">
+      {/* Subtle gradient accent */}
+      <div
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '50%',
+          height: '100%',
+          background: 'radial-gradient(ellipse at 0% 50%, hsla(243, 100%, 68%, 0.06), transparent 70%)',
+          pointerEvents: 'none'
+        }}
+        aria-hidden="true"
+      />
+
+      <div className="enterprise-container-wide relative" style={{ zIndex: 1 }}>
         <div
           className="grid lg:grid-cols-2 items-start"
-          style={{ gap: 'var(--space-16)' }}
+          style={{ gap: '80px' }}
         >
           {/* Left Column - Header */}
           <motion.div
@@ -67,35 +86,35 @@ const HowWeWorkSection = () => {
           >
             <p
               style={{
-                fontSize: 'var(--text-xs)',
-                fontWeight: 'var(--font-medium)',
+                fontSize: '14px',
+                fontWeight: 600,
                 textTransform: 'uppercase',
-                letterSpacing: 'var(--tracking-wide)',
-                color: 'hsl(var(--premium-gray-400))',
-                marginBottom: 'var(--space-4)'
+                letterSpacing: '0.08em',
+                color: 'hsla(243, 100%, 68%, 0.8)',
+                marginBottom: '16px'
               }}
             >
               How We Work
             </p>
             <h2
               style={{
-                fontSize: 'var(--text-3xl)',
-                fontWeight: 'var(--font-semibold)',
-                letterSpacing: 'var(--tracking-tight)',
-                lineHeight: 'var(--leading-snug)',
+                fontSize: 'clamp(1.75rem, 3vw, 2.5rem)',
+                fontWeight: 600,
+                letterSpacing: '-0.02em',
+                lineHeight: 1.2,
                 color: 'white',
-                marginBottom: 'var(--space-6)'
+                marginBottom: '24px'
               }}
             >
               Structured delivery for enterprise environments.
             </h2>
             <p
               style={{
-                fontSize: 'var(--text-lg)',
-                lineHeight: 'var(--leading-relaxed)',
-                color: 'hsl(var(--premium-gray-400))',
-                maxWidth: 'var(--prose-width)',
-                marginBottom: 'var(--space-8)'
+                fontSize: '17px',
+                lineHeight: 1.65,
+                color: 'rgba(255, 255, 255, 0.55)',
+                maxWidth: '480px',
+                marginBottom: '32px'
               }}
             >
               Our delivery model is designed for organizations where reliability,
@@ -104,20 +123,11 @@ const HowWeWorkSection = () => {
             </p>
             <Link
               href="/how-we-work"
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: 'var(--space-2)',
-                fontSize: 'var(--text-base)',
-                fontWeight: 'var(--font-medium)',
-                color: 'white',
-                textDecoration: 'none'
-              }}
-              className="group"
+              className="stripe-btn-ghost group"
             >
               View Our Delivery Model
               <ArrowRight
-                className="w-4 h-4 transition-transform group-hover:translate-x-0.5"
+                className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-0.5"
                 strokeWidth={2}
               />
             </Link>
@@ -132,7 +142,7 @@ const HowWeWorkSection = () => {
             style={{
               display: 'flex',
               flexDirection: 'column',
-              gap: 'var(--space-6)'
+              gap: '0'
             }}
           >
             {deliveryPrinciples.map((principle, index) => (
@@ -140,31 +150,48 @@ const HowWeWorkSection = () => {
                 key={index}
                 variants={fadeUp}
                 style={{
-                  paddingBottom: 'var(--space-6)',
+                  padding: '24px 0',
                   borderBottom: index < deliveryPrinciples.length - 1
-                    ? '1px solid hsl(var(--premium-gray-700))'
-                    : 'none'
+                    ? '1px solid rgba(255, 255, 255, 0.08)'
+                    : 'none',
+                  display: 'flex',
+                  gap: '16px',
+                  alignItems: 'flex-start'
                 }}
               >
-                <h3
+                {/* Accent dot */}
+                <div
                   style={{
-                    fontSize: 'var(--text-lg)',
-                    fontWeight: 'var(--font-medium)',
-                    color: 'white',
-                    marginBottom: 'var(--space-2)'
+                    width: '8px',
+                    height: '8px',
+                    borderRadius: '50%',
+                    backgroundColor: principle.accent,
+                    marginTop: '8px',
+                    flexShrink: 0,
+                    opacity: 0.8
                   }}
-                >
-                  {principle.title}
-                </h3>
-                <p
-                  style={{
-                    fontSize: 'var(--text-base)',
-                    lineHeight: 'var(--leading-relaxed)',
-                    color: 'hsl(var(--premium-gray-400))'
-                  }}
-                >
-                  {principle.description}
-                </p>
+                />
+                <div>
+                  <h3
+                    style={{
+                      fontSize: '17px',
+                      fontWeight: 600,
+                      color: 'white',
+                      marginBottom: '6px'
+                    }}
+                  >
+                    {principle.title}
+                  </h3>
+                  <p
+                    style={{
+                      fontSize: '15px',
+                      lineHeight: 1.6,
+                      color: 'rgba(255, 255, 255, 0.45)'
+                    }}
+                  >
+                    {principle.description}
+                  </p>
+                </div>
               </motion.div>
             ))}
           </motion.div>

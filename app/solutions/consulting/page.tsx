@@ -1,575 +1,874 @@
 "use client"
 
-import { motion } from 'framer-motion'
-import { Button } from '@/components/ui/button'
-import { Badge } from '@/components/ui/badge'
-import { Card } from '@/components/ui/card'
-import {
-  ArrowRight,
-  Settings,
-  Target,
-  TrendingUp,
-  Users,
-  BarChart3,
-  Workflow,
-  CheckCircle,
-  Clock,
-  DollarSign,
-  Rocket,
-  Map,
-  Compass,
-  Globe,
-  Shield,
-  Code,
-  ArrowLeft,
-  FileText,
-  Presentation,
-  Building
-} from 'lucide-react'
-import { cn } from '@/lib/utils'
-import SharedLayout from '@/components/shared-layout'
+import { motion, type Variants } from 'framer-motion'
 import Link from 'next/link'
-import AnimatedText from '@/components/animated-text'
+import SharedLayout from '@/components/shared-layout'
+import { ArrowRight } from 'lucide-react'
+
+const fadeUp: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }
+  }
+}
+
+const staggerContainer: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.15
+    }
+  }
+}
+
+/* ── Data ─────────────────────────────────────────── */
+
+const heroStats = [
+  { value: "85%", label: "Success Rate", sub: "Transformation projects delivered" },
+  { value: "40%", label: "Faster Delivery", sub: "Average project acceleration" },
+  { value: "$2.5M", label: "Average ROI", sub: "Typical cost savings achieved" },
+  { value: "500+", label: "Engagements", sub: "Across regulated industries" }
+]
+
+const services = [
+  {
+    title: "Digital Strategy & Roadmap",
+    description: "Comprehensive digital transformation strategy aligned with your business objectives and market dynamics.",
+    activities: [
+      "Current state assessment and gap analysis",
+      "Future state vision and roadmap development",
+      "Technology stack evaluation",
+      "ROI modeling and business case development"
+    ],
+    deliverables: ["Strategic roadmap", "Technology architecture", "Implementation plan"],
+    iconPath: "M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"
+  },
+  {
+    title: "Process Optimization",
+    description: "Streamline operations and eliminate inefficiencies through systematic process reengineering.",
+    activities: [
+      "Business process mapping and analysis",
+      "Automation opportunity identification",
+      "Workflow optimization and redesign",
+      "Performance metrics and KPI development"
+    ],
+    deliverables: ["Process maps", "Automation strategy", "Performance framework"],
+    iconPath: "M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+  },
+  {
+    title: "Change Management",
+    description: "Guide your organization through transformation with proven methodologies that ensure lasting adoption.",
+    activities: [
+      "Stakeholder analysis and engagement",
+      "Communication strategy and execution",
+      "Training program development",
+      "Adoption tracking and optimization"
+    ],
+    deliverables: ["Change strategy", "Training materials", "Communication plan"],
+    iconPath: "M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"
+  },
+  {
+    title: "Data & Analytics Strategy",
+    description: "Unlock the power of your data with comprehensive analytics, governance, and self-service enablement.",
+    activities: [
+      "Data maturity assessment",
+      "Analytics use case identification",
+      "Data governance framework design",
+      "Self-service analytics enablement"
+    ],
+    deliverables: ["Data strategy", "Analytics roadmap", "Governance framework"],
+    iconPath: "M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+  },
+  {
+    title: "Technology Risk Assessment",
+    description: "Identify and mitigate technology risks with security-first thinking and compliance automation.",
+    activities: [
+      "Security and compliance gap analysis",
+      "Risk identification and prioritization",
+      "Mitigation strategy development",
+      "Governance and oversight framework"
+    ],
+    deliverables: ["Risk assessment", "Mitigation plan", "Governance model"],
+    iconPath: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+  },
+  {
+    title: "Performance Optimization",
+    description: "Maximize ROI and operational efficiency through continuous improvement and outcome measurement.",
+    activities: [
+      "Performance baseline establishment",
+      "Optimization opportunity analysis",
+      "Continuous improvement framework",
+      "Success metrics and monitoring"
+    ],
+    deliverables: ["Performance baseline", "Optimization plan", "Monitoring dashboard"],
+    iconPath: "M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
+  }
+]
+
+const phases = [
+  {
+    step: "01",
+    title: "Assess",
+    duration: "2 – 4 weeks",
+    activities: ["Current state analysis", "Technology audit", "Process mapping", "Stakeholder interviews"],
+    outcome: "Comprehensive assessment report with prioritized findings"
+  },
+  {
+    step: "02",
+    title: "Strategize",
+    duration: "3 – 6 weeks",
+    activities: ["Vision & strategy development", "Roadmap creation", "Business case modeling", "Risk assessment"],
+    outcome: "Digital transformation strategy and executive blueprint"
+  },
+  {
+    step: "03",
+    title: "Plan",
+    duration: "4 – 8 weeks",
+    activities: ["Implementation planning", "Resource allocation", "Change management strategy", "Success metrics"],
+    outcome: "Detailed implementation blueprint with milestones"
+  },
+  {
+    step: "04",
+    title: "Execute",
+    duration: "6 – 18 months",
+    activities: ["Phased implementation", "Change management execution", "Training & enablement", "Continuous monitoring"],
+    outcome: "Successful transformation with measurable outcomes"
+  },
+  {
+    step: "05",
+    title: "Optimize",
+    duration: "Ongoing",
+    activities: ["Performance monitoring", "Continuous improvement", "Innovation identification", "Strategic refinement"],
+    outcome: "Sustained value creation and competitive advantage"
+  }
+]
+
+const industries = [
+  { name: "Financial Services", projects: "150+", iconPath: "M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11m16-11v11M8 14v4m4-4v4m4-4v4" },
+  { name: "Healthcare", projects: "100+", iconPath: "M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" },
+  { name: "Manufacturing", projects: "120+", iconPath: "M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z M15 12a3 3 0 11-6 0 3 3 0 016 0z" },
+  { name: "Technology", projects: "200+", iconPath: "M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" },
+  { name: "E-commerce", projects: "80+", iconPath: "M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9" },
+  { name: "Government", projects: "60+", iconPath: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" }
+]
+
+/* ── Component ────────────────────────────────────── */
 
 const DigitalConsulting = () => {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2
-      }
-    }
-  }
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6
-      }
-    }
-  }
-
-  const consultingServices = [
-    {
-      icon: Compass,
-      title: "Digital Strategy & Roadmap",
-      description: "Comprehensive digital transformation strategy aligned with your business objectives",
-      features: [
-        "Current state assessment and gap analysis",
-        "Future state vision and roadmap development",
-        "Technology stack evaluation and recommendations",
-        "ROI modeling and business case development"
-      ],
-      color: "blue",
-      deliverables: ["Strategic roadmap", "Technology architecture", "Implementation plan"]
-    },
-    {
-      icon: Workflow,
-      title: "Process Optimization",
-      description: "Streamline operations and eliminate inefficiencies through process reengineering",
-      features: [
-        "Business process mapping and analysis",
-        "Automation opportunity identification",
-        "Workflow optimization and redesign",
-        "Performance metrics and KPI development"
-      ],
-      color: "green",
-      deliverables: ["Process maps", "Automation strategy", "Performance framework"]
-    },
-    {
-      icon: Users,
-      title: "Change Management",
-      description: "Guide your organization through digital transformation with proven change methodologies",
-      features: [
-        "Stakeholder analysis and engagement",
-        "Communication strategy and execution",
-        "Training program development",
-        "Adoption tracking and optimization"
-      ],
-      color: "purple",
-      deliverables: ["Change strategy", "Training materials", "Communication plan"]
-    },
-    {
-      icon: BarChart3,
-      title: "Data & Analytics Strategy",
-      description: "Unlock the power of your data with comprehensive analytics and insights strategy",
-      features: [
-        "Data maturity assessment",
-        "Analytics use case identification",
-        "Data governance framework",
-        "Self-service analytics enablement"
-      ],
-      color: "orange",
-      deliverables: ["Data strategy", "Analytics roadmap", "Governance framework"]
-    },
-    {
-      icon: Shield,
-      title: "Technology Risk Assessment",
-      description: "Identify and mitigate technology risks across your digital transformation journey",
-      features: [
-        "Security and compliance gap analysis",
-        "Risk identification and prioritization",
-        "Mitigation strategy development",
-        "Governance and oversight framework"
-      ],
-      color: "red",
-      deliverables: ["Risk assessment", "Mitigation plan", "Governance model"]
-    },
-    {
-      icon: Target,
-      title: "Performance Optimization",
-      description: "Maximize ROI and operational efficiency through continuous improvement methodologies",
-      features: [
-        "Performance baseline establishment",
-        "Optimization opportunity analysis",
-        "Continuous improvement framework",
-        "Success metrics and monitoring"
-      ],
-      color: "cyan",
-      deliverables: ["Performance baseline", "Optimization plan", "Monitoring dashboard"]
-    }
-  ]
-
-  const consultingStats = [
-    { icon: TrendingUp, metric: "85%", label: "Success Rate", description: "Transformation projects delivered successfully" },
-    { icon: Clock, metric: "40%", label: "Faster Delivery", description: "Average project acceleration" },
-    { icon: DollarSign, metric: "$2.5M", label: "Average ROI", description: "Typical cost savings achieved" },
-    { icon: Users, metric: "500+", label: "Consultants", description: "Expert consultants worldwide" }
-  ]
-
-  const transformationPhases = [
-    {
-      phase: "Assess",
-      duration: "2-4 weeks",
-      icon: FileText,
-      activities: [
-        "Current state analysis",
-        "Technology audit",
-        "Process mapping",
-        "Stakeholder interviews"
-      ],
-      outcomes: "Comprehensive assessment report"
-    },
-    {
-      phase: "Strategize",
-      duration: "3-6 weeks",
-      icon: Map,
-      activities: [
-        "Vision and strategy development",
-        "Roadmap creation",
-        "Business case development",
-        "Risk assessment"
-      ],
-      outcomes: "Digital transformation strategy"
-    },
-    {
-      phase: "Plan",
-      duration: "4-8 weeks",
-      icon: Presentation,
-      activities: [
-        "Detailed implementation planning",
-        "Resource allocation",
-        "Change management strategy",
-        "Success metrics definition"
-      ],
-      outcomes: "Implementation blueprint"
-    },
-    {
-      phase: "Execute",
-      duration: "6-18 months",
-      icon: Rocket,
-      activities: [
-        "Phased implementation",
-        "Change management execution",
-        "Training and enablement",
-        "Continuous monitoring"
-      ],
-      outcomes: "Successful transformation"
-    },
-    {
-      phase: "Optimize",
-      duration: "Ongoing",
-      icon: TrendingUp,
-      activities: [
-        "Performance monitoring",
-        "Continuous improvement",
-        "Innovation identification",
-        "Strategic refinement"
-      ],
-      outcomes: "Sustained value creation"
-    }
-  ]
-
-  const industryExpertise = [
-    { name: "Financial Services", projects: "150+", icon: Building },
-    { name: "Healthcare", projects: "100+", icon: Users },
-    { name: "Manufacturing", projects: "120+", icon: Settings },
-    { name: "Technology", projects: "200+", icon: Code },
-    { name: "E-commerce", projects: "80+", icon: Globe },
-    { name: "Government", projects: "60+", icon: Shield }
-  ]
-
   return (
     <SharedLayout>
-      {/* Hero Section */}
-      <section className="relative overflow-hidden py-20 lg:py-32">
-        <div className="absolute inset-0">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl" />
-          <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-teal-500/5 rounded-full blur-3xl" />
-        </div>
+      {/* ── Hero — Dark Navy ── */}
+      <section
+        className="relative overflow-hidden"
+        style={{
+          paddingTop: '160px',
+          paddingBottom: '100px',
+          backgroundColor: '#0A2540'
+        }}
+      >
+        {/* Ambient glow */}
+        <div
+          style={{
+            position: 'absolute',
+            top: '5%',
+            right: '-8%',
+            width: '650px',
+            height: '650px',
+            background: 'radial-gradient(circle, rgba(99, 91, 255, 0.12), transparent 60%)',
+            borderRadius: '50%',
+            filter: 'blur(80px)',
+            pointerEvents: 'none'
+          }}
+          aria-hidden="true"
+        />
+        <div
+          style={{
+            position: 'absolute',
+            bottom: '-10%',
+            left: '5%',
+            width: '400px',
+            height: '400px',
+            background: 'radial-gradient(circle, rgba(46, 196, 182, 0.08), transparent 60%)',
+            borderRadius: '50%',
+            filter: 'blur(60px)',
+            pointerEvents: 'none'
+          }}
+          aria-hidden="true"
+        />
 
-        <div className="section-container relative z-10">
-          <motion.div
-            className="max-w-4xl"
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-          >
-            <motion.div variants={itemVariants}>
-              <Link href="/solutions" className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-6">
-                <ArrowLeft className="w-4 h-4" />
-                Back to Solutions
-              </Link>
-            </motion.div>
-
-            <motion.div variants={itemVariants}>
-              <Badge 
-                variant="secondary" 
-                className="bg-cyan-50/10 text-cyan-400 hover:bg-cyan-50/20 px-6 py-3 text-sm font-semibold border border-cyan-500/20 rounded-full mb-8"
-              >
-                <Settings className="w-4 h-4 mr-2" />
-                Digital Consulting
-              </Badge>
-            </motion.div>
-
-            <motion.h1 
-              className="heading-hero mb-8 text-balance"
-              variants={itemVariants}
+        <motion.div
+          className="enterprise-container-wide relative"
+          style={{ zIndex: 1 }}
+          initial="hidden"
+          animate="visible"
+          variants={staggerContainer}
+        >
+          <motion.div variants={fadeUp} style={{ maxWidth: '720px' }}>
+            <p
+              style={{
+                fontSize: '13px',
+                fontWeight: 600,
+                textTransform: 'uppercase',
+                letterSpacing: '0.1em',
+                color: '#635BFF',
+                marginBottom: '24px'
+              }}
             >
-              <AnimatedText
-                text="Strategic Digital"
-                animation="splitWords"
-                className="block mb-2"
-                stagger={0.1}
-              />
-              <AnimatedText
-                text="Transformation Consulting"
-                animation="splitWords"
-                className="gradient-text inline-block"
-                stagger={0.1}
-                delay={0.5}
-              />
-            </motion.h1>
-
-            <motion.p 
-              className="text-lead mb-12"
-              variants={itemVariants}
-            >
-              Navigate your digital transformation journey with expert guidance. We help organizations develop 
-              comprehensive strategies, optimize processes, and achieve sustainable digital success with proven methodologies.
-            </motion.p>
-
-            <motion.div 
-              className="flex flex-col sm:flex-row gap-4 mb-16"
-              variants={itemVariants}
-            >
-              <Link href="/contact-us">
-                <Button size="lg" className="enterprise-button text-white font-semibold group">
-                  <span className="flex items-center gap-2">
-                    Start Your Transformation
-                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-                  </span>
-                </Button>
-              </Link>
-              <Link href="/case-studies">
-                <Button variant="outline" size="lg" className="font-semibold">
-                  View Transformation Stories
-                </Button>
-              </Link>
-            </motion.div>
-
-            {/* Consulting Stats */}
-            <motion.div 
-              className="grid grid-cols-2 md:grid-cols-4 gap-6"
-              variants={itemVariants}
-            >
-              {consultingStats.map((stat, index) => {
-                const IconComponent = stat.icon
-                return (
-                  <div key={index} className="text-center">
-                    <IconComponent className="w-8 h-8 text-cyan-500 mx-auto mb-2" />
-                    <div className="text-2xl font-bold text-foreground">{stat.metric}</div>
-                    <div className="text-sm font-medium text-foreground">{stat.label}</div>
-                    <div className="text-xs text-muted-foreground">{stat.description}</div>
-                  </div>
-                )
-              })}
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Consulting Services */}
-      <section className="py-16 lg:py-24">
-        <div className="section-container">
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
-            <motion.div 
-              className="text-center mb-16"
-              variants={itemVariants}
-            >
-              <h2 className="heading-section mb-6">
-                Consulting <span className="gradient-text">Services</span>
-              </h2>
-              <p className="text-lead max-w-3xl mx-auto">
-                Comprehensive consulting services to guide your digital transformation journey
-              </p>
-            </motion.div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {consultingServices.map((service, index) => {
-                const IconComponent = service.icon
-                return (
-                  <motion.div
-                    key={index}
-                    variants={itemVariants}
-                    whileHover={{ y: -8 }}
-                  >
-                    <Card className="enterprise-card enterprise-card-hover p-8 h-full group">
-                      <div className="flex items-start gap-6">
-                        <motion.div 
-                          className={cn(
-                            "w-16 h-16 rounded-2xl flex items-center justify-center flex-shrink-0",
-                            service.color === 'blue' && "bg-blue-500/10 group-hover:bg-blue-500/20",
-                            service.color === 'green' && "bg-green-500/10 group-hover:bg-green-500/20",
-                            service.color === 'purple' && "bg-purple-500/10 group-hover:bg-purple-500/20",
-                            service.color === 'orange' && "bg-orange-500/10 group-hover:bg-orange-500/20",
-                            service.color === 'red' && "bg-red-500/10 group-hover:bg-red-500/20",
-                            service.color === 'cyan' && "bg-cyan-500/10 group-hover:bg-cyan-500/20"
-                          )}
-                          whileHover={{ rotate: 5, scale: 1.1 }}
-                        >
-                          <IconComponent className={cn(
-                            "w-8 h-8",
-                            service.color === 'blue' && "text-blue-500",
-                            service.color === 'green' && "text-green-500",
-                            service.color === 'purple' && "text-purple-500",
-                            service.color === 'orange' && "text-orange-500",
-                            service.color === 'red' && "text-red-500",
-                            service.color === 'cyan' && "text-cyan-500"
-                          )} />
-                        </motion.div>
-                        
-                        <div className="flex-1">
-                          <h3 className="text-xl font-bold mb-3 group-hover:text-accent transition-colors">
-                            {service.title}
-                          </h3>
-                          
-                          <p className="text-muted-foreground mb-6">
-                            {service.description}
-                          </p>
-                          
-                          <div className="mb-6">
-                            <h4 className="font-semibold text-foreground mb-3">Key Activities:</h4>
-                            <ul className="space-y-2">
-                              {service.features.map((feature, featureIndex) => (
-                                <li key={featureIndex} className="flex items-center gap-2 text-sm text-muted-foreground">
-                                  <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
-                                  {feature}
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                          
-                          <div>
-                            <h4 className="font-semibold text-foreground mb-2">Deliverables:</h4>
-                            <div className="flex flex-wrap gap-2">
-                              {service.deliverables.map((deliverable, delIndex) => (
-                                <Badge key={delIndex} variant="secondary" className="text-xs">
-                                  {deliverable}
-                                </Badge>
-                              ))}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </Card>
-                  </motion.div>
-                )
-              })}
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Transformation Process */}
-      <section className="py-16 lg:py-24 bg-muted/20">
-        <div className="section-container">
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
-            <motion.div 
-              className="text-center mb-16"
-              variants={itemVariants}
-            >
-              <h2 className="heading-section mb-6">
-                Transformation <span className="gradient-text">Process</span>
-              </h2>
-              <p className="text-lead max-w-3xl mx-auto">
-                Our proven 5-phase methodology ensures successful digital transformation outcomes
-              </p>
-            </motion.div>
-
-            <div className="space-y-8">
-              {transformationPhases.map((phase, index) => {
-                const IconComponent = phase.icon
-                return (
-                  <motion.div
-                    key={index}
-                    variants={itemVariants}
-                    whileHover={{ x: 10 }}
-                  >
-                    <Card className="enterprise-card p-8 group">
-                      <div className="flex items-start gap-8">
-                        <div className="flex-shrink-0">
-                          <div className="w-16 h-16 rounded-full bg-cyan-500 text-white flex items-center justify-center text-xl font-bold mb-4">
-                            {index + 1}
-                          </div>
-                          <IconComponent className="w-8 h-8 text-cyan-500 mx-auto" />
-                        </div>
-                        
-                        <div className="flex-1">
-                          <div className="flex items-center justify-between mb-4">
-                            <h3 className="text-2xl font-bold text-foreground group-hover:text-accent transition-colors">
-                              {phase.phase}
-                            </h3>
-                            <Badge variant="outline" className="font-medium">
-                              {phase.duration}
-                            </Badge>
-                          </div>
-                          
-                          <div className="grid md:grid-cols-2 gap-8">
-                            <div>
-                              <h4 className="font-semibold text-foreground mb-3">Key Activities:</h4>
-                              <ul className="space-y-2">
-                                {phase.activities.map((activity, actIndex) => (
-                                  <li key={actIndex} className="flex items-center gap-2 text-sm text-muted-foreground">
-                                    <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
-                                    {activity}
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                            
-                            <div>
-                              <h4 className="font-semibold text-foreground mb-3">Expected Outcomes:</h4>
-                              <p className="text-muted-foreground">{phase.outcomes}</p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </Card>
-                  </motion.div>
-                )
-              })}
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Industry Expertise */}
-      <section className="py-16 lg:py-24">
-        <div className="section-container">
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
-            <motion.div 
-              className="text-center mb-16"
-              variants={itemVariants}
-            >
-              <h2 className="heading-section mb-6">
-                Industry <span className="gradient-text">Expertise</span>
-              </h2>
-              <p className="text-lead max-w-3xl mx-auto">
-                Deep industry knowledge across diverse sectors
-              </p>
-            </motion.div>
-
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-              {industryExpertise.map((industry, index) => {
-                const IconComponent = industry.icon
-                return (
-                  <motion.div
-                    key={index}
-                    variants={itemVariants}
-                    whileHover={{ y: -4 }}
-                  >
-                    <Card className="enterprise-card p-6 text-center group">
-                      <IconComponent className="w-10 h-10 text-cyan-500 mx-auto mb-3" />
-                      <h3 className="font-semibold text-foreground mb-1 text-sm group-hover:text-accent transition-colors">
-                        {industry.name}
-                      </h3>
-                      <p className="text-xs text-muted-foreground">
-                        {industry.projects} projects
-                      </p>
-                    </Card>
-                  </motion.div>
-                )
-              })}
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-16 lg:py-24 bg-muted/20">
-        <div className="section-container">
-          <motion.div
-            className="max-w-4xl mx-auto text-center"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="heading-section mb-6">
-              Ready to Transform Your Business?
-            </h2>
-            <p className="text-lead mb-8">
-              Let our expert consultants guide your digital transformation journey with proven strategies 
-              and methodologies that deliver measurable results.
+              Digital Consulting
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/contact-us">
-                <Button size="lg" className="enterprise-button text-white font-semibold group">
-                  <span className="flex items-center gap-2">
-                    Schedule Strategy Consultation
-                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-                  </span>
-                </Button>
+            <h1
+              style={{
+                fontSize: 'clamp(2.5rem, 5vw, 4rem)',
+                fontWeight: 700,
+                letterSpacing: '-0.035em',
+                lineHeight: 1.05,
+                color: 'white',
+                marginBottom: '24px'
+              }}
+            >
+              Strategic transformation consulting for the enterprise.
+            </h1>
+            <p
+              style={{
+                fontSize: '20px',
+                lineHeight: 1.65,
+                color: 'rgba(255, 255, 255, 0.55)',
+                maxWidth: '560px',
+                marginBottom: '40px'
+              }}
+            >
+              We help organizations develop comprehensive strategies, optimize processes, and achieve sustainable digital success — with proven methodologies and disciplined execution.
+            </p>
+
+            <div className="flex flex-col sm:flex-row" style={{ gap: '16px' }}>
+              <Link href="/contact-us" className="stripe-btn-light group">
+                Start Your Transformation
+                <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" strokeWidth={2.5} />
               </Link>
-              <Link href="/case-studies/enterprise-ai-knowledge-assistant">
-                <Button variant="outline" size="lg" className="font-semibold">
-                  View Transformation Case Study
-                </Button>
+              <Link href="/case-studies" className="stripe-btn-ghost">
+                View Case Studies
               </Link>
             </div>
           </motion.div>
-        </div>
+
+          {/* Stats bar */}
+          <motion.div
+            variants={fadeUp}
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(4, 1fr)',
+              gap: '1px',
+              marginTop: '80px',
+              backgroundColor: 'rgba(255, 255, 255, 0.08)',
+              borderRadius: '16px',
+              overflow: 'hidden'
+            }}
+            className="max-md:!grid-cols-2"
+          >
+            {heroStats.map((stat) => (
+              <div
+                key={stat.label}
+                style={{
+                  padding: '32px',
+                  backgroundColor: 'rgba(10, 37, 64, 0.95)',
+                  textAlign: 'center'
+                }}
+              >
+                <div
+                  style={{
+                    fontSize: 'clamp(2rem, 3vw, 2.5rem)',
+                    fontWeight: 700,
+                    color: 'white',
+                    letterSpacing: '-0.03em',
+                    lineHeight: 1,
+                    marginBottom: '8px'
+                  }}
+                >
+                  {stat.value}
+                </div>
+                <div style={{ fontSize: '14px', fontWeight: 600, color: '#635BFF', marginBottom: '4px' }}>
+                  {stat.label}
+                </div>
+                <div style={{ fontSize: '13px', color: 'rgba(255, 255, 255, 0.4)' }}>
+                  {stat.sub}
+                </div>
+              </div>
+            ))}
+          </motion.div>
+        </motion.div>
+      </section>
+
+      {/* ── Consulting Services — White ── */}
+      <section style={{ paddingTop: '120px', paddingBottom: '120px', backgroundColor: 'white' }}>
+        <motion.div
+          className="enterprise-container-wide"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={staggerContainer}
+        >
+          <motion.div variants={fadeUp} style={{ marginBottom: '64px', maxWidth: '640px' }}>
+            <p
+              style={{
+                fontSize: '13px',
+                fontWeight: 600,
+                textTransform: 'uppercase',
+                letterSpacing: '0.1em',
+                color: '#635BFF',
+                marginBottom: '20px'
+              }}
+            >
+              What we deliver
+            </p>
+            <h2
+              style={{
+                fontSize: 'clamp(2rem, 3.5vw, 3rem)',
+                fontWeight: 700,
+                letterSpacing: '-0.03em',
+                lineHeight: 1.1,
+                color: '#0A2540',
+                marginBottom: '20px'
+              }}
+            >
+              End-to-end consulting services.
+            </h2>
+            <p
+              style={{
+                fontSize: '19px',
+                lineHeight: 1.65,
+                color: '#425466',
+                maxWidth: '520px'
+              }}
+            >
+              From strategy through execution — every engagement is shaped by your specific context, constraints, and ambition.
+            </p>
+          </motion.div>
+
+          <motion.div
+            variants={staggerContainer}
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(380px, 1fr))',
+              gap: '24px'
+            }}
+            className="max-sm:!grid-cols-1"
+          >
+            {services.map((service, index) => (
+              <motion.div
+                key={index}
+                variants={fadeUp}
+                style={{
+                  padding: '36px',
+                  backgroundColor: '#F6F9FC',
+                  borderRadius: '16px',
+                  border: '1px solid rgba(10, 37, 64, 0.06)',
+                  transition: 'box-shadow 0.3s ease, transform 0.3s ease',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  position: 'relative',
+                  overflow: 'hidden'
+                }}
+                className="group"
+                whileHover={{ y: -3, boxShadow: '0 12px 40px rgba(10, 37, 64, 0.08)' }}
+              >
+                {/* Icon */}
+                <div
+                  style={{
+                    width: '48px',
+                    height: '48px',
+                    borderRadius: '12px',
+                    backgroundColor: 'rgba(99, 91, 255, 0.08)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginBottom: '24px',
+                    flexShrink: 0
+                  }}
+                >
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#635BFF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d={service.iconPath} />
+                  </svg>
+                </div>
+
+                <h3
+                  style={{
+                    fontSize: '20px',
+                    fontWeight: 700,
+                    letterSpacing: '-0.02em',
+                    color: '#0A2540',
+                    marginBottom: '12px'
+                  }}
+                >
+                  {service.title}
+                </h3>
+                <p
+                  style={{
+                    fontSize: '15px',
+                    lineHeight: 1.65,
+                    color: '#425466',
+                    marginBottom: '24px'
+                  }}
+                >
+                  {service.description}
+                </p>
+
+                {/* Activities */}
+                <div style={{ marginBottom: '24px', flex: 1 }}>
+                  {service.activities.map((activity) => (
+                    <div
+                      key={activity}
+                      style={{
+                        display: 'flex',
+                        alignItems: 'flex-start',
+                        gap: '10px',
+                        marginBottom: '10px'
+                      }}
+                    >
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ marginTop: '2px', flexShrink: 0 }}>
+                        <path d="M13.333 4L6 11.333 2.667 8" stroke="#635BFF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                      <span style={{ fontSize: '14px', color: '#425466', lineHeight: 1.5 }}>{activity}</span>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Deliverable tags */}
+                <div
+                  style={{
+                    paddingTop: '20px',
+                    borderTop: '1px solid rgba(10, 37, 64, 0.06)',
+                    display: 'flex',
+                    flexWrap: 'wrap',
+                    gap: '6px'
+                  }}
+                >
+                  <span style={{ fontSize: '12px', fontWeight: 600, color: '#635BFF', marginRight: '4px', lineHeight: '26px' }}>
+                    Deliverables:
+                  </span>
+                  {service.deliverables.map((d) => (
+                    <span
+                      key={d}
+                      style={{
+                        fontSize: '11px',
+                        fontWeight: 600,
+                        color: '#0A2540',
+                        backgroundColor: 'white',
+                        padding: '4px 10px',
+                        borderRadius: '100px',
+                        border: '1px solid rgba(10, 37, 64, 0.08)',
+                        letterSpacing: '0.01em'
+                      }}
+                    >
+                      {d}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </motion.div>
+      </section>
+
+      {/* ── Transformation Process — Dark Navy ── */}
+      <section
+        className="relative overflow-hidden"
+        style={{
+          paddingTop: '120px',
+          paddingBottom: '120px',
+          backgroundColor: '#0A2540'
+        }}
+      >
+        <div
+          style={{
+            position: 'absolute',
+            top: '20%',
+            right: '-10%',
+            width: '500px',
+            height: '500px',
+            background: 'radial-gradient(circle, rgba(99, 91, 255, 0.1), transparent 65%)',
+            borderRadius: '50%',
+            filter: 'blur(60px)',
+            pointerEvents: 'none'
+          }}
+          aria-hidden="true"
+        />
+
+        <motion.div
+          className="enterprise-container-wide relative"
+          style={{ zIndex: 1 }}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={staggerContainer}
+        >
+          <motion.div variants={fadeUp} style={{ marginBottom: '64px', maxWidth: '640px' }}>
+            <p
+              style={{
+                fontSize: '13px',
+                fontWeight: 600,
+                textTransform: 'uppercase',
+                letterSpacing: '0.1em',
+                color: '#635BFF',
+                marginBottom: '20px'
+              }}
+            >
+              Our methodology
+            </p>
+            <h2
+              style={{
+                fontSize: 'clamp(2rem, 3.5vw, 3rem)',
+                fontWeight: 700,
+                letterSpacing: '-0.03em',
+                lineHeight: 1.1,
+                color: 'white',
+                marginBottom: '20px'
+              }}
+            >
+              A proven five-phase approach.
+            </h2>
+            <p
+              style={{
+                fontSize: '19px',
+                lineHeight: 1.65,
+                color: 'rgba(255, 255, 255, 0.55)',
+                maxWidth: '520px'
+              }}
+            >
+              Structured enough to de-risk delivery. Flexible enough to adapt to what we learn along the way.
+            </p>
+          </motion.div>
+
+          {/* Timeline */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+            {phases.map((phase) => (
+              <motion.div
+                key={phase.step}
+                variants={fadeUp}
+                style={{
+                  display: 'grid',
+                  gridTemplateColumns: '80px 1fr',
+                  gap: '0',
+                  backgroundColor: 'rgba(255, 255, 255, 0.03)',
+                  borderRadius: '12px',
+                  overflow: 'hidden',
+                  border: '1px solid rgba(255, 255, 255, 0.04)',
+                }}
+                className="max-sm:!grid-cols-1"
+              >
+                {/* Step number column */}
+                <div
+                  style={{
+                    padding: '32px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    backgroundColor: 'rgba(99, 91, 255, 0.08)',
+                  }}
+                >
+                  <span
+                    style={{
+                      fontSize: '28px',
+                      fontWeight: 700,
+                      color: '#635BFF',
+                      letterSpacing: '-0.03em'
+                    }}
+                  >
+                    {phase.step}
+                  </span>
+                </div>
+
+                {/* Content */}
+                <div style={{ padding: '32px 36px' }}>
+                  <div
+                    className="flex flex-col sm:flex-row sm:items-center"
+                    style={{ gap: '12px', marginBottom: '16px' }}
+                  >
+                    <h3
+                      style={{
+                        fontSize: '20px',
+                        fontWeight: 700,
+                        letterSpacing: '-0.02em',
+                        color: 'white'
+                      }}
+                    >
+                      {phase.title}
+                    </h3>
+                    <span
+                      style={{
+                        fontSize: '12px',
+                        fontWeight: 600,
+                        color: 'rgba(255, 255, 255, 0.4)',
+                        backgroundColor: 'rgba(255, 255, 255, 0.06)',
+                        padding: '4px 12px',
+                        borderRadius: '100px',
+                        letterSpacing: '0.02em',
+                        whiteSpace: 'nowrap'
+                      }}
+                    >
+                      {phase.duration}
+                    </span>
+                  </div>
+
+                  <div
+                    className="flex flex-col lg:flex-row"
+                    style={{ gap: '32px' }}
+                  >
+                    {/* Activities */}
+                    <div style={{ flex: 1 }}>
+                      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px 16px' }}>
+                        {phase.activities.map((activity) => (
+                          <div
+                            key={activity}
+                            style={{
+                              display: 'flex',
+                              alignItems: 'center',
+                              gap: '8px'
+                            }}
+                          >
+                            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" style={{ flexShrink: 0 }}>
+                              <path d="M13.333 4L6 11.333 2.667 8" stroke="#635BFF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                            </svg>
+                            <span style={{ fontSize: '14px', color: 'rgba(255, 255, 255, 0.55)', lineHeight: 1.5 }}>{activity}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Outcome */}
+                    <div
+                      style={{
+                        minWidth: '240px',
+                        paddingLeft: '32px',
+                        borderLeft: '1px solid rgba(255, 255, 255, 0.06)',
+                      }}
+                      className="max-lg:!border-l-0 max-lg:!pl-0 max-lg:!pt-4 max-lg:!border-t max-lg:!border-t-[rgba(255,255,255,0.06)]"
+                    >
+                      <p style={{ fontSize: '11px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'rgba(255,255,255,0.3)', marginBottom: '6px' }}>
+                        Outcome
+                      </p>
+                      <p style={{ fontSize: '14px', color: 'rgba(255, 255, 255, 0.7)', lineHeight: 1.6 }}>
+                        {phase.outcome}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+      </section>
+
+      {/* ── Industry Expertise — Off-white ── */}
+      <section style={{ paddingTop: '120px', paddingBottom: '120px', backgroundColor: '#F6F9FC' }}>
+        <motion.div
+          className="enterprise-container-wide"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={staggerContainer}
+        >
+          <motion.div variants={fadeUp} style={{ marginBottom: '64px', textAlign: 'center' }}>
+            <p
+              style={{
+                fontSize: '13px',
+                fontWeight: 600,
+                textTransform: 'uppercase',
+                letterSpacing: '0.1em',
+                color: '#635BFF',
+                marginBottom: '20px'
+              }}
+            >
+              Industry expertise
+            </p>
+            <h2
+              style={{
+                fontSize: 'clamp(2rem, 3.5vw, 3rem)',
+                fontWeight: 700,
+                letterSpacing: '-0.03em',
+                lineHeight: 1.1,
+                color: '#0A2540',
+                marginBottom: '20px'
+              }}
+            >
+              Deep knowledge across regulated sectors.
+            </h2>
+            <p
+              style={{
+                fontSize: '19px',
+                lineHeight: 1.65,
+                color: '#425466',
+                maxWidth: '520px',
+                marginLeft: 'auto',
+                marginRight: 'auto'
+              }}
+            >
+              We bring hands-on experience from organizations where technology decisions carry real consequences.
+            </p>
+          </motion.div>
+
+          <motion.div
+            variants={staggerContainer}
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(6, 1fr)',
+              gap: '16px'
+            }}
+            className="max-lg:!grid-cols-3 max-sm:!grid-cols-2"
+          >
+            {industries.map((industry) => (
+              <motion.div
+                key={industry.name}
+                variants={fadeUp}
+                style={{
+                  padding: '28px 20px',
+                  backgroundColor: 'white',
+                  borderRadius: '16px',
+                  border: '1px solid rgba(10, 37, 64, 0.06)',
+                  textAlign: 'center',
+                  transition: 'box-shadow 0.3s ease, transform 0.3s ease'
+                }}
+                whileHover={{ y: -3, boxShadow: '0 8px 32px rgba(10, 37, 64, 0.08)' }}
+              >
+                <div
+                  style={{
+                    width: '48px',
+                    height: '48px',
+                    borderRadius: '12px',
+                    backgroundColor: 'rgba(99, 91, 255, 0.08)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginLeft: 'auto',
+                    marginRight: 'auto',
+                    marginBottom: '16px'
+                  }}
+                >
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#635BFF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d={industry.iconPath} />
+                  </svg>
+                </div>
+                <h3
+                  style={{
+                    fontSize: '14px',
+                    fontWeight: 700,
+                    color: '#0A2540',
+                    letterSpacing: '-0.01em',
+                    marginBottom: '4px'
+                  }}
+                >
+                  {industry.name}
+                </h3>
+                <p
+                  style={{
+                    fontSize: '13px',
+                    fontWeight: 600,
+                    color: '#635BFF'
+                  }}
+                >
+                  {industry.projects}
+                </p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </motion.div>
+      </section>
+
+      {/* ── CTA — Dark Navy ── */}
+      <section
+        className="relative overflow-hidden"
+        style={{
+          paddingTop: '100px',
+          paddingBottom: '120px',
+          backgroundColor: '#0A2540'
+        }}
+      >
+        <div
+          style={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            width: '600px',
+            height: '600px',
+            background: 'radial-gradient(circle, rgba(99, 91, 255, 0.08), transparent 60%)',
+            borderRadius: '50%',
+            pointerEvents: 'none'
+          }}
+          aria-hidden="true"
+        />
+
+        <motion.div
+          className="enterprise-container-wide relative"
+          style={{ zIndex: 1, textAlign: 'center' }}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={staggerContainer}
+        >
+          <motion.h2
+            variants={fadeUp}
+            style={{
+              fontSize: 'clamp(2rem, 4vw, 3rem)',
+              fontWeight: 700,
+              letterSpacing: '-0.03em',
+              lineHeight: 1.1,
+              color: 'white',
+              marginBottom: '20px'
+            }}
+          >
+            Ready to transform your business?
+          </motion.h2>
+          <motion.p
+            variants={fadeUp}
+            style={{
+              fontSize: '19px',
+              lineHeight: 1.65,
+              color: 'rgba(255, 255, 255, 0.55)',
+              marginBottom: '40px',
+              maxWidth: '560px',
+              marginLeft: 'auto',
+              marginRight: 'auto'
+            }}
+          >
+            Let our consultants guide your transformation journey with strategies and methodologies that deliver measurable results.
+          </motion.p>
+
+          <motion.div
+            variants={fadeUp}
+            className="flex flex-col sm:flex-row justify-center items-center"
+            style={{ gap: '16px', marginBottom: '40px' }}
+          >
+            <Link href="/contact-us" className="stripe-btn-light group">
+              Schedule Strategy Consultation
+              <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" strokeWidth={2.5} />
+            </Link>
+            <Link href="/case-studies" className="stripe-btn-ghost">
+              View Transformation Stories
+            </Link>
+          </motion.div>
+
+          <motion.div
+            variants={fadeUp}
+            className="flex flex-wrap justify-center"
+            style={{ gap: '24px' }}
+          >
+            {["Free strategy session", "Custom roadmap", "ROI analysis included", "No obligation"].map((item) => (
+              <div
+                key={item}
+                style={{ display: 'flex', alignItems: 'center', gap: '8px' }}
+              >
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path d="M13.333 4L6 11.333 2.667 8" stroke="#635BFF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+                <span style={{ fontSize: '14px', color: 'rgba(255, 255, 255, 0.5)' }}>{item}</span>
+              </div>
+            ))}
+          </motion.div>
+        </motion.div>
       </section>
     </SharedLayout>
   )
