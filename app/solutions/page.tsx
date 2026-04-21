@@ -130,7 +130,7 @@ export default function SolutionsPage() {
         style={{
           paddingTop: '160px',
           paddingBottom: '100px',
-          backgroundColor: '#0A2540'
+          backgroundColor: '#000000'
         }}
       >
         <div
@@ -176,7 +176,7 @@ export default function SolutionsPage() {
                 fontWeight: 600,
                 textTransform: 'uppercase',
                 letterSpacing: '0.1em',
-                color: '#635BFF',
+                color: '#8b84ff',
                 marginBottom: '24px'
               }}
             >
@@ -220,7 +220,7 @@ export default function SolutionsPage() {
       </section>
 
       {/* ── Solution Areas — White ── */}
-      <section style={{ paddingTop: '120px', paddingBottom: '120px', backgroundColor: 'white' }}>
+      <section style={{ paddingTop: '120px', paddingBottom: '120px', backgroundColor: '#000000' }}>
         <motion.div
           className="enterprise-container-wide"
           initial="hidden"
@@ -235,7 +235,7 @@ export default function SolutionsPage() {
                 fontWeight: 600,
                 textTransform: 'uppercase',
                 letterSpacing: '0.1em',
-                color: '#635BFF',
+                color: '#8b84ff',
                 marginBottom: '20px'
               }}
             >
@@ -247,7 +247,7 @@ export default function SolutionsPage() {
                 fontWeight: 700,
                 letterSpacing: '-0.03em',
                 lineHeight: 1.1,
-                color: '#0A2540',
+                color: 'white',
                 marginBottom: '20px'
               }}
             >
@@ -257,7 +257,7 @@ export default function SolutionsPage() {
               style={{
                 fontSize: '19px',
                 lineHeight: 1.65,
-                color: '#425466',
+                color: 'rgba(255,255,255,0.7)',
                 maxWidth: '520px'
               }}
             >
@@ -279,16 +279,16 @@ export default function SolutionsPage() {
                 key={index}
                 variants={fadeUp}
                 style={{
-                  backgroundColor: '#F6F9FC',
+                  backgroundColor: '#0a0a0f',
                   borderRadius: '16px',
-                  border: '1px solid rgba(10, 37, 64, 0.06)',
+                  border: '1px solid rgba(255, 255, 255, 0.06)',
                   transition: 'box-shadow 0.3s ease, transform 0.3s ease',
                   overflow: 'hidden',
                   display: 'flex',
                   flexDirection: 'column'
                 }}
                 className="group"
-                whileHover={{ y: -3, boxShadow: '0 12px 40px rgba(10, 37, 64, 0.08)' }}
+                whileHover={{ y: -3, boxShadow: '0 12px 40px rgba(255, 255, 255, 0.08)' }}
               >
                 <div style={{ padding: '36px', flex: 1, display: 'flex', flexDirection: 'column' }}>
                   {/* Icon */}
@@ -305,7 +305,7 @@ export default function SolutionsPage() {
                       flexShrink: 0
                     }}
                   >
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#635BFF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#8b84ff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                       <path d={solution.iconPath} />
                     </svg>
                   </div>
@@ -315,7 +315,7 @@ export default function SolutionsPage() {
                       fontSize: '20px',
                       fontWeight: 700,
                       letterSpacing: '-0.02em',
-                      color: '#0A2540',
+                      color: 'white',
                       marginBottom: '12px'
                     }}
                   >
@@ -325,7 +325,7 @@ export default function SolutionsPage() {
                     style={{
                       fontSize: '15px',
                       lineHeight: 1.65,
-                      color: '#425466',
+                      color: 'rgba(255,255,255,0.7)',
                       marginBottom: '24px'
                     }}
                   >
@@ -345,9 +345,9 @@ export default function SolutionsPage() {
                         }}
                       >
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ marginTop: '2px', flexShrink: 0 }}>
-                          <path d="M13.333 4L6 11.333 2.667 8" stroke="#635BFF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                          <path d="M13.333 4L6 11.333 2.667 8" stroke="#8b84ff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
-                        <span style={{ fontSize: '14px', color: '#425466', lineHeight: 1.5 }}>{cap}</span>
+                        <span style={{ fontSize: '14px', color: 'rgba(255,255,255,0.7)', lineHeight: 1.5 }}>{cap}</span>
                       </div>
                     ))}
                   </div>
@@ -361,17 +361,17 @@ export default function SolutionsPage() {
                     alignItems: 'center',
                     justifyContent: 'space-between',
                     padding: '20px 36px',
-                    borderTop: '1px solid rgba(10, 37, 64, 0.06)',
+                    borderTop: '1px solid rgba(255, 255, 255, 0.06)',
                     textDecoration: 'none',
                     transition: 'background-color 0.2s ease'
                   }}
-                  className="group-hover:!bg-white"
+                  className="group-hover:!bg-white/5"
                 >
                   <span
                     style={{
                       fontSize: '14px',
                       fontWeight: 600,
-                      color: '#635BFF',
+                      color: '#8b84ff',
                       letterSpacing: '-0.01em'
                     }}
                   >
@@ -381,7 +381,7 @@ export default function SolutionsPage() {
                     size={16}
                     strokeWidth={2.5}
                     style={{
-                      color: '#635BFF',
+                      color: '#8b84ff',
                       transition: 'transform 0.2s ease'
                     }}
                     className="group-hover:translate-x-1"
@@ -399,7 +399,7 @@ export default function SolutionsPage() {
         style={{
           paddingTop: '120px',
           paddingBottom: '120px',
-          backgroundColor: '#0A2540'
+          backgroundColor: '#000000'
         }}
       >
         <div
@@ -432,7 +432,7 @@ export default function SolutionsPage() {
                 fontWeight: 600,
                 textTransform: 'uppercase',
                 letterSpacing: '0.1em',
-                color: '#635BFF',
+                color: '#8b84ff',
                 marginBottom: '20px'
               }}
             >
@@ -546,7 +546,7 @@ export default function SolutionsPage() {
                       }}
                     >
                       <svg width="14" height="14" viewBox="0 0 16 16" fill="none" style={{ marginTop: '3px', flexShrink: 0 }}>
-                        <path d="M13.333 4L6 11.333 2.667 8" stroke="#635BFF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                        <path d="M13.333 4L6 11.333 2.667 8" stroke="#8b84ff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
                       <span style={{ fontSize: '14px', color: 'rgba(255, 255, 255, 0.6)', lineHeight: 1.5 }}>{cap}</span>
                     </div>
@@ -559,7 +559,7 @@ export default function SolutionsPage() {
       </section>
 
       {/* ── What This Enables — Off-white ── */}
-      <section style={{ paddingTop: '120px', paddingBottom: '120px', backgroundColor: '#F6F9FC' }}>
+      <section style={{ paddingTop: '120px', paddingBottom: '120px', backgroundColor: '#0a0a0f' }}>
         <motion.div
           className="enterprise-container-wide"
           initial="hidden"
@@ -584,7 +584,7 @@ export default function SolutionsPage() {
                   fontWeight: 600,
                   textTransform: 'uppercase',
                   letterSpacing: '0.1em',
-                  color: '#635BFF',
+                  color: '#8b84ff',
                   marginBottom: '20px'
                 }}
               >
@@ -596,7 +596,7 @@ export default function SolutionsPage() {
                   fontWeight: 700,
                   letterSpacing: '-0.03em',
                   lineHeight: 1.1,
-                  color: '#0A2540',
+                  color: 'white',
                   marginBottom: '20px'
                 }}
               >
@@ -606,7 +606,7 @@ export default function SolutionsPage() {
                 style={{
                   fontSize: '19px',
                   lineHeight: 1.65,
-                  color: '#425466',
+                  color: 'rgba(255,255,255,0.7)',
                   maxWidth: '440px'
                 }}
               >
@@ -621,7 +621,7 @@ export default function SolutionsPage() {
                     gap: '8px',
                     fontSize: '15px',
                     fontWeight: 600,
-                    color: '#635BFF',
+                    color: '#8b84ff',
                     textDecoration: 'none'
                   }}
                 >
@@ -642,9 +642,9 @@ export default function SolutionsPage() {
                       alignItems: 'center',
                       gap: '16px',
                       padding: '20px 24px',
-                      backgroundColor: 'white',
+                      backgroundColor: '#000000',
                       borderRadius: '12px',
-                      border: '1px solid rgba(10, 37, 64, 0.06)'
+                      border: '1px solid rgba(255, 255, 255, 0.06)'
                     }}
                   >
                     <div
@@ -660,14 +660,14 @@ export default function SolutionsPage() {
                       }}
                     >
                       <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                        <path d="M13.333 4L6 11.333 2.667 8" stroke="#635BFF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                        <path d="M13.333 4L6 11.333 2.667 8" stroke="#8b84ff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
                     </div>
                     <span
                       style={{
                         fontSize: '15px',
                         fontWeight: 600,
-                        color: '#0A2540',
+                        color: 'white',
                         letterSpacing: '-0.01em'
                       }}
                     >
@@ -687,7 +687,7 @@ export default function SolutionsPage() {
         style={{
           paddingTop: '100px',
           paddingBottom: '120px',
-          backgroundColor: '#0A2540'
+          backgroundColor: '#000000'
         }}
       >
         <div

@@ -51,10 +51,10 @@ const inputBase: React.CSSProperties = {
   width: '100%',
   padding: '14px 16px',
   fontSize: '15px',
-  border: '1px solid rgba(10, 37, 64, 0.12)',
+  border: '1px solid rgba(255, 255, 255, 0.12)',
   borderRadius: '10px',
-  backgroundColor: 'white',
-  color: '#0A2540',
+  backgroundColor: '#000000',
+  color: 'white',
   outline: 'none',
   transition: 'border-color 0.2s ease, box-shadow 0.2s ease',
   fontFamily: 'inherit'
@@ -86,7 +86,7 @@ export default function ContactPage() {
         style={{
           paddingTop: '160px',
           paddingBottom: '80px',
-          backgroundColor: '#0A2540'
+          backgroundColor: '#000000'
         }}
       >
         <div
@@ -118,7 +118,7 @@ export default function ContactPage() {
                 fontWeight: 600,
                 textTransform: 'uppercase',
                 letterSpacing: '0.1em',
-                color: '#635BFF',
+                color: '#8b84ff',
                 marginBottom: '24px'
               }}
             >
@@ -151,7 +151,7 @@ export default function ContactPage() {
       </section>
 
       {/* ── Main Content — Two Column ── */}
-      <section style={{ paddingTop: '80px', paddingBottom: '120px', backgroundColor: 'white' }}>
+      <section style={{ paddingTop: '80px', paddingBottom: '120px', backgroundColor: '#000000' }}>
         <div className="enterprise-container-wide">
           <div
             style={{
@@ -176,7 +176,7 @@ export default function ContactPage() {
                     fontSize: '22px',
                     fontWeight: 700,
                     letterSpacing: '-0.02em',
-                    color: '#0A2540',
+                    color: 'white',
                     marginBottom: '24px'
                   }}
                 >
@@ -191,15 +191,15 @@ export default function ContactPage() {
                         alignItems: 'flex-start',
                         gap: '14px',
                         padding: '16px 20px',
-                        backgroundColor: '#F6F9FC',
+                        backgroundColor: '#0a0a0f',
                         borderRadius: '12px',
-                        border: '1px solid rgba(10, 37, 64, 0.04)'
+                        border: '1px solid rgba(255, 255, 255, 0.04)'
                       }}
                     >
                       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ marginTop: '2px', flexShrink: 0 }}>
-                        <path d="M13.333 4L6 11.333 2.667 8" stroke="#635BFF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                        <path d="M13.333 4L6 11.333 2.667 8" stroke="#8b84ff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
-                      <span style={{ fontSize: '15px', color: '#425466', lineHeight: 1.6 }}>
+                      <span style={{ fontSize: '15px', color: 'rgba(255,255,255,0.7)', lineHeight: 1.6 }}>
                         {scenario}
                       </span>
                     </div>
@@ -214,7 +214,7 @@ export default function ContactPage() {
                     fontSize: '22px',
                     fontWeight: 700,
                     letterSpacing: '-0.02em',
-                    color: '#0A2540',
+                    color: 'white',
                     marginBottom: '24px'
                   }}
                 >
@@ -230,14 +230,14 @@ export default function ContactPage() {
                         alignItems: 'center',
                         gap: '16px',
                         padding: '20px 24px',
-                        backgroundColor: '#F6F9FC',
+                        backgroundColor: '#0a0a0f',
                         borderRadius: '12px',
-                        border: '1px solid rgba(10, 37, 64, 0.04)',
+                        border: '1px solid rgba(255, 255, 255, 0.04)',
                         textDecoration: 'none',
                         transition: 'box-shadow 0.2s ease, transform 0.2s ease'
                       }}
                       onMouseEnter={(e) => {
-                        e.currentTarget.style.boxShadow = '0 4px 16px rgba(10, 37, 64, 0.06)'
+                        e.currentTarget.style.boxShadow = '0 4px 16px rgba(255, 255, 255, 0.06)'
                         e.currentTarget.style.transform = 'translateY(-1px)'
                       }}
                       onMouseLeave={(e) => {
@@ -257,15 +257,15 @@ export default function ContactPage() {
                           flexShrink: 0
                         }}
                       >
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#635BFF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8b84ff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                           <path d={channel.iconPath} />
                         </svg>
                       </div>
                       <div>
-                        <p style={{ fontSize: '12px', fontWeight: 600, color: '#425466', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '2px' }}>
+                        <p style={{ fontSize: '12px', fontWeight: 600, color: 'rgba(255,255,255,0.7)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '2px' }}>
                           {channel.label}
                         </p>
-                        <p style={{ fontSize: '15px', fontWeight: 600, color: '#0A2540' }}>
+                        <p style={{ fontSize: '15px', fontWeight: 600, color: 'white' }}>
                           {channel.value}
                         </p>
                       </div>
@@ -281,10 +281,10 @@ export default function ContactPage() {
                   padding: '20px 24px',
                   backgroundColor: 'rgba(99, 91, 255, 0.04)',
                   borderRadius: '12px',
-                  borderLeft: '3px solid #635BFF'
+                  borderLeft: '3px solid #8b84ff'
                 }}
               >
-                <p style={{ fontSize: '14px', lineHeight: 1.7, color: '#425466' }}>
+                <p style={{ fontSize: '14px', lineHeight: 1.7, color: 'rgba(255,255,255,0.7)' }}>
                   We respect your time and information. All conversations are confidential and exploratory — no pressure, no obligation.
                 </p>
               </motion.div>
@@ -299,10 +299,10 @@ export default function ContactPage() {
             >
               <div
                 style={{
-                  backgroundColor: '#F6F9FC',
+                  backgroundColor: '#0a0a0f',
                   borderRadius: '20px',
                   padding: '40px',
-                  border: '1px solid rgba(10, 37, 64, 0.06)'
+                  border: '1px solid rgba(255, 255, 255, 0.06)'
                 }}
               >
                 <h2
@@ -310,7 +310,7 @@ export default function ContactPage() {
                     fontSize: '22px',
                     fontWeight: 700,
                     letterSpacing: '-0.02em',
-                    color: '#0A2540',
+                    color: 'white',
                     marginBottom: '6px'
                   }}
                 >
@@ -319,7 +319,7 @@ export default function ContactPage() {
                 <p
                   style={{
                     fontSize: '15px',
-                    color: '#425466',
+                    color: 'rgba(255,255,255,0.7)',
                     marginBottom: '32px'
                   }}
                 >
@@ -333,7 +333,7 @@ export default function ContactPage() {
                         width: '56px',
                         height: '56px',
                         borderRadius: '50%',
-                        backgroundColor: '#635BFF',
+                        backgroundColor: '#8b84ff',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
@@ -348,13 +348,13 @@ export default function ContactPage() {
                       style={{
                         fontSize: '20px',
                         fontWeight: 700,
-                        color: '#0A2540',
+                        color: 'white',
                         marginBottom: '8px'
                       }}
                     >
                       Message sent
                     </h3>
-                    <p style={{ fontSize: '15px', color: '#425466' }}>
+                    <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.7)' }}>
                       Thank you. We&apos;ll be in touch soon.
                     </p>
                   </div>
@@ -369,7 +369,7 @@ export default function ContactPage() {
                             display: 'block',
                             fontSize: '13px',
                             fontWeight: 600,
-                            color: '#0A2540',
+                            color: 'white',
                             marginBottom: '8px'
                           }}
                         >
@@ -384,11 +384,11 @@ export default function ContactPage() {
                           onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
                           style={inputBase}
                           onFocus={(e) => {
-                            e.currentTarget.style.borderColor = '#635BFF'
+                            e.currentTarget.style.borderColor = '#8b84ff'
                             e.currentTarget.style.boxShadow = '0 0 0 3px rgba(99, 91, 255, 0.1)'
                           }}
                           onBlur={(e) => {
-                            e.currentTarget.style.borderColor = 'rgba(10, 37, 64, 0.12)'
+                            e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.12)'
                             e.currentTarget.style.boxShadow = 'none'
                           }}
                         />
@@ -402,7 +402,7 @@ export default function ContactPage() {
                             display: 'block',
                             fontSize: '13px',
                             fontWeight: 600,
-                            color: '#0A2540',
+                            color: 'white',
                             marginBottom: '8px'
                           }}
                         >
@@ -417,11 +417,11 @@ export default function ContactPage() {
                           onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
                           style={inputBase}
                           onFocus={(e) => {
-                            e.currentTarget.style.borderColor = '#635BFF'
+                            e.currentTarget.style.borderColor = '#8b84ff'
                             e.currentTarget.style.boxShadow = '0 0 0 3px rgba(99, 91, 255, 0.1)'
                           }}
                           onBlur={(e) => {
-                            e.currentTarget.style.borderColor = 'rgba(10, 37, 64, 0.12)'
+                            e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.12)'
                             e.currentTarget.style.boxShadow = 'none'
                           }}
                         />
@@ -435,12 +435,12 @@ export default function ContactPage() {
                             display: 'block',
                             fontSize: '13px',
                             fontWeight: 600,
-                            color: '#0A2540',
+                            color: 'white',
                             marginBottom: '8px'
                           }}
                         >
                           Role
-                          <span style={{ fontWeight: 400, color: '#425466', marginLeft: '4px' }}>(optional)</span>
+                          <span style={{ fontWeight: 400, color: 'rgba(255,255,255,0.7)', marginLeft: '4px' }}>(optional)</span>
                         </label>
                         <input
                           type="text"
@@ -449,13 +449,13 @@ export default function ContactPage() {
                           placeholder="e.g., CTO, VP Engineering, Architect"
                           value={formData.role}
                           onChange={(e) => setFormData(prev => ({ ...prev, role: e.target.value }))}
-                          style={{ ...inputBase, color: formData.role ? '#0A2540' : '#94a3b8' }}
+                          style={{ ...inputBase, color: formData.role ? 'white' : 'rgba(255,255,255,0.4)' }}
                           onFocus={(e) => {
-                            e.currentTarget.style.borderColor = '#635BFF'
+                            e.currentTarget.style.borderColor = '#8b84ff'
                             e.currentTarget.style.boxShadow = '0 0 0 3px rgba(99, 91, 255, 0.1)'
                           }}
                           onBlur={(e) => {
-                            e.currentTarget.style.borderColor = 'rgba(10, 37, 64, 0.12)'
+                            e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.12)'
                             e.currentTarget.style.boxShadow = 'none'
                           }}
                         />
@@ -469,12 +469,12 @@ export default function ContactPage() {
                             display: 'block',
                             fontSize: '13px',
                             fontWeight: 600,
-                            color: '#0A2540',
+                            color: 'white',
                             marginBottom: '8px'
                           }}
                         >
                           Context
-                          <span style={{ fontWeight: 400, color: '#425466', marginLeft: '4px' }}>(optional but helpful)</span>
+                          <span style={{ fontWeight: 400, color: 'rgba(255,255,255,0.7)', marginLeft: '4px' }}>(optional but helpful)</span>
                         </label>
                         <textarea
                           id="context"
@@ -487,14 +487,14 @@ export default function ContactPage() {
                             ...inputBase,
                             resize: 'vertical' as const,
                             minHeight: '120px',
-                            color: formData.context ? '#0A2540' : '#94a3b8'
+                            color: formData.context ? '#000000' : '#94a3b8'
                           }}
                           onFocus={(e) => {
-                            e.currentTarget.style.borderColor = '#635BFF'
+                            e.currentTarget.style.borderColor = '#8b84ff'
                             e.currentTarget.style.boxShadow = '0 0 0 3px rgba(99, 91, 255, 0.1)'
                           }}
                           onBlur={(e) => {
-                            e.currentTarget.style.borderColor = 'rgba(10, 37, 64, 0.12)'
+                            e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.12)'
                             e.currentTarget.style.boxShadow = 'none'
                           }}
                         />
@@ -504,31 +504,12 @@ export default function ContactPage() {
                       <button
                         type="submit"
                         disabled={isSubmitting}
+                        className="stripe-btn-primary"
                         style={{
                           width: '100%',
-                          padding: '16px',
-                          backgroundColor: '#635BFF',
-                          color: 'white',
-                          fontSize: '15px',
-                          fontWeight: 600,
-                          borderRadius: '10px',
-                          border: 'none',
-                          cursor: isSubmitting ? 'not-allowed' : 'pointer',
-                          opacity: isSubmitting ? 0.7 : 1,
-                          transition: 'background-color 0.2s ease, opacity 0.2s ease, transform 0.2s ease',
                           marginTop: '4px',
-                          fontFamily: 'inherit',
-                          letterSpacing: '-0.01em'
-                        }}
-                        onMouseEnter={(e) => {
-                          if (!isSubmitting) {
-                            e.currentTarget.style.backgroundColor = '#5349E0'
-                            e.currentTarget.style.transform = 'translateY(-1px)'
-                          }
-                        }}
-                        onMouseLeave={(e) => {
-                          e.currentTarget.style.backgroundColor = '#635BFF'
-                          e.currentTarget.style.transform = 'translateY(0)'
+                          opacity: isSubmitting ? 0.6 : 1,
+                          cursor: isSubmitting ? 'not-allowed' : 'pointer',
                         }}
                       >
                         {isSubmitting ? 'Sending...' : 'Send Message'}

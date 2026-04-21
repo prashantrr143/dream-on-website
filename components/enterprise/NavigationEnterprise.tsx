@@ -146,9 +146,11 @@ const NavigationEnterprise = () => {
       ref={navRef}
       className="fixed top-0 left-0 right-0 w-full z-50"
       style={{
-        backgroundColor: isScrolled ? 'white' : 'transparent',
-        boxShadow: isScrolled ? '0 1px 3px rgba(0,0,0,0.08)' : 'none',
-        transition: 'background-color 300ms ease, box-shadow 300ms ease'
+        backgroundColor: isScrolled ? 'rgba(0,0,0,0.75)' : 'transparent',
+        backdropFilter: isScrolled ? 'blur(16px)' : 'none',
+        WebkitBackdropFilter: isScrolled ? 'blur(16px)' : 'none',
+        borderBottom: isScrolled ? '1px solid rgba(255,255,255,0.08)' : '1px solid transparent',
+        transition: 'background-color 300ms ease, border-color 300ms ease'
       }}
     >
       <div className="enterprise-container-wide">
@@ -163,7 +165,7 @@ const NavigationEnterprise = () => {
                 fontSize: '20px',
                 fontWeight: 700,
                 letterSpacing: '-0.02em',
-                color: isScrolled ? 'hsl(210, 76%, 15%)' : 'white',
+                color: 'white',
                 transition: 'color 300ms ease'
               }}
             >
@@ -185,9 +187,7 @@ const NavigationEnterprise = () => {
                   style={{
                     fontSize: '15px',
                     fontWeight: 500,
-                    color: isScrolled
-                      ? (activeDropdown === item.name ? 'hsl(210, 76%, 15%)' : 'hsl(220, 9%, 46%)')
-                      : (activeDropdown === item.name ? 'white' : 'rgba(255,255,255,0.75)'),
+                    color: activeDropdown === item.name ? 'white' : 'rgba(255,255,255,0.75)',
                     transition: 'color 200ms ease',
                     display: 'inline-flex',
                     alignItems: 'center',
@@ -227,8 +227,8 @@ const NavigationEnterprise = () => {
               width: '40px',
               height: '40px',
               borderRadius: '8px',
-              backgroundColor: isScrolled ? 'hsl(var(--premium-gray-100))' : 'rgba(255,255,255,0.1)',
-              color: isScrolled ? 'hsl(var(--premium-gray-600))' : 'white',
+              backgroundColor: 'rgba(255,255,255,0.1)',
+              color: 'white',
               transition: 'background-color 200ms ease, color 200ms ease'
             }}
             aria-label="Toggle menu"
@@ -267,7 +267,7 @@ const NavigationEnterprise = () => {
                 .find(item => item.name === activeDropdown)
                 ?.dropdownCategories?.map((category, catIdx) => (
                   <div key={catIdx} style={{ marginBottom: catIdx < (navigationItems.find(item => item.name === activeDropdown)?.dropdownCategories?.length ?? 0) - 1 ? '28px' : '0' }}>
-                    <p style={{ fontSize: '12px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'hsl(220, 9%, 46%)', marginBottom: '16px' }}>
+                    <p style={{ fontSize: '12px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'rgba(255,255,255,0.45)', marginBottom: '16px' }}>
                       {category.category}
                     </p>
                     <div className="grid grid-cols-3" style={{ gap: '8px' }}>
@@ -277,10 +277,10 @@ const NavigationEnterprise = () => {
                           href={item.href}
                           onClick={() => setActiveDropdown(null)}
                           style={{ padding: '12px 16px', borderRadius: '10px', transition: 'background-color 150ms ease', display: 'block' }}
-                          className="hover:bg-gray-50"
+                          className="hover:bg-white/5"
                         >
-                          <p style={{ fontSize: '14px', fontWeight: 600, color: 'hsl(210, 76%, 15%)', marginBottom: '2px' }}>{item.name}</p>
-                          <p style={{ fontSize: '13px', color: 'hsl(220, 9%, 46%)' }}>{item.description}</p>
+                          <p style={{ fontSize: '14px', fontWeight: 600, color: 'white', marginBottom: '2px' }}>{item.name}</p>
+                          <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.6)' }}>{item.description}</p>
                         </a>
                       ))}
                     </div>
@@ -295,8 +295,8 @@ const NavigationEnterprise = () => {
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            className="lg:hidden fixed inset-x-0 bg-white overflow-y-auto z-40"
-            style={{ top: isScrolled ? '60px' : '72px', maxHeight: `calc(100vh - ${isScrolled ? '60px' : '72px'})`, borderTop: '1px solid hsl(var(--premium-gray-100))' }}
+            className="lg:hidden fixed inset-x-0 overflow-y-auto z-40"
+            style={{ top: isScrolled ? '60px' : '72px', maxHeight: `calc(100vh - ${isScrolled ? '60px' : '72px'})`, borderTop: '1px solid rgba(255,255,255,0.08)', backgroundColor: 'rgba(0,0,0,0.92)', backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)' }}
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
@@ -312,7 +312,7 @@ const NavigationEnterprise = () => {
                     initial={{ opacity: 0, x: -12 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.04, duration: 0.2 }}
-                    style={{ fontSize: '16px', fontWeight: 500, color: 'hsl(210, 76%, 15%)', padding: '14px 0', borderBottom: '1px solid hsl(var(--premium-gray-100))' }}
+                    style={{ fontSize: '16px', fontWeight: 500, color: 'white', padding: '14px 0', borderBottom: '1px solid rgba(255,255,255,0.08)' }}
                   >
                     {item.name}
                   </motion.a>

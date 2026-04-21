@@ -143,7 +143,7 @@ const CloudInfrastructure = () => {
         style={{
           paddingTop: '160px',
           paddingBottom: '100px',
-          backgroundColor: '#0A2540'
+          backgroundColor: '#000000'
         }}
       >
         {/* Background accents */}
@@ -190,7 +190,7 @@ const CloudInfrastructure = () => {
                 fontWeight: 600,
                 textTransform: 'uppercase',
                 letterSpacing: '0.1em',
-                color: '#635BFF',
+                color: '#8b84ff',
                 marginBottom: '24px'
               }}
             >
@@ -250,7 +250,7 @@ const CloudInfrastructure = () => {
                 key={metric.label}
                 style={{
                   padding: '32px',
-                  backgroundColor: 'rgba(10, 37, 64, 0.95)',
+                  backgroundColor: 'rgba(0, 0, 0, 0.95)',
                   textAlign: 'center'
                 }}
               >
@@ -270,7 +270,7 @@ const CloudInfrastructure = () => {
                   style={{
                     fontSize: '14px',
                     fontWeight: 600,
-                    color: '#635BFF',
+                    color: '#8b84ff',
                     marginBottom: '4px'
                   }}
                 >
@@ -291,7 +291,7 @@ const CloudInfrastructure = () => {
       </section>
 
       {/* Solutions — White bg */}
-      <section style={{ paddingTop: '120px', paddingBottom: '120px', backgroundColor: 'white' }}>
+      <section style={{ paddingTop: '120px', paddingBottom: '120px', backgroundColor: '#000000' }}>
         <motion.div
           className="enterprise-container-wide"
           initial="hidden"
@@ -306,7 +306,7 @@ const CloudInfrastructure = () => {
                 fontWeight: 600,
                 textTransform: 'uppercase',
                 letterSpacing: '0.1em',
-                color: '#635BFF',
+                color: '#8b84ff',
                 marginBottom: '20px'
               }}
             >
@@ -318,7 +318,7 @@ const CloudInfrastructure = () => {
                 fontWeight: 700,
                 letterSpacing: '-0.03em',
                 lineHeight: 1.1,
-                color: '#0A2540',
+                color: 'white',
                 marginBottom: '20px'
               }}
             >
@@ -328,7 +328,7 @@ const CloudInfrastructure = () => {
               style={{
                 fontSize: '19px',
                 lineHeight: 1.65,
-                color: '#425466',
+                color: 'rgba(255,255,255,0.7)',
                 maxWidth: '520px'
               }}
             >
@@ -351,9 +351,9 @@ const CloudInfrastructure = () => {
                 variants={fadeUp}
                 style={{
                   padding: '36px',
-                  backgroundColor: '#F6F9FC',
+                  backgroundColor: '#0a0a0f',
                   borderRadius: '16px',
-                  border: '1px solid rgba(10, 37, 64, 0.06)',
+                  border: '1px solid rgba(255, 255, 255, 0.06)',
                   transition: 'box-shadow 0.3s ease, transform 0.3s ease',
                   position: 'relative',
                   overflow: 'hidden',
@@ -361,7 +361,7 @@ const CloudInfrastructure = () => {
                   flexDirection: 'column'
                 }}
                 className="group"
-                whileHover={{ y: -3, boxShadow: '0 12px 40px rgba(10, 37, 64, 0.08)' }}
+                whileHover={{ y: -3, boxShadow: '0 12px 40px rgba(255, 255, 255, 0.08)' }}
               >
                 {/* Icon */}
                 <div
@@ -377,7 +377,7 @@ const CloudInfrastructure = () => {
                     flexShrink: 0
                   }}
                 >
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#635BFF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#8b84ff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                     <path d={solution.iconPath} />
                   </svg>
                 </div>
@@ -387,7 +387,7 @@ const CloudInfrastructure = () => {
                     fontSize: '20px',
                     fontWeight: 700,
                     letterSpacing: '-0.02em',
-                    color: '#0A2540',
+                    color: 'white',
                     marginBottom: '12px'
                   }}
                 >
@@ -397,7 +397,7 @@ const CloudInfrastructure = () => {
                   style={{
                     fontSize: '15px',
                     lineHeight: 1.65,
-                    color: '#425466',
+                    color: 'rgba(255,255,255,0.7)',
                     marginBottom: '24px'
                   }}
                 >
@@ -417,9 +417,9 @@ const CloudInfrastructure = () => {
                       }}
                     >
                       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ marginTop: '2px', flexShrink: 0 }}>
-                        <path d="M13.333 4L6 11.333 2.667 8" stroke="#635BFF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                        <path d="M13.333 4L6 11.333 2.667 8" stroke="#8b84ff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
-                      <span style={{ fontSize: '14px', color: '#425466', lineHeight: 1.5 }}>{cap}</span>
+                      <span style={{ fontSize: '14px', color: 'rgba(255,255,255,0.7)', lineHeight: 1.5 }}>{cap}</span>
                     </div>
                   ))}
                 </div>
@@ -428,7 +428,7 @@ const CloudInfrastructure = () => {
                 <div
                   style={{
                     paddingTop: '20px',
-                    borderTop: '1px solid rgba(10, 37, 64, 0.06)',
+                    borderTop: '1px solid rgba(255, 255, 255, 0.06)',
                     display: 'flex',
                     flexDirection: 'column',
                     gap: '16px'
@@ -438,7 +438,7 @@ const CloudInfrastructure = () => {
                     style={{
                       fontSize: '14px',
                       fontWeight: 700,
-                      color: '#635BFF',
+                      color: '#8b84ff',
                       letterSpacing: '-0.01em'
                     }}
                   >
@@ -451,11 +451,11 @@ const CloudInfrastructure = () => {
                         style={{
                           fontSize: '11px',
                           fontWeight: 600,
-                          color: '#0A2540',
-                          backgroundColor: 'white',
+                          color: 'white',
+                          backgroundColor: '#000000',
                           padding: '4px 10px',
                           borderRadius: '100px',
-                          border: '1px solid rgba(10, 37, 64, 0.08)',
+                          border: '1px solid rgba(255, 255, 255, 0.08)',
                           letterSpacing: '0.01em'
                         }}
                       >
@@ -476,7 +476,7 @@ const CloudInfrastructure = () => {
         style={{
           paddingTop: '120px',
           paddingBottom: '120px',
-          backgroundColor: '#0A2540'
+          backgroundColor: '#000000'
         }}
       >
         <div
@@ -509,7 +509,7 @@ const CloudInfrastructure = () => {
                 fontWeight: 600,
                 textTransform: 'uppercase',
                 letterSpacing: '0.1em',
-                color: '#635BFF',
+                color: '#8b84ff',
                 marginBottom: '20px'
               }}
             >
@@ -568,7 +568,7 @@ const CloudInfrastructure = () => {
                     fontWeight: 600,
                     textTransform: 'uppercase',
                     letterSpacing: '0.08em',
-                    color: '#635BFF',
+                    color: '#8b84ff',
                     marginBottom: '16px'
                   }}
                 >
@@ -626,7 +626,7 @@ const CloudInfrastructure = () => {
       </section>
 
       {/* Process Section — Off-white bg */}
-      <section style={{ paddingTop: '120px', paddingBottom: '120px', backgroundColor: '#F6F9FC' }}>
+      <section style={{ paddingTop: '120px', paddingBottom: '120px', backgroundColor: '#0a0a0f' }}>
         <motion.div
           className="enterprise-container-wide"
           initial="hidden"
@@ -641,7 +641,7 @@ const CloudInfrastructure = () => {
                 fontWeight: 600,
                 textTransform: 'uppercase',
                 letterSpacing: '0.1em',
-                color: '#635BFF',
+                color: '#8b84ff',
                 marginBottom: '20px'
               }}
             >
@@ -653,7 +653,7 @@ const CloudInfrastructure = () => {
                 fontWeight: 700,
                 letterSpacing: '-0.03em',
                 lineHeight: 1.1,
-                color: '#0A2540',
+                color: 'white',
                 marginBottom: '20px'
               }}
             >
@@ -681,9 +681,9 @@ const CloudInfrastructure = () => {
                 variants={fadeUp}
                 style={{
                   padding: '32px',
-                  backgroundColor: 'white',
+                  backgroundColor: '#000000',
                   borderRadius: '16px',
-                  border: '1px solid rgba(10, 37, 64, 0.06)',
+                  border: '1px solid rgba(255, 255, 255, 0.06)',
                   position: 'relative'
                 }}
               >
@@ -704,7 +704,7 @@ const CloudInfrastructure = () => {
                     fontSize: '19px',
                     fontWeight: 700,
                     letterSpacing: '-0.02em',
-                    color: '#0A2540',
+                    color: 'white',
                     marginBottom: '12px'
                   }}
                 >
@@ -714,7 +714,7 @@ const CloudInfrastructure = () => {
                   style={{
                     fontSize: '15px',
                     lineHeight: 1.65,
-                    color: '#425466'
+                    color: 'rgba(255,255,255,0.7)'
                   }}
                 >
                   {phase.desc}
@@ -731,7 +731,7 @@ const CloudInfrastructure = () => {
         style={{
           paddingTop: '100px',
           paddingBottom: '120px',
-          backgroundColor: '#0A2540'
+          backgroundColor: '#000000'
         }}
       >
         <div
@@ -814,7 +814,7 @@ const CloudInfrastructure = () => {
                 }}
               >
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                  <path d="M13.333 4L6 11.333 2.667 8" stroke="#635BFF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M13.333 4L6 11.333 2.667 8" stroke="#8b84ff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
                 <span style={{ fontSize: '14px', color: 'rgba(255, 255, 255, 0.5)' }}>{item}</span>
               </div>

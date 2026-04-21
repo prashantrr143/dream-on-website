@@ -47,7 +47,7 @@ const AudienceSection = () => {
     <section
       className="stripe-section"
       style={{
-        backgroundColor: 'white'
+        backgroundColor: '#000000'
       }}
     >
       <div className="enterprise-container-wide">
@@ -65,7 +65,7 @@ const AudienceSection = () => {
               fontWeight: 600,
               textTransform: 'uppercase',
               letterSpacing: '0.08em',
-              color: 'hsl(243, 100%, 68%)',
+              color: '#8b84ff',
               marginBottom: '16px'
             }}
           >
@@ -76,7 +76,7 @@ const AudienceSection = () => {
               fontSize: 'clamp(1.75rem, 3vw, 2.5rem)',
               fontWeight: 600,
               letterSpacing: '-0.02em',
-              color: 'hsl(210, 76%, 15%)',
+              color: 'white',
               maxWidth: '36rem'
             }}
           >
@@ -107,7 +107,7 @@ const AudienceSection = () => {
                       fontSize: '24px',
                       fontWeight: 600,
                       letterSpacing: '-0.01em',
-                      color: 'hsl(210, 76%, 15%)',
+                      color: 'white',
                       marginBottom: '16px'
                     }}
                   >
@@ -117,7 +117,7 @@ const AudienceSection = () => {
                     style={{
                       fontSize: '17px',
                       lineHeight: 1.65,
-                      color: 'hsl(220, 9%, 46%)',
+                      color: 'rgba(255,255,255,0.7)',
                       marginBottom: '24px',
                       maxWidth: '480px'
                     }}
@@ -132,7 +132,7 @@ const AudienceSection = () => {
                       alignItems: 'center',
                       fontSize: '15px',
                       fontWeight: 600,
-                      color: 'hsl(243, 100%, 68%)',
+                      color: '#8b84ff',
                       textDecoration: 'none'
                     }}
                   >

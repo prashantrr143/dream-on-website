@@ -29,7 +29,7 @@ const pillars = [
   {
     title: "System Design & Architecture",
     description: "How we approach the design of systems that need to last, scale, and remain maintainable under real-world conditions.",
-    accent: "#635BFF",
+    accent: "#8b84ff",
     iconSvg: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <rect x="3" y="3" width="7" height="7" rx="1" />
@@ -65,7 +65,7 @@ const pillars = [
 ]
 
 const pillarColors: Record<string, string> = {
-  "System Design & Architecture": "#635BFF",
+  "System Design & Architecture": "#8b84ff",
   "Delivery & Governance": "hsl(192, 80%, 55%)",
   "AI in Production": "hsl(155, 65%, 50%)"
 }
@@ -130,7 +130,7 @@ export default function PerspectivesPage() {
         style={{
           paddingTop: '160px',
           paddingBottom: '80px',
-          backgroundColor: '#0A2540',
+          backgroundColor: '#000000',
         }}
       >
         {/* Subtle gradient accent */}
@@ -169,7 +169,7 @@ export default function PerspectivesPage() {
               fontWeight: 600,
               textTransform: 'uppercase',
               letterSpacing: '0.1em',
-              color: '#635BFF',
+              color: '#8b84ff',
               marginBottom: '20px'
             }}
           >
@@ -208,7 +208,7 @@ export default function PerspectivesPage() {
         style={{
           paddingTop: '80px',
           paddingBottom: '64px',
-          backgroundColor: 'white'
+          backgroundColor: '#000000'
         }}
       >
         <motion.div
@@ -229,7 +229,7 @@ export default function PerspectivesPage() {
                   fontWeight: 600,
                   textTransform: 'uppercase',
                   letterSpacing: '0.1em',
-                  color: '#635BFF',
+                  color: '#8b84ff',
                   marginBottom: '12px'
                 }}
               >
@@ -240,7 +240,7 @@ export default function PerspectivesPage() {
                   width: '32px',
                   height: '3px',
                   borderRadius: '2px',
-                  backgroundColor: '#635BFF',
+                  backgroundColor: '#8b84ff',
                   opacity: 0.4
                 }}
               />
@@ -250,7 +250,7 @@ export default function PerspectivesPage() {
               style={{
                 fontSize: '17px',
                 lineHeight: 1.7,
-                color: '#425466',
+                color: 'rgba(255,255,255,0.7)',
                 display: 'flex',
                 flexDirection: 'column',
                 gap: '20px',
@@ -273,7 +273,7 @@ export default function PerspectivesPage() {
         style={{
           paddingTop: '64px',
           paddingBottom: '80px',
-          backgroundColor: '#F6F9FC'
+          backgroundColor: '#0a0a0f'
         }}
       >
         <motion.div
@@ -290,7 +290,7 @@ export default function PerspectivesPage() {
               fontWeight: 600,
               textTransform: 'uppercase',
               letterSpacing: '0.1em',
-              color: '#635BFF',
+              color: '#8b84ff',
               marginBottom: '40px'
             }}
           >
@@ -306,9 +306,9 @@ export default function PerspectivesPage() {
                 variants={fadeUp}
                 style={{
                   padding: '28px',
-                  backgroundColor: 'white',
+                  backgroundColor: '#000000',
                   borderRadius: '16px',
-                  border: '1px solid rgba(10, 37, 64, 0.08)',
+                  border: '1px solid rgba(255, 255, 255, 0.08)',
                   transition: 'box-shadow 0.2s ease, transform 0.2s ease'
                 }}
               >
@@ -332,7 +332,7 @@ export default function PerspectivesPage() {
                   style={{
                     fontSize: '17px',
                     fontWeight: 600,
-                    color: '#0A2540',
+                    color: 'white',
                     marginBottom: '8px',
                     letterSpacing: '-0.01em'
                   }}
@@ -342,7 +342,7 @@ export default function PerspectivesPage() {
                 <p
                   style={{
                     fontSize: '14px',
-                    color: '#425466',
+                    color: 'rgba(255,255,255,0.7)',
                     lineHeight: 1.65
                   }}
                 >
@@ -359,7 +359,7 @@ export default function PerspectivesPage() {
         style={{
           paddingTop: '80px',
           paddingBottom: '100px',
-          backgroundColor: 'white'
+          backgroundColor: '#000000'
         }}
       >
         <motion.div
@@ -379,7 +379,7 @@ export default function PerspectivesPage() {
                 fontWeight: 600,
                 textTransform: 'uppercase',
                 letterSpacing: '0.1em',
-                color: '#635BFF',
+                color: '#8b84ff',
                 marginBottom: '16px'
               }}
             >
@@ -390,7 +390,7 @@ export default function PerspectivesPage() {
                 fontSize: 'clamp(1.5rem, 3vw, 2rem)',
                 fontWeight: 700,
                 letterSpacing: '-0.02em',
-                color: '#0A2540'
+                color: 'white'
               }}
             >
               From our work with enterprise teams.
@@ -410,7 +410,7 @@ export default function PerspectivesPage() {
                 className="group"
                 style={{
                   padding: '28px 0',
-                  borderBottom: index < perspectives.length - 1 ? '1px solid rgba(10, 37, 64, 0.08)' : 'none',
+                  borderBottom: index < perspectives.length - 1 ? '1px solid rgba(255, 255, 255, 0.08)' : 'none',
                   cursor: 'pointer',
                   transition: 'background-color 0.15s ease'
                 }}
@@ -438,7 +438,7 @@ export default function PerspectivesPage() {
                           width: '6px',
                           height: '6px',
                           borderRadius: '50%',
-                          backgroundColor: pillarColors[article.pillar] || '#635BFF',
+                          backgroundColor: pillarColors[article.pillar] || '#8b84ff',
                           opacity: 0.7
                         }}
                       />
@@ -448,7 +448,7 @@ export default function PerspectivesPage() {
                           fontWeight: 600,
                           textTransform: 'uppercase',
                           letterSpacing: '0.06em',
-                          color: pillarColors[article.pillar] || '#635BFF',
+                          color: pillarColors[article.pillar] || '#8b84ff',
                         }}
                       >
                         {article.pillar}
@@ -459,7 +459,7 @@ export default function PerspectivesPage() {
                       style={{
                         fontSize: '19px',
                         fontWeight: 600,
-                        color: '#0A2540',
+                        color: 'white',
                         marginBottom: '8px',
                         lineHeight: 1.3,
                         letterSpacing: '-0.01em',
@@ -472,7 +472,7 @@ export default function PerspectivesPage() {
                     <p
                       style={{
                         fontSize: '15px',
-                        color: '#425466',
+                        color: 'rgba(255,255,255,0.7)',
                         lineHeight: 1.65,
                         maxWidth: '680px'
                       }}
@@ -494,7 +494,7 @@ export default function PerspectivesPage() {
                     <span
                       style={{
                         fontSize: '13px',
-                        color: '#425466',
+                        color: 'rgba(255,255,255,0.7)',
                         opacity: 0.6,
                         whiteSpace: 'nowrap'
                       }}
@@ -503,7 +503,7 @@ export default function PerspectivesPage() {
                     </span>
                     <ArrowRight
                       className="w-4 h-4 transition-transform group-hover:translate-x-1"
-                      style={{ color: '#635BFF', opacity: 0 }}
+                      style={{ color: '#8b84ff', opacity: 0 }}
                       strokeWidth={2}
                     />
                   </div>
@@ -519,7 +519,7 @@ export default function PerspectivesPage() {
         style={{
           paddingTop: '80px',
           paddingBottom: '80px',
-          backgroundColor: '#0A2540',
+          backgroundColor: '#000000',
           position: 'relative',
           overflow: 'hidden'
         }}
@@ -565,7 +565,7 @@ export default function PerspectivesPage() {
               gap: '8px',
               fontSize: '15px',
               fontWeight: 600,
-              color: '#635BFF',
+              color: '#8b84ff',
               textDecoration: 'none'
             }}
           >

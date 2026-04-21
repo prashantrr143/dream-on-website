@@ -24,7 +24,7 @@ const HeroSection = dynamic(() => import('@/components/enterprise/HeroSection'),
 
 const TrustBarSection = dynamic(() => import('@/components/enterprise/TrustBarSection'), {
   loading: () => (
-    <div className="py-12" style={{ backgroundColor: 'hsl(213, 33%, 97%)' }}>
+    <div className="py-12" style={{ backgroundColor: '#000000' }}>
       <div className="enterprise-container-wide">
         <div className="h-4 bg-gray-200 animate-pulse rounded max-w-xs mx-auto mb-8" />
         <div className="flex justify-center gap-12">
@@ -39,7 +39,7 @@ const TrustBarSection = dynamic(() => import('@/components/enterprise/TrustBarSe
 
 const WorkWeDoSection = dynamic(() => import('@/components/enterprise/WorkWeDoSection'), {
   loading: () => (
-    <div className="stripe-section" style={{ backgroundColor: 'hsl(213, 33%, 97%)' }}>
+    <div className="stripe-section" style={{ backgroundColor: '#000000' }}>
       <div className="enterprise-container-wide">
         <div className="h-8 bg-gray-200 animate-pulse rounded max-w-md mb-12" />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -54,7 +54,7 @@ const WorkWeDoSection = dynamic(() => import('@/components/enterprise/WorkWeDoSe
 
 const StatsSection = dynamic(() => import('@/components/enterprise/StatsSection'), {
   loading: () => (
-    <div className="py-20" style={{ backgroundColor: 'hsl(210, 76%, 15%)' }}>
+    <div className="py-20" style={{ backgroundColor: '#0a0a0f' }}>
       <div className="enterprise-container-wide">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {[...Array(4)].map((_, i) => (
@@ -71,7 +71,7 @@ const StatsSection = dynamic(() => import('@/components/enterprise/StatsSection'
 
 const AudienceSection = dynamic(() => import('@/components/enterprise/AudienceSection'), {
   loading: () => (
-    <div className="stripe-section bg-white">
+    <div className="stripe-section bg-black">
       <div className="enterprise-container-wide">
         <div className="h-8 bg-gray-100 animate-pulse rounded max-w-md mb-20" />
         <div className="space-y-20">
@@ -89,7 +89,7 @@ const AudienceSection = dynamic(() => import('@/components/enterprise/AudienceSe
 
 const HowWeWorkSection = dynamic(() => import('@/components/enterprise/HowWeWorkSection'), {
   loading: () => (
-    <div className="py-24" style={{ backgroundColor: 'hsl(210, 76%, 15%)' }}>
+    <div className="py-24" style={{ backgroundColor: '#0a0a0f' }}>
       <div className="enterprise-container-wide">
         <div className="grid lg:grid-cols-2 gap-16">
           <div className="h-32 bg-white/10 animate-pulse rounded" />
@@ -107,7 +107,7 @@ const HowWeWorkSection = dynamic(() => import('@/components/enterprise/HowWeWork
 
 const TestimonialsSection = dynamic(() => import('@/components/enterprise/TestimonialsSection'), {
   loading: () => (
-    <div className="stripe-section bg-white">
+    <div className="stripe-section bg-black">
       <div className="enterprise-container-wide">
         <div className="h-8 bg-gray-100 animate-pulse rounded max-w-md mb-16" />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -122,7 +122,7 @@ const TestimonialsSection = dynamic(() => import('@/components/enterprise/Testim
 
 const FinalCTASection = dynamic(() => import('@/components/enterprise/FinalCTASection'), {
   loading: () => (
-    <div className="py-24" style={{ backgroundColor: 'hsl(210, 76%, 15%)' }}>
+    <div className="py-24" style={{ backgroundColor: '#0a0a0f' }}>
       <div className="enterprise-container-wide text-center">
         <div className="h-10 bg-white/10 animate-pulse rounded max-w-md mx-auto mb-4" />
         <div className="h-6 bg-white/10 animate-pulse rounded max-w-lg mx-auto mb-10" />
@@ -137,7 +137,7 @@ const FinalCTASection = dynamic(() => import('@/components/enterprise/FinalCTASe
 
 const FooterMinimal = dynamic(() => import('@/components/enterprise/FooterMinimal'), {
   loading: () => (
-    <div className="py-16" style={{ backgroundColor: 'hsl(210, 76%, 12%)' }}>
+    <div className="py-16" style={{ backgroundColor: '#000000' }}>
       <div className="enterprise-container-wide">
         <div className="h-16 bg-white/5 animate-pulse rounded" />
       </div>

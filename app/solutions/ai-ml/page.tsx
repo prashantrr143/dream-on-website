@@ -162,7 +162,7 @@ const AIMachineLearning = () => {
         style={{
           paddingTop: '160px',
           paddingBottom: '100px',
-          backgroundColor: '#0A2540'
+          backgroundColor: '#000000'
         }}
       >
         <div
@@ -208,7 +208,7 @@ const AIMachineLearning = () => {
                 fontWeight: 600,
                 textTransform: 'uppercase',
                 letterSpacing: '0.1em',
-                color: '#635BFF',
+                color: '#8b84ff',
                 marginBottom: '24px'
               }}
             >
@@ -268,7 +268,7 @@ const AIMachineLearning = () => {
                 key={stat.label}
                 style={{
                   padding: '32px',
-                  backgroundColor: 'rgba(10, 37, 64, 0.95)',
+                  backgroundColor: 'rgba(0, 0, 0, 0.95)',
                   textAlign: 'center'
                 }}
               >
@@ -284,7 +284,7 @@ const AIMachineLearning = () => {
                 >
                   {stat.value}
                 </div>
-                <div style={{ fontSize: '14px', fontWeight: 600, color: '#635BFF', marginBottom: '4px' }}>
+                <div style={{ fontSize: '14px', fontWeight: 600, color: '#8b84ff', marginBottom: '4px' }}>
                   {stat.label}
                 </div>
                 <div style={{ fontSize: '13px', color: 'rgba(255, 255, 255, 0.4)' }}>
@@ -297,7 +297,7 @@ const AIMachineLearning = () => {
       </section>
 
       {/* ── AI Capabilities — Off-white ── */}
-      <section style={{ paddingTop: '120px', paddingBottom: '120px', backgroundColor: '#F6F9FC' }}>
+      <section style={{ paddingTop: '120px', paddingBottom: '120px', backgroundColor: '#0a0a0f' }}>
         <motion.div
           className="enterprise-container-wide"
           initial="hidden"
@@ -312,7 +312,7 @@ const AIMachineLearning = () => {
                 fontWeight: 600,
                 textTransform: 'uppercase',
                 letterSpacing: '0.1em',
-                color: '#635BFF',
+                color: '#8b84ff',
                 marginBottom: '20px'
               }}
             >
@@ -324,7 +324,7 @@ const AIMachineLearning = () => {
                 fontWeight: 700,
                 letterSpacing: '-0.03em',
                 lineHeight: 1.1,
-                color: '#0A2540',
+                color: 'white',
                 marginBottom: '20px'
               }}
             >
@@ -334,7 +334,7 @@ const AIMachineLearning = () => {
               style={{
                 fontSize: '19px',
                 lineHeight: 1.65,
-                color: '#425466',
+                color: 'rgba(255,255,255,0.7)',
                 maxWidth: '520px',
                 marginLeft: 'auto',
                 marginRight: 'auto'
@@ -359,14 +359,14 @@ const AIMachineLearning = () => {
                 variants={fadeUp}
                 style={{
                   padding: '36px',
-                  backgroundColor: 'white',
+                  backgroundColor: '#000000',
                   borderRadius: '16px',
-                  border: '1px solid rgba(10, 37, 64, 0.06)',
+                  border: '1px solid rgba(255, 255, 255, 0.06)',
                   transition: 'box-shadow 0.3s ease, transform 0.3s ease',
                   display: 'flex',
                   flexDirection: 'column'
                 }}
-                whileHover={{ y: -3, boxShadow: '0 12px 40px rgba(10, 37, 64, 0.08)' }}
+                whileHover={{ y: -3, boxShadow: '0 12px 40px rgba(255, 255, 255, 0.08)' }}
               >
                 <div
                   style={{
@@ -380,7 +380,7 @@ const AIMachineLearning = () => {
                     marginBottom: '24px'
                   }}
                 >
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#635BFF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#8b84ff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                     <path d={cap.iconPath} />
                   </svg>
                 </div>
@@ -390,7 +390,7 @@ const AIMachineLearning = () => {
                     fontSize: '20px',
                     fontWeight: 700,
                     letterSpacing: '-0.02em',
-                    color: '#0A2540',
+                    color: 'white',
                     marginBottom: '12px'
                   }}
                 >
@@ -400,14 +400,14 @@ const AIMachineLearning = () => {
                   style={{
                     fontSize: '15px',
                     lineHeight: 1.65,
-                    color: '#425466',
+                    color: 'rgba(255,255,255,0.7)',
                     marginBottom: '24px'
                   }}
                 >
                   {cap.description}
                 </p>
 
-                <div style={{ marginTop: 'auto', paddingTop: '20px', borderTop: '1px solid rgba(10, 37, 64, 0.06)' }}>
+                <div style={{ marginTop: 'auto', paddingTop: '20px', borderTop: '1px solid rgba(255, 255, 255, 0.06)' }}>
                   {cap.capabilities.map((item) => (
                     <div
                       key={item}
@@ -419,9 +419,9 @@ const AIMachineLearning = () => {
                       }}
                     >
                       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ marginTop: '2px', flexShrink: 0 }}>
-                        <path d="M13.333 4L6 11.333 2.667 8" stroke="#635BFF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                        <path d="M13.333 4L6 11.333 2.667 8" stroke="#8b84ff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
-                      <span style={{ fontSize: '14px', color: '#425466', lineHeight: 1.5 }}>{item}</span>
+                      <span style={{ fontSize: '14px', color: 'rgba(255,255,255,0.7)', lineHeight: 1.5 }}>{item}</span>
                     </div>
                   ))}
                 </div>
@@ -432,7 +432,7 @@ const AIMachineLearning = () => {
       </section>
 
       {/* ── Solutions Grid — White ── */}
-      <section style={{ paddingTop: '120px', paddingBottom: '120px', backgroundColor: 'white' }}>
+      <section style={{ paddingTop: '120px', paddingBottom: '120px', backgroundColor: '#000000' }}>
         <motion.div
           className="enterprise-container-wide"
           initial="hidden"
@@ -447,7 +447,7 @@ const AIMachineLearning = () => {
                 fontWeight: 600,
                 textTransform: 'uppercase',
                 letterSpacing: '0.1em',
-                color: '#635BFF',
+                color: '#8b84ff',
                 marginBottom: '20px'
               }}
             >
@@ -459,7 +459,7 @@ const AIMachineLearning = () => {
                 fontWeight: 700,
                 letterSpacing: '-0.03em',
                 lineHeight: 1.1,
-                color: '#0A2540',
+                color: 'white',
                 marginBottom: '20px'
               }}
             >
@@ -469,7 +469,7 @@ const AIMachineLearning = () => {
               style={{
                 fontSize: '19px',
                 lineHeight: 1.65,
-                color: '#425466',
+                color: 'rgba(255,255,255,0.7)',
                 maxWidth: '520px'
               }}
             >
@@ -492,9 +492,9 @@ const AIMachineLearning = () => {
                 variants={fadeUp}
                 style={{
                   padding: '36px',
-                  backgroundColor: '#F6F9FC',
+                  backgroundColor: '#0a0a0f',
                   borderRadius: '16px',
-                  border: '1px solid rgba(10, 37, 64, 0.06)',
+                  border: '1px solid rgba(255, 255, 255, 0.06)',
                   transition: 'box-shadow 0.3s ease, transform 0.3s ease',
                   display: 'flex',
                   flexDirection: 'column',
@@ -502,7 +502,7 @@ const AIMachineLearning = () => {
                   overflow: 'hidden'
                 }}
                 className="group"
-                whileHover={{ y: -3, boxShadow: '0 12px 40px rgba(10, 37, 64, 0.08)' }}
+                whileHover={{ y: -3, boxShadow: '0 12px 40px rgba(255, 255, 255, 0.08)' }}
               >
                 {/* Header: icon + gen-AI tag */}
                 <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: '24px' }}>
@@ -518,7 +518,7 @@ const AIMachineLearning = () => {
                       flexShrink: 0
                     }}
                   >
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#635BFF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#8b84ff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                       <path d={solution.iconPath} />
                     </svg>
                   </div>
@@ -527,7 +527,7 @@ const AIMachineLearning = () => {
                       style={{
                         fontSize: '10px',
                         fontWeight: 700,
-                        color: '#635BFF',
+                        color: '#8b84ff',
                         backgroundColor: 'rgba(99, 91, 255, 0.08)',
                         padding: '4px 10px',
                         borderRadius: '100px',
@@ -545,7 +545,7 @@ const AIMachineLearning = () => {
                     fontSize: '20px',
                     fontWeight: 700,
                     letterSpacing: '-0.02em',
-                    color: '#0A2540',
+                    color: 'white',
                     marginBottom: '12px'
                   }}
                 >
@@ -555,7 +555,7 @@ const AIMachineLearning = () => {
                   style={{
                     fontSize: '15px',
                     lineHeight: 1.65,
-                    color: '#425466',
+                    color: 'rgba(255,255,255,0.7)',
                     marginBottom: '24px'
                   }}
                 >
@@ -575,9 +575,9 @@ const AIMachineLearning = () => {
                       }}
                     >
                       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ marginTop: '2px', flexShrink: 0 }}>
-                        <path d="M13.333 4L6 11.333 2.667 8" stroke="#635BFF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                        <path d="M13.333 4L6 11.333 2.667 8" stroke="#8b84ff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
-                      <span style={{ fontSize: '14px', color: '#425466', lineHeight: 1.5 }}>{uc}</span>
+                      <span style={{ fontSize: '14px', color: 'rgba(255,255,255,0.7)', lineHeight: 1.5 }}>{uc}</span>
                     </div>
                   ))}
                 </div>
@@ -586,13 +586,13 @@ const AIMachineLearning = () => {
                 <div
                   style={{
                     paddingTop: '20px',
-                    borderTop: '1px solid rgba(10, 37, 64, 0.06)',
+                    borderTop: '1px solid rgba(255, 255, 255, 0.06)',
                     display: 'flex',
                     flexDirection: 'column',
                     gap: '16px'
                   }}
                 >
-                  <div style={{ fontSize: '14px', fontWeight: 700, color: '#635BFF', letterSpacing: '-0.01em' }}>
+                  <div style={{ fontSize: '14px', fontWeight: 700, color: '#8b84ff', letterSpacing: '-0.01em' }}>
                     {solution.metric}
                   </div>
                   <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
@@ -602,11 +602,11 @@ const AIMachineLearning = () => {
                         style={{
                           fontSize: '11px',
                           fontWeight: 600,
-                          color: '#0A2540',
-                          backgroundColor: 'white',
+                          color: 'white',
+                          backgroundColor: '#000000',
                           padding: '4px 10px',
                           borderRadius: '100px',
-                          border: '1px solid rgba(10, 37, 64, 0.08)',
+                          border: '1px solid rgba(255, 255, 255, 0.08)',
                           letterSpacing: '0.01em'
                         }}
                       >
@@ -627,7 +627,7 @@ const AIMachineLearning = () => {
         style={{
           paddingTop: '120px',
           paddingBottom: '120px',
-          backgroundColor: '#0A2540'
+          backgroundColor: '#000000'
         }}
       >
         <div
@@ -660,7 +660,7 @@ const AIMachineLearning = () => {
                 fontWeight: 600,
                 textTransform: 'uppercase',
                 letterSpacing: '0.1em',
-                color: '#635BFF',
+                color: '#8b84ff',
                 marginBottom: '20px'
               }}
             >
@@ -720,7 +720,7 @@ const AIMachineLearning = () => {
                       fontWeight: 600,
                       textTransform: 'uppercase',
                       letterSpacing: '0.08em',
-                      color: '#635BFF'
+                      color: '#8b84ff'
                     }}
                   >
                     {study.client}
@@ -794,7 +794,7 @@ const AIMachineLearning = () => {
         style={{
           paddingTop: '100px',
           paddingBottom: '120px',
-          backgroundColor: '#0A2540'
+          backgroundColor: '#000000'
         }}
       >
         <div
@@ -873,7 +873,7 @@ const AIMachineLearning = () => {
                 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}
               >
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                  <path d="M13.333 4L6 11.333 2.667 8" stroke="#635BFF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M13.333 4L6 11.333 2.667 8" stroke="#8b84ff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
                 <span style={{ fontSize: '14px', color: 'rgba(255, 255, 255, 0.5)' }}>{item}</span>
               </div>

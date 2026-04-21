@@ -87,7 +87,7 @@ const solutions = [
     description:
       "Production-grade AI systems with governance, auditability, and compliance woven in from day one.",
     href: "/solutions/ai-ml",
-    size: "large" as const,
+    size: "normal" as const,
     gradient: "linear-gradient(135deg, #A259FF 0%, #0A2540 100%)",
     iconSvg: (
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -106,51 +106,107 @@ const WorkWeDoSection = () => {
       style={{
         paddingTop: '120px',
         paddingBottom: '120px',
-        backgroundColor: '#F6F9FC'
+        backgroundColor: '#0a0a0f'
       }}
     >
       <div className="enterprise-container-wide">
-        {/* Section Header - Stripe style: left-aligned, bold, clear hierarchy */}
+        {/* Section Header — centered, gradient headline, glass pill eyebrow */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           viewport={{ once: true }}
           style={{
-            marginBottom: '72px',
-            maxWidth: '640px'
+            marginBottom: '80px',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            textAlign: 'center',
           }}
         >
-          <p
+          {/* Eyebrow pill with live dot */}
+          <div
             style={{
-              fontSize: '15px',
-              fontWeight: 600,
-              textTransform: 'uppercase',
-              letterSpacing: '0.1em',
-              color: '#635BFF',
-              marginBottom: '20px'
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '10px',
+              padding: '6px 14px',
+              borderRadius: '999px',
+              backgroundColor: 'rgba(255,255,255,0.05)',
+              border: '1px solid rgba(255,255,255,0.1)',
+              backdropFilter: 'blur(8px)',
+              WebkitBackdropFilter: 'blur(8px)',
+              marginBottom: '28px',
             }}
           >
-            What we build
-          </p>
+            <span
+              aria-hidden="true"
+              style={{
+                position: 'relative',
+                display: 'inline-flex',
+                width: '6px',
+                height: '6px',
+              }}
+            >
+              <span
+                style={{
+                  position: 'absolute',
+                  inset: 0,
+                  borderRadius: '9999px',
+                  backgroundColor: '#8b84ff',
+                  opacity: 0.5,
+                  animation: 'live-dot-ping 1.8s cubic-bezier(0, 0, 0.2, 1) infinite',
+                }}
+              />
+              <span
+                style={{
+                  position: 'relative',
+                  display: 'inline-flex',
+                  width: '6px',
+                  height: '6px',
+                  borderRadius: '9999px',
+                  backgroundColor: '#8b84ff',
+                }}
+              />
+            </span>
+            <span
+              style={{
+                fontSize: '12px',
+                fontWeight: 500,
+                letterSpacing: '0.08em',
+                textTransform: 'uppercase',
+                color: 'rgba(255,255,255,0.75)',
+              }}
+            >
+              What we build
+            </span>
+          </div>
+
+          {/* Gradient-clipped headline */}
           <h2
             style={{
-              fontSize: 'clamp(2rem, 3.5vw, 3rem)',
-              fontWeight: 700,
-              letterSpacing: '-0.03em',
+              fontSize: 'clamp(2.25rem, 4.2vw, 3.5rem)',
+              fontWeight: 600,
+              letterSpacing: '-0.025em',
               lineHeight: 1.1,
-              color: '#0A2540',
-              marginBottom: '20px'
+              marginBottom: '24px',
+              maxWidth: '820px',
+              background: 'linear-gradient(144.5deg, #ffffff 28%, rgba(255,255,255,0) 115%)',
+              WebkitBackgroundClip: 'text',
+              backgroundClip: 'text',
+              color: 'transparent',
+              WebkitTextFillColor: 'transparent',
             }}
           >
             Infrastructure for every critical layer.
           </h2>
+
           <p
             style={{
-              fontSize: '19px',
+              fontSize: '17px',
               lineHeight: 1.65,
-              color: '#425466',
-              maxWidth: '520px'
+              color: 'rgba(255,255,255,0.6)',
+              maxWidth: '560px',
             }}
           >
             Long-term systems, not short-term experiments. From cloud foundations to AI — built to endure.
@@ -175,12 +231,13 @@ const WorkWeDoSection = () => {
                 style={{
                   display: 'flex',
                   flexDirection: 'column',
-                  backgroundColor: 'white',
+                  backgroundColor: 'rgba(255,255,255,0.04)',
+                  backdropFilter: 'blur(12px)',
                   borderRadius: '16px',
                   overflow: 'hidden',
                   textDecoration: 'none',
-                  border: '1px solid rgba(10, 37, 64, 0.08)',
-                  transition: 'box-shadow 0.3s ease, transform 0.3s ease',
+                  border: '1px solid rgba(255,255,255,0.08)',
+                  transition: 'box-shadow 0.3s ease, transform 0.3s ease, border-color 0.3s ease',
                 }}
               >
                 {/* Colored gradient header strip with icon */}
@@ -249,7 +306,7 @@ const WorkWeDoSection = () => {
                       fontWeight: 700,
                       letterSpacing: '-0.02em',
                       lineHeight: 1.3,
-                      color: '#0A2540',
+                      color: 'white',
                       marginBottom: '10px'
                     }}
                   >
@@ -259,7 +316,7 @@ const WorkWeDoSection = () => {
                     style={{
                       fontSize: '15px',
                       lineHeight: 1.65,
-                      color: '#425466',
+                      color: 'rgba(255,255,255,0.65)',
                       marginBottom: '24px',
                       flex: 1
                     }}
@@ -272,7 +329,7 @@ const WorkWeDoSection = () => {
                       alignItems: 'center',
                       fontSize: '15px',
                       fontWeight: 600,
-                      color: '#635BFF',
+                      color: '#8b84ff',
                     }}
                   >
                     Learn more

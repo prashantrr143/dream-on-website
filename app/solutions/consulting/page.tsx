@@ -167,7 +167,7 @@ const DigitalConsulting = () => {
         style={{
           paddingTop: '160px',
           paddingBottom: '100px',
-          backgroundColor: '#0A2540'
+          backgroundColor: '#000000'
         }}
       >
         {/* Ambient glow */}
@@ -214,7 +214,7 @@ const DigitalConsulting = () => {
                 fontWeight: 600,
                 textTransform: 'uppercase',
                 letterSpacing: '0.1em',
-                color: '#635BFF',
+                color: '#8b84ff',
                 marginBottom: '24px'
               }}
             >
@@ -274,7 +274,7 @@ const DigitalConsulting = () => {
                 key={stat.label}
                 style={{
                   padding: '32px',
-                  backgroundColor: 'rgba(10, 37, 64, 0.95)',
+                  backgroundColor: 'rgba(0, 0, 0, 0.95)',
                   textAlign: 'center'
                 }}
               >
@@ -290,7 +290,7 @@ const DigitalConsulting = () => {
                 >
                   {stat.value}
                 </div>
-                <div style={{ fontSize: '14px', fontWeight: 600, color: '#635BFF', marginBottom: '4px' }}>
+                <div style={{ fontSize: '14px', fontWeight: 600, color: '#8b84ff', marginBottom: '4px' }}>
                   {stat.label}
                 </div>
                 <div style={{ fontSize: '13px', color: 'rgba(255, 255, 255, 0.4)' }}>
@@ -303,7 +303,7 @@ const DigitalConsulting = () => {
       </section>
 
       {/* ── Consulting Services — White ── */}
-      <section style={{ paddingTop: '120px', paddingBottom: '120px', backgroundColor: 'white' }}>
+      <section style={{ paddingTop: '120px', paddingBottom: '120px', backgroundColor: '#000000' }}>
         <motion.div
           className="enterprise-container-wide"
           initial="hidden"
@@ -318,7 +318,7 @@ const DigitalConsulting = () => {
                 fontWeight: 600,
                 textTransform: 'uppercase',
                 letterSpacing: '0.1em',
-                color: '#635BFF',
+                color: '#8b84ff',
                 marginBottom: '20px'
               }}
             >
@@ -330,7 +330,7 @@ const DigitalConsulting = () => {
                 fontWeight: 700,
                 letterSpacing: '-0.03em',
                 lineHeight: 1.1,
-                color: '#0A2540',
+                color: 'white',
                 marginBottom: '20px'
               }}
             >
@@ -340,7 +340,7 @@ const DigitalConsulting = () => {
               style={{
                 fontSize: '19px',
                 lineHeight: 1.65,
-                color: '#425466',
+                color: 'rgba(255,255,255,0.7)',
                 maxWidth: '520px'
               }}
             >
@@ -363,9 +363,9 @@ const DigitalConsulting = () => {
                 variants={fadeUp}
                 style={{
                   padding: '36px',
-                  backgroundColor: '#F6F9FC',
+                  backgroundColor: '#0a0a0f',
                   borderRadius: '16px',
-                  border: '1px solid rgba(10, 37, 64, 0.06)',
+                  border: '1px solid rgba(255, 255, 255, 0.06)',
                   transition: 'box-shadow 0.3s ease, transform 0.3s ease',
                   display: 'flex',
                   flexDirection: 'column',
@@ -373,7 +373,7 @@ const DigitalConsulting = () => {
                   overflow: 'hidden'
                 }}
                 className="group"
-                whileHover={{ y: -3, boxShadow: '0 12px 40px rgba(10, 37, 64, 0.08)' }}
+                whileHover={{ y: -3, boxShadow: '0 12px 40px rgba(255, 255, 255, 0.08)' }}
               >
                 {/* Icon */}
                 <div
@@ -389,7 +389,7 @@ const DigitalConsulting = () => {
                     flexShrink: 0
                   }}
                 >
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#635BFF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#8b84ff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                     <path d={service.iconPath} />
                   </svg>
                 </div>
@@ -399,7 +399,7 @@ const DigitalConsulting = () => {
                     fontSize: '20px',
                     fontWeight: 700,
                     letterSpacing: '-0.02em',
-                    color: '#0A2540',
+                    color: 'white',
                     marginBottom: '12px'
                   }}
                 >
@@ -409,7 +409,7 @@ const DigitalConsulting = () => {
                   style={{
                     fontSize: '15px',
                     lineHeight: 1.65,
-                    color: '#425466',
+                    color: 'rgba(255,255,255,0.7)',
                     marginBottom: '24px'
                   }}
                 >
@@ -429,9 +429,9 @@ const DigitalConsulting = () => {
                       }}
                     >
                       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ marginTop: '2px', flexShrink: 0 }}>
-                        <path d="M13.333 4L6 11.333 2.667 8" stroke="#635BFF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                        <path d="M13.333 4L6 11.333 2.667 8" stroke="#8b84ff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
-                      <span style={{ fontSize: '14px', color: '#425466', lineHeight: 1.5 }}>{activity}</span>
+                      <span style={{ fontSize: '14px', color: 'rgba(255,255,255,0.7)', lineHeight: 1.5 }}>{activity}</span>
                     </div>
                   ))}
                 </div>
@@ -440,13 +440,13 @@ const DigitalConsulting = () => {
                 <div
                   style={{
                     paddingTop: '20px',
-                    borderTop: '1px solid rgba(10, 37, 64, 0.06)',
+                    borderTop: '1px solid rgba(255, 255, 255, 0.06)',
                     display: 'flex',
                     flexWrap: 'wrap',
                     gap: '6px'
                   }}
                 >
-                  <span style={{ fontSize: '12px', fontWeight: 600, color: '#635BFF', marginRight: '4px', lineHeight: '26px' }}>
+                  <span style={{ fontSize: '12px', fontWeight: 600, color: '#8b84ff', marginRight: '4px', lineHeight: '26px' }}>
                     Deliverables:
                   </span>
                   {service.deliverables.map((d) => (
@@ -455,11 +455,11 @@ const DigitalConsulting = () => {
                       style={{
                         fontSize: '11px',
                         fontWeight: 600,
-                        color: '#0A2540',
-                        backgroundColor: 'white',
+                        color: 'white',
+                        backgroundColor: '#000000',
                         padding: '4px 10px',
                         borderRadius: '100px',
-                        border: '1px solid rgba(10, 37, 64, 0.08)',
+                        border: '1px solid rgba(255, 255, 255, 0.08)',
                         letterSpacing: '0.01em'
                       }}
                     >
@@ -479,7 +479,7 @@ const DigitalConsulting = () => {
         style={{
           paddingTop: '120px',
           paddingBottom: '120px',
-          backgroundColor: '#0A2540'
+          backgroundColor: '#000000'
         }}
       >
         <div
@@ -512,7 +512,7 @@ const DigitalConsulting = () => {
                 fontWeight: 600,
                 textTransform: 'uppercase',
                 letterSpacing: '0.1em',
-                color: '#635BFF',
+                color: '#8b84ff',
                 marginBottom: '20px'
               }}
             >
@@ -573,7 +573,7 @@ const DigitalConsulting = () => {
                     style={{
                       fontSize: '28px',
                       fontWeight: 700,
-                      color: '#635BFF',
+                      color: '#8b84ff',
                       letterSpacing: '-0.03em'
                     }}
                   >
@@ -630,7 +630,7 @@ const DigitalConsulting = () => {
                             }}
                           >
                             <svg width="14" height="14" viewBox="0 0 16 16" fill="none" style={{ flexShrink: 0 }}>
-                              <path d="M13.333 4L6 11.333 2.667 8" stroke="#635BFF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                              <path d="M13.333 4L6 11.333 2.667 8" stroke="#8b84ff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                             </svg>
                             <span style={{ fontSize: '14px', color: 'rgba(255, 255, 255, 0.55)', lineHeight: 1.5 }}>{activity}</span>
                           </div>
@@ -663,7 +663,7 @@ const DigitalConsulting = () => {
       </section>
 
       {/* ── Industry Expertise — Off-white ── */}
-      <section style={{ paddingTop: '120px', paddingBottom: '120px', backgroundColor: '#F6F9FC' }}>
+      <section style={{ paddingTop: '120px', paddingBottom: '120px', backgroundColor: '#0a0a0f' }}>
         <motion.div
           className="enterprise-container-wide"
           initial="hidden"
@@ -678,7 +678,7 @@ const DigitalConsulting = () => {
                 fontWeight: 600,
                 textTransform: 'uppercase',
                 letterSpacing: '0.1em',
-                color: '#635BFF',
+                color: '#8b84ff',
                 marginBottom: '20px'
               }}
             >
@@ -690,7 +690,7 @@ const DigitalConsulting = () => {
                 fontWeight: 700,
                 letterSpacing: '-0.03em',
                 lineHeight: 1.1,
-                color: '#0A2540',
+                color: 'white',
                 marginBottom: '20px'
               }}
             >
@@ -700,7 +700,7 @@ const DigitalConsulting = () => {
               style={{
                 fontSize: '19px',
                 lineHeight: 1.65,
-                color: '#425466',
+                color: 'rgba(255,255,255,0.7)',
                 maxWidth: '520px',
                 marginLeft: 'auto',
                 marginRight: 'auto'
@@ -725,13 +725,13 @@ const DigitalConsulting = () => {
                 variants={fadeUp}
                 style={{
                   padding: '28px 20px',
-                  backgroundColor: 'white',
+                  backgroundColor: '#000000',
                   borderRadius: '16px',
-                  border: '1px solid rgba(10, 37, 64, 0.06)',
+                  border: '1px solid rgba(255, 255, 255, 0.06)',
                   textAlign: 'center',
                   transition: 'box-shadow 0.3s ease, transform 0.3s ease'
                 }}
-                whileHover={{ y: -3, boxShadow: '0 8px 32px rgba(10, 37, 64, 0.08)' }}
+                whileHover={{ y: -3, boxShadow: '0 8px 32px rgba(255, 255, 255, 0.08)' }}
               >
                 <div
                   style={{
@@ -747,7 +747,7 @@ const DigitalConsulting = () => {
                     marginBottom: '16px'
                   }}
                 >
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#635BFF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8b84ff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                     <path d={industry.iconPath} />
                   </svg>
                 </div>
@@ -755,7 +755,7 @@ const DigitalConsulting = () => {
                   style={{
                     fontSize: '14px',
                     fontWeight: 700,
-                    color: '#0A2540',
+                    color: 'white',
                     letterSpacing: '-0.01em',
                     marginBottom: '4px'
                   }}
@@ -766,7 +766,7 @@ const DigitalConsulting = () => {
                   style={{
                     fontSize: '13px',
                     fontWeight: 600,
-                    color: '#635BFF'
+                    color: '#8b84ff'
                   }}
                 >
                   {industry.projects}
@@ -783,7 +783,7 @@ const DigitalConsulting = () => {
         style={{
           paddingTop: '100px',
           paddingBottom: '120px',
-          backgroundColor: '#0A2540'
+          backgroundColor: '#000000'
         }}
       >
         <div
@@ -862,7 +862,7 @@ const DigitalConsulting = () => {
                 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}
               >
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                  <path d="M13.333 4L6 11.333 2.667 8" stroke="#635BFF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M13.333 4L6 11.333 2.667 8" stroke="#8b84ff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
                 <span style={{ fontSize: '14px', color: 'rgba(255, 255, 255, 0.5)' }}>{item}</span>
               </div>
