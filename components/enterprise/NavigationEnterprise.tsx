@@ -1,87 +1,88 @@
 "use client"
 
 import { useState, useEffect, useCallback, useRef } from 'react'
+import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
+import { LOGO_ASSETS } from '@/components/brand/YatiSphereLogo'
 import { ArrowRight, Menu, X, ChevronDown } from 'lucide-react'
 
 interface DropdownItem {
   name: string
-  description: string
+  /** Optional supporting line, shown muted under the item name. */
+  meta?: string
   href: string
-}
-
-interface DropdownCategory {
-  category: string
-  items: DropdownItem[]
 }
 
 interface NavItem {
   name: string
   href: string
-  hasDropdown?: boolean
-  dropdownCategories?: DropdownCategory[]
+  items?: DropdownItem[]
 }
 
+/**
+ * Information architecture.
+ *
+ * "Services" previously duplicated "Solutions" (both pointed at the same
+ * delivery disciplines), so the two are consolidated into Solutions and
+ * the remaining groups follow the agreed structure.
+ *
+ * Every href resolves to a route that exists; nothing links to a 404.
+ */
 const navigationItems: NavItem[] = [
   {
-    name: "Solutions",
-    href: "/solutions",
-    hasDropdown: true,
-    dropdownCategories: [
-      {
-        category: "By Industry",
-        items: [
-          { name: "Financial Services", description: "Regulated AI & cloud systems", href: "/solutions/consulting" },
-          { name: "Healthcare", description: "HIPAA-compliant infrastructure", href: "/solutions/security" },
-          { name: "Government", description: "FedRAMP & sovereign cloud", href: "/solutions/cloud" },
-        ]
-      },
-      {
-        category: "By Challenge",
-        items: [
-          { name: "Legacy Modernization", description: "Migrate from fragile to scalable", href: "/solutions" },
-          { name: "Cloud Migration", description: "Multi-cloud foundations", href: "/solutions/cloud" },
-          { name: "AI & Data Systems", description: "Production-grade ML pipelines", href: "/solutions/ai-ml" },
-        ]
-      }
-    ]
+    name: "IT Services",
+    href: "/#services",
+    items: [
+      { name: "All IT Services", meta: "Overview of every practice area", href: "/solutions" },
+      { name: "Cloud & Infrastructure", meta: "Azure • AWS • Hybrid • FinOps", href: "/solutions/cloud" },
+      { name: "DevOps & Automation", meta: "CI/CD • IaC • Platform engineering", href: "/solutions/devops" },
+      { name: "Data & Analytics", meta: "Lakehouse • Pipelines • Reporting", href: "/solutions/data" },
+      { name: "Modernisation & Advisory", meta: "TOGAF • Re-platforming • Roadmaps", href: "/solutions/consulting" },
+      { name: "Enterprise Security", meta: "Identity • Zero-trust • Audit", href: "/solutions/security" },
+    ],
   },
   {
-    name: "Services",
-    href: "/how-we-work",
-    hasDropdown: true,
-    dropdownCategories: [
-      {
-        category: "What We Deliver",
-        items: [
-          { name: "Enterprise Software", description: "Reliable platforms at scale", href: "/solutions" },
-          { name: "Cloud & Infrastructure", description: "Secure, scalable foundations", href: "/solutions/cloud" },
-          { name: "DevOps & Automation", description: "CI/CD and operational maturity", href: "/solutions/devops" },
-          { name: "Data & Analytics", description: "Governed data platforms", href: "/solutions/data" },
-        ]
-      }
-    ]
+    name: "Applied AI",
+    href: "/#ai",
+    items: [
+      { name: "AI Architecture & Readiness", href: "/solutions/ai-ml" },
+      { name: "Agentic Workflow Automation", href: "/solutions/ai-ml" },
+      { name: "Enterprise AI Platforms", href: "/solutions/ai-ml" },
+      { name: "Responsible AI & Governance", href: "/responsible-ai" },
+    ],
   },
-  { name: "About", href: "/about-us" },
-  { name: "Perspectives", href: "/perspectives" },
-  { name: "Contact", href: "/contact-us" },
-]
-
-const mobileNavItems = [
-  { name: "Solutions", href: "/solutions" },
-  { name: "Services", href: "/how-we-work" },
-  { name: "About", href: "/about-us" },
-  { name: "Perspectives", href: "/perspectives" },
-  { name: "Case Studies", href: "/case-studies" },
-  { name: "Contact", href: "/contact-us" },
+  {
+    name: "Industries",
+    href: "/industries",
+    items: [
+      { name: "Financial Services", href: "/industries/financial-services" },
+      { name: "Legal & Professional Services", href: "/industries/legal-professional-services" },
+      { name: "Healthcare", href: "/industries/healthcare" },
+      { name: "Government & Public Sector", href: "/industries/government-public-sector" },
+      { name: "Enterprise & Technology", href: "/industries/enterprise-technology" },
+      { name: "All industries", href: "/industries" },
+    ],
+  },
+  { name: "How we work", href: "/how-we-work" },
+  {
+    name: "About",
+    href: "/about-us",
+    items: [
+      { name: "About Us", href: "/about-us" },
+      { name: "Why Yati Sphere", href: "/#why" },
+      { name: "Perspectives", href: "/perspectives" },
+      { name: "Partners", href: "/partners" },
+      { name: "Contact", href: "/contact-us" },
+    ],
+  },
 ]
 
 const NavigationEnterprise = () => {
   const [scrolled, setScrolled] = useState(false)
   const [mounted, setMounted] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
-  const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null)
+  const [openMenu, setOpenMenu] = useState<string | null>(null)
+  const closeTimer = useRef<NodeJS.Timeout | null>(null)
   const navRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
@@ -90,11 +91,8 @@ const NavigationEnterprise = () => {
   }, [])
 
   const handleScroll = useCallback(() => {
-    const shouldBeScrolled = window.scrollY > 20
-    setScrolled(prev => {
-      if (prev !== shouldBeScrolled) return shouldBeScrolled
-      return prev
-    })
+    const next = window.scrollY > 20
+    setScrolled(prev => (prev !== next ? next : prev))
   }, [])
 
   useEffect(() => {
@@ -112,228 +110,253 @@ const NavigationEnterprise = () => {
     return () => window.removeEventListener('scroll', onScroll)
   }, [handleScroll])
 
+  // Leaving desktop width closes the mobile drawer.
   useEffect(() => {
-    const handleResize = () => {
+    const onResize = () => {
       if (window.innerWidth >= 1024) setMobileMenuOpen(false)
     }
-    window.addEventListener('resize', handleResize)
-    return () => window.removeEventListener('resize', handleResize)
+    window.addEventListener('resize', onResize)
+    return () => window.removeEventListener('resize', onResize)
   }, [])
 
+  // Click outside closes any open dropdown.
   useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
+    const onClick = (e: MouseEvent) => {
       if (navRef.current && !navRef.current.contains(e.target as Node)) {
-        setActiveDropdown(null)
+        setOpenMenu(null)
       }
     }
-    document.addEventListener('click', handleClickOutside)
-    return () => document.removeEventListener('click', handleClickOutside)
+    document.addEventListener('click', onClick)
+    return () => document.removeEventListener('click', onClick)
   }, [])
 
-  const handleDropdownEnter = (name: string) => {
-    if (dropdownTimeoutRef.current) clearTimeout(dropdownTimeoutRef.current)
-    setActiveDropdown(name)
-  }
+  // Escape closes dropdown and mobile drawer.
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setOpenMenu(null)
+        setMobileMenuOpen(false)
+      }
+    }
+    document.addEventListener('keydown', onKey)
+    return () => document.removeEventListener('keydown', onKey)
+  }, [])
 
-  const handleDropdownLeave = () => {
-    dropdownTimeoutRef.current = setTimeout(() => setActiveDropdown(null), 150)
+  // Body scroll lock while the mobile drawer is open.
+  useEffect(() => {
+    if (!mounted) return
+    document.body.style.overflow = mobileMenuOpen ? 'hidden' : ''
+    return () => { document.body.style.overflow = '' }
+  }, [mobileMenuOpen, mounted])
+
+  useEffect(() => () => { if (closeTimer.current) clearTimeout(closeTimer.current) }, [])
+
+  const openNow = (name: string) => {
+    if (closeTimer.current) clearTimeout(closeTimer.current)
+    setOpenMenu(name)
+  }
+  const closeSoon = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current)
+    closeTimer.current = setTimeout(() => setOpenMenu(null), 140)
   }
 
   const isScrolled = mounted && scrolled
+  // Tall enough at rest for the full three-line lockup to render large
+  // without clipping; tightens to a compact icon-only bar on scroll.
+  const headerHeight = isScrolled ? 68 : 124
 
   return (
     <nav
       ref={navRef}
       className="fixed top-0 left-0 right-0 w-full z-50"
       style={{
-        backgroundColor: isScrolled ? 'rgba(0,0,0,0.75)' : 'transparent',
-        backdropFilter: isScrolled ? 'blur(16px)' : 'none',
-        WebkitBackdropFilter: isScrolled ? 'blur(16px)' : 'none',
-        borderBottom: isScrolled ? '1px solid rgba(255,255,255,0.08)' : '1px solid transparent',
-        transition: 'background-color 300ms ease, border-color 300ms ease'
+        backgroundColor: isScrolled ? 'rgba(11,30,61,0.92)' : 'transparent',
+        backdropFilter: isScrolled ? 'blur(14px)' : 'none',
+        WebkitBackdropFilter: isScrolled ? 'blur(14px)' : 'none',
+        borderBottom: `1px solid ${isScrolled ? 'rgba(255,255,255,0.10)' : 'transparent'}`,
+        transition: 'background-color 250ms ease, border-color 250ms ease',
       }}
     >
       <div className="enterprise-container-wide">
         <div
-          className="flex items-center justify-between"
-          style={{ height: isScrolled ? '60px' : '72px', transition: 'height 300ms ease' }}
+          className="flex items-center justify-between gap-6"
+          style={{ height: headerHeight, transition: 'height 250ms ease' }}
         >
-          {/* Logo */}
-          <a href="/" className="flex items-center flex-shrink-0">
-            <span
-              style={{
-                fontSize: '20px',
-                fontWeight: 700,
-                letterSpacing: '-0.02em',
-                color: 'white',
-                transition: 'color 300ms ease'
-              }}
-            >
-              Yatisphere
+          {/* Logo — the primary colourful brand element.
+              Full lockup at rest; collapses to the icon mark once the
+              header shrinks on scroll, so it stays legible at 72px. */}
+          <a
+            href="/"
+            className="ys-nav-logo flex-shrink-0"
+            aria-label="YatiSphere Technologies — home"
+          >
+            <span className={`ys-logo-full${isScrolled ? ' is-hidden' : ''}`}>
+              <Image
+                src={LOGO_ASSETS.dark.src}
+                alt="YatiSphere Technologies Private Limited"
+                width={LOGO_ASSETS.dark.width}
+                height={LOGO_ASSETS.dark.height}
+                priority
+                sizes="(max-width: 640px) 175px, 210px"
+                className="ys-logo-img-full"
+              />
+            </span>
+            <span className={`ys-logo-mark${isScrolled ? ' is-visible' : ''}`}>
+              <Image
+                src={LOGO_ASSETS.icon.src}
+                alt="YatiSphere Technologies"
+                width={LOGO_ASSETS.icon.width}
+                height={LOGO_ASSETS.icon.height}
+                priority
+                sizes="46px"
+                className="ys-logo-img-mark"
+              />
             </span>
           </a>
 
-          {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center" style={{ gap: '32px' }}>
-            {navigationItems.map((item) => (
-              <div
-                key={item.name}
-                className="relative"
-                onMouseEnter={() => item.hasDropdown && handleDropdownEnter(item.name)}
-                onMouseLeave={() => item.hasDropdown && handleDropdownLeave()}
-              >
-                <a
-                  href={item.href}
-                  style={{
-                    fontSize: '15px',
-                    fontWeight: 500,
-                    color: activeDropdown === item.name ? 'white' : 'rgba(255,255,255,0.75)',
-                    transition: 'color 200ms ease',
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '3px'
-                  }}
-                  onClick={(e) => {
-                    if (item.hasDropdown) {
-                      e.preventDefault()
-                      setActiveDropdown(activeDropdown === item.name ? null : item.name)
-                    }
-                  }}
+          {/* Desktop navigation */}
+          <ul className="ys-nav-list hidden lg:flex items-center">
+            {navigationItems.map((item) => {
+              const isOpen = openMenu === item.name
+              return (
+                <li
+                  key={item.name}
+                  className="relative"
+                  onMouseEnter={() => item.items && openNow(item.name)}
+                  onMouseLeave={() => item.items && closeSoon()}
                 >
-                  {item.name}
-                  {item.hasDropdown && (
-                    <ChevronDown
-                      className="w-3.5 h-3.5"
-                      style={{
-                        transform: activeDropdown === item.name ? 'rotate(180deg)' : 'rotate(0deg)',
-                        transition: 'transform 200ms ease'
-                      }}
-                      strokeWidth={2}
-                    />
-                  )}
-                </a>
-              </div>
-            ))}
-          </div>
+                  <a
+                    href={item.href}
+                    className={`ys-nav-link${isOpen ? ' is-open' : ''}`}
+                    aria-expanded={item.items ? isOpen : undefined}
+                    aria-haspopup={item.items ? 'true' : undefined}
+                    onClick={(e) => {
+                      if (item.items) {
+                        e.preventDefault()
+                        setOpenMenu(isOpen ? null : item.name)
+                      }
+                    }}
+                    onKeyDown={(e) => {
+                      if (item.items && (e.key === 'ArrowDown')) {
+                        e.preventDefault()
+                        setOpenMenu(item.name)
+                      }
+                    }}
+                  >
+                    {item.name}
+                    {item.items && (
+                      <ChevronDown
+                        className="ys-nav-chevron"
+                        style={{ transform: isOpen ? 'rotate(180deg)' : 'none' }}
+                        strokeWidth={2}
+                        aria-hidden="true"
+                      />
+                    )}
+                  </a>
 
-          {/* Desktop CTA — hidden since Contact is already in main nav */}
-          <div className="hidden lg:block" />
+                  {/* Compact floating panel, anchored to this item */}
+                  <AnimatePresence>
+                    {item.items && isOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, y: -6 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -6 }}
+                        transition={{ duration: 0.17, ease: 'easeOut' }}
+                        className="ys-dropdown"
+                        role="group"
+                        aria-label={item.name}
+                      >
+                        <p className="ys-dropdown-title">{item.name}</p>
+                        <ul>
+                          {item.items.map((sub) => (
+                            <li key={sub.name + sub.href}>
+                              <a
+                                href={sub.href}
+                                className="ys-dropdown-link"
+                                onClick={() => setOpenMenu(null)}
+                              >
+                                <span className="ys-dropdown-name">{sub.name}</span>
+                                {sub.meta && (
+                                  <span className="ys-dropdown-meta">{sub.meta}</span>
+                                )}
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </li>
+              )
+            })}
+          </ul>
 
-          {/* Mobile Menu Button */}
+          {/* Desktop CTA */}
+          <a href="/contact-us" className="ys-nav-cta hidden lg:inline-flex items-center gap-2">
+            Start a conversation
+            <ArrowRight className="w-3.5 h-3.5" strokeWidth={2.5} aria-hidden="true" />
+          </a>
+
+          {/* Mobile trigger */}
           <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden flex items-center justify-center"
-            style={{
-              width: '40px',
-              height: '40px',
-              borderRadius: '8px',
-              backgroundColor: 'rgba(255,255,255,0.1)',
-              color: 'white',
-              transition: 'background-color 200ms ease, color 200ms ease'
-            }}
-            aria-label="Toggle menu"
+            type="button"
+            onClick={() => setMobileMenuOpen(v => !v)}
+            className="ys-nav-burger lg:hidden"
+            aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={mobileMenuOpen}
           >
-            <AnimatePresence mode="wait">
-              {mobileMenuOpen ? (
-                <motion.div key="close" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.1 }}>
-                  <X className="w-5 h-5" />
-                </motion.div>
-              ) : (
-                <motion.div key="menu" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.1 }}>
-                  <Menu className="w-5 h-5" />
-                </motion.div>
-              )}
-            </AnimatePresence>
+            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
       </div>
 
-      {/* Desktop Mega Menu */}
-      <AnimatePresence>
-        {activeDropdown && (
-          <motion.div
-            className="hidden lg:block mega-menu-panel"
-            initial={{ opacity: 0, y: -4 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -4 }}
-            transition={{ duration: 0.15, ease: "easeOut" }}
-            onMouseEnter={() => {
-              if (dropdownTimeoutRef.current) clearTimeout(dropdownTimeoutRef.current)
-            }}
-            onMouseLeave={handleDropdownLeave}
-          >
-            <div className="enterprise-container-wide" style={{ paddingTop: '32px', paddingBottom: '32px' }}>
-              {navigationItems
-                .find(item => item.name === activeDropdown)
-                ?.dropdownCategories?.map((category, catIdx) => (
-                  <div key={catIdx} style={{ marginBottom: catIdx < (navigationItems.find(item => item.name === activeDropdown)?.dropdownCategories?.length ?? 0) - 1 ? '28px' : '0' }}>
-                    <p style={{ fontSize: '12px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'rgba(255,255,255,0.45)', marginBottom: '16px' }}>
-                      {category.category}
-                    </p>
-                    <div className="grid grid-cols-3" style={{ gap: '8px' }}>
-                      {category.items.map((item) => (
-                        <a
-                          key={item.name}
-                          href={item.href}
-                          onClick={() => setActiveDropdown(null)}
-                          style={{ padding: '12px 16px', borderRadius: '10px', transition: 'background-color 150ms ease', display: 'block' }}
-                          className="hover:bg-white/5"
-                        >
-                          <p style={{ fontSize: '14px', fontWeight: 600, color: 'white', marginBottom: '2px' }}>{item.name}</p>
-                          <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.6)' }}>{item.description}</p>
-                        </a>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Mobile Menu */}
+      {/* Mobile drawer — slide-down accordion, never the desktop dropdown */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            className="lg:hidden fixed inset-x-0 overflow-y-auto z-40"
-            style={{ top: isScrolled ? '60px' : '72px', maxHeight: `calc(100vh - ${isScrolled ? '60px' : '72px'})`, borderTop: '1px solid rgba(255,255,255,0.08)', backgroundColor: 'rgba(0,0,0,0.92)', backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)' }}
-            initial={{ opacity: 0, y: -8 }}
+            className="ys-mobile-drawer lg:hidden"
+            style={{ top: headerHeight, maxHeight: `calc(100dvh - ${headerHeight}px)` }}
+            initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.2, ease: "easeOut" as const }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2, ease: 'easeOut' }}
           >
-            <div className="enterprise-container" style={{ paddingTop: '24px', paddingBottom: '32px' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-                {mobileNavItems.map((item, index) => (
-                  <motion.a
-                    key={item.name}
+            <div className="enterprise-container" style={{ paddingTop: 20, paddingBottom: 28 }}>
+              {navigationItems.map((item) => (
+                <div key={item.name} className="ys-mobile-group">
+                  <a
                     href={item.href}
+                    className="ys-mobile-heading"
                     onClick={() => setMobileMenuOpen(false)}
-                    initial={{ opacity: 0, x: -12 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.04, duration: 0.2 }}
-                    style={{ fontSize: '16px', fontWeight: 500, color: 'white', padding: '14px 0', borderBottom: '1px solid rgba(255,255,255,0.08)' }}
                   >
                     {item.name}
-                  </motion.a>
-                ))}
-              </div>
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.2 }}
-                style={{ marginTop: '24px' }}
+                  </a>
+                  {item.items && (
+                    <ul className="ys-mobile-sublist">
+                      {item.items.map((sub) => (
+                        <li key={sub.name + sub.href}>
+                          <a
+                            href={sub.href}
+                            className="ys-mobile-sublink"
+                            onClick={() => setMobileMenuOpen(false)}
+                          >
+                            {sub.name}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              ))}
+
+              <a
+                href="/contact-us"
+                className="ys-cta-primary"
+                style={{ display: 'flex', justifyContent: 'center', marginTop: 22 }}
+                onClick={() => setMobileMenuOpen(false)}
               >
-                <a
-                  href="/contact-us"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="stripe-btn-primary group w-full justify-center"
-                  style={{ padding: '14px 24px' }}
-                >
-                  <span>Get in Touch</span>
-                  <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-0.5" strokeWidth={2} />
-                </a>
-              </motion.div>
+                Start a conversation
+              </a>
             </div>
           </motion.div>
         )}

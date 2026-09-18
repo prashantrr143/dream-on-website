@@ -1,9 +1,8 @@
 "use client"
 
 import { motion, type Variants } from 'framer-motion'
-import Link from 'next/link'
 import SharedLayout from '@/components/shared-layout'
-import { DeliveryDiagram } from '@/components/enterprise'
+import { DeliveryDiagram, PageHero, PageSection, PageCTA } from '@/components/enterprise'
 
 // Animation variants
 const fadeUp: Variants = {
@@ -66,414 +65,212 @@ const expectations = [
 export default function HowWeWorkPage() {
   return (
     <SharedLayout>
-      {/* Hero Section */}
-      <section
-        style={{
-          paddingTop: 'var(--space-32)',
-          paddingBottom: 'var(--space-20)',
-          backgroundColor: 'hsl(var(--premium-gray-50))'
-        }}
-      >
-        <motion.div
-          className="enterprise-container-wide"
-          initial="hidden"
-          animate="visible"
-          variants={staggerContainer}
-        >
-          <motion.p
-            variants={fadeUp}
-            style={{
-              fontSize: 'var(--text-xs)',
-              fontWeight: 'var(--font-medium)',
-              textTransform: 'uppercase',
-              letterSpacing: 'var(--tracking-wide)',
-              color: 'hsl(var(--premium-gray-400))',
-              marginBottom: 'var(--space-4)'
-            }}
-          >
-            Delivery
-          </motion.p>
-          <motion.h1
-            variants={fadeUp}
-            style={{
-              fontSize: 'clamp(2.5rem, 5vw, 3.5rem)',
-              fontWeight: 'var(--font-semibold)',
-              letterSpacing: 'var(--tracking-tight)',
-              color: 'hsl(var(--premium-gray-900))',
-              marginBottom: 'var(--space-6)',
-              maxWidth: '800px'
-            }}
-          >
-            How We Work
-          </motion.h1>
-          <motion.p
-            variants={fadeUp}
-            style={{
-              fontSize: 'var(--text-xl)',
-              lineHeight: 'var(--leading-relaxed)',
-              color: 'hsl(var(--premium-gray-500))',
-              maxWidth: '720px',
-              marginBottom: 'var(--space-10)'
-            }}
-          >
-            Our delivery model is designed for enterprise environments where reliability, security, and governance matter as much as speed.
-          </motion.p>
-          <motion.div variants={fadeUp}>
-            <Link
-              href="/contact-us"
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: 'var(--space-2)',
-                padding: 'var(--space-4) var(--space-8)',
-                backgroundColor: 'hsl(var(--premium-gray-900))',
-                color: 'white',
-                fontSize: 'var(--text-base)',
-                fontWeight: 'var(--font-medium)',
-                borderRadius: '8px',
-                textDecoration: 'none',
-                transition: 'background-color 0.2s ease'
-              }}
-            >
-              Start a Conversation
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style={{ marginLeft: '4px' }}>
-                <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </Link>
-          </motion.div>
-        </motion.div>
-      </section>
+      <PageHero
+        eyebrow="Delivery"
+        title="How We Work"
+        lede="Our delivery model is designed for enterprise environments where reliability, security, and governance matter as much as speed."
+        primaryCta={{ label: 'Start a Conversation', href: '/contact-us' }}
+      />
 
       {/* Principles Section */}
-      <section
-        style={{
-          paddingTop: 'var(--space-24)',
-          paddingBottom: 'var(--space-24)'
-        }}
-      >
+      <PageSection tone="white" eyebrow="Principles" title="Our Principles">
         <motion.div
-          className="enterprise-container-wide"
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, amount: 0.1 }}
           variants={staggerContainer}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+          style={{ gap: 16 }}
         >
-          <motion.h2
-            variants={fadeUp}
-            style={{
-              fontSize: 'var(--text-2xl)',
-              fontWeight: 'var(--font-semibold)',
-              color: 'hsl(var(--premium-gray-900))',
-              marginBottom: 'var(--space-12)'
-            }}
-          >
-            Our Principles
-          </motion.h2>
-          <motion.div
-            variants={staggerContainer}
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-              gap: 'var(--space-8)'
-            }}
-          >
-            {principles.map((principle, index) => (
-              <motion.div
-                key={index}
-                variants={fadeUp}
+          {principles.map((principle, index) => (
+            <motion.div
+              key={index}
+              variants={fadeUp}
+              className="ys-card-light"
+              style={{
+                padding: '22px 20px',
+                minWidth: 0
+              }}
+            >
+              <h3
                 style={{
-                  padding: 'var(--space-6)',
-                  borderLeft: '3px solid hsl(var(--premium-gray-200))',
-                  backgroundColor: 'hsl(var(--premium-gray-50))'
+                  fontSize: '16px',
+                  fontWeight: 700,
+                  letterSpacing: '-0.015em',
+                  lineHeight: 1.3,
+                  marginBottom: '8px'
                 }}
               >
-                <h3
-                  style={{
-                    fontSize: 'var(--text-base)',
-                    fontWeight: 'var(--font-semibold)',
-                    color: 'hsl(var(--premium-gray-900))',
-                    marginBottom: 'var(--space-2)'
-                  }}
-                >
-                  {principle.title}
-                </h3>
-                <p
-                  style={{
-                    fontSize: 'var(--text-sm)',
-                    color: 'hsl(var(--premium-gray-500))',
-                    lineHeight: 'var(--leading-relaxed)'
-                  }}
-                >
-                  {principle.description}
-                </p>
-              </motion.div>
-            ))}
-          </motion.div>
+                {principle.title}
+              </h3>
+              <p
+                style={{
+                  fontSize: '14px',
+                  color: 'var(--ys-ink-body)',
+                  lineHeight: 1.6
+                }}
+              >
+                {principle.description}
+              </p>
+            </motion.div>
+          ))}
         </motion.div>
-      </section>
+      </PageSection>
 
       {/* How We Deliver - Main Section with DeliveryDiagram */}
-      <section
-        style={{
-          paddingTop: 'var(--space-20)',
-          paddingBottom: 'var(--space-24)',
-          backgroundColor: 'hsl(var(--premium-gray-50))'
-        }}
+      <PageSection
+        tone="light"
+        eyebrow="Delivery model"
+        title="How We Deliver"
+        lede="A structured, collaborative delivery model designed for enterprise environments—adaptable to context, scale, and regulatory needs."
       >
         <motion.div
-          className="enterprise-container-wide"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          variants={fadeUp}
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
+          viewport={{ once: true, amount: 0.1 }}
+          style={{ minWidth: 0 }}
         >
-          <h2
-            style={{
-              fontSize: 'var(--text-2xl)',
-              fontWeight: 'var(--font-semibold)',
-              color: 'hsl(var(--premium-gray-900))',
-              marginBottom: 'var(--space-4)'
-            }}
-          >
-            How We Deliver
-          </h2>
-          <p
-            style={{
-              fontSize: 'var(--text-lg)',
-              lineHeight: 'var(--leading-relaxed)',
-              color: 'hsl(var(--premium-gray-500))',
-              maxWidth: '720px',
-              marginBottom: 'var(--space-16)'
-            }}
-          >
-            A structured, collaborative delivery model designed for enterprise environments—adaptable to context, scale, and regulatory needs.
-          </p>
           <DeliveryDiagram />
         </motion.div>
-      </section>
+      </PageSection>
 
       {/* How We Collaborate */}
-      <section
-        style={{
-          paddingTop: 'var(--space-24)',
-          paddingBottom: 'var(--space-24)'
-        }}
-      >
+      <PageSection tone="white" eyebrow="Collaboration" title="How We Collaborate">
         <motion.div
-          className="enterprise-container-wide"
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
+          viewport={{ once: true, amount: 0.1 }}
           variants={staggerContainer}
+          className="grid grid-cols-1 lg:grid-cols-2"
+          style={{ gap: 'clamp(28px, 4vw, 56px)', alignItems: 'start' }}
         >
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))',
-              gap: 'var(--space-16)'
-            }}
-          >
-            {/* Working With Your Teams */}
-            <motion.div variants={fadeUp}>
-              <h2
-                style={{
-                  fontSize: 'var(--text-xl)',
-                  fontWeight: 'var(--font-semibold)',
-                  color: 'hsl(var(--premium-gray-900))',
-                  marginBottom: 'var(--space-6)'
-                }}
-              >
-                Working With Your Teams
-              </h2>
-              <div
-                style={{
-                  fontSize: 'var(--text-base)',
-                  lineHeight: 'var(--leading-relaxed)',
-                  color: 'hsl(var(--premium-gray-600))',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: 'var(--space-4)'
-                }}
-              >
-                <p>
-                  We work with your teams, not over them. Our engagements are designed to integrate with your existing engineering, security, and operations functions.
-                </p>
-                <p>
-                  Clear communication and documentation are non-negotiable. You will always know what we are doing, why we are doing it, and what decisions need your input.
-                </p>
-              </div>
-            </motion.div>
+          {/* Working With Your Teams */}
+          <motion.div variants={fadeUp} style={{ minWidth: 0 }}>
+            <h3
+              style={{
+                fontSize: 'clamp(18px, 2vw, 21px)',
+                fontWeight: 700,
+                letterSpacing: '-0.02em',
+                lineHeight: 1.3,
+                marginBottom: '16px'
+              }}
+            >
+              Working With Your Teams
+            </h3>
+            <div
+              style={{
+                fontSize: '15.5px',
+                lineHeight: 1.7,
+                color: 'var(--ys-ink-body)',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '14px'
+              }}
+            >
+              <p>
+                We work with your teams, not over them. Our engagements are designed to integrate with your existing engineering, security, and operations functions.
+              </p>
+              <p>
+                Clear communication and documentation are non-negotiable. You will always know what we are doing, why we are doing it, and what decisions need your input.
+              </p>
+            </div>
+          </motion.div>
 
-            {/* Enterprise Constraints */}
-            <motion.div variants={fadeUp}>
-              <h2
-                style={{
-                  fontSize: 'var(--text-xl)',
-                  fontWeight: 'var(--font-semibold)',
-                  color: 'hsl(var(--premium-gray-900))',
-                  marginBottom: 'var(--space-6)'
-                }}
-              >
-                Respecting Enterprise Constraints
-              </h2>
-              <div
-                style={{
-                  fontSize: 'var(--text-base)',
-                  lineHeight: 'var(--leading-relaxed)',
-                  color: 'hsl(var(--premium-gray-600))',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: 'var(--space-4)'
-                }}
-              >
-                <p>
-                  We work within your governance frameworks, not around them. Your data ownership is respected throughout—we do not use client data to train models.
-                </p>
-                <p>
-                  Security is not an afterthought. We design systems with clear data boundaries, least-privilege access, and audit-friendly architectures.
-                </p>
-              </div>
-            </motion.div>
-          </div>
-        </motion.div>
-      </section>
-
-      {/* What You Can Expect */}
-      <section
-        style={{
-          paddingTop: 'var(--space-20)',
-          paddingBottom: 'var(--space-24)',
-          backgroundColor: 'hsl(var(--premium-gray-50))'
-        }}
-      >
-        <motion.div
-          className="enterprise-container-wide"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          variants={staggerContainer}
-        >
-          <motion.h2
-            variants={fadeUp}
-            style={{
-              fontSize: 'var(--text-2xl)',
-              fontWeight: 'var(--font-semibold)',
-              color: 'hsl(var(--premium-gray-900))',
-              marginBottom: 'var(--space-10)'
-            }}
-          >
-            What You Can Expect
-          </motion.h2>
-          <motion.div
-            variants={staggerContainer}
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-              gap: 'var(--space-4)'
-            }}
-          >
-            {expectations.map((expectation, index) => (
-              <motion.div
-                key={index}
-                variants={fadeUp}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 'var(--space-3)',
-                  padding: 'var(--space-4)'
-                }}
-              >
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 20 20"
-                  fill="none"
-                  style={{ flexShrink: 0, color: 'hsl(var(--premium-gray-400))' }}
-                >
-                  <path
-                    d="M16.5 5.5L7.5 14.5L3.5 10.5"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-                <span
-                  style={{
-                    fontSize: 'var(--text-base)',
-                    color: 'hsl(var(--premium-gray-700))'
-                  }}
-                >
-                  {expectation}
-                </span>
-              </motion.div>
-            ))}
+          {/* Enterprise Constraints */}
+          <motion.div variants={fadeUp} style={{ minWidth: 0 }}>
+            <h3
+              style={{
+                fontSize: 'clamp(18px, 2vw, 21px)',
+                fontWeight: 700,
+                letterSpacing: '-0.02em',
+                lineHeight: 1.3,
+                marginBottom: '16px'
+              }}
+            >
+              Respecting Enterprise Constraints
+            </h3>
+            <div
+              style={{
+                fontSize: '15.5px',
+                lineHeight: 1.7,
+                color: 'var(--ys-ink-body)',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '14px'
+              }}
+            >
+              <p>
+                We work within your governance frameworks, not around them. Your data ownership is respected throughout—we do not use client data to train models.
+              </p>
+              <p>
+                Security is not an afterthought. We design systems with clear data boundaries, least-privilege access, and audit-friendly architectures.
+              </p>
+            </div>
           </motion.div>
         </motion.div>
-      </section>
+      </PageSection>
 
-      {/* CTA Section */}
-      <section
-        style={{
-          paddingTop: 'var(--space-20)',
-          paddingBottom: 'var(--space-24)',
-          backgroundColor: 'hsl(var(--premium-gray-900))'
-        }}
-      >
+      {/* What You Can Expect */}
+      <PageSection tone="light" eyebrow="Expectations" title="What You Can Expect">
         <motion.div
-          className="enterprise-container-wide"
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeUp}
-          style={{ textAlign: 'center' }}
+          viewport={{ once: true, amount: 0.1 }}
+          variants={staggerContainer}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+          style={{ gap: 12 }}
         >
-          <h2
-            style={{
-              fontSize: 'var(--text-3xl)',
-              fontWeight: 'var(--font-semibold)',
-              color: 'white',
-              marginBottom: 'var(--space-4)'
-            }}
-          >
-            Start with a Conversation
-          </h2>
-          <p
-            style={{
-              fontSize: 'var(--text-lg)',
-              lineHeight: 'var(--leading-relaxed)',
-              color: 'hsl(var(--premium-gray-400))',
-              marginBottom: 'var(--space-10)',
-              maxWidth: '600px',
-              marginLeft: 'auto',
-              marginRight: 'auto'
-            }}
-          >
-            If you're planning a critical software, cloud, or AI initiative and want to approach it with clarity and discipline, we're happy to talk.
-          </p>
-          <Link
-            href="/contact-us"
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: 'var(--space-2)',
-              padding: 'var(--space-4) var(--space-8)',
-              backgroundColor: 'white',
-              color: 'hsl(var(--premium-gray-900))',
-              fontSize: 'var(--text-base)',
-              fontWeight: 'var(--font-medium)',
-              borderRadius: '8px',
-              textDecoration: 'none',
-              transition: 'all 0.2s ease'
-            }}
-          >
-            Start a Conversation
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style={{ marginLeft: '4px' }}>
-              <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </Link>
+          {expectations.map((expectation, index) => (
+            <motion.div
+              key={index}
+              variants={fadeUp}
+              className="ys-card-light"
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '12px',
+                padding: '16px 18px',
+                minWidth: 0
+              }}
+            >
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 20 20"
+                fill="none"
+                aria-hidden="true"
+                style={{ flexShrink: 0, color: 'var(--ys-link-on-light)' }}
+              >
+                <path
+                  d="M16.5 5.5L7.5 14.5L3.5 10.5"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+              <span
+                style={{
+                  fontSize: '14.5px',
+                  lineHeight: 1.5,
+                  color: 'var(--ys-ink-body)',
+                  minWidth: 0
+                }}
+              >
+                {expectation}
+              </span>
+            </motion.div>
+          ))}
         </motion.div>
-      </section>
+      </PageSection>
+
+      {/* Closing CTA */}
+      <PageCTA
+        title="Start with a Conversation"
+        body="If you're planning a critical software, cloud, or AI initiative and want to approach it with clarity and discipline, we're happy to talk."
+        primaryCta={{ label: 'Start a Conversation', href: '/contact-us' }}
+      />
     </SharedLayout>
   )
 }

@@ -15,6 +15,22 @@ const config: Config = {
   },
   theme: {
     extend: {
+      fontFamily: {
+        // Plus Jakarta Sans is the approved brand typeface. Defining it
+        // here makes Tailwind's `font-sans` resolve to it, so the utility
+        // on <body> no longer overrides the brand font with the default
+        // system stack.
+        sans: [
+          'var(--font-brand)',
+          'Plus Jakarta Sans',
+          'ui-sans-serif',
+          'system-ui',
+          '-apple-system',
+          'Segoe UI',
+          'sans-serif',
+        ],
+        brand: ['var(--font-brand)', 'Plus Jakarta Sans', 'sans-serif'],
+      },
       colors: {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",

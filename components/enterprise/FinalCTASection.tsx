@@ -28,9 +28,12 @@ const FinalCTASection = () => {
   return (
     <section
       style={{
-        paddingTop: '100px',
-        paddingBottom: '100px',
-        backgroundColor: '#0a0a0f',
+        paddingTop: 'clamp(58px, 6.4vw, 80px)',
+        paddingBottom: 'clamp(64px, 7vw, 92px)',
+        // Deep Blue that eases toward the light footer at the bottom
+        // edge, so the dark CTA does not cut hard against it.
+        backgroundImage:
+          'linear-gradient(to bottom, #071429 0%, #0B1E3D 46%, #143257 100%)',
         position: 'relative',
         overflow: 'hidden'
       }}
@@ -44,7 +47,7 @@ const FinalCTASection = () => {
           transform: 'translate(-50%, -50%)',
           width: '800px',
           height: '600px',
-          background: 'radial-gradient(ellipse, hsla(243, 100%, 68%, 0.1), transparent 60%)',
+          background: 'radial-gradient(ellipse, rgba(10, 132, 255, 0.1), transparent 60%)',
           pointerEvents: 'none'
         }}
         aria-hidden="true"
@@ -56,7 +59,7 @@ const FinalCTASection = () => {
           right: 0,
           width: '400px',
           height: '400px',
-          background: 'radial-gradient(circle, hsla(192, 80%, 55%, 0.06), transparent 70%)',
+          background: 'radial-gradient(circle, rgba(0, 209, 255, 0.06), transparent 70%)',
           pointerEvents: 'none'
         }}
         aria-hidden="true"
@@ -81,21 +84,21 @@ const FinalCTASection = () => {
             marginBottom: '16px'
           }}
         >
-          Ready to build systems that last?
+          Planning a platform build, a cloud move, or your first AI use case in production?
         </motion.h2>
         <motion.p
           variants={fadeUp}
           style={{
             fontSize: '18px',
             lineHeight: 1.65,
-            color: 'rgba(255, 255, 255, 0.55)',
+            color: 'rgba(255, 255, 255, 0.8)',
             marginBottom: '40px',
             maxWidth: '560px',
             marginLeft: 'auto',
             marginRight: 'auto'
           }}
         >
-          Whether you&apos;re planning a critical software, cloud, or AI initiative, we&apos;re ready to help you approach it with clarity and discipline.
+          Tell us what you&apos;re building. We&apos;ll reply within one working day, and if a short architecture or readiness review is the right first step, we&apos;ll say so.
         </motion.p>
 
         {/* Dual CTAs */}
@@ -106,19 +109,19 @@ const FinalCTASection = () => {
         >
           <Link
             href="/contact-us"
-            className="stripe-btn-light group"
+            className="ys-cta-primary group inline-flex items-center gap-2"
           >
-            Start a Conversation
+            Start a conversation
             <ArrowRight
-              className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-0.5"
+              className="w-4 h-4 shrink-0 transition-transform group-hover:translate-x-0.5"
               strokeWidth={2}
             />
           </Link>
           <Link
             href="/contact-us"
-            className="stripe-btn-ghost"
+            className="ys-cta-secondary"
           >
-            Talk to an Architect
+            Book an architecture review
           </Link>
         </motion.div>
 
@@ -136,7 +139,7 @@ const FinalCTASection = () => {
               alignItems: 'center',
               fontSize: '14px',
               fontWeight: 500,
-              color: 'rgba(255, 255, 255, 0.5)',
+              color: 'rgba(255, 255, 255, 0.78)',
               textDecoration: 'none',
               transition: 'color 200ms ease'
             }}
@@ -155,7 +158,7 @@ const FinalCTASection = () => {
               alignItems: 'center',
               fontSize: '14px',
               fontWeight: 500,
-              color: 'rgba(255, 255, 255, 0.5)',
+              color: 'rgba(255, 255, 255, 0.78)',
               textDecoration: 'none',
               transition: 'color 200ms ease'
             }}

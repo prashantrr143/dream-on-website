@@ -1,6 +1,7 @@
 "use client"
 
 import { motion } from 'framer-motion'
+import SharedLayout from '@/components/shared-layout'
 import { Badge } from '@/components/ui/badge'
 import { Card } from '@/components/ui/card'
 import { 
@@ -35,6 +36,7 @@ const PrivacyPolicy = () => {
  }
 
  return (
+   <SharedLayout>
    <div className="min-h-screen bg-background">
      {/* Header */}
      <section className="py-16 lg:py-20 border-b border-border">
@@ -421,6 +423,7 @@ const PrivacyPolicy = () => {
        </div>
      </section>
    </div>
+   </SharedLayout>
  )
 }
 
