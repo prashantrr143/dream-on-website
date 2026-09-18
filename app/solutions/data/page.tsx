@@ -1,552 +1,446 @@
 "use client"
 
-import { motion } from 'framer-motion'
-import { Button } from '@/components/ui/button'
-import { Badge } from '@/components/ui/badge'
-import { Card } from '@/components/ui/card'
-import { 
- ArrowRight, 
- Database, 
- BarChart3, 
- Shield, 
- TrendingUp,
- DollarSign,
- CheckCircle,
- Gauge,
- Target,
- Brain,
- Workflow,
- Activity
-} from 'lucide-react'
+import { motion, type Variants } from 'framer-motion'
 import SharedLayout from '@/components/shared-layout'
+import { PageHero, PageSection, PageCTA } from '@/components/enterprise'
+
+const fadeUp: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }
+  }
+}
+
+const staggerContainer: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.15
+    }
+  }
+}
+
+/* ── Data ─────────────────────────────────────────── */
+
+const keyCapabilities = [
+  { value: "ELT", label: "Pipeline engineering", sub: "Batch and streaming ingestion" },
+  { value: "Tested", label: "Data quality", sub: "Validation and reconciliation checks" },
+  { value: "BI", label: "Governed reporting", sub: "Shared metric definitions" },
+  { value: "FinOps", label: "Cost visibility", sub: "Warehouse and compute rightsizing" }
+]
+
+const solutions = [
+  {
+    title: "Data Pipeline Engineering",
+    description: "Batch and streaming pipelines with validation, retry and lineage built in, so downstream consumers can trust what lands.",
+    capabilities: [
+      "Batch and streaming ingestion",
+      "Multi-source integration",
+      "Data quality validation",
+      "Retry, alerting and lineage"
+    ],
+    metric: "Pipelines built to be re-run safely",
+    technologies: ["Apache Kafka", "Apache Spark", "Airflow", "dbt"],
+    iconPath: "M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"
+  },
+  {
+    title: "Lakehouse & Warehouse Architecture",
+    description: "Storage and compute layers designed around how the data is actually queried, with modelling and ownership defined up front.",
+    capabilities: [
+      "Data lake implementation",
+      "Warehouse modernisation",
+      "Lakehouse architecture",
+      "Dimensional and semantic modelling"
+    ],
+    metric: "One modelled layer for analytics",
+    technologies: ["Snowflake", "Databricks", "Azure Synapse", "BigQuery"],
+    iconPath: "M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+  },
+  {
+    title: "Business Intelligence & Reporting",
+    description: "Dashboards and self-service analytics built on governed metric definitions, so the same question returns the same number.",
+    capabilities: [
+      "Executive dashboards",
+      "Self-service analytics",
+      "Governed metric definitions",
+      "Automated report distribution"
+    ],
+    metric: "Governed, shared metrics",
+    technologies: ["Tableau", "Power BI", "Looker", "Qlik"],
+    iconPath: "M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+  },
+  {
+    title: "Stream Processing",
+    description: "Event-driven processing for cases where a daily batch is too late — monitoring, alerting and continuously updated views.",
+    capabilities: [
+      "Event stream processing",
+      "Continuous aggregation",
+      "Live dashboard updates",
+      "Threshold and anomaly alerting"
+    ],
+    metric: "Event-driven, not batch-bound",
+    technologies: ["Apache Kafka", "Apache Flink", "Redis", "ClickHouse"],
+    iconPath: "M13 10V3L4 14h7v7l9-11h-7z"
+  },
+  {
+    title: "Data Governance & Security",
+    description: "Cataloguing, lineage and access control applied as part of the platform rather than retrofitted for an audit.",
+    capabilities: [
+      "Data lineage tracking",
+      "Cataloguing and ownership",
+      "Role-based access control",
+      "Privacy controls for GDPR and sector rules"
+    ],
+    metric: "Governance built into the platform",
+    technologies: ["Apache Atlas", "Collibra", "Alation", "DataHub"],
+    iconPath: "M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"
+  }
+]
+
+const engagementScenarios = [
+  {
+    client: "Retail & distribution",
+    challenge: "Data siloed across stores and systems, with delayed reporting",
+    solution: "Centralised lakehouse with streaming ingestion and a governed BI layer",
+    results: [
+      "Unified view across sales channels",
+      "Near real-time inventory reporting",
+      "Self-service analytics for business teams"
+    ]
+  },
+  {
+    client: "Healthcare providers",
+    challenge: "Patient data scattered across multiple systems",
+    solution: "Governed data warehouse with a modelled reporting layer",
+    results: [
+      "Consolidated patient record model",
+      "Role-based access and audit logging",
+      "Architecture aligned to HIPAA safeguards"
+    ]
+  },
+  {
+    client: "Financial services",
+    challenge: "Manual risk analysis taking weeks to complete",
+    solution: "Automated scoring pipeline with monitoring and review workflow",
+    results: [
+      "Automated scoring on new applications",
+      "Model monitoring and drift detection",
+      "Explainable outputs for review teams"
+    ]
+  }
+]
+
+/* ── Component ────────────────────────────────────── */
 
 const DataEngineeringAnalytics = () => {
- const containerVariants = {
-   hidden: { opacity: 0 },
-   visible: {
-     opacity: 1,
-     transition: {
-       staggerChildren: 0.1,
-       delayChildren: 0.2
-     }
-   }
- }
-
- const itemVariants = {
-   hidden: { opacity: 0, y: 30 },
-   visible: { 
-     opacity: 1, 
-     y: 0,
-     transition: { 
-       duration: 0.6
-     }
-   }
- }
-
- const keyBenefits = [
-   { 
-     icon: TrendingUp, 
-     metric: "10x", 
-     label: "Faster Insights",
-     description: "Real-time data processing"
-   },
-   { 
-     icon: Target, 
-     metric: "95%", 
-     label: "Data Accuracy",
-     description: "Quality-assured pipelines"
-   },
-   { 
-     icon: DollarSign, 
-     metric: "60%", 
-     label: "Cost Optimization",
-     description: "Efficient data infrastructure"
-   },
-   { 
-     icon: Gauge, 
-     metric: "24/7", 
-     label: "Real-time Analytics",
-     description: "Continuous data streaming"
-   }
- ]
-
- const solutions = [
-   {
-     icon: Database,
-     title: "Data Pipeline Engineering",
-     description: "Scalable ETL/ELT pipelines with real-time data ingestion, transformation, and validation for enterprise-grade data processing.",
-     useCases: [
-       "Real-time data streaming",
-       "Batch processing automation",
-       "Data quality validation",
-       "Multi-source data integration"
-     ],
-     impact: {
-       processing: "10x faster data processing",
-       reliability: "99.9% pipeline uptime",
-       scalability: "Petabyte-scale processing"
-     },
-     technologies: ["Apache Kafka", "Apache Spark", "Airflow", "Snowflake"],
-     color: "from-purple-500 to-blue-500"
-   },
-   {
-     icon: BarChart3,
-     title: "Business Intelligence & Reporting",
-     description: "Interactive dashboards and self-service analytics platforms that transform raw data into actionable business insights.",
-     useCases: [
-       "Executive dashboards",
-       "Self-service analytics",
-       "Automated reporting",
-       "KPI monitoring"
-     ],
-     impact: {
-       insights: "Real-time business insights",
-       decisions: "Data-driven decision making",
-       productivity: "5x faster report generation"
-     },
-     technologies: ["Tableau", "Power BI", "Looker", "Qlik"],
-     color: "from-green-500 to-teal-500"
-   },
-   {
-     icon: Brain,
-     title: "Machine Learning & AI Analytics",
-     description: "Advanced ML models and AI-powered analytics for predictive insights, anomaly detection, and intelligent automation.",
-     useCases: [
-       "Predictive analytics",
-       "Anomaly detection",
-       "Customer segmentation",
-       "Recommendation engines"
-     ],
-     impact: {
-       predictions: "95% prediction accuracy",
-       automation: "Intelligent decision automation",
-       revenue: "25% revenue optimization"
-     },
-     technologies: ["TensorFlow", "MLflow", "Databricks", "SageMaker"],
-     color: "from-pink-500 to-purple-500"
-   },
-   {
-     icon: Workflow,
-     title: "Data Lake & Warehouse Architecture",
-     description: "Modern data architecture with data lakes, warehouses, and lakehouses for unified data storage and analytics.",
-     useCases: [
-       "Data lake implementation",
-       "Data warehouse modernization",
-       "Lakehouse architecture",
-       "Data governance frameworks"
-     ],
-     impact: {
-       storage: "Unlimited scalable storage",
-       query: "Sub-second query performance",
-       governance: "Automated data governance"
-     },
-     technologies: ["Snowflake", "Databricks", "Azure Synapse", "BigQuery"],
-     color: "from-blue-500 to-cyan-500"
-   },
-   {
-     icon: Activity,
-     title: "Real-time Analytics Platform",
-     description: "Stream processing and real-time analytics for immediate insights and instant decision-making capabilities.",
-     useCases: [
-       "Real-time monitoring",
-       "Event stream processing",
-       "Live dashboard updates",
-       "Instant alerting systems"
-     ],
-     impact: {
-       latency: "Sub-millisecond processing",
-       throughput: "Millions of events/second",
-       insights: "Instant business insights"
-     },
-     technologies: ["Apache Kafka", "Apache Flink", "Redis", "ClickHouse"],
-     color: "from-red-500 to-orange-500"
-   },
-   {
-     icon: Shield,
-     title: "Data Governance & Security",
-     description: "Comprehensive data governance with privacy controls, lineage tracking, and compliance automation for regulated industries.",
-     useCases: [
-       "Data lineage tracking",
-       "Privacy compliance (GDPR)",
-       "Access control management",
-       "Data cataloging"
-     ],
-     impact: {
-       compliance: "100% regulatory compliance",
-       governance: "Automated data governance",
-       security: "Enterprise-grade data security"
-     },
-     technologies: ["Apache Atlas", "Collibra", "Alation", "DataHub"],
-     color: "from-yellow-500 to-red-500"
-   }
- ]
-
- const caseStudyHighlights = [
-   {
-     company: "Global Retail Chain",
-     challenge: "Siloed data across 1000+ stores with delayed insights",
-     solution: "Real-time data lake with ML-powered analytics",
-     results: [
-       "Real-time inventory optimization",
-       "25% increase in sales through personalization", 
-       "90% reduction in data processing time"
-     ]
-   },
-   {
-     company: "Healthcare Provider Network",
-     challenge: "Patient data scattered across multiple systems",
-     solution: "HIPAA-compliant data warehouse with BI platform",
-     results: [
-       "360° patient view achieved",
-       "40% improvement in care outcomes",
-       "Full HIPAA compliance maintained"
-     ]
-   },
-   {
-     company: "Financial Services Firm",
-     challenge: "Manual risk analysis taking weeks to complete",
-     solution: "Automated ML pipeline for real-time risk scoring",
-     results: [
-       "Real-time risk assessment",
-       "60% reduction in loan defaults",
-       "10x faster credit decisions"
-     ]
-   }
- ]
-
- return (
+  return (
     <SharedLayout>
-   <div className="min-h-screen bg-gradient-to-br from-background via-muted/10 to-background">
-     {/* Hero Section */}
-     <section className="relative py-20 lg:py-32 overflow-hidden">
-       <div className="absolute inset-0">
-         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl" />
-         <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-blue-500/5 rounded-full blur-3xl" />
-       </div>
+      {/* Hero — Deep Blue */}
+      <PageHero
+        eyebrow="Data Engineering & Analytics"
+        title="Data your teams can actually rely on."
+        lede="Pipelines, lakehouse architecture, governed reporting and stream processing — built so the numbers hold up when a decision depends on them."
+        primaryCta={{ label: 'Get Data Strategy Assessment', href: '/contact-us' }}
+        secondaryCta={{ label: 'How we work', href: '/how-we-work' }}
+      />
 
-       <div className="section-container relative z-10">
-         <motion.div
-           className="max-w-5xl mx-auto"
-           variants={containerVariants}
-           initial="hidden"
-           animate="visible"
-         >
-           <motion.div 
-             className="text-center mb-12"
-             variants={itemVariants}
-           >
-             <Badge 
-               variant="secondary" 
-               className="bg-purple-500/10 text-purple-600 hover:bg-purple-500/20 px-6 py-3 text-sm font-semibold border border-purple-500/20 rounded-full mb-8"
-             >
-               <Database className="w-4 h-4 mr-2" />
-               Data Engineering & Analytics Solutions
-             </Badge>
+      {/* At a glance */}
+      <PageSection tone="white" eyebrow="At a glance">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={staggerContainer}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
+          style={{ gap: '16px' }}
+        >
+          {keyCapabilities.map((item) => (
+            <motion.div
+              key={item.label}
+              variants={fadeUp}
+              className="ys-card-light"
+              style={{ padding: '28px 24px', minWidth: 0 }}
+            >
+              <div
+                style={{
+                  fontSize: 'clamp(1.75rem, 3vw, 2.25rem)',
+                  fontWeight: 700,
+                  color: 'var(--ys-ink)',
+                  letterSpacing: '-0.03em',
+                  lineHeight: 1,
+                  marginBottom: '10px'
+                }}
+              >
+                {item.value}
+              </div>
+              <div
+                style={{
+                  fontSize: '14px',
+                  fontWeight: 600,
+                  color: 'var(--ys-link-on-light)',
+                  marginBottom: '6px'
+                }}
+              >
+                {item.label}
+              </div>
+              <div style={{ fontSize: '13px', lineHeight: 1.55, color: 'var(--ys-ink-muted)' }}>
+                {item.sub}
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+      </PageSection>
 
-             <h1 className="heading-hero mb-8 text-balance">
-               Data Engineering & Analytics
-               <span className="block bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent mt-2">
-                 Intelligence at Scale
-               </span>
-             </h1>
+      {/* Solutions */}
+      <PageSection
+        tone="light"
+        eyebrow="What we deliver"
+        title="The data platform, end to end."
+        lede="From ingestion through to the reporting layer, with governance applied as the platform is built rather than after."
+      >
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={staggerContainer}
+          className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3"
+          style={{ gap: '24px' }}
+        >
+          {solutions.map((solution) => (
+            <motion.div
+              key={solution.title}
+              variants={fadeUp}
+              className="ys-card-light"
+              style={{
+                padding: '32px',
+                display: 'flex',
+                flexDirection: 'column',
+                minWidth: 0
+              }}
+            >
+              {/* Icon */}
+              <div
+                style={{
+                  width: '48px',
+                  height: '48px',
+                  borderRadius: '12px',
+                  background: 'var(--ys-surface-alt)',
+                  border: '1px solid var(--ys-border)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  marginBottom: '24px',
+                  flexShrink: 0
+                }}
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--ys-link-on-light)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d={solution.iconPath} />
+                </svg>
+              </div>
 
-             <p className="text-lead max-w-4xl mx-auto mb-12">
-               Transform your data into competitive advantage with enterprise-grade data engineering, 
-               real-time analytics, and AI-powered insights that drive 10x faster decision-making.
-             </p>
-           </motion.div>
+              <h3
+                style={{
+                  fontSize: '20px',
+                  fontWeight: 700,
+                  letterSpacing: '-0.02em',
+                  marginBottom: '12px'
+                }}
+              >
+                {solution.title}
+              </h3>
+              <p
+                style={{
+                  fontSize: '15px',
+                  lineHeight: 1.65,
+                  color: 'var(--ys-ink-body)',
+                  marginBottom: '24px'
+                }}
+              >
+                {solution.description}
+              </p>
 
-           {/* Key Benefits */}
-           <motion.div 
-             className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-12"
-             variants={itemVariants}
-           >
-             {keyBenefits.map((benefit, index) => {
-               const IconComponent = benefit.icon
-               return (
-                 <Card key={index} className="enterprise-card enterprise-card-hover p-6 text-center group">
-                   <IconComponent className="w-8 h-8 text-purple-500 mx-auto mb-4 group-hover:scale-110 transition-transform" />
-                   <div className="text-3xl font-bold text-foreground mb-2 group-hover:text-purple-500 transition-colors">
-                     {benefit.metric}
-                   </div>
-                   <div className="text-sm font-semibold text-foreground mb-1">
-                     {benefit.label}
-                   </div>
-                   <div className="text-xs text-muted-foreground">
-                     {benefit.description}
-                   </div>
-                 </Card>
-               )
-             })}
-           </motion.div>
+              {/* Capabilities */}
+              <div style={{ marginBottom: '24px', flex: 1 }}>
+                {solution.capabilities.map((cap) => (
+                  <div
+                    key={cap}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'flex-start',
+                      gap: '10px',
+                      marginBottom: '10px'
+                    }}
+                  >
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ marginTop: '2px', flexShrink: 0 }} aria-hidden="true">
+                      <path d="M13.333 4L6 11.333 2.667 8" stroke="var(--ys-link-on-light)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                    <span style={{ fontSize: '14px', color: 'var(--ys-ink-body)', lineHeight: 1.5 }}>{cap}</span>
+                  </div>
+                ))}
+              </div>
 
-           <motion.div 
-             className="flex flex-col sm:flex-row gap-6 justify-center"
-             variants={itemVariants}
-           >
-             <Button 
-               size="xl" 
-               className="bg-purple-500 hover:bg-purple-600 text-white h-14 px-12 text-lg group"
-             >
-               Get Data Strategy Assessment
-               <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-             </Button>
-             <Button 
-               variant="outline" 
-               size="xl"
-               className="border-2 border-purple-500/30 hover:border-purple-500 hover:text-purple-500 h-14 px-12 text-lg"
-             >
-               Explore Analytics Demos
-             </Button>
-           </motion.div>
-         </motion.div>
-       </div>
-     </section>
+              {/* Bottom: summary + tech tags */}
+              <div
+                style={{
+                  paddingTop: '20px',
+                  borderTop: '1px solid var(--ys-border)',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '16px'
+                }}
+              >
+                <div
+                  style={{
+                    fontSize: '14px',
+                    fontWeight: 700,
+                    color: 'var(--ys-link-on-light)',
+                    letterSpacing: '-0.01em'
+                  }}
+                >
+                  {solution.metric}
+                </div>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
+                  {solution.technologies.map((tech) => (
+                    <span
+                      key={tech}
+                      style={{
+                        fontSize: '11px',
+                        fontWeight: 600,
+                        color: 'var(--ys-ink-body)',
+                        background: 'var(--ys-surface)',
+                        padding: '4px 10px',
+                        borderRadius: '100px',
+                        border: '1px solid var(--ys-border)',
+                        letterSpacing: '0.01em'
+                      }}
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+      </PageSection>
 
-     {/* Solutions Grid */}
-     <section className="py-16 lg:py-24">
-       <div className="section-container">
-         <motion.div
-           variants={containerVariants}
-           initial="hidden"
-           whileInView="visible"
-           viewport={{ once: true }}
-         >
-           <motion.div 
-             className="text-center mb-16"
-             variants={itemVariants}
-           >
-             <h2 className="heading-section mb-6">
-               Complete <span className="gradient-text">Data Platform</span>
-             </h2>
-             <p className="text-lead max-w-3xl mx-auto">
-               End-to-end data engineering and analytics solutions that turn your data into strategic assets
-             </p>
-           </motion.div>
+      {/* Engagement scenarios */}
+      <PageSection
+        tone="white"
+        eyebrow="Where we apply it"
+        title="Common data engagement scenarios."
+        lede="Typical data problems we take on, and how each platform is put together."
+      >
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={staggerContainer}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+          style={{ gap: '24px' }}
+        >
+          {engagementScenarios.map((study) => (
+            <motion.div
+              key={study.client}
+              variants={fadeUp}
+              className="ys-card-light"
+              style={{
+                padding: '32px',
+                display: 'flex',
+                flexDirection: 'column',
+                minWidth: 0
+              }}
+            >
+              <p
+                style={{
+                  fontSize: '12px',
+                  fontWeight: 600,
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.08em',
+                  color: 'var(--ys-ink-muted)',
+                  marginBottom: '16px'
+                }}
+              >
+                {study.client}
+              </p>
 
-           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
-             {solutions.map((solution, index) => {
-               const IconComponent = solution.icon
-               return (
-                 <motion.div
-                   key={index}
-                   variants={itemVariants}
-                   whileHover={{ y: -5 }}
-                 >
-                   <Card className="enterprise-card enterprise-card-hover p-8 lg:p-10 h-full group">
-                     <div className="flex items-start gap-6 mb-6">
-                       <motion.div 
-                         className="w-16 h-16 rounded-2xl bg-muted/50 flex items-center justify-center group-hover:bg-purple-500/10 transition-colors flex-shrink-0"
-                         whileHover={{ rotate: 5, scale: 1.1 }}
-                       >
-                         <IconComponent className="w-8 h-8 text-purple-500" />
-                       </motion.div>
-                       <div className="flex-1">
-                         <h3 className="text-2xl font-bold mb-3 group-hover:text-purple-500 transition-colors">
-                           {solution.title}
-                         </h3>
-                         <p className="text-muted-foreground leading-relaxed">
-                           {solution.description}
-                         </p>
-                       </div>
-                     </div>
+              <h3
+                style={{
+                  fontSize: '19px',
+                  fontWeight: 700,
+                  letterSpacing: '-0.02em',
+                  marginBottom: '12px',
+                  lineHeight: 1.3
+                }}
+              >
+                {study.challenge}
+              </h3>
+              <p
+                style={{
+                  fontSize: '15px',
+                  lineHeight: 1.65,
+                  color: 'var(--ys-ink-body)',
+                  marginBottom: '28px'
+                }}
+              >
+                {study.solution}
+              </p>
 
-                     {/* Use Cases */}
-                     <div className="mb-6">
-                       <h4 className="text-sm font-semibold text-foreground mb-3 uppercase tracking-wider">
-                         Key Capabilities
-                       </h4>
-                       <div className="grid grid-cols-2 gap-2">
-                         {solution.useCases.map((useCase, idx) => (
-                           <div key={idx} className="flex items-center gap-2 text-sm">
-                             <CheckCircle className="w-3 h-3 text-purple-500 flex-shrink-0" />
-                             <span className="text-muted-foreground">{useCase}</span>
-                           </div>
-                         ))}
-                       </div>
-                     </div>
+              <div style={{ marginTop: 'auto', paddingTop: '20px', borderTop: '1px solid var(--ys-border)' }}>
+                {study.results.map((result) => (
+                  <div
+                    key={result}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'flex-start',
+                      gap: '10px',
+                      marginBottom: '10px'
+                    }}
+                  >
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ marginTop: '2px', flexShrink: 0 }} aria-hidden="true">
+                      <path d="M4 8l3.5 3.5L12 4" stroke="var(--ys-link-on-light)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                    <span style={{ fontSize: '14px', color: 'var(--ys-ink-body)', lineHeight: 1.5 }}>{result}</span>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+      </PageSection>
 
-                     {/* Impact Metrics */}
-                     <div className="mb-6">
-                       <h4 className="text-sm font-semibold text-foreground mb-3 uppercase tracking-wider">
-                         Business Impact
-                       </h4>
-                       <div className="grid grid-cols-1 gap-2">
-                         {Object.entries(solution.impact).map(([key, value], idx) => (
-                           <div key={idx} className="flex items-center justify-between text-sm">
-                             <span className="text-muted-foreground capitalize">{key}:</span>
-                             <span className="font-semibold text-purple-500">{value}</span>
-                           </div>
-                         ))}
-                       </div>
-                     </div>
+      {/* What the assessment includes */}
+      <PageSection tone="light" eyebrow="What the assessment includes">
+        <div className="flex flex-wrap" style={{ gap: '16px 24px' }}>
+          {[
+            "Free data strategy consultation",
+            "Custom analytics roadmap",
+            "Business case support",
+            "Proof-of-concept available"
+          ].map((item) => (
+            <div key={item} style={{ display: 'flex', alignItems: 'center', gap: '8px', minWidth: 0 }}>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ flexShrink: 0 }} aria-hidden="true">
+                <path d="M13.333 4L6 11.333 2.667 8" stroke="var(--ys-link-on-light)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+              <span style={{ fontSize: '14px', color: 'var(--ys-ink-body)' }}>{item}</span>
+            </div>
+          ))}
+        </div>
+      </PageSection>
 
-                     {/* Technologies */}
-                     <div className="mb-6">
-                       <h4 className="text-sm font-semibold text-foreground mb-3 uppercase tracking-wider">
-                         Core Technologies
-                       </h4>
-                       <div className="flex flex-wrap gap-2">
-                         {solution.technologies.map((tech, idx) => (
-                           <Badge 
-                             key={idx} 
-                             variant="secondary" 
-                             className="bg-purple-500/10 text-purple-600 hover:bg-purple-500/20 text-xs"
-                           >
-                             {tech}
-                           </Badge>
-                         ))}
-                       </div>
-                     </div>
-
-                     {/* CTA */}
-                     <Button 
-                       className="w-full group-hover:bg-purple-500 group-hover:text-white transition-colors group border border-purple-500/20"
-                       variant="outline"
-                     >
-                       Explore Solution
-                       <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                     </Button>
-
-                     <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-purple-500 to-blue-500 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
-                   </Card>
-                 </motion.div>
-               )
-             })}
-           </div>
-         </motion.div>
-       </div>
-     </section>
-
-     {/* Case Study Highlights */}
-     <section className="py-16 lg:py-24 bg-muted/20">
-       <div className="section-container">
-         <motion.div
-           variants={containerVariants}
-           initial="hidden"
-           whileInView="visible"
-           viewport={{ once: true }}
-         >
-           <motion.div 
-             className="text-center mb-16"
-             variants={itemVariants}
-           >
-             <h2 className="heading-section mb-6">
-               Data-Driven <span className="gradient-text">Success Stories</span>
-             </h2>
-             <p className="text-lead max-w-3xl mx-auto">
-               Real transformations that turned data challenges into competitive advantages
-             </p>
-           </motion.div>
-
-           <div className="grid lg:grid-cols-3 gap-8">
-             {caseStudyHighlights.map((study, index) => (
-               <motion.div
-                 key={index}
-                 variants={itemVariants}
-                 whileHover={{ y: -5 }}
-               >
-                 <Card className="enterprise-card enterprise-card-hover p-8 h-full group">
-                   <h3 className="text-lg font-bold mb-4 group-hover:text-purple-500 transition-colors">
-                     {study.company}
-                   </h3>
-                   
-                   <div className="mb-4">
-                     <h4 className="text-sm font-semibold text-foreground mb-2 uppercase tracking-wider">
-                       Challenge
-                     </h4>
-                     <p className="text-sm text-muted-foreground">
-                       {study.challenge}
-                     </p>
-                   </div>
-
-                   <div className="mb-6">
-                     <h4 className="text-sm font-semibold text-foreground mb-2 uppercase tracking-wider">
-                       Solution
-                     </h4>
-                     <p className="text-sm text-muted-foreground">
-                       {study.solution}
-                     </p>
-                   </div>
-
-                   <div>
-                     <h4 className="text-sm font-semibold text-foreground mb-3 uppercase tracking-wider">
-                       Results
-                     </h4>
-                     <div className="space-y-2">
-                       {study.results.map((result, idx) => (
-                         <div key={idx} className="flex items-center gap-2 text-sm">
-                           <BarChart3 className="w-3 h-3 text-green-500 flex-shrink-0" />
-                           <span className="text-muted-foreground">{result}</span>
-                         </div>
-                       ))}
-                     </div>
-                   </div>
-
-                   <div className="accent-border absolute top-0 left-0 right-0 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
-                 </Card>
-               </motion.div>
-             ))}
-           </div>
-         </motion.div>
-       </div>
-     </section>
-
-     {/* CTA Section */}
-     <section className="py-16 lg:py-24">
-       <div className="section-container">
-         <motion.div
-           className="max-w-4xl mx-auto text-center"
-           initial={{ opacity: 0, y: 30 }}
-           whileInView={{ opacity: 1, y: 0 }}
-           transition={{ duration: 0.6 }}
-           viewport={{ once: true }}
-         >
-           <h2 className="heading-section mb-6">
-             Ready to Unlock Your <span className="gradient-text">Data's Potential</span>?
-           </h2>
-           
-           <p className="text-lead mb-12">
-             Get a comprehensive data maturity assessment and discover how modern data engineering 
-             can transform your business intelligence and decision-making capabilities.
-           </p>
-
-           <div className="flex flex-col sm:flex-row gap-6 justify-center mb-12">
-             <Button 
-               size="xl" 
-               className="bg-purple-500 hover:bg-purple-600 text-white h-14 px-12 text-lg group"
-             >
-               Get Data Assessment
-               <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-             </Button>
-             <Button 
-               variant="outline" 
-               size="xl"
-               className="border-2 border-purple-500/30 hover:border-purple-500 hover:text-purple-500 h-14 px-12 text-lg"
-             >
-               Book Analytics Demo
-             </Button>
-           </div>
-
-           <div className="flex flex-wrap justify-center gap-6 text-sm text-muted-foreground">
-             {[
-               "Free data strategy consultation",
-               "Custom analytics roadmap",
-               "ROI projection included",
-               "Proof-of-concept available"
-             ].map((feature, index) => (
-               <div key={index} className="flex items-center gap-2">
-                 <CheckCircle className="w-4 h-4 text-purple-500" />
-                 <span>{feature}</span>
-               </div>
-             ))}
-           </div>
-         </motion.div>
-       </div>
-     </section>
-   </div>
-   </SharedLayout>
- )
+      {/* CTA — Deep Blue */}
+      <PageCTA
+        title="Ready to put your data to work?"
+        body="Get a data maturity assessment and see how a modern platform would change what your teams can ask of their data."
+        primaryCta={{ label: 'Get Data Assessment', href: '/contact-us' }}
+        secondaryCta={{ label: 'Book Analytics Demo', href: '/contact-us' }}
+      />
+    </SharedLayout>
+  )
 }
 
 export default DataEngineeringAnalytics

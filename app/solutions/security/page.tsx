@@ -1,470 +1,367 @@
 "use client"
 
-import { motion } from 'framer-motion'
-import { Button } from '@/components/ui/button'
-import { Badge } from '@/components/ui/badge'
-import { Card } from '@/components/ui/card'
-import {
-  ArrowRight,
-  Shield,
-  Lock,
-  Eye,
-  AlertTriangle,
-  CheckCircle,
-  Users,
-  Globe,
-  Network,
-  Fingerprint,
-  FileCheck,
-  TrendingUp,
-  Clock,
-  Award,
-  ArrowLeft
-} from 'lucide-react'
-import { cn } from '@/lib/utils'
+import { motion, type Variants } from 'framer-motion'
 import SharedLayout from '@/components/shared-layout'
-import Link from 'next/link'
-import AnimatedText from '@/components/animated-text'
+import { PageHero, PageSection, PageCTA } from '@/components/enterprise'
+
+const fadeUp: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }
+  }
+}
+
+const staggerContainer: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.15
+    }
+  }
+}
+
+/* ── Data ─────────────────────────────────────────── */
+
+const heroStats = [
+  { value: "Zero-trust", label: "Architecture design", sub: "Verify every user and device" },
+  { value: "24/7", label: "Monitoring", sub: "Continuous detection and alerting" },
+  { value: "Audit-ready", label: "Compliance support", sub: "Controls mapped to frameworks" },
+  { value: "Assess", label: "Risk reviews", sub: "Gap analysis and remediation plans" }
+]
+
+const securityServices = [
+  {
+    title: "Zero-Trust Architecture",
+    description: "Access decided per request rather than per network location, with identity, device posture and policy evaluated at every hop.",
+    features: [
+      "Identity verification at every access point",
+      "Micro-segmentation of network resources",
+      "Policy-driven access controls",
+      "Continuous monitoring and validation"
+    ],
+    iconPath: "M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"
+  },
+  {
+    title: "Identity & Access Management",
+    description: "Centralised identity across your estate: who holds which entitlements, how they got them, and when they are taken away.",
+    features: [
+      "Single sign-on (SSO) integration",
+      "Multi-factor authentication",
+      "Privileged access management",
+      "Identity lifecycle and joiner-mover-leaver"
+    ],
+    iconPath: "M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"
+  },
+  {
+    title: "Threat Detection & Response",
+    description: "Telemetry collection, detection engineering and response runbooks, so alerts arrive with the context needed to act on them.",
+    features: [
+      "Threat intelligence and detection tuning",
+      "Behavioural anomaly detection",
+      "Automated and assisted incident response",
+      "Forensic analysis and post-incident review"
+    ],
+    iconPath: "M15 12a3 3 0 11-6 0 3 3 0 016 0z M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+  },
+  {
+    title: "Data Protection & Encryption",
+    description: "Classifying what matters, encrypting it in transit and at rest, and controlling where it is allowed to travel.",
+    features: [
+      "End-to-end data encryption",
+      "Data loss prevention (DLP)",
+      "Secure key management",
+      "Data classification and retention controls"
+    ],
+    iconPath: "M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+  },
+  {
+    title: "Network & Endpoint Security",
+    description: "Perimeter and endpoint controls that hold up when users, workloads and devices are no longer inside one network.",
+    features: [
+      "Next-generation firewalls",
+      "Intrusion prevention systems",
+      "Endpoint detection and response",
+      "VPN, secure remote access and segmentation"
+    ],
+    iconPath: "M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2"
+  },
+  {
+    title: "Compliance & Governance",
+    description: "Mapping your controls to the frameworks you are held to, and producing the evidence trail auditors ask for.",
+    features: [
+      "Control mapping to SOC 2, HIPAA, PCI DSS",
+      "Audit trails and evidence collection",
+      "Risk assessment frameworks",
+      "Regulatory reporting workflows"
+    ],
+    iconPath: "M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+  }
+]
+
+const complianceFrameworks = [
+  { name: "SOC 2 Type II", description: "Security and availability controls" },
+  { name: "ISO 27001", description: "Information security management" },
+  { name: "HIPAA", description: "Healthcare data protection" },
+  { name: "PCI DSS", description: "Payment card data security" },
+  { name: "GDPR", description: "European data privacy regulation" },
+  { name: "FedRAMP", description: "Federal cloud security standards" }
+]
+
+const threatTypes = [
+  { name: "Ransomware", severity: "Critical", controls: "Immutable backup, isolation and recovery testing" },
+  { name: "Data breach", severity: "Critical", controls: "Encryption, DLP and least-privilege access" },
+  { name: "Phishing", severity: "High", controls: "Email filtering, DMARC and user awareness" },
+  { name: "Malware", severity: "High", controls: "Endpoint detection and response" },
+  { name: "DDoS", severity: "High", controls: "Edge protection and rate limiting" },
+  { name: "Insider threat", severity: "Medium", controls: "Privileged access and behaviour monitoring" }
+]
+
+/* ── Component ────────────────────────────────────── */
 
 const EnterpriseSecurity = () => {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2
-      }
-    }
-  }
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6
-      }
-    }
-  }
-
-  const securityServices = [
-    {
-      icon: Shield,
-      title: "Zero-Trust Architecture",
-      description: "Implement comprehensive zero-trust security models that verify every user and device",
-      features: [
-        "Identity verification at every access point",
-        "Micro-segmentation of network resources",
-        "Continuous monitoring and validation",
-        "Policy-driven access controls"
-      ],
-      color: "emerald"
-    },
-    {
-      icon: Eye,
-      title: "Threat Detection & Response",
-      description: "Advanced AI-powered threat detection with 24/7 security operations center",
-      features: [
-        "Real-time threat intelligence",
-        "Behavioral anomaly detection",
-        "Automated incident response",
-        "Forensic analysis and reporting"
-      ],
-      color: "red"
-    },
-    {
-      icon: Lock,
-      title: "Data Protection & Encryption",
-      description: "Comprehensive data security with end-to-end encryption and privacy controls",
-      features: [
-        "End-to-end data encryption",
-        "Data loss prevention (DLP)",
-        "Privacy compliance automation",
-        "Secure key management"
-      ],
-      color: "blue"
-    },
-    {
-      icon: FileCheck,
-      title: "Compliance & Governance",
-      description: "Automated compliance monitoring and reporting for industry regulations",
-      features: [
-        "SOC 2, HIPAA, PCI DSS compliance",
-        "Automated audit trails",
-        "Risk assessment frameworks",
-        "Regulatory reporting automation"
-      ],
-      color: "purple"
-    },
-    {
-      icon: Fingerprint,
-      title: "Identity & Access Management",
-      description: "Centralized identity management with multi-factor authentication",
-      features: [
-        "Single sign-on (SSO) integration",
-        "Multi-factor authentication",
-        "Privileged access management",
-        "Identity lifecycle management"
-      ],
-      color: "orange"
-    },
-    {
-      icon: Network,
-      title: "Network Security",
-      description: "Advanced network protection with firewall management and intrusion prevention",
-      features: [
-        "Next-generation firewalls",
-        "Intrusion prevention systems",
-        "VPN and secure remote access",
-        "Network segmentation"
-      ],
-      color: "cyan"
-    }
-  ]
-
-  const securityStats = [
-    { icon: Shield, metric: "99.9%", label: "Threat Prevention", description: "Average threat blocking rate" },
-    { icon: Clock, metric: "< 5 min", label: "Detection Time", description: "Average threat detection" },
-    { icon: CheckCircle, metric: "100%", label: "Compliance Rate", description: "Regulatory compliance success" },
-    { icon: TrendingUp, metric: "75%", label: "Risk Reduction", description: "Average security risk decrease" }
-  ]
-
-  const complianceFrameworks = [
-    { name: "SOC 2 Type II", icon: Shield, description: "Security and availability controls" },
-    { name: "ISO 27001", icon: Award, description: "Information security management" },
-    { name: "HIPAA", icon: FileCheck, description: "Healthcare data protection" },
-    { name: "PCI DSS", icon: Lock, description: "Payment card data security" },
-    { name: "GDPR", icon: Globe, description: "European data privacy regulation" },
-    { name: "FedRAMP", icon: Users, description: "Federal cloud security standards" }
-  ]
-
-  const threatTypes = [
-    { name: "Ransomware", severity: "Critical", blocked: "99.8%" },
-    { name: "Phishing", severity: "High", blocked: "99.5%" },
-    { name: "Malware", severity: "High", blocked: "99.9%" },
-    { name: "Data Breaches", severity: "Critical", blocked: "100%" },
-    { name: "Insider Threats", severity: "Medium", blocked: "95%" },
-    { name: "DDoS Attacks", severity: "High", blocked: "99.7%" }
-  ]
-
   return (
     <SharedLayout>
-      {/* Hero Section */}
-      <section className="relative overflow-hidden py-20 lg:py-32">
-        <div className="absolute inset-0">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-green-500/5 rounded-full blur-3xl" />
-          <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-emerald-500/5 rounded-full blur-3xl" />
-        </div>
+      {/* Hero — Deep Blue */}
+      <PageHero
+        eyebrow="Enterprise Security"
+        title="Security architecture that holds up under audit and attack."
+        lede="Zero-trust design, identity, threat detection and data protection — built into your estate and evidenced against the frameworks you are held to."
+        primaryCta={{ label: 'Get Security Assessment', href: '/contact-us' }}
+        secondaryCta={{ label: 'How we work', href: '/how-we-work' }}
+      />
 
-        <div className="section-container relative z-10">
-          <motion.div
-            className="max-w-4xl"
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-          >
-            <motion.div variants={itemVariants}>
-              <Link href="/solutions" className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-6">
-                <ArrowLeft className="w-4 h-4" />
-                Back to Solutions
-              </Link>
-            </motion.div>
-
-            <motion.div variants={itemVariants}>
-              <Badge 
-                variant="secondary" 
-                className="bg-green-50/10 text-green-400 hover:bg-green-50/20 px-6 py-3 text-sm font-semibold border border-green-500/20 rounded-full mb-8"
+      {/* At a glance */}
+      <PageSection tone="white" eyebrow="At a glance">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={staggerContainer}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
+          style={{ gap: '16px' }}
+        >
+          {heroStats.map((stat) => (
+            <motion.div
+              key={stat.label}
+              variants={fadeUp}
+              className="ys-card-light"
+              style={{ padding: '28px 24px', minWidth: 0 }}
+            >
+              <div
+                style={{
+                  fontSize: 'clamp(1.5rem, 2.6vw, 2rem)',
+                  fontWeight: 700,
+                  color: 'var(--ys-ink)',
+                  letterSpacing: '-0.03em',
+                  lineHeight: 1.1,
+                  marginBottom: '10px'
+                }}
               >
-                <Shield className="w-4 h-4 mr-2" />
-                Enterprise Security
-              </Badge>
+                {stat.value}
+              </div>
+              <div
+                style={{
+                  fontSize: '14px',
+                  fontWeight: 600,
+                  color: 'var(--ys-link-on-light)',
+                  marginBottom: '6px'
+                }}
+              >
+                {stat.label}
+              </div>
+              <div style={{ fontSize: '13px', lineHeight: 1.55, color: 'var(--ys-ink-muted)' }}>
+                {stat.sub}
+              </div>
             </motion.div>
+          ))}
+        </motion.div>
+      </PageSection>
 
-            <motion.h1 
-              className="heading-hero mb-8 text-balance"
-              variants={itemVariants}
+      {/* Security services */}
+      <PageSection
+        tone="light"
+        eyebrow="What we deliver"
+        title="Security services."
+        lede="Six areas of work, designed to fit the estate you already run rather than replace it wholesale."
+      >
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={staggerContainer}
+          className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3"
+          style={{ gap: '24px' }}
+        >
+          {securityServices.map((service) => (
+            <motion.div
+              key={service.title}
+              variants={fadeUp}
+              className="ys-card-light"
+              style={{
+                padding: '32px',
+                display: 'flex',
+                flexDirection: 'column',
+                minWidth: 0
+              }}
             >
-              <AnimatedText
-                text="Comprehensive Enterprise"
-                animation="splitWords"
-                className="block mb-2"
-                stagger={0.1}
-              />
-              <AnimatedText
-                text="Security Solutions"
-                animation="splitWords"
-                className="gradient-text inline-block"
-                stagger={0.1}
-                delay={0.5}
-              />
-            </motion.h1>
+              <div
+                style={{
+                  width: '48px',
+                  height: '48px',
+                  borderRadius: '12px',
+                  background: 'var(--ys-surface-alt)',
+                  border: '1px solid var(--ys-border)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  marginBottom: '24px',
+                  flexShrink: 0
+                }}
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--ys-link-on-light)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d={service.iconPath} />
+                </svg>
+              </div>
 
-            <motion.p 
-              className="text-lead mb-12"
-              variants={itemVariants}
-            >
-              Protect your organization with advanced cybersecurity solutions that defend against evolving threats, 
-              ensure regulatory compliance, and provide comprehensive security across your entire digital infrastructure.
-            </motion.p>
+              <h3
+                style={{
+                  fontSize: '20px',
+                  fontWeight: 700,
+                  letterSpacing: '-0.02em',
+                  marginBottom: '12px'
+                }}
+              >
+                {service.title}
+              </h3>
+              <p
+                style={{
+                  fontSize: '15px',
+                  lineHeight: 1.65,
+                  color: 'var(--ys-ink-body)',
+                  marginBottom: '24px'
+                }}
+              >
+                {service.description}
+              </p>
 
-            <motion.div 
-              className="flex flex-col sm:flex-row gap-4 mb-16"
-              variants={itemVariants}
-            >
-              <Link href="/contact-us">
-                <Button size="lg" className="enterprise-button text-white font-semibold group">
-                  <span className="flex items-center gap-2">
-                    Get Security Assessment
-                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-                  </span>
-                </Button>
-              </Link>
-              <Link href="/case-studies">
-                <Button variant="outline" size="lg" className="font-semibold">
-                  View Security Case Studies
-                </Button>
-              </Link>
-            </motion.div>
-
-            {/* Security Stats */}
-            <motion.div 
-              className="grid grid-cols-2 md:grid-cols-4 gap-6"
-              variants={itemVariants}
-            >
-              {securityStats.map((stat, index) => {
-                const IconComponent = stat.icon
-                return (
-                  <div key={index} className="text-center">
-                    <IconComponent className="w-8 h-8 text-green-500 mx-auto mb-2" />
-                    <div className="text-2xl font-bold text-foreground">{stat.metric}</div>
-                    <div className="text-sm font-medium text-foreground">{stat.label}</div>
-                    <div className="text-xs text-muted-foreground">{stat.description}</div>
+              <div style={{ marginTop: 'auto' }}>
+                {service.features.map((feature) => (
+                  <div
+                    key={feature}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'flex-start',
+                      gap: '10px',
+                      marginBottom: '10px'
+                    }}
+                  >
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ marginTop: '2px', flexShrink: 0 }} aria-hidden="true">
+                      <path d="M13.333 4L6 11.333 2.667 8" stroke="var(--ys-link-on-light)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                    <span style={{ fontSize: '14px', color: 'var(--ys-ink-body)', lineHeight: 1.5 }}>{feature}</span>
                   </div>
-                )
-              })}
+                ))}
+              </div>
             </motion.div>
-          </motion.div>
-        </div>
-      </section>
+          ))}
+        </motion.div>
+      </PageSection>
 
-      {/* Security Services */}
-      <section className="py-16 lg:py-24">
-        <div className="section-container">
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
-            <motion.div 
-              className="text-center mb-16"
-              variants={itemVariants}
+      {/* Threat protection */}
+      <PageSection
+        tone="white"
+        eyebrow="Threat protection"
+        title="Threats, and the controls we put against them."
+        lede="How we design defences for the attack patterns that most often reach enterprise estates."
+      >
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={staggerContainer}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+          style={{ gap: '16px' }}
+        >
+          {threatTypes.map((threat) => (
+            <motion.div
+              key={threat.name}
+              variants={fadeUp}
+              className="ys-card-light"
+              style={{ padding: '24px', minWidth: 0 }}
             >
-              <h2 className="heading-section mb-6">
-                Security <span className="gradient-text">Services</span>
-              </h2>
-              <p className="text-lead max-w-3xl mx-auto">
-                Comprehensive security solutions designed to protect your organization from evolving cyber threats
+              <div style={{ display: 'flex', alignItems: 'baseline', gap: '10px', marginBottom: '10px', flexWrap: 'wrap' }}>
+                <h3 style={{ fontSize: '17px', fontWeight: 700, letterSpacing: '-0.01em' }}>
+                  {threat.name}
+                </h3>
+                <span
+                  style={{
+                    fontSize: '11px',
+                    fontWeight: 600,
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.06em',
+                    color: 'var(--ys-ink-muted)',
+                    background: 'var(--ys-surface-alt)',
+                    border: '1px solid var(--ys-border)',
+                    padding: '3px 10px',
+                    borderRadius: '100px',
+                    whiteSpace: 'nowrap'
+                  }}
+                >
+                  {threat.severity}
+                </span>
+              </div>
+              <p style={{ fontSize: '14px', lineHeight: 1.6, color: 'var(--ys-ink-body)' }}>
+                {threat.controls}
               </p>
             </motion.div>
+          ))}
+        </motion.div>
+      </PageSection>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {securityServices.map((service, index) => {
-                const IconComponent = service.icon
-                return (
-                  <motion.div
-                    key={index}
-                    variants={itemVariants}
-                    whileHover={{ y: -8 }}
-                  >
-                    <Card className="enterprise-card enterprise-card-hover p-8 h-full group">
-                      <motion.div 
-                        className={cn(
-                          "w-16 h-16 rounded-2xl flex items-center justify-center mb-6",
-                          service.color === 'emerald' && "bg-emerald-500/10 group-hover:bg-emerald-500/20",
-                          service.color === 'red' && "bg-red-500/10 group-hover:bg-red-500/20",
-                          service.color === 'blue' && "bg-blue-500/10 group-hover:bg-blue-500/20",
-                          service.color === 'purple' && "bg-purple-500/10 group-hover:bg-purple-500/20",
-                          service.color === 'orange' && "bg-orange-500/10 group-hover:bg-orange-500/20",
-                          service.color === 'cyan' && "bg-cyan-500/10 group-hover:bg-cyan-500/20"
-                        )}
-                        whileHover={{ rotate: 5, scale: 1.1 }}
-                      >
-                        <IconComponent className={cn(
-                          "w-8 h-8",
-                          service.color === 'emerald' && "text-emerald-500",
-                          service.color === 'red' && "text-red-500",
-                          service.color === 'blue' && "text-blue-500",
-                          service.color === 'purple' && "text-purple-500",
-                          service.color === 'orange' && "text-orange-500",
-                          service.color === 'cyan' && "text-cyan-500"
-                        )} />
-                      </motion.div>
-                      
-                      <h3 className="text-xl font-bold mb-3 group-hover:text-accent transition-colors">
-                        {service.title}
-                      </h3>
-                      
-                      <p className="text-muted-foreground mb-6">
-                        {service.description}
-                      </p>
-                      
-                      <ul className="space-y-2">
-                        {service.features.map((feature, featureIndex) => (
-                          <li key={featureIndex} className="flex items-center gap-2 text-sm text-muted-foreground">
-                            <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
-                            {feature}
-                          </li>
-                        ))}
-                      </ul>
-                    </Card>
-                  </motion.div>
-                )
-              })}
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Compliance Frameworks */}
-      <section className="py-16 lg:py-24 bg-muted/20">
-        <div className="section-container">
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
-            <motion.div 
-              className="text-center mb-16"
-              variants={itemVariants}
+      {/* Compliance frameworks */}
+      <PageSection
+        tone="light"
+        eyebrow="Compliance frameworks"
+        title="Standards we help you align to."
+        lede="We help your organisation design and evidence controls against these standards and regulations. We do not certify or audit — we prepare you for the people who do."
+      >
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={staggerContainer}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+          style={{ gap: '16px' }}
+        >
+          {complianceFrameworks.map((framework) => (
+            <motion.div
+              key={framework.name}
+              variants={fadeUp}
+              className="ys-card-light"
+              style={{ padding: '24px', minWidth: 0 }}
             >
-              <h2 className="heading-section mb-6">
-                Compliance <span className="gradient-text">Frameworks</span>
-              </h2>
-              <p className="text-lead max-w-3xl mx-auto">
-                Ensure your organization meets industry standards and regulatory requirements
+              <h3 style={{ fontSize: '16px', fontWeight: 700, letterSpacing: '-0.01em', marginBottom: '6px' }}>
+                {framework.name}
+              </h3>
+              <p style={{ fontSize: '14px', lineHeight: 1.6, color: 'var(--ys-ink-body)' }}>
+                {framework.description}
               </p>
             </motion.div>
+          ))}
+        </motion.div>
+      </PageSection>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {complianceFrameworks.map((framework, index) => {
-                const IconComponent = framework.icon
-                return (
-                  <motion.div
-                    key={index}
-                    variants={itemVariants}
-                    whileHover={{ y: -4 }}
-                  >
-                    <Card className="enterprise-card p-6 text-center group">
-                      <IconComponent className="w-12 h-12 text-green-500 mx-auto mb-4" />
-                      <h3 className="font-bold text-foreground mb-2 group-hover:text-accent transition-colors">
-                        {framework.name}
-                      </h3>
-                      <p className="text-sm text-muted-foreground">
-                        {framework.description}
-                      </p>
-                    </Card>
-                  </motion.div>
-                )
-              })}
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Threat Protection */}
-      <section className="py-16 lg:py-24">
-        <div className="section-container">
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
-            <motion.div 
-              className="text-center mb-16"
-              variants={itemVariants}
-            >
-              <h2 className="heading-section mb-6">
-                Threat <span className="gradient-text">Protection</span>
-              </h2>
-              <p className="text-lead max-w-3xl mx-auto">
-                Advanced protection against the most common and sophisticated cyber threats
-              </p>
-            </motion.div>
-
-            <div className="max-w-4xl mx-auto">
-              <Card className="enterprise-card p-8">
-                <div className="space-y-6">
-                  {threatTypes.map((threat, index) => (
-                    <motion.div
-                      key={index}
-                      className="flex items-center justify-between p-4 rounded-lg bg-muted/30"
-                      variants={itemVariants}
-                    >
-                      <div className="flex items-center gap-4">
-                        <AlertTriangle className={cn(
-                          "w-6 h-6",
-                          threat.severity === 'Critical' && "text-red-500",
-                          threat.severity === 'High' && "text-orange-500",
-                          threat.severity === 'Medium' && "text-yellow-500"
-                        )} />
-                        <div>
-                          <h3 className="font-semibold text-foreground">{threat.name}</h3>
-                          <p className="text-sm text-muted-foreground">Severity: {threat.severity}</p>
-                        </div>
-                      </div>
-                      <div className="text-right">
-                        <div className="text-2xl font-bold text-green-500">{threat.blocked}</div>
-                        <div className="text-sm text-muted-foreground">Blocked</div>
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-              </Card>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-16 lg:py-24 bg-muted/20">
-        <div className="section-container">
-          <motion.div
-            className="max-w-4xl mx-auto text-center"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="heading-section mb-6">
-              Secure Your Business Today
-            </h2>
-            <p className="text-lead mb-8">
-              Don't wait for a security incident to protect your organization. Get a comprehensive 
-              security assessment and start building your defense strategy today.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/contact-us">
-                <Button size="lg" className="enterprise-button text-white font-semibold group">
-                  <span className="flex items-center gap-2">
-                    Schedule Security Consultation
-                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-                  </span>
-                </Button>
-              </Link>
-              <Link href="/case-studies/global-bank-transformation">
-                <Button variant="outline" size="lg" className="font-semibold">
-                  View Security Case Study
-                </Button>
-              </Link>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+      {/* CTA — Deep Blue */}
+      <PageCTA
+        title="Secure your business today"
+        body="Start with a security assessment: where the gaps are, which ones matter most, and what it takes to close them."
+        primaryCta={{ label: 'Schedule Security Consultation', href: '/contact-us' }}
+        secondaryCta={{ label: 'How we work', href: '/how-we-work' }}
+      />
     </SharedLayout>
   )
 }

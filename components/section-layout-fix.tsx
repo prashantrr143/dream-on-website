@@ -30,7 +30,7 @@ export const FixedSection = ({
         hero: 'bg-gradient-to-br from-background via-background/95 to-background',
         content: 'bg-background',
         accent: 'bg-gradient-to-b from-background to-muted/20',
-        cta: 'bg-gradient-to-r from-blue-500/10 via-violet-500/10 to-cyan-500/10'
+        cta: 'bg-gradient-to-r from-blue-500/10 via-[#0A84FF]/10 to-cyan-500/10'
     }
 
     const spacingStyles = {
@@ -291,7 +291,7 @@ export const ScrollIndicator = () => {
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
             <div className="flex flex-col items-center space-y-2 animate-bounce">
                 <div className="w-6 h-10 border-2 border-muted-foreground/30 rounded-full flex justify-center">
-                    <div className="w-1 h-3 bg-gradient-to-b from-blue-500 to-violet-500 rounded-full mt-2 animate-pulse" />
+                    <div className="w-1 h-3 bg-gradient-to-b from-blue-500 to-[#00D1FF] rounded-full mt-2 animate-pulse" />
                 </div>
                 <span className="text-xs text-muted-foreground font-medium">Scroll</span>
             </div>

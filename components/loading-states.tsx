@@ -159,7 +159,7 @@ export function ProgressBar({
       )}
       <div className="w-full bg-muted/20 rounded-full h-2 overflow-hidden">
         <motion.div
-          className="h-full bg-gradient-to-r from-blue-500 to-violet-500 rounded-full"
+          className="h-full bg-gradient-to-r from-blue-500 to-[#00D1FF] rounded-full"
           initial={{ width: 0 }}
           animate={{ width: `${progress}%` }}
           transition={{ duration: 0.3, ease: "easeOut" }}
@@ -186,7 +186,7 @@ export function PulseLoader({ className }: { className?: string }) {
         }}
       />
       <motion.div
-        className="w-3 h-3 bg-violet-500 rounded-full"
+        className="w-3 h-3 bg-[#0A84FF] rounded-full"
         animate={{
           scale: [1, 1.5, 1],
           opacity: [0.5, 1, 0.5]

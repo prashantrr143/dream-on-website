@@ -29,7 +29,7 @@ const pillars = [
   {
     title: "System Design & Architecture",
     description: "How we approach the design of systems that need to last, scale, and remain maintainable under real-world conditions.",
-    accent: "#8b84ff",
+    accent: "#00D1FF",
     iconSvg: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <rect x="3" y="3" width="7" height="7" rx="1" />
@@ -42,7 +42,7 @@ const pillars = [
   {
     title: "Delivery & Governance",
     description: "Observations on what makes enterprise delivery succeed or fail — particularly in regulated and high-trust environments.",
-    accent: "hsl(192, 80%, 55%)",
+    accent: "#00D1FF",
     iconSvg: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
@@ -52,7 +52,7 @@ const pillars = [
   {
     title: "AI in Production",
     description: "Practical considerations for deploying AI systems that are reliable, governable, and suitable for enterprise use.",
-    accent: "hsl(155, 65%, 50%)",
+    accent: "#00D1FF",
     iconSvg: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M12 2a4 4 0 0 1 4 4c0 1.5-.8 2.8-2 3.4V11h3a4 4 0 0 1 4 4v1" />
@@ -65,9 +65,9 @@ const pillars = [
 ]
 
 const pillarColors: Record<string, string> = {
-  "System Design & Architecture": "#8b84ff",
-  "Delivery & Governance": "hsl(192, 80%, 55%)",
-  "AI in Production": "hsl(155, 65%, 50%)"
+  "System Design & Architecture": "#00D1FF",
+  "Delivery & Governance": "#00D1FF",
+  "AI in Production": "#00D1FF"
 }
 
 const perspectives = [
@@ -138,7 +138,7 @@ export default function PerspectivesPage() {
           style={{
             position: 'absolute',
             inset: 0,
-            background: 'radial-gradient(ellipse 60% 50% at 70% 50%, hsla(243, 100%, 68%, 0.1), transparent)',
+            background: 'radial-gradient(ellipse 60% 50% at 70% 50%, rgba(10, 132, 255, 0.1), transparent)',
             pointerEvents: 'none'
           }}
           aria-hidden="true"
@@ -169,7 +169,7 @@ export default function PerspectivesPage() {
               fontWeight: 600,
               textTransform: 'uppercase',
               letterSpacing: '0.1em',
-              color: '#8b84ff',
+              color: '#00D1FF',
               marginBottom: '20px'
             }}
           >
@@ -229,7 +229,7 @@ export default function PerspectivesPage() {
                   fontWeight: 600,
                   textTransform: 'uppercase',
                   letterSpacing: '0.1em',
-                  color: '#8b84ff',
+                  color: '#00D1FF',
                   marginBottom: '12px'
                 }}
               >
@@ -240,7 +240,7 @@ export default function PerspectivesPage() {
                   width: '32px',
                   height: '3px',
                   borderRadius: '2px',
-                  backgroundColor: '#8b84ff',
+                  backgroundColor: '#00D1FF',
                   opacity: 0.4
                 }}
               />
@@ -290,7 +290,7 @@ export default function PerspectivesPage() {
               fontWeight: 600,
               textTransform: 'uppercase',
               letterSpacing: '0.1em',
-              color: '#8b84ff',
+              color: '#00D1FF',
               marginBottom: '40px'
             }}
           >
@@ -379,7 +379,7 @@ export default function PerspectivesPage() {
                 fontWeight: 600,
                 textTransform: 'uppercase',
                 letterSpacing: '0.1em',
-                color: '#8b84ff',
+                color: '#00D1FF',
                 marginBottom: '16px'
               }}
             >
@@ -438,7 +438,7 @@ export default function PerspectivesPage() {
                           width: '6px',
                           height: '6px',
                           borderRadius: '50%',
-                          backgroundColor: pillarColors[article.pillar] || '#8b84ff',
+                          backgroundColor: pillarColors[article.pillar] || '#00D1FF',
                           opacity: 0.7
                         }}
                       />
@@ -448,7 +448,7 @@ export default function PerspectivesPage() {
                           fontWeight: 600,
                           textTransform: 'uppercase',
                           letterSpacing: '0.06em',
-                          color: pillarColors[article.pillar] || '#8b84ff',
+                          color: pillarColors[article.pillar] || '#00D1FF',
                         }}
                       >
                         {article.pillar}
@@ -503,7 +503,7 @@ export default function PerspectivesPage() {
                     </span>
                     <ArrowRight
                       className="w-4 h-4 transition-transform group-hover:translate-x-1"
-                      style={{ color: '#8b84ff', opacity: 0 }}
+                      style={{ color: '#00D1FF', opacity: 0 }}
                       strokeWidth={2}
                     />
                   </div>
@@ -532,7 +532,7 @@ export default function PerspectivesPage() {
             transform: 'translate(-50%, -50%)',
             width: '600px',
             height: '400px',
-            background: 'radial-gradient(ellipse, hsla(243, 100%, 68%, 0.08), transparent 60%)',
+            background: 'radial-gradient(ellipse, rgba(10, 132, 255, 0.08), transparent 60%)',
             pointerEvents: 'none'
           }}
           aria-hidden="true"
@@ -565,7 +565,7 @@ export default function PerspectivesPage() {
               gap: '8px',
               fontSize: '15px',
               fontWeight: 600,
-              color: '#8b84ff',
+              color: '#00D1FF',
               textDecoration: 'none'
             }}
           >

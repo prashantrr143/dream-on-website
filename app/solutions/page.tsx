@@ -3,6 +3,7 @@
 import { motion, type Variants } from 'framer-motion'
 import Link from 'next/link'
 import SharedLayout from '@/components/shared-layout'
+import { PageHero, PageSection, PageCTA } from '@/components/enterprise'
 import { ArrowRight } from 'lucide-react'
 
 const fadeUp: Variants = {
@@ -124,637 +125,326 @@ const outcomes = [
 export default function SolutionsPage() {
   return (
     <SharedLayout>
-      {/* ── Hero — Dark Navy ── */}
-      <section
-        className="relative overflow-hidden"
-        style={{
-          paddingTop: '160px',
-          paddingBottom: '100px',
-          backgroundColor: '#000000'
-        }}
+      <PageHero
+        eyebrow="What we do"
+        title="Enterprise software, cloud, and AI — built with discipline."
+        lede="We design and deliver systems for organizations operating in complex, regulated, and high-trust environments. Every engagement is shaped by your context, constraints, and long-term goals."
+        primaryCta={{ label: 'Start a Conversation', href: '/contact-us' }}
+        secondaryCta={{ label: 'How We Work', href: '/how-we-work' }}
+      />
+
+      {/* ── Solution Areas ── */}
+      <PageSection
+        tone="white"
+        eyebrow="Solutions"
+        title="Explore our capabilities."
+        lede="Six practice areas that reflect the kinds of problems we take responsibility for — not a list of tools."
       >
-        <div
-          style={{
-            position: 'absolute',
-            top: '0',
-            right: '-5%',
-            width: '700px',
-            height: '700px',
-            background: 'radial-gradient(circle, rgba(99, 91, 255, 0.1), transparent 60%)',
-            borderRadius: '50%',
-            filter: 'blur(80px)',
-            pointerEvents: 'none'
-          }}
-          aria-hidden="true"
-        />
-        <div
-          style={{
-            position: 'absolute',
-            bottom: '-15%',
-            left: '10%',
-            width: '400px',
-            height: '400px',
-            background: 'radial-gradient(circle, rgba(46, 196, 182, 0.06), transparent 60%)',
-            borderRadius: '50%',
-            filter: 'blur(60px)',
-            pointerEvents: 'none'
-          }}
-          aria-hidden="true"
-        />
-
         <motion.div
-          className="enterprise-container-wide relative"
-          style={{ zIndex: 1 }}
-          initial="hidden"
-          animate="visible"
           variants={staggerContainer}
-        >
-          <motion.div variants={fadeUp} style={{ maxWidth: '720px' }}>
-            <p
-              style={{
-                fontSize: '13px',
-                fontWeight: 600,
-                textTransform: 'uppercase',
-                letterSpacing: '0.1em',
-                color: '#8b84ff',
-                marginBottom: '24px'
-              }}
-            >
-              What we do
-            </p>
-            <h1
-              style={{
-                fontSize: 'clamp(2.5rem, 5vw, 4rem)',
-                fontWeight: 700,
-                letterSpacing: '-0.035em',
-                lineHeight: 1.05,
-                color: 'white',
-                marginBottom: '24px'
-              }}
-            >
-              Enterprise software, cloud, and AI — built with discipline.
-            </h1>
-            <p
-              style={{
-                fontSize: '20px',
-                lineHeight: 1.65,
-                color: 'rgba(255, 255, 255, 0.55)',
-                maxWidth: '560px',
-                marginBottom: '40px'
-              }}
-            >
-              We design and deliver systems for organizations operating in complex, regulated, and high-trust environments. Every engagement is shaped by your context, constraints, and long-term goals.
-            </p>
-
-            <div className="flex flex-col sm:flex-row" style={{ gap: '16px' }}>
-              <Link href="/contact-us" className="stripe-btn-light group">
-                Start a Conversation
-                <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" strokeWidth={2.5} />
-              </Link>
-              <Link href="/how-we-work" className="stripe-btn-ghost">
-                How We Work
-              </Link>
-            </div>
-          </motion.div>
-        </motion.div>
-      </section>
-
-      {/* ── Solution Areas — White ── */}
-      <section style={{ paddingTop: '120px', paddingBottom: '120px', backgroundColor: '#000000' }}>
-        <motion.div
-          className="enterprise-container-wide"
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          variants={staggerContainer}
+          viewport={{ once: true, amount: 0.1 }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+          style={{ gap: 16 }}
         >
-          <motion.div variants={fadeUp} style={{ marginBottom: '64px', maxWidth: '640px' }}>
-            <p
+          {solutionAreas.map((solution, index) => (
+            <motion.div
+              key={index}
+              variants={fadeUp}
+              className="ys-card-light group"
               style={{
-                fontSize: '13px',
-                fontWeight: 600,
-                textTransform: 'uppercase',
-                letterSpacing: '0.1em',
-                color: '#8b84ff',
-                marginBottom: '20px'
+                display: 'flex',
+                flexDirection: 'column',
+                minWidth: 0,
+                overflow: 'hidden'
               }}
             >
-              Solutions
-            </p>
-            <h2
-              style={{
-                fontSize: 'clamp(2rem, 3.5vw, 3rem)',
-                fontWeight: 700,
-                letterSpacing: '-0.03em',
-                lineHeight: 1.1,
-                color: 'white',
-                marginBottom: '20px'
-              }}
-            >
-              Explore our capabilities.
-            </h2>
-            <p
-              style={{
-                fontSize: '19px',
-                lineHeight: 1.65,
-                color: 'rgba(255,255,255,0.7)',
-                maxWidth: '520px'
-              }}
-            >
-              Six practice areas that reflect the kinds of problems we take responsibility for — not a list of tools.
-            </p>
-          </motion.div>
-
-          <motion.div
-            variants={staggerContainer}
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(380px, 1fr))',
-              gap: '24px'
-            }}
-            className="max-sm:!grid-cols-1"
-          >
-            {solutionAreas.map((solution, index) => (
-              <motion.div
-                key={index}
-                variants={fadeUp}
-                style={{
-                  backgroundColor: '#0a0a0f',
-                  borderRadius: '16px',
-                  border: '1px solid rgba(255, 255, 255, 0.06)',
-                  transition: 'box-shadow 0.3s ease, transform 0.3s ease',
-                  overflow: 'hidden',
-                  display: 'flex',
-                  flexDirection: 'column'
-                }}
-                className="group"
-                whileHover={{ y: -3, boxShadow: '0 12px 40px rgba(255, 255, 255, 0.08)' }}
-              >
-                <div style={{ padding: '36px', flex: 1, display: 'flex', flexDirection: 'column' }}>
-                  {/* Icon */}
-                  <div
-                    style={{
-                      width: '48px',
-                      height: '48px',
-                      borderRadius: '12px',
-                      backgroundColor: 'rgba(99, 91, 255, 0.08)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      marginBottom: '24px',
-                      flexShrink: 0
-                    }}
-                  >
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#8b84ff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                      <path d={solution.iconPath} />
-                    </svg>
-                  </div>
-
-                  <h3
-                    style={{
-                      fontSize: '20px',
-                      fontWeight: 700,
-                      letterSpacing: '-0.02em',
-                      color: 'white',
-                      marginBottom: '12px'
-                    }}
-                  >
-                    {solution.title}
-                  </h3>
-                  <p
-                    style={{
-                      fontSize: '15px',
-                      lineHeight: 1.65,
-                      color: 'rgba(255,255,255,0.7)',
-                      marginBottom: '24px'
-                    }}
-                  >
-                    {solution.description}
-                  </p>
-
-                  {/* Capabilities */}
-                  <div style={{ marginBottom: '24px', flex: 1 }}>
-                    {solution.capabilities.map((cap) => (
-                      <div
-                        key={cap}
-                        style={{
-                          display: 'flex',
-                          alignItems: 'flex-start',
-                          gap: '10px',
-                          marginBottom: '10px'
-                        }}
-                      >
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ marginTop: '2px', flexShrink: 0 }}>
-                          <path d="M13.333 4L6 11.333 2.667 8" stroke="#8b84ff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                        <span style={{ fontSize: '14px', color: 'rgba(255,255,255,0.7)', lineHeight: 1.5 }}>{cap}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Card footer link */}
-                <Link
-                  href={solution.href}
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    padding: '20px 36px',
-                    borderTop: '1px solid rgba(255, 255, 255, 0.06)',
-                    textDecoration: 'none',
-                    transition: 'background-color 0.2s ease'
-                  }}
-                  className="group-hover:!bg-white/5"
-                >
-                  <span
-                    style={{
-                      fontSize: '14px',
-                      fontWeight: 600,
-                      color: '#8b84ff',
-                      letterSpacing: '-0.01em'
-                    }}
-                  >
-                    Explore {solution.title}
-                  </span>
-                  <ArrowRight
-                    size={16}
-                    strokeWidth={2.5}
-                    style={{
-                      color: '#8b84ff',
-                      transition: 'transform 0.2s ease'
-                    }}
-                    className="group-hover:translate-x-1"
-                  />
-                </Link>
-              </motion.div>
-            ))}
-          </motion.div>
-        </motion.div>
-      </section>
-
-      {/* ── Capability Pillars — Dark Navy ── */}
-      <section
-        className="relative overflow-hidden"
-        style={{
-          paddingTop: '120px',
-          paddingBottom: '120px',
-          backgroundColor: '#000000'
-        }}
-      >
-        <div
-          style={{
-            position: 'absolute',
-            top: '30%',
-            left: '-8%',
-            width: '500px',
-            height: '500px',
-            background: 'radial-gradient(circle, rgba(99, 91, 255, 0.1), transparent 65%)',
-            borderRadius: '50%',
-            filter: 'blur(60px)',
-            pointerEvents: 'none'
-          }}
-          aria-hidden="true"
-        />
-
-        <motion.div
-          className="enterprise-container-wide relative"
-          style={{ zIndex: 1 }}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          variants={staggerContainer}
-        >
-          <motion.div variants={fadeUp} style={{ marginBottom: '64px', maxWidth: '640px' }}>
-            <p
-              style={{
-                fontSize: '13px',
-                fontWeight: 600,
-                textTransform: 'uppercase',
-                letterSpacing: '0.1em',
-                color: '#8b84ff',
-                marginBottom: '20px'
-              }}
-            >
-              Our focus
-            </p>
-            <h2
-              style={{
-                fontSize: 'clamp(2rem, 3.5vw, 3rem)',
-                fontWeight: 700,
-                letterSpacing: '-0.03em',
-                lineHeight: 1.1,
-                color: 'white',
-                marginBottom: '20px'
-              }}
-            >
-              Four pillars of capability.
-            </h2>
-            <p
-              style={{
-                fontSize: '19px',
-                lineHeight: 1.65,
-                color: 'rgba(255, 255, 255, 0.55)',
-                maxWidth: '520px'
-              }}
-            >
-              We group our work into capability areas that reflect the kinds of problems we take responsibility for. Each engagement is shaped by organizational context and long-term system goals.
-            </p>
-          </motion.div>
-
-          <motion.div
-            variants={staggerContainer}
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-              gap: '24px'
-            }}
-          >
-            {capabilityPillars.map((pillar, index) => (
-              <motion.div
-                key={index}
-                variants={fadeUp}
-                style={{
-                  padding: '36px',
-                  backgroundColor: 'rgba(255, 255, 255, 0.04)',
-                  backdropFilter: 'blur(16px)',
-                  borderRadius: '16px',
-                  border: '1px solid rgba(255, 255, 255, 0.06)',
-                  display: 'flex',
-                  flexDirection: 'column'
-                }}
-              >
-                {/* Number */}
+              <div style={{ padding: '24px 22px', flex: 1, display: 'flex', flexDirection: 'column', minWidth: 0 }}>
+                {/* Icon */}
                 <div
                   style={{
-                    fontSize: '40px',
-                    fontWeight: 700,
-                    color: 'rgba(99, 91, 255, 0.2)',
-                    letterSpacing: '-0.04em',
-                    lineHeight: 1,
-                    marginBottom: '20px'
+                    width: '44px',
+                    height: '44px',
+                    borderRadius: '11px',
+                    backgroundColor: 'rgba(10, 132, 255, 0.08)',
+                    border: '1px solid rgba(10, 132, 255, 0.16)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginBottom: '16px',
+                    flexShrink: 0
                   }}
                 >
-                  0{index + 1}
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--ys-link-on-light)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d={solution.iconPath} />
+                  </svg>
                 </div>
 
                 <h3
                   style={{
-                    fontSize: '19px',
+                    fontSize: '17px',
                     fontWeight: 700,
-                    letterSpacing: '-0.02em',
-                    color: 'white',
-                    marginBottom: '12px',
-                    lineHeight: 1.3
+                    letterSpacing: '-0.015em',
+                    lineHeight: 1.3,
+                    marginBottom: '8px'
                   }}
                 >
-                  {pillar.title}
+                  {solution.title}
                 </h3>
                 <p
                   style={{
-                    fontSize: '15px',
-                    lineHeight: 1.65,
-                    color: 'rgba(255, 255, 255, 0.45)',
-                    marginBottom: '24px'
+                    fontSize: '14px',
+                    lineHeight: 1.6,
+                    color: 'var(--ys-ink-body)',
+                    marginBottom: '18px'
                   }}
                 >
-                  {pillar.description}
+                  {solution.description}
                 </p>
 
-                {/* Capabilities list */}
-                <div style={{ marginTop: 'auto', paddingTop: '20px', borderTop: '1px solid rgba(255, 255, 255, 0.06)' }}>
-                  <p
-                    style={{
-                      fontSize: '11px',
-                      fontWeight: 600,
-                      textTransform: 'uppercase',
-                      letterSpacing: '0.08em',
-                      color: 'rgba(255, 255, 255, 0.3)',
-                      marginBottom: '12px'
-                    }}
-                  >
-                    Includes
-                  </p>
-                  {pillar.capabilities.map((cap) => (
+                {/* Capabilities */}
+                <div style={{ marginBottom: '4px', flex: 1 }}>
+                  {solution.capabilities.map((cap) => (
                     <div
                       key={cap}
                       style={{
                         display: 'flex',
                         alignItems: 'flex-start',
                         gap: '10px',
-                        marginBottom: '8px'
+                        marginBottom: '10px'
                       }}
                     >
-                      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" style={{ marginTop: '3px', flexShrink: 0 }}>
-                        <path d="M13.333 4L6 11.333 2.667 8" stroke="#8b84ff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ marginTop: '2px', flexShrink: 0 }} aria-hidden="true">
+                        <path d="M13.333 4L6 11.333 2.667 8" stroke="#00D1FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
-                      <span style={{ fontSize: '14px', color: 'rgba(255, 255, 255, 0.6)', lineHeight: 1.5 }}>{cap}</span>
+                      <span style={{ fontSize: '13.5px', color: 'var(--ys-ink-body)', lineHeight: 1.5 }}>{cap}</span>
                     </div>
                   ))}
                 </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </motion.div>
-      </section>
+              </div>
 
-      {/* ── What This Enables — Off-white ── */}
-      <section style={{ paddingTop: '120px', paddingBottom: '120px', backgroundColor: '#0a0a0f' }}>
-        <motion.div
-          className="enterprise-container-wide"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          variants={staggerContainer}
-        >
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: '1fr 1fr',
-              gap: '80px',
-              alignItems: 'center'
-            }}
-            className="max-md:!grid-cols-1 max-md:!gap-12"
-          >
-            {/* Left */}
-            <motion.div variants={fadeUp}>
-              <p
+              {/* Card footer link */}
+              <Link
+                href={solution.href}
                 style={{
-                  fontSize: '13px',
-                  fontWeight: 600,
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.1em',
-                  color: '#8b84ff',
-                  marginBottom: '20px'
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  gap: '12px',
+                  padding: '14px 22px',
+                  borderTop: '1px solid var(--ys-border)',
+                  textDecoration: 'none',
+                  minWidth: 0
                 }}
+                className="focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--ys-link-on-light)]"
               >
-                Outcomes
-              </p>
-              <h2
-                style={{
-                  fontSize: 'clamp(2rem, 3.5vw, 3rem)',
-                  fontWeight: 700,
-                  letterSpacing: '-0.03em',
-                  lineHeight: 1.1,
-                  color: 'white',
-                  marginBottom: '20px'
-                }}
-              >
-                What this enables.
-              </h2>
-              <p
-                style={{
-                  fontSize: '19px',
-                  lineHeight: 1.65,
-                  color: 'rgba(255,255,255,0.7)',
-                  maxWidth: '440px'
-                }}
-              >
-                Our capabilities are delivered through a structured, collaborative model designed for enterprise environments.
-              </p>
-              <div style={{ marginTop: '32px' }}>
-                <Link
-                  href="/how-we-work"
+                <span
                   style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '8px',
-                    fontSize: '15px',
+                    fontSize: '13.5px',
                     fontWeight: 600,
-                    color: '#8b84ff',
-                    textDecoration: 'none'
+                    color: 'var(--ys-link-on-light)',
+                    letterSpacing: '-0.01em'
                   }}
                 >
-                  View how we work
-                  <ArrowRight size={16} strokeWidth={2.5} />
-                </Link>
-              </div>
+                  Explore {solution.title}
+                </span>
+                <ArrowRight
+                  size={16}
+                  strokeWidth={2.5}
+                  aria-hidden="true"
+                  style={{
+                    color: 'var(--ys-link-on-light)',
+                    flexShrink: 0,
+                    transition: 'transform 0.2s ease'
+                  }}
+                  className="group-hover:translate-x-1"
+                />
+              </Link>
             </motion.div>
+          ))}
+        </motion.div>
+      </PageSection>
 
-            {/* Right — outcomes list */}
-            <motion.div variants={fadeUp}>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                {outcomes.map((outcome) => (
+      {/* ── Capability Pillars ── */}
+      <PageSection
+        tone="light"
+        eyebrow="Our focus"
+        title="Four pillars of capability."
+        lede="We group our work into capability areas that reflect the kinds of problems we take responsibility for. Each engagement is shaped by organizational context and long-term system goals."
+      >
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          className="grid grid-cols-1 sm:grid-cols-2"
+          style={{ gap: 16 }}
+        >
+          {capabilityPillars.map((pillar, index) => (
+            <motion.div
+              key={index}
+              variants={fadeUp}
+              className="ys-card-light"
+              style={{
+                padding: '24px 22px',
+                display: 'flex',
+                flexDirection: 'column',
+                minWidth: 0
+              }}
+            >
+              {/* Number */}
+              <div
+                style={{
+                  fontSize: '34px',
+                  fontWeight: 700,
+                  color: 'var(--ys-border)',
+                  letterSpacing: '-0.04em',
+                  lineHeight: 1,
+                  marginBottom: '16px'
+                }}
+                aria-hidden="true"
+              >
+                0{index + 1}
+              </div>
+
+              <h3
+                style={{
+                  fontSize: '17px',
+                  fontWeight: 700,
+                  letterSpacing: '-0.015em',
+                  marginBottom: '8px',
+                  lineHeight: 1.3
+                }}
+              >
+                {pillar.title}
+              </h3>
+              <p
+                style={{
+                  fontSize: '14px',
+                  lineHeight: 1.6,
+                  color: 'var(--ys-ink-body)',
+                  marginBottom: '18px'
+                }}
+              >
+                {pillar.description}
+              </p>
+
+              {/* Capabilities list */}
+              <div style={{ marginTop: 'auto', paddingTop: '16px', borderTop: '1px solid var(--ys-border)' }}>
+                <p
+                  style={{
+                    fontSize: '11px',
+                    fontWeight: 600,
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.14em',
+                    color: 'var(--ys-ink-muted)',
+                    marginBottom: '12px'
+                  }}
+                >
+                  Includes
+                </p>
+                {pillar.capabilities.map((cap) => (
                   <div
-                    key={outcome}
+                    key={cap}
                     style={{
                       display: 'flex',
-                      alignItems: 'center',
-                      gap: '16px',
-                      padding: '20px 24px',
-                      backgroundColor: '#000000',
-                      borderRadius: '12px',
-                      border: '1px solid rgba(255, 255, 255, 0.06)'
+                      alignItems: 'flex-start',
+                      gap: '10px',
+                      marginBottom: '8px'
                     }}
                   >
-                    <div
-                      style={{
-                        width: '36px',
-                        height: '36px',
-                        borderRadius: '10px',
-                        backgroundColor: 'rgba(99, 91, 255, 0.08)',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        flexShrink: 0
-                      }}
-                    >
-                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                        <path d="M13.333 4L6 11.333 2.667 8" stroke="#8b84ff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                      </svg>
-                    </div>
-                    <span
-                      style={{
-                        fontSize: '15px',
-                        fontWeight: 600,
-                        color: 'white',
-                        letterSpacing: '-0.01em'
-                      }}
-                    >
-                      {outcome}
-                    </span>
+                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none" style={{ marginTop: '3px', flexShrink: 0 }} aria-hidden="true">
+                      <path d="M13.333 4L6 11.333 2.667 8" stroke="#00D1FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                    <span style={{ fontSize: '13.5px', color: 'var(--ys-ink-body)', lineHeight: 1.5 }}>{cap}</span>
                   </div>
                 ))}
               </div>
             </motion.div>
-          </div>
+          ))}
         </motion.div>
-      </section>
+      </PageSection>
 
-      {/* ── CTA — Dark Navy ── */}
-      <section
-        className="relative overflow-hidden"
-        style={{
-          paddingTop: '100px',
-          paddingBottom: '120px',
-          backgroundColor: '#000000'
-        }}
+      {/* ── What This Enables ── */}
+      <PageSection
+        tone="white"
+        eyebrow="Outcomes"
+        title="What this enables."
+        lede="Our capabilities are delivered through a structured, collaborative model designed for enterprise environments."
       >
-        <div
-          style={{
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            width: '600px',
-            height: '600px',
-            background: 'radial-gradient(circle, rgba(99, 91, 255, 0.08), transparent 60%)',
-            borderRadius: '50%',
-            pointerEvents: 'none'
-          }}
-          aria-hidden="true"
-        />
-
         <motion.div
-          className="enterprise-container-wide relative"
-          style={{ zIndex: 1, textAlign: 'center' }}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.1 }}
           variants={staggerContainer}
+          className="grid grid-cols-1 lg:grid-cols-2"
+          style={{ gap: 'clamp(28px, 4vw, 48px)', alignItems: 'start' }}
         >
-          <motion.h2
-            variants={fadeUp}
-            style={{
-              fontSize: 'clamp(2rem, 4vw, 3rem)',
-              fontWeight: 700,
-              letterSpacing: '-0.03em',
-              lineHeight: 1.1,
-              color: 'white',
-              marginBottom: '20px'
-            }}
-          >
-            Start with a conversation.
-          </motion.h2>
-          <motion.p
-            variants={fadeUp}
-            style={{
-              fontSize: '19px',
-              lineHeight: 1.65,
-              color: 'rgba(255, 255, 255, 0.55)',
-              marginBottom: '40px',
-              maxWidth: '560px',
-              marginLeft: 'auto',
-              marginRight: 'auto'
-            }}
-          >
-            If you&apos;re planning or evolving a critical software, cloud, or AI initiative and want to approach it with clarity and discipline, we&apos;re happy to talk.
-          </motion.p>
-          <motion.div
-            variants={fadeUp}
-            className="flex flex-col sm:flex-row justify-center items-center"
-            style={{ gap: '16px' }}
-          >
-            <Link href="/contact-us" className="stripe-btn-light group">
-              Start a Conversation
-              <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" strokeWidth={2.5} />
-            </Link>
-            <Link href="/contact-us" className="stripe-btn-ghost">
-              Talk to an Architect
+          {/* Left — link through to delivery */}
+          <motion.div variants={fadeUp} style={{ minWidth: 0 }}>
+            <Link href="/how-we-work" className="ys-link" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', fontSize: '15px' }}>
+              View how we work
+              <ArrowRight size={16} strokeWidth={2.5} aria-hidden="true" />
             </Link>
           </motion.div>
+
+          {/* Right — outcomes list */}
+          <motion.div variants={fadeUp} style={{ minWidth: 0 }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+              {outcomes.map((outcome) => (
+                <div
+                  key={outcome}
+                  className="ys-card-light"
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '14px',
+                    padding: '16px 18px',
+                    minWidth: 0
+                  }}
+                >
+                  <div
+                    style={{
+                      width: '34px',
+                      height: '34px',
+                      borderRadius: '10px',
+                      backgroundColor: 'rgba(10, 132, 255, 0.08)',
+                      border: '1px solid rgba(10, 132, 255, 0.16)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      flexShrink: 0
+                    }}
+                  >
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                      <path d="M13.333 4L6 11.333 2.667 8" stroke="var(--ys-link-on-light)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </div>
+                  <span
+                    style={{
+                      fontSize: '15px',
+                      fontWeight: 600,
+                      color: 'var(--ys-ink)',
+                      letterSpacing: '-0.01em'
+                    }}
+                  >
+                    {outcome}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </motion.div>
         </motion.div>
-      </section>
+      </PageSection>
+
+      {/* ── Closing CTA ── */}
+      <PageCTA
+        title="Start with a conversation."
+        body="If you're planning or evolving a critical software, cloud, or AI initiative and want to approach it with clarity and discipline, we're happy to talk."
+        primaryCta={{ label: 'Start a Conversation', href: '/contact-us' }}
+        secondaryCta={{ label: 'Talk to an Architect', href: '/contact-us' }}
+      />
     </SharedLayout>
   )
 }
