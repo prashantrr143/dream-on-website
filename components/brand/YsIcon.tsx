@@ -1,14 +1,13 @@
 "use client"
 
-import { useId } from 'react'
-
 /**
  * YatiSphere brand icon set — inlined as true SVG.
  *
  * The supplied icon files each declare a gradient with id="g". Inlining
  * several of them on one page would produce duplicate DOM ids and every
- * icon would pick up whichever gradient appeared first. `useId()` gives
- * each instance its own gradient id, so the strokes stay correct.
+ * icon would pick up whichever gradient appeared first. Each icon name
+ * therefore gets its own deterministic gradient id, which also keeps the
+ * markup identical between server and client render.
  *
  * `variant` controls the stroke paint:
  *   - "gradient" reproduces the approved brand gradient
@@ -94,8 +93,13 @@ export function YsIcon({
   className,
   title,
 }: YsIconProps) {
-  const uid = useId().replace(/:/g, '')
-  const gradientId = `ys-icon-${uid}`
+  // Deterministic id derived from the icon itself, not from React tree
+  // position. `useId()` would be hydration-safe in a normal tree, but these
+  // sections are lazy-loaded via next/dynamic, so the client mounts them at a
+  // different position than the server rendered them and the generated ids
+  // diverge. The gradient is identical for every icon of a given variant, so
+  // sharing one id per name is correct — and de-duplicates the <defs>.
+  const gradientId = `ys-icon-grad-${name}`
   const stroke = variant === 'gradient' ? `url(#${gradientId})` : 'currentColor'
 
   return (

@@ -1,8 +1,9 @@
 "use client"
 
 import Image from 'next/image'
-import { motion, useReducedMotion } from 'motion/react'
+import { motion } from 'motion/react'
 import { ArrowRight } from 'lucide-react'
+import { HeroAtmosphere } from '@/components/enterprise/HeroAtmosphere'
 
 const pillars = [
   {
@@ -38,16 +39,15 @@ const pillars = [
 ]
 
 const HeroSection = () => {
-  const reduceMotion = useReducedMotion()
 
-  const reveal = (delay: number) =>
-    reduceMotion
-      ? { initial: { opacity: 1, y: 0 }, animate: { opacity: 1, y: 0 } }
-      : {
-          initial: { opacity: 0, y: 22 },
-          animate: { opacity: 1, y: 0 },
-          transition: { duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] as const },
-        }
+  // MotionConfig reducedMotion="user" (see MotionProvider) makes Framer skip
+  // these transforms for users who ask for reduced motion. The markup stays
+  // identical either way, which is what keeps SSR and hydration in agreement.
+  const reveal = (delay: number) => ({
+    initial: { opacity: 0, y: 22 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] as const },
+  })
 
   return (
     <section
@@ -65,6 +65,11 @@ const HeroSection = () => {
         className="object-cover"
         style={{ objectPosition: 'right center' }}
       />
+
+      {/* Animated network + atmosphere over the static Earth plate.
+          Sits above the image but below the scrims, so it never
+          competes with headline contrast. */}
+      <HeroAtmosphere />
 
       {/* Legibility scrims */}
       <div

@@ -3,7 +3,9 @@
   "devCommand": "pnpm dev",
   "installCommand": "pnpm install",
   "framework": "nextjs",
-  "regions": ["iad1"],
+  "regions": [
+    "iad1"
+  ],
   "functions": {
     "app/**/*.{ts,tsx}": {
       "maxDuration": 30
@@ -28,7 +30,7 @@
       ]
     },
     {
-      "source": "/yati-sphere-logo.png",
+      "source": "/brand/yatisphere/(.*)",
       "headers": [
         {
           "key": "Cache-Control",
