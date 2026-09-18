@@ -18,37 +18,34 @@ const audiences = [
     description:
       "Financial services, healthcare, and government organizations where systems must satisfy auditors as much as users. We build with compliance woven into every layer.",
     href: "/solutions/consulting",
-    gradient: "linear-gradient(135deg, hsla(243, 100%, 68%, 0.15), hsla(192, 80%, 55%, 0.1))",
-    accentColor: "hsl(243, 100%, 68%)",
-    decorBorder: "hsla(243, 100%, 68%, 0.2)"
+    gradient: "linear-gradient(135deg, rgba(10, 132, 255, 0.15), rgba(0, 209, 255, 0.1))",
+    accentColor: "#0A84FF",
+    decorBorder: "rgba(10, 132, 255, 0.2)"
   },
   {
     title: "Engineering-led organizations",
     description:
       "Technical leadership teams building production systems — not demos — with long operational lifetimes. We bring architecture rigor and delivery discipline.",
     href: "/solutions",
-    gradient: "linear-gradient(135deg, hsla(192, 80%, 55%, 0.15), hsla(155, 65%, 50%, 0.1))",
-    accentColor: "hsl(192, 80%, 55%)",
-    decorBorder: "hsla(192, 80%, 55%, 0.2)"
+    gradient: "linear-gradient(135deg, rgba(0, 209, 255, 0.15), rgba(0, 209, 255, 0.1))",
+    accentColor: "#00D1FF",
+    decorBorder: "rgba(0, 209, 255, 0.2)"
   },
   {
     title: "Companies modernizing legacy infrastructure",
     description:
       "Organizations moving from fragile systems to scalable, maintainable platforms without disrupting operations. Incremental modernization, not big-bang rewrites.",
     href: "/solutions/cloud",
-    gradient: "linear-gradient(135deg, hsla(155, 65%, 50%, 0.12), hsla(243, 100%, 68%, 0.08))",
-    accentColor: "hsl(155, 65%, 50%)",
-    decorBorder: "hsla(155, 65%, 50%, 0.2)"
+    gradient: "linear-gradient(135deg, rgba(0, 209, 255, 0.12), rgba(10, 132, 255, 0.08))",
+    accentColor: "#00D1FF",
+    decorBorder: "rgba(0, 209, 255, 0.2)"
   }
 ]
 
 const AudienceSection = () => {
   return (
     <section
-      className="stripe-section"
-      style={{
-        backgroundColor: '#000000'
-      }}
+      className="ys-section-light"
     >
       <div className="enterprise-container-wide">
         {/* Section Header */}
@@ -65,7 +62,7 @@ const AudienceSection = () => {
               fontWeight: 600,
               textTransform: 'uppercase',
               letterSpacing: '0.08em',
-              color: '#8b84ff',
+              color: '#00D1FF',
               marginBottom: '16px'
             }}
           >
@@ -76,7 +73,7 @@ const AudienceSection = () => {
               fontSize: 'clamp(1.75rem, 3vw, 2.5rem)',
               fontWeight: 600,
               letterSpacing: '-0.02em',
-              color: 'white',
+              color: 'var(--ys-ink)',
               maxWidth: '36rem'
             }}
           >
@@ -107,7 +104,7 @@ const AudienceSection = () => {
                       fontSize: '24px',
                       fontWeight: 600,
                       letterSpacing: '-0.01em',
-                      color: 'white',
+                      color: 'var(--ys-ink)',
                       marginBottom: '16px'
                     }}
                   >
@@ -117,7 +114,7 @@ const AudienceSection = () => {
                     style={{
                       fontSize: '17px',
                       lineHeight: 1.65,
-                      color: 'rgba(255,255,255,0.7)',
+                      color: 'var(--ys-ink-body)',
                       marginBottom: '24px',
                       maxWidth: '480px'
                     }}
@@ -132,7 +129,7 @@ const AudienceSection = () => {
                       alignItems: 'center',
                       fontSize: '15px',
                       fontWeight: 600,
-                      color: '#8b84ff',
+                      color: '#00D1FF',
                       textDecoration: 'none'
                     }}
                   >

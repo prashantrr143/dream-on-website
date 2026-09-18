@@ -1,6 +1,7 @@
 "use client"
 
 import { motion, type Variants } from 'framer-motion'
+import { YsIcon, type YsIconName } from '@/components/brand/YsIcon'
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 20 },
@@ -15,42 +16,59 @@ const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.1
-    }
+    transition: { staggerChildren: 0.1, delayChildren: 0.1 }
   }
 }
 
-const stats = [
-  { value: "15+", label: "Years of enterprise delivery" },
-  { value: "3", label: "Industries of deep regulated focus" },
-  { value: "50+", label: "Enterprise engagements" },
-  { value: "100%", label: "Audit compliance rate" }
+/**
+ * Credibility band.
+ *
+ * YatiSphere was incorporated 22-12-2025, so company-volume figures
+ * (engagements delivered, audit pass rate) cannot be substantiated yet
+ * and are deliberately not claimed. Everything below is verifiable:
+ * the DPIIT recognition is certificate DIPP260262, and the experience
+ * figure describes the founding team, not company history.
+ */
+const credentials: { value: string; label: string; icon: YsIconName }[] = [
+  {
+    value: "15+",
+    label: "Years of enterprise architecture experience in the founding team",
+    icon: "consulting",
+  },
+  {
+    value: "3",
+    label: "Regulated sectors of deep focus — finance, healthcare, government",
+    icon: "security",
+  },
+  {
+    value: "5",
+    label: "Delivery disciplines, engineered as one architecture",
+    icon: "products",
+  },
 ]
 
 const StatsSection = () => {
   return (
     <section
       style={{
-        paddingTop: '80px',
-        paddingBottom: '80px',
-        backgroundColor: '#000000',
+        paddingTop: 'clamp(60px, 7vw, 84px)',
+        paddingBottom: 'clamp(60px, 7vw, 84px)',
+        backgroundColor: '#0B1E3D',
         position: 'relative',
         overflow: 'hidden',
-        borderTop: '1px solid rgba(255,255,255,0.06)',
-        borderBottom: '1px solid rgba(255,255,255,0.06)'
+        borderTop: '1px solid rgba(255,255,255,0.08)',
+        borderBottom: '1px solid rgba(255,255,255,0.08)'
       }}
     >
-      {/* Subtle gradient accent */}
+      {/* Subtle brand accent */}
       <div
         style={{
           position: 'absolute',
           top: 0,
           right: 0,
-          width: '40%',
+          width: '45%',
           height: '100%',
-          background: 'radial-gradient(ellipse at 100% 50%, hsla(243, 100%, 68%, 0.08), transparent 70%)',
+          background: 'radial-gradient(ellipse at 100% 50%, rgba(10,132,255,0.14), transparent 70%)',
           pointerEvents: 'none'
         }}
         aria-hidden="true"
@@ -62,54 +80,71 @@ const StatsSection = () => {
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          style={{
-            textAlign: 'center',
-            fontSize: '14px',
-            fontWeight: 600,
-            textTransform: 'uppercase',
-            letterSpacing: '0.08em',
-            color: 'rgba(255, 255, 255, 0.4)',
-            marginBottom: '48px'
-          }}
+          className="ys-eyebrow ys-eyebrow-on-dark"
+          style={{ marginBottom: 'clamp(28px, 4vw, 44px)' }}
         >
-          What we bring to every engagement
+          Why teams bring us in
         </motion.p>
+
         <motion.div
-          className="stats-grid"
+          className="ys-credentials-grid"
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
         >
-          {stats.map((stat, i) => (
-            <motion.div
-              key={i}
-              variants={fadeUp}
-              style={{ textAlign: 'center', padding: '24px' }}
-            >
+          {credentials.map((c) => (
+            <motion.div key={c.label} variants={fadeUp}>
+              <YsIcon name={c.icon} size={26} />
               <div
                 style={{
-                  fontSize: 'clamp(2.5rem, 5vw, 3.5rem)',
-                  fontWeight: 700,
+                  fontSize: 'clamp(2.1rem, 4vw, 2.9rem)',
+                  fontWeight: 800,
                   letterSpacing: '-0.03em',
                   color: 'white',
                   lineHeight: 1,
-                  marginBottom: '8px'
+                  marginTop: 16,
+                  marginBottom: 12,
                 }}
               >
-                {stat.value}
+                {c.value}
               </div>
-              <p
+              <div
+                aria-hidden="true"
                 style={{
-                  fontSize: '15px',
-                  color: 'rgba(255, 255, 255, 0.5)',
-                  lineHeight: 1.5
+                  width: 32,
+                  height: 2,
+                  borderRadius: 2,
+                  background: 'var(--ys-gradient-accent)',
+                  marginBottom: 14,
                 }}
-              >
-                {stat.label}
+              />
+              <p style={{ fontSize: 15, lineHeight: 1.55, color: 'rgba(255,255,255,0.78)', maxWidth: 300 }}>
+                {c.label}
               </p>
             </motion.div>
           ))}
+        </motion.div>
+
+        {/* Verifiable government credential */}
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          viewport={{ once: true }}
+          className="ys-dpiit"
+        >
+          <span className="ys-dpiit-mark" aria-hidden="true">
+            <YsIcon name="security" size={22} variant="current" />
+          </span>
+          <p style={{ fontSize: 14, lineHeight: 1.6, color: 'rgba(255,255,255,0.82)' }}>
+            <strong style={{ color: '#fff', fontWeight: 700 }}>
+              Recognised startup, Government of India
+            </strong>
+            <br />
+            Department for Promotion of Industry and Internal Trade (DPIIT) — certificate
+            DIPP260262, Enterprise Software.
+          </p>
         </motion.div>
       </div>
     </section>

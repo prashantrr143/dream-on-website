@@ -30,8 +30,8 @@ const capabilities = [
       "Core software systems that form the backbone of enterprise operations — designed for reliability, maintainability, and scale.",
     link: "/solutions",
     icon: Zap,
-    iconColor: "hsl(243, 100%, 68%)",
-    iconBg: "hsla(243, 100%, 68%, 0.1)"
+    iconColor: "#0A84FF",
+    iconBg: "rgba(10, 132, 255, 0.1)"
   },
   {
     title: "Cloud & Infrastructure",
@@ -39,8 +39,8 @@ const capabilities = [
       "Secure, scalable cloud foundations that support long-term growth. Multi-cloud, hybrid, and on-premise.",
     link: "/solutions/cloud",
     icon: Globe,
-    iconColor: "hsl(192, 80%, 55%)",
-    iconBg: "hsla(192, 80%, 55%, 0.1)"
+    iconColor: "#00D1FF",
+    iconBg: "rgba(0, 209, 255, 0.1)"
   },
   {
     title: "Applied AI, Data & Governance",
@@ -48,8 +48,8 @@ const capabilities = [
       "Production-grade AI and data systems with governance, auditability, and compliance built in. Responsible by design.",
     link: "/solutions/ai-ml",
     icon: Shield,
-    iconColor: "hsl(155, 65%, 50%)",
-    iconBg: "hsla(155, 65%, 50%, 0.1)"
+    iconColor: "#00D1FF",
+    iconBg: "rgba(0, 209, 255, 0.1)"
   }
 ]
 
@@ -59,7 +59,7 @@ const CapabilitiesSection = () => {
       style={{
         paddingTop: '100px',
         paddingBottom: '100px',
-        backgroundColor: '#F6F9FC'
+        backgroundColor: '#F4F7FB'
       }}
     >
       <div className="enterprise-container-wide">
@@ -77,7 +77,7 @@ const CapabilitiesSection = () => {
               fontWeight: 600,
               textTransform: 'uppercase',
               letterSpacing: '0.08em',
-              color: 'hsl(243, 100%, 68%)',
+              color: '#0A84FF',
               marginBottom: '16px'
             }}
           >
@@ -177,7 +177,7 @@ const CapabilitiesSection = () => {
                     alignItems: 'center',
                     fontSize: '15px',
                     fontWeight: 600,
-                    color: 'hsl(243, 100%, 68%)'
+                    color: '#0A84FF'
                   }}
                 >
                   Learn more

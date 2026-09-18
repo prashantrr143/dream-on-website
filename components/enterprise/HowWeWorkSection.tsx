@@ -26,37 +26,33 @@ const staggerContainer: Variants = {
 
 const deliveryPrinciples = [
   {
-    title: "Architecture before implementation",
-    description: "We design systems thoughtfully before writing code.",
-    accent: "hsl(243, 100%, 68%)"
+    title: "Architecture first",
+    description: "Expensive-to-reverse decisions are made deliberately, before code.",
+    accent: "#0A84FF"
   },
   {
-    title: "Governance and security by design",
-    description: "Security and compliance are built in from day one.",
-    accent: "hsl(192, 80%, 55%)"
+    title: "Governance by design",
+    description: "Security, compliance and auditability wired in from the first sprint.",
+    accent: "#00D1FF"
   },
   {
-    title: "Incremental, production-ready delivery",
-    description: "We ship working software regularly, not everything at the end.",
-    accent: "hsl(155, 65%, 50%)"
+    title: "Working software, every sprint",
+    description: "Incremental delivery — never a big reveal at the end.",
+    accent: "#00D1FF"
   },
   {
-    title: "Collaboration over hand-offs",
-    description: "We work alongside your teams, not in isolation.",
-    accent: "hsl(243, 100%, 68%)"
+    title: "Your data stays yours",
+    description: "No client data trains models or leaves the boundary you define.",
+    accent: "#0A84FF"
   }
 ]
 
 const HowWeWorkSection = () => {
   return (
     <section
-      style={{
-        paddingTop: '100px',
-        paddingBottom: '100px',
-        backgroundColor: '#0a0a0f',
-        position: 'relative',
-        overflow: 'hidden'
-      }}
+      id="how"
+      className="ys-section-white"
+      style={{ position: 'relative', overflow: 'hidden' }}
     >
       {/* Subtle gradient accent */}
       <div
@@ -66,7 +62,7 @@ const HowWeWorkSection = () => {
           left: 0,
           width: '50%',
           height: '100%',
-          background: 'radial-gradient(ellipse at 0% 50%, hsla(243, 100%, 68%, 0.06), transparent 70%)',
+          background: 'radial-gradient(ellipse at 0% 50%, rgba(10, 132, 255, 0.06), transparent 70%)',
           pointerEvents: 'none'
         }}
         aria-hidden="true"
@@ -90,11 +86,11 @@ const HowWeWorkSection = () => {
                 fontWeight: 600,
                 textTransform: 'uppercase',
                 letterSpacing: '0.08em',
-                color: 'hsla(243, 100%, 68%, 0.8)',
+                color: 'rgba(10, 132, 255, 0.8)',
                 marginBottom: '16px'
               }}
             >
-              How We Work
+              How we work
             </p>
             <h2
               style={{
@@ -102,17 +98,17 @@ const HowWeWorkSection = () => {
                 fontWeight: 600,
                 letterSpacing: '-0.02em',
                 lineHeight: 1.2,
-                color: 'white',
+                color: 'var(--ys-ink)',
                 marginBottom: '24px'
               }}
             >
-              Structured delivery for enterprise environments.
+              Structure without rigidity.
             </h2>
             <p
               style={{
                 fontSize: '17px',
                 lineHeight: 1.65,
-                color: 'rgba(255, 255, 255, 0.55)',
+                color: 'var(--ys-ink-muted)',
                 maxWidth: '480px',
                 marginBottom: '32px'
               }}
@@ -152,7 +148,7 @@ const HowWeWorkSection = () => {
                 style={{
                   padding: '24px 0',
                   borderBottom: index < deliveryPrinciples.length - 1
-                    ? '1px solid rgba(255, 255, 255, 0.08)'
+                    ? '1px solid var(--ys-border)'
                     : 'none',
                   display: 'flex',
                   gap: '16px',
@@ -176,7 +172,7 @@ const HowWeWorkSection = () => {
                     style={{
                       fontSize: '17px',
                       fontWeight: 600,
-                      color: 'white',
+                      color: 'var(--ys-ink)',
                       marginBottom: '6px'
                     }}
                   >
@@ -186,7 +182,7 @@ const HowWeWorkSection = () => {
                     style={{
                       fontSize: '15px',
                       lineHeight: 1.6,
-                      color: 'rgba(255, 255, 255, 0.45)'
+                      color: 'var(--ys-ink-muted)'
                     }}
                   >
                     {principle.description}
