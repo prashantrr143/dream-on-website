@@ -16,8 +16,8 @@ const TrustBarSection = () => {
       style={{
         paddingTop: '48px',
         paddingBottom: '48px',
-        backgroundColor: '#F6F9FC',
-        borderBottom: '1px solid hsl(var(--premium-gray-100))'
+        backgroundColor: '#000000',
+        borderBottom: '1px solid rgba(255,255,255,0.08)'
       }}
     >
       <div className="enterprise-container-wide">
@@ -30,7 +30,7 @@ const TrustBarSection = () => {
             textAlign: 'center',
             fontSize: '13px',
             fontWeight: 500,
-            color: '#425466',
+            color: 'rgba(255,255,255,0.45)',
             marginBottom: '28px',
             textTransform: 'uppercase',
             letterSpacing: '0.08em'
@@ -51,7 +51,7 @@ const TrustBarSection = () => {
               style={{
                 fontSize: '15px',
                 fontWeight: 500,
-                color: '#0A2540',
+                color: 'rgba(255,255,255,0.85)',
                 letterSpacing: '-0.01em',
                 whiteSpace: 'nowrap',
                 display: 'inline-flex',

@@ -30,7 +30,7 @@ const FinalCTASection = () => {
       style={{
         paddingTop: '100px',
         paddingBottom: '100px',
-        backgroundColor: '#0A2540',
+        backgroundColor: '#0a0a0f',
         position: 'relative',
         overflow: 'hidden'
       }}

@@ -45,7 +45,7 @@ const TestimonialsSection = () => {
     <section
       className="stripe-section"
       style={{
-        backgroundColor: 'white'
+        backgroundColor: '#000000'
       }}
     >
       <div className="enterprise-container-wide">
@@ -63,7 +63,7 @@ const TestimonialsSection = () => {
               fontWeight: 600,
               textTransform: 'uppercase',
               letterSpacing: '0.08em',
-              color: '#635BFF',
+              color: '#8b84ff',
               marginBottom: '16px'
             }}
           >
@@ -74,7 +74,7 @@ const TestimonialsSection = () => {
               fontSize: 'clamp(1.75rem, 3vw, 2.5rem)',
               fontWeight: 600,
               letterSpacing: '-0.02em',
-              color: '#0A2540',
+              color: 'white',
               maxWidth: '32rem'
             }}
           >
@@ -99,9 +99,10 @@ const TestimonialsSection = () => {
                 display: 'flex',
                 flexDirection: 'column',
                 padding: '32px',
-                backgroundColor: '#F6F9FC',
+                backgroundColor: 'rgba(255,255,255,0.04)',
+                backdropFilter: 'blur(12px)',
                 borderRadius: '16px',
-                border: '1px solid hsl(var(--premium-gray-100))',
+                border: '1px solid rgba(255,255,255,0.08)',
               }}
             >
               {/* Accent bar */}
@@ -121,7 +122,7 @@ const TestimonialsSection = () => {
                 style={{
                   fontSize: '18px',
                   fontWeight: 600,
-                  color: '#0A2540',
+                  color: 'white',
                   marginBottom: '12px',
                   letterSpacing: '-0.01em'
                 }}
@@ -134,7 +135,7 @@ const TestimonialsSection = () => {
                 style={{
                   fontSize: '15px',
                   lineHeight: 1.65,
-                  color: '#425466',
+                  color: 'rgba(255,255,255,0.65)',
                   flex: 1
                 }}
               >

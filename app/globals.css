@@ -1,32 +1,41 @@
 @import url('https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&display=swap');
+@import url('https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+@keyframes live-dot-ping {
+  75%, 100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
 @layer base {
   :root {
-    /* Premium Enterprise Light Theme - Calm, Confident, Architectural */
-    --background: 0 0% 98%; /* Off-white background */
-    --foreground: 240 10% 6%; /* Deep charcoal text (#0E0E11) */
-    --card: 0 0% 100%; /* Pure white cards */
-    --card-foreground: 240 10% 6%; /* Charcoal text on cards */
-    --popover: 0 0% 100%; /* White popovers */
-    --popover-foreground: 240 10% 6%; /* Charcoal text on popovers */
-    --primary: 240 10% 6%; /* Deep charcoal as primary (#0E0E11) */
-    --primary-foreground: 0 0% 100%; /* White text on primary */
-    --secondary: 220 13% 91%; /* Light slate gray */
-    --secondary-foreground: 240 10% 6%; /* Charcoal text on secondary */
-    --muted: 220 14% 96%; /* Very light gray */
-    --muted-foreground: 220 9% 46%; /* Medium slate gray */
-    --accent: 213 50% 45%; /* Restrained cool blue accent */
+    /* Premium Dark Theme — matches homepage */
+    --background: 0 0% 0%; /* Pure black */
+    --foreground: 0 0% 100%; /* White text */
+    --card: 240 6% 5%; /* Very dark card base */
+    --card-foreground: 0 0% 100%; /* White text on cards */
+    --popover: 240 6% 5%; /* Dark popovers */
+    --popover-foreground: 0 0% 100%; /* White text on popovers */
+    --primary: 0 0% 100%; /* White primary */
+    --primary-foreground: 240 6% 5%; /* Dark text on primary */
+    --secondary: 240 5% 12%; /* Lifted dark surface */
+    --secondary-foreground: 0 0% 100%; /* White text on secondary */
+    --muted: 240 5% 10%; /* Muted dark surface */
+    --muted-foreground: 0 0% 65%; /* Soft white for muted text */
+    --accent: 243 100% 76%; /* Violet accent (#8b84ff-ish) */
     --accent-foreground: 0 0% 100%; /* White text on accent */
-    --destructive: 0 72% 51%; /* Alert red */
+    --destructive: 0 72% 58%; /* Alert red */
     --destructive-foreground: 0 0% 100%; /* White text on destructive */
-    --border: 220 13% 91%; /* Light border */
-    --input: 220 13% 91%; /* Light input background */
-    --ring: 213 50% 45%; /* Cool blue ring */
+    --border: 240 5% 15%; /* Subtle dark border */
+    --input: 240 5% 10%; /* Dark input background */
+    --ring: 243 100% 76%; /* Violet ring */
     --chart-1: 213 50% 45%; /* Cool blue */
     --chart-2: 220 9% 46%; /* Slate */
     --chart-3: 240 10% 6%; /* Charcoal */
@@ -108,16 +117,17 @@
     /* Premium Gray Scale - Subtle and Professional */
     --premium-white: 0 0% 100%; /* Pure white */
     --premium-off-white: 0 0% 98%; /* Off-white backgrounds */
-    --premium-gray-50: 220 14% 96%; /* Lightest gray */
-    --premium-gray-100: 220 13% 91%; /* Light gray */
-    --premium-gray-200: 220 13% 86%; /* Subtle borders */
-    --premium-gray-300: 220 11% 78%; /* Medium borders */
-    --premium-gray-400: 220 9% 60%; /* Medium text */
-    --premium-gray-500: 220 9% 46%; /* Body text */
-    --premium-gray-600: 220 10% 30%; /* Strong text */
-    --premium-gray-700: 220 10% 20%; /* Headings */
-    --premium-gray-800: 240 10% 10%; /* Near black */
-    --premium-gray-900: 240 10% 6%; /* Deep charcoal */
+    /* Dark theme — scale inverted: -50 is darkest surface, -900 is lightest text */
+    --premium-gray-50: 240 8% 4%; /* Deepest surface */
+    --premium-gray-100: 240 6% 8%; /* Card base */
+    --premium-gray-200: 240 5% 14%; /* Subtle borders on dark */
+    --premium-gray-300: 240 4% 22%; /* Medium borders on dark */
+    --premium-gray-400: 0 0% 40%; /* Dim text */
+    --premium-gray-500: 0 0% 55%; /* Body text */
+    --premium-gray-600: 0 0% 70%; /* Strong text */
+    --premium-gray-700: 0 0% 82%; /* Near-white text */
+    --premium-gray-800: 0 0% 92%; /* Very near white */
+    --premium-gray-900: 0 0% 100%; /* Pure white headings */
     --premium-shadow: 220 13% 10%; /* Shadow base */
 
     /* Stripe Brand Colors */
@@ -1160,97 +1170,74 @@
      ======================================== */
 
   /* Stripe button - Primary (Indigo #635BFF) */
-  .stripe-btn-primary {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.75rem 1.5rem;
-    font-size: var(--text-base);
-    font-weight: var(--font-semibold);
-    background-color: hsl(var(--stripe-indigo));
-    color: white;
-    border-radius: 9999px;
-    transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
-    text-decoration: none;
-    border: none;
-    cursor: pointer;
-    white-space: nowrap;
-  }
-
-  .stripe-btn-primary:hover {
-    background-color: hsl(var(--stripe-indigo-hover));
-    transform: translateY(-1px);
-    box-shadow: 0 4px 16px hsla(var(--stripe-indigo), 0.35);
-  }
-
-  /* Stripe button - Secondary (White with border) */
-  .stripe-btn-secondary {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.75rem 1.5rem;
-    font-size: var(--text-base);
-    font-weight: var(--font-semibold);
-    background-color: white;
-    color: hsl(var(--stripe-navy));
-    border: 1px solid hsl(var(--premium-gray-200));
-    border-radius: 9999px;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
-    text-decoration: none;
-    cursor: pointer;
-    white-space: nowrap;
-  }
-
-  .stripe-btn-secondary:hover {
-    border-color: hsl(var(--premium-gray-300));
-    box-shadow: 0 2px 8px hsla(var(--premium-shadow), 0.08);
-    transform: translateY(-1px);
-  }
-
-  /* Stripe button - On dark backgrounds */
-  .stripe-btn-light {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.75rem 1.5rem;
-    font-size: var(--text-base);
-    font-weight: var(--font-semibold);
-    background-color: white;
-    color: hsl(var(--stripe-navy));
-    border-radius: 9999px;
-    transition: transform 0.15s ease, box-shadow 0.2s ease;
-    text-decoration: none;
-    border: none;
-    cursor: pointer;
-    white-space: nowrap;
-  }
-
-  .stripe-btn-light:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 16px rgba(255, 255, 255, 0.2);
-  }
-
-  /* Stripe ghost button on dark */
+  /* Unified layered white pill — used for all CTA buttons site-wide.
+     - Outer 0.6px white border wraps
+     - Inner white pill with black text
+     - ::before paints a blurred white glow streak along the top edge
+     Applied by redefining the stripe-btn-* classes so existing markup inherits. */
+  .stripe-btn-primary,
+  .stripe-btn-secondary,
+  .stripe-btn-light,
   .stripe-btn-ghost {
+    position: relative;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 0.75rem 1.5rem;
-    font-size: var(--text-base);
-    font-weight: var(--font-semibold);
-    background-color: rgba(255, 255, 255, 0.1);
-    color: white;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 11px 29px;
+    font-size: 14px;
+    font-weight: 500;
+    background-color: #ffffff;
+    color: #000000;
+    border: 0.6px solid rgba(255, 255, 255, 1);
     border-radius: 9999px;
-    transition: background-color 0.2s ease, border-color 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.25s ease;
     text-decoration: none;
     cursor: pointer;
     white-space: nowrap;
+    overflow: visible;
+    isolation: isolate;
   }
 
+  .stripe-btn-primary::before,
+  .stripe-btn-secondary::before,
+  .stripe-btn-light::before,
+  .stripe-btn-ghost::before {
+    content: "";
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 18px;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0));
+    filter: blur(10px);
+    opacity: 0.75;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  .stripe-btn-primary:hover,
+  .stripe-btn-secondary:hover,
+  .stripe-btn-light:hover,
   .stripe-btn-ghost:hover {
-    background-color: rgba(255, 255, 255, 0.15);
-    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-1px);
+    box-shadow: 0 0 24px rgba(255, 255, 255, 0.35);
+  }
+
+  .stripe-btn-primary:hover::before,
+  .stripe-btn-secondary:hover::before,
+  .stripe-btn-light:hover::before,
+  .stripe-btn-ghost:hover::before {
+    opacity: 1;
+  }
+
+  /* Ensure any icon inside inherits the black foreground */
+  .stripe-btn-primary svg,
+  .stripe-btn-secondary svg,
+  .stripe-btn-light svg,
+  .stripe-btn-ghost svg {
+    color: #000000;
+    stroke: currentColor;
   }
 
   /* Trust/logo bar */
@@ -1281,39 +1268,45 @@
     }
   }
 
-  /* Bento grid layout */
+  /* Bento grid layout — 6-col system for stable mixed spans */
   .bento-grid {
     display: grid;
     gap: 20px;
     grid-template-columns: 1fr;
   }
 
+  .bento-grid > a,
+  .bento-grid > div {
+    grid-column: span 1;
+  }
+
   @media (min-width: 768px) {
     .bento-grid {
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(6, 1fr);
+    }
+    .bento-grid > a,
+    .bento-grid > div {
+      grid-column: span 3;
+    }
+    .bento-grid > .bento-card-lg {
+      grid-column: span 6;
     }
   }
 
   @media (min-width: 1024px) {
-    .bento-grid {
-      grid-template-columns: repeat(3, 1fr);
+    .bento-grid > a,
+    .bento-grid > div {
+      grid-column: span 2;
+    }
+    .bento-grid > .bento-card-lg {
+      grid-column: span 4;
     }
   }
 
   .bento-grid > a:hover,
   .bento-grid > div:hover {
-    box-shadow: 0 12px 40px rgba(10, 37, 64, 0.12);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
     transform: translateY(-3px);
-  }
-
-  .bento-card-lg {
-    grid-column: span 1;
-  }
-
-  @media (min-width: 768px) {
-    .bento-card-lg {
-      grid-column: span 2;
-    }
   }
 
   /* Testimonial card */
@@ -1384,9 +1377,11 @@
     top: 100%;
     left: 0;
     right: 0;
-    background: white;
-    border-top: 1px solid hsl(var(--premium-gray-100));
-    box-shadow: 0 8px 32px hsla(var(--premium-shadow), 0.12);
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
     z-index: 50;
   }
 

@@ -49,7 +49,7 @@ const principles = [
   {
     title: "Architecture First",
     description: "We design before we build. Every system starts with a clear architectural foundation that supports long-term evolution.",
-    color: "#635BFF",
+    color: "#8b84ff",
     iconSvg: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <rect x="3" y="3" width="7" height="7" rx="1" />
@@ -136,7 +136,7 @@ const whoWeServe = [
 ]
 
 const milestones = [
-  { year: "2024", event: "Company founded with a focus on enterprise AI and cloud systems", color: "#635BFF" },
+  { year: "2024", event: "Company founded with a focus on enterprise AI and cloud systems", color: "#8b84ff" },
   { year: "2024", event: "Assembled leadership team with combined decades of enterprise experience", color: "#11C5DB" },
   { year: "2024", event: "Established technology partnerships with leading cloud providers", color: "#3ECF8E" },
   { year: "2025", event: "Expanding client portfolio across regulated industries", color: "#FF7A00" }
@@ -151,7 +151,7 @@ const AboutUs = () => {
         style={{
           paddingTop: '10rem',
           paddingBottom: '6rem',
-          backgroundColor: '#0A2540',
+          backgroundColor: '#000000',
         }}
       >
         {/* Background grid pattern */}
@@ -190,7 +190,7 @@ const AboutUs = () => {
               fontWeight: 600,
               textTransform: 'uppercase',
               letterSpacing: '0.1em',
-              color: '#635BFF',
+              color: '#8b84ff',
               marginBottom: '24px'
             }}
           >
@@ -238,7 +238,7 @@ const AboutUs = () => {
       </section>
 
       {/* Our Story + Milestones — White bg */}
-      <section style={{ paddingTop: '120px', paddingBottom: '120px', backgroundColor: 'white' }}>
+      <section style={{ paddingTop: '120px', paddingBottom: '120px', backgroundColor: '#000000' }}>
         <motion.div
           className="enterprise-container-wide"
           initial="hidden"
@@ -262,7 +262,7 @@ const AboutUs = () => {
                   fontWeight: 600,
                   textTransform: 'uppercase',
                   letterSpacing: '0.1em',
-                  color: '#635BFF',
+                  color: '#8b84ff',
                   marginBottom: '20px'
                 }}
               >
@@ -274,7 +274,7 @@ const AboutUs = () => {
                   fontWeight: 700,
                   letterSpacing: '-0.03em',
                   lineHeight: 1.15,
-                  color: '#0A2540',
+                  color: 'white',
                   marginBottom: '24px'
                 }}
               >
@@ -285,7 +285,7 @@ const AboutUs = () => {
                 style={{
                   fontSize: '17px',
                   lineHeight: 1.7,
-                  color: '#425466',
+                  color: 'rgba(255,255,255,0.7)',
                   display: 'flex',
                   flexDirection: 'column',
                   gap: '16px'
@@ -308,7 +308,7 @@ const AboutUs = () => {
                   fontWeight: 600,
                   textTransform: 'uppercase',
                   letterSpacing: '0.1em',
-                  color: '#635BFF',
+                  color: '#8b84ff',
                   marginBottom: '20px'
                 }}
               >
@@ -320,7 +320,7 @@ const AboutUs = () => {
                   fontWeight: 700,
                   letterSpacing: '-0.03em',
                   lineHeight: 1.15,
-                  color: '#0A2540',
+                  color: 'white',
                   marginBottom: '32px'
                 }}
               >
@@ -336,7 +336,7 @@ const AboutUs = () => {
                       gap: '20px',
                       alignItems: 'flex-start',
                       padding: '20px 0',
-                      borderBottom: index < milestones.length - 1 ? '1px solid rgba(10, 37, 64, 0.08)' : 'none'
+                      borderBottom: index < milestones.length - 1 ? '1px solid rgba(255, 255, 255, 0.08)' : 'none'
                     }}
                   >
                     {/* Timeline dot + year */}
@@ -354,7 +354,7 @@ const AboutUs = () => {
                         style={{
                           fontSize: '14px',
                           fontWeight: 700,
-                          color: '#0A2540',
+                          color: 'white',
                           fontVariantNumeric: 'tabular-nums'
                         }}
                       >
@@ -365,7 +365,7 @@ const AboutUs = () => {
                       style={{
                         fontSize: '15px',
                         lineHeight: 1.6,
-                        color: '#425466'
+                        color: 'rgba(255,255,255,0.7)'
                       }}
                     >
                       {milestone.event}
@@ -379,7 +379,7 @@ const AboutUs = () => {
       </section>
 
       {/* Our Approach — Off-white bg */}
-      <section style={{ paddingTop: '120px', paddingBottom: '120px', backgroundColor: '#F6F9FC' }}>
+      <section style={{ paddingTop: '120px', paddingBottom: '120px', backgroundColor: '#0a0a0f' }}>
         <motion.div
           className="enterprise-container-wide"
           initial="hidden"
@@ -394,7 +394,7 @@ const AboutUs = () => {
                 fontWeight: 600,
                 textTransform: 'uppercase',
                 letterSpacing: '0.1em',
-                color: '#635BFF',
+                color: '#8b84ff',
                 marginBottom: '20px'
               }}
             >
@@ -406,7 +406,7 @@ const AboutUs = () => {
                 fontWeight: 700,
                 letterSpacing: '-0.03em',
                 lineHeight: 1.1,
-                color: '#0A2540',
+                color: 'white',
                 marginBottom: '20px'
               }}
             >
@@ -416,7 +416,7 @@ const AboutUs = () => {
               style={{
                 fontSize: '19px',
                 lineHeight: 1.65,
-                color: '#425466',
+                color: 'rgba(255,255,255,0.7)',
                 maxWidth: '520px'
               }}
             >
@@ -438,15 +438,15 @@ const AboutUs = () => {
                 variants={fadeUp}
                 style={{
                   padding: '32px',
-                  backgroundColor: 'white',
+                  backgroundColor: '#000000',
                   borderRadius: '16px',
-                  border: '1px solid rgba(10, 37, 64, 0.08)',
+                  border: '1px solid rgba(255, 255, 255, 0.08)',
                   transition: 'box-shadow 0.3s ease, transform 0.3s ease',
                   position: 'relative',
                   overflow: 'hidden'
                 }}
                 className="group"
-                whileHover={{ y: -3, boxShadow: '0 12px 40px rgba(10, 37, 64, 0.1)' }}
+                whileHover={{ y: -3, boxShadow: '0 12px 40px rgba(255, 255, 255, 0.1)' }}
               >
                 {/* Top accent bar */}
                 <div
@@ -483,7 +483,7 @@ const AboutUs = () => {
                     fontSize: '19px',
                     fontWeight: 700,
                     letterSpacing: '-0.02em',
-                    color: '#0A2540',
+                    color: 'white',
                     marginBottom: '12px'
                   }}
                 >
@@ -493,7 +493,7 @@ const AboutUs = () => {
                   style={{
                     fontSize: '15px',
                     lineHeight: 1.65,
-                    color: '#425466'
+                    color: 'rgba(255,255,255,0.7)'
                   }}
                 >
                   {principle.description}
@@ -510,7 +510,7 @@ const AboutUs = () => {
         style={{
           paddingTop: '120px',
           paddingBottom: '120px',
-          backgroundColor: '#0A2540'
+          backgroundColor: '#000000'
         }}
       >
         {/* Subtle gradient accent */}
@@ -544,7 +544,7 @@ const AboutUs = () => {
                 fontWeight: 600,
                 textTransform: 'uppercase',
                 letterSpacing: '0.1em',
-                color: '#635BFF',
+                color: '#8b84ff',
                 marginBottom: '20px'
               }}
             >
@@ -603,7 +603,7 @@ const AboutUs = () => {
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    color: '#635BFF',
+                    color: '#8b84ff',
                     marginBottom: '20px'
                   }}
                 >
@@ -636,7 +636,7 @@ const AboutUs = () => {
       </section>
 
       {/* Leadership Section — Off-white bg */}
-      <section style={{ paddingTop: '120px', paddingBottom: '120px', backgroundColor: '#F6F9FC' }}>
+      <section style={{ paddingTop: '120px', paddingBottom: '120px', backgroundColor: '#0a0a0f' }}>
         <motion.div
           className="enterprise-container-wide"
           initial="hidden"
@@ -652,7 +652,7 @@ const AboutUs = () => {
                 fontWeight: 600,
                 textTransform: 'uppercase',
                 letterSpacing: '0.1em',
-                color: '#635BFF',
+                color: '#8b84ff',
                 marginBottom: '20px'
               }}
             >
@@ -664,7 +664,7 @@ const AboutUs = () => {
                 fontWeight: 700,
                 letterSpacing: '-0.03em',
                 lineHeight: 1.1,
-                color: '#0A2540',
+                color: 'white',
                 marginBottom: '20px'
               }}
             >
@@ -674,7 +674,7 @@ const AboutUs = () => {
               style={{
                 fontSize: '19px',
                 lineHeight: 1.65,
-                color: '#425466',
+                color: 'rgba(255,255,255,0.7)',
                 maxWidth: '560px',
                 marginLeft: 'auto',
                 marginRight: 'auto'
@@ -702,13 +702,13 @@ const AboutUs = () => {
                 key={index}
                 variants={fadeUp}
                 style={{
-                  backgroundColor: 'white',
+                  backgroundColor: '#000000',
                   borderRadius: '24px',
                   overflow: 'hidden',
-                  border: '1px solid rgba(10, 37, 64, 0.06)',
+                  border: '1px solid rgba(255, 255, 255, 0.06)',
                   transition: 'box-shadow 0.4s ease, transform 0.4s ease',
                 }}
-                whileHover={{ y: -6, boxShadow: '0 24px 64px rgba(10, 37, 64, 0.1)' }}
+                whileHover={{ y: -6, boxShadow: '0 24px 64px rgba(255, 255, 255, 0.1)' }}
               >
                 {/* Photo — properly framed with circular crop */}
                 <div
@@ -725,8 +725,8 @@ const AboutUs = () => {
                       borderRadius: '50%',
                       position: 'relative',
                       overflow: 'hidden',
-                      border: '4px solid #F6F9FC',
-                      boxShadow: '0 8px 32px rgba(10, 37, 64, 0.12), 0 0 0 1px rgba(99, 91, 255, 0.1)',
+                      border: '4px solid rgba(255,255,255,0.08)',
+                      boxShadow: '0 8px 32px rgba(255, 255, 255, 0.12), 0 0 0 1px rgba(99, 91, 255, 0.1)',
                     }}
                   >
                     <Image
@@ -748,7 +748,7 @@ const AboutUs = () => {
                       fontSize: '22px',
                       fontWeight: 700,
                       letterSpacing: '-0.02em',
-                      color: '#0A2540',
+                      color: 'white',
                       marginBottom: '4px'
                     }}
                   >
@@ -758,7 +758,7 @@ const AboutUs = () => {
                     style={{
                       fontSize: '14px',
                       fontWeight: 600,
-                      color: '#635BFF',
+                      color: '#8b84ff',
                       marginBottom: '8px',
                       letterSpacing: '-0.01em'
                     }}
@@ -782,7 +782,7 @@ const AboutUs = () => {
                       style={{
                         fontSize: '13px',
                         fontWeight: 700,
-                        color: '#635BFF',
+                        color: '#8b84ff',
                       }}
                     >
                       {member.experience}
@@ -791,7 +791,7 @@ const AboutUs = () => {
                       style={{
                         fontSize: '12px',
                         fontWeight: 500,
-                        color: '#635BFF',
+                        color: '#8b84ff',
                         opacity: 0.8
                       }}
                     >
@@ -804,7 +804,7 @@ const AboutUs = () => {
                     style={{
                       width: '40px',
                       height: '2px',
-                      backgroundColor: 'rgba(10, 37, 64, 0.08)',
+                      backgroundColor: 'rgba(255, 255, 255, 0.08)',
                       margin: '0 auto 20px',
                       borderRadius: '1px'
                     }}
@@ -815,7 +815,7 @@ const AboutUs = () => {
                     style={{
                       fontSize: '15px',
                       lineHeight: 1.7,
-                      color: '#425466',
+                      color: 'rgba(255,255,255,0.7)',
                       marginBottom: '24px',
                     }}
                   >
@@ -830,12 +830,12 @@ const AboutUs = () => {
                         style={{
                           fontSize: '11px',
                           fontWeight: 600,
-                          color: '#425466',
-                          backgroundColor: '#F6F9FC',
+                          color: 'rgba(255,255,255,0.7)',
+                          backgroundColor: '#0a0a0f',
                           padding: '5px 12px',
                           borderRadius: '100px',
                           letterSpacing: '0.01em',
-                          border: '1px solid rgba(10, 37, 64, 0.06)'
+                          border: '1px solid rgba(255, 255, 255, 0.06)'
                         }}
                       >
                         {tag}
@@ -855,7 +855,7 @@ const AboutUs = () => {
         style={{
           paddingTop: '100px',
           paddingBottom: '120px',
-          backgroundColor: '#0A2540'
+          backgroundColor: '#000000'
         }}
       >
         {/* Background accents */}

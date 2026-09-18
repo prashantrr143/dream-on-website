@@ -58,13 +58,14 @@ interface SharedLayoutProps {
   children: React.ReactNode
   className?: string
   hideFooter?: boolean
+  hideNav?: boolean
 }
 
-export default function SharedLayout({ children, className = "", hideFooter = false }: SharedLayoutProps) {
+export default function SharedLayout({ children, className = "", hideFooter = false, hideNav = false }: SharedLayoutProps) {
   return (
     <div className="min-h-screen w-full overflow-x-hidden bg-background">
-      {/* Navigation - Always visible */}
-      <NavigationEnterprise />
+      {/* Navigation */}
+      {!hideNav && <NavigationEnterprise />}
 
       {/* Main content with proper spacing to account for fixed header */}
       <main className={`relative ${className}`}>
