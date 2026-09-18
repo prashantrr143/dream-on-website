@@ -1,7 +1,7 @@
 "use client"
 
 import Image from 'next/image'
-import { motion, useReducedMotion } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 
 /**
@@ -33,15 +33,14 @@ export function PageHero({
   secondaryCta,
   children,
 }: PageHeroProps) {
-  const reduceMotion = useReducedMotion()
-  const reveal = (delay: number) =>
-    reduceMotion
-      ? { initial: { opacity: 1, y: 0 }, animate: { opacity: 1, y: 0 } }
-      : {
-          initial: { opacity: 0, y: 20 },
-          animate: { opacity: 1, y: 0 },
-          transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] as const },
-        }
+  // MotionConfig reducedMotion="user" (see MotionProvider) skips these
+  // transforms for users who ask for reduced motion, without changing the
+  // rendered markup — which is what keeps SSR and hydration in agreement.
+  const reveal = (delay: number) => ({
+    initial: { opacity: 0, y: 20 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] as const },
+  })
 
   return (
     <section
