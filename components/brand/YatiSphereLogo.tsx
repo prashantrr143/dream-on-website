@@ -7,10 +7,13 @@ import Image from 'next/image'
  *
  * Artwork note: the supplied `.svg` lockups contain no vector paths — each
  * embeds a base64 PNG at the same resolution as these files. The artwork
- * here is extracted from those SVGs byte-for-byte (same pixels, updated
- * larger tagline), so nothing is lost, and serving it as PNG lets
- * next/image emit AVIF/WebP at the right size instead of shipping a
- * ~536KB base64 payload on every page.
+ * here is extracted from those SVGs byte-for-byte, so nothing is lost, and
+ * serving it as PNG lets next/image emit AVIF/WebP at the right size
+ * instead of shipping a ~536KB base64 payload on every page.
+ *
+ * The TM glyph baked into the supplied lockups has been erased from the
+ * three wordmark files (alpha cleared over those glyphs only; no
+ * letterform altered), per the brand requirement that it not appear.
  *
  * If true path-based vectors are exported from the original source later,
  * only this component needs to change.
@@ -20,30 +23,30 @@ export const LOGO_ASSETS = {
   /** Full colour lockup for light surfaces. */
   primary: {
     src: '/brand/yatisphere/logo/yatisphere-light-tagline.png',
-    width: 1774,
-    height: 887,
+    width: 1983,
+    height: 691,
   },
   /** Dark/navy surfaces — white wordmark, colour mark. */
   dark: {
     src: '/brand/yatisphere/logo/yatisphere-dark-tagline.png',
-    width: 1682,
-    height: 824,
+    width: 1983,
+    height: 691,
   },
   /** White knockout for dark surfaces needing maximum contrast. */
   white: {
     src: '/brand/yatisphere/logo/yatisphere-white-tagline.png',
-    width: 1682,
-    height: 824,
+    width: 1983,
+    height: 691,
   },
   /** Larger presentation lockup. */
   hero: {
     src: '/brand/yatisphere/logo/yatisphere-light-tagline.png',
-    width: 1774,
-    height: 887,
+    width: 1983,
+    height: 691,
   },
-  /** Icon-only mark. */
+  /** Icon-only mark — the supplied Y icon: no wordmark, tagline or TM. */
   icon: {
-    src: '/brand/yatisphere/logo/yatisphere-mark.png',
+    src: '/brand/yatisphere/icon/yatisphere-icon-512.png',
     width: 512,
     height: 512,
   },

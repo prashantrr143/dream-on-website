@@ -62,13 +62,15 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: '/brand/yatisphere/favicon/favicon-16.png', sizes: '16x16', type: 'image/png' },
-      { url: '/brand/yatisphere/favicon/favicon-32.png', sizes: '32x32', type: 'image/png' },
-      { url: '/brand/yatisphere/favicon/favicon-48.png', sizes: '48x48', type: 'image/png' },
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/brand/yatisphere/icon/yatisphere-icon-16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/brand/yatisphere/icon/yatisphere-icon-32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/brand/yatisphere/icon/yatisphere-icon-48.png', sizes: '48x48', type: 'image/png' },
+      { url: '/brand/yatisphere/icon/yatisphere-icon.svg', type: 'image/svg+xml' },
     ],
-    shortcut: '/brand/yatisphere/favicon/favicon-32.png',
+    shortcut: '/favicon.ico',
     apple: [
-      { url: '/brand/yatisphere/favicon/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+      { url: '/brand/yatisphere/icon/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
     ],
   },
   openGraph: {

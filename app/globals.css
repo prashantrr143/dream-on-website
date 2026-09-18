@@ -654,12 +654,12 @@
     outline-offset: 4px;
   }
   .ys-footer-logo {
-    width: 260px;
+    width: 240px;
     max-width: 100%;
     height: auto;
   }
   @media (min-width: 640px) {
-    .ys-footer-logo { width: 300px; }
+    .ys-footer-logo { width: 280px; }
   }
 
   .ys-footer-blurb {
@@ -873,6 +873,675 @@
       transition: none;
     }
   }
+
+  /* About — plain statement of the work */
+  .ys-about-do {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(20px, 2.4vw, 32px);
+  }
+  @media (min-width: 820px) {
+    .ys-about-do { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  .ys-about-do > div {
+    min-width: 0;
+    padding: clamp(22px, 2.2vw, 28px);
+    border: 1px solid var(--ys-border);
+    border-radius: 14px;
+    background: var(--ys-surface-alt);
+  }
+  .ys-about-do-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ys-link-on-light);
+    margin-bottom: 12px;
+  }
+  .ys-about-do p {
+    font-size: 14.5px;
+    line-height: 1.68;
+    color: var(--ys-ink-body);
+  }
+  .ys-about-do-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 16px;
+    font-size: 14px;
+  }
+
+  /* ==========================================================
+     About — operating principles.
+     Numbered, with the trade-off each one implies.
+     ========================================================== */
+  .ys-principle-head {
+    font-size: clamp(25px, 3.1vw, 35px);
+    font-weight: 700;
+    letter-spacing: -0.026em;
+    line-height: 1.18;
+    color: var(--ys-ink);
+    margin-top: 14px;
+    margin-bottom: 16px;
+    text-wrap: balance;
+  }
+  .ys-principle-lede {
+    margin-top: 18px;
+    font-size: 15.5px;
+    line-height: 1.65;
+    color: var(--ys-ink-body);
+  }
+
+  .ys-principles {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(16px, 1.8vw, 22px);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    counter-reset: principle;
+  }
+  @media (min-width: 640px) {
+    .ys-principles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (min-width: 1160px) {
+    .ys-principles { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  }
+
+  .ys-principle {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    padding: clamp(22px, 2.2vw, 28px);
+    background: var(--ys-surface);
+    border: 1px solid var(--ys-border);
+    border-radius: 14px;
+    overflow: hidden;
+    transition: border-color 200ms ease, box-shadow 200ms ease;
+  }
+  .ys-principle::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--ys-gradient-accent);
+    opacity: 0.55;
+  }
+  .ys-principle:hover {
+    border-color: rgba(10, 132, 255, 0.4);
+    box-shadow: 0 10px 26px rgba(11, 30, 61, 0.07);
+  }
+
+  .ys-principle-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .ys-principle-n {
+    font-size: 12.5px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--ys-ink-muted);
+    font-variant-numeric: tabular-nums;
+  }
+  .ys-principle-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    flex-shrink: 0;
+    color: var(--ys-link-on-light);
+    background: rgba(10, 132, 255, 0.08);
+    border: 1px solid rgba(10, 132, 255, 0.16);
+  }
+  .ys-principle-title {
+    font-size: clamp(15.5px, 1.4vw, 17px);
+    font-weight: 700;
+    letter-spacing: -0.018em;
+    line-height: 1.3;
+    color: var(--ys-ink);
+    margin-bottom: 10px;
+  }
+  .ys-principle-body {
+    font-size: 14px;
+    line-height: 1.62;
+    color: var(--ys-ink-body);
+    flex: 1;
+  }
+  /* The trade-off — set apart so it reads as the honest part */
+  .ys-principle-consequence {
+    display: flex;
+    gap: 9px;
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px solid var(--ys-border);
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--ys-ink-muted);
+  }
+  .ys-principle-consequence span {
+    flex-shrink: 0;
+    width: 3px;
+    border-radius: 2px;
+    background: var(--ys-orange);
+    opacity: 0.7;
+  }
+
+  /* ==========================================================
+     About — who we work with.
+     ========================================================== */
+  .ys-aud-intro {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(18px, 2.4vw, 32px);
+    margin-bottom: clamp(28px, 3.4vw, 42px);
+    align-items: end;
+  }
+  @media (min-width: 1024px) {
+    .ys-aud-intro {
+      grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+      gap: clamp(32px, 4vw, 64px);
+    }
+  }
+  .ys-aud-head {
+    font-size: clamp(25px, 3.1vw, 35px);
+    font-weight: 700;
+    letter-spacing: -0.026em;
+    line-height: 1.18;
+    color: var(--ys-ink);
+    margin-top: 14px;
+    margin-bottom: 16px;
+    text-wrap: balance;
+  }
+  .ys-aud-lede {
+    font-size: 15px;
+    line-height: 1.68;
+    color: var(--ys-ink-body);
+  }
+
+  .ys-aud-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(14px, 1.6vw, 18px);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  @media (min-width: 900px) {
+    .ys-aud-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+
+  .ys-aud-card {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: start;
+    gap: 16px;
+    height: 100%;
+    padding: clamp(20px, 2.1vw, 26px);
+    background: var(--ys-surface);
+    border: 1px solid var(--ys-border);
+    border-radius: 14px;
+    text-decoration: none;
+    transition: border-color 200ms ease, box-shadow 200ms ease,
+      transform 200ms ease;
+  }
+  .ys-aud-card:hover {
+    border-color: rgba(10, 132, 255, 0.45);
+    box-shadow: 0 10px 28px rgba(11, 30, 61, 0.08);
+    transform: translateY(-2px);
+  }
+  .ys-aud-card:focus-visible {
+    outline: 2px solid var(--ys-link-on-light);
+    outline-offset: 3px;
+  }
+  .ys-aud-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 11px;
+    flex-shrink: 0;
+    color: var(--ys-link-on-light);
+    background: rgba(10, 132, 255, 0.08);
+    border: 1px solid rgba(10, 132, 255, 0.16);
+    transition: border-color 200ms ease, background-color 200ms ease;
+  }
+  .ys-aud-card:hover .ys-aud-icon {
+    background: rgba(10, 132, 255, 0.13);
+    border-color: rgba(0, 209, 255, 0.5);
+  }
+  .ys-aud-main { min-width: 0; display: block; }
+  .ys-aud-who {
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--ys-ink-muted);
+    margin-bottom: 6px;
+  }
+  .ys-aud-title {
+    font-size: clamp(16px, 1.5vw, 18px);
+    font-weight: 700;
+    letter-spacing: -0.018em;
+    line-height: 1.28;
+    color: var(--ys-ink);
+    margin-bottom: 9px;
+  }
+  .ys-aud-body {
+    display: block;
+    font-size: 14px;
+    line-height: 1.62;
+    color: var(--ys-ink-body);
+  }
+  .ys-aud-signal {
+    display: block;
+    margin-top: 14px;
+    padding: 11px 13px;
+    border-radius: 9px;
+    background: var(--ys-surface-alt);
+    border: 1px solid var(--ys-border);
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--ys-ink-body);
+  }
+  .ys-aud-signal-label {
+    display: block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ys-link-on-light);
+    margin-bottom: 4px;
+  }
+  .ys-aud-arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    border: 1px solid var(--ys-border);
+    color: var(--ys-link-on-light);
+    transition: transform 200ms ease, border-color 200ms ease,
+      background-color 200ms ease;
+  }
+  .ys-aud-card:hover .ys-aud-arrow {
+    transform: translate(3px, -3px);
+    border-color: rgba(10, 132, 255, 0.5);
+    background: rgba(10, 132, 255, 0.07);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ys-principle,
+    .ys-aud-card,
+    .ys-aud-icon,
+    .ys-aud-arrow {
+      transition: none !important;
+      transform: none !important;
+    }
+  }
+
+  /* ==========================================================
+     Founder's vision — editorial two-column statement.
+     ========================================================== */
+  .ys-vision-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(32px, 4vw, 56px);
+    align-items: start;
+  }
+  @media (min-width: 1024px) {
+    .ys-vision-grid {
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+      gap: clamp(40px, 5vw, 76px);
+    }
+  }
+  .ys-vision-head {
+    font-size: clamp(26px, 3.3vw, 38px);
+    font-weight: 800;
+    letter-spacing: -0.028em;
+    line-height: 1.15;
+    color: var(--ys-ink);
+    margin-top: 14px;
+    margin-bottom: 18px;
+    text-wrap: balance;
+  }
+  .ys-vision-accent { color: var(--ys-primary-blue); }
+
+  .ys-vision-quote {
+    position: relative;
+    margin: 0;
+    padding-left: clamp(18px, 2vw, 26px);
+    border-left: 2px solid rgba(10, 132, 255, 0.28);
+  }
+  .ys-vision-quote p {
+    font-size: clamp(15px, 1.4vw, 17px);
+    line-height: 1.72;
+    color: var(--ys-ink-body);
+  }
+  .ys-vision-quote p + p { margin-top: 15px; }
+  /* Opening paragraph carries the weight */
+  .ys-vision-quote .ys-vision-lead {
+    font-size: clamp(17px, 1.8vw, 21px);
+    line-height: 1.55;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    color: var(--ys-ink);
+  }
+
+  .ys-vision-attr {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: clamp(22px, 2.6vw, 30px);
+    padding-left: clamp(18px, 2vw, 26px);
+  }
+  .ys-vision-attr-rule {
+    width: 28px;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--ys-gradient-accent);
+    flex-shrink: 0;
+  }
+  .ys-vision-attr strong {
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--ys-ink);
+    line-height: 1.3;
+  }
+  .ys-vision-attr span span {
+    display: block;
+    margin-top: 2px;
+    font-size: 12.5px;
+    color: var(--ys-ink-muted);
+    line-height: 1.4;
+  }
+
+  /* Aside: the statement distilled into three practices */
+  .ys-vision-aside {
+    padding: clamp(22px, 2.4vw, 30px);
+    border: 1px solid var(--ys-border);
+    border-radius: 14px;
+    background: var(--ys-surface-alt);
+  }
+  /* ==========================================================
+     Founder's vision — the page's dark anchor.
+     Breaks a run of five light sections and gives the statement
+     the weight it deserves.
+     ========================================================== */
+  .ys-vision-dark {
+    position: relative;
+    overflow: hidden;
+    padding-top: clamp(64px, 7vw, 96px);
+    padding-bottom: clamp(64px, 7vw, 96px);
+    background-image:
+      radial-gradient(ellipse 70% 60% at 78% 18%, rgba(10,132,255,0.20) 0%, transparent 62%),
+      radial-gradient(ellipse 60% 50% at 12% 88%, rgba(0,209,255,0.10) 0%, transparent 60%),
+      linear-gradient(to bottom, #071429 0%, #0B1E3D 52%, #0d2347 100%);
+  }
+  /* Restrained grid, fading toward the edges */
+  .ys-vision-dark::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
+    background-size: 64px 64px;
+    mask-image: radial-gradient(ellipse 70% 70% at 50% 40%, #000 30%, transparent 100%);
+    -webkit-mask-image: radial-gradient(ellipse 70% 70% at 50% 40%, #000 30%, transparent 100%);
+    pointer-events: none;
+  }
+  .ys-vision-dark > * { position: relative; z-index: 1; }
+
+  .ys-vision-dark .ys-eyebrow { color: var(--ys-cyan); }
+  .ys-vision-dark .ys-vision-head { color: #ffffff; }
+  .ys-vision-dark .ys-vision-accent { color: var(--ys-cyan); }
+  .ys-vision-dark .ys-vision-quote {
+    border-left-color: rgba(0, 209, 255, 0.45);
+  }
+  .ys-vision-dark .ys-vision-quote p { color: rgba(255,255,255,0.82); }
+  .ys-vision-dark .ys-vision-quote .ys-vision-lead { color: #ffffff; }
+  .ys-vision-dark .ys-vision-attr strong { color: #ffffff; }
+  .ys-vision-dark .ys-vision-attr span span { color: rgba(255,255,255,0.68); }
+
+  /* Credential panel reads as glass on the dark ground */
+  .ys-vision-dark .ys-vision-aside {
+    background: rgba(255, 255, 255, 0.055);
+    border-color: rgba(255, 255, 255, 0.14);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+  .ys-vision-dark .ys-vision-cred {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.14);
+  }
+  .ys-vision-dark .ys-vision-cred-mark {
+    color: var(--ys-cyan);
+    background: rgba(0, 209, 255, 0.12);
+    border-color: rgba(0, 209, 255, 0.3);
+  }
+  .ys-vision-dark .ys-vision-cred-eyebrow { color: rgba(255,255,255,0.6); }
+  .ys-vision-dark .ys-vision-cred-title { color: #ffffff; }
+  .ys-vision-dark .ys-vision-cred-sub { color: rgba(255,255,255,0.72); }
+  .ys-vision-dark .ys-vision-cred-id {
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(255, 255, 255, 0.16);
+    color: rgba(255,255,255,0.72);
+  }
+  .ys-vision-dark .ys-vision-cred-id strong { color: #ffffff; }
+  .ys-vision-dark .ys-vision-facts > div { border-bottom-color: rgba(255,255,255,0.12); }
+  .ys-vision-dark .ys-vision-facts dt { color: rgba(255,255,255,0.6); }
+  .ys-vision-dark .ys-vision-facts dd { color: #ffffff; }
+  .ys-vision-dark .ys-vision-link { color: var(--ys-cyan); }
+
+  /* Verifiable credential inside the vision aside */
+  .ys-vision-cred {
+    display: flex;
+    align-items: flex-start;
+    gap: 13px;
+    padding: 16px;
+    border-radius: 12px;
+    background: var(--ys-surface);
+    border: 1px solid var(--ys-border);
+  }
+  .ys-vision-cred-mark {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    color: var(--ys-link-on-light);
+    background: rgba(10, 132, 255, 0.08);
+    border: 1px solid rgba(10, 132, 255, 0.16);
+  }
+  .ys-vision-cred-eyebrow {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ys-ink-muted);
+    margin-bottom: 3px;
+  }
+  .ys-vision-cred-title {
+    font-size: 14.5px;
+    font-weight: 700;
+    letter-spacing: -0.012em;
+    line-height: 1.25;
+    color: var(--ys-ink);
+  }
+  .ys-vision-cred-sub {
+    font-size: 12px;
+    line-height: 1.4;
+    color: var(--ys-ink-body);
+    margin-top: 3px;
+  }
+  .ys-vision-cred-id {
+    display: inline-block;
+    margin-top: 9px;
+    padding: 3px 9px;
+    border-radius: 5px;
+    background: var(--ys-surface-alt);
+    border: 1px solid var(--ys-border);
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--ys-ink-muted);
+  }
+  .ys-vision-cred-id strong {
+    font-weight: 700;
+    color: var(--ys-ink);
+    letter-spacing: 0.02em;
+  }
+
+  /* Registry facts */
+  .ys-vision-facts {
+    margin: 18px 0 0;
+  }
+  .ys-vision-facts > div {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--ys-border);
+  }
+  .ys-vision-facts > div:last-child { border-bottom: none; }
+  .ys-vision-facts dt {
+    font-size: 12.5px;
+    color: var(--ys-ink-muted);
+    flex-shrink: 0;
+  }
+  .ys-vision-facts dd {
+    margin: 0;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--ys-ink);
+    text-align: right;
+    min-width: 0;
+  }
+
+  .ys-vision-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 18px;
+    font-size: 14px;
+  }
+
+  /* ==========================================================
+     Leadership — portrait beside substance, not a centred avatar.
+     ========================================================== */
+  .ys-leaders {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(28px, 3.4vw, 48px);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  @media (min-width: 900px) {
+    .ys-leaders { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+
+  /* Editorial rather than a card: portrait sits on the surface with a
+     brand-tinted plate behind it, text below. No heavy border box. */
+  .ys-leader {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+  .ys-leader-portrait {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 5 / 4;
+    overflow: hidden;
+    border-radius: 16px;
+    background: var(--ys-deep-blue);
+    isolation: isolate;
+  }
+  /* Soft brand wash over the lower third, so portraits of different
+     exposure settle into one visual family. */
+  .ys-leader-portrait::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(11, 30, 61, 0.55) 0%,
+      rgba(11, 30, 61, 0.06) 42%,
+      transparent 70%
+    );
+    pointer-events: none;
+  }
+  .ys-leader-portrait img {
+    filter: saturate(0.96);
+    object-position: center top;
+    transition: transform 400ms ease;
+  }
+  .ys-leader:hover .ys-leader-portrait img { transform: scale(1.02); }
+  .ys-leader-portrait[data-focal="high"] img { object-position: center 16%; }
+  .ys-leader-portrait[data-focal="higher"] img { object-position: center 10%; }
+
+  .ys-leader-body {
+    padding: clamp(18px, 1.8vw, 24px) 2px 0;
+    min-width: 0;
+  }
+  .ys-leader-name {
+    font-size: clamp(19px, 1.9vw, 23px);
+    font-weight: 700;
+    letter-spacing: -0.024em;
+    color: var(--ys-ink);
+    line-height: 1.22;
+  }
+  .ys-leader-role {
+    margin-top: 5px;
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--ys-link-on-light);
+  }
+  .ys-leader-bio {
+    margin-top: 14px;
+    font-size: 14.5px;
+    line-height: 1.68;
+    color: var(--ys-ink-body);
+    max-width: 30rem;
+  }
+  .ys-leader-focus {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin: 16px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+  .ys-leader-focus li {
+    font-size: 11.5px;
+    font-weight: 500;
+    color: var(--ys-ink-muted);
+    padding: 5px 10px;
+    border-radius: 999px;
+    background: var(--ys-surface);
+    border: 1px solid var(--ys-border);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ys-leader-portrait img { transition: none !important; transform: none !important; }
+  }
+
 
   /* Industry rows — title left, description right, hairline divided */
   .ys-industry-rows {
@@ -3001,21 +3670,18 @@
     width: auto;
     object-fit: contain;
   }
-  /* 2.04:1 lockup — 100px tall renders ~204px wide inside the 124px
-     header, with clear space above and below. */
-  /* Sized by height so the lockup can never overflow the header.
-     2.04:1 aspect -> 80px tall renders ~163px wide on mobile,
-     180px at sm, 204px at lg: inside the 145-210px brand target,
-     which keeps the IDEAS - INTELLIGENCE - IMPACT tagline legible. */
+  /* Updated lockup is 2.87:1 (was 2.04:1), so the heights are lower for
+     the same rendered width: 57/66/71px give ~164/190/204px, inside the
+     145-210px brand target with the tagline still legible. */
   .ys-logo-img-full {
-    height: 80px;
+    height: 57px;
     max-height: 100%;
   }
   @media (min-width: 640px) {
-    .ys-logo-img-full { height: 88px; }
+    .ys-logo-img-full { height: 66px; }
   }
   @media (min-width: 1024px) {
-    .ys-logo-img-full { height: 100px; }
+    .ys-logo-img-full { height: 71px; }
   }
   .ys-logo-img-mark {
     height: 42px;
