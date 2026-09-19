@@ -99,14 +99,7 @@ const HowWeWorkSection = () => {
               What you can rely on
             </p>
             <h2
-              style={{
-                fontSize: 'clamp(1.75rem, 3vw, 2.5rem)',
-                fontWeight: 600,
-                letterSpacing: '-0.02em',
-                lineHeight: 1.2,
-                color: 'var(--ys-ink)',
-                marginBottom: '24px'
-              }}
+              style={{ color: 'var(--ink)', marginBottom: '24px' }}
             >
               Dependable, in writing.
             </h2>

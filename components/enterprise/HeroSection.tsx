@@ -74,14 +74,8 @@ const HeroSection = () => {
           <div className="max-w-[760px]">
             <motion.p
               {...reveal(0)}
-              className="uppercase"
-              style={{
-                fontSize: 'clamp(10px, 1.05vw, 12px)',
-                fontWeight: 600,
-                letterSpacing: '0.18em',
-                color: 'rgba(255,255,255,0.86)',
-                marginBottom: 'clamp(16px, 2.4vw, 22px)',
-              }}
+              className="ys-eyebrow ys-eyebrow-on-dark"
+              style={{ marginBottom: 'clamp(16px, 2.4vw, 22px)' }}
             >
               IT Services <span aria-hidden="true" style={{ opacity: 0.55 }}>·</span>{' '}
               Applied AI
@@ -89,14 +83,7 @@ const HeroSection = () => {
 
             <motion.h1
               {...reveal(0.08)}
-              style={{
-                fontSize: 'clamp(30px, 4.3vw, 54px)',
-                lineHeight: 1.1,
-                fontWeight: 800,
-                letterSpacing: '-0.028em',
-                color: '#ffffff',
-                textWrap: 'balance',
-              }}
+              style={{ color: 'var(--on-dark)', textWrap: 'balance' }}
             >
               Technology that fixes the problem you actually have.
             </motion.h1>
@@ -108,7 +95,7 @@ const HeroSection = () => {
                 marginTop: 'clamp(16px, 2.2vw, 22px)',
                 fontSize: 'clamp(15px, 1.35vw, 17.5px)',
                 lineHeight: 1.62,
-                color: 'rgba(255,255,255,0.88)',
+                color: 'var(--on-dark-muted)',
               }}
             >
               Slow onboarding. Systems nobody dares touch. Data you can&rsquo;t get
@@ -139,13 +126,13 @@ const HeroSection = () => {
                 marginTop: 'clamp(22px, 2.8vw, 30px)',
                 fontSize: 'clamp(12.5px, 1vw, 13.5px)',
                 lineHeight: 1.7,
-                color: 'rgba(255,255,255,0.72)',
+                color: 'var(--on-dark-muted)',
               }}
             >
               {PROOF.map((item, i) => (
                 <span key={item} className="inline-flex items-center" style={{ gap: 10 }}>
                   {i > 0 && (
-                    <span aria-hidden="true" style={{ color: 'rgba(255,255,255,0.34)' }}>
+                    <span aria-hidden="true" style={{ color: 'var(--on-dark-label)' }}>
                       ·
                     </span>
                   )}

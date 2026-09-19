@@ -86,14 +86,8 @@ export function PageHero({
             {eyebrow && (
               <motion.p
                 {...reveal(0)}
-                className="uppercase"
-                style={{
-                  fontSize: 'clamp(10px, 1.05vw, 12px)',
-                  fontWeight: 600,
-                  letterSpacing: '0.18em',
-                  color: 'rgba(255,255,255,0.86)',
-                  marginBottom: 'clamp(14px, 2.2vw, 20px)',
-                }}
+                className="ys-eyebrow ys-eyebrow-on-dark"
+                style={{ marginBottom: 'clamp(14px, 2.2vw, 20px)' }}
               >
                 {eyebrow}
               </motion.p>
@@ -101,14 +95,7 @@ export function PageHero({
 
             <motion.h1
               {...reveal(0.07)}
-              style={{
-                fontSize: 'clamp(30px, 4.1vw, 50px)',
-                lineHeight: 1.1,
-                fontWeight: 800,
-                letterSpacing: '-0.028em',
-                color: '#ffffff',
-                textWrap: 'balance',
-              }}
+              style={{ color: 'var(--on-dark)', textWrap: 'balance' }}
             >
               {title}
             </motion.h1>
@@ -116,12 +103,10 @@ export function PageHero({
             {lede && (
               <motion.p
                 {...reveal(0.16)}
+                className="lead measure"
                 style={{
-                  maxWidth: 640,
                   marginTop: 'clamp(14px, 2vw, 20px)',
-                  fontSize: 'clamp(15px, 1.3vw, 17.5px)',
-                  lineHeight: 1.62,
-                  color: 'rgba(255,255,255,0.88)',
+                  color: 'var(--on-dark-muted)',
                 }}
               >
                 {lede}
@@ -196,29 +181,17 @@ export function PageSection({
           >
             {eyebrow && <p className="ys-eyebrow">{eyebrow}</p>}
             {title && (
-              <h2
-                style={{
-                  fontSize: 'clamp(24px, 3vw, 34px)',
-                  fontWeight: 700,
-                  letterSpacing: '-0.025em',
-                  lineHeight: 1.2,
-                  marginTop: 14,
-                  marginBottom: 16,
-                  textWrap: 'balance',
-                }}
-              >
+              <h2 style={{ marginTop: 14, marginBottom: 16, textWrap: 'balance' }}>
                 {title}
               </h2>
             )}
             <div className="ys-rule" />
             {lede && (
               <p
+                className="lead measure"
                 style={{
                   marginTop: 18,
-                  maxWidth: '46rem',
-                  fontSize: 15.5,
-                  lineHeight: 1.65,
-                  color: 'var(--ys-ink-body)',
+                  color: 'var(--ink-muted)',
                 }}
               >
                 {lede}

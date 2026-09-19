@@ -1,41 +1,35 @@
 import type { Metadata, Viewport } from 'next'
-import { Inter, JetBrains_Mono, Playfair_Display, Space_Grotesk, Plus_Jakarta_Sans } from 'next/font/google'
+import { Space_Grotesk, IBM_Plex_Sans, IBM_Plex_Mono } from 'next/font/google'
 import './globals.css'
 import { AsyncErrorBoundary } from '@/components/async-error-boundary'
 import { MotionProvider } from '@/components/motion-provider'
 
-// YatiSphere approved brand typeface
-const plusJakartaSans = Plus_Jakarta_Sans({
-  subsets: ['latin'],
-  variable: '--font-brand',
-  display: 'swap',
-  weight: ['400', '500', '600', '700', '800'],
-})
-
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-  display: 'swap',
-})
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ['latin'],
-  variable: '--font-mono',
-  display: 'swap',
-})
-
-const playfairDisplay = Playfair_Display({
-  subsets: ['latin'],
-  variable: '--font-display',
-  display: 'swap',
-  weight: ['400', '500', '600', '700', '800', '900'],
-})
-
+/**
+ * Three families, latin only, display: swap.
+ *
+ * The site previously loaded five families, of which only one was
+ * really used, at a cost of ~1MB of font files. Now 284KB.
+ */
 const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
   variable: '--font-heading',
   display: 'swap',
-  weight: ['300', '400', '500', '600', '700'],
+  weight: ['500', '600'],
+})
+
+const ibmPlexSans = IBM_Plex_Sans({
+  subsets: ['latin'],
+  variable: '--font-sans',
+  display: 'swap',
+  weight: ['400', '500', '600'],
+})
+
+/** Eyebrows, small-caps labels and tags only. */
+const ibmPlexMono = IBM_Plex_Mono({
+  subsets: ['latin'],
+  variable: '--font-mono',
+  display: 'swap',
+  weight: ['400', '500'],
 })
 
 export const metadata: Metadata = {
@@ -142,7 +136,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${plusJakartaSans.variable} ${inter.variable} ${jetbrainsMono.variable} ${playfairDisplay.variable} ${spaceGrotesk.variable} min-h-screen bg-background font-sans antialiased`}>
+      <body className={`${spaceGrotesk.variable} ${ibmPlexSans.variable} ${ibmPlexMono.variable} min-h-screen bg-background font-sans antialiased`}>
         {/* Skip to main content for accessibility */}
         <a
           href="#main-content"

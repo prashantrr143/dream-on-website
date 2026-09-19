@@ -37,15 +37,7 @@ const HowWeDeliverSection = () => {
         >
           <p className="ys-eyebrow">How we deliver</p>
           <h2
-            style={{
-              fontSize: 'clamp(26px, 3.2vw, 36px)',
-              fontWeight: 700,
-              letterSpacing: '-0.025em',
-              lineHeight: 1.18,
-              marginTop: 14,
-              marginBottom: 18,
-              textWrap: 'balance',
-            }}
+            style={{ marginTop: 14, marginBottom: 18, textWrap: 'balance' }}
           >
             Five stages. No handovers.
           </h2>
