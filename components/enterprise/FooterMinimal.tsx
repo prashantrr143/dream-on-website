@@ -49,7 +49,6 @@ const footerColumns = [
       { name: "About Us", href: "/about-us" },
       { name: "How We Work", href: "/how-we-work" },
       { name: "Perspectives", href: "/perspectives" },
-      { name: "Partners", href: "/partners" },
       { name: "Contact", href: "/contact-us" },
     ]
   },

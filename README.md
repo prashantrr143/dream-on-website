@@ -35,9 +35,7 @@ Visit the live website: [Yati Sphere Technologies](https://github.com/prashantrr
 yati-sphere-website/
 ├── app/                    # Next.js 15 App Router
 │   ├── about-us/          # Company information and team
-│   ├── case-studies/      # Success stories and client testimonials
 │   ├── contact-us/        # Advanced contact form with validation
-│   ├── partners/          # Partnership information and benefits
 │   ├── policy/            # Privacy policy and terms
 │   ├── resources/         # Knowledge hub and resources
 │   ├── services/          # Service catalog with pricing
@@ -149,12 +147,6 @@ pnpm lint         # Run ESLint
 - Multi-select service options
 - Real-time form validation
 - Professional inquiry handling
-
-### 🤝 Partners
-- Partnership types and benefits
-- Technology partner ecosystem
-- Channel partner network
-- Certification partnerships
 
 ### 📖 Resources
 - Knowledge hub with whitepapers
