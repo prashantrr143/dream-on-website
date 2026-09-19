@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import { YsIcon } from '@/components/brand/YsIcon'
 import { LOGO_ASSETS } from '@/components/brand/YatiSphereLogo'
+import { hasArticles } from '@/lib/perspectives'
 
 /**
  * Footer navigation mirrors the header IA (Solutions / AI / Company /
@@ -48,7 +49,8 @@ const footerColumns = [
     links: [
       { name: "About Us", href: "/about-us" },
       { name: "How We Work", href: "/how-we-work" },
-      { name: "Perspectives", href: "/perspectives" },
+      // Shown only while there is at least one real article to link to.
+      ...(hasArticles ? [{ name: "Perspectives", href: "/perspectives" }] : []),
       { name: "Contact", href: "/contact-us" },
     ]
   },

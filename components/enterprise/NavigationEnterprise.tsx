@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback, useRef } from 'react'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import { LOGO_ASSETS } from '@/components/brand/YatiSphereLogo'
+import { hasArticles } from '@/lib/perspectives'
 import { ArrowRight, Menu, X, ChevronDown } from 'lucide-react'
 
 interface DropdownItem {
@@ -70,7 +71,7 @@ const navigationItems: NavItem[] = [
     items: [
       { name: "About Us", href: "/about-us" },
       { name: "Why Yati Sphere", href: "/#why" },
-      { name: "Perspectives", href: "/perspectives" },
+      ...(hasArticles ? [{ name: "Perspectives", href: "/perspectives" }] : []),
       { name: "Contact", href: "/contact-us" },
     ],
   },

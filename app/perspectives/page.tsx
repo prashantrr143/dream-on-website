@@ -3,7 +3,9 @@
 import { motion, type Variants } from 'framer-motion'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
+import { notFound } from 'next/navigation'
 import SharedLayout from '@/components/shared-layout'
+import { articles } from '@/lib/perspectives'
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 20 },
@@ -70,58 +72,13 @@ const pillarColors: Record<string, string> = {
   "AI in Production": "#00D1FF"
 }
 
-const perspectives = [
-  {
-    pillar: "System Design & Architecture",
-    title: "Why most platform modernization efforts fail in year two",
-    summary: "The first year of a platform initiative is often the easiest. The problems emerge when the team that built it moves on, requirements shift, and the assumptions baked into the architecture start to surface.",
-    readTime: "8 min"
-  },
-  {
-    pillar: "Delivery & Governance",
-    title: "The hidden cost of skipping architecture reviews",
-    summary: "Organizations often treat architecture reviews as ceremony. We've observed a consistent pattern: the cost of skipping them is rarely visible until remediation becomes the primary workstream.",
-    readTime: "6 min"
-  },
-  {
-    pillar: "AI in Production",
-    title: "Data boundaries in enterprise AI systems",
-    summary: "When deploying AI in regulated environments, the question isn't whether the model works — it's whether you can explain what data it touched, why, and what happens when it's wrong.",
-    readTime: "10 min"
-  },
-  {
-    pillar: "System Design & Architecture",
-    title: "On the difference between integration and interoperability",
-    summary: "Two systems that exchange data are integrated. Two systems that can evolve independently while maintaining their contracts are interoperable. The distinction matters more than most organizations realize.",
-    readTime: "5 min"
-  },
-  {
-    pillar: "Delivery & Governance",
-    title: "What we mean by 'production-ready'",
-    summary: "A system that works in demo is not production-ready. A system that works under load is closer. A system that can be operated, monitored, and recovered by someone who didn't build it — that's production-ready.",
-    readTime: "7 min"
-  },
-  {
-    pillar: "AI in Production",
-    title: "The governance layer most AI deployments are missing",
-    summary: "Model accuracy is table stakes. What enterprises actually need is a governance layer that answers: who approved this, what can it access, and how do we turn it off?",
-    readTime: "9 min"
-  },
-  {
-    pillar: "System Design & Architecture",
-    title: "Technical debt is a symptom, not a cause",
-    summary: "Teams often treat technical debt as the problem to solve. In our experience, it's usually a symptom of misaligned incentives, unclear ownership, or architectural decisions made without sufficient context.",
-    readTime: "6 min"
-  },
-  {
-    pillar: "Delivery & Governance",
-    title: "Why documentation doesn't transfer knowledge",
-    summary: "Documentation is necessary but not sufficient. Knowledge transfer happens through structured handover, not through wiki pages that no one reads after the first week.",
-    readTime: "5 min"
-  }
-]
 
 export default function PerspectivesPage() {
+  // Nothing to show until there is at least one real article.
+  if (articles.length === 0) {
+    notFound()
+  }
+
   return (
     <SharedLayout>
       {/* Hero — Dark navy header matching homepage */}
@@ -403,14 +360,14 @@ export default function PerspectivesPage() {
               flexDirection: 'column',
             }}
           >
-            {perspectives.map((article, index) => (
+            {articles.map((article, index) => (
               <motion.article
                 key={index}
                 variants={fadeUp}
                 className="group"
                 style={{
                   padding: '28px 0',
-                  borderBottom: index < perspectives.length - 1 ? '1px solid rgba(255, 255, 255, 0.08)' : 'none',
+                  borderBottom: index < articles.length - 1 ? '1px solid rgba(255, 255, 255, 0.08)' : 'none',
                   cursor: 'pointer',
                   transition: 'background-color 0.15s ease'
                 }}
@@ -438,7 +395,7 @@ export default function PerspectivesPage() {
                           width: '6px',
                           height: '6px',
                           borderRadius: '50%',
-                          backgroundColor: pillarColors[article.pillar] || '#00D1FF',
+                          backgroundColor: pillarColors[article.category] || '#00D1FF',
                           opacity: 0.7
                         }}
                       />
@@ -448,10 +405,10 @@ export default function PerspectivesPage() {
                           fontWeight: 600,
                           textTransform: 'uppercase',
                           letterSpacing: '0.06em',
-                          color: pillarColors[article.pillar] || '#00D1FF',
+                          color: pillarColors[article.category] || '#00D1FF',
                         }}
                       >
-                        {article.pillar}
+                        {article.category}
                       </span>
                     </div>
                     {/* Title */}
