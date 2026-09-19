@@ -28,9 +28,9 @@ const footerColumns = [
   {
     title: "Applied AI",
     links: [
-      { name: "AI Architecture", href: "/solutions/ai-ml" },
-      { name: "Agentic Automation", href: "/solutions/ai-ml" },
-      { name: "AI Platforms", href: "/solutions/ai-ml" },
+      { name: "AI Architecture", href: "/applied-ai#architecture" },
+      { name: "Agentic Automation", href: "/applied-ai#agentic" },
+      { name: "AI Platforms", href: "/applied-ai#platforms" },
       { name: "Responsible AI", href: "/responsible-ai" },
     ]
   },

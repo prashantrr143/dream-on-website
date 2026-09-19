@@ -128,7 +128,7 @@ const whatWeBuild: Array<{
       "Explicit boundaries on automated decisioning"
     ],
     icon: 'ai-ml',
-    href: '/solutions/ai-ml',
+    href: '/applied-ai',
     hrefLabel: 'AI and ML'
   }
 ]

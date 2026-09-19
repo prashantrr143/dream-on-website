@@ -60,7 +60,7 @@ const audiences: Audience[] = [
     body: 'Groups with a working proof of concept that now needs integration, governance and someone accountable for operating it.',
     signal: 'The demo worked. Nobody owns what happens next.',
     icon: 'ai-ml',
-    href: '/solutions/ai-ml',
+    href: '/applied-ai',
   },
 ]
 

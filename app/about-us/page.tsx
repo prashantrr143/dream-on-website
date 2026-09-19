@@ -48,7 +48,7 @@ const AboutUs = () => {
               responsible-AI controls that let a compliance team sign off rather
               than shut it down.
             </p>
-            <a href="/solutions/ai-ml" className="ys-link ys-about-do-link">
+            <a href="/applied-ai" className="ys-link ys-about-do-link">
               Explore applied AI
               <ArrowRight className="w-3.5 h-3.5 shrink-0" strokeWidth={2.5} aria-hidden="true" />
             </a>

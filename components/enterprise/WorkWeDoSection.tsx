@@ -50,7 +50,7 @@ const solutions = [
   {
     title: "Applied AI & Machine Learning",
     description: "Intelligent systems for real-world impact.",
-    href: "/solutions/ai-ml",
+    href: "/applied-ai",
     icon: "ai-ml" as YsIconName
   }
 ]

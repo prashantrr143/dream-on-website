@@ -46,9 +46,9 @@ const navigationItems: NavItem[] = [
     name: "Applied AI",
     href: "/#ai",
     items: [
-      { name: "AI Architecture & Readiness", href: "/solutions/ai-ml" },
-      { name: "Agentic Workflow Automation", href: "/solutions/ai-ml" },
-      { name: "Enterprise AI Platforms", href: "/solutions/ai-ml" },
+      { name: "AI Architecture & Readiness", href: "/applied-ai#architecture" },
+      { name: "Agentic Workflow Automation", href: "/applied-ai#agentic" },
+      { name: "Enterprise AI Platforms", href: "/applied-ai#platforms" },
       { name: "Responsible AI & Governance", href: "/responsible-ai" },
     ],
   },

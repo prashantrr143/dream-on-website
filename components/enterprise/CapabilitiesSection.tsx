@@ -46,7 +46,7 @@ const capabilities = [
     title: "Applied AI, Data & Governance",
     description:
       "Production-grade AI and data systems with governance, auditability, and compliance built in. Responsible by design.",
-    link: "/solutions/ai-ml",
+    link: "/applied-ai",
     icon: Shield,
     iconColor: "#00D1FF",
     iconBg: "rgba(0, 209, 255, 0.1)"

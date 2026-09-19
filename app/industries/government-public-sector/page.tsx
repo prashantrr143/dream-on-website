@@ -455,7 +455,7 @@ const GovernmentPublicSector = () => {
           Where AI is in scope, we scope it against our{' '}
           <a href="/responsible-ai" style={{ color: 'var(--ys-link-on-light)', fontWeight: 600 }}>responsible AI position</a>{' '}
           and our{' '}
-          <a href="/solutions/ai-ml" style={{ color: 'var(--ys-link-on-light)', fontWeight: 600 }}>applied AI practice</a>.
+          <a href="/applied-ai" style={{ color: 'var(--ys-link-on-light)', fontWeight: 600 }}>applied AI practice</a>.
           The full service catalogue is on the{' '}
           <a href="/solutions" style={{ color: 'var(--ys-link-on-light)', fontWeight: 600 }}>solutions page</a>.
         </motion.p>
