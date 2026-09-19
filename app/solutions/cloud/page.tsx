@@ -50,11 +50,11 @@ const solutions = [
     description: "Enterprise-grade security architecture with automated compliance monitoring and real-time threat detection.",
     capabilities: [
       "Zero-trust architecture",
-      "SOC2 & ISO27001 automation",
+      "Compliance controls as code",
       "Identity & access management",
       "Continuous security monitoring"
     ],
-    technologies: ["AWS Security Hub", "Azure Sentinel", "Terraform", "Vault"],
+    technologies: ["Terraform"],
     metric: "Continuous compliance monitoring",
     iconPath: "M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"
   },
@@ -67,7 +67,7 @@ const solutions = [
       "Business intelligence dashboards",
       "Data lake architecture"
     ],
-    technologies: ["Snowflake", "Apache Kafka", "Databricks", "Power BI"],
+    technologies: ["Databricks", "Power BI"],
     metric: "Streaming and batch analytics",
     iconPath: "M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"
   },
@@ -80,7 +80,7 @@ const solutions = [
       "Automated testing & deployment",
       "Performance monitoring"
     ],
-    technologies: ["Jenkins", "GitLab", "Terraform", "Prometheus"],
+    technologies: ["Terraform"],
     metric: "Automated deployment pipelines",
     iconPath: "M13 10V3L4 14h7v7l9-11h-7z"
   },
@@ -93,7 +93,7 @@ const solutions = [
       "Service mesh deployment",
       "Container orchestration"
     ],
-    technologies: ["Kubernetes", "Istio", "Kong", "Consul"],
+    technologies: ["Kubernetes"],
     metric: "Independent scaling",
     iconPath: "M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2"
   },
@@ -106,7 +106,7 @@ const solutions = [
       "Disaster recovery planning",
       "Cost optimization"
     ],
-    technologies: ["AWS", "Azure", "GCP", "CloudFormation"],
+    technologies: ["AWS", "Azure"],
     metric: "Unified multi-cloud management",
     iconPath: "M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9"
   }
@@ -315,6 +315,7 @@ const CloudInfrastructure = () => {
                 >
                   {solution.metric}
                 </div>
+                {solution.technologies.length > 0 && (
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
                   {solution.technologies.map((tech) => (
                     <span
@@ -334,6 +335,7 @@ const CloudInfrastructure = () => {
                     </span>
                   ))}
                 </div>
+                )}
               </div>
             </motion.div>
           ))}

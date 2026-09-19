@@ -90,7 +90,7 @@ const services: ServiceItem[] = [
     overline: ['Protect', 'Govern', 'Assure'],
     title: 'Enterprise Security',
     body: 'Security, identity and governance engineered into the technology foundation.',
-    tags: ['Entra ID', 'Zero Trust', 'SOC 2', 'ISO 27001'],
+    tags: ['Entra ID', 'Zero Trust', 'Access governance', 'Audit readiness'],
     href: '/solutions/security',
     icon: 'security',
     visual: 'security',

@@ -205,7 +205,6 @@ const PrivacyPolicy = () => {
                        <li className="list-disc">End-to-end encryption for data in transit and at rest using industry-standard protocols</li>
                        <li className="list-disc">Multi-factor authentication and role-based access controls</li>
                        <li className="list-disc">Regular security audits, vulnerability assessments, and penetration testing</li>
-                       <li className="list-disc">SOC 2 Type II and ISO 27001 compliance certification</li>
                        <li className="list-disc">Automated threat detection, monitoring, and incident response systems</li>
                        <li className="list-disc">Regular security updates, patch management, and system hardening</li>
                      </ul>
