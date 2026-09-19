@@ -1,28 +1,10 @@
 "use client"
 
-import { motion, type Variants } from 'framer-motion'
+import { motion } from 'framer-motion'
 import SharedLayout from '@/components/shared-layout'
 import { PageHero, PageSection, PageCTA } from '@/components/enterprise'
 
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }
-  }
-}
 
-const staggerContainer: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.12,
-      delayChildren: 0.15
-    }
-  }
-}
 
 const atAGlance = [
   {
@@ -139,7 +121,7 @@ const whatWeBuild = [
       "Retrieval and grounding over model fine-tuning first",
       "Human-in-the-loop on consequential outputs"
     ],
-    href: "/solutions/ai-ml",
+    href: "/applied-ai",
     linkLabel: "Applied AI & ML",
     iconPath: "M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
   }
@@ -187,17 +169,12 @@ const EnterpriseTechnology = () => {
       {/* At a glance */}
       <PageSection tone="white" eyebrow="At a glance">
         <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          variants={staggerContainer}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
           style={{ gap: '16px' }}
         >
           {atAGlance.map((item) => (
             <motion.div
               key={item.value}
-              variants={fadeUp}
               className="ys-card-light"
               style={{ padding: '28px 24px', minWidth: 0 }}
             >
@@ -245,17 +222,12 @@ const EnterpriseTechnology = () => {
         lede="The constraints product and platform teams bring to us, stated plainly."
       >
         <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          variants={staggerContainer}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
           style={{ gap: '24px' }}
         >
           {pressures.map((pressure) => (
             <motion.div
               key={pressure.title}
-              variants={fadeUp}
               className="ys-card-light"
               style={{
                 padding: '32px',
@@ -336,17 +308,12 @@ const EnterpriseTechnology = () => {
         lede="Enterprise IT engineering as the core of the work, with applied AI scoped deliberately where it earns its place."
       >
         <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          variants={staggerContainer}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
           style={{ gap: '24px' }}
         >
           {whatWeBuild.map((item) => (
             <motion.div
               key={item.title}
-              variants={fadeUp}
               className="ys-card-light"
               style={{
                 padding: '32px',
@@ -437,10 +404,6 @@ const EnterpriseTechnology = () => {
         </motion.div>
 
         <motion.p
-          initial={{ opacity: 0, y: 14 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-          viewport={{ once: true }}
           style={{
             marginTop: '28px',
             maxWidth: '46rem',
@@ -468,17 +431,12 @@ const EnterpriseTechnology = () => {
         lede="These are the frameworks your buyers, auditors and regulators hold you to. We design controls against them and generate the evidence — the certifications and obligations remain your organisation's."
       >
         <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          variants={staggerContainer}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
           style={{ gap: '24px' }}
         >
           {governance.map((item) => (
             <motion.div
               key={item.title}
-              variants={fadeUp}
               className="ys-card-light"
               style={{ padding: '32px', minWidth: 0 }}
             >

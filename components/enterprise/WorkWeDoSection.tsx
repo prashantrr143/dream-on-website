@@ -1,25 +1,10 @@
 "use client"
 
-import { motion, type Variants } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { YsIcon, type YsIconName } from '@/components/brand/YsIcon'
 import { ArrowRight } from 'lucide-react'
 
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] }
-  }
-}
 
-const staggerContainer: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.07, delayChildren: 0.1 }
-  }
-}
 
 // Solution areas — retained exactly as specified in the brand brief.
 const solutions = [
@@ -50,7 +35,7 @@ const solutions = [
   {
     title: "Applied AI & Machine Learning",
     description: "Intelligent systems for real-world impact.",
-    href: "/solutions/ai-ml",
+    href: "/applied-ai",
     icon: "ai-ml" as YsIconName
   }
 ]
@@ -62,10 +47,6 @@ const WorkWeDoSection = () => {
         <div className="ys-solutions-layout">
           {/* Intro column */}
           <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            viewport={{ once: true }}
           >
             <p className="ys-eyebrow">What We Build</p>
             <h2
@@ -99,16 +80,11 @@ const WorkWeDoSection = () => {
           {/* Solution cards */}
           <motion.div
             className="ys-solutions-grid"
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.15 }}
           >
             {solutions.map((solution) => (
               <motion.a
                 key={solution.title}
                 href={solution.href}
-                variants={fadeUp}
                 className="ys-card-light group"
                 style={{
                   display: 'flex',

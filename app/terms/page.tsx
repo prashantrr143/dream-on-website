@@ -1,5 +1,6 @@
 import { Metadata } from 'next'
 import SharedLayout from '@/components/shared-layout'
+import { LEGAL_LAST_UPDATED, LEGAL_ENTITY_NAME } from '@/lib/legal'
 
 export const metadata: Metadata = {
   title: 'Terms of Service | Yatisphere',
@@ -47,7 +48,7 @@ export default function TermsPage() {
               color: 'hsl(var(--premium-gray-500))'
             }}
           >
-            Effective January 1, 2025
+            Last updated {LEGAL_LAST_UPDATED}
           </p>
         </div>
       </section>
@@ -77,7 +78,7 @@ export default function TermsPage() {
                   color: 'hsl(var(--premium-gray-600))'
                 }}
               >
-                These Terms of Service ("Terms") govern your use of the Yatisphere Technologies website and any related services. By accessing our website or engaging our services, you agree to these Terms.
+                These Terms of Service ("Terms") govern your use of the {LEGAL_ENTITY_NAME} website and any related services. By accessing our website or engaging our services, you agree to these Terms.
               </p>
             </section>
 
@@ -161,7 +162,7 @@ export default function TermsPage() {
                   color: 'hsl(var(--premium-gray-600))'
                 }}
               >
-                All content on this website, including text, graphics, logos, and software, is the property of Yatisphere Technologies or its licensors and is protected by intellectual property laws. You may not reproduce, distribute, or create derivative works without our express written permission.
+                All content on this website, including text, graphics, logos, and software, is the property of {LEGAL_ENTITY_NAME} or its licensors and is protected by intellectual property laws. You may not reproduce, distribute, or create derivative works without our express written permission.
               </p>
             </section>
 
@@ -207,7 +208,7 @@ export default function TermsPage() {
                   color: 'hsl(var(--premium-gray-600))'
                 }}
               >
-                To the fullest extent permitted by law, Yatisphere Technologies shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of the website or services, regardless of the cause of action or the basis of the claim.
+                To the fullest extent permitted by law, {LEGAL_ENTITY_NAME} shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of the website or services, regardless of the cause of action or the basis of the claim.
               </p>
             </section>
 

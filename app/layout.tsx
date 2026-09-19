@@ -1,41 +1,35 @@
 import type { Metadata, Viewport } from 'next'
-import { Inter, JetBrains_Mono, Playfair_Display, Space_Grotesk, Plus_Jakarta_Sans } from 'next/font/google'
+import { Space_Grotesk, IBM_Plex_Sans, IBM_Plex_Mono } from 'next/font/google'
 import './globals.css'
 import { AsyncErrorBoundary } from '@/components/async-error-boundary'
 import { MotionProvider } from '@/components/motion-provider'
 
-// YatiSphere approved brand typeface
-const plusJakartaSans = Plus_Jakarta_Sans({
-  subsets: ['latin'],
-  variable: '--font-brand',
-  display: 'swap',
-  weight: ['400', '500', '600', '700', '800'],
-})
-
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-  display: 'swap',
-})
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ['latin'],
-  variable: '--font-mono',
-  display: 'swap',
-})
-
-const playfairDisplay = Playfair_Display({
-  subsets: ['latin'],
-  variable: '--font-display',
-  display: 'swap',
-  weight: ['400', '500', '600', '700', '800', '900'],
-})
-
+/**
+ * Three families, latin only, display: swap.
+ *
+ * The site previously loaded five families, of which only one was
+ * really used, at a cost of ~1MB of font files. Now 284KB.
+ */
 const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
   variable: '--font-heading',
   display: 'swap',
-  weight: ['300', '400', '500', '600', '700'],
+  weight: ['500', '600'],
+})
+
+const ibmPlexSans = IBM_Plex_Sans({
+  subsets: ['latin'],
+  variable: '--font-sans',
+  display: 'swap',
+  weight: ['400', '500', '600'],
+})
+
+/** Eyebrows, small-caps labels and tags only. */
+const ibmPlexMono = IBM_Plex_Mono({
+  subsets: ['latin'],
+  variable: '--font-mono',
+  display: 'swap',
+  weight: ['400', '500'],
 })
 
 export const metadata: Metadata = {
@@ -44,7 +38,7 @@ export const metadata: Metadata = {
     default: 'Yati Sphere Technologies — Enterprise IT Services & Applied AI',
     template: '%s | Yati Sphere Technologies'
   },
-  description: 'Yati Sphere builds, modernises and runs enterprise software, cloud and data platforms — and brings applied AI into them with the governance regulated businesses require.',
+  description: 'Tell us the business problem — slow onboarding, a system nobody dares touch, data you cannot get answers from, an AI pilot that stalled. One in-house team delivers the working solution, end to end.',
   keywords: [
     'enterprise technology', 'cloud infrastructure', 'AI solutions', 'DevOps automation', 
     'data analytics', 'IT consulting', 'digital transformation', 'cloud migration',
@@ -78,7 +72,7 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://yatisphere.com',
     title: 'Yati Sphere Technologies — Enterprise IT Services & Applied AI',
-    description: 'Yati Sphere builds, modernises and runs enterprise software, cloud and data platforms — and brings applied AI into them with the governance regulated businesses require.',
+    description: 'Tell us the business problem — slow onboarding, a system nobody dares touch, data you cannot get answers from, an AI pilot that stalled. One in-house team delivers the working solution, end to end.',
     siteName: 'Yati Sphere Technologies',
     images: [
       {
@@ -94,7 +88,7 @@ export const metadata: Metadata = {
     site: '@YatiSphere',
     creator: '@YatiSphere',
     title: 'Yati Sphere Technologies — Enterprise IT Services & Applied AI',
-    description: 'Yati Sphere builds, modernises and runs enterprise software, cloud and data platforms — and brings applied AI into them with the governance regulated businesses require.',
+    description: 'Tell us the business problem — slow onboarding, a system nobody dares touch, data you cannot get answers from, an AI pilot that stalled. One in-house team delivers the working solution, end to end.',
     images: ['/brand/yatisphere/social/og-image.jpg'],
   },
   robots: {
@@ -129,20 +123,9 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className="no-js" suppressHydrationWarning>
-      <head>
-        {/*
-          Runs before paint: drops `.no-js` so the scroll-reveal
-          animations take over. If JS never runs the class stays and
-          the CSS fallback in globals.css keeps all content visible.
-        */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `document.documentElement.classList.remove('no-js')`,
-          }}
-        />
-      </head>
-      <body className={`${plusJakartaSans.variable} ${inter.variable} ${jetbrainsMono.variable} ${playfairDisplay.variable} ${spaceGrotesk.variable} min-h-screen bg-background font-sans antialiased`}>
+    <html lang="en" suppressHydrationWarning>
+      <head />
+      <body className={`${spaceGrotesk.variable} ${ibmPlexSans.variable} ${ibmPlexMono.variable} min-h-screen bg-background font-sans antialiased`}>
         {/* Skip to main content for accessibility */}
         <a
           href="#main-content"

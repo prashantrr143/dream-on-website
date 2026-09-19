@@ -73,18 +73,11 @@ const ProfessionalCTA = () => {
         
         {/* Premium Achievements Section */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: [0.4, 0, 0.2, 1] }}
-          viewport={{ once: true }}
           className="mb-24"
         >
           <div className="text-center mb-20">
             <motion.div 
               className="inline-flex items-center glass-card px-8 py-3 mb-8 bg-primary/5 border border-primary/20"
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
             >
               <BarChart3 className="w-5 h-5 mr-3 text-primary" />
               <span className="text-sm font-semibold text-foreground tracking-wide uppercase">PROVEN ENTERPRISE RESULTS</span>
@@ -102,10 +95,6 @@ const ProfessionalCTA = () => {
             {achievements.map((achievement, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.15, duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
-                viewport={{ once: true }}
                 className="text-center enterprise-card p-10 hover-lift group"
                 whileHover={{ y: -12, scale: 1.05 }}
               >
@@ -135,10 +124,6 @@ const ProfessionalCTA = () => {
 
         {/* Premium Main CTA Section */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.4, ease: [0.4, 0, 0.2, 1] }}
-          viewport={{ once: true }}
           className="enterprise-card bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-3xl p-16 lg:p-20 text-center mb-24 relative overflow-hidden"
         >
           {/* Premium background effects */}
@@ -146,9 +131,6 @@ const ProfessionalCTA = () => {
           
           <motion.div 
             className="inline-flex items-center glass-card px-8 py-3 mb-10 bg-blue-600/10 border-blue-400/20"
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
           >
             <CheckCircle className="w-5 h-5 mr-3 text-blue-400" />
             <span className="text-sm font-semibold text-blue-300 tracking-wide uppercase">READY TO GET STARTED?</span>
@@ -156,18 +138,12 @@ const ProfessionalCTA = () => {
           
           <motion.h3 
             className="heading-section text-white mb-8"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
           >
             Transform Your Enterprise Today
           </motion.h3>
           
           <motion.p 
             className="text-lead text-slate-300 mb-16 max-w-4xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1 }}
           >
             Schedule a comprehensive consultation with our enterprise solution architects. 
             We'll analyze your current infrastructure, identify optimization opportunities, 
@@ -176,9 +152,6 @@ const ProfessionalCTA = () => {
           
           <motion.div 
             className="flex flex-col sm:flex-row gap-8 justify-center mb-16"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.2 }}
           >
             <button className="enterprise-button px-12 py-5 text-white text-lg font-bold flex items-center justify-center">
               <Calendar className="w-6 h-6 mr-4" />
@@ -220,10 +193,6 @@ const ProfessionalCTA = () => {
 
         {/* Testimonial Section */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          viewport={{ once: true }}
           className="text-center"
         >
           <h3 className="text-2xl font-bold text-foreground mb-12">

@@ -1,18 +1,10 @@
 "use client"
 
-import { motion, type Variants } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import { YsIcon, type YsIconName } from '@/components/brand/YsIcon'
 
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 18 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
-}
 
-const stagger: Variants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.08, delayChildren: 0.05 } },
-}
 
 interface Audience {
   title: string
@@ -60,7 +52,7 @@ const audiences: Audience[] = [
     body: 'Groups with a working proof of concept that now needs integration, governance and someone accountable for operating it.',
     signal: 'The demo worked. Nobody owns what happens next.',
     icon: 'ai-ml',
-    href: '/solutions/ai-ml',
+    href: '/applied-ai',
   },
 ]
 
@@ -69,10 +61,6 @@ export function AboutAudience() {
     <section className="ys-section-light">
       <div className="enterprise-container-wide">
         <motion.div
-          initial={{ opacity: 0, y: 14 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-          viewport={{ once: true }}
           className="ys-aud-intro"
         >
           <div style={{ minWidth: 0 }}>
@@ -91,13 +79,9 @@ export function AboutAudience() {
 
         <motion.ul
           className="ys-aud-grid"
-          variants={stagger}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.12 }}
         >
           {audiences.map((a) => (
-            <motion.li key={a.title} variants={fadeUp} style={{ minWidth: 0 }}>
+            <motion.li key={a.title} style={{ minWidth: 0 }}>
               <a href={a.href} className="ys-aud-card group">
                 <span className="ys-aud-icon">
                   <YsIcon name={a.icon} size={22} variant="current" />

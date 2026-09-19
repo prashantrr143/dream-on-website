@@ -1,5 +1,6 @@
 import { Metadata } from 'next'
 import SharedLayout from '@/components/shared-layout'
+import { LEGAL_LAST_UPDATED } from '@/lib/legal'
 
 export const metadata: Metadata = {
   title: 'Security & Risk Posture | Yatisphere',
@@ -47,7 +48,7 @@ export default function SecurityPage() {
               color: 'hsl(var(--premium-gray-500))'
             }}
           >
-            Last updated January 1, 2025
+            Last updated {LEGAL_LAST_UPDATED}
           </p>
         </div>
       </section>
@@ -253,8 +254,6 @@ export default function SecurityPage() {
                   }}
                 >
                   <li>Secure development environments and practices</li>
-                  <li>Background checks for personnel with access to sensitive systems</li>
-                  <li>Regular security awareness training</li>
                   <li>Incident response procedures and communication protocols</li>
                 </ul>
               </div>

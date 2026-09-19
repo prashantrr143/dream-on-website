@@ -1,17 +1,9 @@
 "use client"
 
-import { motion, type Variants } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { YsIcon, type YsIconName } from '@/components/brand/YsIcon'
 
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 18 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
-}
 
-const stagger: Variants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.08, delayChildren: 0.05 } },
-}
 
 interface Principle {
   n: string
@@ -63,10 +55,6 @@ export function AboutPrinciples() {
     <section className="ys-section-white">
       <div className="enterprise-container-wide">
         <motion.div
-          initial={{ opacity: 0, y: 14 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-          viewport={{ once: true }}
           style={{ marginBottom: 'clamp(28px, 3.4vw, 40px)', maxWidth: '44rem' }}
         >
           <p className="ys-eyebrow">Our approach</p>
@@ -83,13 +71,9 @@ export function AboutPrinciples() {
 
         <motion.ol
           className="ys-principles"
-          variants={stagger}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.12 }}
         >
           {principles.map((p) => (
-            <motion.li key={p.n} variants={fadeUp} className="ys-principle">
+            <motion.li key={p.n} className="ys-principle">
               <div className="ys-principle-top">
                 <span className="ys-principle-n" aria-hidden="true">{p.n}</span>
                 <span className="ys-principle-icon">

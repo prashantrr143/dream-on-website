@@ -1,28 +1,10 @@
 "use client"
 
-import { motion, type Variants } from 'framer-motion'
+import { motion } from 'framer-motion'
 import SharedLayout from '@/components/shared-layout'
 import { PageHero, PageSection, PageCTA } from '@/components/enterprise'
 
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }
-  }
-}
 
-const staggerContainer: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.12,
-      delayChildren: 0.15
-    }
-  }
-}
 
 const atAGlance = [
   {
@@ -188,17 +170,12 @@ const GovernmentPublicSector = () => {
       {/* At a glance */}
       <PageSection tone="white" eyebrow="At a glance">
         <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          variants={staggerContainer}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
           style={{ gap: '16px' }}
         >
           {atAGlance.map((item) => (
             <motion.div
               key={item.value}
-              variants={fadeUp}
               className="ys-card-light"
               style={{ padding: '28px 24px', minWidth: 0 }}
             >
@@ -246,17 +223,12 @@ const GovernmentPublicSector = () => {
         lede="These are the structural constraints that shape the architecture before a single feature is discussed."
       >
         <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          variants={staggerContainer}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
           style={{ gap: '24px' }}
         >
           {pressures.map((pressure) => (
             <motion.div
               key={pressure.title}
-              variants={fadeUp}
               className="ys-card-light"
               style={{
                 padding: '32px',
@@ -337,17 +309,12 @@ const GovernmentPublicSector = () => {
         lede="The same engineering practice we bring to any enterprise platform, scoped to the constraints a department works under. Our team includes public-sector systems experience from national-scale citizen platforms."
       >
         <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          variants={staggerContainer}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
           style={{ gap: '24px' }}
         >
           {whatWeBuild.map((item) => (
             <motion.div
               key={item.title}
-              variants={fadeUp}
               className="ys-card-light"
               style={{
                 padding: '32px',
@@ -438,10 +405,6 @@ const GovernmentPublicSector = () => {
         </motion.div>
 
         <motion.p
-          initial={{ opacity: 0, y: 14 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-          viewport={{ once: true }}
           style={{
             marginTop: '28px',
             maxWidth: '46rem',
@@ -455,7 +418,7 @@ const GovernmentPublicSector = () => {
           Where AI is in scope, we scope it against our{' '}
           <a href="/responsible-ai" style={{ color: 'var(--ys-link-on-light)', fontWeight: 600 }}>responsible AI position</a>{' '}
           and our{' '}
-          <a href="/solutions/ai-ml" style={{ color: 'var(--ys-link-on-light)', fontWeight: 600 }}>applied AI practice</a>.
+          <a href="/applied-ai" style={{ color: 'var(--ys-link-on-light)', fontWeight: 600 }}>applied AI practice</a>.
           The full service catalogue is on the{' '}
           <a href="/solutions" style={{ color: 'var(--ys-link-on-light)', fontWeight: 600 }}>solutions page</a>.
         </motion.p>
@@ -469,17 +432,12 @@ const GovernmentPublicSector = () => {
         lede="These are the frameworks public bodies answer to. We design controls against them and produce the evidence your assessors and auditors ask for — the obligations remain your organisation's."
       >
         <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          variants={staggerContainer}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
           style={{ gap: '24px' }}
         >
           {governance.map((item) => (
             <motion.div
               key={item.title}
-              variants={fadeUp}
               className="ys-card-light"
               style={{ padding: '32px', minWidth: 0 }}
             >

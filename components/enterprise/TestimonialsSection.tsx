@@ -1,26 +1,8 @@
 "use client"
 
-import { motion, type Variants } from 'framer-motion'
+import { motion } from 'framer-motion'
 
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 16 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: "easeOut" as const }
-  }
-}
 
-const staggerContainer: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.12,
-      delayChildren: 0.1
-    }
-  }
-}
 
 const principles = [
   {
@@ -48,10 +30,6 @@ const TestimonialsSection = () => {
       <div className="enterprise-container-wide">
         {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
           style={{ marginBottom: '64px' }}
         >
           <p
@@ -81,17 +59,12 @@ const TestimonialsSection = () => {
 
         {/* Principles Grid */}
         <motion.div
-          variants={staggerContainer}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
           className="grid grid-cols-1 md:grid-cols-3"
           style={{ gap: '24px' }}
         >
           {principles.map((principle, index) => (
             <motion.div
               key={index}
-              variants={fadeUp}
               style={{
                 display: 'flex',
                 flexDirection: 'column',

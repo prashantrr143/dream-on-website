@@ -1,24 +1,9 @@
 "use client"
 
-import { motion, type Variants } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { YsIcon, type YsIconName } from '@/components/brand/YsIcon'
 
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }
-  }
-}
 
-const staggerContainer: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1, delayChildren: 0.1 }
-  }
-}
 
 /**
  * Credibility band.
@@ -76,10 +61,6 @@ const StatsSection = () => {
 
       <div className="enterprise-container-wide relative" style={{ zIndex: 1 }}>
         <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
           className="ys-eyebrow ys-eyebrow-on-dark"
           style={{ marginBottom: 'clamp(28px, 4vw, 44px)' }}
         >
@@ -88,13 +69,9 @@ const StatsSection = () => {
 
         <motion.div
           className="ys-credentials-grid"
-          variants={staggerContainer}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
         >
           {credentials.map((c) => (
-            <motion.div key={c.label} variants={fadeUp}>
+            <motion.div key={c.label}>
               <YsIcon name={c.icon} size={26} />
               <div
                 style={{
@@ -128,10 +105,6 @@ const StatsSection = () => {
 
         {/* Verifiable government credential */}
         <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          viewport={{ once: true }}
           className="ys-dpiit"
         >
           <span className="ys-dpiit-mark" aria-hidden="true">

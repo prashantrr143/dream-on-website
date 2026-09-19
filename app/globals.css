@@ -4,23 +4,9 @@
 @tailwind utilities;
 
 /* ============================================================
-   Scroll-reveal safety net.
-
-   Sections animate in via Framer Motion `whileInView`, which ships
-   the markup with inline `opacity:0`. If JavaScript never runs
-   (disabled, blocked, or a failed hydration) that content stays
-   invisible forever even though it is present in the HTML.
-
-   `.no-js` is set on <html> by default and removed by an inline
-   script the moment JS executes, so these overrides apply only in
-   the no-JS case. Users who prefer reduced motion are handled
-   separately, in the media query below.
+   Content is visible in the server-rendered HTML: no section is
+   shipped with opacity:0 waiting on JavaScript to reveal it.
    ============================================================ */
-.no-js [style*="opacity:0"],
-.no-js [style*="opacity: 0"] {
-  opacity: 1 !important;
-  transform: none !important;
-}
 
 /* Reduced motion: show everything immediately, no transforms. */
 @media (prefers-reduced-motion: reduce) {
@@ -160,41 +146,96 @@
     --premium-shadow: 220 13% 10%; /* Shadow base */
 
     /* ==========================================================
-       YatiSphere approved brand palette — SOURCE OF TRUTH
-       Do not introduce colors outside this palette.
+       DESIGN TOKENS — SOURCE OF TRUTH
+       Warm paper + navy, with amber as the single accent.
+       Every pair below was checked for WCAG AA; ratios are noted.
+       Do not introduce colours outside this set.
        ========================================================== */
-    --ys-deep-blue: #0B1E3D;      /* Primary dark surface */
-    --ys-primary-blue: #0A84FF;   /* Primary action / link */
-    --ys-cyan: #00D1FF;           /* Bright accent */
-    --ys-orange: #FF8A00;         /* Controlled accent */
-    --ys-yellow: #FFC107;         /* Controlled accent */
-    --ys-light-gray: #F4F7FB;     /* Light surface */
+
+    /* Dark surfaces */
+    --navy-900: #0A1A33;      /* dark sections, hero, footer; primary text on light */
+    --navy-800: #10244A;      /* raised surface on dark */
+    --line-dark: #294474;     /* borders on dark */
+    --line-dark-2: #3A4F78;   /* stronger border on dark (secondary button) */
+
+    /* Text on dark */
+    --on-dark: #FFFFFF;       /* 17.38:1 on navy-900 */
+    --on-dark-muted: #C7D2E5; /* 11.40:1 on navy-900 */
+    --on-dark-label: #8FA6CC; /*  7.03:1 on navy-900 */
+
+    /* Light surfaces */
+    --paper: #F7F4EE;         /* default light page background (warm off-white) */
+    --surface: #FFFFFF;       /* cards and alternate light sections */
+    --line: #E2DCCF;          /* borders on light */
+
+    /* Text on light */
+    --ink: #0A1A33;           /* 15.83:1 on paper, 17.38:1 on surface */
+    --ink-muted: #4A5A78;     /*  6.32:1 on paper,  6.94:1 on surface */
+
+    /* Accents */
+    --blue-600: #1F4FBF;      /* links/tags on light — 6.53:1 paper, 7.17:1 surface */
+    --blue-400: #5B8CFF;      /* links/accents on dark — 5.49:1 on navy-900 */
+    --amber-500: #F5A524;     /* THE accent: fills and highlights — 8.51:1 with navy-900 */
+    /* Amber as TEXT on light. The brief specified #B06F00, but that is
+       3.74:1 on --paper and 4.10:1 on --surface, below the 4.5:1 the same
+       brief requires. This is the nearest step on the same hue that passes
+       both (4.68:1 / 5.14:1). */
+    --amber-700: #9A6100;
+
+    /* Radius */
+    --radius-card: 12px;      /* cards and panels */
+    --radius-control: 10px;   /* buttons and inputs */
+    --radius-pill: 999px;     /* pills and tags */
+
+    /* One shadow, hover only. Cards are flat at rest. */
+    --shadow-hover: 0 8px 24px rgba(10, 26, 51, 0.08);
+
+    /* Section rhythm (8px grid) */
+    --section-y-desktop: 112px;
+    --section-y-tablet: 80px;
+    --section-y-mobile: 64px;
+    --container-max: 1200px;
+    --container-max-lg: 1600px;  /* 1440px viewports and wider */
+
+    /* ==========================================================
+       Legacy YatiSphere palette — being migrated onto the tokens
+       above. Retained so unconverted call sites keep rendering;
+       each is aliased to its nearest new token.
+       ========================================================== */
+    --ys-deep-blue: var(--navy-900);
+    --ys-primary-blue: var(--blue-600);
+    --ys-cyan: var(--blue-400);
+    --ys-orange: var(--amber-500);
+    --ys-orange-ink: var(--amber-700);
+    --ys-yellow: var(--amber-500);
+    --ys-light-gray: var(--paper);
 
     /* Derived Deep Blue steps (same hue, for layering only) */
-    --ys-deep-blue-900: #071429;
-    --ys-deep-blue-800: #0B1E3D;
-    --ys-deep-blue-700: #102a52;
-    --ys-deep-blue-600: #17375f;
+    --ys-deep-blue-900: #06101F;
+    --ys-deep-blue-800: var(--navy-900);
+    --ys-deep-blue-700: var(--navy-800);
+    --ys-deep-blue-600: #16305C;
 
     /* Approved brand gradient — Deep Blue → Primary Blue → Cyan */
-    --ys-gradient: linear-gradient(135deg, #0B1E3D 0%, #0A84FF 62%, #00D1FF 100%);
-    --ys-gradient-accent: linear-gradient(90deg, #0A84FF 0%, #00D1FF 100%);
+    /* Retained only so unconverted call sites resolve; rebased onto the
+       new palette. No new gradients should be introduced. */
+    --ys-gradient: var(--navy-900);
+    --ys-gradient-accent: var(--amber-500);
 
     /* HSL channel forms for Tailwind/shadcn consumers */
     --ys-deep-blue-hsl: 215 70% 14%;
     --ys-primary-blue-hsl: 211 100% 52%;
     --ys-cyan-hsl: 191 100% 50%;
 
-    /* Light-surface system (mockup direction) */
-    --ys-surface: #FFFFFF;          /* Card / panel */
-    --ys-surface-alt: #F4F7FB;      /* Section background (Light Gray) */
-    --ys-border: #E2E8F2;           /* Hairline on light */
-    --ys-ink: #0B1E3D;              /* Headings on light — Deep Blue */
-    --ys-ink-body: #44546F;         /* Body copy on light (AA on white) */
-    --ys-ink-muted: #5B6B85;        /* Supporting text on light (AA on white) */
-    /* Darker step of Primary Blue — AA (5.31:1) for body-size links on light.
-       #0A84FF is 3.65:1, so it is reserved for buttons/large text/icons. */
-    --ys-link-on-light: #0068D6;
+    /* Light-surface system — now aliases onto the design tokens, so
+       every existing call site picks up the new palette. */
+    --ys-surface: var(--surface);
+    --ys-surface-alt: var(--paper);
+    --ys-border: var(--line);
+    --ys-ink: var(--ink);
+    --ys-ink-body: var(--ink-muted);
+    --ys-ink-muted: var(--ink-muted);
+    --ys-link-on-light: var(--blue-600);
 
     /* Stripe Brand Colors (legacy tokens — rebased to YatiSphere palette) */
     --stripe-navy: 215 70% 14%;       /* #0B1E3D - YatiSphere Deep Blue */
@@ -218,75 +259,114 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family: var(--font-brand), 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: var(--font-sans), 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     font-feature-settings: "kern" 1, "liga" 1;
     font-optical-sizing: auto;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
-    font-size: var(--text-base);
-    line-height: var(--leading-relaxed);
-    font-weight: var(--font-normal);
+    font-size: 16px;
+    line-height: 1.6;
+    font-weight: 400;
+  }
+  @media (min-width: 768px) {
+    body { font-size: 17px; }
   }
 
-  /* Enterprise Typography - One Font, Weight/Size for Hierarchy */
-  .font-display,
   .font-heading {
-    font-family: var(--font-brand), 'Plus Jakarta Sans', sans-serif;
+    font-family: var(--font-heading), 'Space Grotesk', sans-serif;
   }
-
   .font-mono {
-    font-family: var(--font-mono);
+    font-family: var(--font-mono), 'IBM Plex Mono', ui-monospace, monospace;
   }
 
-  /* Heading Hierarchy - Strict Scale */
+  /* ==========================================================
+     Type scale. Mobile first; desktop values at 768px.
+     Headings previously carried tighter tracking on top of the
+     per-element letter-spacing, which read as cramped.
+     ========================================================== */
   h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-brand), 'Plus Jakarta Sans', sans-serif;
-    letter-spacing: var(--tracking-tight);
-    line-height: var(--leading-snug);
-    color: hsl(var(--premium-gray-900));
+    font-family: var(--font-heading), 'Space Grotesk', sans-serif;
+    color: var(--ink);
     margin: 0;
   }
 
   h1 {
-    font-size: var(--text-5xl);
-    font-weight: var(--font-semibold);
-    line-height: var(--leading-tight);
+    font-size: 40px;
+    line-height: 1.05;
+    font-weight: 600;
+    letter-spacing: -0.025em;
   }
-
   h2 {
-    font-size: var(--text-4xl);
-    font-weight: var(--font-semibold);
+    font-size: 32px;
+    line-height: 1.1;
+    font-weight: 600;
+    letter-spacing: -0.02em;
   }
-
   h3 {
-    font-size: var(--text-3xl);
-    font-weight: var(--font-medium);
+    font-size: 20px;
+    line-height: 1.25;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+  h4 {
+    font-size: 18px;
+    line-height: 1.3;
+    font-weight: 500;
+    letter-spacing: -0.01em;
   }
 
-  h4 {
-    font-size: var(--text-2xl);
-    font-weight: var(--font-medium);
+  @media (min-width: 768px) {
+    h1 { font-size: 64px; }
+    h2 { font-size: 44px; }
+    h3 { font-size: 22px; }
   }
 
   /* Body Text */
   p {
-    font-size: var(--text-base);
-    line-height: var(--leading-relaxed);
-    color: hsl(var(--premium-gray-500));
-    max-width: var(--prose-width);
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--ink-muted);
+  }
+  @media (min-width: 768px) {
+    p { font-size: 17px; }
   }
 
-  /* Responsive Typography */
+  /* Lead paragraph — section intros */
+  .lead {
+    font-size: 18px;
+    line-height: 1.6;
+    font-weight: 400;
+  }
   @media (min-width: 768px) {
-    h1 { font-size: var(--text-6xl); }
-    h2 { font-size: var(--text-5xl); }
+    .lead { font-size: 19px; }
+  }
+
+  .text-small {
+    font-size: 14px;
+    line-height: 1.55;
+  }
+  @media (min-width: 768px) {
+    .text-small { font-size: 15px; }
+  }
+
+  /* Caps a line of copy at a readable measure. */
+  .measure {
+    max-width: 70ch;
   }
 
   /* Smooth scrolling and section fixes */
   html {
     scroll-behavior: smooth;
     scroll-padding-top: 5rem; /* Account for fixed header */
+  }
+
+  /* Anchor targets that are cards inside a grid, not full sections.
+     html's scroll-padding-top covers most jumps, but a card needs its own
+     offset plus breathing room so it does not land flush under the
+     sticky header. */
+  .ys-anchor-target {
+    scroll-margin-top: 6.5rem;
   }
 
   /* Ensure body doesn't have margin that could cause overlap */
@@ -360,55 +440,97 @@
   }
 
   /* Primary CTA */
-  .ys-cta-primary {
-    background: var(--ys-primary-blue);
-    color: #ffffff;
-    font-weight: 600;
-    font-size: 15px;
-    line-height: 1;
-    padding: 15px 28px;
-    border-radius: 8px;
+  /* ==========================================================
+     Buttons. Four variants: primary/secondary, each on dark or
+     light. Shared box metrics: >=48px tall, 24px side padding,
+     10px radius.
+     ========================================================== */
+  .ys-cta-primary,
+  .ys-cta-secondary,
+  .ys-cta-primary-light,
+  .ys-cta-secondary-light {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 0 24px;
+    border-radius: var(--radius-control);
     border: 1px solid transparent;
-    transition: background-color 200ms ease, transform 200ms ease,
-      box-shadow 200ms ease;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1;
     white-space: nowrap;
-  }
-  .ys-cta-primary:hover {
-    background: #0068d6; /* darker step of Primary Blue */
-    box-shadow: 0 6px 20px rgba(10, 132, 255, 0.28);
-  }
-  .ys-cta-primary:focus-visible {
-    outline: 2px solid var(--ys-cyan);
-    outline-offset: 3px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 180ms ease-out, border-color 180ms ease-out,
+      color 180ms ease-out;
   }
 
-  /* Secondary CTA — outlined, for dark brand surfaces */
+  /* Primary on dark — amber fill, navy text (8.51:1) */
+  .ys-cta-primary {
+    background: var(--amber-500);
+    color: var(--navy-900);
+  }
+  .ys-cta-primary:hover {
+    /* 6% darker step of --amber-500 */
+    background: #E69B22;
+  }
+
+  /* Primary on light — navy fill, white text (17.38:1) */
+  .ys-cta-primary-light {
+    background: var(--navy-900);
+    color: var(--on-dark);
+  }
+  .ys-cta-primary-light:hover {
+    background: #091830;
+  }
+
+  /* Secondary on dark — outline only */
   .ys-cta-secondary {
     background: transparent;
-    color: #ffffff;
-    font-weight: 600;
-    font-size: 15px;
-    line-height: 1;
-    padding: 15px 28px;
-    border-radius: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.28);
-    transition: background-color 200ms ease, border-color 200ms ease;
-    white-space: nowrap;
+    color: var(--on-dark);
+    border-color: var(--line-dark-2);
   }
   .ys-cta-secondary:hover {
-    background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(255, 255, 255, 0.55);
+    background: rgba(255, 255, 255, 0.04);
   }
+
+  /* Secondary on light — outline only */
+  .ys-cta-secondary-light {
+    background: transparent;
+    color: var(--ink);
+    border-color: var(--ink);
+  }
+  .ys-cta-secondary-light:hover {
+    background: rgba(10, 26, 51, 0.04);
+  }
+
+  /* Focus: visible ring on every variant, never removed. */
+  .ys-cta-primary:focus-visible,
   .ys-cta-secondary:focus-visible {
-    outline: 2px solid var(--ys-cyan);
-    outline-offset: 3px;
+    outline: 2px solid var(--blue-400);
+    outline-offset: 2px;
+  }
+  .ys-cta-primary-light:focus-visible,
+  .ys-cta-secondary-light:focus-visible {
+    outline: 2px solid var(--blue-600);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ys-cta-primary,
+    .ys-cta-secondary,
+    .ys-cta-primary-light,
+    .ys-cta-secondary-light {
+      transition: none;
+    }
   }
 
   /* Enterprise card — clean, minimal, no glassmorphism */
   .ys-card {
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.09);
-    border-radius: 12px;
+    border-radius: var(--radius-card);
     transition: border-color 220ms ease, background-color 220ms ease;
   }
   .ys-card:hover {
@@ -437,17 +559,29 @@
   /* Section rhythm. Tightened from 104px: two stacked sections were
      producing ~208px of dead space between content blocks, which read
      as the page being empty rather than airy. */
-  .ys-section-light {
-    background-color: var(--ys-surface-alt);
-    color: var(--ys-ink-body);
-    padding-top: clamp(52px, 5.6vw, 76px);
-    padding-bottom: clamp(52px, 5.6vw, 76px);
-  }
+  /* Section rhythm: 64px mobile, 80px tablet, 112px desktop. One rule
+     for both tones so adjacent sections cannot drift apart. */
+  .ys-section-light,
   .ys-section-white {
-    background-color: var(--ys-surface);
-    color: var(--ys-ink-body);
-    padding-top: clamp(52px, 5.6vw, 76px);
-    padding-bottom: clamp(52px, 5.6vw, 76px);
+    color: var(--ink-muted);
+    padding-top: var(--section-y-mobile);
+    padding-bottom: var(--section-y-mobile);
+  }
+  .ys-section-light { background-color: var(--paper); }
+  .ys-section-white { background-color: var(--surface); }
+  @media (min-width: 768px) {
+    .ys-section-light,
+    .ys-section-white {
+      padding-top: var(--section-y-tablet);
+      padding-bottom: var(--section-y-tablet);
+    }
+  }
+  @media (min-width: 1024px) {
+    .ys-section-light,
+    .ys-section-white {
+      padding-top: var(--section-y-desktop);
+      padding-bottom: var(--section-y-desktop);
+    }
   }
   .ys-section-light h1, .ys-section-light h2,
   .ys-section-light h3, .ys-section-light h4,
@@ -458,14 +592,15 @@
 
   /* Eyebrow label above a section heading */
   .ys-eyebrow {
-    font-size: 12px;
-    font-weight: 600;
+    font-family: var(--font-mono), 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 13px;
+    font-weight: 500;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--ys-ink-muted);
+    color: var(--ink-muted);
   }
   .ys-eyebrow-on-dark {
-    color: var(--ys-cyan);
+    color: var(--on-dark-label);
   }
 
   /* Short brand rule under a heading */
@@ -478,20 +613,26 @@
 
   /* Card on a light surface */
   .ys-card-light {
-    background: var(--ys-surface);
-    border: 1px solid var(--ys-border);
-    border-radius: 12px;
-    transition: border-color 200ms ease, box-shadow 200ms ease,
-      transform 200ms ease;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-card);
+    /* Flat at rest: border only, no resting shadow. */
+    transition: border-color 180ms ease-out, box-shadow 180ms ease-out,
+      transform 180ms ease-out;
   }
   .ys-card-light:hover {
-    border-color: rgba(10, 132, 255, 0.5);
-    box-shadow: 0 8px 24px rgba(11, 30, 61, 0.08);
+    border-color: var(--ink-muted);
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-2px);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ys-card-light { transition: none; }
+    .ys-card-light:hover { transform: none; }
   }
 
   /* Text link on a light surface — AA contrast */
   .ys-link {
-    color: var(--ys-link-on-light);
+    color: var(--blue-600);
     font-weight: 600;
     text-decoration: none;
   }
@@ -499,9 +640,55 @@
     text-decoration: underline;
   }
   .ys-link:focus-visible {
-    outline: 2px solid var(--ys-link-on-light);
+    outline: 2px solid var(--blue-600);
     outline-offset: 2px;
     border-radius: 2px;
+  }
+
+  /* Same link on a dark surface */
+  .ys-link-on-dark {
+    color: var(--blue-400);
+  }
+  .ys-link-on-dark:focus-visible {
+    outline-color: var(--blue-400);
+  }
+
+  /* Arrow links nudge their arrow 2px on hover. */
+  .ys-link svg,
+  .ys-link-on-dark svg {
+    transition: transform 180ms ease-out;
+  }
+  .ys-link:hover svg,
+  .ys-link-on-dark:hover svg {
+    transform: translateX(2px);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ys-link svg,
+    .ys-link-on-dark svg {
+      transition: none;
+    }
+    .ys-link:hover svg,
+    .ys-link-on-dark:hover svg {
+      transform: none;
+    }
+  }
+
+  /* Focus fallback: anything interactive without its own ring still
+     shows one. Never remove outlines; override with a ring instead. */
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible,
+  [tabindex]:focus-visible {
+    outline: 2px solid var(--blue-600);
+    outline-offset: 2px;
+  }
+  .ys-section-deep a:focus-visible,
+  .ys-surface-deep a:focus-visible,
+  [data-on-dark] a:focus-visible,
+  [data-on-dark] button:focus-visible {
+    outline-color: var(--blue-400);
   }
 
   /* Industry focus: intro column + image cards.
@@ -540,7 +727,7 @@
     display: block;
     background: var(--ys-surface);
     border: 1px solid var(--ys-border);
-    border-radius: 12px;
+    border-radius: var(--radius-card);
     overflow: hidden;
     text-decoration: none;
     height: 100%;
@@ -582,7 +769,7 @@
     bottom: 12px;
     width: 34px;
     height: 34px;
-    border-radius: 9px;
+    border-radius: var(--radius-control);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -601,191 +788,137 @@
   /* ==========================================================
      Footer — light surface, matching the page theme.
      ========================================================== */
+  /* ==========================================================
+     Footer — dark and precise.
+     12-column row 1 (brand 1-4, links 6-12), bottom bar under a
+     hairline rule. No cards, no gradients, no amber.
+     ========================================================== */
   .ys-footer {
-    position: relative;
-    background-color: var(--ys-surface-alt);
-    color: var(--ys-ink-body);
-  }
-  .ys-footer-seam {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: var(--ys-gradient-accent);
-    opacity: 0.85;
+    background-color: var(--surface);
+    color: var(--ink-muted);
+    border-top: 1px solid var(--line);
   }
   .ys-footer-inner {
-    padding-top: clamp(48px, 5.4vw, 68px);
-    padding-bottom: clamp(28px, 3.2vw, 38px);
+    padding-top: 48px;
+    padding-bottom: 24px;
   }
 
-  /* Brand column sits wider than the link columns */
   .ys-footer-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: clamp(30px, 3.6vw, 42px);
-  }
-  @media (min-width: 640px) {
-    .ys-footer-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
+    gap: 32px 24px;
   }
   @media (min-width: 1024px) {
     .ys-footer-grid {
-      grid-template-columns: minmax(260px, 1.35fr) repeat(5, minmax(0, 1fr));
-      gap: clamp(24px, 2.6vw, 40px);
+      grid-template-columns: repeat(12, minmax(0, 1fr));
     }
-  }
-  .ys-footer-brand {
-    max-width: 30rem;
+    /* Brand takes 3 columns, links the remaining 9. The link columns
+       need the width: "Cloud & Infrastructure" and "Enterprise &
+       Technology" wrap onto two lines below roughly 200px each. */
+    .ys-footer-brand { grid-column: 1 / span 3; }
+    .ys-footer-nav { grid-column: 4 / span 9; }
+
   }
 
-  /* Approved logo lockup, used as supplied. Rendered large enough that
-     the "Technologies Private Limited" line and the tagline inside the
-     artwork stay readable. */
+  /* ---------- Brand block ---------- */
+  .ys-footer-brand {
+    min-width: 0;
+  }
   .ys-footer-lockup {
     display: inline-block;
     text-decoration: none;
-    border-radius: 6px;
   }
   .ys-footer-lockup:focus-visible {
-    outline: 2px solid var(--ys-link-on-light);
-    outline-offset: 4px;
+    outline: 2px solid var(--blue-600);
+    outline-offset: 3px;
+    border-radius: 12px;
   }
   .ys-footer-logo {
-    width: 240px;
-    max-width: 100%;
-    height: auto;
+    display: block;
+    width: auto;
+    height: 76px;
+    object-fit: contain;
   }
-  @media (min-width: 640px) {
-    .ys-footer-logo { width: 280px; }
+  @media (min-width: 768px) {
+    .ys-footer-logo { height: 88px; }
   }
 
   .ys-footer-blurb {
-    margin-top: 22px;
-    font-size: 14px;
-    line-height: 1.65;
-    color: var(--ys-ink-body);
-    max-width: 26rem;
+    margin-top: 14px;
+    max-width: 340px;
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--ink-muted);
   }
 
+  .ys-footer-contact {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    margin-top: 16px;
+  }
   .ys-footer-email {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    margin-top: 18px;
-    font-size: 14px;
+    gap: 7px;
+    font-size: 15px;
+    color: var(--blue-600);
     font-weight: 600;
-    color: var(--ys-link-on-light);
     text-decoration: none;
   }
-  .ys-footer-email:hover {
-    text-decoration: underline;
-  }
+  .ys-footer-email svg { transition: transform 180ms ease-out; }
+  .ys-footer-email:hover { text-decoration: underline; }
+  .ys-footer-email:hover svg { transform: translateX(2px); }
   .ys-footer-email:focus-visible {
-    outline: 2px solid var(--ys-link-on-light);
-    outline-offset: 3px;
+    outline: 2px solid var(--blue-600);
+    outline-offset: 2px;
     border-radius: 3px;
   }
-
-  /* DPIIT credential chip */
-  /* Credential card — a Government of India recognition, presented as
-     an asset rather than fine print. */
-  .ys-footer-cred {
-    position: relative;
-    display: flex;
-    align-items: flex-start;
-    gap: 14px;
-    margin-top: 28px;
-    padding: 18px 20px 18px 22px;
-    border-radius: 14px;
-    background: #ffffff;
-    border: 1px solid var(--ys-border);
-    box-shadow: 0 2px 10px rgba(11, 30, 61, 0.05);
-    overflow: hidden;
-    max-width: 22rem;
-  }
-  /* Saffron → white → green edge nods to the issuing authority while
-     staying within the approved accent range. */
-  .ys-footer-cred::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    width: 4px;
-    /* Orange → Cyan → Primary Blue: an unbroken brand-palette edge,
-       with no white band that would read as a gap on a white card. */
-    background: linear-gradient(
-      to bottom,
-      var(--ys-orange) 0%,
-      var(--ys-cyan) 52%,
-      var(--ys-primary-blue) 100%
-    );
-  }
-  .ys-footer-cred-mark {
-    display: flex;
+  /* 44px hit area without changing the icon size. */
+  .ys-footer-social {
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    flex-shrink: 0;
     width: 44px;
     height: 44px;
-    border-radius: 11px;
-    color: var(--ys-link-on-light);
-    background: rgba(10, 132, 255, 0.08);
-    border: 1px solid rgba(10, 132, 255, 0.16);
+    margin-left: -10px;
+    color: var(--ink-muted);
+    border-radius: var(--radius-control);
   }
-  .ys-footer-cred-body {
-    min-width: 0;
-  }
-  .ys-footer-cred-eyebrow {
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--ys-ink-muted);
-    margin-bottom: 3px;
-  }
-  .ys-footer-cred-title {
-    font-size: 15px;
-    font-weight: 700;
-    letter-spacing: -0.012em;
-    line-height: 1.25;
-    color: var(--ys-ink);
-  }
-  .ys-footer-cred-sub {
-    font-size: 12px;
-    line-height: 1.4;
-    color: var(--ys-ink-body);
-    margin-top: 3px;
-  }
-  .ys-footer-cred-id {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 3px 9px;
-    border-radius: 5px;
-    background: var(--ys-surface-alt);
-    border: 1px solid var(--ys-border);
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.01em;
-    color: var(--ys-ink-muted);
-  }
-  .ys-footer-cred-id strong {
-    font-weight: 700;
-    color: var(--ys-ink);
-    letter-spacing: 0.02em;
+  .ys-footer-social:hover { color: var(--ink); }
+  .ys-footer-social:focus-visible {
+    outline: 2px solid var(--blue-600);
+    outline-offset: 2px;
   }
 
-  /* Link columns */
+  /* ---------- Link columns ---------- */
+  .ys-footer-nav {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+    min-width: 0;
+  }
+  @media (min-width: 768px) {
+    .ys-footer-nav {
+      /* auto, not 1fr: each column takes the width its longest label
+         needs, so nothing wraps and nothing overflows. The columns end
+         up unequal, which reads better than four forced-equal columns
+         with ragged two-line entries. */
+      grid-template-columns: repeat(4, auto);
+      justify-content: space-between;
+    }
+  }
+  .ys-footer-col { min-width: 0; }
+
   .ys-footer-heading {
-    font-size: 11.5px;
-    font-weight: 700;
-    letter-spacing: 0.13em;
+    font-family: var(--font-mono), 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--ys-ink);
-    margin-bottom: 16px;
+    color: var(--ink-muted);
+    margin-bottom: 12px;
   }
   .ys-footer-links {
     list-style: none;
@@ -793,85 +926,143 @@
     padding: 0;
     display: flex;
     flex-direction: column;
-    gap: 11px;
+    gap: 8px;
   }
   .ys-footer-link {
-    position: relative;
-    display: inline-block;
-    font-size: 14px;
-    color: var(--ys-ink-body);
+    font-size: 15px;
+    line-height: 1.4;
+    /* The brief requires no wrapped labels at 1280px and above.
+       Estimating column width from font metrics left only ~5px of
+       margin, so the labels are held on one line explicitly and the
+       columns size to fit them. */
+    white-space: nowrap;
+    color: var(--ink-muted);
     text-decoration: none;
-    transition: color 160ms ease;
-  }
-  /* Orange underline echoes the header's hover treatment */
-  .ys-footer-link::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: -3px;
-    height: 1.5px;
-    border-radius: 2px;
-    background: var(--ys-orange);
-    transform: scaleX(0);
-    transform-origin: left center;
-    transition: transform 170ms ease;
+    transition: color 180ms ease-out;
   }
   .ys-footer-link:hover {
-    color: var(--ys-ink);
-  }
-  .ys-footer-link:hover::after {
-    transform: scaleX(1);
+    color: var(--ink);
+    text-decoration: underline;
   }
   .ys-footer-link:focus-visible {
-    outline: 2px solid var(--ys-link-on-light);
-    outline-offset: 3px;
-    border-radius: 2px;
+    outline: 2px solid var(--blue-600);
+    outline-offset: 2px;
+    border-radius: 3px;
+    color: var(--ink);
+  }
+  @media (max-width: 1023px) {
+    .ys-footer-link { white-space: normal; }
   }
 
-  /* Bottom bar */
+  /* Touch widths: 44px targets via padding, not font size. */
+  @media (hover: none) {
+    .ys-footer-links { gap: 0; }
+    .ys-footer-link {
+      display: flex;
+      align-items: center;
+      min-height: 44px;
+    }
+  }
+
+  /* ---------- Bottom bar ---------- */
   .ys-footer-bottom {
+    margin-top: clamp(24px, 3vw, 32px);
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
     display: flex;
     flex-direction: column;
-    gap: 14px;
-    margin-top: clamp(30px, 3.4vw, 44px);
-    padding-top: 20px;
-    border-top: 1px solid var(--ys-border);
-    font-size: 12.5px;
-    color: var(--ys-ink-muted);
+    gap: 12px;
+    font-size: 14px;
+    color: var(--ink-muted);
   }
-  @media (min-width: 640px) {
+  @media (min-width: 1024px) {
     .ys-footer-bottom {
       flex-direction: row;
       align-items: center;
       justify-content: space-between;
+      gap: 24px;
     }
+  }
+  .ys-footer-address {
+    margin-top: 4px;
+    font-size: 13px;
+  }
+  .ys-footer-recognition {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: var(--ink-muted);
   }
   .ys-footer-bottom-links {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    gap: 22px;
+    gap: 20px;
   }
   .ys-footer-bottom-links a {
-    color: var(--ys-ink-muted);
+    font-size: 14px;
+    color: var(--ink-muted);
     text-decoration: none;
-    transition: color 160ms ease;
+    transition: color 180ms ease-out;
   }
   .ys-footer-bottom-links a:hover {
-    color: var(--ys-ink);
+    color: var(--ink);
+    text-decoration: underline;
   }
   .ys-footer-bottom-links a:focus-visible {
-    outline: 2px solid var(--ys-link-on-light);
-    outline-offset: 3px;
-    border-radius: 2px;
+    outline: 2px solid var(--blue-600);
+    outline-offset: 2px;
+    border-radius: 3px;
+    color: var(--ink);
+  }
+  @media (hover: none) {
+    .ys-footer-bottom-links a {
+      display: flex;
+      align-items: center;
+      min-height: 44px;
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
     .ys-footer-link,
-    .ys-footer-link::after,
+    .ys-footer-email,
+    .ys-footer-email svg,
     .ys-footer-bottom-links a {
       transition: none;
     }
+    .ys-footer-email:hover svg { transform: none; }
+  }
+
+  /* Back to top. Carries the hover shadow at rest so it stays
+     legible when it floats over a light section. */
+  .ys-back-to-top {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    z-index: 50;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-control);
+    background: var(--navy-800);
+    border: 1px solid var(--line-dark-2);
+    color: var(--on-dark);
+    box-shadow: var(--shadow-hover);
+    transition: background-color 180ms ease-out;
+  }
+  .ys-back-to-top:hover { background: var(--navy-900); }
+  .ys-back-to-top:focus-visible {
+    outline: 2px solid var(--blue-400);
+    outline-offset: 2px;
+  }
+  @media (min-width: 640px) {
+    .ys-back-to-top { right: 32px; bottom: 32px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ys-back-to-top { transition: none; }
   }
 
   /* About — plain statement of the work */
@@ -887,7 +1078,7 @@
     min-width: 0;
     padding: clamp(22px, 2.2vw, 28px);
     border: 1px solid var(--ys-border);
-    border-radius: 14px;
+    border-radius: var(--radius-card);
     background: var(--ys-surface-alt);
   }
   .ys-about-do-title {
@@ -956,7 +1147,7 @@
     padding: clamp(22px, 2.2vw, 28px);
     background: var(--ys-surface);
     border: 1px solid var(--ys-border);
-    border-radius: 14px;
+    border-radius: var(--radius-card);
     overflow: hidden;
     transition: border-color 200ms ease, box-shadow 200ms ease;
   }
@@ -995,7 +1186,7 @@
     justify-content: center;
     width: 38px;
     height: 38px;
-    border-radius: 10px;
+    border-radius: var(--radius-control);
     flex-shrink: 0;
     color: var(--ys-link-on-light);
     background: rgba(10, 132, 255, 0.08);
@@ -1087,7 +1278,7 @@
     padding: clamp(20px, 2.1vw, 26px);
     background: var(--ys-surface);
     border: 1px solid var(--ys-border);
-    border-radius: 14px;
+    border-radius: var(--radius-card);
     text-decoration: none;
     transition: border-color 200ms ease, box-shadow 200ms ease,
       transform 200ms ease;
@@ -1107,7 +1298,7 @@
     justify-content: center;
     width: 44px;
     height: 44px;
-    border-radius: 11px;
+    border-radius: var(--radius-card);
     flex-shrink: 0;
     color: var(--ys-link-on-light);
     background: rgba(10, 132, 255, 0.08);
@@ -1146,7 +1337,7 @@
     display: block;
     margin-top: 14px;
     padding: 11px 13px;
-    border-radius: 9px;
+    border-radius: var(--radius-control);
     background: var(--ys-surface-alt);
     border: 1px solid var(--ys-border);
     font-size: 13px;
@@ -1272,7 +1463,7 @@
   .ys-vision-aside {
     padding: clamp(22px, 2.4vw, 30px);
     border: 1px solid var(--ys-border);
-    border-radius: 14px;
+    border-radius: var(--radius-card);
     background: var(--ys-surface-alt);
   }
   /* ==========================================================
@@ -1352,7 +1543,7 @@
     align-items: flex-start;
     gap: 13px;
     padding: 16px;
-    border-radius: 12px;
+    border-radius: var(--radius-card);
     background: var(--ys-surface);
     border: 1px solid var(--ys-border);
   }
@@ -1363,7 +1554,7 @@
     flex-shrink: 0;
     width: 40px;
     height: 40px;
-    border-radius: 10px;
+    border-radius: var(--radius-control);
     color: var(--ys-link-on-light);
     background: rgba(10, 132, 255, 0.08);
     border: 1px solid rgba(10, 132, 255, 0.16);
@@ -1467,7 +1658,7 @@
     width: 100%;
     aspect-ratio: 5 / 4;
     overflow: hidden;
-    border-radius: 16px;
+    border-radius: var(--radius-card);
     background: var(--ys-deep-blue);
     isolation: isolate;
   }
@@ -1533,7 +1724,7 @@
     font-weight: 500;
     color: var(--ys-ink-muted);
     padding: 5px 10px;
-    border-radius: 999px;
+    border-radius: var(--radius-pill);
     background: var(--ys-surface);
     border: 1px solid var(--ys-border);
   }
@@ -1612,12 +1803,9 @@
       gap: clamp(32px, 4vw, 64px);
     }
   }
+  /* Size/weight/tracking come from the shared h2 rule. */
   .ys-cap-headline {
-    font-size: clamp(28px, 3.6vw, 44px);
-    font-weight: 800;
-    letter-spacing: -0.03em;
-    line-height: 1.12;
-    color: var(--ys-ink);
+    color: var(--ink);
     margin-top: 14px;
     text-wrap: balance;
   }
@@ -1673,7 +1861,7 @@
     height: 100%;
     overflow: hidden;
     border: 1px solid var(--ys-border);
-    border-radius: 14px;
+    border-radius: var(--radius-card);
     background: var(--ys-surface);
     text-decoration: none;
     transition: border-color 200ms ease, box-shadow 200ms ease,
@@ -1745,7 +1933,9 @@
   }
   .ys-cap-head {
     display: flex;
-    align-items: center;
+    /* Problem titles run to two or three lines; centring them against the
+       42px icon leaves the first line floating. Align to the top instead. */
+    align-items: flex-start;
     gap: 12px;
     margin-bottom: 12px;
   }
@@ -1756,7 +1946,7 @@
     flex-shrink: 0;
     width: 42px;
     height: 42px;
-    border-radius: 10px;
+    border-radius: var(--radius-control);
     color: var(--ys-link-on-light);
     background: rgba(10, 132, 255, 0.08);
     border: 1px solid rgba(10, 132, 255, 0.16);
@@ -1807,15 +1997,19 @@
     gap: 6px;
     margin-top: auto;
   }
+  /* Tags / chips: mono, uppercase, pill, outline only — no fill. */
   .ys-cap-tag {
     display: inline-block;
-    padding: 4px 9px;
-    border-radius: 5px;
-    background: var(--ys-surface-alt);
-    border: 1px solid var(--ys-border);
-    font-size: 11.5px;
-    font-weight: 500;
-    color: var(--ys-ink-muted);
+    padding: 4px 10px;
+    border-radius: var(--radius-pill);
+    background: transparent;
+    border: 1px solid var(--line);
+    font-family: var(--font-mono), 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
     white-space: nowrap;
   }
 
@@ -1882,6 +2076,254 @@
     }
   }
 
+  /* ==========================================================
+     Two pillars + sectors line, under the problem grid.
+     ========================================================== */
+  .ys-pillars-strip {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(20px, 3vw, 40px);
+    margin-top: clamp(34px, 4.5vw, 56px);
+    padding-top: clamp(28px, 3.5vw, 40px);
+    border-top: 1px solid var(--ys-border);
+  }
+  @media (min-width: 768px) {
+    .ys-pillars-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  .ys-pillars-item { min-width: 0; }
+  .ys-pillars-label {
+    font-size: clamp(15px, 1.3vw, 17px);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--ys-ink);
+    margin-bottom: 8px;
+  }
+  .ys-pillars-line {
+    font-size: 14.5px;
+    line-height: 1.62;
+    color: var(--ys-ink-body);
+    margin-bottom: 12px;
+  }
+  .ys-pillars-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .ys-sectors-line {
+    margin-top: clamp(26px, 3.2vw, 38px);
+    text-align: center;
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: var(--ys-ink-muted);
+    text-wrap: balance;
+  }
+  .ys-sectors-link {
+    color: var(--ys-link-on-light);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .ys-sectors-link:hover { text-decoration: underline; }
+  .ys-sectors-link:focus-visible {
+    outline: 2px solid var(--ys-link-on-light);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  /* Problem titles run longer than the old service names: keep them
+     readable and keep cards in a row the same height. */
+  .ys-problem-title {
+    text-wrap: pretty;
+  }
+
+  /* ==========================================================
+     Delivery lifecycle — five stages.
+     Five columns do not divide evenly at most widths, so the grid
+     steps 1 -> 2 -> 3 -> 5 and the last row is allowed to be short.
+     ========================================================== */
+  .ys-stage-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(18px, 2vw, 24px);
+    list-style: none;
+    margin: clamp(32px, 4vw, 48px) 0 0;
+    padding: 0;
+    counter-reset: none;
+  }
+  @media (min-width: 620px) {
+    .ys-stage-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (min-width: 900px) {
+    .ys-stage-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  }
+  @media (min-width: 1200px) {
+    .ys-stage-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  }
+  .ys-stage-item {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    padding: clamp(18px, 1.8vw, 22px);
+    border: 1px solid var(--ys-border);
+    border-radius: var(--radius-card);
+    background: var(--ys-surface);
+  }
+  .ys-stage-n {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .14em;
+    color: var(--ys-link-on-light);
+    margin-bottom: 10px;
+  }
+  .ys-stage-title {
+    font-size: clamp(15.5px, 1.3vw, 17px);
+    font-weight: 700;
+    letter-spacing: -0.018em;
+    color: var(--ys-ink);
+    margin-bottom: 8px;
+  }
+  .ys-stage-line {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--ys-ink-body);
+    margin-bottom: 12px;
+  }
+  /* Pinned to the bottom so the "what you get" line sits on one
+     baseline across a row, whatever the description length. */
+  .ys-stage-output {
+    margin-top: auto;
+    padding-top: 12px;
+    border-top: 1px solid var(--ys-border);
+    font-size: 13px;
+    line-height: 1.55;
+    font-weight: 600;
+    color: var(--ys-ink);
+  }
+  .ys-stage-footer {
+    margin-top: clamp(26px, 3vw, 36px);
+  }
+  .ys-stage-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 14.5px;
+    font-weight: 600;
+  }
+
+  /* ==========================================================
+     Delivery lifecycle on /how-we-work — five stages with
+     deliverables. Steps 1 -> 2 -> 3 -> 5 columns; five across only
+     above 1280px, where they still hold a readable measure.
+     ========================================================== */
+  .ys-lifecycle-grid {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(16px, 2vw, 22px);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  @media (min-width: 640px) {
+    .ys-lifecycle-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (min-width: 1024px) {
+    .ys-lifecycle-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  }
+  @media (min-width: 1280px) {
+    .ys-lifecycle-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  }
+
+  .ys-lifecycle-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    padding: clamp(18px, 1.8vw, 22px);
+    border: 1px solid var(--ys-border);
+    border-radius: var(--radius-card);
+    background: var(--ys-surface);
+  }
+
+  /* Connecting line between stacked stages on mobile only, so the
+     sequence still reads as a single path. */
+  .ys-lifecycle-item::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: calc(-1 * clamp(16px, 2vw, 22px));
+    width: 1px;
+    height: clamp(16px, 2vw, 22px);
+    background: var(--ys-border);
+  }
+  .ys-lifecycle-item:first-child::before { display: none; }
+  @media (min-width: 640px) {
+    .ys-lifecycle-item::before { display: none; }
+  }
+
+  .ys-lifecycle-n {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .14em;
+    color: var(--ys-link-on-light);
+    margin-bottom: 10px;
+  }
+  .ys-lifecycle-title {
+    font-size: clamp(15.5px, 1.3vw, 17px);
+    font-weight: 700;
+    letter-spacing: -0.018em;
+    color: var(--ys-ink);
+    margin-bottom: 8px;
+  }
+  .ys-lifecycle-line {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--ys-ink-body);
+    max-width: 62ch;
+    margin-bottom: 14px;
+  }
+  /* Pinned to the bottom so the deliverables align across a row. */
+  .ys-lifecycle-gets-label {
+    margin-top: auto;
+    padding-top: 12px;
+    border-top: 1px solid var(--ys-border);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--ys-ink-muted);
+    margin-bottom: 8px;
+  }
+  .ys-lifecycle-gets {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+  .ys-lifecycle-gets li {
+    position: relative;
+    padding-left: 16px;
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--ys-ink-body);
+  }
+  .ys-lifecycle-gets li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--ys-link-on-light);
+  }
+
   /* Positioning band under the hero */
   .ys-position-grid {
     display: grid;
@@ -1920,7 +2362,7 @@
     justify-content: center;
     width: 40px;
     height: 40px;
-    border-radius: 10px;
+    border-radius: var(--radius-control);
     flex-shrink: 0;
     color: var(--ys-cyan);
     background: rgba(0, 209, 255, 0.1);
@@ -1952,7 +2394,7 @@
     display: flex;
     flex-direction: column;
     padding: clamp(24px, 2.7vw, 34px);
-    border-radius: 12px;
+    border-radius: var(--radius-card);
     background: rgba(255, 255, 255, 0.045);
     border: 1px solid rgba(255, 255, 255, 0.12);
     backdrop-filter: blur(12px);
@@ -2066,7 +2508,7 @@
     margin-top: 24px;
     padding: 9px 16px;
     width: fit-content;
-    border-radius: 7px;
+    border-radius: var(--radius-control);
     font-size: 13.5px;
     font-weight: 600;
     color: #ffffff;
@@ -2146,295 +2588,6 @@
     .ys-industry-row-name { transition: none; }
   }
 
-  /* ==========================================================
-     "What we build" capability grid.
-     Deep Blue visual panel over a light card. Restrained: blue and
-     cyan carry the accents, orange appears once per visual at most.
-     ========================================================== */
-  .ys-cap-intro {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: clamp(20px, 3vw, 36px);
-    margin-bottom: clamp(32px, 4.5vw, 52px);
-  }
-  @media (min-width: 1024px) {
-    .ys-cap-intro {
-      grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
-      align-items: end;
-      gap: clamp(32px, 4vw, 64px);
-    }
-  }
-  .ys-cap-headline {
-    font-size: clamp(28px, 3.6vw, 44px);
-    font-weight: 800;
-    letter-spacing: -0.03em;
-    line-height: 1.12;
-    color: var(--ys-ink);
-    margin-top: 14px;
-    text-wrap: balance;
-  }
-  .ys-cap-headline-accent { color: var(--ys-primary-blue); }
-  .ys-cap-lede {
-    margin-top: 14px;
-    font-size: clamp(15px, 1.4vw, 17px);
-    line-height: 1.6;
-    color: var(--ys-ink-body);
-    max-width: 34rem;
-  }
-  .ys-cap-intro-aside {
-    padding-left: 0;
-    border-left: none;
-  }
-  @media (min-width: 1024px) {
-    .ys-cap-intro-aside {
-      padding-left: clamp(20px, 2.4vw, 32px);
-      border-left: 1px solid var(--ys-border);
-    }
-  }
-  .ys-cap-intro-aside p {
-    font-size: 14.5px;
-    line-height: 1.65;
-    color: var(--ys-ink-body);
-  }
-  .ys-cap-intro-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    margin-top: 12px;
-    font-size: 14.5px;
-  }
-
-  .ys-cap-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: clamp(18px, 1.8vw, 24px);
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-  @media (min-width: 680px) {
-    .ys-cap-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  }
-  @media (min-width: 1100px) {
-    .ys-cap-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  }
-
-  .ys-cap-card {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    overflow: hidden;
-    border: 1px solid var(--ys-border);
-    border-radius: 14px;
-    background: var(--ys-surface);
-    text-decoration: none;
-    transition: border-color 200ms ease, box-shadow 200ms ease,
-      transform 200ms ease;
-  }
-  .ys-cap-card:hover {
-    border-color: rgba(10, 132, 255, 0.55);
-    box-shadow: 0 12px 30px rgba(11, 30, 61, 0.10);
-    transform: translateY(-2px);
-  }
-  .ys-cap-card:focus-visible {
-    outline: 2px solid var(--ys-link-on-light);
-    outline-offset: 3px;
-  }
-
-  /* Visual panel — fixed ratio so all six crop identically */
-  .ys-cap-media {
-    position: relative;
-    display: block;
-    aspect-ratio: 16 / 9;
-    overflow: hidden;
-    background: var(--ys-deep-blue);
-    border-bottom: 1px solid var(--ys-border);
-  }
-  .ys-cap-visual, .ys-cap-svg {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    display: block;
-  }
-  .ys-cap-svg {
-    transition: transform 240ms ease;
-    transform-origin: center;
-  }
-  .ys-cap-card:hover .ys-cap-svg { transform: scale(1.03); }
-
-  .ys-cap-number {
-    position: absolute;
-    top: 16px;
-    left: 18px;
-    font-size: 19px;
-    font-weight: 700;
-    letter-spacing: 0.01em;
-    color: rgba(255, 255, 255, 0.92);
-  }
-  .ys-cap-overline {
-    position: absolute;
-    top: 44px;
-    left: 18px;
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
-  }
-  .ys-cap-overline span {
-    font-size: 9.5px;
-    font-weight: 600;
-    letter-spacing: 0.19em;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.66);
-    line-height: 1.25;
-  }
-
-  .ys-cap-body {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    padding: clamp(20px, 2vw, 26px);
-  }
-  .ys-cap-head {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 12px;
-  }
-  .ys-cap-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    width: 42px;
-    height: 42px;
-    border-radius: 10px;
-    color: var(--ys-link-on-light);
-    background: rgba(10, 132, 255, 0.08);
-    border: 1px solid rgba(10, 132, 255, 0.16);
-    transition: background-color 200ms ease, border-color 200ms ease;
-  }
-  .ys-cap-card:hover .ys-cap-icon {
-    background: rgba(10, 132, 255, 0.14);
-    border-color: rgba(0, 209, 255, 0.5);
-  }
-  .ys-cap-title {
-    flex: 1;
-    min-width: 0;
-    font-size: clamp(15.5px, 1.35vw, 17px);
-    font-weight: 700;
-    letter-spacing: -0.018em;
-    line-height: 1.3;
-    color: var(--ys-ink);
-  }
-  .ys-cap-arrow {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    border: 1px solid var(--ys-border);
-    color: var(--ys-link-on-light);
-    transition: transform 200ms ease, border-color 200ms ease,
-      background-color 200ms ease;
-  }
-  .ys-cap-card:hover .ys-cap-arrow {
-    transform: translate(3px, -3px);
-    border-color: rgba(10, 132, 255, 0.5);
-    background: rgba(10, 132, 255, 0.07);
-  }
-
-  .ys-cap-desc {
-    display: block;
-    font-size: 14px;
-    line-height: 1.6;
-    color: var(--ys-ink-body);
-    margin-bottom: 16px;
-  }
-  .ys-cap-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-top: auto;
-  }
-  .ys-cap-tag {
-    display: inline-block;
-    padding: 4px 9px;
-    border-radius: 5px;
-    background: var(--ys-surface-alt);
-    border: 1px solid var(--ys-border);
-    font-size: 11.5px;
-    font-weight: 500;
-    color: var(--ys-ink-muted);
-    white-space: nowrap;
-  }
-
-  /* Section footer */
-  .ys-cap-footer {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: clamp(14px, 2vw, 24px);
-    margin-top: clamp(32px, 4vw, 48px);
-  }
-  .ys-cap-footer-tagline {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.19em;
-    text-transform: uppercase;
-    color: var(--ys-link-on-light);
-    white-space: nowrap;
-  }
-  .ys-cap-footer-tagline span { color: var(--ys-orange); margin: 0 2px; }
-  .ys-cap-footer-rule {
-    flex: 1;
-    min-width: 24px;
-    height: 1px;
-    background: var(--ys-border);
-  }
-  .ys-cap-footer-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 14.5px;
-    font-weight: 600;
-    color: var(--ys-link-on-light);
-    text-decoration: none;
-    white-space: nowrap;
-  }
-  .ys-cap-footer-link:hover { text-decoration: underline; }
-  .ys-cap-footer-link:focus-visible {
-    outline: 2px solid var(--ys-link-on-light);
-    outline-offset: 3px;
-    border-radius: 3px;
-  }
-  .ys-cap-footer-arrow {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 34px;
-    height: 34px;
-    border-radius: 50%;
-    background: var(--ys-primary-blue);
-    color: #fff;
-    transition: transform 200ms ease;
-  }
-  .ys-cap-footer-link:hover .ys-cap-footer-arrow { transform: translateX(3px); }
-
-  @media (prefers-reduced-motion: reduce) {
-    .ys-cap-card,
-    .ys-cap-svg,
-    .ys-cap-arrow,
-    .ys-cap-icon,
-    .ys-cap-footer-arrow {
-      transition: none !important;
-      transform: none !important;
-    }
-  }
-
-  /* Positioning band under the hero */
   .ys-position-grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -2472,7 +2625,7 @@
     justify-content: center;
     width: 40px;
     height: 40px;
-    border-radius: 10px;
+    border-radius: var(--radius-control);
     flex-shrink: 0;
     color: var(--ys-cyan);
     background: rgba(0, 209, 255, 0.1);
@@ -2516,7 +2669,7 @@
   .ys-icon-tile {
     width: 48px;
     height: 48px;
-    border-radius: 10px;
+    border-radius: var(--radius-control);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2563,67 +2716,76 @@
      ======================================== */
 
   /* Enterprise Container - Standard content width */
+  /* Matches .enterprise-container-wide's scaling. It was capped at
+     1152px, which left the 27 pages using it looking boxed on wide
+     displays even after the wide container was fixed. */
   .enterprise-container {
-    max-width: var(--container-width);
+    max-width: var(--container-max);
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
-    padding-left: var(--space-6);
-    padding-right: var(--space-6);
+    padding-left: 24px;
+    padding-right: 24px;
   }
 
   @media (min-width: 768px) {
     .enterprise-container {
-      padding-left: var(--space-8);
-      padding-right: var(--space-8);
+      padding-left: 40px;
+      padding-right: 40px;
     }
   }
 
-  @media (min-width: 1024px) {
+  @media (min-width: 1280px) {
     .enterprise-container {
-      padding-left: var(--space-12);
-      padding-right: var(--space-12);
+      max-width: 1360px;
+      padding-left: 48px;
+      padding-right: 48px;
+    }
+  }
+
+  @media (min-width: 1440px) {
+    .enterprise-container {
+      max-width: var(--container-max-lg);
+      padding-left: 56px;
+      padding-right: 56px;
     }
   }
 
   /* Enterprise Container Wide - For content that needs more breathing room */
   .enterprise-container-wide {
-    /* Scales with the viewport instead of stopping dead at 1440px, so
-       laptops and monitors between 1440 and 1920 no longer show a
-       narrow column floating in empty margins. */
-    max-width: 112rem; /* 1792px ceiling */
+    /* 1200px is the comfortable width for text-led sections, but on a
+       1920px display that leaves ~360px of margin each side and the
+       page reads as a narrow box. So the container grows to 1600px on
+       wide screens; prose stays readable via the 70ch .measure cap
+       rather than by constraining the whole layout. */
+    max-width: var(--container-max);
     width: 100%;
     margin-left: auto;
     margin-right: auto;
-    padding-left: var(--space-6);
-    padding-right: var(--space-6);
+    padding-left: 24px;
+    padding-right: 24px;
   }
 
   @media (min-width: 768px) {
     .enterprise-container-wide {
-      padding-left: var(--space-8);
-      padding-right: var(--space-8);
+      padding-left: 40px;
+      padding-right: 40px;
     }
   }
 
-  @media (min-width: 1024px) {
+  @media (min-width: 1280px) {
     .enterprise-container-wide {
-      padding-left: var(--space-12);
-      padding-right: var(--space-12);
+      max-width: 1360px;
+      padding-left: 48px;
+      padding-right: 48px;
     }
   }
 
   @media (min-width: 1440px) {
     .enterprise-container-wide {
-      padding-left: var(--space-16);
-      padding-right: var(--space-16);
-    }
-  }
-
-  @media (min-width: 1920px) {
-    .enterprise-container-wide {
-      max-width: 120rem; /* 1920px on ultrawide */
-      padding-left: var(--space-20);
-      padding-right: var(--space-20);
+      max-width: var(--container-max-lg);
+      padding-left: 56px;
+      padding-right: 56px;
     }
   }
 
@@ -2892,7 +3054,7 @@
   .enterprise-card {
     background: hsl(var(--card));
     border: 1px solid hsl(var(--border));
-    border-radius: 8px;
+    border-radius: var(--radius-control);
     transition: all 0.3s ease;
   }
 
@@ -2950,7 +3112,7 @@
     background: hsla(var(--card), 0.85);
     backdrop-filter: blur(20px) saturate(180%);
     border: 1px solid hsla(var(--border), 0.8);
-    border-radius: 20px;
+    border-radius: var(--radius-card);
     box-shadow: 
       0 8px 32px hsla(var(--premium-shadow), 0.25),
       0 4px 16px hsla(var(--premium-shadow), 0.15),
@@ -2979,7 +3141,7 @@
       hsl(var(--enterprise-blue)) 0%, 
       hsl(var(--enterprise-blue-dark)) 100%
     );
-    border-radius: 12px;
+    border-radius: var(--radius-card);
     border: 1px solid hsla(var(--enterprise-blue), 0.4);
     box-shadow: 
       0 8px 24px hsla(var(--enterprise-blue), 0.25),
@@ -3121,7 +3283,7 @@
 
   /* Premium Enterprise Typography */
   .heading-hero {
-    font-family: var(--font-brand), 'Plus Jakarta Sans', sans-serif;
+    font-family: var(--font-heading), 'Space Grotesk', sans-serif;
     font-size: clamp(2.5rem, 5vw + 1rem, 5rem);
     font-weight: 800;
     letter-spacing: -0.04em;
@@ -3132,7 +3294,7 @@
   }
 
   .heading-display {
-    font-family: var(--font-brand), 'Plus Jakarta Sans', sans-serif;
+    font-family: var(--font-heading), 'Space Grotesk', sans-serif;
     @apply text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-black tracking-tight leading-none;
     font-weight: 900;
     letter-spacing: -0.03em;
@@ -3140,7 +3302,7 @@
   }
 
   .heading-section {
-    font-family: var(--font-brand), 'Plus Jakarta Sans', sans-serif;
+    font-family: var(--font-heading), 'Space Grotesk', sans-serif;
     font-size: clamp(1.875rem, 3vw + 1rem, 3rem);
     font-weight: 700;
     letter-spacing: -0.02em;
@@ -3222,7 +3384,7 @@
 
   /* Fluid Heading Classes */
   .fluid-heading-hero {
-    font-family: var(--font-brand), 'Plus Jakarta Sans', sans-serif;
+    font-family: var(--font-heading), 'Space Grotesk', sans-serif;
     font-size: clamp(2.5rem, 2rem + 2.5vw, 4.5rem);
     font-weight: 700;
     line-height: 1.1;
@@ -3231,7 +3393,7 @@
   }
 
   .fluid-heading-display {
-    font-family: var(--font-brand), 'Plus Jakarta Sans', sans-serif;
+    font-family: var(--font-heading), 'Space Grotesk', sans-serif;
     font-size: clamp(3rem, 2.5rem + 2.5vw, 5.5rem);
     font-weight: 900;
     line-height: 1.05;
@@ -3240,7 +3402,7 @@
   }
 
   .fluid-heading-section {
-    font-family: var(--font-brand), 'Plus Jakarta Sans', sans-serif;
+    font-family: var(--font-heading), 'Space Grotesk', sans-serif;
     font-size: clamp(1.875rem, 1.5rem + 1.875vw, 3rem);
     font-weight: 600;
     line-height: 1.2;
@@ -3448,7 +3610,7 @@
     background-color: #ffffff;
     color: #000000;
     border: 0.6px solid rgba(255, 255, 255, 1);
-    border-radius: 9999px;
+    border-radius: var(--radius-pill);
     transition: transform 0.2s ease, box-shadow 0.25s ease;
     text-decoration: none;
     cursor: pointer;
@@ -3567,7 +3729,7 @@
   .testimonial-card {
     background: white;
     border: 1px solid hsl(var(--premium-gray-100));
-    border-radius: 12px;
+    border-radius: var(--radius-card);
     padding: var(--space-8) var(--space-8) var(--space-6);
     transition: box-shadow 0.25s ease, transform 0.25s ease;
   }
@@ -3674,14 +3836,14 @@
      the same rendered width: 57/66/71px give ~164/190/204px, inside the
      145-210px brand target with the tagline still legible. */
   .ys-logo-img-full {
-    height: 57px;
+    height: 74px;
     max-height: 100%;
   }
   @media (min-width: 640px) {
-    .ys-logo-img-full { height: 66px; }
+    .ys-logo-img-full { height: 88px; }
   }
   @media (min-width: 1024px) {
-    .ys-logo-img-full { height: 71px; }
+    .ys-logo-img-full { height: 96px; }
   }
   .ys-logo-img-mark {
     height: 42px;
@@ -3695,9 +3857,15 @@
     outline-offset: 4px;
   }
 
-  .ys-logo-full {
-    opacity: 1;
-  }
+  /* Compact lockup: mark + wordmark as text. Shown below 768px, where
+     the full lockup's tagline and entity name are illegible. */
+  /* Full lockup at rest, icon mark once the header shrinks on scroll.
+     Exactly one is displayed: they share grid cell 1/1. */
+  .ys-nav-logo > span.ys-logo-full { display: flex; }
+  .ys-nav-logo > span.ys-logo-full.is-hidden { display: none; }
+  .ys-nav-logo > span.ys-logo-mark { display: none; }
+  .ys-nav-logo > span.ys-logo-mark.is-visible { display: flex; }
+  .ys-logo-full { opacity: 1; }
   .ys-logo-full.is-hidden {
     opacity: 0;
     pointer-events: none;
@@ -3781,20 +3949,23 @@
   }
 
   /* Compact floating dropdown — anchored under its own nav item */
+  /* 1. The panel reads as a surface above the page: raised fill, a
+     hairline, and a shadow deep enough to separate it from navy. */
   .ys-dropdown {
     position: absolute;
-    top: calc(100% + 8px);
+    top: calc(100% + 10px);
     left: 0;
     width: max-content;
-    min-width: 230px;
+    min-width: 268px;
     max-width: min(400px, calc(100vw - 32px));
-    padding: 10px;
-    background: rgba(9, 24, 50, 0.97);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 12px;
-    box-shadow: 0 18px 44px rgba(3, 12, 28, 0.5);
+    padding: 8px;
+    /* Fully opaque: an alpha fill let the hero image read through the
+       panel, which competed with the menu items. */
+    background: #0D1D3A;
+    border: 1px solid var(--line-dark);
+    border-radius: 14px;
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.45),
+      0 2px 6px rgba(0, 0, 0, 0.35);
     z-index: 60;
   }
   /* Keep the last panels inside the viewport */
@@ -3808,49 +3979,107 @@
     padding: 0;
   }
   .ys-dropdown-title {
-    font-size: 10.5px;
-    font-weight: 700;
-    letter-spacing: 0.15em;
+    font-family: var(--font-mono), 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.5);
-    padding: 4px 10px 8px;
+    color: var(--on-dark-label);
+    padding: 6px 12px 10px;
   }
+
+  /* 5. Hover fill is inset and rounded, so the highlight reads as a
+     contained object rather than a full-bleed select row. */
   .ys-dropdown-link {
     display: block;
-    padding: 9px 10px;
+    padding: 9px 12px;
     border-radius: 8px;
     text-decoration: none;
-    border-left: 2px solid transparent;
-    transition: background-color 150ms ease, border-color 150ms ease;
+    transition: background-color 140ms ease-out;
   }
   .ys-dropdown-link:hover {
-    background: rgba(255, 255, 255, 0.07);
-    border-left-color: var(--ys-orange);
+    background: #172C52;
   }
   .ys-dropdown-link:focus-visible {
-    outline: 2px solid var(--ys-cyan);
+    /* Lighter than --blue-400 so the ring stays clear of the hover
+       fill it can appear on top of. */
+    outline: 2px solid #8FB4FF;
     outline-offset: -2px;
+  }
+
+  /* 4. The overview link is a different kind of destination from the
+     leaf pages, so it sits above a hairline and reads slightly larger. */
+  .ys-dropdown-link.is-overview {
+    margin-bottom: 6px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--line-dark);
+    border-radius: 8px 8px 0 0;
+  }
+  /* A divider only makes sense when something follows it. If the
+     overview link is ever last in a menu, drop the rule. */
+  .ys-dropdown li:last-child .ys-dropdown-link.is-overview {
+    margin-bottom: 0;
+    padding-bottom: 9px;
+    border-bottom: 0;
+    border-radius: 8px;
+  }
+  .ys-dropdown-link.is-overview .ys-dropdown-name {
+    font-size: 15px;
+  }
+
+  .ys-dropdown-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
   }
   .ys-dropdown-name {
     display: block;
     font-size: 14px;
     font-weight: 600;
-    color: #ffffff;
+    color: var(--on-dark);
     line-height: 1.35;
   }
+  /* Trailing arrow appears on hover only. */
+  .ys-dropdown-arrow {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+    margin-left: auto;
+    color: var(--on-dark-label);
+    opacity: 0;
+    transform: translateX(-2px);
+    transition: opacity 140ms ease-out, transform 140ms ease-out;
+  }
+  .ys-dropdown-link:hover .ys-dropdown-arrow,
+  .ys-dropdown-link:focus-visible .ys-dropdown-arrow {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /* 3. Stack lists are metadata, not prose: mono, tracked, quieter. */
   .ys-dropdown-meta {
     display: block;
-    margin-top: 3px;
-    font-size: 11.5px;
+    margin-top: 4px;
+    font-family: var(--font-mono), 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 11px;
+    letter-spacing: 0.04em;
     line-height: 1.45;
-    color: rgba(255, 255, 255, 0.58);
+    color: var(--on-dark-label);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ys-dropdown-link,
+    .ys-dropdown-arrow {
+      transition: none;
+    }
+    .ys-dropdown-arrow { transform: none; }
   }
 
   /* Header CTA — outlined, so it supports rather than dominates */
   .ys-nav-cta {
     flex-shrink: 0;
     padding: 9px 16px;
-    border-radius: 7px;
+    border-radius: var(--radius-control);
     font-size: 13.5px;
     font-weight: 600;
     white-space: nowrap;
@@ -3875,7 +4104,7 @@
     justify-content: center;
     width: 40px;
     height: 40px;
-    border-radius: 8px;
+    border-radius: var(--radius-control);
     color: #fff;
     background: rgba(255, 255, 255, 0.09);
     border: 1px solid rgba(255, 255, 255, 0.14);
@@ -3921,7 +4150,7 @@
   .ys-mobile-sublink {
     display: inline-block;
     padding: 7px 11px;
-    border-radius: 999px;
+    border-radius: var(--radius-pill);
     font-size: 13px;
     font-weight: 500;
     color: rgba(255, 255, 255, 0.82);

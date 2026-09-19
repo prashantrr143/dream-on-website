@@ -1,28 +1,10 @@
 "use client"
 
-import { motion, type Variants } from 'framer-motion'
+import { motion } from 'framer-motion'
 import SharedLayout from '@/components/shared-layout'
 import { PageHero, PageSection, PageCTA } from '@/components/enterprise'
 
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }
-  }
-}
 
-const staggerContainer: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.12,
-      delayChildren: 0.15
-    }
-  }
-}
 
 /* ── Data ─────────────────────────────────────────── */
 
@@ -172,17 +154,12 @@ const ModernisationAdvisory = () => {
       {/* How an engagement runs */}
       <PageSection tone="white" eyebrow="How an engagement runs">
         <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          variants={staggerContainer}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
           style={{ gap: '16px' }}
         >
           {heroStats.map((stat) => (
             <motion.div
               key={stat.label}
-              variants={fadeUp}
               className="ys-card-light"
               style={{ padding: '28px 24px', minWidth: 0 }}
             >
@@ -224,17 +201,12 @@ const ModernisationAdvisory = () => {
         lede="From architecture review through re-platforming and adoption — shaped by your context, constraints and funding reality."
       >
         <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          variants={staggerContainer}
           className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3"
           style={{ gap: '24px' }}
         >
           {services.map((service) => (
             <motion.div
               key={service.title}
-              variants={fadeUp}
               className="ys-card-light"
               style={{
                 padding: '32px',
@@ -355,16 +327,11 @@ const ModernisationAdvisory = () => {
         lede="Structured enough to de-risk delivery. Flexible enough to adapt to what we learn along the way."
       >
         <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          variants={staggerContainer}
           style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}
         >
           {phases.map((phase) => (
             <motion.div
               key={phase.step}
-              variants={fadeUp}
               className="ys-card-light"
               style={{ padding: '28px 32px', minWidth: 0 }}
             >
@@ -449,17 +416,12 @@ const ModernisationAdvisory = () => {
         lede="Our team brings hands-on experience from regulated and operationally demanding environments."
       >
         <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          variants={staggerContainer}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
           style={{ gap: '16px' }}
         >
           {industries.map((industry) => (
             <motion.div
               key={industry.name}
-              variants={fadeUp}
               className="ys-card-light"
               style={{
                 padding: '24px',

@@ -1,16 +1,8 @@
 "use client"
 
-import { motion, type Variants } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 
-const visualReveal: Variants = {
-  hidden: { opacity: 0, scale: 0.96 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    transition: { duration: 0.6, ease: "easeOut" as const }
-  }
-}
 
 const audiences = [
   {
@@ -50,10 +42,6 @@ const AudienceSection = () => {
       <div className="enterprise-container-wide">
         {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
           style={{ marginBottom: '80px' }}
         >
           <p
@@ -92,10 +80,6 @@ const AudienceSection = () => {
               >
                 {/* Text Side */}
                 <motion.div
-                  initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5 }}
-                  viewport={{ once: true }}
                   style={{ order: isReversed ? 2 : 1 }}
                   className={isReversed ? 'lg:order-2' : 'lg:order-1'}
                 >
@@ -143,10 +127,6 @@ const AudienceSection = () => {
 
                 {/* Visual Side - Gradient card with decorative elements */}
                 <motion.div
-                  variants={visualReveal}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
                   style={{
                     order: isReversed ? 1 : 2,
                     minHeight: '300px',

@@ -20,31 +20,29 @@ import Image from 'next/image'
  */
 
 export const LOGO_ASSETS = {
-  /** Full colour lockup for light surfaces. */
+  /** Light surfaces (white footer) — dark lettering. */
   primary: {
     src: '/brand/yatisphere/logo/yatisphere-light-tagline.png',
     width: 1983,
     height: 691,
   },
-  /** Dark/navy surfaces — white wordmark, colour mark. */
+  /** Dark surfaces (navy header) — light lettering. */
   dark: {
     src: '/brand/yatisphere/logo/yatisphere-dark-tagline.png',
     width: 1983,
     height: 691,
   },
-  /** White knockout for dark surfaces needing maximum contrast. */
   white: {
     src: '/brand/yatisphere/logo/yatisphere-white-tagline.png',
     width: 1983,
     height: 691,
   },
-  /** Larger presentation lockup. */
   hero: {
-    src: '/brand/yatisphere/logo/yatisphere-light-tagline.png',
+    src: '/brand/yatisphere/logo/yatisphere-dark-tagline.png',
     width: 1983,
     height: 691,
   },
-  /** Icon-only mark — the supplied Y icon: no wordmark, tagline or TM. */
+  /** Icon-only mark. */
   icon: {
     src: '/brand/yatisphere/icon/yatisphere-icon-512.png',
     width: 512,

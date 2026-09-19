@@ -16,20 +16,31 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        // Plus Jakarta Sans is the approved brand typeface. Defining it
-        // here makes Tailwind's `font-sans` resolve to it, so the utility
-        // on <body> no longer overrides the brand font with the default
-        // system stack.
+        // Three families. `sans` is the body default (also on <body>),
+        // `heading` for h1-h3, `mono` for eyebrows, labels and tags.
         sans: [
-          'var(--font-brand)',
-          'Plus Jakarta Sans',
+          'var(--font-sans)',
+          'IBM Plex Sans',
           'ui-sans-serif',
           'system-ui',
           '-apple-system',
           'Segoe UI',
           'sans-serif',
         ],
-        brand: ['var(--font-brand)', 'Plus Jakarta Sans', 'sans-serif'],
+        heading: [
+          'var(--font-heading)',
+          'Space Grotesk',
+          'ui-sans-serif',
+          'system-ui',
+          'sans-serif',
+        ],
+        mono: [
+          'var(--font-mono)',
+          'IBM Plex Mono',
+          'ui-monospace',
+          'SFMono-Regular',
+          'monospace',
+        ],
       },
       colors: {
         background: "hsl(var(--background))",
@@ -72,11 +83,36 @@ const config: Config = {
           "4": "hsl(var(--chart-4))",
           "5": "hsl(var(--chart-5))",
         },
+
+        /* Design tokens. Plain hex vars, so these are used directly
+           (bg-navy-900, text-ink-muted) rather than through hsl(). */
+        "navy-900": "var(--navy-900)",
+        "navy-800": "var(--navy-800)",
+        "line-dark": "var(--line-dark)",
+        "line-dark-2": "var(--line-dark-2)",
+        "on-dark": "var(--on-dark)",
+        "on-dark-muted": "var(--on-dark-muted)",
+        "on-dark-label": "var(--on-dark-label)",
+        paper: "var(--paper)",
+        surface: "var(--surface)",
+        line: "var(--line)",
+        ink: "var(--ink)",
+        "ink-muted": "var(--ink-muted)",
+        "blue-600": "var(--blue-600)",
+        "blue-400": "var(--blue-400)",
+        "amber-500": "var(--amber-500)",
+        "amber-700": "var(--amber-700)",
       },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+        card: "var(--radius-card)",
+        control: "var(--radius-control)",
+        pill: "var(--radius-pill)",
+      },
+      boxShadow: {
+        hover: "var(--shadow-hover)",
       },
       animation: {
         float: "float 6s ease-in-out infinite",

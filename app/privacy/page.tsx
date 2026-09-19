@@ -1,5 +1,6 @@
 import { Metadata } from 'next'
 import SharedLayout from '@/components/shared-layout'
+import { LEGAL_LAST_UPDATED, LEGAL_ENTITY_NAME } from '@/lib/legal'
 
 export const metadata: Metadata = {
   title: 'Privacy Policy | Yatisphere',
@@ -47,7 +48,7 @@ export default function PrivacyPage() {
               color: 'hsl(var(--premium-gray-500))'
             }}
           >
-            Effective January 1, 2025
+            Last updated {LEGAL_LAST_UPDATED}
           </p>
         </div>
       </section>
@@ -87,7 +88,7 @@ export default function PrivacyPage() {
                   color: 'hsl(var(--premium-gray-500))'
                 }}
               >
-                This Privacy Policy describes how Yatisphere Technologies ("Company," "we," "our," or "us") collects, uses, and protects your personal information when you use our website and services.
+                This Privacy Policy describes how {LEGAL_ENTITY_NAME} ("Company," "we," "our," or "us") collects, uses, and protects your personal information when you use our website and services.
               </p>
             </section>
 
@@ -219,7 +220,7 @@ export default function PrivacyPage() {
                   color: 'hsl(var(--premium-gray-600))'
                 }}
               >
-                We implement appropriate technical and organizational measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction. We respect regional data protection laws including GDPR, CCPA, and other applicable regulations.
+                We implement appropriate technical and organizational measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction. We handle personal data in line with India&apos;s Digital Personal Data Protection Act, 2023 (DPDP Act) and, where it applies to the people we deal with, the EU General Data Protection Regulation (GDPR).
               </p>
             </section>
 
@@ -258,6 +259,56 @@ export default function PrivacyPage() {
                   <li>Request deletion of your personal information</li>
                   <li>Withdraw consent at any time</li>
                 </ul>
+              </div>
+            </section>
+
+            {/* DPDP Act rights */}
+            <section
+              style={{
+                paddingTop: 'var(--space-8)',
+                borderTop: '1px solid hsl(var(--premium-gray-200))'
+              }}
+            >
+              <h2
+                style={{
+                  fontSize: 'var(--text-2xl)',
+                  fontWeight: 'var(--font-semibold)',
+                  color: 'hsl(var(--premium-gray-900))',
+                  marginBottom: 'var(--space-4)'
+                }}
+              >
+                Your rights under India&apos;s DPDP Act
+              </h2>
+              <div
+                style={{
+                  fontSize: 'var(--text-base)',
+                  lineHeight: 'var(--leading-relaxed)',
+                  color: 'hsl(var(--premium-gray-600))'
+                }}
+              >
+                <p style={{ marginBottom: 'var(--space-4)' }}>
+                  If you are in India, the Digital Personal Data Protection Act, 2023 gives you the right to:
+                </p>
+                <ul
+                  style={{
+                    marginLeft: 'var(--space-6)',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: 'var(--space-2)'
+                  }}
+                >
+                  <li>know what personal data we hold about you and how we use it</li>
+                  <li>have inaccurate or incomplete data corrected, and have data erased when it is no longer needed for the purpose it was collected for</li>
+                  <li>withdraw your consent at any time, as easily as you gave it</li>
+                  <li>nominate another person to exercise your rights if you are unable to</li>
+                  <li>raise a grievance with us and receive a response</li>
+                </ul>
+                <p style={{ marginTop: 'var(--space-4)', marginBottom: 'var(--space-4)' }}>
+                  We collect personal data only for the purposes described in this policy and keep it only as long as those purposes require.
+                </p>
+                <p>
+                  To exercise any of these rights or raise a grievance, write to privacy@yatisphere.com. We aim to respond within 7 working days. If you are not satisfied with our response, you may complain to the Data Protection Board of India.
+                </p>
               </div>
             </section>
 

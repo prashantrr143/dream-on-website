@@ -1,19 +1,11 @@
 "use client"
 
-import { motion, type Variants } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import SharedLayout from '@/components/shared-layout'
 import { PageHero, PageSection, PageCTA } from '@/components/enterprise'
 
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 18 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
-}
 
-const stagger: Variants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.07, delayChildren: 0.05 } },
-}
 
 /**
  * Industry index. Descriptions match the homepage industry section so the
@@ -71,13 +63,9 @@ export default function IndustriesPage() {
       >
         <motion.ul
           className="ys-industry-rows"
-          variants={stagger}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
         >
           {industries.map((industry) => (
-            <motion.li key={industry.name} variants={fadeUp}>
+            <motion.li key={industry.name}>
               <a href={industry.href} className="ys-industry-row">
                 <h3 className="ys-industry-row-name">{industry.name}</h3>
                 <div style={{ minWidth: 0 }}>

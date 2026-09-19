@@ -1,29 +1,11 @@
 "use client"
 
-import { motion, type Variants } from 'framer-motion'
+import { motion } from 'framer-motion'
 import Link from 'next/link'
 import SharedLayout from '@/components/shared-layout'
 
 // Animation variants
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: "easeOut" as const }
-  }
-}
 
-const staggerContainer: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.1
-    }
-  }
-}
 
 // Capability pillars data
 const capabilityPillars = [
@@ -141,12 +123,8 @@ export default function ServicesPage() {
       >
         <motion.div
           className="enterprise-container-wide"
-          initial="hidden"
-          animate="visible"
-          variants={staggerContainer}
         >
           <motion.p
-            variants={fadeUp}
             style={{
               fontSize: 'var(--text-xs)',
               fontWeight: 'var(--font-medium)',
@@ -159,7 +137,6 @@ export default function ServicesPage() {
             Capabilities
           </motion.p>
           <motion.h1
-            variants={fadeUp}
             style={{
               fontSize: 'clamp(2.5rem, 5vw, 3.5rem)',
               fontWeight: 'var(--font-semibold)',
@@ -172,7 +149,6 @@ export default function ServicesPage() {
             Our Capabilities & Services
           </motion.h1>
           <motion.p
-            variants={fadeUp}
             style={{
               fontSize: 'var(--text-xl)',
               lineHeight: 'var(--leading-relaxed)',
@@ -184,7 +160,6 @@ export default function ServicesPage() {
             Delivering technology outcomes that matter—trusted systems, platforms that scale, and operations that are secure and governed.
           </motion.p>
           <motion.div
-            variants={fadeUp}
             style={{ display: 'flex', gap: 'var(--space-4)', flexWrap: 'wrap' }}
           >
             <Link
@@ -239,10 +214,6 @@ export default function ServicesPage() {
       >
         <motion.div
           className="enterprise-container-wide"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={fadeUp}
         >
           <p
             style={{
@@ -269,13 +240,9 @@ export default function ServicesPage() {
         >
           <motion.div
             className="enterprise-container-wide"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-50px" }}
-            variants={staggerContainer}
           >
             {/* Pillar Header */}
-            <motion.div variants={fadeUp} style={{ marginBottom: 'var(--space-10)' }}>
+            <motion.div style={{ marginBottom: 'var(--space-10)' }}>
               <h2
                 style={{
                   fontSize: 'var(--text-3xl)',
@@ -300,7 +267,6 @@ export default function ServicesPage() {
 
             {/* Strategic Outcomes */}
             <motion.div
-              variants={fadeUp}
               style={{
                 display: 'flex',
                 gap: 'var(--space-8)',
@@ -342,7 +308,6 @@ export default function ServicesPage() {
 
             {/* Capabilities Grid */}
             <motion.div
-              variants={staggerContainer}
               style={{
                 display: 'grid',
                 gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
@@ -352,7 +317,6 @@ export default function ServicesPage() {
               {pillar.capabilities.map((capability, capIndex) => (
                 <motion.div
                   key={capIndex}
-                  variants={fadeUp}
                   style={{
                     padding: 'var(--space-8)',
                     backgroundColor: pillarIndex % 2 === 0 ? 'white' : 'hsl(var(--premium-gray-50))',
@@ -396,10 +360,6 @@ export default function ServicesPage() {
       >
         <motion.div
           className="enterprise-container-wide"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeUp}
           style={{ textAlign: 'center' }}
         >
           <h2

@@ -1,29 +1,11 @@
 "use client"
 
-import { motion, type Variants } from 'framer-motion'
+import { motion } from 'framer-motion'
 import SharedLayout from '@/components/shared-layout'
 import { PageHero, PageSection, PageCTA } from '@/components/enterprise'
 import { YsIcon, type YsIconName } from '@/components/brand/YsIcon'
 
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }
-  }
-}
 
-const staggerContainer: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.12,
-      delayChildren: 0.15
-    }
-  }
-}
 
 const atAGlance = [
   { value: "Consent", label: "Captured as state", sub: "What was agreed, by whom, and when it changed" },
@@ -177,17 +159,12 @@ const Healthcare = () => {
       {/* At a glance */}
       <PageSection tone="white" eyebrow="At a glance">
         <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          variants={staggerContainer}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
           style={{ gap: '16px' }}
         >
           {atAGlance.map((item) => (
             <motion.div
               key={item.label}
-              variants={fadeUp}
               className="ys-card-light"
               style={{ padding: '28px 24px', minWidth: 0 }}
             >
@@ -235,17 +212,12 @@ const Healthcare = () => {
         lede="These tensions are structural to health technology. An honest architecture starts by naming them rather than designing around the easy case."
       >
         <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          variants={staggerContainer}
           className="grid grid-cols-1 sm:grid-cols-2"
           style={{ gap: '24px' }}
         >
           {pressures.map((pressure) => (
             <motion.div
               key={pressure.title}
-              variants={fadeUp}
               className="ys-card-light"
               style={{
                 padding: '32px',
@@ -306,17 +278,12 @@ const Healthcare = () => {
         lede="The same engineering practice we bring to any regulated enterprise, shaped by the sensitivity of the data involved."
       >
         <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          variants={staggerContainer}
           className="grid grid-cols-1 sm:grid-cols-2"
           style={{ gap: '24px' }}
         >
           {whatWeBuild.map((service) => (
             <motion.div
               key={service.title}
-              variants={fadeUp}
               className="ys-card-light"
               style={{
                 padding: '32px',
@@ -409,17 +376,12 @@ const Healthcare = () => {
         lede="We do not hold these certifications on your behalf. Our work is to design controls against these standards and produce the evidence your organisation needs to demonstrate them."
       >
         <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          variants={staggerContainer}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
           style={{ gap: '24px' }}
         >
           {governance.map((item) => (
             <motion.div
               key={item.title}
-              variants={fadeUp}
               className="ys-card-light"
               style={{ padding: '28px 24px', minWidth: 0 }}
             >

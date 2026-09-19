@@ -1,26 +1,8 @@
 "use client"
 
-import { motion, type Variants } from 'framer-motion'
+import { motion } from 'framer-motion'
 
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 10 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.4, ease: "easeOut" as const }
-  }
-}
 
-const staggerContainer: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.1
-    }
-  }
-}
 
 const principles = [
   "Architecture before automation",
@@ -38,10 +20,6 @@ const PhilosophySection = () => {
         <div style={{ maxWidth: '42rem' }}>
           {/* Section Header - Left-aligned */}
           <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
             style={{ marginBottom: 'var(--space-16)' }}
           >
             <p
@@ -57,10 +35,6 @@ const PhilosophySection = () => {
 
           {/* Manifesto Statements - Larger, spaced, declarative */}
           <motion.div
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
             style={{
               display: 'flex',
               flexDirection: 'column',
@@ -70,7 +44,6 @@ const PhilosophySection = () => {
             {principles.map((principle, index) => (
               <motion.p
                 key={index}
-                variants={fadeUp}
                 style={{
                   fontSize: 'var(--text-2xl)',
                   fontWeight: 'var(--font-medium)',

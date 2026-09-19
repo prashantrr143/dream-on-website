@@ -44,6 +44,19 @@ const nextConfig: NextConfig = {
     },
   }),
 
+  // The Applied AI page moved from /solutions/ai-ml to /applied-ai, so it
+  // reads as the second company pillar rather than one service among six.
+  // Permanent, so search engines transfer the old URL's standing.
+  async redirects() {
+    return [
+      {
+        source: '/solutions/ai-ml',
+        destination: '/applied-ai',
+        permanent: true,
+      },
+    ];
+  },
+
   // Enhanced security and performance headers
   async headers() {
     return [

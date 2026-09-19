@@ -35,9 +35,11 @@ function ScrollToTop() {
   }, [mounted])
 
   const scrollToTop = () => {
+    // Honour prefers-reduced-motion: jump instead of animating.
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     window.scrollTo({
       top: 0,
-      behavior: 'smooth'
+      behavior: reduced ? 'auto' : 'smooth',
     })
   }
 
@@ -46,10 +48,10 @@ function ScrollToTop() {
   return (
     <button
       onClick={scrollToTop}
-      className="fixed bottom-6 right-6 z-50 p-3 bg-gray-900 text-white rounded-md shadow-sm hover:bg-gray-800 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 sm:bottom-8 sm:right-8"
-      aria-label="Scroll to top"
+      className="ys-back-to-top"
+      aria-label="Back to top"
     >
-      <ArrowUp className="w-5 h-5" />
+      <ArrowUp className="w-5 h-5" strokeWidth={1.5} aria-hidden="true" />
     </button>
   )
 }

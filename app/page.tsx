@@ -7,10 +7,10 @@ import SharedLayout from '@/components/shared-layout'
 const skeletonLight = (
   <div className="ys-section-light">
     <div className="enterprise-container-wide">
-      <div className="h-8 bg-[#E2E8F2] animate-pulse rounded max-w-sm mb-10" />
+      <div className="h-8 bg-line animate-pulse rounded max-w-sm mb-10" />
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {[...Array(3)].map((_, i) => (
-          <div key={i} className="h-40 bg-[#E2E8F2] animate-pulse rounded-xl" />
+          <div key={i} className="h-40 bg-line animate-pulse rounded-xl" />
         ))}
       </div>
     </div>
@@ -20,10 +20,10 @@ const skeletonLight = (
 const skeletonWhite = (
   <div className="ys-section-white">
     <div className="enterprise-container-wide">
-      <div className="h-8 bg-[#E2E8F2] animate-pulse rounded max-w-sm mb-10" />
+      <div className="h-8 bg-line animate-pulse rounded max-w-sm mb-10" />
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {[...Array(3)].map((_, i) => (
-          <div key={i} className="h-40 bg-[#E2E8F2] animate-pulse rounded-xl" />
+          <div key={i} className="h-40 bg-line animate-pulse rounded-xl" />
         ))}
       </div>
     </div>
@@ -59,23 +59,8 @@ const ITServicesSection = dynamic(
   { loading: () => skeletonWhite }
 )
 
-const AppliedAISection = dynamic(
-  () => import('@/components/enterprise/AppliedAISection'),
-  { loading: () => skeletonLight }
-)
-
-const EngagementModelsSection = dynamic(
-  () => import('@/components/enterprise/EngagementModelsSection'),
-  { loading: () => skeletonWhite }
-)
-
-const IndustryFocusSection = dynamic(
-  () => import('@/components/enterprise/IndustryFocusSection'),
-  { loading: () => skeletonLight }
-)
-
-const WhyYatiSphereSection = dynamic(
-  () => import('@/components/enterprise/WhyYatiSphereSection'),
+const HowWeDeliverSection = dynamic(
+  () => import('@/components/enterprise/HowWeDeliverSection'),
   { loading: () => skeletonLight }
 )
 
@@ -103,7 +88,7 @@ const FooterMinimal = dynamic(() => import('@/components/enterprise/FooterMinima
   loading: () => (
     <div className="py-16" style={{ backgroundColor: 'var(--ys-surface-alt)' }}>
       <div className="enterprise-container-wide">
-        <div className="h-16 bg-[#E2E8F2] animate-pulse rounded" />
+        <div className="h-16 bg-line animate-pulse rounded" />
       </div>
     </div>
   ),
@@ -112,47 +97,31 @@ const FooterMinimal = dynamic(() => import('@/components/enterprise/FooterMinima
 export default function Home() {
   return (
     <SharedLayout hideFooter>
-      {/* Hero — positioning plus the two-pillar panel */}
+      {/* 1 — The problem we solve, stated plainly */}
       <Suspense fallback={null}>
         <HeroSection />
       </Suspense>
 
-      {/* Pillar 01 — Enterprise IT Services */}
+      {/* 2 — Problems we solve, with the two pillars behind them */}
       <Suspense fallback={null}>
         <ITServicesSection />
       </Suspense>
 
-      {/* Pillar 02 — Applied AI, plus the bridge between the pillars */}
+      {/* 3 — The delivery lifecycle */}
       <Suspense fallback={null}>
-        <AppliedAISection />
+        <HowWeDeliverSection />
       </Suspense>
 
-      {/* Engagement models */}
-      <Suspense fallback={null}>
-        <EngagementModelsSection />
-      </Suspense>
-
-      {/* Industries */}
-      <Suspense fallback={null}>
-        <IndustryFocusSection />
-      </Suspense>
-
-      {/* Why Yati Sphere — founder credibility and DPIIT recognition */}
-      <Suspense fallback={null}>
-        <WhyYatiSphereSection />
-      </Suspense>
-
-      {/* How we work */}
+      {/* 4 — Delivery commitments */}
       <Suspense fallback={null}>
         <HowWeWorkSection />
       </Suspense>
 
-      {/* Final CTA */}
+      {/* 5 — Final CTA */}
       <Suspense fallback={null}>
         <FinalCTASection />
       </Suspense>
 
-      {/* Footer */}
       <Suspense fallback={null}>
         <FooterMinimal />
       </Suspense>

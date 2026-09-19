@@ -1,27 +1,9 @@
 "use client"
 
-import { motion, type Variants } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { ArrowRight, Shield, Zap, Globe } from 'lucide-react'
 
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 16 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: "easeOut" as const }
-  }
-}
 
-const staggerContainer: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.12,
-      delayChildren: 0.1
-    }
-  }
-}
 
 const capabilities = [
   {
@@ -46,7 +28,7 @@ const capabilities = [
     title: "Applied AI, Data & Governance",
     description:
       "Production-grade AI and data systems with governance, auditability, and compliance built in. Responsible by design.",
-    link: "/solutions/ai-ml",
+    link: "/applied-ai",
     icon: Shield,
     iconColor: "#00D1FF",
     iconBg: "rgba(0, 209, 255, 0.1)"
@@ -65,10 +47,6 @@ const CapabilitiesSection = () => {
       <div className="enterprise-container-wide">
         {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
           style={{ marginBottom: '64px' }}
         >
           <p
@@ -98,10 +76,6 @@ const CapabilitiesSection = () => {
 
         {/* Capabilities Grid */}
         <motion.div
-          variants={staggerContainer}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
           className="grid grid-cols-1 md:grid-cols-3"
           style={{ gap: '24px' }}
         >
@@ -111,7 +85,6 @@ const CapabilitiesSection = () => {
               <motion.a
                 key={index}
                 href={capability.link}
-                variants={fadeUp}
                 className="group"
                 style={{
                   display: 'flex',

@@ -36,11 +36,6 @@ export function PageHero({
   // MotionConfig reducedMotion="user" (see MotionProvider) skips these
   // transforms for users who ask for reduced motion, without changing the
   // rendered markup — which is what keeps SSR and hydration in agreement.
-  const reveal = (delay: number) => ({
-    initial: { opacity: 0, y: 20 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] as const },
-  })
 
   return (
     <section
@@ -85,43 +80,25 @@ export function PageHero({
           <div className="max-w-[780px]">
             {eyebrow && (
               <motion.p
-                {...reveal(0)}
-                className="uppercase"
-                style={{
-                  fontSize: 'clamp(10px, 1.05vw, 12px)',
-                  fontWeight: 600,
-                  letterSpacing: '0.18em',
-                  color: 'rgba(255,255,255,0.86)',
-                  marginBottom: 'clamp(14px, 2.2vw, 20px)',
-                }}
+                className="ys-eyebrow ys-eyebrow-on-dark"
+                style={{ marginBottom: 'clamp(14px, 2.2vw, 20px)' }}
               >
                 {eyebrow}
               </motion.p>
             )}
 
             <motion.h1
-              {...reveal(0.07)}
-              style={{
-                fontSize: 'clamp(30px, 4.1vw, 50px)',
-                lineHeight: 1.1,
-                fontWeight: 800,
-                letterSpacing: '-0.028em',
-                color: '#ffffff',
-                textWrap: 'balance',
-              }}
+              style={{ color: 'var(--on-dark)', textWrap: 'balance' }}
             >
               {title}
             </motion.h1>
 
             {lede && (
               <motion.p
-                {...reveal(0.16)}
+                className="lead measure"
                 style={{
-                  maxWidth: 640,
                   marginTop: 'clamp(14px, 2vw, 20px)',
-                  fontSize: 'clamp(15px, 1.3vw, 17.5px)',
-                  lineHeight: 1.62,
-                  color: 'rgba(255,255,255,0.88)',
+                  color: 'var(--on-dark-muted)',
                 }}
               >
                 {lede}
@@ -130,7 +107,6 @@ export function PageHero({
 
             {(primaryCta || secondaryCta) && (
               <motion.div
-                {...reveal(0.26)}
                 className="flex flex-wrap items-center"
                 style={{ gap: 14, marginTop: 'clamp(24px, 3.2vw, 32px)' }}
               >
@@ -156,7 +132,7 @@ export function PageHero({
           </div>
 
           {children && (
-            <motion.div {...reveal(0.36)} style={{ marginTop: 'clamp(34px, 4.5vw, 54px)' }}>
+            <motion.div style={{ marginTop: 'clamp(34px, 4.5vw, 54px)' }}>
               {children}
             </motion.div>
           )}
@@ -188,37 +164,21 @@ export function PageSection({
       <div className="enterprise-container-wide">
         {(eyebrow || title || lede) && (
           <motion.div
-            initial={{ opacity: 0, y: 14 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-            viewport={{ once: true }}
             style={{ marginBottom: 'clamp(24px, 3vw, 34px)' }}
           >
             {eyebrow && <p className="ys-eyebrow">{eyebrow}</p>}
             {title && (
-              <h2
-                style={{
-                  fontSize: 'clamp(24px, 3vw, 34px)',
-                  fontWeight: 700,
-                  letterSpacing: '-0.025em',
-                  lineHeight: 1.2,
-                  marginTop: 14,
-                  marginBottom: 16,
-                  textWrap: 'balance',
-                }}
-              >
+              <h2 style={{ marginTop: 14, marginBottom: 16, textWrap: 'balance' }}>
                 {title}
               </h2>
             )}
             <div className="ys-rule" />
             {lede && (
               <p
+                className="lead measure"
                 style={{
                   marginTop: 18,
-                  maxWidth: '46rem',
-                  fontSize: 15.5,
-                  lineHeight: 1.65,
-                  color: 'var(--ys-ink-body)',
+                  color: 'var(--ink-muted)',
                 }}
               >
                 {lede}
@@ -250,32 +210,14 @@ export function PageCTA({
       style={{
         paddingTop: 'clamp(54px, 6vw, 76px)',
         paddingBottom: 'clamp(60px, 6.6vw, 84px)',
-        backgroundImage:
-          'linear-gradient(to bottom, #071429 0%, #0B1E3D 46%, #143257 100%)',
+        backgroundColor: 'var(--navy-900)',
         position: 'relative',
         overflow: 'hidden',
       }}
     >
-      <div
-        aria-hidden="true"
-        style={{
-          position: 'absolute',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-          width: 800,
-          height: 560,
-          background: 'radial-gradient(ellipse, rgba(10,132,255,0.10), transparent 60%)',
-          pointerEvents: 'none',
-        }}
-      />
       <motion.div
         className="enterprise-container-wide relative"
         style={{ zIndex: 1, textAlign: 'center' }}
-        initial={{ opacity: 0, y: 14 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.55 }}
-        viewport={{ once: true }}
       >
         <h2
           style={{
