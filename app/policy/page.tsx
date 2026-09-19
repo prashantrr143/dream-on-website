@@ -11,6 +11,7 @@ import {
  Phone,
  MapPin
 } from 'lucide-react'
+import { LEGAL_LAST_UPDATED } from '@/lib/legal'
 
 const PrivacyPolicy = () => {
  const containerVariants = {
@@ -63,11 +64,10 @@ const PrivacyPolicy = () => {
              <div className="flex flex-col sm:flex-row gap-6 text-sm text-muted-foreground mb-8">
                <div className="flex items-center gap-2">
                  <Calendar className="w-4 h-4" />
-                 <span>Effective Date: January 1, 2025</span>
                </div>
                <div className="flex items-center gap-2">
                  <Calendar className="w-4 h-4" />
-                 <span>Last Updated: January 1, 2025</span>
+                 <span>Last updated: {LEGAL_LAST_UPDATED}</span>
                </div>
              </div>
 
