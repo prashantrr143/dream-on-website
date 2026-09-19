@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     default: 'Yati Sphere Technologies — Enterprise IT Services & Applied AI',
     template: '%s | Yati Sphere Technologies'
   },
-  description: 'Yati Sphere builds, modernises and runs enterprise software, cloud and data platforms — and brings applied AI into them with the governance regulated businesses require.',
+  description: 'Tell us the business problem — slow onboarding, a system nobody dares touch, data you cannot get answers from, an AI pilot that stalled. One in-house team delivers the working solution, end to end.',
   keywords: [
     'enterprise technology', 'cloud infrastructure', 'AI solutions', 'DevOps automation', 
     'data analytics', 'IT consulting', 'digital transformation', 'cloud migration',
@@ -78,7 +78,7 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://yatisphere.com',
     title: 'Yati Sphere Technologies — Enterprise IT Services & Applied AI',
-    description: 'Yati Sphere builds, modernises and runs enterprise software, cloud and data platforms — and brings applied AI into them with the governance regulated businesses require.',
+    description: 'Tell us the business problem — slow onboarding, a system nobody dares touch, data you cannot get answers from, an AI pilot that stalled. One in-house team delivers the working solution, end to end.',
     siteName: 'Yati Sphere Technologies',
     images: [
       {
@@ -94,7 +94,7 @@ export const metadata: Metadata = {
     site: '@YatiSphere',
     creator: '@YatiSphere',
     title: 'Yati Sphere Technologies — Enterprise IT Services & Applied AI',
-    description: 'Yati Sphere builds, modernises and runs enterprise software, cloud and data platforms — and brings applied AI into them with the governance regulated businesses require.',
+    description: 'Tell us the business problem — slow onboarding, a system nobody dares touch, data you cannot get answers from, an AI pilot that stalled. One in-house team delivers the working solution, end to end.',
     images: ['/brand/yatisphere/social/og-image.jpg'],
   },
   robots: {

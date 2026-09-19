@@ -160,41 +160,95 @@
     --premium-shadow: 220 13% 10%; /* Shadow base */
 
     /* ==========================================================
-       YatiSphere approved brand palette — SOURCE OF TRUTH
-       Do not introduce colors outside this palette.
+       DESIGN TOKENS — SOURCE OF TRUTH
+       Warm paper + navy, with amber as the single accent.
+       Every pair below was checked for WCAG AA; ratios are noted.
+       Do not introduce colours outside this set.
        ========================================================== */
-    --ys-deep-blue: #0B1E3D;      /* Primary dark surface */
-    --ys-primary-blue: #0A84FF;   /* Primary action / link */
-    --ys-cyan: #00D1FF;           /* Bright accent */
-    --ys-orange: #FF8A00;         /* Controlled accent */
-    --ys-yellow: #FFC107;         /* Controlled accent */
-    --ys-light-gray: #F4F7FB;     /* Light surface */
+
+    /* Dark surfaces */
+    --navy-900: #0A1A33;      /* dark sections, hero, footer; primary text on light */
+    --navy-800: #10244A;      /* raised surface on dark */
+    --line-dark: #294474;     /* borders on dark */
+    --line-dark-2: #3A4F78;   /* stronger border on dark (secondary button) */
+
+    /* Text on dark */
+    --on-dark: #FFFFFF;       /* 17.38:1 on navy-900 */
+    --on-dark-muted: #C7D2E5; /* 11.40:1 on navy-900 */
+    --on-dark-label: #8FA6CC; /*  7.03:1 on navy-900 */
+
+    /* Light surfaces */
+    --paper: #F7F4EE;         /* default light page background (warm off-white) */
+    --surface: #FFFFFF;       /* cards and alternate light sections */
+    --line: #E2DCCF;          /* borders on light */
+
+    /* Text on light */
+    --ink: #0A1A33;           /* 15.83:1 on paper, 17.38:1 on surface */
+    --ink-muted: #4A5A78;     /*  6.32:1 on paper,  6.94:1 on surface */
+
+    /* Accents */
+    --blue-600: #1F4FBF;      /* links/tags on light — 6.53:1 paper, 7.17:1 surface */
+    --blue-400: #5B8CFF;      /* links/accents on dark — 5.49:1 on navy-900 */
+    --amber-500: #F5A524;     /* THE accent: fills and highlights — 8.51:1 with navy-900 */
+    /* Amber as TEXT on light. The brief specified #B06F00, but that is
+       3.74:1 on --paper and 4.10:1 on --surface, below the 4.5:1 the same
+       brief requires. This is the nearest step on the same hue that passes
+       both (4.68:1 / 5.14:1). */
+    --amber-700: #9A6100;
+
+    /* Radius */
+    --radius-card: 12px;      /* cards and panels */
+    --radius-control: 10px;   /* buttons and inputs */
+    --radius-pill: 999px;     /* pills and tags */
+
+    /* One shadow, hover only. Cards are flat at rest. */
+    --shadow-hover: 0 8px 24px rgba(10, 26, 51, 0.08);
+
+    /* Section rhythm (8px grid) */
+    --section-y-desktop: 112px;
+    --section-y-tablet: 80px;
+    --section-y-mobile: 64px;
+    --container-max: 1200px;
+
+    /* ==========================================================
+       Legacy YatiSphere palette — being migrated onto the tokens
+       above. Retained so unconverted call sites keep rendering;
+       each is aliased to its nearest new token.
+       ========================================================== */
+    --ys-deep-blue: var(--navy-900);
+    --ys-primary-blue: var(--blue-600);
+    --ys-cyan: var(--blue-400);
+    --ys-orange: var(--amber-500);
+    --ys-orange-ink: var(--amber-700);
+    --ys-yellow: var(--amber-500);
+    --ys-light-gray: var(--paper);
 
     /* Derived Deep Blue steps (same hue, for layering only) */
-    --ys-deep-blue-900: #071429;
-    --ys-deep-blue-800: #0B1E3D;
-    --ys-deep-blue-700: #102a52;
-    --ys-deep-blue-600: #17375f;
+    --ys-deep-blue-900: #06101F;
+    --ys-deep-blue-800: var(--navy-900);
+    --ys-deep-blue-700: var(--navy-800);
+    --ys-deep-blue-600: #16305C;
 
     /* Approved brand gradient — Deep Blue → Primary Blue → Cyan */
-    --ys-gradient: linear-gradient(135deg, #0B1E3D 0%, #0A84FF 62%, #00D1FF 100%);
-    --ys-gradient-accent: linear-gradient(90deg, #0A84FF 0%, #00D1FF 100%);
+    /* Retained only so unconverted call sites resolve; rebased onto the
+       new palette. No new gradients should be introduced. */
+    --ys-gradient: var(--navy-900);
+    --ys-gradient-accent: var(--amber-500);
 
     /* HSL channel forms for Tailwind/shadcn consumers */
     --ys-deep-blue-hsl: 215 70% 14%;
     --ys-primary-blue-hsl: 211 100% 52%;
     --ys-cyan-hsl: 191 100% 50%;
 
-    /* Light-surface system (mockup direction) */
-    --ys-surface: #FFFFFF;          /* Card / panel */
-    --ys-surface-alt: #F4F7FB;      /* Section background (Light Gray) */
-    --ys-border: #E2E8F2;           /* Hairline on light */
-    --ys-ink: #0B1E3D;              /* Headings on light — Deep Blue */
-    --ys-ink-body: #44546F;         /* Body copy on light (AA on white) */
-    --ys-ink-muted: #5B6B85;        /* Supporting text on light (AA on white) */
-    /* Darker step of Primary Blue — AA (5.31:1) for body-size links on light.
-       #0A84FF is 3.65:1, so it is reserved for buttons/large text/icons. */
-    --ys-link-on-light: #0068D6;
+    /* Light-surface system — now aliases onto the design tokens, so
+       every existing call site picks up the new palette. */
+    --ys-surface: var(--surface);
+    --ys-surface-alt: var(--paper);
+    --ys-border: var(--line);
+    --ys-ink: var(--ink);
+    --ys-ink-body: var(--ink-muted);
+    --ys-ink-muted: var(--ink-muted);
+    --ys-link-on-light: var(--blue-600);
 
     /* Stripe Brand Colors (legacy tokens — rebased to YatiSphere palette) */
     --stripe-navy: 215 70% 14%;       /* #0B1E3D - YatiSphere Deep Blue */
@@ -289,6 +343,14 @@
     scroll-padding-top: 5rem; /* Account for fixed header */
   }
 
+  /* Anchor targets that are cards inside a grid, not full sections.
+     html's scroll-padding-top covers most jumps, but a card needs its own
+     offset plus breathing room so it does not land flush under the
+     sticky header. */
+  .ys-anchor-target {
+    scroll-margin-top: 6.5rem;
+  }
+
   /* Ensure body doesn't have margin that could cause overlap */
   body {
     margin: 0;
@@ -367,7 +429,7 @@
     font-size: 15px;
     line-height: 1;
     padding: 15px 28px;
-    border-radius: 8px;
+    border-radius: var(--radius-control);
     border: 1px solid transparent;
     transition: background-color 200ms ease, transform 200ms ease,
       box-shadow 200ms ease;
@@ -375,7 +437,7 @@
   }
   .ys-cta-primary:hover {
     background: #0068d6; /* darker step of Primary Blue */
-    box-shadow: 0 6px 20px rgba(10, 132, 255, 0.28);
+    box-shadow: var(--shadow-hover);
   }
   .ys-cta-primary:focus-visible {
     outline: 2px solid var(--ys-cyan);
@@ -390,7 +452,7 @@
     font-size: 15px;
     line-height: 1;
     padding: 15px 28px;
-    border-radius: 8px;
+    border-radius: var(--radius-control);
     border: 1px solid rgba(255, 255, 255, 0.28);
     transition: background-color 200ms ease, border-color 200ms ease;
     white-space: nowrap;
@@ -408,7 +470,7 @@
   .ys-card {
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.09);
-    border-radius: 12px;
+    border-radius: var(--radius-card);
     transition: border-color 220ms ease, background-color 220ms ease;
   }
   .ys-card:hover {
@@ -437,17 +499,29 @@
   /* Section rhythm. Tightened from 104px: two stacked sections were
      producing ~208px of dead space between content blocks, which read
      as the page being empty rather than airy. */
-  .ys-section-light {
-    background-color: var(--ys-surface-alt);
-    color: var(--ys-ink-body);
-    padding-top: clamp(52px, 5.6vw, 76px);
-    padding-bottom: clamp(52px, 5.6vw, 76px);
-  }
+  /* Section rhythm: 64px mobile, 80px tablet, 112px desktop. One rule
+     for both tones so adjacent sections cannot drift apart. */
+  .ys-section-light,
   .ys-section-white {
-    background-color: var(--ys-surface);
-    color: var(--ys-ink-body);
-    padding-top: clamp(52px, 5.6vw, 76px);
-    padding-bottom: clamp(52px, 5.6vw, 76px);
+    color: var(--ink-muted);
+    padding-top: var(--section-y-mobile);
+    padding-bottom: var(--section-y-mobile);
+  }
+  .ys-section-light { background-color: var(--paper); }
+  .ys-section-white { background-color: var(--surface); }
+  @media (min-width: 768px) {
+    .ys-section-light,
+    .ys-section-white {
+      padding-top: var(--section-y-tablet);
+      padding-bottom: var(--section-y-tablet);
+    }
+  }
+  @media (min-width: 1024px) {
+    .ys-section-light,
+    .ys-section-white {
+      padding-top: var(--section-y-desktop);
+      padding-bottom: var(--section-y-desktop);
+    }
   }
   .ys-section-light h1, .ys-section-light h2,
   .ys-section-light h3, .ys-section-light h4,
@@ -478,15 +552,21 @@
 
   /* Card on a light surface */
   .ys-card-light {
-    background: var(--ys-surface);
-    border: 1px solid var(--ys-border);
-    border-radius: 12px;
-    transition: border-color 200ms ease, box-shadow 200ms ease,
-      transform 200ms ease;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-card);
+    /* Flat at rest: border only, no resting shadow. */
+    transition: border-color 180ms ease-out, box-shadow 180ms ease-out,
+      transform 180ms ease-out;
   }
   .ys-card-light:hover {
-    border-color: rgba(10, 132, 255, 0.5);
-    box-shadow: 0 8px 24px rgba(11, 30, 61, 0.08);
+    border-color: var(--ink-muted);
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-2px);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ys-card-light { transition: none; }
+    .ys-card-light:hover { transform: none; }
   }
 
   /* Text link on a light surface — AA contrast */
@@ -540,7 +620,7 @@
     display: block;
     background: var(--ys-surface);
     border: 1px solid var(--ys-border);
-    border-radius: 12px;
+    border-radius: var(--radius-card);
     overflow: hidden;
     text-decoration: none;
     height: 100%;
@@ -582,7 +662,7 @@
     bottom: 12px;
     width: 34px;
     height: 34px;
-    border-radius: 9px;
+    border-radius: var(--radius-control);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -699,7 +779,7 @@
     gap: 14px;
     margin-top: 28px;
     padding: 18px 20px 18px 22px;
-    border-radius: 14px;
+    border-radius: var(--radius-card);
     background: #ffffff;
     border: 1px solid var(--ys-border);
     box-shadow: 0 2px 10px rgba(11, 30, 61, 0.05);
@@ -731,7 +811,7 @@
     flex-shrink: 0;
     width: 44px;
     height: 44px;
-    border-radius: 11px;
+    border-radius: var(--radius-card);
     color: var(--ys-link-on-light);
     background: rgba(10, 132, 255, 0.08);
     border: 1px solid rgba(10, 132, 255, 0.16);
@@ -887,7 +967,7 @@
     min-width: 0;
     padding: clamp(22px, 2.2vw, 28px);
     border: 1px solid var(--ys-border);
-    border-radius: 14px;
+    border-radius: var(--radius-card);
     background: var(--ys-surface-alt);
   }
   .ys-about-do-title {
@@ -956,7 +1036,7 @@
     padding: clamp(22px, 2.2vw, 28px);
     background: var(--ys-surface);
     border: 1px solid var(--ys-border);
-    border-radius: 14px;
+    border-radius: var(--radius-card);
     overflow: hidden;
     transition: border-color 200ms ease, box-shadow 200ms ease;
   }
@@ -995,7 +1075,7 @@
     justify-content: center;
     width: 38px;
     height: 38px;
-    border-radius: 10px;
+    border-radius: var(--radius-control);
     flex-shrink: 0;
     color: var(--ys-link-on-light);
     background: rgba(10, 132, 255, 0.08);
@@ -1087,7 +1167,7 @@
     padding: clamp(20px, 2.1vw, 26px);
     background: var(--ys-surface);
     border: 1px solid var(--ys-border);
-    border-radius: 14px;
+    border-radius: var(--radius-card);
     text-decoration: none;
     transition: border-color 200ms ease, box-shadow 200ms ease,
       transform 200ms ease;
@@ -1107,7 +1187,7 @@
     justify-content: center;
     width: 44px;
     height: 44px;
-    border-radius: 11px;
+    border-radius: var(--radius-card);
     flex-shrink: 0;
     color: var(--ys-link-on-light);
     background: rgba(10, 132, 255, 0.08);
@@ -1146,7 +1226,7 @@
     display: block;
     margin-top: 14px;
     padding: 11px 13px;
-    border-radius: 9px;
+    border-radius: var(--radius-control);
     background: var(--ys-surface-alt);
     border: 1px solid var(--ys-border);
     font-size: 13px;
@@ -1272,7 +1352,7 @@
   .ys-vision-aside {
     padding: clamp(22px, 2.4vw, 30px);
     border: 1px solid var(--ys-border);
-    border-radius: 14px;
+    border-radius: var(--radius-card);
     background: var(--ys-surface-alt);
   }
   /* ==========================================================
@@ -1352,7 +1432,7 @@
     align-items: flex-start;
     gap: 13px;
     padding: 16px;
-    border-radius: 12px;
+    border-radius: var(--radius-card);
     background: var(--ys-surface);
     border: 1px solid var(--ys-border);
   }
@@ -1363,7 +1443,7 @@
     flex-shrink: 0;
     width: 40px;
     height: 40px;
-    border-radius: 10px;
+    border-radius: var(--radius-control);
     color: var(--ys-link-on-light);
     background: rgba(10, 132, 255, 0.08);
     border: 1px solid rgba(10, 132, 255, 0.16);
@@ -1467,7 +1547,7 @@
     width: 100%;
     aspect-ratio: 5 / 4;
     overflow: hidden;
-    border-radius: 16px;
+    border-radius: var(--radius-card);
     background: var(--ys-deep-blue);
     isolation: isolate;
   }
@@ -1533,7 +1613,7 @@
     font-weight: 500;
     color: var(--ys-ink-muted);
     padding: 5px 10px;
-    border-radius: 999px;
+    border-radius: var(--radius-pill);
     background: var(--ys-surface);
     border: 1px solid var(--ys-border);
   }
@@ -1673,7 +1753,7 @@
     height: 100%;
     overflow: hidden;
     border: 1px solid var(--ys-border);
-    border-radius: 14px;
+    border-radius: var(--radius-card);
     background: var(--ys-surface);
     text-decoration: none;
     transition: border-color 200ms ease, box-shadow 200ms ease,
@@ -1745,7 +1825,9 @@
   }
   .ys-cap-head {
     display: flex;
-    align-items: center;
+    /* Problem titles run to two or three lines; centring them against the
+       42px icon leaves the first line floating. Align to the top instead. */
+    align-items: flex-start;
     gap: 12px;
     margin-bottom: 12px;
   }
@@ -1756,7 +1838,7 @@
     flex-shrink: 0;
     width: 42px;
     height: 42px;
-    border-radius: 10px;
+    border-radius: var(--radius-control);
     color: var(--ys-link-on-light);
     background: rgba(10, 132, 255, 0.08);
     border: 1px solid rgba(10, 132, 255, 0.16);
@@ -1882,6 +1964,254 @@
     }
   }
 
+  /* ==========================================================
+     Two pillars + sectors line, under the problem grid.
+     ========================================================== */
+  .ys-pillars-strip {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(20px, 3vw, 40px);
+    margin-top: clamp(34px, 4.5vw, 56px);
+    padding-top: clamp(28px, 3.5vw, 40px);
+    border-top: 1px solid var(--ys-border);
+  }
+  @media (min-width: 768px) {
+    .ys-pillars-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  .ys-pillars-item { min-width: 0; }
+  .ys-pillars-label {
+    font-size: clamp(15px, 1.3vw, 17px);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--ys-ink);
+    margin-bottom: 8px;
+  }
+  .ys-pillars-line {
+    font-size: 14.5px;
+    line-height: 1.62;
+    color: var(--ys-ink-body);
+    margin-bottom: 12px;
+  }
+  .ys-pillars-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .ys-sectors-line {
+    margin-top: clamp(26px, 3.2vw, 38px);
+    text-align: center;
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: var(--ys-ink-muted);
+    text-wrap: balance;
+  }
+  .ys-sectors-link {
+    color: var(--ys-link-on-light);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .ys-sectors-link:hover { text-decoration: underline; }
+  .ys-sectors-link:focus-visible {
+    outline: 2px solid var(--ys-link-on-light);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  /* Problem titles run longer than the old service names: keep them
+     readable and keep cards in a row the same height. */
+  .ys-problem-title {
+    text-wrap: pretty;
+  }
+
+  /* ==========================================================
+     Delivery lifecycle — five stages.
+     Five columns do not divide evenly at most widths, so the grid
+     steps 1 -> 2 -> 3 -> 5 and the last row is allowed to be short.
+     ========================================================== */
+  .ys-stage-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(18px, 2vw, 24px);
+    list-style: none;
+    margin: clamp(32px, 4vw, 48px) 0 0;
+    padding: 0;
+    counter-reset: none;
+  }
+  @media (min-width: 620px) {
+    .ys-stage-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (min-width: 900px) {
+    .ys-stage-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  }
+  @media (min-width: 1200px) {
+    .ys-stage-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  }
+  .ys-stage-item {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    padding: clamp(18px, 1.8vw, 22px);
+    border: 1px solid var(--ys-border);
+    border-radius: var(--radius-card);
+    background: var(--ys-surface);
+  }
+  .ys-stage-n {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .14em;
+    color: var(--ys-link-on-light);
+    margin-bottom: 10px;
+  }
+  .ys-stage-title {
+    font-size: clamp(15.5px, 1.3vw, 17px);
+    font-weight: 700;
+    letter-spacing: -0.018em;
+    color: var(--ys-ink);
+    margin-bottom: 8px;
+  }
+  .ys-stage-line {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--ys-ink-body);
+    margin-bottom: 12px;
+  }
+  /* Pinned to the bottom so the "what you get" line sits on one
+     baseline across a row, whatever the description length. */
+  .ys-stage-output {
+    margin-top: auto;
+    padding-top: 12px;
+    border-top: 1px solid var(--ys-border);
+    font-size: 13px;
+    line-height: 1.55;
+    font-weight: 600;
+    color: var(--ys-ink);
+  }
+  .ys-stage-footer {
+    margin-top: clamp(26px, 3vw, 36px);
+  }
+  .ys-stage-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 14.5px;
+    font-weight: 600;
+  }
+
+  /* ==========================================================
+     Delivery lifecycle on /how-we-work — five stages with
+     deliverables. Steps 1 -> 2 -> 3 -> 5 columns; five across only
+     above 1280px, where they still hold a readable measure.
+     ========================================================== */
+  .ys-lifecycle-grid {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(16px, 2vw, 22px);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  @media (min-width: 640px) {
+    .ys-lifecycle-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (min-width: 1024px) {
+    .ys-lifecycle-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  }
+  @media (min-width: 1280px) {
+    .ys-lifecycle-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  }
+
+  .ys-lifecycle-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    padding: clamp(18px, 1.8vw, 22px);
+    border: 1px solid var(--ys-border);
+    border-radius: var(--radius-card);
+    background: var(--ys-surface);
+  }
+
+  /* Connecting line between stacked stages on mobile only, so the
+     sequence still reads as a single path. */
+  .ys-lifecycle-item::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: calc(-1 * clamp(16px, 2vw, 22px));
+    width: 1px;
+    height: clamp(16px, 2vw, 22px);
+    background: var(--ys-border);
+  }
+  .ys-lifecycle-item:first-child::before { display: none; }
+  @media (min-width: 640px) {
+    .ys-lifecycle-item::before { display: none; }
+  }
+
+  .ys-lifecycle-n {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .14em;
+    color: var(--ys-link-on-light);
+    margin-bottom: 10px;
+  }
+  .ys-lifecycle-title {
+    font-size: clamp(15.5px, 1.3vw, 17px);
+    font-weight: 700;
+    letter-spacing: -0.018em;
+    color: var(--ys-ink);
+    margin-bottom: 8px;
+  }
+  .ys-lifecycle-line {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--ys-ink-body);
+    max-width: 62ch;
+    margin-bottom: 14px;
+  }
+  /* Pinned to the bottom so the deliverables align across a row. */
+  .ys-lifecycle-gets-label {
+    margin-top: auto;
+    padding-top: 12px;
+    border-top: 1px solid var(--ys-border);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--ys-ink-muted);
+    margin-bottom: 8px;
+  }
+  .ys-lifecycle-gets {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+  .ys-lifecycle-gets li {
+    position: relative;
+    padding-left: 16px;
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--ys-ink-body);
+  }
+  .ys-lifecycle-gets li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--ys-link-on-light);
+  }
+
   /* Positioning band under the hero */
   .ys-position-grid {
     display: grid;
@@ -1920,7 +2250,7 @@
     justify-content: center;
     width: 40px;
     height: 40px;
-    border-radius: 10px;
+    border-radius: var(--radius-control);
     flex-shrink: 0;
     color: var(--ys-cyan);
     background: rgba(0, 209, 255, 0.1);
@@ -1952,7 +2282,7 @@
     display: flex;
     flex-direction: column;
     padding: clamp(24px, 2.7vw, 34px);
-    border-radius: 12px;
+    border-radius: var(--radius-card);
     background: rgba(255, 255, 255, 0.045);
     border: 1px solid rgba(255, 255, 255, 0.12);
     backdrop-filter: blur(12px);
@@ -2066,7 +2396,7 @@
     margin-top: 24px;
     padding: 9px 16px;
     width: fit-content;
-    border-radius: 7px;
+    border-radius: var(--radius-control);
     font-size: 13.5px;
     font-weight: 600;
     color: #ffffff;
@@ -2146,295 +2476,6 @@
     .ys-industry-row-name { transition: none; }
   }
 
-  /* ==========================================================
-     "What we build" capability grid.
-     Deep Blue visual panel over a light card. Restrained: blue and
-     cyan carry the accents, orange appears once per visual at most.
-     ========================================================== */
-  .ys-cap-intro {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: clamp(20px, 3vw, 36px);
-    margin-bottom: clamp(32px, 4.5vw, 52px);
-  }
-  @media (min-width: 1024px) {
-    .ys-cap-intro {
-      grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
-      align-items: end;
-      gap: clamp(32px, 4vw, 64px);
-    }
-  }
-  .ys-cap-headline {
-    font-size: clamp(28px, 3.6vw, 44px);
-    font-weight: 800;
-    letter-spacing: -0.03em;
-    line-height: 1.12;
-    color: var(--ys-ink);
-    margin-top: 14px;
-    text-wrap: balance;
-  }
-  .ys-cap-headline-accent { color: var(--ys-primary-blue); }
-  .ys-cap-lede {
-    margin-top: 14px;
-    font-size: clamp(15px, 1.4vw, 17px);
-    line-height: 1.6;
-    color: var(--ys-ink-body);
-    max-width: 34rem;
-  }
-  .ys-cap-intro-aside {
-    padding-left: 0;
-    border-left: none;
-  }
-  @media (min-width: 1024px) {
-    .ys-cap-intro-aside {
-      padding-left: clamp(20px, 2.4vw, 32px);
-      border-left: 1px solid var(--ys-border);
-    }
-  }
-  .ys-cap-intro-aside p {
-    font-size: 14.5px;
-    line-height: 1.65;
-    color: var(--ys-ink-body);
-  }
-  .ys-cap-intro-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    margin-top: 12px;
-    font-size: 14.5px;
-  }
-
-  .ys-cap-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: clamp(18px, 1.8vw, 24px);
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-  @media (min-width: 680px) {
-    .ys-cap-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  }
-  @media (min-width: 1100px) {
-    .ys-cap-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  }
-
-  .ys-cap-card {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    overflow: hidden;
-    border: 1px solid var(--ys-border);
-    border-radius: 14px;
-    background: var(--ys-surface);
-    text-decoration: none;
-    transition: border-color 200ms ease, box-shadow 200ms ease,
-      transform 200ms ease;
-  }
-  .ys-cap-card:hover {
-    border-color: rgba(10, 132, 255, 0.55);
-    box-shadow: 0 12px 30px rgba(11, 30, 61, 0.10);
-    transform: translateY(-2px);
-  }
-  .ys-cap-card:focus-visible {
-    outline: 2px solid var(--ys-link-on-light);
-    outline-offset: 3px;
-  }
-
-  /* Visual panel — fixed ratio so all six crop identically */
-  .ys-cap-media {
-    position: relative;
-    display: block;
-    aspect-ratio: 16 / 9;
-    overflow: hidden;
-    background: var(--ys-deep-blue);
-    border-bottom: 1px solid var(--ys-border);
-  }
-  .ys-cap-visual, .ys-cap-svg {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    display: block;
-  }
-  .ys-cap-svg {
-    transition: transform 240ms ease;
-    transform-origin: center;
-  }
-  .ys-cap-card:hover .ys-cap-svg { transform: scale(1.03); }
-
-  .ys-cap-number {
-    position: absolute;
-    top: 16px;
-    left: 18px;
-    font-size: 19px;
-    font-weight: 700;
-    letter-spacing: 0.01em;
-    color: rgba(255, 255, 255, 0.92);
-  }
-  .ys-cap-overline {
-    position: absolute;
-    top: 44px;
-    left: 18px;
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
-  }
-  .ys-cap-overline span {
-    font-size: 9.5px;
-    font-weight: 600;
-    letter-spacing: 0.19em;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.66);
-    line-height: 1.25;
-  }
-
-  .ys-cap-body {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    padding: clamp(20px, 2vw, 26px);
-  }
-  .ys-cap-head {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 12px;
-  }
-  .ys-cap-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    width: 42px;
-    height: 42px;
-    border-radius: 10px;
-    color: var(--ys-link-on-light);
-    background: rgba(10, 132, 255, 0.08);
-    border: 1px solid rgba(10, 132, 255, 0.16);
-    transition: background-color 200ms ease, border-color 200ms ease;
-  }
-  .ys-cap-card:hover .ys-cap-icon {
-    background: rgba(10, 132, 255, 0.14);
-    border-color: rgba(0, 209, 255, 0.5);
-  }
-  .ys-cap-title {
-    flex: 1;
-    min-width: 0;
-    font-size: clamp(15.5px, 1.35vw, 17px);
-    font-weight: 700;
-    letter-spacing: -0.018em;
-    line-height: 1.3;
-    color: var(--ys-ink);
-  }
-  .ys-cap-arrow {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    border: 1px solid var(--ys-border);
-    color: var(--ys-link-on-light);
-    transition: transform 200ms ease, border-color 200ms ease,
-      background-color 200ms ease;
-  }
-  .ys-cap-card:hover .ys-cap-arrow {
-    transform: translate(3px, -3px);
-    border-color: rgba(10, 132, 255, 0.5);
-    background: rgba(10, 132, 255, 0.07);
-  }
-
-  .ys-cap-desc {
-    display: block;
-    font-size: 14px;
-    line-height: 1.6;
-    color: var(--ys-ink-body);
-    margin-bottom: 16px;
-  }
-  .ys-cap-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-top: auto;
-  }
-  .ys-cap-tag {
-    display: inline-block;
-    padding: 4px 9px;
-    border-radius: 5px;
-    background: var(--ys-surface-alt);
-    border: 1px solid var(--ys-border);
-    font-size: 11.5px;
-    font-weight: 500;
-    color: var(--ys-ink-muted);
-    white-space: nowrap;
-  }
-
-  /* Section footer */
-  .ys-cap-footer {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: clamp(14px, 2vw, 24px);
-    margin-top: clamp(32px, 4vw, 48px);
-  }
-  .ys-cap-footer-tagline {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.19em;
-    text-transform: uppercase;
-    color: var(--ys-link-on-light);
-    white-space: nowrap;
-  }
-  .ys-cap-footer-tagline span { color: var(--ys-orange); margin: 0 2px; }
-  .ys-cap-footer-rule {
-    flex: 1;
-    min-width: 24px;
-    height: 1px;
-    background: var(--ys-border);
-  }
-  .ys-cap-footer-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 14.5px;
-    font-weight: 600;
-    color: var(--ys-link-on-light);
-    text-decoration: none;
-    white-space: nowrap;
-  }
-  .ys-cap-footer-link:hover { text-decoration: underline; }
-  .ys-cap-footer-link:focus-visible {
-    outline: 2px solid var(--ys-link-on-light);
-    outline-offset: 3px;
-    border-radius: 3px;
-  }
-  .ys-cap-footer-arrow {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 34px;
-    height: 34px;
-    border-radius: 50%;
-    background: var(--ys-primary-blue);
-    color: #fff;
-    transition: transform 200ms ease;
-  }
-  .ys-cap-footer-link:hover .ys-cap-footer-arrow { transform: translateX(3px); }
-
-  @media (prefers-reduced-motion: reduce) {
-    .ys-cap-card,
-    .ys-cap-svg,
-    .ys-cap-arrow,
-    .ys-cap-icon,
-    .ys-cap-footer-arrow {
-      transition: none !important;
-      transform: none !important;
-    }
-  }
-
-  /* Positioning band under the hero */
   .ys-position-grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -2472,7 +2513,7 @@
     justify-content: center;
     width: 40px;
     height: 40px;
-    border-radius: 10px;
+    border-radius: var(--radius-control);
     flex-shrink: 0;
     color: var(--ys-cyan);
     background: rgba(0, 209, 255, 0.1);
@@ -2516,7 +2557,7 @@
   .ys-icon-tile {
     width: 48px;
     height: 48px;
-    border-radius: 10px;
+    border-radius: var(--radius-control);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2590,25 +2631,18 @@
     /* Scales with the viewport instead of stopping dead at 1440px, so
        laptops and monitors between 1440 and 1920 no longer show a
        narrow column floating in empty margins. */
-    max-width: 112rem; /* 1792px ceiling */
+    max-width: var(--container-max);
     width: 100%;
     margin-left: auto;
     margin-right: auto;
-    padding-left: var(--space-6);
-    padding-right: var(--space-6);
+    padding-left: 24px;
+    padding-right: 24px;
   }
 
   @media (min-width: 768px) {
     .enterprise-container-wide {
-      padding-left: var(--space-8);
-      padding-right: var(--space-8);
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .enterprise-container-wide {
-      padding-left: var(--space-12);
-      padding-right: var(--space-12);
+      padding-left: 40px;
+      padding-right: 40px;
     }
   }
 
@@ -2892,7 +2926,7 @@
   .enterprise-card {
     background: hsl(var(--card));
     border: 1px solid hsl(var(--border));
-    border-radius: 8px;
+    border-radius: var(--radius-control);
     transition: all 0.3s ease;
   }
 
@@ -2950,7 +2984,7 @@
     background: hsla(var(--card), 0.85);
     backdrop-filter: blur(20px) saturate(180%);
     border: 1px solid hsla(var(--border), 0.8);
-    border-radius: 20px;
+    border-radius: var(--radius-card);
     box-shadow: 
       0 8px 32px hsla(var(--premium-shadow), 0.25),
       0 4px 16px hsla(var(--premium-shadow), 0.15),
@@ -2979,7 +3013,7 @@
       hsl(var(--enterprise-blue)) 0%, 
       hsl(var(--enterprise-blue-dark)) 100%
     );
-    border-radius: 12px;
+    border-radius: var(--radius-card);
     border: 1px solid hsla(var(--enterprise-blue), 0.4);
     box-shadow: 
       0 8px 24px hsla(var(--enterprise-blue), 0.25),
@@ -3448,7 +3482,7 @@
     background-color: #ffffff;
     color: #000000;
     border: 0.6px solid rgba(255, 255, 255, 1);
-    border-radius: 9999px;
+    border-radius: var(--radius-pill);
     transition: transform 0.2s ease, box-shadow 0.25s ease;
     text-decoration: none;
     cursor: pointer;
@@ -3567,7 +3601,7 @@
   .testimonial-card {
     background: white;
     border: 1px solid hsl(var(--premium-gray-100));
-    border-radius: 12px;
+    border-radius: var(--radius-card);
     padding: var(--space-8) var(--space-8) var(--space-6);
     transition: box-shadow 0.25s ease, transform 0.25s ease;
   }
@@ -3793,7 +3827,7 @@
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
     border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 12px;
+    border-radius: var(--radius-card);
     box-shadow: 0 18px 44px rgba(3, 12, 28, 0.5);
     z-index: 60;
   }
@@ -3818,7 +3852,7 @@
   .ys-dropdown-link {
     display: block;
     padding: 9px 10px;
-    border-radius: 8px;
+    border-radius: var(--radius-control);
     text-decoration: none;
     border-left: 2px solid transparent;
     transition: background-color 150ms ease, border-color 150ms ease;
@@ -3850,7 +3884,7 @@
   .ys-nav-cta {
     flex-shrink: 0;
     padding: 9px 16px;
-    border-radius: 7px;
+    border-radius: var(--radius-control);
     font-size: 13.5px;
     font-weight: 600;
     white-space: nowrap;
@@ -3875,7 +3909,7 @@
     justify-content: center;
     width: 40px;
     height: 40px;
-    border-radius: 8px;
+    border-radius: var(--radius-control);
     color: #fff;
     background: rgba(255, 255, 255, 0.09);
     border: 1px solid rgba(255, 255, 255, 0.14);
@@ -3921,7 +3955,7 @@
   .ys-mobile-sublink {
     display: inline-block;
     padding: 7px 11px;
-    border-radius: 999px;
+    border-radius: var(--radius-pill);
     font-size: 13px;
     font-weight: 500;
     color: rgba(255, 255, 255, 0.82);

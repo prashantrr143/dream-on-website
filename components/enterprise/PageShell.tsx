@@ -250,25 +250,11 @@ export function PageCTA({
       style={{
         paddingTop: 'clamp(54px, 6vw, 76px)',
         paddingBottom: 'clamp(60px, 6.6vw, 84px)',
-        backgroundImage:
-          'linear-gradient(to bottom, #071429 0%, #0B1E3D 46%, #143257 100%)',
+        backgroundColor: 'var(--navy-900)',
         position: 'relative',
         overflow: 'hidden',
       }}
     >
-      <div
-        aria-hidden="true"
-        style={{
-          position: 'absolute',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-          width: 800,
-          height: 560,
-          background: 'radial-gradient(ellipse, rgba(10,132,255,0.10), transparent 60%)',
-          pointerEvents: 'none',
-        }}
-      />
       <motion.div
         className="enterprise-container-wide relative"
         style={{ zIndex: 1, textAlign: 'center' }}
