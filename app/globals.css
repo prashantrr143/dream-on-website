@@ -453,48 +453,90 @@
   }
 
   /* Primary CTA */
-  .ys-cta-primary {
-    background: var(--ys-primary-blue);
-    color: #ffffff;
-    font-weight: 600;
-    font-size: 15px;
-    line-height: 1;
-    padding: 15px 28px;
+  /* ==========================================================
+     Buttons. Four variants: primary/secondary, each on dark or
+     light. Shared box metrics: >=48px tall, 24px side padding,
+     10px radius.
+     ========================================================== */
+  .ys-cta-primary,
+  .ys-cta-secondary,
+  .ys-cta-primary-light,
+  .ys-cta-secondary-light {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 0 24px;
     border-radius: var(--radius-control);
     border: 1px solid transparent;
-    transition: background-color 200ms ease, transform 200ms ease,
-      box-shadow 200ms ease;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1;
     white-space: nowrap;
-  }
-  .ys-cta-primary:hover {
-    background: #0068d6; /* darker step of Primary Blue */
-    box-shadow: var(--shadow-hover);
-  }
-  .ys-cta-primary:focus-visible {
-    outline: 2px solid var(--ys-cyan);
-    outline-offset: 3px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 180ms ease-out, border-color 180ms ease-out,
+      color 180ms ease-out;
   }
 
-  /* Secondary CTA — outlined, for dark brand surfaces */
+  /* Primary on dark — amber fill, navy text (8.51:1) */
+  .ys-cta-primary {
+    background: var(--amber-500);
+    color: var(--navy-900);
+  }
+  .ys-cta-primary:hover {
+    /* 6% darker step of --amber-500 */
+    background: #E69B22;
+  }
+
+  /* Primary on light — navy fill, white text (17.38:1) */
+  .ys-cta-primary-light {
+    background: var(--navy-900);
+    color: var(--on-dark);
+  }
+  .ys-cta-primary-light:hover {
+    background: #091830;
+  }
+
+  /* Secondary on dark — outline only */
   .ys-cta-secondary {
     background: transparent;
-    color: #ffffff;
-    font-weight: 600;
-    font-size: 15px;
-    line-height: 1;
-    padding: 15px 28px;
-    border-radius: var(--radius-control);
-    border: 1px solid rgba(255, 255, 255, 0.28);
-    transition: background-color 200ms ease, border-color 200ms ease;
-    white-space: nowrap;
+    color: var(--on-dark);
+    border-color: var(--line-dark-2);
   }
   .ys-cta-secondary:hover {
-    background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(255, 255, 255, 0.55);
+    background: rgba(255, 255, 255, 0.04);
   }
+
+  /* Secondary on light — outline only */
+  .ys-cta-secondary-light {
+    background: transparent;
+    color: var(--ink);
+    border-color: var(--ink);
+  }
+  .ys-cta-secondary-light:hover {
+    background: rgba(10, 26, 51, 0.04);
+  }
+
+  /* Focus: visible ring on every variant, never removed. */
+  .ys-cta-primary:focus-visible,
   .ys-cta-secondary:focus-visible {
-    outline: 2px solid var(--ys-cyan);
-    outline-offset: 3px;
+    outline: 2px solid var(--blue-400);
+    outline-offset: 2px;
+  }
+  .ys-cta-primary-light:focus-visible,
+  .ys-cta-secondary-light:focus-visible {
+    outline: 2px solid var(--blue-600);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ys-cta-primary,
+    .ys-cta-secondary,
+    .ys-cta-primary-light,
+    .ys-cta-secondary-light {
+      transition: none;
+    }
   }
 
   /* Enterprise card — clean, minimal, no glassmorphism */
@@ -603,7 +645,7 @@
 
   /* Text link on a light surface — AA contrast */
   .ys-link {
-    color: var(--ys-link-on-light);
+    color: var(--blue-600);
     font-weight: 600;
     text-decoration: none;
   }
@@ -611,9 +653,55 @@
     text-decoration: underline;
   }
   .ys-link:focus-visible {
-    outline: 2px solid var(--ys-link-on-light);
+    outline: 2px solid var(--blue-600);
     outline-offset: 2px;
     border-radius: 2px;
+  }
+
+  /* Same link on a dark surface */
+  .ys-link-on-dark {
+    color: var(--blue-400);
+  }
+  .ys-link-on-dark:focus-visible {
+    outline-color: var(--blue-400);
+  }
+
+  /* Arrow links nudge their arrow 2px on hover. */
+  .ys-link svg,
+  .ys-link-on-dark svg {
+    transition: transform 180ms ease-out;
+  }
+  .ys-link:hover svg,
+  .ys-link-on-dark:hover svg {
+    transform: translateX(2px);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ys-link svg,
+    .ys-link-on-dark svg {
+      transition: none;
+    }
+    .ys-link:hover svg,
+    .ys-link-on-dark:hover svg {
+      transform: none;
+    }
+  }
+
+  /* Focus fallback: anything interactive without its own ring still
+     shows one. Never remove outlines; override with a ring instead. */
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible,
+  [tabindex]:focus-visible {
+    outline: 2px solid var(--blue-600);
+    outline-offset: 2px;
+  }
+  .ys-section-deep a:focus-visible,
+  .ys-surface-deep a:focus-visible,
+  [data-on-dark] a:focus-visible,
+  [data-on-dark] button:focus-visible {
+    outline-color: var(--blue-400);
   }
 
   /* Industry focus: intro column + image cards.

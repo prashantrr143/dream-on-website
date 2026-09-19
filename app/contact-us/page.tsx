@@ -391,7 +391,7 @@ export default function ContactPage() {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="ys-cta-primary inline-flex items-center justify-center"
+                      className="ys-cta-primary-light inline-flex items-center justify-center"
                       style={{
                         width: '100%',
                         marginTop: '4px',

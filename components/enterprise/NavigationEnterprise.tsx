@@ -170,7 +170,7 @@ const NavigationEnterprise = () => {
       ref={navRef}
       className="fixed top-0 left-0 right-0 w-full z-50"
       style={{
-        backgroundColor: isScrolled ? 'rgba(11,30,61,0.92)' : 'transparent',
+        backgroundColor: isScrolled ? 'rgba(10,26,51,0.92)' : 'transparent',
         backdropFilter: isScrolled ? 'blur(14px)' : 'none',
         WebkitBackdropFilter: isScrolled ? 'blur(14px)' : 'none',
         borderBottom: `1px solid ${isScrolled ? 'rgba(255,255,255,0.10)' : 'transparent'}`,
