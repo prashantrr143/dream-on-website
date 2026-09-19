@@ -12,6 +12,8 @@ interface DropdownItem {
   /** Optional supporting line, shown muted under the item name. */
   meta?: string
   href: string
+  /** The section overview link, set apart from the leaf pages below it. */
+  overview?: boolean
 }
 
 interface NavItem {
@@ -34,7 +36,7 @@ const navigationItems: NavItem[] = [
     name: "IT Services",
     href: "/#services",
     items: [
-      { name: "All IT Services", meta: "Overview of every practice area", href: "/solutions" },
+      { name: "All IT Services", meta: "Overview of every practice area", href: "/solutions", overview: true },
       { name: "Cloud & Infrastructure", meta: "Azure • AWS • Hybrid • FinOps", href: "/solutions/cloud" },
       { name: "DevOps & Automation", meta: "CI/CD • IaC • Platform engineering", href: "/solutions/devops" },
       { name: "Data & Analytics", meta: "Lakehouse • Pipelines • Reporting", href: "/solutions/data" },
@@ -56,12 +58,14 @@ const navigationItems: NavItem[] = [
     name: "Industries",
     href: "/industries",
     items: [
+      // Overview first, matching the IT Services menu: the divider below
+      // it separates the section overview from the individual pages.
+      { name: "All industries", href: "/industries", overview: true },
       { name: "Financial Services", href: "/industries/financial-services" },
       { name: "Legal & Professional Services", href: "/industries/legal-professional-services" },
       { name: "Healthcare", href: "/industries/healthcare" },
       { name: "Government & Public Sector", href: "/industries/government-public-sector" },
       { name: "Enterprise & Technology", href: "/industries/enterprise-technology" },
-      { name: "All industries", href: "/industries" },
     ],
   },
   { name: "How we work", href: "/how-we-work" },
@@ -170,11 +174,20 @@ const NavigationEnterprise = () => {
       ref={navRef}
       className="fixed top-0 left-0 right-0 w-full z-50"
       style={{
-        backgroundColor: isScrolled ? 'rgba(10,26,51,0.92)' : 'transparent',
-        backdropFilter: isScrolled ? 'blur(14px)' : 'none',
-        WebkitBackdropFilter: isScrolled ? 'blur(14px)' : 'none',
-        borderBottom: `1px solid ${isScrolled ? 'rgba(255,255,255,0.10)' : 'transparent'}`,
-        transition: 'background-color 250ms ease, border-color 250ms ease',
+        // A translucent bar let the hero show through behind an open
+        // menu, which read as visual noise under the panel. While a
+        // menu is open the bar is fully opaque.
+        backgroundColor: openMenu
+          ? 'var(--navy-900)'
+          : isScrolled
+            ? 'rgba(10,26,51,0.92)'
+            : 'transparent',
+        backdropFilter: isScrolled && !openMenu ? 'blur(14px)' : 'none',
+        WebkitBackdropFilter: isScrolled && !openMenu ? 'blur(14px)' : 'none',
+        borderBottom: `1px solid ${
+          isScrolled || openMenu ? 'rgba(255,255,255,0.10)' : 'transparent'
+        }`,
+        transition: 'background-color 200ms ease, border-color 200ms ease',
       }}
     >
       <div className="enterprise-container-wide">
@@ -190,21 +203,8 @@ const NavigationEnterprise = () => {
             className="ys-nav-logo flex-shrink-0"
             aria-label="YatiSphere home"
           >
-            {/* Below 768px the full lockup is illegible, so show the
-                mark plus the wordmark as text. No compact lockup asset
-                exists in /brand/yatisphere/. */}
-            <span className="ys-logo-compact" aria-hidden="true">
-              <Image
-                src={LOGO_ASSETS.icon.src}
-                alt=""
-                width={LOGO_ASSETS.icon.width}
-                height={LOGO_ASSETS.icon.height}
-                priority
-                sizes="32px"
-                className="ys-logo-compact-mark"
-              />
-              <span className="ys-logo-compact-word">YatiSphere</span>
-            </span>
+            {/* Header sits on navy, so it uses the light-lettering
+                variant. The footer is white and uses `primary`. */}
             <span className={`ys-logo-full${isScrolled ? ' is-hidden' : ''}`}>
               <Image
                 src={LOGO_ASSETS.dark.src}
@@ -212,7 +212,7 @@ const NavigationEnterprise = () => {
                 width={LOGO_ASSETS.dark.width}
                 height={LOGO_ASSETS.dark.height}
                 priority
-                sizes="(max-width: 640px) 175px, 210px"
+                sizes="(max-width: 767px) 190px, 260px"
                 className="ys-logo-img-full"
               />
             </span>
@@ -287,10 +287,19 @@ const NavigationEnterprise = () => {
                             <li key={sub.name + sub.href}>
                               <a
                                 href={sub.href}
-                                className="ys-dropdown-link"
+                                className={`ys-dropdown-link${
+                                  sub.overview ? ' is-overview' : ''
+                                }`}
                                 onClick={() => setOpenMenu(null)}
                               >
-                                <span className="ys-dropdown-name">{sub.name}</span>
+                                <span className="ys-dropdown-row">
+                                  <span className="ys-dropdown-name">{sub.name}</span>
+                                  <ArrowRight
+                                    className="ys-dropdown-arrow"
+                                    strokeWidth={1.5}
+                                    aria-hidden="true"
+                                  />
+                                </span>
                                 {sub.meta && (
                                   <span className="ys-dropdown-meta">{sub.meta}</span>
                                 )}

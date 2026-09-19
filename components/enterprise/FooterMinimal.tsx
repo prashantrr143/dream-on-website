@@ -1,160 +1,157 @@
-"use client"
-
 import Image from 'next/image'
-import { motion } from 'framer-motion'
-import { ArrowRight } from 'lucide-react'
-import { YsIcon } from '@/components/brand/YsIcon'
+import { ArrowRight, Linkedin, ShieldCheck } from 'lucide-react'
 import { LOGO_ASSETS } from '@/components/brand/YatiSphereLogo'
 import { hasArticles } from '@/lib/perspectives'
+import { SITE_CONTACT } from '@/lib/site-contact'
 
 /**
- * Footer navigation mirrors the header IA (Solutions / AI / Company /
- * Legal). "Resources" was dropped because every link in it already
- * appeared in another column, and the duplicated "Responsible AI" entry
- * is now listed once.
+ * Four link columns mirroring the header IA. The former "Legal" column
+ * is gone: its three policy links live in the bottom bar, and Security
+ * moved into Company.
  */
 const footerColumns = [
   {
-    title: "IT Services",
+    title: 'IT Services',
     links: [
-      { name: "All IT Services", href: "/solutions" },
-      { name: "Cloud & Infrastructure", href: "/solutions/cloud" },
-      { name: "DevOps & Automation", href: "/solutions/devops" },
-      { name: "Data & Analytics", href: "/solutions/data" },
-      { name: "Enterprise Security", href: "/solutions/security" },
-      { name: "Modernisation & Advisory", href: "/solutions/consulting" },
-    ]
+      { name: 'All IT Services', href: '/solutions' },
+      { name: 'Cloud & Infrastructure', href: '/solutions/cloud' },
+      { name: 'DevOps & Automation', href: '/solutions/devops' },
+      { name: 'Data & Analytics', href: '/solutions/data' },
+      { name: 'Enterprise Security', href: '/solutions/security' },
+      { name: 'Legacy Modernisation', href: '/solutions/consulting' },
+    ],
   },
   {
-    title: "Applied AI",
+    title: 'Applied AI',
     links: [
-      { name: "AI Architecture", href: "/applied-ai#architecture" },
-      { name: "Agentic Automation", href: "/applied-ai#agentic" },
-      { name: "AI Platforms", href: "/applied-ai#platforms" },
-      { name: "Responsible AI", href: "/responsible-ai" },
-    ]
+      { name: 'AI Architecture', href: '/applied-ai#architecture' },
+      { name: 'Agentic Automation', href: '/applied-ai#agentic' },
+      { name: 'AI Platforms', href: '/applied-ai#platforms' },
+      { name: 'Responsible AI', href: '/responsible-ai' },
+    ],
   },
   {
-    title: "Industries",
+    title: 'Industries',
     links: [
-      { name: "Financial Services", href: "/industries/financial-services" },
-      { name: "Legal & Professional", href: "/industries/legal-professional-services" },
-      { name: "Healthcare", href: "/industries/healthcare" },
-      { name: "Government", href: "/industries/government-public-sector" },
-      { name: "Enterprise & Technology", href: "/industries/enterprise-technology" },
-    ]
+      { name: 'Financial Services', href: '/industries/financial-services' },
+      { name: 'Legal & Professional', href: '/industries/legal-professional-services' },
+      { name: 'Healthcare', href: '/industries/healthcare' },
+      { name: 'Government', href: '/industries/government-public-sector' },
+      { name: 'Enterprise & Technology', href: '/industries/enterprise-technology' },
+    ],
   },
   {
-    title: "Company",
+    title: 'Company',
     links: [
-      { name: "About Us", href: "/about-us" },
-      { name: "How We Work", href: "/how-we-work" },
+      { name: 'About Us', href: '/about-us' },
+      { name: 'How We Work', href: '/how-we-work' },
       // Shown only while there is at least one real article to link to.
-      ...(hasArticles ? [{ name: "Perspectives", href: "/perspectives" }] : []),
-      { name: "Contact", href: "/contact-us" },
-    ]
+      ...(hasArticles ? [{ name: 'Perspectives', href: '/perspectives' }] : []),
+      { name: 'Security', href: '/security' },
+      { name: 'Contact', href: '/contact-us' },
+    ],
   },
-  {
-    title: "Legal",
-    links: [
-      { name: "Privacy Policy", href: "/privacy" },
-      { name: "Terms of Service", href: "/terms" },
-      { name: "Security", href: "/security" },
-      { name: "Cookie Policy", href: "/policy" },
-    ]
-  }
 ]
 
 const FooterMinimal = () => {
+  const year = new Date().getFullYear()
+
   return (
     <footer className="ys-footer">
-      {/* Brand-gradient hairline marks the seam with the dark CTA above */}
-      <div aria-hidden="true" className="ys-footer-seam" />
-
       <div className="enterprise-container-wide ys-footer-inner">
-        <motion.div
-          className="ys-footer-grid"
-        >
-          {/* Brand column — icon mark plus typeset name, so every
-              element stays crisp instead of relying on a small
-              raster tagline inside the full lockup. */}
+        <div className="ys-footer-grid">
+          {/* Brand block. The supplied lockups all bake in "Technologies
+              Private Limited" and the retired tagline as raster artwork,
+              so the compact mark is set as the icon plus live text. */}
           <div className="ys-footer-brand">
-            {/* Approved YatiSphere logo, used as supplied. The light-
-                background lockup is the correct variant for this surface;
-                the tagline is part of the artwork, so it is not repeated
-                as text below. */}
-            <a href="/" className="ys-footer-lockup" aria-label="YatiSphere Technologies — home">
+            <a href="/" className="ys-footer-lockup" aria-label="YatiSphere home">
               <Image
                 src={LOGO_ASSETS.primary.src}
                 alt="YatiSphere Technologies Private Limited"
                 width={LOGO_ASSETS.primary.width}
                 height={LOGO_ASSETS.primary.height}
                 loading="lazy"
-                sizes="(max-width: 640px) 260px, 300px"
+                sizes="260px"
                 className="ys-footer-logo"
               />
             </a>
 
             <p className="ys-footer-blurb">
-              Enterprise software, cloud, and AI systems — engineered for trust,
-              scale, and long-term maintainability.
+              IT services and applied AI, delivered end to end by one in-house team.
             </p>
 
-            <a href="mailto:hello@yatisphere.com" className="ys-footer-email">
-              hello@yatisphere.com
-              <ArrowRight className="w-3.5 h-3.5" strokeWidth={2.5} aria-hidden="true" />
-            </a>
+            <div className="ys-footer-contact">
+              {SITE_CONTACT.email && (
+                <a href={`mailto:${SITE_CONTACT.email}`} className="ys-footer-email">
+                  {SITE_CONTACT.email}
+                  <ArrowRight className="w-3.5 h-3.5" strokeWidth={1.5} aria-hidden="true" />
+                </a>
+              )}
 
-            {/* Verifiable government credential — certificate DIPP260262,
-                issued by DPIIT, Ministry of Commerce & Industry. */}
-            <div className="ys-footer-cred">
-              <span className="ys-footer-cred-mark" aria-hidden="true">
-                <YsIcon name="security" size={26} variant="current" />
-              </span>
-              <div className="ys-footer-cred-body">
-                <p className="ys-footer-cred-eyebrow">Government of India</p>
-                <p className="ys-footer-cred-title">DPIIT-Recognised Startup</p>
-                <p className="ys-footer-cred-sub">
-                  Ministry of Commerce &amp; Industry
-                </p>
-                <p className="ys-footer-cred-id">
-                  Certificate <strong>DIPP260262</strong>
-                </p>
-              </div>
+              {SITE_CONTACT.phone && (
+                <a href={`tel:${SITE_CONTACT.phone.replace(/\s+/g, '')}`} className="ys-footer-email">
+                  {SITE_CONTACT.phone}
+                </a>
+              )}
+
+              {SITE_CONTACT.linkedin && (
+                <a
+                  href={SITE_CONTACT.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="YatiSphere on LinkedIn"
+                  className="ys-footer-social"
+                >
+                  <Linkedin className="w-5 h-5" strokeWidth={1.5} aria-hidden="true" />
+                </a>
+              )}
             </div>
           </div>
 
           {/* Link columns */}
-          {footerColumns.map((column) => (
-            <nav key={column.title} aria-label={column.title}>
-              <h3 className="ys-footer-heading">{column.title}</h3>
-              <ul className="ys-footer-links">
-                {column.links.map((link) => (
-                  <li key={link.name + link.href}>
-                    <a href={link.href} className="ys-footer-link">
-                      {link.name}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-          ))}
-        </motion.div>
+          <nav className="ys-footer-nav" aria-label="Footer">
+            {footerColumns.map((column) => (
+              <div key={column.title} className="ys-footer-col">
+                <h2 className="ys-footer-heading">{column.title}</h2>
+                <ul className="ys-footer-links">
+                  {column.links.map((link) => (
+                    <li key={link.name + link.href}>
+                      <a href={link.href} className="ys-footer-link">
+                        {link.name}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </nav>
+        </div>
 
         {/* Bottom bar */}
-        <motion.div
-          className="ys-footer-bottom"
-        >
-          <p>
-            &copy; {new Date().getFullYear()} YatiSphere Technologies Private Limited.
-            All rights reserved.
+        <div className="ys-footer-bottom">
+          <div className="ys-footer-copy">
+            <p>
+              &copy; {year} YatiSphere Technologies Private Limited
+              {SITE_CONTACT.cin && <> &middot; CIN {SITE_CONTACT.cin}</>}
+            </p>
+            {SITE_CONTACT.registeredAddress && (
+              <p className="ys-footer-address">{SITE_CONTACT.registeredAddress}</p>
+            )}
+          </div>
+
+          {/* Verifiable government credential — certificate DIPP260262,
+              issued by DPIIT, Ministry of Commerce & Industry. */}
+          <p className="ys-footer-recognition">
+            <ShieldCheck className="w-4 h-4 shrink-0" strokeWidth={1.5} aria-hidden="true" />
+            DPIIT-Recognised Startup &middot; Certificate DIPP260262
           </p>
+
           <div className="ys-footer-bottom-links">
             <a href="/privacy">Privacy</a>
             <a href="/terms">Terms</a>
-            <a href="/security">Security</a>
+            <a href="/policy">Cookies</a>
           </div>
-        </motion.div>
+        </div>
       </div>
     </footer>
   )
