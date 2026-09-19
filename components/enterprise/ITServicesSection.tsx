@@ -22,79 +22,88 @@ const staggerContainer: Variants = {
   },
 }
 
-interface ServiceItem {
-  n: string
-  /** Three words set over the visual, as in the approved layout. */
-  overline: [string, string, string]
-  title: string
+interface ProblemCard {
+  /** The problem, quoted, used as the card title. */
+  problem: string
+  /** What we deliver in response. */
   body: string
-  tags: string[]
+  /** The service behind it. */
+  tag: string
   href: string
   icon: YsIconName
   visual: VisualKind
 }
 
-const services: ServiceItem[] = [
+const problems: ProblemCard[] = [
   {
-    n: '01',
-    overline: ['Build', 'Integrate', 'Evolve'],
-    title: 'Enterprise Software & Platforms',
-    body: 'Custom applications, integration platforms and APIs built for complex enterprise environments.',
-    tags: ['Java', '.NET', 'Node.js', 'Microservices', 'APIs'],
-    href: '/solutions',
+    problem: 'Client onboarding takes weeks and lives in email.',
+    body: 'Automated intake, checks and approvals, with a full audit trail.',
+    tag: 'Applied AI + Software',
+    href: '/applied-ai',
     icon: 'products',
     visual: 'software',
   },
   {
-    n: '02',
-    overline: ['Scale', 'Secure', 'Resilient'],
-    title: 'Cloud & Infrastructure',
-    body: 'Secure cloud foundations, migrations and platform engineering across modern enterprise environments.',
-    tags: ['Azure', 'AWS', 'Hybrid', 'IaC', 'FinOps'],
-    href: '/solutions/cloud',
-    icon: 'cloud',
-    visual: 'cloud',
-  },
-  {
-    n: '03',
-    overline: ['Automate', 'Deliver', 'Improve'],
-    title: 'DevOps & Automation',
-    body: 'Automate delivery, infrastructure and operations without losing engineering control.',
-    tags: ['GitHub', 'Azure DevOps', 'Kubernetes', 'Terraform'],
-    href: '/solutions/devops',
-    icon: 'automation',
-    visual: 'devops',
-  },
-  {
-    n: '04',
-    overline: ['Insights', 'Intelligence', 'Impact'],
-    title: 'Data & Analytics',
-    body: 'Governed data platforms and analytics that turn enterprise data into usable intelligence.',
-    tags: ['Lakehouse', 'SQL', 'Databricks', 'Power BI', 'Analytics'],
-    href: '/solutions/data',
-    icon: 'analytics',
-    visual: 'data',
-  },
-  {
-    n: '05',
-    overline: ['Modernise', 'Transform', 'Enable'],
-    title: 'Legacy Modernisation',
-    body: 'Modernise critical systems incrementally without disrupting the business.',
-    tags: ['TOGAF', 'Strangler Pattern', 'Re-platforming', 'APIs'],
+    problem: 'Our core system is old and nobody dares touch it.',
+    body: 'Step-by-step modernisation while the business keeps running.',
+    tag: 'Legacy Modernisation',
     href: '/solutions/consulting',
     icon: 'growth',
     visual: 'modernisation',
   },
   {
-    n: '06',
-    overline: ['Protect', 'Govern', 'Assure'],
-    title: 'Enterprise Security',
-    body: 'Security, identity and governance engineered into the technology foundation.',
-    tags: ['Entra ID', 'Zero Trust', 'Access governance', 'Audit readiness'],
+    problem: 'We have the data but can\u2019t get an answer out of it.',
+    body: 'One trusted data platform and live dashboards.',
+    tag: 'Data & Analytics',
+    href: '/solutions/data',
+    icon: 'analytics',
+    visual: 'data',
+  },
+  {
+    problem: 'Our AI pilot worked, and then nothing happened.',
+    body: 'The pilot taken to production, with governance in place.',
+    tag: 'Applied AI',
+    href: '/applied-ai',
+    icon: 'automation',
+    visual: 'devops',
+  },
+  {
+    problem: 'Cloud costs keep rising and we don\u2019t know why.',
+    body: 'Cost review, clean-up and a managed platform.',
+    tag: 'Cloud & Infrastructure',
+    href: '/solutions/cloud',
+    icon: 'cloud',
+    visual: 'cloud',
+  },
+  {
+    problem: 'An audit or a client security review is coming.',
+    body: 'Controls, logging and evidence built into your systems.',
+    tag: 'Enterprise Security',
     href: '/solutions/security',
     icon: 'security',
     visual: 'security',
   },
+]
+
+const PILLARS = [
+  {
+    label: 'Enterprise IT Services',
+    line: 'Software, cloud, data, DevOps, modernisation and security: the systems your business runs on.',
+    link: { label: 'See IT services', href: '/solutions' },
+  },
+  {
+    label: 'Applied AI',
+    line: 'Production-grade AI inside the systems you already run, governed from day one.',
+    link: { label: 'See applied AI', href: '/applied-ai' },
+  },
+]
+
+const SECTORS = [
+  { name: 'financial services', href: '/industries/financial-services' },
+  { name: 'legal and professional services', href: '/industries/legal-professional-services' },
+  { name: 'healthcare', href: '/industries/healthcare' },
+  { name: 'government', href: '/industries/government-public-sector' },
+  { name: 'technology firms', href: '/industries/enterprise-technology' },
 ]
 
 const ITServicesSection = () => {
@@ -110,29 +119,18 @@ const ITServicesSection = () => {
           className="ys-cap-intro"
         >
           <div style={{ minWidth: 0 }}>
-            <p className="ys-eyebrow">What we build</p>
+            <p className="ys-eyebrow">Problems we solve</p>
             <h2 className="ys-cap-headline">
-              Technology engineered for{' '}
-              <span className="ys-cap-headline-accent">what&rsquo;s next.</span>
+              Start with the problem,{' '}
+              <span className="ys-cap-headline-accent">not the technology.</span>
             </h2>
-            <p className="ys-cap-lede">
-              From modern foundations to intelligent systems — built for
-              real-world impact.
-            </p>
           </div>
           <div className="ys-cap-intro-aside">
-            <p>
-              We combine deep technical expertise with enterprise context to
-              design, build and operate systems that last.
-            </p>
-            <a href="/solutions" className="ys-link ys-cap-intro-link">
-              Explore our capabilities
-              <ArrowRight className="w-3.5 h-3.5 shrink-0" strokeWidth={2.5} aria-hidden="true" />
-            </a>
+            <p>If one of these sounds like your week, we should talk.</p>
           </div>
         </motion.div>
 
-        {/* Capability grid */}
+        {/* Problem grid */}
         <motion.ul
           className="ys-cap-grid"
           variants={staggerContainer}
@@ -140,38 +138,32 @@ const ITServicesSection = () => {
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
         >
-          {services.map((s) => (
-            <motion.li key={s.n} variants={fadeUp} style={{ minWidth: 0 }}>
-              <a href={s.href} className="ys-cap-card group">
+          {problems.map((p) => (
+            <motion.li key={p.problem} variants={fadeUp} style={{ minWidth: 0 }}>
+              <a href={p.href} className="ys-cap-card group">
                 {/* Visual panel */}
                 <span className="ys-cap-media">
-                  <CapabilityVisual kind={s.visual} />
-                  <span className="ys-cap-number" aria-hidden="true">{s.n}</span>
-                  <span className="ys-cap-overline" aria-hidden="true">
-                    {s.overline.map((w) => (
-                      <span key={w}>{w}</span>
-                    ))}
-                  </span>
+                  <CapabilityVisual kind={p.visual} />
                 </span>
 
                 {/* Content */}
                 <span className="ys-cap-body">
                   <span className="ys-cap-head">
                     <span className="ys-cap-icon">
-                      <YsIcon name={s.icon} size={22} variant="current" />
+                      <YsIcon name={p.icon} size={22} variant="current" />
                     </span>
-                    <h3 className="ys-cap-title">{s.title}</h3>
+                    <h3 className="ys-cap-title ys-problem-title">
+                      &ldquo;{p.problem}&rdquo;
+                    </h3>
                     <span className="ys-cap-arrow" aria-hidden="true">
                       <ArrowRight className="w-4 h-4" strokeWidth={2} />
                     </span>
                   </span>
 
-                  <span className="ys-cap-desc">{s.body}</span>
+                  <span className="ys-cap-desc">{p.body}</span>
 
                   <span className="ys-cap-tags">
-                    {s.tags.map((t) => (
-                      <span key={t} className="ys-cap-tag">{t}</span>
-                    ))}
+                    <span className="ys-cap-tag">{p.tag}</span>
                   </span>
                 </span>
               </a>
@@ -179,26 +171,45 @@ const ITServicesSection = () => {
           ))}
         </motion.ul>
 
-        {/* Section footer */}
+        {/* Two pillars behind the work */}
         <motion.div
+          initial={{ opacity: 0, y: 14 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.05 }}
+          viewport={{ once: true }}
+          className="ys-pillars-strip"
+        >
+          {PILLARS.map((pillar) => (
+            <div key={pillar.label} className="ys-pillars-item">
+              <h3 className="ys-pillars-label">{pillar.label}</h3>
+              <p className="ys-pillars-line">{pillar.line}</p>
+              <a href={pillar.link.href} className="ys-link ys-pillars-link">
+                {pillar.link.label}
+                <ArrowRight className="w-3.5 h-3.5 shrink-0" strokeWidth={2.5} aria-hidden="true" />
+              </a>
+            </div>
+          ))}
+        </motion.div>
+
+        {/* Sectors */}
+        <motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.1 }}
           viewport={{ once: true }}
-          className="ys-cap-footer"
+          className="ys-sectors-line"
         >
-          <p className="ys-cap-footer-tagline">
-            Ideas <span aria-hidden="true">•</span> Intelligence{' '}
-            <span aria-hidden="true">•</span> Impact
-          </p>
-          <span className="ys-cap-footer-rule" aria-hidden="true" />
-          <a href="/solutions" className="ys-cap-footer-link">
-            Explore our capabilities
-            <span className="ys-cap-footer-arrow" aria-hidden="true">
-              <ArrowRight className="w-4 h-4" strokeWidth={2} />
+          We work with{' '}
+          {SECTORS.map((sector, i) => (
+            <span key={sector.href}>
+              {i > 0 && (i === SECTORS.length - 1 ? ' and ' : ', ')}
+              <a href={sector.href} className="ys-sectors-link">
+                {sector.name}
+              </a>
             </span>
-          </a>
-        </motion.div>
+          ))}
+          .
+        </motion.p>
       </div>
     </section>
   )

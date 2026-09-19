@@ -24,20 +24,26 @@ const staggerContainer: Variants = {
   }
 }
 
+/**
+ * Delivery commitments.
+ *
+ * Each is a promise we can be held to in a contract, not a value
+ * statement — that is the point of the section heading.
+ */
 const deliveryPrinciples = [
   {
-    title: "Architecture first",
-    description: "Expensive-to-reverse decisions are made deliberately, before code.",
+    title: "A fixed price for the first step",
+    description: "You know what the first piece of work costs before it starts.",
     accent: "#0A84FF"
   },
   {
-    title: "Governance by design",
-    description: "Security, compliance and auditability wired in from the first sprint.",
+    title: "One in-house team",
+    description: "No subcontracting, no rotating strangers. The people who scope it build it.",
     accent: "#00D1FF"
   },
   {
-    title: "Working software, every sprint",
-    description: "Incremental delivery — never a big reveal at the end.",
+    title: "Your code in your accounts",
+    description: "Repositories and infrastructure are yours from day one, not handed over at the end.",
     accent: "#00D1FF"
   },
   {
@@ -90,7 +96,7 @@ const HowWeWorkSection = () => {
                 marginBottom: '16px'
               }}
             >
-              How we work
+              What you can rely on
             </p>
             <h2
               style={{
@@ -102,7 +108,7 @@ const HowWeWorkSection = () => {
                 marginBottom: '24px'
               }}
             >
-              Structure without rigidity.
+              Dependable, in writing.
             </h2>
             <p
               style={{
@@ -113,15 +119,14 @@ const HowWeWorkSection = () => {
                 marginBottom: '32px'
               }}
             >
-              Our delivery model is designed for organizations where reliability,
-              security, and governance matter as much as speed. We bring structure
-              without rigidity.
+              These are commitments, not aspirations. Each one goes into the
+              engagement letter, so you can hold us to it.
             </p>
             <Link
               href="/how-we-work"
               className="stripe-btn-ghost group"
             >
-              View Our Delivery Model
+              See how we deliver
               <ArrowRight
                 className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-0.5"
                 strokeWidth={2}

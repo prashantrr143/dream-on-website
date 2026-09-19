@@ -3,39 +3,14 @@
 import Image from 'next/image'
 import { motion } from 'motion/react'
 import { ArrowRight } from 'lucide-react'
+import { PRIMARY_CTA, SECONDARY_CTA } from '@/lib/cta'
 import { HeroAtmosphere } from '@/components/enterprise/HeroAtmosphere'
 
-const pillars = [
-  {
-    num: '01',
-    kicker: 'Core',
-    title: 'Enterprise IT Services',
-    body: 'End-to-end engineering for the systems your business runs on — designed by architects, delivered by teams that stay accountable through production.',
-    items: [
-      'Enterprise software & platforms',
-      'Cloud & infrastructure',
-      'DevOps & automation',
-      'Data & analytics',
-      'Legacy modernisation',
-      'Enterprise security',
-    ],
-    link: { label: 'See IT services', href: '#services' },
-    primary: true,
-  },
-  {
-    num: '02',
-    kicker: 'Differentiator',
-    title: 'Applied AI',
-    body: 'Production-grade AI on top of your existing systems — agentic workflows, document intelligence and AI platforms, governed from day one.',
-    items: [
-      'AI architecture & readiness',
-      'Agentic workflow automation',
-      'Enterprise AI platforms on Azure',
-      'Responsible AI & governance',
-    ],
-    link: { label: 'See applied AI', href: '#ai' },
-    primary: false,
-  },
+
+const PROOF = [
+  'One in-house team',
+  'Fixed-price first step',
+  'Your code in your accounts from day one',
 ]
 
 const HeroSection = () => {
@@ -108,7 +83,7 @@ const HeroSection = () => {
                 marginBottom: 'clamp(16px, 2.4vw, 22px)',
               }}
             >
-              Enterprise IT services <span aria-hidden="true" style={{ opacity: 0.55 }}>·</span>{' '}
+              IT Services <span aria-hidden="true" style={{ opacity: 0.55 }}>·</span>{' '}
               Applied AI
             </motion.p>
 
@@ -123,7 +98,7 @@ const HeroSection = () => {
                 textWrap: 'balance',
               }}
             >
-              The engineering partner for enterprises that need systems to last.
+              Technology that fixes the problem you actually have.
             </motion.h1>
 
             <motion.p
@@ -136,9 +111,9 @@ const HeroSection = () => {
                 color: 'rgba(255,255,255,0.88)',
               }}
             >
-              Yati Sphere builds, modernises and runs enterprise software, cloud and
-              data platforms — and brings applied AI into them with the governance
-              regulated businesses require.
+              Slow onboarding. Systems nobody dares touch. Data you can&rsquo;t get
+              answers from. AI pilots that went nowhere. Tell us the business problem
+              and our in-house team delivers the working solution, end to end.
             </motion.p>
 
             <motion.div
@@ -146,45 +121,40 @@ const HeroSection = () => {
               className="flex flex-wrap items-center"
               style={{ gap: 14, marginTop: 'clamp(26px, 3.4vw, 34px)' }}
             >
-              <a href="/contact-us" className="ys-cta-primary inline-flex items-center gap-2">
-                Start a conversation
+              <a href={PRIMARY_CTA.href} className="ys-cta-primary inline-flex items-center gap-2">
+                {PRIMARY_CTA.label}
                 <ArrowRight className="w-4 h-4 shrink-0" strokeWidth={2.5} aria-hidden="true" />
               </a>
-              <a href="#services" className="ys-cta-secondary inline-flex items-center">
-                Explore services
+              <a href={SECONDARY_CTA.href} className="ys-cta-secondary inline-flex items-center">
+                {SECONDARY_CTA.label}
               </a>
             </motion.div>
+
+            {/* Proof line — wraps on narrow viewports */}
+            <motion.p
+              {...reveal(0.36)}
+              className="flex flex-wrap items-center"
+              style={{
+                gap: '0 10px',
+                marginTop: 'clamp(22px, 2.8vw, 30px)',
+                fontSize: 'clamp(12.5px, 1vw, 13.5px)',
+                lineHeight: 1.7,
+                color: 'rgba(255,255,255,0.72)',
+              }}
+            >
+              {PROOF.map((item, i) => (
+                <span key={item} className="inline-flex items-center" style={{ gap: 10 }}>
+                  {i > 0 && (
+                    <span aria-hidden="true" style={{ color: 'rgba(255,255,255,0.34)' }}>
+                      ·
+                    </span>
+                  )}
+                  {item}
+                </span>
+              ))}
+            </motion.p>
           </div>
 
-          {/* Two-pillar panel */}
-          <motion.div
-            {...reveal(0.4)}
-            className="ys-pillars"
-            style={{ marginTop: 'clamp(32px, 4vw, 52px)' }}
-          >
-            {pillars.map((p) => (
-              <div
-                key={p.title}
-                className={`ys-pillar${p.primary ? ' is-primary' : ''}`}
-              >
-                <p className="ys-pillar-meta">
-                  <span className="ys-pillar-num">{p.num}</span>
-                  <span className="ys-pillar-kicker">{p.kicker}</span>
-                </p>
-                <h2 className="ys-pillar-title">{p.title}</h2>
-                <p className="ys-pillar-body">{p.body}</p>
-                <ul className={`ys-pillar-list${p.primary ? ' is-two-col' : ''}`}>
-                  {p.items.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-                <a href={p.link.href} className="ys-pillar-link">
-                  {p.link.label}
-                  <ArrowRight className="w-3.5 h-3.5 shrink-0" strokeWidth={2.5} aria-hidden="true" />
-                </a>
-              </div>
-            ))}
-          </motion.div>
         </div>
       </div>
     </section>
