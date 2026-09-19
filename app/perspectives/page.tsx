@@ -1,31 +1,13 @@
 "use client"
 
-import { motion, type Variants } from 'framer-motion'
+import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import { notFound } from 'next/navigation'
 import SharedLayout from '@/components/shared-layout'
 import { articles } from '@/lib/perspectives'
 
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }
-  }
-}
 
-const staggerContainer: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.08,
-      delayChildren: 0.15
-    }
-  }
-}
 
 const pillars = [
   {
@@ -115,12 +97,8 @@ export default function PerspectivesPage() {
         <motion.div
           className="enterprise-container-wide relative"
           style={{ zIndex: 1 }}
-          initial="hidden"
-          animate="visible"
-          variants={staggerContainer}
         >
           <motion.p
-            variants={fadeUp}
             style={{
               fontSize: '14px',
               fontWeight: 600,
@@ -133,7 +111,6 @@ export default function PerspectivesPage() {
             Thinking
           </motion.p>
           <motion.h1
-            variants={fadeUp}
             style={{
               fontSize: 'clamp(2.5rem, 5vw, 3.75rem)',
               fontWeight: 700,
@@ -147,7 +124,6 @@ export default function PerspectivesPage() {
             Perspectives
           </motion.h1>
           <motion.p
-            variants={fadeUp}
             style={{
               fontSize: '19px',
               lineHeight: 1.65,
@@ -170,10 +146,6 @@ export default function PerspectivesPage() {
       >
         <motion.div
           className="enterprise-container-wide"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          variants={fadeUp}
         >
           <div
             className="grid lg:grid-cols-12 items-start"
@@ -235,13 +207,8 @@ export default function PerspectivesPage() {
       >
         <motion.div
           className="enterprise-container-wide"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          variants={staggerContainer}
         >
           <motion.p
-            variants={fadeUp}
             style={{
               fontSize: '13px',
               fontWeight: 600,
@@ -260,7 +227,6 @@ export default function PerspectivesPage() {
             {pillars.map((pillar, index) => (
               <motion.div
                 key={index}
-                variants={fadeUp}
                 style={{
                   padding: '28px',
                   backgroundColor: '#000000',
@@ -321,13 +287,8 @@ export default function PerspectivesPage() {
       >
         <motion.div
           className="enterprise-container-wide"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          variants={staggerContainer}
         >
           <motion.div
-            variants={fadeUp}
             style={{ marginBottom: '48px' }}
           >
             <p
@@ -363,7 +324,6 @@ export default function PerspectivesPage() {
             {articles.map((article, index) => (
               <motion.article
                 key={index}
-                variants={fadeUp}
                 className="group"
                 style={{
                   padding: '28px 0',
@@ -497,10 +457,6 @@ export default function PerspectivesPage() {
         <motion.div
           className="enterprise-container-wide relative"
           style={{ zIndex: 1 }}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeUp}
         >
           <p
             style={{

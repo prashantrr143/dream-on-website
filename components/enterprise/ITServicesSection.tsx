@@ -1,26 +1,11 @@
 "use client"
 
-import { motion, type Variants } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import { YsIcon, type YsIconName } from '@/components/brand/YsIcon'
 import { CapabilityVisual, type VisualKind } from '@/components/enterprise/CapabilityVisual'
 
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
-  },
-}
 
-const staggerContainer: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.07, delayChildren: 0.1 },
-  },
-}
 
 interface ProblemCard {
   /** The problem, quoted, used as the card title. */
@@ -112,10 +97,6 @@ const ITServicesSection = () => {
       <div className="enterprise-container-wide">
         {/* Section intro */}
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          viewport={{ once: true }}
           className="ys-cap-intro"
         >
           <div style={{ minWidth: 0 }}>
@@ -133,13 +114,9 @@ const ITServicesSection = () => {
         {/* Problem grid */}
         <motion.ul
           className="ys-cap-grid"
-          variants={staggerContainer}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
         >
           {problems.map((p) => (
-            <motion.li key={p.problem} variants={fadeUp} style={{ minWidth: 0 }}>
+            <motion.li key={p.problem} style={{ minWidth: 0 }}>
               <a href={p.href} className="ys-cap-card group">
                 {/* Visual panel */}
                 <span className="ys-cap-media">
@@ -173,10 +150,6 @@ const ITServicesSection = () => {
 
         {/* Two pillars behind the work */}
         <motion.div
-          initial={{ opacity: 0, y: 14 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.05 }}
-          viewport={{ once: true }}
           className="ys-pillars-strip"
         >
           {PILLARS.map((pillar) => (
@@ -193,10 +166,6 @@ const ITServicesSection = () => {
 
         {/* Sectors */}
         <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          viewport={{ once: true }}
           className="ys-sectors-line"
         >
           We work with{' '}

@@ -4,23 +4,9 @@
 @tailwind utilities;
 
 /* ============================================================
-   Scroll-reveal safety net.
-
-   Sections animate in via Framer Motion `whileInView`, which ships
-   the markup with inline `opacity:0`. If JavaScript never runs
-   (disabled, blocked, or a failed hydration) that content stays
-   invisible forever even though it is present in the HTML.
-
-   `.no-js` is set on <html> by default and removed by an inline
-   script the moment JS executes, so these overrides apply only in
-   the no-JS case. Users who prefer reduced motion are handled
-   separately, in the media query below.
+   Content is visible in the server-rendered HTML: no section is
+   shipped with opacity:0 waiting on JavaScript to reveal it.
    ============================================================ */
-.no-js [style*="opacity:0"],
-.no-js [style*="opacity: 0"] {
-  opacity: 1 !important;
-  transform: none !important;
-}
 
 /* Reduced motion: show everything immediately, no transforms. */
 @media (prefers-reduced-motion: reduce) {
@@ -3850,8 +3836,39 @@
     outline-offset: 4px;
   }
 
+  /* Compact lockup: mark + wordmark as text. Shown below 768px, where
+     the full lockup's tagline and entity name are illegible. */
+  .ys-logo-compact {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+  }
+  .ys-logo-compact-mark {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+  }
+  .ys-logo-compact-word {
+    font-family: var(--font-heading), 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 19px;
+    letter-spacing: -0.015em;
+    color: var(--on-dark);
+    white-space: nowrap;
+  }
+  @media (min-width: 768px) {
+    .ys-logo-compact { display: none; }
+  }
+
   .ys-logo-full {
     opacity: 1;
+  }
+  /* Below 768px the compact lockup replaces both of these. */
+  @media (max-width: 767px) {
+    .ys-logo-full,
+    .ys-logo-mark {
+      display: none;
+    }
   }
   .ys-logo-full.is-hidden {
     opacity: 0;

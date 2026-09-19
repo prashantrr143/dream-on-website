@@ -1,29 +1,11 @@
 "use client"
 
-import { motion, type Variants } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { useState } from 'react'
 import SharedLayout from '@/components/shared-layout'
 import { PageHero, PageSection } from '@/components/enterprise'
 
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }
-  }
-}
 
-const staggerContainer: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.12,
-      delayChildren: 0.15
-    }
-  }
-}
 
 const reachOutScenarios = [
   "You're planning or modernizing a critical software, cloud, or AI system",
@@ -119,14 +101,10 @@ export default function ContactPage() {
         >
           {/* ── Left Column — Context ── */}
           <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-50px" }}
-            variants={staggerContainer}
             style={{ minWidth: 0 }}
           >
             {/* When to reach out */}
-            <motion.div variants={fadeUp} style={{ marginBottom: '48px' }}>
+            <motion.div style={{ marginBottom: '48px' }}>
               <h2
                 style={{
                   fontSize: '22px',
@@ -163,7 +141,7 @@ export default function ContactPage() {
             </motion.div>
 
             {/* Contact channels */}
-            <motion.div variants={fadeUp} style={{ marginBottom: '48px' }}>
+            <motion.div style={{ marginBottom: '48px' }}>
               <h2
                 style={{
                   fontSize: '22px',
@@ -222,7 +200,6 @@ export default function ContactPage() {
 
             {/* Reassurance */}
             <motion.div
-              variants={fadeUp}
               style={{
                 padding: '20px 24px',
                 background: 'var(--ys-surface-alt)',
@@ -238,10 +215,6 @@ export default function ContactPage() {
 
           {/* ── Right Column — Form ── */}
           <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-50px" }}
-            variants={fadeUp}
             style={{ minWidth: 0 }}
           >
             <div

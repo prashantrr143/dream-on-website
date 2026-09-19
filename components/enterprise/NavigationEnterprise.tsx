@@ -188,8 +188,23 @@ const NavigationEnterprise = () => {
           <a
             href="/"
             className="ys-nav-logo flex-shrink-0"
-            aria-label="YatiSphere Technologies — home"
+            aria-label="YatiSphere home"
           >
+            {/* Below 768px the full lockup is illegible, so show the
+                mark plus the wordmark as text. No compact lockup asset
+                exists in /brand/yatisphere/. */}
+            <span className="ys-logo-compact" aria-hidden="true">
+              <Image
+                src={LOGO_ASSETS.icon.src}
+                alt=""
+                width={LOGO_ASSETS.icon.width}
+                height={LOGO_ASSETS.icon.height}
+                priority
+                sizes="32px"
+                className="ys-logo-compact-mark"
+              />
+              <span className="ys-logo-compact-word">YatiSphere</span>
+            </span>
             <span className={`ys-logo-full${isScrolled ? ' is-hidden' : ''}`}>
               <Image
                 src={LOGO_ASSETS.dark.src}

@@ -1,30 +1,12 @@
 "use client"
 
-import { motion, type Variants } from 'framer-motion'
+import { motion } from 'framer-motion'
 import Link from 'next/link'
 import SharedLayout from '@/components/shared-layout'
 import { PageHero, PageSection, PageCTA } from '@/components/enterprise'
 import { ArrowRight } from 'lucide-react'
 
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }
-  }
-}
 
-const staggerContainer: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.12,
-      delayChildren: 0.15
-    }
-  }
-}
 
 /* ── Data ─────────────────────────────────────────── */
 
@@ -141,17 +123,12 @@ export default function SolutionsPage() {
         lede="Six practice areas that reflect the kinds of problems we take responsibility for — not a list of tools."
       >
         <motion.div
-          variants={staggerContainer}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
           style={{ gap: 16 }}
         >
           {solutionAreas.map((solution, index) => (
             <motion.div
               key={index}
-              variants={fadeUp}
               className="ys-card-light group"
               style={{
                 display: 'flex',
@@ -274,17 +251,12 @@ export default function SolutionsPage() {
         lede="We group our work into capability areas that reflect the kinds of problems we take responsibility for. Each engagement is shaped by organizational context and long-term system goals."
       >
         <motion.div
-          variants={staggerContainer}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
           className="grid grid-cols-1 sm:grid-cols-2"
           style={{ gap: 16 }}
         >
           {capabilityPillars.map((pillar, index) => (
             <motion.div
               key={index}
-              variants={fadeUp}
               className="ys-card-light"
               style={{
                 padding: '24px 22px',
@@ -374,15 +346,11 @@ export default function SolutionsPage() {
         lede="Our capabilities are delivered through a structured, collaborative model designed for enterprise environments."
       >
         <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-          variants={staggerContainer}
           className="grid grid-cols-1 lg:grid-cols-2"
           style={{ gap: 'clamp(28px, 4vw, 48px)', alignItems: 'start' }}
         >
           {/* Left — link through to delivery */}
-          <motion.div variants={fadeUp} style={{ minWidth: 0 }}>
+          <motion.div style={{ minWidth: 0 }}>
             <Link href="/how-we-work" className="ys-link" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', fontSize: '15px' }}>
               View how we work
               <ArrowRight size={16} strokeWidth={2.5} aria-hidden="true" />
@@ -390,7 +358,7 @@ export default function SolutionsPage() {
           </motion.div>
 
           {/* Right — outcomes list */}
-          <motion.div variants={fadeUp} style={{ minWidth: 0 }}>
+          <motion.div style={{ minWidth: 0 }}>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
               {outcomes.map((outcome) => (
                 <div

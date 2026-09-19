@@ -34,10 +34,6 @@ export function FounderVision() {
     <section className="ys-vision ys-vision-dark">
       <div className="enterprise-container-wide">
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          viewport={{ once: true }}
           className="ys-vision-grid"
         >
           {/* Statement */}

@@ -1,28 +1,10 @@
 "use client"
 
-import { motion, type Variants } from 'framer-motion'
+import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 12 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: "easeOut" as const }
-  }
-}
 
-const staggerContainer: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.1
-    }
-  }
-}
 
 /**
  * Delivery commitments.
@@ -81,10 +63,6 @@ const HowWeWorkSection = () => {
         >
           {/* Left Column - Header */}
           <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
           >
             <p
               style={{
@@ -129,10 +107,6 @@ const HowWeWorkSection = () => {
 
           {/* Right Column - Principles */}
           <motion.div
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
             style={{
               display: 'flex',
               flexDirection: 'column',
@@ -142,7 +116,6 @@ const HowWeWorkSection = () => {
             {deliveryPrinciples.map((principle, index) => (
               <motion.div
                 key={index}
-                variants={fadeUp}
                 style={{
                   padding: '24px 0',
                   borderBottom: index < deliveryPrinciples.length - 1

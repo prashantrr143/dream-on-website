@@ -1,29 +1,11 @@
 "use client"
 
-import { motion, type Variants } from 'framer-motion'
+import { motion } from 'framer-motion'
 import SharedLayout from '@/components/shared-layout'
 import { PageHero, PageSection, PageCTA } from '@/components/enterprise'
 import { YsIcon, type YsIconName } from '@/components/brand/YsIcon'
 
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }
-  }
-}
 
-const staggerContainer: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.12,
-      delayChildren: 0.15
-    }
-  }
-}
 
 const atAGlance = [
   { value: "KYC", label: "Onboarding automation", sub: "Document capture, verification and case handling" },
@@ -172,17 +154,12 @@ const FinancialServices = () => {
       {/* At a glance */}
       <PageSection tone="white" eyebrow="At a glance">
         <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          variants={staggerContainer}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
           style={{ gap: '16px' }}
         >
           {atAGlance.map((item) => (
             <motion.div
               key={item.label}
-              variants={fadeUp}
               className="ys-card-light"
               style={{ padding: '28px 24px', minWidth: 0 }}
             >
@@ -230,17 +207,12 @@ const FinancialServices = () => {
         lede="These are the structural constraints we design around. They are properties of the sector, not of any one organisation."
       >
         <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          variants={staggerContainer}
           className="grid grid-cols-1 sm:grid-cols-2"
           style={{ gap: '24px' }}
         >
           {pressures.map((pressure) => (
             <motion.div
               key={pressure.title}
-              variants={fadeUp}
               className="ys-card-light"
               style={{
                 padding: '32px',
@@ -301,17 +273,12 @@ const FinancialServices = () => {
         lede="The same engineering practice we bring to any enterprise, shaped by the controls this sector operates under."
       >
         <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          variants={staggerContainer}
           className="grid grid-cols-1 sm:grid-cols-2"
           style={{ gap: '24px' }}
         >
           {whatWeBuild.map((service) => (
             <motion.div
               key={service.title}
-              variants={fadeUp}
               className="ys-card-light"
               style={{
                 padding: '32px',
@@ -404,17 +371,12 @@ const FinancialServices = () => {
         lede="We do not hold these certifications on your behalf. We design and document controls so that your organisation can evidence them against the regimes that apply to it."
       >
         <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          variants={staggerContainer}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
           style={{ gap: '24px' }}
         >
           {governance.map((item) => (
             <motion.div
               key={item.title}
-              variants={fadeUp}
               className="ys-card-light"
               style={{ padding: '28px 24px', minWidth: 0 }}
             >

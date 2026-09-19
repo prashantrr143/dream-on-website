@@ -18,11 +18,6 @@ const HeroSection = () => {
   // MotionConfig reducedMotion="user" (see MotionProvider) makes Framer skip
   // these transforms for users who ask for reduced motion. The markup stays
   // identical either way, which is what keeps SSR and hydration in agreement.
-  const reveal = (delay: number) => ({
-    initial: { opacity: 0, y: 22 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] as const },
-  })
 
   return (
     <section
@@ -73,7 +68,6 @@ const HeroSection = () => {
         >
           <div className="max-w-[760px]">
             <motion.p
-              {...reveal(0)}
               className="ys-eyebrow ys-eyebrow-on-dark"
               style={{ marginBottom: 'clamp(16px, 2.4vw, 22px)' }}
             >
@@ -82,14 +76,12 @@ const HeroSection = () => {
             </motion.p>
 
             <motion.h1
-              {...reveal(0.08)}
               style={{ color: 'var(--on-dark)', textWrap: 'balance' }}
             >
               Technology that fixes the problem you actually have.
             </motion.h1>
 
             <motion.p
-              {...reveal(0.18)}
               style={{
                 maxWidth: 640,
                 marginTop: 'clamp(16px, 2.2vw, 22px)',
@@ -104,7 +96,6 @@ const HeroSection = () => {
             </motion.p>
 
             <motion.div
-              {...reveal(0.28)}
               className="flex flex-wrap items-center"
               style={{ gap: 14, marginTop: 'clamp(26px, 3.4vw, 34px)' }}
             >
@@ -119,7 +110,6 @@ const HeroSection = () => {
 
             {/* Proof line — wraps on narrow viewports */}
             <motion.p
-              {...reveal(0.36)}
               className="flex flex-wrap items-center"
               style={{
                 gap: '0 10px',

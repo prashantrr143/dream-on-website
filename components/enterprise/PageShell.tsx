@@ -36,11 +36,6 @@ export function PageHero({
   // MotionConfig reducedMotion="user" (see MotionProvider) skips these
   // transforms for users who ask for reduced motion, without changing the
   // rendered markup — which is what keeps SSR and hydration in agreement.
-  const reveal = (delay: number) => ({
-    initial: { opacity: 0, y: 20 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] as const },
-  })
 
   return (
     <section
@@ -85,7 +80,6 @@ export function PageHero({
           <div className="max-w-[780px]">
             {eyebrow && (
               <motion.p
-                {...reveal(0)}
                 className="ys-eyebrow ys-eyebrow-on-dark"
                 style={{ marginBottom: 'clamp(14px, 2.2vw, 20px)' }}
               >
@@ -94,7 +88,6 @@ export function PageHero({
             )}
 
             <motion.h1
-              {...reveal(0.07)}
               style={{ color: 'var(--on-dark)', textWrap: 'balance' }}
             >
               {title}
@@ -102,7 +95,6 @@ export function PageHero({
 
             {lede && (
               <motion.p
-                {...reveal(0.16)}
                 className="lead measure"
                 style={{
                   marginTop: 'clamp(14px, 2vw, 20px)',
@@ -115,7 +107,6 @@ export function PageHero({
 
             {(primaryCta || secondaryCta) && (
               <motion.div
-                {...reveal(0.26)}
                 className="flex flex-wrap items-center"
                 style={{ gap: 14, marginTop: 'clamp(24px, 3.2vw, 32px)' }}
               >
@@ -141,7 +132,7 @@ export function PageHero({
           </div>
 
           {children && (
-            <motion.div {...reveal(0.36)} style={{ marginTop: 'clamp(34px, 4.5vw, 54px)' }}>
+            <motion.div style={{ marginTop: 'clamp(34px, 4.5vw, 54px)' }}>
               {children}
             </motion.div>
           )}
@@ -173,10 +164,6 @@ export function PageSection({
       <div className="enterprise-container-wide">
         {(eyebrow || title || lede) && (
           <motion.div
-            initial={{ opacity: 0, y: 14 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-            viewport={{ once: true }}
             style={{ marginBottom: 'clamp(24px, 3vw, 34px)' }}
           >
             {eyebrow && <p className="ys-eyebrow">{eyebrow}</p>}
@@ -231,10 +218,6 @@ export function PageCTA({
       <motion.div
         className="enterprise-container-wide relative"
         style={{ zIndex: 1, textAlign: 'center' }}
-        initial={{ opacity: 0, y: 14 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.55 }}
-        viewport={{ once: true }}
       >
         <h2
           style={{

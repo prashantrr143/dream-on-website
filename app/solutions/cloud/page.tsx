@@ -1,28 +1,10 @@
 "use client"
 
-import { motion, type Variants } from 'framer-motion'
+import { motion } from 'framer-motion'
 import SharedLayout from '@/components/shared-layout'
 import { PageHero, PageSection, PageCTA } from '@/components/enterprise'
 
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }
-  }
-}
 
-const staggerContainer: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.12,
-      delayChildren: 0.15
-    }
-  }
-}
 
 const keyMetrics = [
   { value: "IaC", label: "Infrastructure as code", sub: "Terraform-managed environments" },
@@ -155,17 +137,12 @@ const CloudInfrastructure = () => {
       {/* Key metrics */}
       <PageSection tone="white" eyebrow="At a glance">
         <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          variants={staggerContainer}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
           style={{ gap: '16px' }}
         >
           {keyMetrics.map((metric) => (
             <motion.div
               key={metric.label}
-              variants={fadeUp}
               className="ys-card-light"
               style={{ padding: '28px 24px', minWidth: 0 }}
             >
@@ -213,17 +190,12 @@ const CloudInfrastructure = () => {
         lede="End-to-end infrastructure solutions designed for enterprise scale, security, and performance."
       >
         <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          variants={staggerContainer}
           className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3"
           style={{ gap: '24px' }}
         >
           {solutions.map((solution, index) => (
             <motion.div
               key={index}
-              variants={fadeUp}
               className="ys-card-light group"
               style={{
                 padding: '32px',
@@ -350,17 +322,12 @@ const CloudInfrastructure = () => {
         lede="Typical infrastructure problems we take on, and how each is architected."
       >
         <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          variants={staggerContainer}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
           style={{ gap: '24px' }}
         >
           {caseStudies.map((study, index) => (
             <motion.div
               key={index}
-              variants={fadeUp}
               className="ys-card-light"
               style={{
                 padding: '32px',
@@ -438,17 +405,12 @@ const CloudInfrastructure = () => {
         title="From assessment to production in weeks, not months."
       >
         <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          variants={staggerContainer}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
           style={{ gap: '24px' }}
         >
           {processPhases.map((phase) => (
             <motion.div
               key={phase.step}
-              variants={fadeUp}
               className="ys-card-light"
               style={{
                 padding: '32px',

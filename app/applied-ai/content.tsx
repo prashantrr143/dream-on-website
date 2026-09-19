@@ -1,27 +1,12 @@
 "use client"
 
-import { motion, type Variants } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import SharedLayout from '@/components/shared-layout'
 import { PageHero, PageSection, PageCTA } from '@/components/enterprise'
 import { PRIMARY_CTA, SECONDARY_CTA } from '@/lib/cta'
 
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 16 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
-  },
-}
 
-const staggerContainer: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.08, delayChildren: 0.06 },
-  },
-}
 
 /** Hero at-a-glance tiles — what makes the AI work land, not model names. */
 const GLANCE = [
@@ -233,17 +218,12 @@ const AppliedAIContent = () => {
       {/* At a glance */}
       <PageSection tone="white" eyebrow="At a glance">
         <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-50px' }}
-          variants={staggerContainer}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
           style={{ gap: '16px' }}
         >
           {GLANCE.map((item) => (
             <motion.div
               key={item.label}
-              variants={fadeUp}
               className="ys-card-light"
               style={{ padding: '26px 24px', minWidth: 0 }}
             >
@@ -279,17 +259,12 @@ const AppliedAIContent = () => {
         title="Three situations we get called into."
       >
         <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-50px' }}
-          variants={staggerContainer}
           className="grid grid-cols-1 md:grid-cols-3"
           style={{ gap: '20px' }}
         >
           {SITUATIONS.map((s) => (
             <motion.div
               key={s.quote}
-              variants={fadeUp}
               className="ys-card-light"
               style={{
                 padding: '28px',
@@ -333,10 +308,6 @@ const AppliedAIContent = () => {
         title="Four services, one accountable team."
       >
         <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-50px' }}
-          variants={staggerContainer}
           className="grid grid-cols-1 lg:grid-cols-2"
           style={{ gap: '20px' }}
         >
@@ -344,7 +315,6 @@ const AppliedAIContent = () => {
             <motion.div
               key={service.id}
               id={service.id}
-              variants={fadeUp}
               className="ys-card-light ys-anchor-target"
               style={{
                 padding: '32px',
@@ -482,17 +452,12 @@ const AppliedAIContent = () => {
         title="Typical problems, and what the solution is built to do."
       >
         <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-50px' }}
-          variants={staggerContainer}
           className="grid grid-cols-1 md:grid-cols-2"
           style={{ gap: '20px' }}
         >
           {SCENARIOS.map((scenario) => (
             <motion.div
               key={scenario.tag}
-              variants={fadeUp}
               className="ys-card-light"
               style={{
                 padding: '30px',
@@ -605,17 +570,12 @@ const AppliedAIContent = () => {
         title="From first question to running system."
       >
         <motion.ol
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-50px' }}
-          variants={staggerContainer}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
           style={{ gap: '20px', listStyle: 'none', margin: 0, padding: 0 }}
         >
           {STEPS.map((step) => (
             <motion.li
               key={step.n}
-              variants={fadeUp}
               className="ys-card-light"
               style={{
                 padding: '26px',
@@ -662,10 +622,6 @@ const AppliedAIContent = () => {
         </motion.ol>
 
         <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          viewport={{ once: true }}
           style={{ marginTop: 'clamp(24px, 3vw, 32px)' }}
         >
           <a
@@ -688,10 +644,6 @@ const AppliedAIContent = () => {
       {/* ── 6. Why the platform underneath matters ── */}
       <PageSection tone="light">
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-          viewport={{ once: true }}
           className="ys-card-light"
           style={{ padding: 'clamp(28px, 4vw, 44px)', minWidth: 0 }}
         >
@@ -744,17 +696,12 @@ const AppliedAIContent = () => {
       {/* ── 7. Guardrails ── */}
       <PageSection tone="white" eyebrow="Guardrails" title={'What we won\u2019t do with AI.'}>
         <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-50px' }}
-          variants={staggerContainer}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
           style={{ gap: '20px' }}
         >
           {GUARDRAILS.map((rail) => (
             <motion.div
               key={rail.title}
-              variants={fadeUp}
               className="ys-card-light"
               style={{
                 padding: '26px',
@@ -791,10 +738,6 @@ const AppliedAIContent = () => {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          viewport={{ once: true }}
           style={{ marginTop: 'clamp(24px, 3vw, 32px)' }}
         >
           <a

@@ -1,29 +1,11 @@
 "use client"
 
-import { motion, type Variants } from 'framer-motion'
+import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import { PRIMARY_CTA, SECONDARY_CTA } from '@/lib/cta'
 
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 12 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: "easeOut" as const }
-  }
-}
 
-const staggerContainer: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.12,
-      delayChildren: 0.1
-    }
-  }
-}
 
 const FinalCTASection = () => {
   return (
@@ -42,13 +24,8 @@ const FinalCTASection = () => {
       <motion.div
         className="enterprise-container-wide relative"
         style={{ zIndex: 1, textAlign: 'center' }}
-        variants={staggerContainer}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
       >
         <motion.h2
-          variants={fadeUp}
           style={{
             fontSize: 'clamp(2rem, 4vw, 3rem)',
             fontWeight: 700,
@@ -61,7 +38,6 @@ const FinalCTASection = () => {
           Tell us the problem. We&rsquo;ll tell you what the first step costs.
         </motion.h2>
         <motion.p
-          variants={fadeUp}
           style={{
             fontSize: '18px',
             lineHeight: 1.65,
@@ -77,7 +53,6 @@ const FinalCTASection = () => {
 
         {/* Dual CTAs */}
         <motion.div
-          variants={fadeUp}
           className="flex flex-col sm:flex-row items-center justify-center"
           style={{ gap: '16px', marginBottom: '32px' }}
         >
@@ -101,7 +76,6 @@ const FinalCTASection = () => {
 
         {/* Supporting links */}
         <motion.div
-          variants={fadeUp}
           className="flex items-center justify-center"
           style={{ gap: '32px' }}
         >

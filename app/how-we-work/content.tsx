@@ -1,6 +1,6 @@
 "use client"
 
-import { motion, type Variants } from 'framer-motion'
+import { motion } from 'framer-motion'
 import SharedLayout from '@/components/shared-layout'
 import { PageHero, PageSection, PageCTA } from '@/components/enterprise'
 import DeliveryStages from '@/components/enterprise/DeliveryStages'
@@ -8,25 +8,7 @@ import EngagementModelsSection from '@/components/enterprise/EngagementModelsSec
 import { PRIMARY_CTA } from '@/lib/cta'
 
 // Animation variants
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 16 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: "easeOut" as const }
-  }
-}
 
-const staggerContainer: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.08,
-      delayChildren: 0.1
-    }
-  }
-}
 
 // Core principles. Four, not six: "Collaboration over hand-offs" and
 // "Transparency throughout" are covered by the delivery and collaboration
@@ -74,17 +56,12 @@ export default function HowWeWorkContent() {
       {/* Principles Section */}
       <PageSection id="principles" tone="white" eyebrow="Principles" title="What stays constant.">
         <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-          variants={staggerContainer}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
           style={{ gap: 16 }}
         >
           {principles.map((principle, index) => (
             <motion.div
               key={index}
-              variants={fadeUp}
               className="ys-card-light"
               style={{
                 padding: '22px 20px',
@@ -125,15 +102,11 @@ export default function HowWeWorkContent() {
       {/* How We Collaborate */}
       <PageSection id="collaboration" tone="white" eyebrow="Collaboration" title="How We Collaborate">
         <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-          variants={staggerContainer}
           className="grid grid-cols-1 lg:grid-cols-2"
           style={{ gap: 'clamp(28px, 4vw, 56px)', alignItems: 'start' }}
         >
           {/* Working With Your Teams */}
-          <motion.div variants={fadeUp} style={{ minWidth: 0 }}>
+          <motion.div style={{ minWidth: 0 }}>
             <h3
               style={{
                 fontSize: 'clamp(18px, 2vw, 21px)',
@@ -165,7 +138,7 @@ export default function HowWeWorkContent() {
           </motion.div>
 
           {/* Enterprise Constraints */}
-          <motion.div variants={fadeUp} style={{ minWidth: 0 }}>
+          <motion.div style={{ minWidth: 0 }}>
             <h3
               style={{
                 fontSize: 'clamp(18px, 2vw, 21px)',

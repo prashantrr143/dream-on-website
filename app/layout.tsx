@@ -123,19 +123,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className="no-js" suppressHydrationWarning>
-      <head>
-        {/*
-          Runs before paint: drops `.no-js` so the scroll-reveal
-          animations take over. If JS never runs the class stays and
-          the CSS fallback in globals.css keeps all content visible.
-        */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `document.documentElement.classList.remove('no-js')`,
-          }}
-        />
-      </head>
+    <html lang="en" suppressHydrationWarning>
+      <head />
       <body className={`${spaceGrotesk.variable} ${ibmPlexSans.variable} ${ibmPlexMono.variable} min-h-screen bg-background font-sans antialiased`}>
         {/* Skip to main content for accessibility */}
         <a

@@ -14,28 +14,6 @@ import {
 import { LEGAL_LAST_UPDATED } from '@/lib/legal'
 
 const PrivacyPolicy = () => {
- const containerVariants = {
-   hidden: { opacity: 0 },
-   visible: {
-     opacity: 1,
-     transition: {
-       staggerChildren: 0.05,
-       delayChildren: 0.1
-     }
-   }
- }
-
- const itemVariants = {
-   hidden: { opacity: 0, y: 20 },
-   visible: { 
-     opacity: 1, 
-     y: 0,
-     transition: { 
-       duration: 0.4
-     }
-   }
- }
-
  return (
    <SharedLayout>
    <div className="min-h-screen bg-background">
@@ -44,11 +22,8 @@ const PrivacyPolicy = () => {
        <div className="section-container">
          <motion.div
            className="max-w-4xl mx-auto"
-           variants={containerVariants}
-           initial="hidden"
-           animate="visible"
          >
-           <motion.div variants={itemVariants}>
+           <motion.div>
              <Badge 
                variant="secondary" 
                className="mb-6"
@@ -86,14 +61,10 @@ const PrivacyPolicy = () => {
        <div className="section-container">
          <div className="max-w-4xl mx-auto">
            <motion.div
-             variants={containerVariants}
-             initial="hidden"
-             whileInView="visible"
-             viewport={{ once: true }}
              className="space-y-12"
            >
              {/* Section 1 */}
-             <motion.div variants={itemVariants}>
+             <motion.div>
                <Card className="p-8 lg:p-12">
                  <h2 className="text-2xl font-bold mb-6 text-foreground">1. Information We Collect</h2>
                  
@@ -128,7 +99,7 @@ const PrivacyPolicy = () => {
              </motion.div>
 
              {/* Section 2 */}
-             <motion.div variants={itemVariants}>
+             <motion.div>
                <Card className="p-8 lg:p-12">
                  <h2 className="text-2xl font-bold mb-6 text-foreground">2. How We Use Your Information</h2>
                  
@@ -161,7 +132,7 @@ const PrivacyPolicy = () => {
              </motion.div>
 
              {/* Section 3 */}
-             <motion.div variants={itemVariants}>
+             <motion.div>
                <Card className="p-8 lg:p-12">
                  <h2 className="text-2xl font-bold mb-6 text-foreground">3. Information Sharing and Disclosure</h2>
                  
@@ -194,7 +165,7 @@ const PrivacyPolicy = () => {
              </motion.div>
 
              {/* Section 4 */}
-             <motion.div variants={itemVariants}>
+             <motion.div>
                <Card className="p-8 lg:p-12">
                  <h2 className="text-2xl font-bold mb-6 text-foreground">4. Data Security and Protection</h2>
                  
@@ -226,7 +197,7 @@ const PrivacyPolicy = () => {
              </motion.div>
 
              {/* Section 5 */}
-             <motion.div variants={itemVariants}>
+             <motion.div>
                <Card className="p-8 lg:p-12">
                  <h2 className="text-2xl font-bold mb-6 text-foreground">5. Your Privacy Rights</h2>
                  
@@ -264,7 +235,7 @@ const PrivacyPolicy = () => {
              </motion.div>
 
              {/* Section 6 */}
-             <motion.div variants={itemVariants}>
+             <motion.div>
                <Card className="p-8 lg:p-12">
                  <h2 className="text-2xl font-bold mb-6 text-foreground">6. Data Retention</h2>
                  
@@ -288,7 +259,7 @@ const PrivacyPolicy = () => {
              </motion.div>
 
              {/* Section 7 */}
-             <motion.div variants={itemVariants}>
+             <motion.div>
                <Card className="p-8 lg:p-12">
                  <h2 className="text-2xl font-bold mb-6 text-foreground">7. International Data Transfers</h2>
                  
@@ -313,7 +284,7 @@ const PrivacyPolicy = () => {
              </motion.div>
 
              {/* Section 8 */}
-             <motion.div variants={itemVariants}>
+             <motion.div>
                <Card className="p-8 lg:p-12">
                  <h2 className="text-2xl font-bold mb-6 text-foreground">8. Cookies and Tracking Technologies</h2>
                  
@@ -347,7 +318,7 @@ const PrivacyPolicy = () => {
              </motion.div>
 
              {/* Section 9 */}
-             <motion.div variants={itemVariants}>
+             <motion.div>
                <Card className="p-8 lg:p-12">
                  <h2 className="text-2xl font-bold mb-6 text-foreground">9. Changes to This Privacy Policy</h2>
                  
@@ -371,7 +342,7 @@ const PrivacyPolicy = () => {
              </motion.div>
 
              {/* Contact Information */}
-             <motion.div variants={itemVariants}>
+             <motion.div>
                <Card className="p-8 lg:p-12">
                  <h2 className="text-2xl font-bold mb-6 text-foreground">10. Contact Information</h2>
                  

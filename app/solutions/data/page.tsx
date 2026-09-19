@@ -1,28 +1,10 @@
 "use client"
 
-import { motion, type Variants } from 'framer-motion'
+import { motion } from 'framer-motion'
 import SharedLayout from '@/components/shared-layout'
 import { PageHero, PageSection, PageCTA } from '@/components/enterprise'
 
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }
-  }
-}
 
-const staggerContainer: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.12,
-      delayChildren: 0.15
-    }
-  }
-}
 
 /* ── Data ─────────────────────────────────────────── */
 
@@ -151,17 +133,12 @@ const DataEngineeringAnalytics = () => {
       {/* At a glance */}
       <PageSection tone="white" eyebrow="At a glance">
         <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          variants={staggerContainer}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
           style={{ gap: '16px' }}
         >
           {keyCapabilities.map((item) => (
             <motion.div
               key={item.label}
-              variants={fadeUp}
               className="ys-card-light"
               style={{ padding: '28px 24px', minWidth: 0 }}
             >
@@ -203,17 +180,12 @@ const DataEngineeringAnalytics = () => {
         lede="From ingestion through to the reporting layer, with governance applied as the platform is built rather than after."
       >
         <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          variants={staggerContainer}
           className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3"
           style={{ gap: '24px' }}
         >
           {solutions.map((solution) => (
             <motion.div
               key={solution.title}
-              variants={fadeUp}
               className="ys-card-light"
               style={{
                 padding: '32px',
@@ -336,17 +308,12 @@ const DataEngineeringAnalytics = () => {
         lede="Typical data problems we take on, and how each platform is put together."
       >
         <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          variants={staggerContainer}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
           style={{ gap: '24px' }}
         >
           {engagementScenarios.map((study) => (
             <motion.div
               key={study.client}
-              variants={fadeUp}
               className="ys-card-light"
               style={{
                 padding: '32px',

@@ -73,10 +73,6 @@ const FooterMinimal = () => {
 
       <div className="enterprise-container-wide ys-footer-inner">
         <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
           className="ys-footer-grid"
         >
           {/* Brand column — icon mark plus typeset name, so every
@@ -147,10 +143,6 @@ const FooterMinimal = () => {
 
         {/* Bottom bar */}
         <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          viewport={{ once: true }}
           className="ys-footer-bottom"
         >
           <p>
