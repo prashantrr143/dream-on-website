@@ -24,34 +24,37 @@ interface EngagementModel {
   /** Commercial shape, in one short line. */
   fit: string
   body: string
+  /** Marks the entry offer, shown first. */
+  badge?: string
 }
 
 const models: EngagementModel[] = [
   {
+    title: "Solution Blueprint",
+    fit: "2\u20134 weeks \u00b7 fixed price",
+    body: "A fixed-price blueprint for one named problem: solution design, costed delivery plan and risks. The entry point for most new clients.",
+    badge: "Start here",
+  },
+  {
     title: "Project delivery",
-    fit: "Fixed scope · milestone-based",
-    body: "A defined outcome — a platform, a migration, an AI use case — delivered end-to-end with our architects accountable.",
+    fit: "Fixed scope \u00b7 milestone-based",
+    body: "A defined outcome, delivered end-to-end, with one team accountable for the result.",
   },
   {
     title: "Dedicated teams",
-    fit: "Monthly · scale up or down",
-    body: "Engineers and architects embedded with your team, under your priorities, with our delivery discipline.",
+    fit: "Monthly \u00b7 scale up or down",
+    body: "Engineers and delivery leads embedded with your team, under your priorities, with our delivery discipline.",
   },
   {
     title: "Managed services",
-    fit: "SLA-backed · ongoing",
-    body: "We run and evolve what we (or others) built — cloud, platforms, data pipelines, AI workloads.",
-  },
-  {
-    title: "Architecture & advisory",
-    fit: "2–4 weeks · fixed price",
-    body: "Architecture reviews, AI readiness assessments and modernisation roadmaps — the entry point for most new clients.",
+    fit: "SLA-backed \u00b7 ongoing",
+    body: "We run and evolve what we (or others) built: cloud, platforms, data pipelines and AI workloads.",
   },
 ]
 
 const EngagementModelsSection = () => {
   return (
-    <section id="models" className="ys-section-white">
+    <section id="models" className="ys-section-light">
       <div className="enterprise-container-wide">
         {/* Section intro */}
         <motion.div
@@ -109,17 +112,45 @@ const EngagementModelsSection = () => {
                   padding: 'clamp(22px, 2.6vw, 30px)',
                 }}
               >
-                <h3
+                <div
                   style={{
-                    fontSize: 16,
-                    fontWeight: 700,
-                    letterSpacing: '-0.015em',
-                    lineHeight: 1.3,
-                    color: 'var(--ys-ink)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 8,
+                    flexWrap: 'wrap',
                   }}
                 >
-                  {model.title}
-                </h3>
+                  <h3
+                    style={{
+                      fontSize: 16,
+                      fontWeight: 700,
+                      letterSpacing: '-0.015em',
+                      lineHeight: 1.3,
+                      color: 'var(--ys-ink)',
+                    }}
+                  >
+                    {model.title}
+                  </h3>
+                  {model.badge && (
+                    <span
+                      style={{
+                        display: 'inline-block',
+                        padding: '3px 8px',
+                        borderRadius: 100,
+                        background: 'rgba(255, 138, 0, 0.12)',
+                        border: '1px solid rgba(255, 138, 0, 0.42)',
+                        fontSize: 10.5,
+                        fontWeight: 700,
+                        letterSpacing: '0.04em',
+                        textTransform: 'uppercase',
+                        color: 'var(--ys-orange-ink)',
+                        whiteSpace: 'nowrap',
+                      }}
+                    >
+                      {model.badge}
+                    </span>
+                  )}
+                </div>
                 <p
                   style={{
                     fontSize: 12,
