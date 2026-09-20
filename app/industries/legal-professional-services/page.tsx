@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import SharedLayout from '@/components/shared-layout'
 import { PageHero, PageSection, PageCTA } from '@/components/enterprise'
 import { YsIcon, type YsIconName } from '@/components/brand/YsIcon'
+import { PRIMARY_CTA } from '@/lib/cta'
 
 
 
@@ -151,7 +152,7 @@ const LegalProfessionalServices = () => {
         eyebrow="Industries"
         title="Legal and professional services, engineered around confidentiality."
         lede="Client onboarding, conflict checks, matter and fee intelligence, and practice-management integration — built so the duty of confidence is a property of the architecture rather than a policy document beside it."
-        primaryCta={{ label: 'Start a conversation', href: '/contact-us' }}
+        primaryCta={{ label: PRIMARY_CTA.label, href: PRIMARY_CTA.href }}
         secondaryCta={{ label: 'How we work', href: '/how-we-work' }}
       />
 
@@ -416,7 +417,7 @@ const LegalProfessionalServices = () => {
       <PageCTA
         title="Talk through a practice-systems build."
         body="Whether it is intake that stalls, a conflict search you cannot fully defend, or four systems holding the same client — describe it and we will set out how we would approach it."
-        primaryCta={{ label: 'Start a conversation', href: '/contact-us' }}
+        primaryCta={{ label: PRIMARY_CTA.label, href: PRIMARY_CTA.href }}
         secondaryCta={{ label: 'Explore IT services', href: '/solutions' }}
       />
     </SharedLayout>

@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
+import { PRIMARY_CTA } from '@/lib/cta'
 
 /**
  * Shared page primitives so inner pages use the same system as the
@@ -172,7 +173,6 @@ export function PageSection({
                 {title}
               </h2>
             )}
-            <div className="ys-rule" />
             {lede && (
               <p
                 className="lead measure"
@@ -202,7 +202,7 @@ interface PageCTAProps {
 export function PageCTA({
   title,
   body,
-  primaryCta = { label: 'Start a conversation', href: '/contact-us' },
+  primaryCta = { label: PRIMARY_CTA.label, href: PRIMARY_CTA.href },
   secondaryCta,
 }: PageCTAProps) {
   return (

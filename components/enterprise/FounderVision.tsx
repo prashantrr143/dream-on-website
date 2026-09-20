@@ -42,7 +42,6 @@ export function FounderVision() {
             <h2 className="ys-vision-head">
               Why <span className="ys-vision-accent">YatiSphere</span> exists.
             </h2>
-            <div className="ys-rule" style={{ marginBottom: 26 }} />
 
             <blockquote className="ys-vision-quote">
               {VISION.map((p, i) => (

@@ -22,7 +22,6 @@ const HowWeDeliverSection = () => {
           >
             Five stages. No handovers.
           </h2>
-          <div className="ys-rule" />
         </motion.div>
 
         {/* Lifecycle */}

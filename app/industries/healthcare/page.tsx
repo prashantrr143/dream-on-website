@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import SharedLayout from '@/components/shared-layout'
 import { PageHero, PageSection, PageCTA } from '@/components/enterprise'
 import { YsIcon, type YsIconName } from '@/components/brand/YsIcon'
+import { PRIMARY_CTA } from '@/lib/cta'
 
 
 
@@ -152,7 +153,7 @@ const Healthcare = () => {
         image={{ src: '/brand/yatisphere/imagery/industry-healthcare.png', alt: 'Healthcare technology' }}
         title="Healthcare platforms where the rules are in the architecture."
         lede="Patient platforms and clinical data systems where consent, retention and access rules are built into the design — not layered on afterwards as policy and hope."
-        primaryCta={{ label: 'Start a conversation', href: '/contact-us' }}
+        primaryCta={{ label: PRIMARY_CTA.label, href: PRIMARY_CTA.href }}
         secondaryCta={{ label: 'How we work', href: '/how-we-work' }}
       />
 
@@ -417,7 +418,7 @@ const Healthcare = () => {
       <PageCTA
         title="Talk through a healthcare build."
         body="Bring us the constraint — a consent model that has to hold across systems, an access review you cannot answer, an integration that will not scale. We will tell you how we would design it."
-        primaryCta={{ label: 'Start a conversation', href: '/contact-us' }}
+        primaryCta={{ label: PRIMARY_CTA.label, href: PRIMARY_CTA.href }}
         secondaryCta={{ label: 'Explore IT services', href: '/solutions' }}
       />
     </SharedLayout>

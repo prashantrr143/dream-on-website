@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import SharedLayout from '@/components/shared-layout'
 import { PageHero, PageSection, PageCTA } from '@/components/enterprise'
+import { PRIMARY_CTA } from '@/lib/cta'
 
 
 
@@ -51,7 +52,7 @@ export default function IndustriesPage() {
         eyebrow="Industries"
         title="Deepest where reliability and compliance matter most."
         lede="We work where systems carry regulatory weight — and where the architecture has to satisfy auditors as much as users. The engineering is the same discipline; the constraints differ by sector."
-        primaryCta={{ label: 'Start a conversation', href: '/contact-us' }}
+        primaryCta={{ label: PRIMARY_CTA.label, href: PRIMARY_CTA.href }}
         secondaryCta={{ label: 'How we work', href: '/how-we-work' }}
       />
 
@@ -134,7 +135,7 @@ export default function IndustriesPage() {
       <PageCTA
         title="Working in a regulated sector?"
         body="Tell us what you're building and the constraints you're under. We'll say plainly whether we're the right fit."
-        primaryCta={{ label: 'Start a conversation', href: '/contact-us' }}
+        primaryCta={{ label: PRIMARY_CTA.label, href: PRIMARY_CTA.href }}
         secondaryCta={{ label: 'Explore IT services', href: '/solutions' }}
       />
     </SharedLayout>

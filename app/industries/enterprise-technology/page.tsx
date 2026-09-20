@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import SharedLayout from '@/components/shared-layout'
 import { PageHero, PageSection, PageCTA } from '@/components/enterprise'
+import { PRIMARY_CTA } from '@/lib/cta'
 
 
 
@@ -162,7 +163,7 @@ const EnterpriseTechnology = () => {
         eyebrow="Industries"
         title="Enterprise and technology."
         lede="Product companies and enterprises modernising platforms, moving to cloud, or adding AI to an existing product — without pausing the roadmap to do it."
-        primaryCta={{ label: 'Start a conversation', href: '/contact-us' }}
+        primaryCta={{ label: PRIMARY_CTA.label, href: PRIMARY_CTA.href }}
         secondaryCta={{ label: 'How we work', href: '/how-we-work' }}
       />
 
@@ -469,7 +470,7 @@ const EnterpriseTechnology = () => {
       <PageCTA
         title="Modernise without pausing the roadmap."
         body="Tell us where the platform is constraining you — tenancy, release speed, security review or an AI feature that needs designing properly — and we will walk through how we would approach it."
-        primaryCta={{ label: 'Start a conversation', href: '/contact-us' }}
+        primaryCta={{ label: PRIMARY_CTA.label, href: PRIMARY_CTA.href }}
         secondaryCta={{ label: 'Explore IT services', href: '/solutions' }}
       />
     </SharedLayout>

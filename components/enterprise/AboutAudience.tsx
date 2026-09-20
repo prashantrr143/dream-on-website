@@ -68,7 +68,6 @@ export function AboutAudience() {
             <h2 className="ys-aud-head">
               Four situations we recognise immediately.
             </h2>
-            <div className="ys-rule" />
           </div>
           <p className="ys-aud-lede">
             We are a fit when the architecture carries consequence — regulatory,

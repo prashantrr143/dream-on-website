@@ -61,7 +61,6 @@ export function AboutPrinciples() {
           <h2 className="ys-principle-head">
             Four commitments we do not trade away.
           </h2>
-          <div className="ys-rule" />
           <p className="ys-principle-lede">
             These shape what we agree to build, how we sequence it, and what we
             refuse to rush. They also explain why some engagements start slower
