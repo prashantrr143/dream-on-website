@@ -102,8 +102,7 @@ const ITServicesSection = () => {
           <div style={{ minWidth: 0 }}>
             <p className="ys-eyebrow">Problems we solve</p>
             <h2 className="ys-cap-headline">
-              Start with the problem,{' '}
-              <span className="ys-cap-headline-accent">not the technology.</span>
+              Start with the problem, not the technology.
             </h2>
           </div>
           <div className="ys-cap-intro-aside">

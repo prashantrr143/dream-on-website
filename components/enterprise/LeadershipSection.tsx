@@ -56,7 +56,6 @@ export function LeadershipSection() {
           >
             The people behind our work.
           </h2>
-          <div className="ys-rule" />
           <p style={{ marginTop: 18, fontSize: 15.5, lineHeight: 1.65, color: 'var(--ys-ink-body)' }}>
             A small team by design. Every engagement is led by someone who has
             carried responsibility for systems like the ones we are asked to build.

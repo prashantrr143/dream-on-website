@@ -42,19 +42,6 @@ const HowWeWorkSection = () => {
       className="ys-section-white"
       style={{ position: 'relative', overflow: 'hidden' }}
     >
-      {/* Subtle gradient accent */}
-      <div
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '50%',
-          height: '100%',
-          background: 'radial-gradient(ellipse at 0% 50%, rgba(10, 132, 255, 0.06), transparent 70%)',
-          pointerEvents: 'none'
-        }}
-        aria-hidden="true"
-      />
 
       <div className="enterprise-container-wide relative" style={{ zIndex: 1 }}>
         <div
@@ -79,7 +66,8 @@ const HowWeWorkSection = () => {
             <h2
               style={{ color: 'var(--ink)', marginBottom: '24px' }}
             >
-              Dependable, in writing.
+              Dependable,{' '}
+              <span className="ys-accent-word">in writing.</span>
             </h2>
             <p
               style={{

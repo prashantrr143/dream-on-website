@@ -78,7 +78,8 @@ const HeroSection = () => {
             <motion.h1
               style={{ color: 'var(--on-dark)', textWrap: 'balance' }}
             >
-              Technology that fixes the problem you actually have.
+              Technology that fixes the problem you{' '}
+              <span className="ys-accent-word">actually</span> have.
             </motion.h1>
 
             <motion.p

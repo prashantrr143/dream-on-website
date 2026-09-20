@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import SharedLayout from '@/components/shared-layout'
 import { PageHero, PageSection, PageCTA } from '@/components/enterprise'
 import { YsIcon, type YsIconName } from '@/components/brand/YsIcon'
+import { PRIMARY_CTA } from '@/lib/cta'
 
 
 
@@ -147,7 +148,7 @@ const FinancialServices = () => {
         image={{ src: '/brand/yatisphere/imagery/industry-financial-services.png', alt: 'Financial services technology' }}
         title="Financial services systems built for scrutiny."
         lede="Onboarding and KYC automation, post-trade and settlement systems, and compliance workflows — for banks, NBFCs, insurers and fintechs where the architecture has to answer to a regulator as well as a customer."
-        primaryCta={{ label: 'Start a conversation', href: '/contact-us' }}
+        primaryCta={{ label: PRIMARY_CTA.label, href: PRIMARY_CTA.href }}
         secondaryCta={{ label: 'How we work', href: '/how-we-work' }}
       />
 
@@ -412,7 +413,7 @@ const FinancialServices = () => {
       <PageCTA
         title="Talk through a financial services build."
         body="Bring us the constraint — a reporting deadline, a core system you cannot touch, an onboarding queue that stalls. We will tell you how we would architect around it."
-        primaryCta={{ label: 'Start a conversation', href: '/contact-us' }}
+        primaryCta={{ label: PRIMARY_CTA.label, href: PRIMARY_CTA.href }}
         secondaryCta={{ label: 'Explore IT services', href: '/solutions' }}
       />
     </SharedLayout>

@@ -1,5 +1,5 @@
-import Image from 'next/image'
 import { ArrowRight, Linkedin, ShieldCheck } from 'lucide-react'
+import Image from 'next/image'
 import { LOGO_ASSETS } from '@/components/brand/YatiSphereLogo'
 import { hasArticles } from '@/lib/perspectives'
 import { SITE_CONTACT } from '@/lib/site-contact'
@@ -71,7 +71,7 @@ const FooterMinimal = () => {
                 width={LOGO_ASSETS.primary.width}
                 height={LOGO_ASSETS.primary.height}
                 loading="lazy"
-                sizes="260px"
+                sizes="280px"
                 className="ys-footer-logo"
               />
             </a>

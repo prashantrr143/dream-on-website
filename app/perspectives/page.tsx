@@ -6,6 +6,7 @@ import { ArrowRight } from 'lucide-react'
 import { notFound } from 'next/navigation'
 import SharedLayout from '@/components/shared-layout'
 import { articles } from '@/lib/perspectives'
+import { PRIMARY_CTA } from '@/lib/cta'
 
 
 
@@ -482,7 +483,7 @@ export default function PerspectivesPage() {
               textDecoration: 'none'
             }}
           >
-            Start a conversation
+            {PRIMARY_CTA.label}
             <ArrowRight
               className="w-4 h-4 transition-transform group-hover:translate-x-1"
               strokeWidth={2.5}

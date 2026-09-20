@@ -46,18 +46,6 @@ const StatsSection = () => {
       }}
     >
       {/* Subtle brand accent */}
-      <div
-        style={{
-          position: 'absolute',
-          top: 0,
-          right: 0,
-          width: '45%',
-          height: '100%',
-          background: 'radial-gradient(ellipse at 100% 50%, rgba(10,132,255,0.14), transparent 70%)',
-          pointerEvents: 'none'
-        }}
-        aria-hidden="true"
-      />
 
       <div className="enterprise-container-wide relative" style={{ zIndex: 1 }}>
         <motion.p

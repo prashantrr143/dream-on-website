@@ -604,13 +604,6 @@
   }
 
   /* Short brand rule under a heading */
-  .ys-rule {
-    width: 40px;
-    height: 3px;
-    border-radius: 2px;
-    background: var(--ys-gradient-accent);
-  }
-
   /* Card on a light surface */
   .ys-card-light {
     background: var(--surface);
@@ -1809,7 +1802,14 @@
     margin-top: 14px;
     text-wrap: balance;
   }
-  .ys-cap-headline-accent { color: var(--ys-primary-blue); }
+  /* The only coloured words on the homepage: one in the h1, one in the
+     commitments h2. Amber, and nowhere else.
+
+     --amber-500 is 8.51:1 on navy but only 2.04:1 on white, below the
+     3:1 large-text minimum, so light sections use the darker step. */
+  .ys-accent-word { color: var(--amber-500); }
+  .ys-section-white .ys-accent-word,
+  .ys-section-light .ys-accent-word { color: var(--amber-700); }
   .ys-cap-lede {
     margin-top: 14px;
     font-size: clamp(15px, 1.4vw, 17px);
@@ -3801,17 +3801,10 @@
      between them never shifts the header layout. */
   .ys-nav-logo {
     position: relative;
-    /* Grid (not flex) so both marks occupy the same cell and the swap
-       is a crossfade in place, never a side-by-side layout. The
-       Tailwind `flex` utility must not be applied to this element. */
-    display: grid !important;
-    grid-template-columns: max-content;
+    display: flex;
     align-items: center;
-    justify-items: start;
     border-radius: 4px;
-    /* Never let the artwork push the header taller than its own height */
     height: 100%;
-    overflow: hidden;
   }
   .ys-nav-logo > span {
     grid-area: 1 / 1;
@@ -3838,6 +3831,9 @@
   .ys-logo-img-full {
     height: 74px;
     max-height: 100%;
+    width: auto;
+    object-fit: contain;
+    transition: height 250ms ease;
   }
   @media (min-width: 640px) {
     .ys-logo-img-full { height: 88px; }
@@ -3845,12 +3841,10 @@
   @media (min-width: 1024px) {
     .ys-logo-img-full { height: 96px; }
   }
-  .ys-logo-img-mark {
-    height: 42px;
-    max-height: 100%;
-  }
-  @media (min-width: 640px) {
-    .ys-logo-img-mark { height: 46px; }
+  /* Scrolled header is 68px tall, so the lockup scales to fit it. */
+  .ys-nav-logo.is-compact .ys-logo-img-full { height: 48px; }
+  @media (prefers-reduced-motion: reduce) {
+    .ys-logo-img-full { transition: none; }
   }
   .ys-nav-logo:focus-visible {
     outline: 2px solid var(--ys-cyan);
@@ -3859,28 +3853,7 @@
 
   /* Compact lockup: mark + wordmark as text. Shown below 768px, where
      the full lockup's tagline and entity name are illegible. */
-  /* Full lockup at rest, icon mark once the header shrinks on scroll.
-     Exactly one is displayed: they share grid cell 1/1. */
-  .ys-nav-logo > span.ys-logo-full { display: flex; }
-  .ys-nav-logo > span.ys-logo-full.is-hidden { display: none; }
-  .ys-nav-logo > span.ys-logo-mark { display: none; }
-  .ys-nav-logo > span.ys-logo-mark.is-visible { display: flex; }
-  .ys-logo-full { opacity: 1; }
-  .ys-logo-full.is-hidden {
-    opacity: 0;
-    pointer-events: none;
-  }
-
-  .ys-logo-mark {
-    opacity: 0;
-    pointer-events: none;
-  }
-  .ys-logo-mark.is-visible {
-    opacity: 1;
-    pointer-events: auto;
-  }
-  /* Transparent mark — no background plate, so it sits cleanly on the
-     hero before the header gains its own background. */
+  /* A single lockup. There is no second image to stack against it. */
 
   @media (prefers-reduced-motion: reduce) {
     .ys-nav-logo > span {

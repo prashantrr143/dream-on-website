@@ -62,7 +62,6 @@ const WorkWeDoSection = () => {
             >
               End-to-end solutions for a smarter enterprise
             </h2>
-            <div className="ys-rule" style={{ marginBottom: 18 }} />
             <p style={{ fontSize: 15, lineHeight: 1.65, color: 'var(--ys-ink-body)' }}>
               Five disciplines, delivered as one architecture — so systems hold
               together in production, not just on a diagram.

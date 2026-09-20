@@ -73,51 +73,6 @@ const FinalCTASection = () => {
             {SECONDARY_CTA.label}
           </Link>
         </motion.div>
-
-        {/* Supporting links */}
-        <motion.div
-          className="flex items-center justify-center"
-          style={{ gap: '32px' }}
-        >
-          <Link
-            href="/about-us"
-            className="group"
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              fontSize: '14px',
-              fontWeight: 500,
-              color: 'rgba(255, 255, 255, 0.78)',
-              textDecoration: 'none',
-              transition: 'color 200ms ease'
-            }}
-          >
-            Who you&rsquo;ll work with
-            <ArrowRight
-              className="w-3 h-3 ml-1 transition-transform group-hover:translate-x-0.5"
-              strokeWidth={2}
-            />
-          </Link>
-          <Link
-            href="/solutions"
-            className="group"
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              fontSize: '14px',
-              fontWeight: 500,
-              color: 'rgba(255, 255, 255, 0.78)',
-              textDecoration: 'none',
-              transition: 'color 200ms ease'
-            }}
-          >
-            Explore solutions
-            <ArrowRight
-              className="w-3 h-3 ml-1 transition-transform group-hover:translate-x-0.5"
-              strokeWidth={2}
-            />
-          </Link>
-        </motion.div>
       </motion.div>
     </section>
   )

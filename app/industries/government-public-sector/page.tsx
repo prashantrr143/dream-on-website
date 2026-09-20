@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import SharedLayout from '@/components/shared-layout'
 import { PageHero, PageSection, PageCTA } from '@/components/enterprise'
+import { PRIMARY_CTA } from '@/lib/cta'
 
 
 
@@ -163,7 +164,7 @@ const GovernmentPublicSector = () => {
         image={{ src: '/brand/yatisphere/imagery/industry-government.png', alt: 'Government technology' }}
         title="Government and public sector."
         lede="Citizen-facing systems with data residency, accessibility and audit trails — built on infrastructure departments can operate themselves after we hand it over."
-        primaryCta={{ label: 'Start a conversation', href: '/contact-us' }}
+        primaryCta={{ label: PRIMARY_CTA.label, href: PRIMARY_CTA.href }}
         secondaryCta={{ label: 'How we work', href: '/how-we-work' }}
       />
 
@@ -470,7 +471,7 @@ const GovernmentPublicSector = () => {
       <PageCTA
         title="Bring us the constraint, not just the requirement."
         body="Residency, accessibility, retention, handover — tell us what your programme is held to and we will tell you how we would architect against it."
-        primaryCta={{ label: 'Start a conversation', href: '/contact-us' }}
+        primaryCta={{ label: PRIMARY_CTA.label, href: PRIMARY_CTA.href }}
         secondaryCta={{ label: 'Explore IT services', href: '/solutions' }}
       />
     </SharedLayout>

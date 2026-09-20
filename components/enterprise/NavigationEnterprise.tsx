@@ -1,11 +1,12 @@
 "use client"
 
 import { useState, useEffect, useCallback, useRef } from 'react'
-import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
+import Image from 'next/image'
 import { LOGO_ASSETS } from '@/components/brand/YatiSphereLogo'
 import { hasArticles } from '@/lib/perspectives'
 import { ArrowRight, Menu, X, ChevronDown } from 'lucide-react'
+import { PRIMARY_CTA } from '@/lib/cta'
 
 interface DropdownItem {
   name: string
@@ -195,38 +196,24 @@ const NavigationEnterprise = () => {
           className="flex items-center justify-between gap-6"
           style={{ height: headerHeight, transition: 'height 250ms ease' }}
         >
-          {/* Logo — the primary colourful brand element.
-              Full lockup at rest; collapses to the icon mark once the
-              header shrinks on scroll, so it stays legible at 72px. */}
+          {/* One logo element, one image. Rendering the lockup and a
+              separate icon mark in the same grid cell meant any failure
+              to hide one painted the icon's Y over the lockup's Y. The
+              lockup now simply scales down when the header shrinks. */}
           <a
             href="/"
-            className="ys-nav-logo flex-shrink-0"
+            className={`ys-nav-logo flex-shrink-0${isScrolled ? ' is-compact' : ''}`}
             aria-label="YatiSphere home"
           >
-            {/* Header sits on navy, so it uses the light-lettering
-                variant. The footer is white and uses `primary`. */}
-            <span className={`ys-logo-full${isScrolled ? ' is-hidden' : ''}`}>
-              <Image
-                src={LOGO_ASSETS.dark.src}
-                alt="YatiSphere Technologies Private Limited"
-                width={LOGO_ASSETS.dark.width}
-                height={LOGO_ASSETS.dark.height}
-                priority
-                sizes="(max-width: 767px) 190px, 260px"
-                className="ys-logo-img-full"
-              />
-            </span>
-            <span className={`ys-logo-mark${isScrolled ? ' is-visible' : ''}`}>
-              <Image
-                src={LOGO_ASSETS.icon.src}
-                alt="YatiSphere Technologies"
-                width={LOGO_ASSETS.icon.width}
-                height={LOGO_ASSETS.icon.height}
-                priority
-                sizes="46px"
-                className="ys-logo-img-mark"
-              />
-            </span>
+            <Image
+              src={LOGO_ASSETS.dark.src}
+              alt="YatiSphere Technologies Private Limited"
+              width={LOGO_ASSETS.dark.width}
+              height={LOGO_ASSETS.dark.height}
+              priority
+              sizes="(max-width: 767px) 200px, 280px"
+              className="ys-logo-img-full"
+            />
           </a>
 
           {/* Desktop navigation */}
@@ -317,7 +304,7 @@ const NavigationEnterprise = () => {
 
           {/* Desktop CTA */}
           <a href="/contact-us" className="ys-nav-cta hidden lg:inline-flex items-center gap-2">
-            Start a conversation
+            {PRIMARY_CTA.label}
             <ArrowRight className="w-3.5 h-3.5" strokeWidth={2.5} aria-hidden="true" />
           </a>
 
@@ -379,7 +366,7 @@ const NavigationEnterprise = () => {
                 style={{ display: 'flex', justifyContent: 'center', marginTop: 22 }}
                 onClick={() => setMobileMenuOpen(false)}
               >
-                Start a conversation
+                {PRIMARY_CTA.label}
               </a>
             </div>
           </motion.div>

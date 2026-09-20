@@ -51,7 +51,6 @@ const EngagementModelsSection = () => {
           >
             Work with us the way your organisation buys.
           </h2>
-          <div className="ys-rule" />
         </motion.div>
 
         {/* One bordered slab; the 1px grid gap becomes the hairline dividers. */}
