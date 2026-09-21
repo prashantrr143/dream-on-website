@@ -75,7 +75,7 @@ const navigationItems: NavItem[] = [
     href: "/about-us",
     items: [
       { name: "About Us", href: "/about-us" },
-      { name: "Why Yati Sphere", href: "/#why" },
+      { name: "Why YatiSphere", href: "/#why" },
       ...(hasArticles ? [{ name: "Perspectives", href: "/perspectives" }] : []),
       { name: "Contact", href: "/contact-us" },
     ],

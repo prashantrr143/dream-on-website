@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import AppliedAIContent from './content'
 
 export const metadata: Metadata = {
-  // absolute: the root layout appends "| Yati Sphere Technologies", which
+  // absolute: the root layout appends "| YatiSphere Technologies", which
   // would double the brand in a title that already names it.
   title: { absolute: 'Applied AI | YatiSphere: AI That Ships to Production' },
   description:
