@@ -1027,6 +1027,76 @@
     .ys-footer-email:hover svg { transform: none; }
   }
 
+  /* ==========================================================
+     Legal documents — privacy, terms, cookies, security.
+     Long-form prose at a readable measure, on the shared tokens.
+     ========================================================== */
+  .ys-legal {
+    max-width: 72ch;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(28px, 3.4vw, 40px);
+  }
+  .ys-legal-intro {
+    font-size: 18px;
+    line-height: 1.62;
+    color: var(--ink);
+    padding-bottom: clamp(24px, 3vw, 32px);
+    border-bottom: 1px solid var(--line);
+  }
+  @media (min-width: 768px) {
+    .ys-legal-intro { font-size: 19px; }
+  }
+  .ys-legal h2 {
+    font-size: 22px;
+    line-height: 1.3;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    margin-bottom: 14px;
+  }
+  @media (min-width: 768px) {
+    .ys-legal h2 { font-size: 24px; }
+  }
+  .ys-legal p {
+    font-size: 16px;
+    line-height: 1.68;
+    color: var(--ink-muted);
+  }
+  .ys-legal p + p { margin-top: 14px; }
+  .ys-legal ul {
+    list-style: none;
+    margin: 14px 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .ys-legal li {
+    position: relative;
+    padding-left: 20px;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--ink-muted);
+  }
+  .ys-legal li::before {
+    content: '';
+    position: absolute;
+    left: 2px;
+    top: 10px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--blue-600);
+  }
+  .ys-legal a { color: var(--blue-600); font-weight: 500; }
+  .ys-legal a:hover { text-decoration: underline; }
+  /* A section set apart from the ones above it. */
+  .ys-legal-divided {
+    padding-top: clamp(24px, 3vw, 32px);
+    border-top: 1px solid var(--line);
+  }
+
   /* Back to top. Carries the hover shadow at rest so it stays
      legible when it floats over a light section. */
   .ys-back-to-top {
