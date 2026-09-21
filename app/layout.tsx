@@ -35,8 +35,8 @@ const ibmPlexMono = IBM_Plex_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL('https://yatisphere.com'),
   title: {
-    default: 'Yati Sphere Technologies — Enterprise IT Services & Applied AI',
-    template: '%s | Yati Sphere Technologies'
+    default: 'YatiSphere Technologies — Enterprise IT Services & Applied AI',
+    template: '%s | YatiSphere Technologies'
   },
   description: 'Tell us the business problem — slow onboarding, a system nobody dares touch, data you cannot get answers from, an AI pilot that stalled. One in-house team delivers the working solution, end to end.',
   keywords: [
@@ -44,10 +44,10 @@ export const metadata: Metadata = {
     'data analytics', 'IT consulting', 'digital transformation', 'cloud migration',
     'machine learning', 'enterprise software', 'technology consulting', 'cloud services'
   ],
-  authors: [{ name: 'Yati Sphere Technologies', url: 'https://yatisphere.com' }],
-  creator: 'Yati Sphere Technologies',
-  publisher: 'Yati Sphere Technologies',
-  applicationName: 'Yati Sphere Technologies',
+  authors: [{ name: 'YatiSphere Technologies', url: 'https://yatisphere.com' }],
+  creator: 'YatiSphere Technologies',
+  publisher: 'YatiSphere Technologies',
+  applicationName: 'YatiSphere Technologies',
   category: 'Technology',
   classification: 'Business',
   manifest: '/manifest.json',
@@ -71,15 +71,15 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: 'https://yatisphere.com',
-    title: 'Yati Sphere Technologies — Enterprise IT Services & Applied AI',
+    title: 'YatiSphere Technologies — Enterprise IT Services & Applied AI',
     description: 'Tell us the business problem — slow onboarding, a system nobody dares touch, data you cannot get answers from, an AI pilot that stalled. One in-house team delivers the working solution, end to end.',
-    siteName: 'Yati Sphere Technologies',
+    siteName: 'YatiSphere Technologies',
     images: [
       {
         url: '/brand/yatisphere/social/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'Yati Sphere Technologies - Enterprise Technology Solutions',
+        alt: 'YatiSphere Technologies - Enterprise Technology Solutions',
       },
     ],
   },
@@ -87,7 +87,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     site: '@YatiSphere',
     creator: '@YatiSphere',
-    title: 'Yati Sphere Technologies — Enterprise IT Services & Applied AI',
+    title: 'YatiSphere Technologies — Enterprise IT Services & Applied AI',
     description: 'Tell us the business problem — slow onboarding, a system nobody dares touch, data you cannot get answers from, an AI pilot that stalled. One in-house team delivers the working solution, end to end.',
     images: ['/brand/yatisphere/social/og-image.jpg'],
   },
@@ -126,6 +126,57 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head />
       <body className={`${spaceGrotesk.variable} ${ibmPlexSans.variable} ${ibmPlexMono.variable} min-h-screen bg-background font-sans antialiased`}>
+        {/*
+          Organization structured data. Without it Google has no
+          machine-readable statement of who the company is, which is
+          what a brand-name search resolves against. `alternateName`
+          covers people who type the name as two words.
+        */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'Organization',
+              '@id': 'https://yatisphere.com/#organization',
+              name: 'YatiSphere Technologies Private Limited',
+              alternateName: ['YatiSphere', 'Yati Sphere', 'YatiSphere Technologies'],
+              url: 'https://yatisphere.com',
+              logo: 'https://yatisphere.com/brand/yatisphere/logo/yatisphere-light-tagline.png',
+              image: 'https://yatisphere.com/brand/yatisphere/social/og-image.jpg',
+              description:
+                'Enterprise IT services and applied AI, delivered end to end by one in-house team.',
+              email: 'hello@yatisphere.com',
+              foundingDate: '2025-12-22',
+              address: {
+                '@type': 'PostalAddress',
+                addressCountry: 'IN',
+              },
+              knowsAbout: [
+                'Enterprise software development',
+                'Cloud infrastructure',
+                'Data and analytics',
+                'DevOps automation',
+                'Legacy modernisation',
+                'Enterprise security',
+                'Applied AI',
+              ],
+            }),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'WebSite',
+              '@id': 'https://yatisphere.com/#website',
+              url: 'https://yatisphere.com',
+              name: 'YatiSphere Technologies',
+              publisher: { '@id': 'https://yatisphere.com/#organization' },
+            }),
+          }}
+        />
         {/* Skip to main content for accessibility */}
         <a
           href="#main-content"

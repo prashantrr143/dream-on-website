@@ -21,7 +21,7 @@ const SynapseNavbar = () => {
       >
         {/* Left: logo + links */}
         <div className="flex items-center gap-[30px]">
-          <a href="/" className="flex items-center" aria-label="Yati Sphere home">
+          <a href="/" className="flex items-center" aria-label="YatiSphere home">
             <span
               className="flex items-center font-semibold tracking-tight text-white"
               style={{ width: 187, height: 25, fontSize: 20, letterSpacing: '-0.02em' }}

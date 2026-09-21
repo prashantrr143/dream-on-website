@@ -6,7 +6,7 @@ const DESCRIPTION =
   'Discover, design, build, launch and run. How YatiSphere delivers software, cloud, data and AI projects with one accountable in-house team.'
 
 export const metadata: Metadata = {
-  // absolute: the root layout appends "| Yati Sphere Technologies", which
+  // absolute: the root layout appends "| YatiSphere Technologies", which
   // would double the brand in a title that already names it.
   title: { absolute: TITLE },
   description: DESCRIPTION,

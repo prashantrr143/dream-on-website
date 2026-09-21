@@ -39,7 +39,7 @@ const ProfessionalCTA = () => {
 
   const testimonials = [
     {
-      quote: "Yati Sphere Technologies transformed our entire infrastructure, delivering 300% ROI in the first year.",
+      quote: "YatiSphere Technologies transformed our entire infrastructure, delivering 300% ROI in the first year.",
       author: "Sarah Johnson",
       title: "CTO, Fortune 100 Financial Services",
       company: "Global Financial Corp"
