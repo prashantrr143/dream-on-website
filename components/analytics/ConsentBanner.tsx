@@ -6,8 +6,12 @@ import * as CookieConsent from 'vanilla-cookieconsent'
 import 'vanilla-cookieconsent/dist/cookieconsent.css'
 import { pushConsentUpdate, shouldLoadGtm } from '@/lib/analytics'
 
-/** Pages that explain the cookies, where a banner over the text is noise. */
-const SUPPRESSED_PATHS = ['/privacy', '/cookies']
+/**
+ * Pages that explain the cookies, where a banner over the text is noise.
+ * Cookies are documented as a section of /privacy rather than a separate
+ * /cookies route, so that there is one canonical page.
+ */
+const SUPPRESSED_PATHS = ['/privacy']
 
 declare global {
   interface Window {
