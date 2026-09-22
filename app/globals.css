@@ -1333,7 +1333,8 @@
   #cc-main {
     --cc-font-family: var(--font-sans), 'IBM Plex Sans', sans-serif;
     --cc-bg: var(--navy-900);
-    --cc-primary-color: var(--on-dark);
+    /* Paper rather than pure white, per the brand spec: 15.83:1 on navy. */
+    --cc-primary-color: var(--paper);
     --cc-secondary-color: var(--on-dark-muted);
     --cc-btn-primary-bg: var(--amber-500);
     --cc-btn-primary-color: var(--navy-900);
@@ -1342,10 +1343,10 @@
     --cc-btn-primary-hover-color: var(--navy-900);
     --cc-btn-primary-hover-border-color: #E69B22;
     --cc-btn-secondary-bg: transparent;
-    --cc-btn-secondary-color: var(--on-dark);
+    --cc-btn-secondary-color: var(--paper);
     --cc-btn-secondary-border-color: var(--line-dark-2);
     --cc-btn-secondary-hover-bg: rgba(255, 255, 255, 0.06);
-    --cc-btn-secondary-hover-color: var(--on-dark);
+    --cc-btn-secondary-hover-color: var(--paper);
     --cc-btn-secondary-hover-border-color: var(--line-dark-2);
     --cc-btn-border-radius: var(--radius-control);
     --cc-separator-border-color: var(--line-dark);
