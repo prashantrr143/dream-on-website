@@ -2,8 +2,10 @@
 
 import { motion } from 'framer-motion'
 import { useState } from 'react'
+import { usePathname } from 'next/navigation'
 import SharedLayout from '@/components/shared-layout'
 import { PageHero, PageSection } from '@/components/enterprise'
+import { trackContactFormSubmit } from '@/lib/analytics'
 
 
 
@@ -60,6 +62,7 @@ export default function ContactPage() {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const pathname = usePathname()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -67,6 +70,9 @@ export default function ContactPage() {
     await new Promise(resolve => setTimeout(resolve, 1500))
     setIsSubmitting(false)
     setIsSubmitted(true)
+    // Records that an enquiry was submitted. Carries the path only: no
+    // name, email or message text ever enters the dataLayer.
+    trackContactFormSubmit(pathname ?? '/contact-us')
   }
 
   /* Focus / blur styling shared by every field */

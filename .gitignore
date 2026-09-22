@@ -32,6 +32,10 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+# The GTM container id is a public identifier: it is inlined into the
+# HTML served to every visitor, so there is nothing to keep secret. It is
+# committed so the production build has it without a dashboard setting.
+!.env.production
 
 # vercel
 .vercel

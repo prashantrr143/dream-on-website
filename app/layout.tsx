@@ -3,6 +3,12 @@ import { Space_Grotesk, IBM_Plex_Sans, IBM_Plex_Mono } from 'next/font/google'
 import './globals.css'
 import { AsyncErrorBoundary } from '@/components/async-error-boundary'
 import { MotionProvider } from '@/components/motion-provider'
+import {
+  GoogleTagManager,
+  GoogleTagManagerNoScript,
+} from '@/components/analytics/GoogleTagManager'
+import { ConsentBanner } from '@/components/analytics/ConsentBanner'
+import { LinkTracking } from '@/components/analytics/LinkTracking'
 
 /**
  * Three families, latin only, display: swap.
@@ -124,8 +130,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head />
+      <head>
+        {/* Consent Mode defaults, then GTM. Nothing else goes first. */}
+        <GoogleTagManager />
+      </head>
       <body className={`${spaceGrotesk.variable} ${ibmPlexSans.variable} ${ibmPlexMono.variable} min-h-screen bg-background font-sans antialiased`}>
+        <GoogleTagManagerNoScript />
         {/*
           Organization structured data. Without it Google has no
           machine-readable statement of who the company is, which is
@@ -191,6 +201,8 @@ export default function RootLayout({
               {children}
             </div>
           </MotionProvider>
+          <ConsentBanner />
+          <LinkTracking />
         </AsyncErrorBoundary>
       </body>
     </html>

@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { LOGO_ASSETS } from '@/components/brand/YatiSphereLogo'
 import { hasArticles } from '@/lib/perspectives'
 import { SITE_CONTACT } from '@/lib/site-contact'
+import { CookieSettingsLink } from '@/components/analytics/CookieSettingsLink'
 
 /**
  * Four link columns mirroring the header IA. The former "Legal" column
@@ -149,6 +150,7 @@ const FooterMinimal = () => {
           <div className="ys-footer-bottom-links">
             <a href="/privacy">Privacy</a>
             <a href="/privacy#cookies">Cookies</a>
+            <CookieSettingsLink />
           </div>
         </div>
       </div>

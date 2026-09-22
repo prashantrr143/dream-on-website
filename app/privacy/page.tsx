@@ -270,10 +270,14 @@ export default function PrivacyPage() {
                 named here as a processor. Verify this list is complete.
               */}
               <p>
-                Our website is hosted by Vercel Inc., which processes request data
-                (including IP address) in order to serve the site. Where we engage
-                other processors, we require them by contract to protect personal
-                information and to process it only on our instructions.
+                Our website is hosted by <strong>Vercel Inc.</strong>, which
+                processes request data (including IP address) in order to serve the
+                site. Website analytics is provided by <strong>Google LLC</strong>{' '}
+                (Google Analytics 4), and runs only if you have accepted analytics
+                cookies &mdash; see <a href="#cookies">Cookies</a> for what is set
+                and for how long. Where we engage other processors, we require them
+                by contract to protect personal information and to process it only
+                on our instructions.
               </p>
             </section>
 
@@ -317,13 +321,6 @@ export default function PrivacyPage() {
 
             <section id="cookies">
               <h2>8. Cookies</h2>
-              {/*
-                TODO — CONFIRM BEFORE PUBLISHING.
-                A code search found no cookies, localStorage or analytics in the
-                application. If analytics is later enabled in the hosting dashboard
-                or any tag is added, this section must be updated and a consent
-                banner will likely be required under GDPR.
-              */}
               <p>
                 A cookie is a small file placed on your device by a website. Cookies
                 may be <em>session</em> cookies, which expire when you close your
@@ -331,14 +328,67 @@ export default function PrivacyPage() {
                 or you delete them.
               </p>
               <p>
-                We do not use advertising or tracking cookies, and we do not run
-                third-party analytics that profile you across sites. Our hosting
-                provider may set strictly necessary cookies required to serve and
-                secure the site.
+                <strong>No analytics cookie is set until you accept it.</strong> When
+                you first visit, analytics storage is denied by default and nothing
+                but the cookie recording your choice is written. We use no advertising
+                cookies and no cross-site tracking.
+              </p>
+
+              <div className="ys-cookie-table-wrap">
+                <table className="ys-cookie-table">
+                  <caption className="sr-only">
+                    Cookies used on this website
+                  </caption>
+                  <thead>
+                    <tr>
+                      <th scope="col">Cookie</th>
+                      <th scope="col">Purpose</th>
+                      <th scope="col">Provider</th>
+                      <th scope="col">Expiry</th>
+                      <th scope="col">Category</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><code>ys_consent</code></td>
+                      <td>Records your cookie choice so you are not asked again.</td>
+                      <td>YatiSphere</td>
+                      <td>6 months</td>
+                      <td>Necessary</td>
+                    </tr>
+                    <tr>
+                      <td><code>_ga</code></td>
+                      <td>Distinguishes one visitor from another, so visits can be counted.</td>
+                      <td>Google</td>
+                      <td>Up to 14 months</td>
+                      <td>Analytics</td>
+                    </tr>
+                    <tr>
+                      <td><code>_ga_*</code></td>
+                      <td>Maintains session state for the analytics property.</td>
+                      <td>Google</td>
+                      <td>Up to 14 months</td>
+                      <td>Analytics</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <p>
+                Analytics is provided by Google Analytics 4. IP addresses are used
+                transiently to derive an approximate location and are not stored by
+                Google Analytics 4. We do not enable advertising features, and we do
+                not share analytics data with Google for advertising purposes. Our
+                data retention period is set to 14 months, after which event-level
+                data is deleted.
               </p>
               <p>
-                Most browsers let you refuse or delete cookies through their settings.
-                Blocking strictly necessary cookies may affect how the site works.
+                <strong>To withdraw consent</strong>, use the
+                &ldquo;Cookie settings&rdquo; link in the footer of any page and
+                choose Reject. Existing analytics cookies are cleared when you do.
+                You can also delete cookies through your browser settings at any
+                time. Blocking strictly necessary cookies may affect how the site
+                works.
               </p>
             </section>
 
