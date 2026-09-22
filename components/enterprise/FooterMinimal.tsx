@@ -148,8 +148,7 @@ const FooterMinimal = () => {
 
           <div className="ys-footer-bottom-links">
             <a href="/privacy">Privacy</a>
-            <a href="/terms">Terms</a>
-            <a href="/policy">Cookies</a>
+            <a href="/privacy#cookies">Cookies</a>
           </div>
         </div>
       </div>

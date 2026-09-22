@@ -43,9 +43,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // Trust and legal
     { path: '/responsible-ai', priority: 0.6, changeFrequency: 'yearly' },
     { path: '/security', priority: 0.5, changeFrequency: 'yearly' },
-    { path: '/privacy', priority: 0.3, changeFrequency: 'yearly' },
-    { path: '/terms', priority: 0.3, changeFrequency: 'yearly' },
-    { path: '/policy', priority: 0.3, changeFrequency: 'yearly' },
+    { path: '/privacy', priority: 0.4, changeFrequency: 'yearly' },
   ]
 
   if (hasArticles) {

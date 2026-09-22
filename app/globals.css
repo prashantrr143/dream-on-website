@@ -1032,7 +1032,10 @@
      Long-form prose at a readable measure, on the shared tokens.
      ========================================================== */
   .ys-legal {
+    /* Inside .ys-legal-layout the grid column already sets the width;
+       the cap applies when the block is used on its own (e.g. privacy). */
     max-width: 72ch;
+    min-width: 0;
     display: flex;
     flex-direction: column;
     gap: clamp(28px, 3.4vw, 40px);
@@ -1089,12 +1092,150 @@
     border-radius: 50%;
     background: var(--blue-600);
   }
+  .ys-legal strong {
+    font-weight: 600;
+    color: var(--ink);
+  }
   .ys-legal a { color: var(--blue-600); font-weight: 500; }
   .ys-legal a:hover { text-decoration: underline; }
   /* A section set apart from the ones above it. */
   .ys-legal-divided {
     padding-top: clamp(24px, 3vw, 32px);
     border-top: 1px solid var(--line);
+  }
+
+  /* ==========================================================
+     Long legal documents: at-a-glance panel, sticky contents,
+     and the body text beside it.
+     ========================================================== */
+  .ys-legal-glance {
+    list-style: none;
+    margin: 0 0 clamp(32px, 4vw, 48px);
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  @media (min-width: 640px) {
+    .ys-legal-glance { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (min-width: 1100px) {
+    .ys-legal-glance { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  }
+  .ys-legal-glance a {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    height: 100%;
+    padding: 18px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-card);
+    background: var(--paper);
+    text-decoration: none;
+    transition: border-color 180ms ease-out, background-color 180ms ease-out;
+  }
+  .ys-legal-glance a:hover {
+    border-color: var(--ink-muted);
+    background: var(--surface);
+  }
+  .ys-legal-glance a:focus-visible {
+    outline: 2px solid var(--blue-600);
+    outline-offset: 2px;
+  }
+  .ys-legal-glance-label {
+    font-size: 14.5px;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.35;
+  }
+  .ys-legal-glance-body {
+    font-size: 13.5px;
+    line-height: 1.5;
+    color: var(--ink-muted);
+  }
+
+  .ys-legal-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(28px, 4vw, 56px);
+    align-items: start;
+  }
+  @media (min-width: 1024px) {
+    .ys-legal-layout {
+      grid-template-columns: 248px minmax(0, 1fr);
+    }
+  }
+
+  /* Contents. Sticky on desktop; a plain list above the text on mobile,
+     where a sticky panel would eat the viewport. */
+  .ys-legal-toc {
+    min-width: 0;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--line);
+  }
+  @media (min-width: 1024px) {
+    .ys-legal-toc {
+      position: sticky;
+      top: 96px;
+      max-height: calc(100vh - 128px);
+      overflow-y: auto;
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+  }
+  .ys-legal-toc-title {
+    font-family: var(--font-mono), 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 12px;
+  }
+  .ys-legal-toc ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .ys-legal-toc a {
+    display: flex;
+    gap: 10px;
+    padding: 6px 8px;
+    margin-left: -8px;
+    border-radius: 6px;
+    font-size: 14px;
+    line-height: 1.4;
+    color: var(--ink-muted);
+    text-decoration: none;
+    transition: background-color 150ms ease-out, color 150ms ease-out;
+  }
+  .ys-legal-toc a:hover {
+    background: var(--paper);
+    color: var(--ink);
+  }
+  .ys-legal-toc a:focus-visible {
+    outline: 2px solid var(--blue-600);
+    outline-offset: -2px;
+  }
+  .ys-legal-toc a > span {
+    flex-shrink: 0;
+    width: 18px;
+    font-variant-numeric: tabular-nums;
+    color: var(--ink-muted);
+    opacity: 0.7;
+  }
+
+  /* Clause targets clear the sticky header when linked to. */
+  .ys-legal section[id] {
+    scroll-margin-top: 104px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ys-legal-glance a,
+    .ys-legal-toc a { transition: none; }
   }
 
   /* Back to top. Carries the hover shadow at rest so it stays
