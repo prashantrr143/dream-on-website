@@ -1,11 +1,9 @@
 import { Metadata } from 'next'
+import { metaFor } from '@/lib/seo'
 import SharedLayout from '@/components/shared-layout'
 import { LEGAL_LAST_UPDATED } from '@/lib/legal'
 
-export const metadata: Metadata = {
-  title: 'Security & Risk Posture | Yatisphere',
-  description: 'How Yatisphere approaches security, data protection, and risk management.',
-}
+export const metadata: Metadata = metaFor('/security')
 
 export default function SecurityPage() {
   return (

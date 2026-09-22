@@ -49,6 +49,14 @@ const nextConfig: NextConfig = {
   // Permanent, so search engines transfer the old URL's standing.
   async redirects() {
     return [
+      // Canonical host: www -> apex, permanently. Vercel terminates TLS
+      // and upgrades http itself, so only the host needs handling here.
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'www.yatisphere.com' }],
+        destination: 'https://yatisphere.com/:path*',
+        permanent: true,
+      },
       {
         source: '/solutions/ai-ml',
         destination: '/applied-ai',

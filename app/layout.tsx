@@ -9,6 +9,10 @@ import {
 } from '@/components/analytics/GoogleTagManager'
 import { ConsentBanner } from '@/components/analytics/ConsentBanner'
 import { LinkTracking } from '@/components/analytics/LinkTracking'
+import {
+  OrganizationSchema,
+  WebSiteSchema,
+} from '@/components/seo/StructuredData'
 
 /**
  * Three families, latin only, display: swap.
@@ -136,57 +140,8 @@ export default function RootLayout({
       </head>
       <body className={`${spaceGrotesk.variable} ${ibmPlexSans.variable} ${ibmPlexMono.variable} min-h-screen bg-background font-sans antialiased`}>
         <GoogleTagManagerNoScript />
-        {/*
-          Organization structured data. Without it Google has no
-          machine-readable statement of who the company is, which is
-          what a brand-name search resolves against. `alternateName`
-          covers people who type the name as two words.
-        */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              '@context': 'https://schema.org',
-              '@type': 'Organization',
-              '@id': 'https://yatisphere.com/#organization',
-              name: 'YatiSphere Technologies Private Limited',
-              alternateName: ['YatiSphere', 'Yati Sphere', 'YatiSphere Technologies'],
-              url: 'https://yatisphere.com',
-              logo: 'https://yatisphere.com/brand/yatisphere/logo/yatisphere-light-tagline.png',
-              image: 'https://yatisphere.com/brand/yatisphere/social/og-image.jpg',
-              description:
-                'Enterprise IT services and applied AI, delivered end to end by one in-house team.',
-              email: 'hello@yatisphere.com',
-              foundingDate: '2025-12-22',
-              address: {
-                '@type': 'PostalAddress',
-                addressCountry: 'IN',
-              },
-              knowsAbout: [
-                'Enterprise software development',
-                'Cloud infrastructure',
-                'Data and analytics',
-                'DevOps automation',
-                'Legacy modernisation',
-                'Enterprise security',
-                'Applied AI',
-              ],
-            }),
-          }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              '@context': 'https://schema.org',
-              '@type': 'WebSite',
-              '@id': 'https://yatisphere.com/#website',
-              url: 'https://yatisphere.com',
-              name: 'YatiSphere Technologies',
-              publisher: { '@id': 'https://yatisphere.com/#organization' },
-            }),
-          }}
-        />
+        <OrganizationSchema />
+        <WebSiteSchema />
         {/* Skip to main content for accessibility */}
         <a
           href="#main-content"

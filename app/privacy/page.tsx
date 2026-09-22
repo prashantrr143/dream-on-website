@@ -1,23 +1,11 @@
 import type { Metadata } from 'next'
+import { metaFor } from '@/lib/seo'
 import SharedLayout from '@/components/shared-layout'
 import { PageHero, PageSection } from '@/components/enterprise'
 import { LEGAL_LAST_UPDATED, LEGAL_ENTITY_NAME } from '@/lib/legal'
 
-const TITLE = 'Privacy Policy | YatiSphere'
-const DESCRIPTION =
-  'How YatiSphere collects, uses, stores and shares personal information, the rights you have over it, and how to exercise them.'
 
-export const metadata: Metadata = {
-  title: { absolute: TITLE },
-  description: DESCRIPTION,
-  alternates: { canonical: 'https://yatisphere.com/privacy' },
-  openGraph: {
-    title: TITLE,
-    description: DESCRIPTION,
-    url: 'https://yatisphere.com/privacy',
-  },
-  twitter: { title: TITLE, description: DESCRIPTION },
-}
+export const metadata: Metadata = metaFor('/privacy')
 
 const SECTIONS = [
   { id: 'collection', label: 'Information we collect' },
