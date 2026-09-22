@@ -32,6 +32,30 @@ const principles = [
   }
 ]
 
+/**
+ * What we can state truthfully about working across regions today.
+ * Nothing here claims a certification, an office or a headcount the
+ * company does not have.
+ */
+const INTERNATIONAL = [
+  {
+    title: 'Your region, your accounts',
+    body: 'We build in your cloud accounts and your chosen region, so data residency stays under your control rather than ours.',
+  },
+  {
+    title: 'A DPA and transfer terms',
+    body: 'We sign a data processing agreement, and use standard contractual clauses where personal data crosses a border.',
+  },
+  {
+    title: 'Invoiced in your currency',
+    body: 'USD, EUR, GBP, AED or INR, with withholding and treaty relief handled in the engagement terms.',
+  },
+  {
+    title: 'Overlapping working hours',
+    body: 'Our day overlaps UK, European and Gulf business hours in full, and US East Coast mornings by arrangement.',
+  },
+]
+
 export default function HowWeWorkContent() {
   return (
     <SharedLayout>
@@ -172,6 +196,60 @@ export default function HowWeWorkContent() {
       </PageSection>
 
       {/* Closing CTA */}
+      {/* Working across regions. Every line here is something the company
+          can actually do today — no certifications are claimed, because
+          none are held. */}
+      <PageSection
+        id="international"
+        tone="light"
+        eyebrow="Working across regions"
+        title="Incorporated in India. Delivering internationally."
+        lede="Clients in the UK, Europe, the United States, the Middle East and India. What that means in practice:"
+      >
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4" style={{ gap: '20px' }}>
+          {INTERNATIONAL.map((item) => (
+            <div
+              key={item.title}
+              className="ys-card-light"
+              style={{ padding: '26px', display: 'flex', flexDirection: 'column', minWidth: 0 }}
+            >
+              <h3
+                style={{
+                  fontSize: '16.5px',
+                  fontWeight: 700,
+                  letterSpacing: '-0.018em',
+                  lineHeight: 1.3,
+                  color: 'var(--ink)',
+                  marginBottom: '10px',
+                  textWrap: 'pretty',
+                }}
+              >
+                {item.title}
+              </h3>
+              <p style={{ fontSize: '14px', lineHeight: 1.6, color: 'var(--ink-muted)', maxWidth: '62ch' }}>
+                {item.body}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        <p
+          style={{
+            marginTop: 'clamp(24px, 3vw, 32px)',
+            fontSize: '14.5px',
+            lineHeight: 1.65,
+            color: 'var(--ink-muted)',
+            maxWidth: '70ch',
+          }}
+        >
+          We design controls against the frameworks your auditors hold you to
+          &mdash; GDPR and UK GDPR, SOC 2, ISO/IEC 27001, HIPAA, PCI DSS,
+          India&rsquo;s DPDP Act and regional equivalents &mdash; and produce the
+          evidence your organisation needs. The certifications themselves are
+          assessed against your organisation, and remain yours to hold.
+        </p>
+      </PageSection>
+
       <PageCTA
         title={'What\u2019s the problem you\u2019d fix first?'}
         body="Describe it in a few lines. A founder replies within one working day with an honest view on whether we can help."

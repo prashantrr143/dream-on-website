@@ -1,0 +1,496 @@
+"use client"
+
+import { motion } from 'framer-motion'
+import Link from 'next/link'
+import { ArrowRight } from 'lucide-react'
+import { notFound } from 'next/navigation'
+import SharedLayout from '@/components/shared-layout'
+import { articles } from '@/lib/perspectives'
+import { PRIMARY_CTA } from '@/lib/cta'
+
+
+
+const pillars = [
+  {
+    title: "System Design & Architecture",
+    description: "How we approach the design of systems that need to last, scale, and remain maintainable under real-world conditions.",
+    accent: "#00D1FF",
+    iconSvg: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="3" y="3" width="7" height="7" rx="1" />
+        <rect x="14" y="3" width="7" height="7" rx="1" />
+        <rect x="3" y="14" width="7" height="7" rx="1" />
+        <rect x="14" y="14" width="7" height="7" rx="1" />
+      </svg>
+    )
+  },
+  {
+    title: "Delivery & Governance",
+    description: "Observations on what makes enterprise delivery succeed or fail — particularly in regulated and high-trust environments.",
+    accent: "#00D1FF",
+    iconSvg: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+      </svg>
+    )
+  },
+  {
+    title: "AI in Production",
+    description: "Practical considerations for deploying AI systems that are reliable, governable, and suitable for enterprise use.",
+    accent: "#00D1FF",
+    iconSvg: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 2a4 4 0 0 1 4 4c0 1.5-.8 2.8-2 3.4V11h3a4 4 0 0 1 4 4v1" />
+        <path d="M8 9.4A4 4 0 1 1 14 6" />
+        <circle cx="12" cy="18" r="4" />
+        <path d="M12 14v-3" />
+      </svg>
+    )
+  }
+]
+
+const pillarColors: Record<string, string> = {
+  "System Design & Architecture": "#00D1FF",
+  "Delivery & Governance": "#00D1FF",
+  "AI in Production": "#00D1FF"
+}
+
+
+export default function PerspectivesPage() {
+  // Nothing to show until there is at least one real article.
+  if (articles.length === 0) {
+    notFound()
+  }
+
+  return (
+    <SharedLayout>
+      {/* Hero — Dark navy header matching homepage */}
+      <section
+        className="relative overflow-hidden"
+        style={{
+          paddingTop: '160px',
+          paddingBottom: '80px',
+          backgroundColor: '#000000',
+        }}
+      >
+        {/* Subtle gradient accent */}
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            background: 'radial-gradient(ellipse 60% 50% at 70% 50%, rgba(10, 132, 255, 0.1), transparent)',
+            pointerEvents: 'none'
+          }}
+          aria-hidden="true"
+        />
+        {/* Grid pattern */}
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            backgroundImage: 'linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px)',
+            backgroundSize: '60px 60px',
+            pointerEvents: 'none'
+          }}
+          aria-hidden="true"
+        />
+
+        <motion.div
+          className="enterprise-container-wide relative"
+          style={{ zIndex: 1 }}
+        >
+          <motion.p
+            style={{
+              fontSize: '14px',
+              fontWeight: 600,
+              textTransform: 'uppercase',
+              letterSpacing: '0.1em',
+              color: '#00D1FF',
+              marginBottom: '20px'
+            }}
+          >
+            Thinking
+          </motion.p>
+          <motion.h1
+            style={{
+              fontSize: 'clamp(2.5rem, 5vw, 3.75rem)',
+              fontWeight: 700,
+              letterSpacing: '-0.03em',
+              lineHeight: 1.05,
+              color: 'white',
+              marginBottom: '24px',
+              maxWidth: '600px'
+            }}
+          >
+            Perspectives
+          </motion.h1>
+          <motion.p
+            style={{
+              fontSize: '19px',
+              lineHeight: 1.65,
+              color: 'rgba(255, 255, 255, 0.6)',
+              maxWidth: '560px'
+            }}
+          >
+            Notes on system design, delivery, and applied AI from our work with enterprise teams.
+          </motion.p>
+        </motion.div>
+      </section>
+
+      {/* How We Think — Editorial statement */}
+      <section
+        style={{
+          paddingTop: '80px',
+          paddingBottom: '64px',
+          backgroundColor: '#000000'
+        }}
+      >
+        <motion.div
+          className="enterprise-container-wide"
+        >
+          <div
+            className="grid lg:grid-cols-12 items-start"
+            style={{ gap: '48px' }}
+          >
+            <div className="lg:col-span-4">
+              <h2
+                style={{
+                  fontSize: '13px',
+                  fontWeight: 600,
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.1em',
+                  color: '#00D1FF',
+                  marginBottom: '12px'
+                }}
+              >
+                How We Think
+              </h2>
+              <div
+                style={{
+                  width: '32px',
+                  height: '3px',
+                  borderRadius: '2px',
+                  backgroundColor: '#00D1FF',
+                  opacity: 0.4
+                }}
+              />
+            </div>
+            <div
+              className="lg:col-span-8"
+              style={{
+                fontSize: '17px',
+                lineHeight: 1.7,
+                color: 'rgba(255,255,255,0.7)',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '20px',
+                maxWidth: '640px'
+              }}
+            >
+              <p>
+                These are observations from our work — patterns we&apos;ve seen across engagements, lessons from systems that succeeded and ones that didn&apos;t, and frameworks we use when advising clients on difficult decisions.
+              </p>
+              <p>
+                We share them because good thinking should be visible, and because enterprise buyers deserve more than marketing copy when evaluating a partner.
+              </p>
+            </div>
+          </div>
+        </motion.div>
+      </section>
+
+      {/* Content Pillars — Three focus areas as cards */}
+      <section
+        style={{
+          paddingTop: '64px',
+          paddingBottom: '80px',
+          backgroundColor: '#0a0a0f'
+        }}
+      >
+        <motion.div
+          className="enterprise-container-wide"
+        >
+          <motion.p
+            style={{
+              fontSize: '13px',
+              fontWeight: 600,
+              textTransform: 'uppercase',
+              letterSpacing: '0.1em',
+              color: '#00D1FF',
+              marginBottom: '40px'
+            }}
+          >
+            Areas of Focus
+          </motion.p>
+          <div
+            className="grid grid-cols-1 md:grid-cols-3"
+            style={{ gap: '20px' }}
+          >
+            {pillars.map((pillar, index) => (
+              <motion.div
+                key={index}
+                style={{
+                  padding: '28px',
+                  backgroundColor: '#000000',
+                  borderRadius: '16px',
+                  border: '1px solid rgba(255, 255, 255, 0.08)',
+                  transition: 'box-shadow 0.2s ease, transform 0.2s ease'
+                }}
+              >
+                {/* Icon */}
+                <div
+                  style={{
+                    width: '40px',
+                    height: '40px',
+                    borderRadius: '10px',
+                    backgroundColor: `${pillar.accent}15`,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: pillar.accent,
+                    marginBottom: '20px'
+                  }}
+                >
+                  {pillar.iconSvg}
+                </div>
+                <h3
+                  style={{
+                    fontSize: '17px',
+                    fontWeight: 600,
+                    color: 'white',
+                    marginBottom: '8px',
+                    letterSpacing: '-0.01em'
+                  }}
+                >
+                  {pillar.title}
+                </h3>
+                <p
+                  style={{
+                    fontSize: '14px',
+                    color: 'rgba(255,255,255,0.7)',
+                    lineHeight: 1.65
+                  }}
+                >
+                  {pillar.description}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+      </section>
+
+      {/* Perspectives List — Articles */}
+      <section
+        style={{
+          paddingTop: '80px',
+          paddingBottom: '100px',
+          backgroundColor: '#000000'
+        }}
+      >
+        <motion.div
+          className="enterprise-container-wide"
+        >
+          <motion.div
+            style={{ marginBottom: '48px' }}
+          >
+            <p
+              style={{
+                fontSize: '13px',
+                fontWeight: 600,
+                textTransform: 'uppercase',
+                letterSpacing: '0.1em',
+                color: '#00D1FF',
+                marginBottom: '16px'
+              }}
+            >
+              Recent Perspectives
+            </p>
+            <h2
+              style={{
+                fontSize: 'clamp(1.5rem, 3vw, 2rem)',
+                fontWeight: 700,
+                letterSpacing: '-0.02em',
+                color: 'white'
+              }}
+            >
+              From our work with enterprise teams.
+            </h2>
+          </motion.div>
+
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+            }}
+          >
+            {articles.map((article, index) => (
+              <motion.article
+                key={index}
+                className="group"
+                style={{
+                  padding: '28px 0',
+                  borderBottom: index < articles.length - 1 ? '1px solid rgba(255, 255, 255, 0.08)' : 'none',
+                  cursor: 'pointer',
+                  transition: 'background-color 0.15s ease'
+                }}
+              >
+                <div
+                  style={{
+                    display: 'flex',
+                    alignItems: 'flex-start',
+                    justifyContent: 'space-between',
+                    gap: '32px'
+                  }}
+                >
+                  <div style={{ flex: 1 }}>
+                    {/* Pillar badge */}
+                    <div
+                      style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '6px',
+                        marginBottom: '10px'
+                      }}
+                    >
+                      <div
+                        style={{
+                          width: '6px',
+                          height: '6px',
+                          borderRadius: '50%',
+                          backgroundColor: pillarColors[article.category] || '#00D1FF',
+                          opacity: 0.7
+                        }}
+                      />
+                      <span
+                        style={{
+                          fontSize: '12px',
+                          fontWeight: 600,
+                          textTransform: 'uppercase',
+                          letterSpacing: '0.06em',
+                          color: pillarColors[article.category] || '#00D1FF',
+                        }}
+                      >
+                        {article.category}
+                      </span>
+                    </div>
+                    {/* Title */}
+                    <h3
+                      style={{
+                        fontSize: '19px',
+                        fontWeight: 600,
+                        color: 'white',
+                        marginBottom: '8px',
+                        lineHeight: 1.3,
+                        letterSpacing: '-0.01em',
+                        transition: 'color 0.15s ease'
+                      }}
+                    >
+                      {article.title}
+                    </h3>
+                    {/* Summary */}
+                    <p
+                      style={{
+                        fontSize: '15px',
+                        color: 'rgba(255,255,255,0.7)',
+                        lineHeight: 1.65,
+                        maxWidth: '680px'
+                      }}
+                    >
+                      {article.summary}
+                    </p>
+                  </div>
+                  {/* Read time + arrow */}
+                  <div
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'flex-end',
+                      gap: '8px',
+                      marginTop: '28px',
+                      flexShrink: 0
+                    }}
+                  >
+                    <span
+                      style={{
+                        fontSize: '13px',
+                        color: 'rgba(255,255,255,0.7)',
+                        opacity: 0.6,
+                        whiteSpace: 'nowrap'
+                      }}
+                    >
+                      {article.readTime}
+                    </span>
+                    <ArrowRight
+                      className="w-4 h-4 transition-transform group-hover:translate-x-1"
+                      style={{ color: '#00D1FF', opacity: 0 }}
+                      strokeWidth={2}
+                    />
+                  </div>
+                </div>
+              </motion.article>
+            ))}
+          </div>
+        </motion.div>
+      </section>
+
+      {/* Footer CTA — Dark navy, matching FinalCTASection */}
+      <section
+        style={{
+          paddingTop: '80px',
+          paddingBottom: '80px',
+          backgroundColor: '#000000',
+          position: 'relative',
+          overflow: 'hidden'
+        }}
+      >
+        <div
+          style={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            width: '600px',
+            height: '400px',
+            background: 'radial-gradient(ellipse, rgba(10, 132, 255, 0.08), transparent 60%)',
+            pointerEvents: 'none'
+          }}
+          aria-hidden="true"
+        />
+        <motion.div
+          className="enterprise-container-wide relative"
+          style={{ zIndex: 1 }}
+        >
+          <p
+            style={{
+              fontSize: '17px',
+              color: 'rgba(255, 255, 255, 0.5)',
+              lineHeight: 1.65,
+              maxWidth: '560px',
+              marginBottom: '28px'
+            }}
+          >
+            These perspectives reflect our current thinking and are updated as we learn. If something here resonates — or if you disagree — we&apos;d be interested to hear from you.
+          </p>
+          <Link
+            href="/contact-us"
+            className="group"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '8px',
+              fontSize: '15px',
+              fontWeight: 600,
+              color: '#00D1FF',
+              textDecoration: 'none'
+            }}
+          >
+            {PRIMARY_CTA.label}
+            <ArrowRight
+              className="w-4 h-4 transition-transform group-hover:translate-x-1"
+              strokeWidth={2.5}
+            />
+          </Link>
+        </motion.div>
+      </section>
+    </SharedLayout>
+  )
+}

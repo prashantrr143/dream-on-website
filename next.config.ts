@@ -49,9 +49,31 @@ const nextConfig: NextConfig = {
   // Permanent, so search engines transfer the old URL's standing.
   async redirects() {
     return [
+      // Canonical host: www -> apex, permanently. Vercel terminates TLS
+      // and upgrades http itself, so only the host needs handling here.
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'www.yatisphere.com' }],
+        destination: 'https://yatisphere.com/:path*',
+        permanent: true,
+      },
       {
         source: '/solutions/ai-ml',
         destination: '/applied-ai',
+        permanent: true,
+      },
+      // /policy was a second, duplicate privacy policy. There is now one
+      // canonical policy at /privacy; the cookies content is a section of it.
+      {
+        source: '/policy',
+        destination: '/privacy#cookies',
+        permanent: true,
+      },
+      // Terms of Service was withdrawn pending legal review of the
+      // governing-law and dispute-resolution clauses.
+      {
+        source: '/terms',
+        destination: '/privacy',
         permanent: true,
       },
     ];
