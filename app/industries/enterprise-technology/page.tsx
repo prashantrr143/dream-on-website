@@ -143,7 +143,7 @@ const governance = [
   },
   {
     title: "Privacy and data protection obligations",
-    description: "GDPR, India's Digital Personal Data Protection Act 2023 and equivalent regimes drive residency, retention, subject-rights and subprocessor commitments. We design data flows and deletion paths so those commitments are enforceable in the platform, not only in the contract."
+    description: "The GDPR and UK GDPR, US state privacy laws, India's DPDP Act 2023 and equivalent regimes drive residency, retention, subject-rights and subprocessor commitments. We design data flows and deletion paths so those commitments are enforceable in the platform, not only in the contract."
   },
   {
     title: "Release governance and change control",

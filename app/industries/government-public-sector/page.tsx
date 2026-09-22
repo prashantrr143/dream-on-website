@@ -131,11 +131,11 @@ const whatWeBuild = [
 const governance = [
   {
     title: "Data residency and sovereignty",
-    description: "India's Digital Personal Data Protection Act 2023 and sector-specific directions constrain where personal data may be stored and processed, and who may act as a processor. We design region selection, dependency choice and data flows against those constraints and document the result."
+    description: "Data protection regimes — the GDPR, India's DPDP Act 2023, the UAE and Saudi PDPLs, and sector-specific directions — constrain where personal data may be stored and processed, and who may act as a processor. We design region selection, dependency choice and data flows against the constraints that apply to you, and document the result."
   },
   {
     title: "Accessibility standards",
-    description: "WCAG 2.2 Level AA is the reference standard for citizen-facing services, alongside national guidance such as the Guidelines for Indian Government Websites. We treat conformance as a build-time acceptance criterion and produce the testing evidence that reviewers ask for."
+    description: "WCAG 2.2 Level AA is the international reference standard for citizen-facing services, alongside national guidance such as the UK Public Sector Bodies Accessibility Regulations, Section 508 in the US, or the Guidelines for Indian Government Websites. We treat conformance as a build-time acceptance criterion and produce the testing evidence that reviewers ask for."
   },
   {
     title: "Security baselines and incident reporting",

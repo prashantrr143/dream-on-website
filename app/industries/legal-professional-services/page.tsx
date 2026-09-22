@@ -133,8 +133,8 @@ const governance = [
     icon: 'support' as YsIconName
   },
   {
-    title: "GDPR and DPDP-style privacy",
-    description: "The GDPR and India's DPDP Act set expectations around lawful basis, data-subject rights and cross-border transfer. We build the consent, access and deletion mechanics your organisation needs in order to answer a request.",
+    title: "GDPR and equivalent privacy regimes",
+    description: "The GDPR and UK GDPR, and equivalents such as India's DPDP Act and the Gulf PDPLs, set expectations around lawful basis, data-subject rights and cross-border transfer. We build the consent, access and deletion mechanics your organisation needs in order to answer a request.",
     icon: 'global' as YsIconName
   },
   {

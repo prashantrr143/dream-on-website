@@ -98,6 +98,8 @@ export default function PrivacyPage() {
               This policy explains how {LEGAL_ENTITY_NAME} (&ldquo;we&rdquo;,
               &ldquo;us&rdquo;, &ldquo;our&rdquo;) collects, uses and protects
               personal information when you use our website or engage our services.
+              We are incorporated in India and work with clients in the United
+              Kingdom, Europe, the United States, the Middle East and India.
               We collect only what we need to operate the website and work with
               clients. We do not sell personal data, and we do not use client data
               to train AI models.
