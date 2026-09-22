@@ -3,7 +3,7 @@ import ResponsibleAIContent from './content'
 
 const TITLE = 'Responsible AI | YatiSphere'
 const DESCRIPTION =
-  'How YatiSphere approaches AI development: human oversight, explainability, explicit data boundaries and risk-appropriate design.'
+  'YatiSphere\u2019s Responsible AI policy: human oversight, data boundaries, third-party model handling, evaluation before go-live, and the AI work we decline.'
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },
