@@ -1354,8 +1354,29 @@
     --cc-link-hover-color: var(--on-dark);
     --cc-modal-border-radius: var(--radius-card);
     --cc-toggle-on-bg: var(--amber-500);
+    --cc-toggle-on-knob-bg: var(--navy-900);
     --cc-toggle-off-bg: var(--line-dark-2);
+    --cc-toggle-off-knob-bg: var(--paper);
     --cc-toggle-readonly-bg: var(--line-dark);
+    --cc-toggle-enabled-icon-color: var(--navy-900);
+    --cc-toggle-disabled-icon-color: var(--paper);
+
+    /* The category rows sit inside the navy panel. Without these they
+       keep the library's light defaults, which left the category names
+       near-white on near-white. */
+    --cc-cookie-category-block-bg: var(--navy-800);
+    --cc-cookie-category-block-border: var(--line-dark);
+    --cc-cookie-category-block-hover-bg: #172C52;
+    --cc-cookie-category-block-hover-border: var(--line-dark-2);
+    --cc-cookie-category-expanded-block-bg: transparent;
+    --cc-cookie-category-expanded-block-hover-bg: var(--navy-800);
+    --cc-section-category-border: var(--line-dark);
+
+    --cc-footer-bg: var(--navy-900);
+    --cc-footer-color: var(--on-dark-muted);
+    --cc-footer-border-color: var(--line-dark);
+    --cc-overlay-bg: rgba(6, 16, 31, 0.7);
+
     --cc-z-index: 70;
   }
   #cc-main .cm__title,
