@@ -15,14 +15,19 @@ export const GTM_ID = process.env['NEXT_PUBLIC_GTM_ID'] ?? ''
 /**
  * Whether GTM may load in this environment.
  *
- * Deliberately strict: a preview deployment shares the production build
- * and would otherwise pollute the GA4 property with internal traffic, and
- * a developer on localhost should never be tracked at all.
+ * Requires BOTH a container id and an explicit production signal, so the
+ * default in any unrecognised environment is "do not track".
  *
- * Vercel sets NEXT_PUBLIC_VERCEL_ENV to "production" only for the
- * production deployment; previews report "preview". Where that variable
- * is absent (self-hosting, `next start` locally) we fall back to
- * NODE_ENV plus a runtime hostname check.
+ * On Vercel the signal is NEXT_PUBLIC_VERCEL_ENV. It is NOT set by
+ * default: enable "Automatically expose System Environment Variables" in
+ * the project settings, or add it manually scoped to Production only.
+ * Preview builds report "preview" and are excluded. Note that Vercel
+ * preview builds do read .env.production, because they are
+ * production-mode builds, so the container id alone is never the gate.
+ *
+ * Off Vercel, the variable is absent and the hostname decides. The server
+ * render has no hostname, so `shouldLoadGtm()` with no argument returns
+ * false there and GTM is injected on the client instead.
  */
 export function shouldLoadGtm(hostname?: string): boolean {
   if (!GTM_ID) return false
@@ -31,11 +36,7 @@ export function shouldLoadGtm(hostname?: string): boolean {
   if (vercelEnv) return vercelEnv === 'production'
 
   if (process.env.NODE_ENV !== 'production') return false
-
-  // No hostname available (server render off Vercel): withhold rather than
-  // guess. The client re-evaluates once it knows where it is running.
   if (!hostname) return false
-
   return hostname === PRODUCTION_HOST || hostname === `www.${PRODUCTION_HOST}`
 }
 
