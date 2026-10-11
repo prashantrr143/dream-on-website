@@ -7,7 +7,7 @@
  */
 
 /** Shown as "Last updated" on every legal page. */
-export const LEGAL_LAST_UPDATED = '19 September 2026'
+export const LEGAL_LAST_UPDATED = 'October 11, 2026'
 
 /** Registered entity name, used wherever a legal page defines the company. */
 export const LEGAL_ENTITY_NAME = 'YatiSphere Technologies Private Limited'

@@ -3,485 +3,293 @@
 import { motion } from 'framer-motion'
 import SharedLayout from '@/components/shared-layout'
 import { PageHero, PageSection, PageCTA } from '@/components/enterprise'
+import { PRIMARY_CTA, SECONDARY_CTA } from '@/lib/cta'
 
 
 
-const keyMetrics = [
-  { value: "IaC", label: "Infrastructure as code", sub: "Terraform-managed environments" },
-  { value: "HA", label: "Resilient design", sub: "Multi-AZ and failover architecture" },
-  { value: "Auto", label: "Elastic scaling", sub: "Capacity that follows demand" },
-  { value: "FinOps", label: "Cost visibility", sub: "Tagging, budgets and rightsizing" }
+/* ── Data ─────────────────────────────────────────── */
+
+const SITUATIONS = [
+  {
+    quote: 'Cloud costs keep rising and nobody can say why.',
+    body: 'Spend grows every month. Half the resources have no clear owner, and the bill arrives after the money is gone.',
+  },
+  {
+    quote: 'Our migration keeps slipping.',
+    body: 'Workloads still sit in a data center you want to leave. Every plan stalls on dependencies nobody has mapped.',
+  },
+  {
+    quote: 'Our cloud grew faster than our controls.',
+    body: 'Subscriptions created by hand, inconsistent networking, access nobody has reviewed. The next audit will find it before you do.',
+  },
 ]
 
-const solutions = [
+const SERVICES = [
   {
-    title: "Cloud Migration & Modernization",
-    description: "Seamlessly migrate your existing infrastructure to cloud-native solutions, planned to minimize downtime and risk.",
-    capabilities: [
-      "Legacy system modernization",
-      "Hybrid cloud deployment",
-      "Application containerization",
-      "Database migration & optimization"
+    title: 'Azure landing zones',
+    body: 'A secure foundation for every workload. Subscriptions, networking, identity and policy defined as code, so new teams start compliant.',
+    gets: [
+      'Landing zone built in Terraform or Bicep',
+      'Policy guardrails and role-based access',
+      'Network and identity design, documented',
     ],
-    technologies: ["AWS", "Azure", "Kubernetes", "Docker"],
-    metric: "Phased, low-risk migration",
-    iconPath: "M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"
   },
   {
-    title: "Security & Compliance",
-    description: "Enterprise-grade security architecture with automated compliance monitoring and real-time threat detection.",
-    capabilities: [
-      "Zero-trust architecture",
-      "Compliance controls as code",
-      "Identity & access management",
-      "Continuous security monitoring"
+    title: 'Migration and re-platforming',
+    body: 'Workloads moved in planned waves, with dependencies mapped first. Cutover planned for minimal disruption, with tested rollback at every step.',
+    gets: [
+      'Dependency map and wave plan',
+      'A runbook for each workload',
+      'Tested rollback for every cutover',
     ],
-    technologies: ["Terraform"],
-    metric: "Continuous compliance monitoring",
-    iconPath: "M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"
   },
   {
-    title: "Data Platform & Analytics",
-    description: "Scalable data infrastructure with real-time analytics, ML pipelines, and business intelligence capabilities.",
-    capabilities: [
-      "Real-time data streaming",
-      "ML/AI model deployment",
-      "Business intelligence dashboards",
-      "Data lake architecture"
+    title: 'FinOps and cost control',
+    body: 'Tagging, budgets and rightsizing, so every dollar of spend has an owner and a reason.',
+    gets: [
+      'Cost reported by team and product',
+      'Rightsizing and reservation recommendations',
+      'Budgets and alerts that flag overspend early',
     ],
-    technologies: ["Databricks", "Power BI"],
-    metric: "Streaming and batch analytics",
-    iconPath: "M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"
   },
   {
-    title: "DevOps & Automation",
-    description: "Complete CI/CD pipelines with infrastructure as code, automated testing, and continuous monitoring.",
-    capabilities: [
-      "CI/CD pipeline automation",
-      "Infrastructure as code",
-      "Automated testing & deployment",
-      "Performance monitoring"
+    title: 'Resilience and recovery',
+    body: 'Availability zones, backup and disaster recovery designed to the recovery targets you set, then tested.',
+    gets: [
+      'Recovery targets agreed for each system',
+      'Backup and failover design',
+      'A recovery test run with your team',
     ],
-    technologies: ["Terraform"],
-    metric: "Automated deployment pipelines",
-    iconPath: "M13 10V3L4 14h7v7l9-11h-7z"
   },
-  {
-    title: "Microservices Architecture",
-    description: "Transform monolithic applications into scalable microservices with API gateways and service mesh.",
-    capabilities: [
-      "Monolith decomposition",
-      "API gateway implementation",
-      "Service mesh deployment",
-      "Container orchestration"
-    ],
-    technologies: ["Kubernetes"],
-    metric: "Independent scaling",
-    iconPath: "M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2"
-  },
-  {
-    title: "Multi-Cloud & Hybrid Solutions",
-    description: "Optimize across multiple cloud providers with unified management, cost optimization, and disaster recovery.",
-    capabilities: [
-      "Multi-cloud strategy",
-      "Hybrid cloud integration",
-      "Disaster recovery planning",
-      "Cost optimization"
-    ],
-    technologies: ["AWS", "Azure"],
-    metric: "Unified multi-cloud management",
-    iconPath: "M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9"
-  }
 ]
 
-const caseStudies = [
+const SCENARIOS = [
   {
-    client: "Retail & e-commerce",
-    challenge: "Handling seasonal traffic peaks",
-    solution: "Auto-scaling cloud infrastructure with multi-region failover",
-    results: ["Horizontal scaling tied to demand", "Multi-region failover design", "Load testing ahead of peak events"]
+    tag: 'Financial services',
+    problem: 'Regulators want to see the controls, not hear about them.',
+    approach: 'An Azure landing zone with policy-as-code guardrails and evidence collection built in.',
+    points: [
+      'Controls mapped to ISO 27001 and SOC 2 criteria',
+      'Policy-as-code guardrails',
+      'Evidence collected as the platform runs',
+    ],
   },
   {
-    client: "Financial services",
-    challenge: "Security and regulatory controls across markets",
-    solution: "Zero-trust cloud architecture with automated policy checks",
-    results: ["Control mapping to SOC 2 and ISO 27001", "Policy-as-code guardrails", "Evidence collection for audits"]
+    tag: 'Legal & professional services',
+    problem: 'Client data has to stay where you promised it would.',
+    approach: 'Region-pinned storage, private networking and access scoped by team and client.',
+    points: [
+      'Data residency enforced by policy',
+      'Private endpoints for sensitive services',
+      'Access reviews and audit logging',
+    ],
   },
   {
-    client: "Healthcare technology",
-    challenge: "Handling sensitive data at scale",
-    solution: "Secure cloud data platform with end-to-end encryption",
-    results: ["Encryption in transit and at rest", "Access control and audit logging", "Architecture aligned to HIPAA safeguards"]
-  }
+    tag: 'Software & SaaS',
+    problem: 'The platform has to scale before the next large customer signs.',
+    approach: 'An autoscaling Azure platform with zone-redundant design and cost reported per tenant.',
+    points: [
+      'Scaling tied to demand',
+      'Load testing before major launches',
+      'Cost visibility per tenant',
+    ],
+  },
 ]
 
-const processPhases = [
-  { step: "01", title: "Discover", desc: "Deep-dive assessment of your current infrastructure, workloads, dependencies, and performance baseline." },
-  { step: "02", title: "Architect", desc: "Design a cloud-native architecture tailored to your compliance, performance, and cost requirements." },
-  { step: "03", title: "Migrate", desc: "Phased migration with zero-downtime cutover, automated testing, and rollback strategies at every step." },
-  { step: "04", title: "Optimize", desc: "Continuous monitoring, cost optimization, and performance tuning to maximize your cloud investment." }
+const STEPS = [
+  { n: '01', title: 'Discover', body: 'We review your workloads, dependencies, spend and current controls, and agree what matters most.' },
+  { n: '02', title: 'Design', body: 'A target platform on Azure, sized to your compliance, performance and cost needs.' },
+  { n: '03', title: 'Migrate', body: 'Phased migration in planned waves. Cutover planned for minimal disruption, with tested rollback at every step.' },
+  { n: '04', title: 'Run', body: 'We operate and tune it, or hand over to your team with a run guide.' },
 ]
+
+const CORE_STACK = [
+  'Microsoft Azure',
+  'Azure landing zones',
+  'Terraform',
+  'Bicep',
+  'Azure Kubernetes Service',
+  'Azure Monitor',
+  'Microsoft Cost Management',
+  'Azure Site Recovery',
+]
+
+const ALSO_STACK = ['AWS', 'Google Cloud', 'VMware', 'Pulumi']
+
+/* ── Helpers ──────────────────────────────────────── */
+
+function Tick() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ marginTop: '3px', flexShrink: 0 }} aria-hidden="true">
+      <path d="M4 8l3.5 3.5L12 4" stroke="var(--ys-link-on-light)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  )
+}
+
+function TickList({ items }: { items: string[] }) {
+  return (
+    <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: '9px' }}>
+      {items.map((item) => (
+        <li key={item} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
+          <Tick />
+          <span style={{ fontSize: '14px', lineHeight: 1.55, color: 'var(--ys-ink-body)' }}>{item}</span>
+        </li>
+      ))}
+    </ul>
+  )
+}
+
+function Chips({ items }: { items: string[] }) {
+  return (
+    <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+      {items.map((chip) => (
+        <li
+          key={chip}
+          style={{
+            padding: '5px 11px',
+            borderRadius: '6px',
+            background: 'var(--ys-surface-alt)',
+            border: '1px solid var(--ys-border)',
+            fontSize: '13px',
+            fontWeight: 500,
+            color: 'var(--ys-ink-body)',
+          }}
+        >
+          {chip}
+        </li>
+      ))}
+    </ul>
+  )
+}
+
+const labelStyle: React.CSSProperties = {
+  fontSize: '11px',
+  fontWeight: 700,
+  letterSpacing: '0.12em',
+  textTransform: 'uppercase',
+  color: 'var(--ys-ink-muted)',
+  marginBottom: '10px',
+}
+
+/* ── Component ────────────────────────────────────── */
 
 const CloudInfrastructure = () => {
   return (
     <SharedLayout>
-      {/* Hero — Deep Blue */}
+      {/* ── 1. Hero ── */}
       <PageHero
-        eyebrow="Cloud Infrastructure"
-        title="Enterprise cloud infrastructure built for scale."
-        lede="Cloud architecture, migration, and platform engineering — designed and built for organizations where reliability, security, and cost control all matter."
-        primaryCta={{ label: 'Get Architecture Assessment', href: '/contact-us' }}
-        secondaryCta={{ label: 'How we work', href: '/how-we-work' }}
+        eyebrow="Cloud & Infrastructure"
+        title="Cut cloud cost and risk — on a platform your own engineers can run."
+        lede="Azure landing zones, migration, FinOps and resilience, designed and delivered by the team that will support it."
+        visual="layers"
+        primaryCta={{ label: PRIMARY_CTA.label, href: PRIMARY_CTA.href }}
+        secondaryCta={{ label: SECONDARY_CTA.label, href: SECONDARY_CTA.href }}
       />
 
-      {/* Key metrics */}
-      <PageSection tone="white" eyebrow="At a glance">
-        <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
-          style={{ gap: '16px' }}
-        >
-          {keyMetrics.map((metric) => (
-            <motion.div
-              key={metric.label}
-              className="ys-card-light"
-              style={{ padding: '28px 24px', minWidth: 0 }}
-            >
-              <div
-                style={{
-                  fontSize: 'clamp(1.75rem, 3vw, 2.25rem)',
-                  fontWeight: 700,
-                  color: 'var(--ys-ink)',
-                  letterSpacing: '-0.03em',
-                  lineHeight: 1,
-                  marginBottom: '10px'
-                }}
-              >
-                {metric.value}
-              </div>
-              <div
-                style={{
-                  fontSize: '14px',
-                  fontWeight: 600,
-                  color: 'var(--ys-link-on-light)',
-                  marginBottom: '6px'
-                }}
-              >
-                {metric.label}
-              </div>
-              <div
-                style={{
-                  fontSize: '13px',
-                  lineHeight: 1.55,
-                  color: 'var(--ys-ink-muted)',
-                }}
-              >
-                {metric.sub}
-              </div>
+      {/* ── 2. Situations ── */}
+      <PageSection tone="white" eyebrow="Where teams get stuck" title="Three situations we get called into.">
+        <motion.div className="grid grid-cols-1 md:grid-cols-3" style={{ gap: '20px' }}>
+          {SITUATIONS.map((s) => (
+            <motion.div key={s.quote} className="ys-card-light" style={{ padding: '28px', minWidth: 0 }}>
+              <h3 style={{ fontSize: '18px', fontWeight: 700, letterSpacing: '-0.02em', lineHeight: 1.35, color: 'var(--ys-ink)', marginBottom: '12px', textWrap: 'pretty' }}>
+                &ldquo;{s.quote}&rdquo;
+              </h3>
+              <p style={{ fontSize: '15px', lineHeight: 1.65, color: 'var(--ys-ink-body)', maxWidth: '62ch' }}>{s.body}</p>
             </motion.div>
           ))}
         </motion.div>
       </PageSection>
 
-      {/* Solutions */}
+      {/* ── 3. Services ── */}
       <PageSection
         tone="light"
-        eyebrow="What we deliver"
-        title="Comprehensive cloud solutions."
-        lede="End-to-end infrastructure solutions designed for enterprise scale, security, and performance."
+        eyebrow="What we do"
+        title="A cloud platform with an owner for every part."
+        lede="Microsoft Azure is our specialism. Each piece below can stand alone, or we deliver the platform as a whole."
       >
-        <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3"
-          style={{ gap: '24px' }}
-        >
-          {solutions.map((solution, index) => (
-            <motion.div
-              key={index}
-              className="ys-card-light group"
-              style={{
-                padding: '32px',
-                position: 'relative',
-                overflow: 'hidden',
-                display: 'flex',
-                flexDirection: 'column',
-                minWidth: 0
-              }}
-            >
-              {/* Icon */}
-              <div
-                style={{
-                  width: '48px',
-                  height: '48px',
-                  borderRadius: '12px',
-                  background: 'var(--ys-surface-alt)',
-                  border: '1px solid var(--ys-border)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  marginBottom: '24px',
-                  flexShrink: 0
-                }}
-              >
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--ys-link-on-light)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <path d={solution.iconPath} />
-                </svg>
-              </div>
-
-              <h3
-                style={{
-                  fontSize: '20px',
-                  fontWeight: 700,
-                  letterSpacing: '-0.02em',
-                  marginBottom: '12px'
-                }}
-              >
-                {solution.title}
+        <motion.div className="grid grid-cols-1 lg:grid-cols-2" style={{ gap: '20px' }}>
+          {SERVICES.map((service) => (
+            <motion.div key={service.title} className="ys-card-light" style={{ padding: '32px', display: 'flex', flexDirection: 'column', minWidth: 0 }}>
+              <h3 style={{ fontSize: '20px', fontWeight: 700, letterSpacing: '-0.02em', lineHeight: 1.3, color: 'var(--ys-ink)', marginBottom: '12px' }}>
+                {service.title}
               </h3>
-              <p
-                style={{
-                  fontSize: '15px',
-                  lineHeight: 1.65,
-                  color: 'var(--ys-ink-body)',
-                  marginBottom: '24px'
-                }}
-              >
-                {solution.description}
+              <p style={{ fontSize: '15px', lineHeight: 1.65, color: 'var(--ys-ink-body)', marginBottom: '22px', maxWidth: '62ch' }}>
+                {service.body}
               </p>
-
-              {/* Capabilities */}
-              <div style={{ marginBottom: '24px', flex: 1 }}>
-                {solution.capabilities.map((cap) => (
-                  <div
-                    key={cap}
-                    style={{
-                      display: 'flex',
-                      alignItems: 'flex-start',
-                      gap: '10px',
-                      marginBottom: '10px'
-                    }}
-                  >
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ marginTop: '2px', flexShrink: 0 }} aria-hidden="true">
-                      <path d="M13.333 4L6 11.333 2.667 8" stroke="var(--ys-link-on-light)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                    <span style={{ fontSize: '14px', color: 'var(--ys-ink-body)', lineHeight: 1.5 }}>{cap}</span>
-                  </div>
-                ))}
-              </div>
-
-              {/* Bottom: metric + tech tags */}
-              <div
-                style={{
-                  paddingTop: '20px',
-                  borderTop: '1px solid var(--ys-border)',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '16px'
-                }}
-              >
-                <div
-                  style={{
-                    fontSize: '14px',
-                    fontWeight: 700,
-                    color: 'var(--ys-link-on-light)',
-                    letterSpacing: '-0.01em'
-                  }}
-                >
-                  {solution.metric}
-                </div>
-                {solution.technologies.length > 0 && (
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
-                  {solution.technologies.map((tech) => (
-                    <span
-                      key={tech}
-                      style={{
-                        fontSize: '11px',
-                        fontWeight: 600,
-                        color: 'var(--ys-ink-body)',
-                        background: 'var(--ys-surface)',
-                        padding: '4px 10px',
-                        borderRadius: '100px',
-                        border: '1px solid var(--ys-border)',
-                        letterSpacing: '0.01em'
-                      }}
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-                )}
-              </div>
+              <p style={labelStyle}>You get</p>
+              <TickList items={service.gets} />
             </motion.div>
           ))}
         </motion.div>
       </PageSection>
 
-      {/* Case Studies */}
+      {/* ── 4. Scenarios ── */}
+      <PageSection tone="white" eyebrow="Where we apply it" title="Typical problems, and what the platform is built to do.">
+        <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3" style={{ gap: '20px' }}>
+          {SCENARIOS.map((scenario) => (
+            <motion.div key={scenario.tag} className="ys-card-light" style={{ padding: '30px', display: 'flex', flexDirection: 'column', minWidth: 0 }}>
+              <p style={{ fontSize: '11px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--ys-link-on-light)', marginBottom: '14px' }}>
+                {scenario.tag}
+              </p>
+              <h3 style={{ fontSize: '18px', fontWeight: 700, letterSpacing: '-0.02em', lineHeight: 1.35, color: 'var(--ys-ink)', marginBottom: '10px', textWrap: 'pretty' }}>
+                {scenario.problem}
+              </h3>
+              <p style={{ fontSize: '15px', lineHeight: 1.65, color: 'var(--ys-ink-body)', marginBottom: '20px', maxWidth: '62ch' }}>
+                {scenario.approach}
+              </p>
+              <TickList items={scenario.points} />
+            </motion.div>
+          ))}
+        </motion.div>
+      </PageSection>
+
+      {/* ── 5. How it runs ── */}
+      <PageSection tone="light" eyebrow="How it runs" title="From first review to a platform you can run.">
+        <motion.ol className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4" style={{ gap: '20px', listStyle: 'none', margin: 0, padding: 0 }}>
+          {STEPS.map((step) => (
+            <motion.li key={step.n} className="ys-card-light" style={{ padding: '26px', display: 'flex', flexDirection: 'column', minWidth: 0 }}>
+              <span aria-hidden="true" style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.14em', color: 'var(--ys-link-on-light)', marginBottom: '10px' }}>
+                {step.n}
+              </span>
+              <h3 style={{ fontSize: '17px', fontWeight: 700, letterSpacing: '-0.018em', color: 'var(--ys-ink)', marginBottom: '8px' }}>
+                {step.title}
+              </h3>
+              <p style={{ fontSize: '14px', lineHeight: 1.6, color: 'var(--ys-ink-body)', maxWidth: '62ch' }}>{step.body}</p>
+            </motion.li>
+          ))}
+        </motion.ol>
+      </PageSection>
+
+      {/* ── 6. Stack ── */}
       <PageSection
         tone="white"
-        eyebrow="Where we apply it"
-        title="Common cloud engagement scenarios."
-        lede="Typical infrastructure problems we take on, and how each is architected."
+        eyebrow="Technology"
+        title="Azure-first, by design."
+        lede="Microsoft Azure is our specialism. If your estate already runs on AWS or Google Cloud, we work there too."
       >
-        <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
-          style={{ gap: '24px' }}
-        >
-          {caseStudies.map((study, index) => (
-            <motion.div
-              key={index}
-              className="ys-card-light"
-              style={{
-                padding: '32px',
-                display: 'flex',
-                flexDirection: 'column',
-                minWidth: 0
-              }}
+        <motion.div className="ys-card-light" style={{ padding: 'clamp(24px, 3.5vw, 36px)', minWidth: 0 }}>
+          <p style={labelStyle}>Core stack</p>
+          <Chips items={CORE_STACK} />
+          <details style={{ marginTop: '22px', paddingTop: '18px', borderTop: '1px solid var(--ys-border)' }}>
+            <summary
+              className="ys-link focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--ys-link-on-light)]"
+              style={{ cursor: 'pointer', fontSize: '14px' }}
             >
-              {/* Client name */}
-              <p
-                style={{
-                  fontSize: '12px',
-                  fontWeight: 600,
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.08em',
-                  color: 'var(--ys-ink-muted)',
-                  marginBottom: '16px'
-                }}
-              >
-                {study.client}
-              </p>
-
-              {/* Challenge */}
-              <h3
-                style={{
-                  fontSize: '19px',
-                  fontWeight: 700,
-                  letterSpacing: '-0.02em',
-                  marginBottom: '12px',
-                  lineHeight: 1.3
-                }}
-              >
-                {study.challenge}
-              </h3>
-
-              <p
-                style={{
-                  fontSize: '15px',
-                  lineHeight: 1.65,
-                  color: 'var(--ys-ink-body)',
-                  marginBottom: '28px'
-                }}
-              >
-                {study.solution}
-              </p>
-
-              {/* Results */}
-              <div style={{ marginTop: 'auto', paddingTop: '20px', borderTop: '1px solid var(--ys-border)' }}>
-                {study.results.map((result) => (
-                  <div
-                    key={result}
-                    style={{
-                      display: 'flex',
-                      alignItems: 'flex-start',
-                      gap: '10px',
-                      marginBottom: '10px'
-                    }}
-                  >
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ marginTop: '2px', flexShrink: 0 }} aria-hidden="true">
-                      <path d="M4 8l3.5 3.5L12 4" stroke="var(--ys-link-on-light)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                    <span style={{ fontSize: '14px', color: 'var(--ys-ink-body)', lineHeight: 1.5 }}>{result}</span>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
-      </PageSection>
-
-      {/* Process Section */}
-      <PageSection
-        tone="light"
-        eyebrow="Our process"
-        title="From assessment to production in weeks, not months."
-      >
-        <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
-          style={{ gap: '24px' }}
-        >
-          {processPhases.map((phase) => (
-            <motion.div
-              key={phase.step}
-              className="ys-card-light"
-              style={{
-                padding: '32px',
-                position: 'relative',
-                minWidth: 0
-              }}
-            >
-              <div
-                style={{
-                  fontSize: '48px',
-                  fontWeight: 700,
-                  color: 'var(--ys-border)',
-                  letterSpacing: '-0.04em',
-                  lineHeight: 1,
-                  marginBottom: '20px'
-                }}
-              >
-                {phase.step}
-              </div>
-              <h3
-                style={{
-                  fontSize: '19px',
-                  fontWeight: 700,
-                  letterSpacing: '-0.02em',
-                  marginBottom: '12px'
-                }}
-              >
-                {phase.title}
-              </h3>
-              <p
-                style={{
-                  fontSize: '15px',
-                  lineHeight: 1.65,
-                  color: 'var(--ys-ink-body)'
-                }}
-              >
-                {phase.desc}
-              </p>
-            </motion.div>
-          ))}
-        </motion.div>
-      </PageSection>
-
-      {/* What the assessment includes */}
-      <PageSection tone="white" eyebrow="What the assessment includes">
-        <div className="flex flex-wrap" style={{ gap: '16px 24px' }}>
-          {["Free 30-min consultation", "Custom architecture blueprint", "Cost modelling included", "No obligation"].map((item) => (
-            <div
-              key={item}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '8px',
-                minWidth: 0
-              }}
-            >
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ flexShrink: 0 }} aria-hidden="true">
-                <path d="M13.333 4L6 11.333 2.667 8" stroke="var(--ys-link-on-light)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-              <span style={{ fontSize: '14px', color: 'var(--ys-ink-body)' }}>{item}</span>
+              We also work with
+            </summary>
+            <div style={{ marginTop: '14px' }}>
+              <Chips items={ALSO_STACK} />
             </div>
-          ))}
-        </div>
+          </details>
+        </motion.div>
       </PageSection>
 
-      {/* CTA — Deep Blue */}
+      {/* ── 7. Closing call to action ── */}
       <PageCTA
-        title="Ready to transform your infrastructure?"
-        body="Get a free cloud architecture assessment and see how your infrastructure could be designed for performance, security, and cost efficiency."
-        primaryCta={{ label: 'Get Free Assessment', href: '/contact-us' }}
-        secondaryCta={{ label: 'Schedule Consultation', href: '/contact-us' }}
+        title="Not sure what your cloud costs, or what it would survive?"
+        body="Describe your estate in a few lines. We will tell you plainly where the cost and risk sit, and what to fix first."
+        primaryCta={{ label: PRIMARY_CTA.label, href: PRIMARY_CTA.href }}
+        secondaryCta={{ label: SECONDARY_CTA.label, href: SECONDARY_CTA.href }}
       />
     </SharedLayout>
   )

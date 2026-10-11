@@ -4,14 +4,14 @@ import { motion } from 'framer-motion'
 import SharedLayout from '@/components/shared-layout'
 import { PageHero, PageSection, PageCTA } from '@/components/enterprise'
 import { YsIcon, type YsIconName } from '@/components/brand/YsIcon'
-import { PRIMARY_CTA } from '@/lib/cta'
+import { PRIMARY_CTA, SECONDARY_CTA } from '@/lib/cta'
 
 
 
 const atAGlance = [
   { value: "Conflicts", label: "Pre-engagement checks", sub: "Party and matter screening before work begins" },
   { value: "Matter data", label: "Practice integration", sub: "One view across intake, matters and billing" },
-  { value: "Privilege", label: "Confidentiality boundaries", sub: "Access modelled around the duty of confidence" },
+  { value: "Privilege", label: "Confidentiality boundaries", sub: "Access modeled around the duty of confidence" },
   { value: "Retention", label: "Lifecycle rules", sub: "Retention and disposal encoded, not remembered" }
 ]
 
@@ -30,7 +30,7 @@ const pressures = [
     description: "A conflict search is only as good as the data behind it. Party names, corporate groups, former matters and lateral hires all have to be searchable, and the result has to be defensible if it is ever questioned.",
     points: [
       "Party names recorded inconsistently across matters",
-      "Corporate relationships not modelled as relationships",
+      "Corporate relationships not modeled as relationships",
       "Search results that are hard to reconstruct later"
     ]
   },
@@ -40,7 +40,7 @@ const pressures = [
     points: [
       "Time capture lagging behind the work itself",
       "Budget position visible only at month end",
-      "Realisation analysed retrospectively, matter by matter"
+      "Realization analyzed retrospectively, matter by matter"
     ]
   },
   {
@@ -66,13 +66,13 @@ const whatWeBuild: Array<{
     title: "Intake and conflict-check workflows",
     description: "Structured intake that captures parties as data rather than free text, routes approvals explicitly, and records the basis on which an engagement was cleared to proceed.",
     capabilities: [
-      "Party and related-entity data modelling",
+      "Party and related-entity data modeling",
       "Conflict search with a retained result record",
       "Approval routing with named accountability",
       "Engagement-letter and document capture"
     ],
     icon: 'consulting',
-    href: '/solutions/consulting',
+    href: '/solutions/modernization',
     hrefLabel: 'Technology consulting'
   },
   {
@@ -81,7 +81,7 @@ const whatWeBuild: Array<{
     capabilities: [
       "API-led integration between practice systems",
       "Master client and matter record design",
-      "Event-driven synchronisation, not nightly exports",
+      "Event-driven synchronization, not nightly exports",
       "Migration paths off point-to-point interfaces"
     ],
     icon: 'automation',
@@ -90,11 +90,11 @@ const whatWeBuild: Array<{
   },
   {
     title: "Matter and fee intelligence",
-    description: "Reporting built on a model of the matter lifecycle, so budget position, time recorded and realisation are visible while the matter is running rather than after it closes.",
+    description: "Reporting built on a model of the matter lifecycle, so budget position, time recorded and realization are visible while the matter is running rather than after it closes.",
     capabilities: [
-      "Matter lifecycle and time data modelling",
+      "Matter lifecycle and time data modeling",
       "Budget-versus-actual views during the matter",
-      "Realisation and write-off analysis",
+      "Realization and write-off analysis",
       "Definitions versioned so reports stay comparable"
     ],
     icon: 'analytics',
@@ -103,7 +103,7 @@ const whatWeBuild: Array<{
   },
   {
     title: "Applied AI with hard boundaries",
-    description: "Document summarisation, clause extraction and search assistance, scoped so privileged material stays inside defined boundaries and a professional reviews anything that leaves the system.",
+    description: "Document summarization, clause extraction and search assistance, scoped so privileged material stays inside defined boundaries and a professional reviews anything that leaves the system.",
     capabilities: [
       "Explicit data boundaries for privileged content",
       "Retrieval scoped to permitted matters only",
@@ -134,7 +134,7 @@ const governance = [
   },
   {
     title: "GDPR and equivalent privacy regimes",
-    description: "The GDPR and UK GDPR, and equivalents such as India's DPDP Act and the Gulf PDPLs, set expectations around lawful basis, data-subject rights and cross-border transfer. We build the consent, access and deletion mechanics your organisation needs in order to answer a request.",
+    description: "The GDPR and UK GDPR, and equivalents such as India's DPDP Act and the Gulf PDPLs, set expectations around lawful basis, data-subject rights and cross-border transfer. We build the consent, access and deletion mechanics your organization needs in order to answer a request.",
     icon: 'global' as YsIconName
   },
   {
@@ -152,8 +152,9 @@ const LegalProfessionalServices = () => {
         eyebrow="Industries"
         title="Legal and professional services, engineered around confidentiality."
         lede="Client onboarding, conflict checks, matter and fee intelligence, and practice-management integration — built so the duty of confidence is a property of the architecture rather than a policy document beside it."
+        visual="layers"
         primaryCta={{ label: PRIMARY_CTA.label, href: PRIMARY_CTA.href }}
-        secondaryCta={{ label: 'How we work', href: '/how-we-work' }}
+        secondaryCta={{ label: SECONDARY_CTA.label, href: SECONDARY_CTA.href }}
       />
 
       {/* At a glance */}
@@ -418,7 +419,7 @@ const LegalProfessionalServices = () => {
         title="Talk through a practice-systems build."
         body="Whether it is intake that stalls, a conflict search you cannot fully defend, or four systems holding the same client — describe it and we will set out how we would approach it."
         primaryCta={{ label: PRIMARY_CTA.label, href: PRIMARY_CTA.href }}
-        secondaryCta={{ label: 'Explore IT services', href: '/solutions' }}
+        secondaryCta={{ label: SECONDARY_CTA.label, href: SECONDARY_CTA.href }}
       />
     </SharedLayout>
   )

@@ -6,8 +6,6 @@ import SharedLayout from '@/components/shared-layout'
 import { PageHero, PageSection, PageCTA } from '@/components/enterprise'
 import { PRIMARY_CTA, SECONDARY_CTA } from '@/lib/cta'
 
-
-
 /** Hero at-a-glance tiles — what makes the AI work land, not model names. */
 const GLANCE = [
   { label: 'Integrated', sub: 'Built into your existing systems, not beside them' },
@@ -44,7 +42,7 @@ interface Service {
 const SERVICES: Service[] = [
   {
     id: 'architecture',
-    title: 'AI Architecture & Readiness',
+    title: 'AI architecture & readiness',
     body: 'Where AI fits, what data it needs and what it must never touch. A target design and roadmap before any model is chosen.',
     gets: [
       'Ranked use cases with a go / not-yet for each',
@@ -54,7 +52,7 @@ const SERVICES: Service[] = [
   },
   {
     id: 'agentic',
-    title: 'Agentic Workflow Automation',
+    title: 'Agentic workflow automation',
     body: 'Multi-agent systems for document-heavy processes such as onboarding, KYC, claims and contracts, with human approval gates where liability sits.',
     gets: [
       'A working workflow on your own documents',
@@ -64,8 +62,8 @@ const SERVICES: Service[] = [
   },
   {
     id: 'platforms',
-    title: 'Enterprise AI Platforms',
-    body: 'A shared AI platform on Azure, so every team builds on the same foundations: model routing, prompt and version control, observability and cost management.',
+    title: 'Enterprise AI platforms',
+    body: 'A shared AI platform on Azure, built with Azure OpenAI and Microsoft Foundry in your own tenant, so every team builds on the same foundations: model routing, prompt and version control, observability and cost management. Azure is our specialism; the platform stays model-agnostic, so you can route each job to the model that fits it.',
     gets: [
       'One governed entry point for all AI use',
       'Usage and cost visibility per team',
@@ -75,7 +73,7 @@ const SERVICES: Service[] = [
   },
   {
     id: 'governance',
-    title: 'Responsible AI & Governance',
+    title: 'Responsible AI & governance',
     body: 'Data sovereignty, audit trails, evaluation and policy controls, so the compliance team signs off rather than shuts it down.',
     gets: [
       'Data boundaries enforced in the system, not in a policy PDF',
@@ -135,7 +133,7 @@ const SCENARIOS = [
       'Answers that cite their source documents',
       'Logged prompts and outputs for accountability',
     ],
-    link: { label: 'Enterprise & technology', href: '/industries/enterprise-technology' },
+    link: { label: 'Software & SaaS', href: '/industries/software-saas' },
   },
 ]
 
@@ -165,7 +163,7 @@ const STEPS = [
 const GUARDRAILS = [
   {
     title: 'Train on your data',
-    body: 'No client data trains models or leaves the boundary you define.',
+    body: 'We do not use client data to train or fine-tune models, unless a client asks us to in writing for their own dedicated model. Your data does not leave the boundary you define.',
   },
   {
     title: 'Ship a black box',
@@ -208,9 +206,10 @@ const AppliedAIContent = () => {
     <SharedLayout>
       {/* ── 1. Hero ── */}
       <PageHero
-        eyebrow="Pillar 02 · Applied AI"
+        eyebrow="Applied AI"
         title="AI that ships to production, inside the systems you already run."
-        lede="Most AI pilots never leave the sandbox because nobody owned the integration, the governance or the operations. We own all three."
+        lede="Most AI pilots never leave the sandbox because nobody owned the integration, the governance or the operations. We own all three. Azure-first, model-agnostic."
+        visual="circuit"
         primaryCta={{ label: PRIMARY_CTA.label, href: PRIMARY_CTA.href }}
         secondaryCta={{ label: SECONDARY_CTA.label, href: SECONDARY_CTA.href }}
       />
@@ -647,7 +646,7 @@ const AppliedAIContent = () => {
           className="ys-card-light"
           style={{ padding: 'clamp(28px, 4vw, 44px)', minWidth: 0 }}
         >
-          <p className="ys-eyebrow">Why the two pillars belong together</p>
+          <p className="ys-eyebrow">Why we build both</p>
           <h2
             style={{
               fontSize: 'clamp(22px, 2.8vw, 30px)',
@@ -674,7 +673,8 @@ const AppliedAIContent = () => {
             Clean data, secure cloud, reliable pipelines and modern applications are
             the prerequisites for AI that works. Because we build those too, our AI
             work doesn&rsquo;t stop at the demo. It lands in production, on
-            infrastructure we understand.
+            infrastructure we understand: Azure first, with Azure OpenAI and
+            Microsoft Foundry running inside your own tenant.
           </p>
           <a
             href="/solutions"

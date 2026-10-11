@@ -16,7 +16,7 @@ export const GTM_ID = process.env['NEXT_PUBLIC_GTM_ID'] ?? ''
  * Whether GTM may load in this environment.
  *
  * Requires BOTH a container id and an explicit production signal, so the
- * default in any unrecognised environment is "do not track".
+ * default in any unrecognized environment is "do not track".
  *
  * On Vercel the signal is NEXT_PUBLIC_VERCEL_ENV. It is NOT set by
  * default: enable "Automatically expose System Environment Variables" in
@@ -62,7 +62,7 @@ function push(event: DataLayerEvent): void {
   window.dataLayer.push(event)
 }
 
-/** A contact enquiry was submitted successfully. Carries no form values. */
+/** A contact inquiry was submitted successfully. Carries no form values. */
 export function trackContactFormSubmit(pathname: string): void {
   push({ event: 'contact_form_submit', form: 'contact', page: pathname })
 }

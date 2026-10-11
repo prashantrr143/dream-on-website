@@ -1,5 +1,6 @@
 import { SITE_URL, SITE_NAME } from '@/lib/seo'
 import { SITE_CONTACT } from '@/lib/site-contact'
+import { siteConfig } from '@/lib/site.config'
 import { LEGAL_ENTITY_NAME } from '@/lib/legal'
 
 /**
@@ -23,8 +24,9 @@ function jsonLd(data: unknown) {
 }
 
 export function OrganizationSchema() {
-  const address = SITE_CONTACT.registeredAddress
+  const office = siteConfig.company.registeredOffice
   const linkedin = SITE_CONTACT.linkedin
+  const phone = SITE_CONTACT.phone
 
   return jsonLd({
     '@context': 'https://schema.org',
@@ -38,19 +40,24 @@ export function OrganizationSchema() {
     description:
       'Enterprise IT services and applied AI, delivered end to end by one in-house team.',
     email: SITE_CONTACT.email,
-    foundingDate: '2025-12',
+    foundingDate: '2025-12-22',
+    ...(siteConfig.company.cin ? { identifier: { '@type': 'PropertyValue', propertyID: 'CIN', value: siteConfig.company.cin } } : {}),
+    ...(phone ? { telephone: phone } : {}),
     ...(linkedin ? { sameAs: [linkedin] } : {}),
     address: {
       '@type': 'PostalAddress',
-      addressCountry: 'IN',
-      ...(address ? { streetAddress: address } : {}),
+      addressCountry: office.country,
+      ...(office.streetAddress ? { streetAddress: office.streetAddress } : {}),
+      ...(office.locality ? { addressLocality: office.locality } : {}),
+      ...(office.region ? { addressRegion: office.region } : {}),
+      ...(office.postalCode ? { postalCode: office.postalCode } : {}),
     },
     knowsAbout: [
       'Enterprise software development',
       'Cloud infrastructure',
       'Data and analytics',
       'DevOps automation',
-      'Legacy modernisation',
+      'Legacy modernization',
       'Enterprise security',
       'Applied AI',
     ],

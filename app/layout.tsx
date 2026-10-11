@@ -79,7 +79,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: 'website',
-    locale: 'en_GB',
+    locale: 'en_US',
     url: 'https://yatisphere.com',
     title: 'YatiSphere Technologies — Enterprise IT Services & Applied AI',
     description: 'Tell us the business problem — slow onboarding, a system nobody dares touch, data you cannot get answers from, an AI pilot that stalled. One in-house team delivers the working solution, end to end.',
@@ -133,7 +133,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en-US" suppressHydrationWarning>
       <head>
         {/* Consent Mode defaults, then GTM. Nothing else goes first. */}
         <GoogleTagManager />

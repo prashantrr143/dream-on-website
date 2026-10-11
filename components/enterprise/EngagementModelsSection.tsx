@@ -49,7 +49,7 @@ const EngagementModelsSection = () => {
           <h2
             style={{ marginTop: 14, marginBottom: 18, textWrap: 'balance' }}
           >
-            Work with us the way your organisation buys.
+            Work with us the way your organization buys.
           </h2>
         </motion.div>
 

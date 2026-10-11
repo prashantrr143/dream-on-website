@@ -18,7 +18,7 @@ interface Audience {
 }
 
 /**
- * Who we work with, stated as recognisable situations rather than
+ * Who we work with, stated as recognizable situations rather than
  * adjectives. A reader should be able to point at one and say "that is us".
  */
 const audiences: Audience[] = [
@@ -31,7 +31,7 @@ const audiences: Audience[] = [
     href: '/industries',
   },
   {
-    title: 'Engineering-led organisations',
+    title: 'Engineering-led organizations',
     who: 'CTOs and platform teams',
     body: 'Technical leadership running production systems with long operational lifetimes, who want an architect rather than a body shop.',
     signal: 'Your team can build it — the question is whether the structure holds.',
@@ -39,12 +39,12 @@ const audiences: Audience[] = [
     href: '/solutions',
   },
   {
-    title: 'Enterprises modernising',
+    title: 'Enterprises modernizing',
     who: 'Legacy estates under pressure',
-    body: 'Organisations moving from fragile systems to maintainable platforms without pausing the business to do it.',
+    body: 'Organizations moving from fragile systems to maintainable platforms without pausing the business to do it.',
     signal: 'The platform outgrew the decisions it was founded on.',
     icon: 'growth',
-    href: '/solutions/consulting',
+    href: '/solutions/modernization',
   },
   {
     title: 'Teams putting AI into production',
@@ -66,7 +66,7 @@ export function AboutAudience() {
           <div style={{ minWidth: 0 }}>
             <p className="ys-eyebrow">Who we work with</p>
             <h2 className="ys-aud-head">
-              Four situations we recognise immediately.
+              Four situations we recognize immediately.
             </h2>
           </div>
           <p className="ys-aud-lede">

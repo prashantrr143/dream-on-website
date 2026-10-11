@@ -22,7 +22,7 @@ type VisualKind =
   | 'cloud'
   | 'devops'
   | 'data'
-  | 'modernisation'
+  | 'modernization'
   | 'security'
 
 const BLUE = '#0A84FF'
@@ -236,7 +236,7 @@ function Data() {
 }
 
 /** 05 — monolith decomposed into modular services. */
-function Modernisation() {
+function Modernization() {
   return (
     <Ground>
       <g>
@@ -307,7 +307,7 @@ const VISUALS: Record<VisualKind, () => React.ReactElement> = {
   cloud: Cloud,
   devops: DevOps,
   data: Data,
-  modernisation: Modernisation,
+  modernization: Modernization,
   security: Security,
 }
 

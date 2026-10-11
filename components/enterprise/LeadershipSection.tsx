@@ -20,18 +20,18 @@ const team: Leader[] = [
   {
     name: 'Ruchika Raturi',
     role: 'Founder & Chief Executive Officer',
-    bio: '14+ years leading enterprise transformation across financial services and telecommunications. Drives strategic growth through operational excellence and client-centric innovation.',
+    bio: '14+ years leading enterprise transformation across financial services and telecommunications.',
     image: '/ruchika.jpeg',
     focal: 'high',
-    focus: ['Enterprise transformation', 'Financial services', 'Strategic growth'],
+    focus: ['Enterprise transformation', 'Financial services', 'Telecommunications'],
   },
   {
     name: 'Jyoti Mishra',
     role: 'Chief Human Resources Officer',
-    bio: 'Builds high-performance organisations through strategic talent development and cultural change that supports sustainable growth.',
+    bio: 'Builds high-performance organizations through strategic talent development and cultural change that supports sustainable growth.',
     image: '/jyoti.jpeg',
     focal: 'higher',
-    focus: ['Talent strategy', 'Cultural transformation', 'Organisational design'],
+    focus: ['Talent strategy', 'Cultural transformation', 'Organizational design'],
   },
 ]
 

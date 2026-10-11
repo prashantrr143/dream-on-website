@@ -4,7 +4,7 @@ import { ImageResponse } from 'next/og'
  * Default Open Graph card, generated at build time.
  *
  * Navy ground, the brand tagline set large, and the wordmark. The mark
- * itself is not drawn here: next/og rasterises a subset of CSS and cannot
+ * itself is not drawn here: next/og rasterizes a subset of CSS and cannot
  * render the gradient artwork faithfully, so a flat typographic card is
  * used rather than a degraded logo.
  */

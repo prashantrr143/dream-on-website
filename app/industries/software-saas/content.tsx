@@ -3,9 +3,7 @@
 import { motion } from 'framer-motion'
 import SharedLayout from '@/components/shared-layout'
 import { PageHero, PageSection, PageCTA } from '@/components/enterprise'
-import { PRIMARY_CTA } from '@/lib/cta'
-
-
+import { PRIMARY_CTA, SECONDARY_CTA } from '@/lib/cta'
 
 const atAGlance = [
   {
@@ -53,7 +51,7 @@ const pressures = [
   },
   {
     title: "AI was added to the product before it was designed into it",
-    description: "A model call bolted onto an existing feature raises questions the original architecture never answered: whose data reaches the provider, what happens when the output is wrong, how the behaviour is evaluated, and what a customer is told about it.",
+    description: "A model call bolted onto an existing feature raises questions the original architecture never answered: whose data reaches the provider, what happens when the output is wrong, how the behavior is evaluated, and what a customer is told about it.",
     points: [
       "Customer data crossing into third-party model providers",
       "No evaluation harness, so regressions go unnoticed",
@@ -75,7 +73,7 @@ const pressures = [
 
 const whatWeBuild = [
   {
-    title: "Incremental platform modernisation",
+    title: "Incremental platform modernization",
     description: "Decomposition planned around the seams that actually constrain you, sequenced so the product keeps shipping. We architect the target state and the route to it, rather than proposing a rewrite.",
     capabilities: [
       "Seam analysis and decomposition sequencing",
@@ -83,13 +81,13 @@ const whatWeBuild = [
       "API and contract design between services",
       "Target-state architecture with staged milestones"
     ],
-    href: "/solutions/consulting",
-    linkLabel: "Architecture & advisory",
+    href: "/solutions/modernization",
+    linkLabel: "Modernization & advisory",
     iconPath: "M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2"
   },
   {
     title: "Cloud platform and tenancy architecture",
-    description: "Environments defined as code, with tenant isolation modelled deliberately — shared, siloed or pooled per tier — and the cost and blast-radius consequences of that choice made explicit.",
+    description: "Environments defined as code, with tenant isolation modeled deliberately — shared, siloed or pooled per tier — and the cost and blast-radius consequences of that choice made explicit.",
     capabilities: [
       "Tenancy model selection and data partitioning",
       "Infrastructure as code across environments",
@@ -102,10 +100,10 @@ const whatWeBuild = [
   },
   {
     title: "Release governance and supply-chain hygiene",
-    description: "Pipelines where review, testing, provenance and rollback are properties of the process. The artefacts a security reviewer asks for — SBOMs, scan results, change records — fall out of the pipeline instead of being assembled later.",
+    description: "Pipelines where review, testing, provenance and rollback are properties of the process. The artifacts a security reviewer asks for — SBOMs, scan results, change records — fall out of the pipeline instead of being assembled later.",
     capabilities: [
       "CI/CD with enforced review and test gates",
-      "SBOM generation and artefact signing",
+      "SBOM generation and artifact signing",
       "Dependency and container scanning in-pipeline",
       "Progressive delivery with tested rollback"
     ],
@@ -135,7 +133,7 @@ const governance = [
   },
   {
     title: "SOC 2 and ISO/IEC 27001 readiness",
-    description: "Both are assessed against your organisation by an independent auditor or certification body. What we provide is readiness support: control design, logging and evidence generation mapped to the Trust Services Criteria or Annex A, so the assessment finds a system that matches its documentation. YatiSphere does not hold or issue these certifications."
+    description: "Both are assessed against your organization by an independent auditor or certification body. What we provide is readiness support: control design, logging and evidence generation mapped to the Trust Services Criteria or Annex A, so the assessment finds a system that matches its documentation. YatiSphere does not hold or issue these certifications."
   },
   {
     title: "Customer security reviews and due diligence",
@@ -151,20 +149,21 @@ const governance = [
   },
   {
     title: "Dependency and supply-chain assurance",
-    description: "Frameworks and customer questionnaires increasingly ask for software bill-of-materials, provenance and a documented vulnerability response. We build SBOM generation, artefact signing and advisory triage into the delivery pipeline as routine practice."
+    description: "Frameworks and customer questionnaires increasingly ask for software bill-of-materials, provenance and a documented vulnerability response. We build SBOM generation, artifact signing and advisory triage into the delivery pipeline as routine practice."
   }
 ]
 
-const EnterpriseTechnology = () => {
+const SoftwareSaas = () => {
   return (
     <SharedLayout>
       {/* Hero — Deep Blue */}
       <PageHero
-        eyebrow="Industries"
-        title="Enterprise and technology."
-        lede="Product companies and enterprises modernising platforms, moving to cloud, or adding AI to an existing product — without pausing the roadmap to do it."
+        eyebrow="Industries · Software & SaaS"
+        title="Software & SaaS platforms built for the enterprise security review."
+        lede="Your biggest prospects send a security questionnaire before they sign, the platform is straining under the tenants it already has, and the roadmap now includes AI. We build the multi-tenant architecture, release controls and AI features that let a software company scale a regulated platform without pausing the roadmap."
+        visual="circuit"
         primaryCta={{ label: PRIMARY_CTA.label, href: PRIMARY_CTA.href }}
-        secondaryCta={{ label: 'How we work', href: '/how-we-work' }}
+        secondaryCta={{ label: SECONDARY_CTA.label, href: SECONDARY_CTA.href }}
       />
 
       {/* At a glance */}
@@ -219,8 +218,8 @@ const EnterpriseTechnology = () => {
       <PageSection
         tone="light"
         eyebrow="The pressures"
-        title="What tends to be true at this stage."
-        lede="The constraints product and platform teams bring to us, stated plainly."
+        title="What tends to be true for a growing SaaS platform."
+        lede="The constraints software product and platform teams face as enterprise customers arrive, stated plainly."
       >
         <motion.div
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
@@ -305,8 +304,8 @@ const EnterpriseTechnology = () => {
       <PageSection
         tone="white"
         eyebrow="What we build"
-        title="Our services, applied to your platform."
-        lede="Enterprise IT engineering as the core of the work, with applied AI scoped deliberately where it earns its place."
+        title="What we build for software and SaaS companies."
+        lede="Platform engineering is the core of the work, delivered alongside your product team so releases keep shipping, with applied AI scoped deliberately where it earns its place."
       >
         <motion.div
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
@@ -419,7 +418,7 @@ const EnterpriseTechnology = () => {
           <a href="/solutions/security" style={{ color: 'var(--ys-link-on-light)', fontWeight: 600 }}>security engineering</a>{' '}
           for the controls your customers review. Where AI is in scope, our{' '}
           <a href="/responsible-ai" style={{ color: 'var(--ys-link-on-light)', fontWeight: 600 }}>responsible AI position</a>{' '}
-          sets the boundaries we work within. The full catalogue is on the{' '}
+          sets the boundaries we work within. The full catalog is on the{' '}
           <a href="/solutions" style={{ color: 'var(--ys-link-on-light)', fontWeight: 600 }}>solutions page</a>.
         </motion.p>
       </PageSection>
@@ -428,8 +427,8 @@ const EnterpriseTechnology = () => {
       <PageSection
         tone="light"
         eyebrow="Governance context"
-        title="Standards your organisation is held to."
-        lede="These are the frameworks your buyers, auditors and regulators hold you to. We design controls against them and generate the evidence — the certifications and obligations remain your organisation's."
+        title="Standards your organization is held to."
+        lede="These are the frameworks your buyers, auditors and regulators hold you to. We design controls against them and generate the evidence — the certifications and obligations remain your organization's."
       >
         <motion.div
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
@@ -468,13 +467,13 @@ const EnterpriseTechnology = () => {
 
       {/* CTA — Deep Blue */}
       <PageCTA
-        title="Modernise without pausing the roadmap."
-        body="Tell us where the platform is constraining you — tenancy, release speed, security review or an AI feature that needs designing properly — and we will walk through how we would approach it."
+        title="Scale the platform without pausing the roadmap."
+        body="Tell us where the platform is constraining you — tenancy, release speed, a customer security review or an AI feature that needs designing properly — and we will walk through how we would approach it."
         primaryCta={{ label: PRIMARY_CTA.label, href: PRIMARY_CTA.href }}
-        secondaryCta={{ label: 'Explore IT services', href: '/solutions' }}
+        secondaryCta={{ label: SECONDARY_CTA.label, href: SECONDARY_CTA.href }}
       />
     </SharedLayout>
   )
 }
 
-export default EnterpriseTechnology
+export default SoftwareSaas

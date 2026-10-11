@@ -1,13 +1,13 @@
 "use client"
 
-import Image from 'next/image'
+import { HeroVisual, type HeroMotif } from '@/components/brand/HeroVisual'
 import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import { PRIMARY_CTA } from '@/lib/cta'
 
 /**
  * Shared page primitives so inner pages use the same system as the
- * homepage: a Deep Blue hero over the approved imagery, light content
+ * homepage: a Deep Blue hero over a code-native visual, light content
  * sections, and a Deep Blue closing CTA.
  *
  * These wrap the existing `ys-*` classes rather than introducing new
@@ -18,8 +18,8 @@ interface PageHeroProps {
   eyebrow?: string
   title: string
   lede?: string
-  /** Background image. Defaults to the brand Earth/network hero plate. */
-  image?: { src: string; alt?: string }
+  /** Hero motif; the composition is seeded from the title, so each page differs. */
+  visual?: HeroMotif
   primaryCta?: { label: string; href: string }
   secondaryCta?: { label: string; href: string }
   children?: React.ReactNode
@@ -29,7 +29,7 @@ export function PageHero({
   eyebrow,
   title,
   lede,
-  image,
+  visual,
   primaryCta,
   secondaryCta,
   children,
@@ -43,16 +43,7 @@ export function PageHero({
       className="relative w-full overflow-hidden text-white"
       style={{ backgroundColor: 'var(--ys-deep-blue)' }}
     >
-      <Image
-        src={image?.src ?? '/brand/yatisphere/imagery/hero-earth-network.png'}
-        alt={image?.alt ?? ''}
-        aria-hidden={image?.alt ? undefined : true}
-        fill
-        priority
-        sizes="100vw"
-        className="object-cover"
-        style={{ objectPosition: 'right center' }}
-      />
+      <HeroVisual motif={visual} seed={title} />
       {/* Scrims keep headline contrast well above AA over the imagery */}
       <div
         aria-hidden="true"

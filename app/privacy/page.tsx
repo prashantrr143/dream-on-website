@@ -3,6 +3,8 @@ import { metaFor } from '@/lib/seo'
 import SharedLayout from '@/components/shared-layout'
 import { PageHero, PageSection } from '@/components/enterprise'
 import { LEGAL_LAST_UPDATED, LEGAL_ENTITY_NAME } from '@/lib/legal'
+import { SITE_CONTACT } from '@/lib/site-contact'
+import { siteConfig } from '@/lib/site.config'
 
 
 export const metadata: Metadata = metaFor('/privacy')
@@ -29,8 +31,8 @@ const AT_A_GLANCE = [
     href: '#collection',
   },
   {
-    label: 'Your data is not training data',
-    body: 'No client data trains models, ever.',
+    label: 'Your data does not train our models',
+    body: 'We do not use client data to train or fine-tune models, unless a client asks us to in writing for their own dedicated model.',
     href: '#use',
   },
   {
@@ -86,11 +88,13 @@ export default function PrivacyPage() {
               This policy explains how {LEGAL_ENTITY_NAME} (&ldquo;we&rdquo;,
               &ldquo;us&rdquo;, &ldquo;our&rdquo;) collects, uses and protects
               personal information when you use our website or engage our services.
-              We are incorporated in India and work with clients in the United
-              Kingdom, Europe, the United States, the Middle East and India.
+              We are incorporated in India and offer our services to organizations
+              in the United Kingdom, Europe, the United States, the Middle East and
+              India.
               We collect only what we need to operate the website and work with
-              clients. We do not sell personal data, and we do not use client data
-              to train AI models.
+              clients. We do not sell personal data. We do not use client data to
+              train or fine-tune models, unless a client asks us to in writing for
+              their own dedicated model.
             </p>
 
             <section>
@@ -145,12 +149,12 @@ export default function PrivacyPage() {
               <h2>2. How we use it</h2>
               <p>We use personal information to:</p>
               <ul>
-                <li>respond to your enquiry and correspond with you about it</li>
+                <li>respond to your inquiry and correspond with you about it</li>
                 <li>provide, deliver and support the services you have engaged us for</li>
                 <li>issue statements and invoices, and collect payment</li>
                 <li>operate, secure and improve our website</li>
                 <li>send communications you have specifically asked to receive</li>
-                <li>deal with complaints and enquiries</li>
+                <li>deal with complaints and inquiries</li>
                 <li>prevent fraud and misuse, and keep our systems secure</li>
                 <li>comply with our legal and regulatory obligations</li>
               </ul>
@@ -161,7 +165,7 @@ export default function PrivacyPage() {
                 <a href="/responsible-ai">Responsible AI</a> statement.
               </p>
               <p>
-                We do not carry out behavioural advertising, and we do not make
+                We do not carry out behavioral advertising, and we do not make
                 decisions producing legal or similarly significant effects about you
                 by automated means alone.
               </p>
@@ -173,7 +177,7 @@ export default function PrivacyPage() {
               <ul>
                 <li>
                   <strong>Legitimate interests</strong> &mdash; responding to
-                  business enquiries, operating and securing our website, and
+                  business inquiries, operating and securing our website, and
                   managing our client relationships.
                 </li>
                 <li>
@@ -203,7 +207,7 @@ export default function PrivacyPage() {
               </p>
               <ul>
                 <li>
-                  <strong>Enquiries that do not lead to an engagement</strong>{' '}
+                  <strong>Inquiries that do not lead to an engagement</strong>{' '}
                   &mdash; up to 24 months from our last contact, so we can pick up a
                   conversation you return to.
                 </li>
@@ -272,7 +276,7 @@ export default function PrivacyPage() {
             <section id="transfers">
               <h2>6. International transfers</h2>
               <p>
-                We are incorporated in India and work with clients internationally.
+                We are incorporated in India and offer our services internationally.
                 Information we collect may be stored and processed in, and
                 transferred between, the countries in which we and our service
                 providers operate, so that we can use it as described in this policy.
@@ -289,8 +293,8 @@ export default function PrivacyPage() {
             <section id="security">
               <h2>7. Security</h2>
               <p>
-                We take reasonable technical and organisational measures to protect
-                personal information against loss, misuse, unauthorised access,
+                We take reasonable technical and organizational measures to protect
+                personal information against loss, misuse, unauthorized access,
                 alteration and disclosure. These include encryption of data in transit,
                 access controls on a need-to-know basis, and logging.
               </p>
@@ -371,11 +375,13 @@ export default function PrivacyPage() {
                 data is deleted.
               </p>
               <p>
-                <strong>To withdraw consent</strong>, use the
-                &ldquo;Cookie settings&rdquo; link in the footer of any page and
-                choose Reject. Existing analytics cookies are cleared when you do.
-                You can also delete cookies through your browser settings at any
-                time. Blocking strictly necessary cookies may affect how the site
+                <strong>To change or withdraw consent</strong>, use the
+                &ldquo;Cookie settings&rdquo; link in the footer of any page. It
+                reopens your consent choices; choose Reject to withdraw, and
+                existing analytics cookies are cleared. If the link is not shown,
+                the site is not loading analytics and there is nothing to consent
+                to. You can also delete cookies through your browser settings at
+                any time. Blocking strictly necessary cookies may affect how the site
                 works.
               </p>
             </section>
@@ -485,15 +491,31 @@ export default function PrivacyPage() {
                 you, email{' '}
                 <a href="mailto:privacy@yatisphere.com">privacy@yatisphere.com</a>.
               </p>
-              {/*
-                TODO — CONFIRM BEFORE PUBLISHING.
-                A postal address for the registered office is expected on a privacy
-                policy. Add it to SITE_CONTACT.registeredAddress and render it here.
-              */}
+              {/* Identity of the controller. Each line comes from
+                  lib/site.config.ts and renders only once it is filled in. */}
               <p>
                 {LEGAL_ENTITY_NAME}
                 <br />
                 Registered in India
+                {siteConfig.company.cin && (
+                  <>
+                    <br />
+                    CIN: {siteConfig.company.cin}
+                  </>
+                )}
+                {SITE_CONTACT.registeredAddress && (
+                  <>
+                    <br />
+                    Registered office: {SITE_CONTACT.registeredAddress}
+                  </>
+                )}
+                {SITE_CONTACT.email && (
+                  <>
+                    <br />
+                    General inquiries:{' '}
+                    <a href={`mailto:${SITE_CONTACT.email}`}>{SITE_CONTACT.email}</a>
+                  </>
+                )}
               </p>
             </section>
           </div>

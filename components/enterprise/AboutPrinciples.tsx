@@ -38,7 +38,7 @@ const principles: Principle[] = [
     n: '03',
     title: 'Systems thinking',
     body: 'Technology lands inside people, processes and systems that already exist. We design for that context rather than around it.',
-    consequence: 'Fewer surprises at integration, where most programmes stall.',
+    consequence: 'Fewer surprises at integration, where most programs stall.',
     icon: 'global',
   },
   {

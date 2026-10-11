@@ -11,7 +11,7 @@
  *
  * `variant` controls the stroke paint:
  *   - "gradient" reproduces the approved brand gradient
- *   - "current"  inherits `currentColor`, so the icon can be recoloured
+ *   - "current"  inherits `currentColor`, so the icon can be recolored
  *                by its container (hover states, dark/light surfaces)
  */
 export type YsIconName =

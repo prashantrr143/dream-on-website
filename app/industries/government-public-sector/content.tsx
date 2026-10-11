@@ -3,9 +3,7 @@
 import { motion } from 'framer-motion'
 import SharedLayout from '@/components/shared-layout'
 import { PageHero, PageSection, PageCTA } from '@/components/enterprise'
-import { PRIMARY_CTA } from '@/lib/cta'
-
-
+import { PRIMARY_CTA, SECONDARY_CTA } from '@/lib/cta'
 
 const atAGlance = [
   {
@@ -63,7 +61,7 @@ const pressures = [
   },
   {
     title: "Someone else has to run it in five years",
-    description: "Departmental teams inherit systems from whoever built them, often after the delivery partner has moved on. Platforms that depend on proprietary glue, undocumented deployment steps or a single person's knowledge become the next modernisation programme.",
+    description: "Departmental teams inherit systems from whoever built them, often after the delivery partner has moved on. Platforms that depend on proprietary glue, undocumented deployment steps or a single person's knowledge become the next modernization program.",
     points: [
       "Open standards and portable formats over proprietary glue",
       "Infrastructure as code so environments are reproducible",
@@ -93,7 +91,7 @@ const whatWeBuild = [
     capabilities: [
       "Change approval encoded in the pipeline",
       "Automated accessibility and regression checks",
-      "Signed artefacts and deployment provenance",
+      "Signed artifacts and deployment provenance",
       "Rollback paths tested, not assumed"
     ],
     href: "/solutions/devops",
@@ -120,7 +118,7 @@ const whatWeBuild = [
       "Retention and disposal policy in the schema",
       "Lineage from source to published figure",
       "Access-governed reporting layers",
-      "Anonymisation and minimisation patterns"
+      "Anonymization and minimization patterns"
     ],
     href: "/solutions/data",
     linkLabel: "Data engineering",
@@ -135,11 +133,11 @@ const governance = [
   },
   {
     title: "Accessibility standards",
-    description: "WCAG 2.2 Level AA is the international reference standard for citizen-facing services, alongside national guidance such as the UK Public Sector Bodies Accessibility Regulations, Section 508 in the US, or the Guidelines for Indian Government Websites. We treat conformance as a build-time acceptance criterion and produce the testing evidence that reviewers ask for."
+    description: "WCAG 2.2 Level AA is the international reference standard for citizen-facing services, alongside national guidance such as the UK Public Sector Bodies Accessibility Regulations, EN 301 549 in the EU, Section 508 in the US, or the Guidelines for Indian Government Websites. We treat conformance as a build-time acceptance criterion and produce the testing evidence that reviewers ask for."
   },
   {
     title: "Security baselines and incident reporting",
-    description: "CERT-In directions set expectations for log retention and incident reporting timelines, and ISO/IEC 27001 is the common reference for information security management. We design controls and logging so your organisation can evidence them — YatiSphere is not itself a certification body or certificate holder."
+    description: "National cyber security regimes set expectations for logging, log retention and incident reporting timelines, for example NIS2 in the EU, NCSC guidance in the UK, the UAE Information Assurance Regulation and CERT-In directions in India. ISO/IEC 27001 is the common international reference for information security management. We design controls and logging so your organization can evidence them — YatiSphere is not itself a certification body or certificate holder."
   },
   {
     title: "Procurement, auditability and open standards",
@@ -160,12 +158,12 @@ const GovernmentPublicSector = () => {
     <SharedLayout>
       {/* Hero — Deep Blue */}
       <PageHero
-        eyebrow="Industries"
-        image={{ src: '/brand/yatisphere/imagery/industry-government.png', alt: 'Government technology' }}
-        title="Government and public sector."
-        lede="Citizen-facing systems with data residency, accessibility and audit trails — built on infrastructure departments can operate themselves after we hand it over."
+        eyebrow="Industries · Government & public sector"
+        title="Public services that your own team can run after handover."
+        lede="Citizen-facing systems with data residency, accessibility and audit trails designed in, built on infrastructure public bodies can operate themselves once we step back."
+        visual="lanes"
         primaryCta={{ label: PRIMARY_CTA.label, href: PRIMARY_CTA.href }}
-        secondaryCta={{ label: 'How we work', href: '/how-we-work' }}
+        secondaryCta={{ label: SECONDARY_CTA.label, href: SECONDARY_CTA.href }}
       />
 
       {/* At a glance */}
@@ -306,8 +304,8 @@ const GovernmentPublicSector = () => {
       <PageSection
         tone="white"
         eyebrow="What we build"
-        title="Our services, applied to public services."
-        lede="The same engineering practice we bring to any enterprise platform, scoped to the constraints a department works under. Our team includes public-sector systems experience from national-scale citizen platforms."
+        title="What we build for public bodies."
+        lede="Each of these answers one of the pressures above, scoped to the residency, accessibility and procurement rules a public body works under, and handed over with the documentation to run it."
       >
         <motion.div
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
@@ -414,13 +412,13 @@ const GovernmentPublicSector = () => {
             color: 'var(--ys-ink-body)'
           }}
         >
-          Where a programme needs shaping before it needs building, that starts with{' '}
-          <a href="/solutions/consulting" style={{ color: 'var(--ys-link-on-light)', fontWeight: 600 }}>architecture and advisory</a>.
+          Where a program needs shaping before it needs building, that starts with{' '}
+          <a href="/solutions/modernization" style={{ color: 'var(--ys-link-on-light)', fontWeight: 600 }}>modernization and advisory</a>.
           Where AI is in scope, we scope it against our{' '}
           <a href="/responsible-ai" style={{ color: 'var(--ys-link-on-light)', fontWeight: 600 }}>responsible AI position</a>{' '}
           and our{' '}
           <a href="/applied-ai" style={{ color: 'var(--ys-link-on-light)', fontWeight: 600 }}>applied AI practice</a>.
-          The full service catalogue is on the{' '}
+          The full service catalog is on the{' '}
           <a href="/solutions" style={{ color: 'var(--ys-link-on-light)', fontWeight: 600 }}>solutions page</a>.
         </motion.p>
       </PageSection>
@@ -429,8 +427,8 @@ const GovernmentPublicSector = () => {
       <PageSection
         tone="light"
         eyebrow="Governance context"
-        title="Standards your organisation is held to."
-        lede="These are the frameworks public bodies answer to. We design controls against them and produce the evidence your assessors and auditors ask for — the obligations remain your organisation's."
+        title="Standards your organization is held to."
+        lede="These are the frameworks public bodies answer to. We design controls against them and produce the evidence your assessors and auditors ask for — the obligations remain your organization's."
       >
         <motion.div
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
@@ -470,9 +468,9 @@ const GovernmentPublicSector = () => {
       {/* CTA — Deep Blue */}
       <PageCTA
         title="Bring us the constraint, not just the requirement."
-        body="Residency, accessibility, retention, handover — tell us what your programme is held to and we will tell you how we would architect against it."
+        body="Residency, accessibility, retention, handover — tell us what your program is held to and we will tell you how we would architect against it."
         primaryCta={{ label: PRIMARY_CTA.label, href: PRIMARY_CTA.href }}
-        secondaryCta={{ label: 'Explore IT services', href: '/solutions' }}
+        secondaryCta={{ label: SECONDARY_CTA.label, href: SECONDARY_CTA.href }}
       />
     </SharedLayout>
   )

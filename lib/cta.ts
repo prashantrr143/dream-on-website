@@ -1,16 +1,18 @@
 /**
- * Shared calls to action.
+ * The two calls to action used site-wide (audit G-17).
  *
- * Defined once so the wording stays identical wherever a primary or
- * secondary action appears.
+ * Every page uses these labels and no others. While no booking URL is
+ * configured, the primary CTA lands on the contact form; once
+ * siteConfig.bookingUrl is set, the contact page shows the calendar at
+ * the same #book anchor, so no link needs to change.
  */
 
 export const PRIMARY_CTA = {
-  label: 'Tell us the problem',
-  href: '/contact-us',
+  label: 'Book a 30-minute call',
+  href: '/contact-us#book',
 } as const
 
 export const SECONDARY_CTA = {
-  label: 'See how we deliver',
-  href: '/how-we-work',
+  label: 'Get a fixed-price Blueprint',
+  href: '/blueprint',
 } as const

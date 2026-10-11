@@ -2,8 +2,8 @@
 
 import { useState, useEffect, useCallback, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import Image from 'next/image'
-import { LOGO_ASSETS } from '@/components/brand/YatiSphereLogo'
+import { Wordmark } from '@/components/brand/Wordmark'
+import { IT_SERVICES, AI_SERVICES, FEATURED_INDUSTRIES } from '@/lib/services'
 import { hasArticles } from '@/lib/perspectives'
 import { ArrowRight, Menu, X, ChevronDown } from 'lucide-react'
 import { PRIMARY_CTA } from '@/lib/cta'
@@ -26,47 +26,37 @@ interface NavItem {
 /**
  * Information architecture.
  *
- * "Services" previously duplicated "Solutions" (both pointed at the same
- * delivery disciplines), so the two are consolidated into Solutions and
- * the remaining groups follow the agreed structure.
+ * Built from lib/services.ts, so the header, footer and hub pages name
+ * every service the same way (audit S-02). Section headings link to
+ * their hub pages, not homepage anchors. Industries lists the three
+ * featured sectors; Healthcare and Government stay reachable from the
+ * /industries hub (audit I-01).
  *
  * Every href resolves to a route that exists; nothing links to a 404.
  */
 const navigationItems: NavItem[] = [
   {
-    name: "IT Services",
-    href: "/#services",
+    name: "Services",
+    href: "/solutions",
     items: [
-      { name: "All IT Services", meta: "Overview of every practice area", href: "/solutions", overview: true },
-      { name: "Cloud & Infrastructure", meta: "Azure • AWS • Hybrid • FinOps", href: "/solutions/cloud" },
-      { name: "DevOps & Automation", meta: "CI/CD • IaC • Platform engineering", href: "/solutions/devops" },
-      { name: "Data & Analytics", meta: "Lakehouse • Pipelines • Reporting", href: "/solutions/data" },
-      { name: "Modernisation & Advisory", meta: "TOGAF • Re-platforming • Roadmaps", href: "/solutions/consulting" },
-      { name: "Enterprise Security", meta: "Identity • Zero-trust • Audit", href: "/solutions/security" },
+      { name: "All services", meta: "The six practices, on one page", href: "/solutions", overview: true },
+      ...IT_SERVICES.map((s) => ({ name: s.name, meta: s.descriptor, href: s.href })),
     ],
   },
   {
     name: "Applied AI",
-    href: "/#ai",
+    href: "/applied-ai",
     items: [
-      { name: "AI Architecture & Readiness", href: "/applied-ai#architecture" },
-      { name: "Agentic Workflow Automation", href: "/applied-ai#agentic" },
-      { name: "Enterprise AI Platforms", href: "/applied-ai#platforms" },
-      { name: "Responsible AI & Governance", href: "/responsible-ai" },
+      { name: "Applied AI overview", meta: "Azure-first, model-agnostic", href: "/applied-ai", overview: true },
+      ...AI_SERVICES.map((s) => ({ name: s.name, meta: s.descriptor, href: s.href })),
     ],
   },
   {
     name: "Industries",
     href: "/industries",
     items: [
-      // Overview first, matching the IT Services menu: the divider below
-      // it separates the section overview from the individual pages.
-      { name: "All industries", href: "/industries", overview: true },
-      { name: "Financial Services", href: "/industries/financial-services" },
-      { name: "Legal & Professional Services", href: "/industries/legal-professional-services" },
-      { name: "Healthcare", href: "/industries/healthcare" },
-      { name: "Government & Public Sector", href: "/industries/government-public-sector" },
-      { name: "Enterprise & Technology", href: "/industries/enterprise-technology" },
+      { name: "All industries", meta: "Including healthcare and government", href: "/industries", overview: true },
+      ...FEATURED_INDUSTRIES.map((i) => ({ name: i.name, meta: i.descriptor, href: i.href })),
     ],
   },
   { name: "How we work", href: "/how-we-work" },
@@ -74,9 +64,9 @@ const navigationItems: NavItem[] = [
     name: "About",
     href: "/about-us",
     items: [
-      { name: "About Us", href: "/about-us" },
-      { name: "Why YatiSphere", href: "/#why" },
+      { name: "About us", href: "/about-us" },
       ...(hasArticles ? [{ name: "Perspectives", href: "/perspectives" }] : []),
+      { name: "Trust center", href: "/trust" },
       { name: "Contact", href: "/contact-us" },
     ],
   },
@@ -92,11 +82,11 @@ const NavigationEnterprise = () => {
 
   useEffect(() => {
     setMounted(true)
-    setScrolled(window.scrollY > 20)
+    setScrolled(window.scrollY > 0)
   }, [])
 
   const handleScroll = useCallback(() => {
-    const next = window.scrollY > 20
+    const next = window.scrollY > 0
     setScrolled(prev => (prev !== next ? next : prev))
   }, [])
 
@@ -166,9 +156,8 @@ const NavigationEnterprise = () => {
   }
 
   const isScrolled = mounted && scrolled
-  // Tall enough at rest for the full three-line lockup to render large
-  // without clipping; tightens to a compact icon-only bar on scroll.
-  const headerHeight = isScrolled ? 68 : 124
+  // Single-line wordmark, so the bar only needs to tighten slightly.
+  const headerHeight = isScrolled ? 64 : 76
 
   return (
     <nav
@@ -196,24 +185,12 @@ const NavigationEnterprise = () => {
           className="flex items-center justify-between gap-6"
           style={{ height: headerHeight, transition: 'height 250ms ease' }}
         >
-          {/* One logo element, one image. Rendering the lockup and a
-              separate icon mark in the same grid cell meant any failure
-              to hide one painted the icon's Y over the lockup's Y. The
-              lockup now simply scales down when the header shrinks. */}
           <a
             href="/"
-            className={`ys-nav-logo flex-shrink-0${isScrolled ? ' is-compact' : ''}`}
+            className="ys-nav-logo flex-shrink-0"
             aria-label="YatiSphere home"
           >
-            <Image
-              src={LOGO_ASSETS.dark.src}
-              alt="YatiSphere Technologies Private Limited"
-              width={LOGO_ASSETS.dark.width}
-              height={LOGO_ASSETS.dark.height}
-              priority
-              sizes="(max-width: 767px) 200px, 280px"
-              className="ys-logo-img-full"
-            />
+            <Wordmark tone="dark" size={isScrolled ? 24 : 27} priority />
           </a>
 
           {/* Desktop navigation */}
@@ -303,7 +280,7 @@ const NavigationEnterprise = () => {
           </ul>
 
           {/* Desktop CTA */}
-          <a href="/contact-us" className="ys-nav-cta hidden lg:inline-flex items-center gap-2">
+          <a href={PRIMARY_CTA.href} className="ys-nav-cta hidden lg:inline-flex items-center gap-2">
             {PRIMARY_CTA.label}
             <ArrowRight className="w-3.5 h-3.5" strokeWidth={2.5} aria-hidden="true" />
           </a>
@@ -361,7 +338,7 @@ const NavigationEnterprise = () => {
               ))}
 
               <a
-                href="/contact-us"
+                href={PRIMARY_CTA.href}
                 className="ys-cta-primary"
                 style={{ display: 'flex', justifyContent: 'center', marginTop: 22 }}
                 onClick={() => setMobileMenuOpen(false)}

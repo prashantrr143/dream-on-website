@@ -1,5 +1,6 @@
 import type { MetadataRoute } from 'next'
 import { hasArticles } from '@/lib/perspectives'
+import { siteConfig } from '@/lib/site.config'
 import { SITE_URL, indexableRoutes } from '@/lib/seo'
 
 /**
@@ -34,10 +35,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const routes = indexableRoutes().filter((route) => {
     if (route === '/perspectives') return hasArticles
+    if (route === '/case-studies') return siteConfig.caseStudies.length > 0
     return true
   })
 
-  return routes.map((route) => ({
+  const caseStudyRoutes = siteConfig.caseStudies.map((cs) => `/case-studies/${cs.slug}`)
+
+  return [...routes, ...caseStudyRoutes].map((route) => ({
     url: `${SITE_URL}${route === '/' ? '' : route}`,
     lastModified: now,
     changeFrequency:

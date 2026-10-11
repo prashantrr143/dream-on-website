@@ -30,7 +30,7 @@ const deliveryPrinciples = [
   },
   {
     title: "Your data stays yours",
-    description: "No client data trains models or leaves the boundary you define.",
+    description: "We do not use client data to train or fine-tune models, unless a client asks us to in writing for their own dedicated model.",
     accent: "#0A84FF"
   }
 ]

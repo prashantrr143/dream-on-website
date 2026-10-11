@@ -22,8 +22,8 @@ const SECTIONS = [
 
 const AT_A_GLANCE = [
   {
-    label: 'Your data is never training data',
-    body: 'No client data trains models, and none leaves the agreed boundary.',
+    label: 'Your data does not train our models',
+    body: 'We do not use client data to train or fine-tune models, unless a client asks us to in writing for their own dedicated model.',
     href: '#data',
   },
   {
@@ -43,71 +43,6 @@ const AT_A_GLANCE = [
   },
 ]
 
-/** The four commitments, each with the practice that makes it checkable. */
-const PRINCIPLES = [
-  {
-    title: 'Human oversight',
-    lede: 'We design AI systems that keep people in the loop.',
-    points: [
-      'Critical decisions require human review and approval',
-      'Clear escalation paths for edge cases and exceptions',
-      'Monitoring and alerting for unexpected behaviour',
-      'Regular review of AI system performance and outcomes',
-    ],
-  },
-  {
-    title: 'Explainability',
-    lede: 'We favour approaches that can be understood and explained.',
-    points: [
-      'Preference for interpretable models where appropriate',
-      'Clear documentation of model behaviour and limitations',
-      'Audit trails for AI-assisted decisions',
-      'Ability to explain outcomes to stakeholders and regulators',
-    ],
-  },
-  {
-    title: 'Data boundaries',
-    lede: 'We maintain strict boundaries around data use.',
-    points: [
-      'Client data is never used to train models without explicit consent',
-      'Clear separation between training data and production data',
-      'Data minimisation: collect and use only what is necessary',
-      'Defined retention and deletion policies for AI training data',
-    ],
-  },
-  {
-    title: 'Continuous evaluation',
-    lede: 'We treat a deployed model as something that needs watching.',
-    points: [
-      'Regular monitoring for model drift and performance degradation',
-      'Periodic review of AI system outcomes for fairness and accuracy',
-      'Mechanisms to identify and address unintended consequences',
-      'Commitment to updating practices as standards evolve',
-    ],
-  },
-]
-
-function Tick() {
-  return (
-    <svg
-      width="16"
-      height="16"
-      viewBox="0 0 16 16"
-      fill="none"
-      style={{ marginTop: '3px', flexShrink: 0 }}
-      aria-hidden="true"
-    >
-      <path
-        d="M4 8l3.5 3.5L12 4"
-        stroke="var(--blue-600)"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  )
-}
-
 const ResponsibleAIContent = () => {
   return (
     <SharedLayout>
@@ -115,6 +50,7 @@ const ResponsibleAIContent = () => {
         eyebrow="Trust"
         title="Responsible AI"
         lede="How we design, build and operate AI systems: what we commit to, what we refuse, and how we can be held to it."
+        visual="layers"
         primaryCta={{ label: PRIMARY_CTA.label, href: PRIMARY_CTA.href }}
       />
 
@@ -148,7 +84,7 @@ const ResponsibleAIContent = () => {
           <div className="ys-legal">
             <p className="ys-legal-intro">
               AI is a powerful tool, but it requires careful governance. Our
-              approach prioritises transparency, control and predictability over
+              approach prioritizes transparency, control and predictability over
               novelty or automation for its own sake. This policy describes how we
               work, and what you can hold us to.
             </p>
@@ -171,9 +107,32 @@ const ResponsibleAIContent = () => {
             <section id="principles">
               <h2>2. Principles</h2>
               <p>
-                Four commitments shape how we build. Each is stated with the
-                practices that make it checkable rather than aspirational.
+                Four commitments shape how we build. Each is set out in detail,
+                with the practices that make it checkable rather than aspirational,
+                in the section noted:
               </p>
+              <ul>
+                <li>
+                  <strong>Human oversight.</strong> Where a decision matters, a
+                  named person can see it, understand it and overturn it (
+                  <a href="#oversight">section 5</a>).
+                </li>
+                <li>
+                  <strong>Explainability.</strong> We favor approaches that can be
+                  explained, and avoid black-box designs where an explanation is
+                  required (<a href="#risk">section 4</a>).
+                </li>
+                <li>
+                  <strong>Data boundaries.</strong> We do not use client data to train or fine-tune models, unless a client asks us to in writing for their own dedicated model. Client data stays within
+                  the agreed boundary (<a href="#data">section 6</a>).
+                </li>
+                <li>
+                  <strong>Continuous evaluation.</strong> Systems are measured
+                  before go-live and monitored after it (
+                  <a href="#evaluation">section 8</a> and{' '}
+                  <a href="#monitoring">section 9</a>).
+                </li>
+              </ul>
             </section>
 
             <section id="will-not-build">
@@ -186,7 +145,7 @@ const ResponsibleAIContent = () => {
               <ul>
                 <li>
                   systems that assign people a social score, or rank them for general
-                  trustworthiness, from unrelated behavioural data
+                  trustworthiness, from unrelated behavioral data
                 </li>
                 <li>
                   untargeted scraping of facial images, or biometric surveillance of
@@ -203,7 +162,7 @@ const ResponsibleAIContent = () => {
                 </li>
                 <li>
                   systems designed to deceive people about whether they are dealing
-                  with a machine, or to manipulate behaviour against their interests
+                  with a machine, or to manipulate behavior against their interests
                 </li>
                 <li>
                   deployments where a decision must be explained but the proposed
@@ -275,9 +234,9 @@ const ResponsibleAIContent = () => {
             <section id="data">
               <h2>6. Data and training</h2>
               <p>
-                <strong>We do not use client data to train models.</strong> Client
-                data is not added to training sets, not used to fine-tune shared
-                models, and not retained for that purpose.
+                <strong>We do not use client data to train or fine-tune models, unless a client asks us to in writing for their own dedicated model.</strong> Client data is not added to shared
+                training sets, not used to fine-tune shared models, and not
+                retained for that purpose.
               </p>
               <p>
                 Client data stays within the boundary agreed in the engagement.
@@ -313,7 +272,7 @@ const ResponsibleAIContent = () => {
                 </li>
                 <li>
                   we record the model version a system depends on, so that a change in
-                  provider behaviour can be traced and re-evaluated
+                  provider behavior can be traced and re-evaluated
                 </li>
               </ul>
               <p>
@@ -439,80 +398,6 @@ const ResponsibleAIContent = () => {
               </p>
             </section>
           </div>
-        </div>
-      </PageSection>
-
-      {/* The four principles, as cards, after the policy text. */}
-      <PageSection
-        tone="light"
-        eyebrow="Commitments"
-        title="What we hold ourselves to."
-      >
-        <div className="grid grid-cols-1 lg:grid-cols-2" style={{ gap: '20px' }}>
-          {PRINCIPLES.map((principle) => (
-            <div
-              key={principle.title}
-              className="ys-card-light"
-              style={{
-                padding: '30px',
-                display: 'flex',
-                flexDirection: 'column',
-                minWidth: 0,
-              }}
-            >
-              <h3
-                style={{
-                  fontSize: '19px',
-                  fontWeight: 700,
-                  letterSpacing: '-0.02em',
-                  lineHeight: 1.3,
-                  color: 'var(--ink)',
-                  marginBottom: '8px',
-                }}
-              >
-                {principle.title}
-              </h3>
-              <p
-                style={{
-                  fontSize: '15px',
-                  lineHeight: 1.6,
-                  color: 'var(--ink-muted)',
-                  marginBottom: '18px',
-                  maxWidth: '62ch',
-                }}
-              >
-                {principle.lede}
-              </p>
-              <ul
-                style={{
-                  listStyle: 'none',
-                  margin: 0,
-                  padding: 0,
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '9px',
-                }}
-              >
-                {principle.points.map((point) => (
-                  <li
-                    key={point}
-                    style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}
-                  >
-                    <Tick />
-                    <span
-                      style={{
-                        fontSize: '14px',
-                        lineHeight: 1.55,
-                        color: 'var(--ink-muted)',
-                      }}
-                    >
-                      {point}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
         </div>
       </PageSection>
 

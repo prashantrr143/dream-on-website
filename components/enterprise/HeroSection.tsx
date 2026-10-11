@@ -1,10 +1,9 @@
 "use client"
 
-import Image from 'next/image'
 import { motion } from 'motion/react'
 import { ArrowRight } from 'lucide-react'
 import { PRIMARY_CTA, SECONDARY_CTA } from '@/lib/cta'
-import { HeroAtmosphere } from '@/components/enterprise/HeroAtmosphere'
+import { HeroVisual } from '@/components/brand/HeroVisual'
 
 
 const PROOF = [
@@ -24,22 +23,8 @@ const HeroSection = () => {
       className="relative w-full overflow-hidden text-white"
       style={{ backgroundColor: 'var(--ys-deep-blue)' }}
     >
-      {/* Approved hero imagery — background layer only */}
-      <Image
-        src="/brand/yatisphere/imagery/hero-earth-network.png"
-        alt=""
-        aria-hidden="true"
-        fill
-        priority
-        sizes="100vw"
-        className="object-cover"
-        style={{ objectPosition: 'right center' }}
-      />
-
-      {/* Animated network + atmosphere over the static Earth plate.
-          Sits above the image but below the scrims, so it never
-          competes with headline contrast. */}
-      <HeroAtmosphere />
+      {/* Code-native background (audit G-04). */}
+      <HeroVisual motif="network" seed="home" />
 
       {/* Legibility scrims */}
       <div
@@ -71,15 +56,19 @@ const HeroSection = () => {
               className="ys-eyebrow ys-eyebrow-on-dark"
               style={{ marginBottom: 'clamp(16px, 2.4vw, 22px)' }}
             >
-              IT Services <span aria-hidden="true" style={{ opacity: 0.55 }}>·</span>{' '}
-              Applied AI
+              Azure engineering &amp; applied AI{' '}
+              <span aria-hidden="true" style={{ opacity: 0.55 }}>·</span>{' '}
+              UK <span aria-hidden="true" style={{ opacity: 0.55 }}>·</span>{' '}
+              Europe <span aria-hidden="true" style={{ opacity: 0.55 }}>·</span>{' '}
+              Middle East <span aria-hidden="true" style={{ opacity: 0.55 }}>·</span>{' '}
+              US
             </motion.p>
 
             <motion.h1
               style={{ color: 'var(--on-dark)', textWrap: 'balance' }}
             >
-              Technology that fixes the problem you{' '}
-              <span className="ys-accent-word">actually</span> have.
+              Modernize the systems you run on. Put AI into production &mdash;{' '}
+              <span className="ys-accent-word">safely</span>.
             </motion.h1>
 
             <motion.p
@@ -91,9 +80,9 @@ const HeroSection = () => {
                 color: 'var(--on-dark-muted)',
               }}
             >
-              Slow onboarding. Systems nobody dares touch. Data you can&rsquo;t get
-              answers from. AI pilots that went nowhere. Tell us the business problem
-              and our in-house team delivers the working solution, end to end.
+              A senior, in-house team that designs, builds and runs core platforms
+              and governed AI for regulated businesses. Fixed price to start. Your
+              code in your cloud from day one.
             </motion.p>
 
             <motion.div

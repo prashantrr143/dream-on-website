@@ -1,22 +1,24 @@
 "use client"
 
 import { ArrowRight } from 'lucide-react'
+import { PRIMARY_CTA, SECONDARY_CTA } from '@/lib/cta'
 import SharedLayout from '@/components/shared-layout'
 import { PageHero, PageSection, PageCTA } from '@/components/enterprise'
 import { AboutPrinciples } from '@/components/enterprise/AboutPrinciples'
 import { AboutAudience } from '@/components/enterprise/AboutAudience'
 import { FounderVision } from '@/components/enterprise/FounderVision'
+import { CompanyDetails } from '@/components/enterprise/CompanyDetails'
 import { LeadershipSection } from '@/components/enterprise/LeadershipSection'
 
 const AboutUs = () => {
   return (
     <SharedLayout>
       <PageHero
-        eyebrow="About Yatisphere"
-        title="We help enterprises build systems that are secure, scalable, and governable."
-        lede="Founded to solve real-world complexity for regulated enterprises, we design technology platforms with architectural rigor and long-term trust in mind."
-        primaryCta={{ label: 'Start a Conversation', href: '/contact-us' }}
-        secondaryCta={{ label: 'How We Work', href: '/how-we-work' }}
+        eyebrow="About YatiSphere"
+        title="A senior team for the systems regulated businesses can\u2019t afford to get wrong."
+        lede="We design, build and run core platforms and governed AI, Azure-first, for regulated businesses. The people who scope your work are the people who build it and stay to run it."
+        primaryCta={{ label: PRIMARY_CTA.label, href: PRIMARY_CTA.href }}
+        secondaryCta={{ label: SECONDARY_CTA.label, href: SECONDARY_CTA.href }}
       />
 
       {/* What we do — the page was missing a plain statement of the work */}
@@ -24,14 +26,14 @@ const AboutUs = () => {
         tone="light"
         eyebrow="What we do"
         title="Enterprise IT services, with applied AI on top."
-        lede="We build, modernise and run the systems enterprises depend on — software platforms, cloud, data — and bring AI into them with the governance regulated businesses require."
+        lede="We build, modernize and run the systems enterprises depend on — software platforms, cloud, data — and bring AI into them with the governance regulated businesses require."
       >
         <div className="ys-about-do">
           <div>
             <h3 className="ys-about-do-title">The core</h3>
             <p>
               Enterprise software and platforms, cloud and infrastructure, DevOps
-              and automation, data and analytics, legacy modernisation and
+              and automation, data and analytics, legacy modernization and
               enterprise security. One partner across the lifecycle rather than a
               handover at each stage.
             </p>
@@ -68,12 +70,15 @@ const AboutUs = () => {
       {/* Leadership */}
       <LeadershipSection />
 
+      {/* Registration facts, kept small and at the foot (audit AB-02) */}
+      <CompanyDetails />
+
       {/* Closing CTA */}
       <PageCTA
-        title="Ready to collaborate?"
-        body="We'd welcome the opportunity to discuss your technology challenges and explore whether we're the right fit for your organization."
-        primaryCta={{ label: 'Start a Conversation', href: '/contact-us' }}
-        secondaryCta={{ label: 'Explore Solutions', href: '/solutions' }}
+        title="What\u2019s the problem you\u2019d fix first?"
+        body="Tell us in a 30-minute call. A founder will give you an honest view on whether we\u2019re the right team."
+        primaryCta={{ label: PRIMARY_CTA.label, href: PRIMARY_CTA.href }}
+        secondaryCta={{ label: SECONDARY_CTA.label, href: SECONDARY_CTA.href }}
       />
     </SharedLayout>
   )

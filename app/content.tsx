@@ -3,6 +3,9 @@
 import { Suspense } from 'react'
 import dynamic from 'next/dynamic'
 import SharedLayout from '@/components/shared-layout'
+import { ProofStrip } from '@/components/proof/ProofStrip'
+import { CaseStudyCards } from '@/components/proof/CaseStudyCards'
+import { RegionsStrip } from '@/components/enterprise/RegionsStrip'
 
 const skeletonLight = (
   <div className="ys-section-light">
@@ -102,10 +105,16 @@ export default function Home() {
         <HeroSection />
       </Suspense>
 
+      {/* Proof under the hero; renders nothing until siteConfig.proof is filled */}
+      <ProofStrip />
+
       {/* 2 — Problems we solve, with the two pillars behind them */}
       <Suspense fallback={null}>
         <ITServicesSection />
       </Suspense>
+
+      {/* Case studies; renders nothing until siteConfig.caseStudies is filled */}
+      <CaseStudyCards />
 
       {/* 3 — The delivery lifecycle */}
       <Suspense fallback={null}>
@@ -116,6 +125,9 @@ export default function Home() {
       <Suspense fallback={null}>
         <HowWeWorkSection />
       </Suspense>
+
+      {/* Hours, contracts, currency and data residency, answered up front */}
+      <RegionsStrip />
 
       {/* 5 — Final CTA */}
       <Suspense fallback={null}>

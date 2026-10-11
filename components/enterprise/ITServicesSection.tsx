@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import { YsIcon, type YsIconName } from '@/components/brand/YsIcon'
 import { CapabilityVisual, type VisualKind } from '@/components/enterprise/CapabilityVisual'
+import { FEATURED_INDUSTRIES, OTHER_INDUSTRIES } from '@/lib/services'
 
 
 
@@ -30,11 +31,11 @@ const problems: ProblemCard[] = [
   },
   {
     problem: 'Our core system is old and nobody dares touch it.',
-    body: 'Step-by-step modernisation while the business keeps running.',
-    tag: 'Legacy Modernisation',
-    href: '/solutions/consulting',
+    body: 'Step-by-step modernization while the business keeps running.',
+    tag: 'Modernization & Advisory',
+    href: '/solutions/modernization',
     icon: 'growth',
-    visual: 'modernisation',
+    visual: 'modernization',
   },
   {
     problem: 'We have the data but can\u2019t get an answer out of it.',
@@ -63,7 +64,7 @@ const problems: ProblemCard[] = [
   {
     problem: 'An audit or a client security review is coming.',
     body: 'Controls, logging and evidence built into your systems.',
-    tag: 'Enterprise Security',
+    tag: 'Security & Compliance',
     href: '/solutions/security',
     icon: 'security',
     visual: 'security',
@@ -72,24 +73,20 @@ const problems: ProblemCard[] = [
 
 const PILLARS = [
   {
-    label: 'Enterprise IT Services',
-    line: 'Software, cloud, data, DevOps, modernisation and security: the systems your business runs on.',
-    link: { label: 'See IT services', href: '/solutions' },
+    label: 'Enterprise IT services',
+    line: 'Microsoft Azure specialists across software, cloud, data, DevOps, modernization and security: the systems your business runs on.',
+    link: { label: 'See all services', href: '/solutions' },
   },
   {
     label: 'Applied AI',
-    line: 'Production-grade AI inside the systems you already run, governed from day one.',
+    line: 'Production-grade AI inside the systems you already run, governed from day one. Azure-first, model-agnostic.',
     link: { label: 'See applied AI', href: '/applied-ai' },
   },
 ]
 
-const SECTORS = [
-  { name: 'financial services', href: '/industries/financial-services' },
-  { name: 'legal and professional services', href: '/industries/legal-professional-services' },
-  { name: 'healthcare', href: '/industries/healthcare' },
-  { name: 'government', href: '/industries/government-public-sector' },
-  { name: 'technology firms', href: '/industries/enterprise-technology' },
-]
+// Featured sectors lead; the rest are named as "also" (audit I-01, G-11).
+const SECTORS = FEATURED_INDUSTRIES
+const ALSO = OTHER_INDUSTRIES
 
 const ITServicesSection = () => {
   return (
@@ -167,12 +164,21 @@ const ITServicesSection = () => {
         <motion.p
           className="ys-sectors-line"
         >
-          We work with{' '}
+          Built for{' '}
           {SECTORS.map((sector, i) => (
             <span key={sector.href}>
               {i > 0 && (i === SECTORS.length - 1 ? ' and ' : ', ')}
               <a href={sector.href} className="ys-sectors-link">
-                {sector.name}
+                {sector.name.toLowerCase().replace('software & saas', 'software and SaaS companies')}
+              </a>
+            </span>
+          ))}
+          . Also experienced in{' '}
+          {ALSO.map((sector, i) => (
+            <span key={sector.href}>
+              {i > 0 && ' and '}
+              <a href={sector.href} className="ys-sectors-link">
+                {sector.name.toLowerCase().replace(' & public sector', '')}
               </a>
             </span>
           ))}

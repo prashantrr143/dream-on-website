@@ -26,61 +26,62 @@ interface RouteMeta {
 
 export const ROUTE_META: Record<string, RouteMeta> = {
   '/': {
-    // 71 characters, over the 60-character guideline. Kept because the
-    // brief specifies this exact string; Google will truncate the tail
-    // in results. Shortening to "...fix real problems | YatiSphere"
-    // would fit in 62.
-    title: 'IT services and applied AI that fix real business problems | YatiSphere',
+    title: 'Azure engineering and applied AI | YatiSphere',
     description:
-      'Slow onboarding, systems nobody dares touch, data you cannot get answers from. Tell us the problem and one in-house team delivers the working solution.',
+      'A senior, in-house team that modernizes core platforms and puts governed AI into production for regulated businesses. Fixed price to start.',
   },
 
   '/solutions': {
     title: 'Enterprise IT services | YatiSphere',
     description:
-      'Software, cloud, data, DevOps, modernisation and security, delivered end to end by the team that scoped the work.',
+      'Modernize, migrate, secure and run the platforms your business depends on. Azure-first IT services, delivered end to end by one senior team.',
+  },
+  '/solutions/software-engineering': {
+    title: 'Software and platform engineering | YatiSphere',
+    description:
+      'Platform blocking the next product? APIs, integration, core platform builds and Java or .NET modernization on Azure, from engineers who support it.',
   },
   '/solutions/cloud': {
     title: 'Cloud and infrastructure | YatiSphere',
     description:
-      'Rising cloud costs, unclear ownership and migrations that stall. Secure foundations and a platform your own engineers can run.',
+      'Cloud costs rising, migration slipping, controls behind? Azure landing zones, migration, FinOps and resilience, built by the team that supports it.',
   },
   '/solutions/data': {
     title: 'Data and analytics | YatiSphere',
     description:
-      'The data exists but nobody can get an answer from it. One trusted platform, governed pipelines and dashboards people actually use.',
+      'Same question, three different numbers? Microsoft Fabric, Databricks and Purview on Azure, so your figures hold up for decisions, regulators and clients.',
   },
   '/solutions/devops': {
-    title: 'DevOps and automation | YatiSphere',
+    title: 'DevOps and platform automation | YatiSphere',
     description:
-      'Releases that take days and break things. Automated delivery and infrastructure, without losing engineering control.',
+      'Releases that depend on one person\u2019s checklist? CI/CD, infrastructure as code and observability on Azure, so every change takes the same tested path.',
   },
   '/solutions/security': {
-    title: 'Enterprise security | YatiSphere',
+    title: 'Security and compliance | YatiSphere',
     description:
-      'An audit or client security review is coming. Controls, logging and evidence built into your systems rather than bolted on.',
+      'An audit or client security review coming? Identity, zero trust, data protection and audit evidence on Azure, designed against the frameworks you face.',
   },
-  '/solutions/consulting': {
-    title: 'Legacy modernisation and advisory | YatiSphere',
+  '/solutions/modernization': {
+    title: 'Modernization and advisory | YatiSphere',
     description:
-      'A core system nobody dares touch. Step-by-step modernisation that keeps the business running while it happens.',
+      'Core system too old to touch? Architecture reviews, legacy re-platforming and costed roadmaps on Azure, delivered in reversible steps.',
   },
 
   '/applied-ai': {
     title: 'Applied AI | YatiSphere',
     description:
-      'Most AI pilots never leave the sandbox. We own the integration, the governance and the operations, so the work reaches production.',
+      'AI that moves from pilot to production, with integration, governance and operations owned by one team. Azure-first and model-agnostic.',
   },
 
   '/industries': {
-    title: 'Industries we work in | YatiSphere',
+    title: 'Industries we build for | YatiSphere',
     description:
-      'Regulated and high-trust environments where a wrong answer has consequences: finance, legal, healthcare, government and technology.',
+      'Systems for financial services, legal and professional services, and software and SaaS companies, where a wrong answer has consequences.',
   },
   '/industries/financial-services': {
     title: 'Financial services technology | YatiSphere',
     description:
-      'Onboarding that takes weeks, evidence auditors keep asking for, and core systems that cannot go down.',
+      'Onboarding, settlement and compliance systems for banks, insurers, wealth and asset managers, and fintechs, built for the regimes you answer to.',
   },
   '/industries/legal-professional-services': {
     title: 'Legal and professional services | YatiSphere',
@@ -97,10 +98,10 @@ export const ROUTE_META: Record<string, RouteMeta> = {
     description:
       'Citizen services that must be accessible, auditable and resilient, built against the constraints that actually apply.',
   },
-  '/industries/enterprise-technology': {
-    title: 'Enterprise and technology firms | YatiSphere',
+  '/industries/software-saas': {
+    title: 'Software and SaaS | YatiSphere',
     description:
-      'Platforms under load, security reviews from your own customers, and the evidence your buyers ask for before they sign.',
+      'Multi-tenant architecture, release controls and safe AI features for software companies answering enterprise customers\u2019 security reviews.',
   },
 
   '/how-we-work': {
@@ -118,15 +119,20 @@ export const ROUTE_META: Record<string, RouteMeta> = {
     description:
       'Describe the problem in a few lines. A founder replies within one working day with an honest view on whether we can help.',
   },
+  '/blueprint': {
+    title: 'Fixed-price Blueprint | YatiSphere',
+    description:
+      'A solution blueprint, a fixed costed delivery plan and a risk register in two to four weeks, before you commit to any build.',
+  },
+  '/case-studies': {
+    title: 'Case studies | YatiSphere',
+    description:
+      'Problems we have solved for regulated businesses, what stood in the way, and the measured result.',
+  },
   '/perspectives': {
     title: 'Perspectives | YatiSphere',
     description:
       'Notes on delivering enterprise software, cloud and applied AI in regulated environments.',
-  },
-  '/services': {
-    title: 'Services | YatiSphere',
-    description:
-      'What we build, run and advise on across software, cloud, data, security and applied AI.',
   },
 
   '/responsible-ai': {
@@ -134,10 +140,10 @@ export const ROUTE_META: Record<string, RouteMeta> = {
     description:
       'What we commit to when building AI, what we refuse to build, and how we can be held to it.',
   },
-  '/security': {
-    title: 'Security | YatiSphere',
+  '/trust': {
+    title: 'Trust center | YatiSphere',
     description:
-      'How we protect client systems and data: access control, logging, and evidence your auditors can use.',
+      'How we protect client systems and data, who processes data for us, our certification status, and how to request an NDA and security pack.',
   },
 
   // Legal pages carry no search value and are kept out of the index.

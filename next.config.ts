@@ -69,6 +69,12 @@ const nextConfig: NextConfig = {
         destination: '/privacy#cookies',
         permanent: true,
       },
+      // Audit S-02 / I-01 / T-01 renames, and /services, which duplicated
+      // the /solutions hub. Permanent, single hop.
+      { source: '/solutions/consulting', destination: '/solutions/modernization', permanent: true },
+      { source: '/industries/enterprise-technology', destination: '/industries/software-saas', permanent: true },
+      { source: '/security', destination: '/trust', permanent: true },
+      { source: '/services', destination: '/solutions', permanent: true },
       // Terms of Service was withdrawn pending legal review of the
       // governing-law and dispute-resolution clauses.
       {

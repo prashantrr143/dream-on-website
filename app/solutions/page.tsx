@@ -16,7 +16,7 @@ export default function Page() {
           {
             name: 'Enterprise IT Services',
             description:
-              'Software, cloud, data, DevOps, modernisation and security: the systems your business runs on.',
+              'Software, cloud, data, DevOps, modernization and security: the systems your business runs on.',
             url: `${SITE_URL}/solutions`,
           },
           {

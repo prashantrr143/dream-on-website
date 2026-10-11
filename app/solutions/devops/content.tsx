@@ -3,408 +3,269 @@
 import { motion } from 'framer-motion'
 import SharedLayout from '@/components/shared-layout'
 import { PageHero, PageSection, PageCTA } from '@/components/enterprise'
+import { PRIMARY_CTA, SECONDARY_CTA } from '@/lib/cta'
 
 
 
 /* ── Data ─────────────────────────────────────────── */
 
-const keyCapabilities = [
-  { value: "CI/CD", label: "Automated pipelines", sub: "Build, test and release automation" },
-  { value: "IaC", label: "Infrastructure as code", sub: "Versioned, repeatable environments" },
-  { value: "K8s", label: "Container platforms", sub: "Orchestration and auto-scaling" },
-  { value: "Obs", label: "Observability", sub: "Metrics, logs, traces and alerting" }
+const SITUATIONS = [
+  {
+    quote: 'Releases are manual and everyone dreads them.',
+    body: 'Deployments depend on one person’s checklist. When something breaks, rolling back takes longer than shipping did.',
+  },
+  {
+    quote: 'Our environments never match.',
+    body: 'Test passes, production fails. Nobody can rebuild an environment from scratch, so nobody dares change one.',
+  },
+  {
+    quote: 'Security reviews hold up every release.',
+    body: 'Scans run at the end, findings arrive late and the release waits. Evidence for auditors is pulled together by hand.',
+  },
 ]
 
-const solutions = [
+const SERVICES = [
   {
-    title: "CI/CD Pipeline Automation",
-    description: "Build, test and release pipelines with quality gates at each promotion and a defined rollback path.",
-    capabilities: [
-      "Automated build and test pipelines",
-      "Multi-environment promotion",
-      "Quality gate enforcement",
-      "Automated rollback strategies"
+    title: 'CI/CD pipelines',
+    body: 'Build, test and release pipelines with a quality gate at each promotion and a defined rollback path.',
+    gets: [
+      'Pipelines in Azure DevOps or GitHub Actions',
+      'Quality gates before every promotion',
+      'Automated rollback on failed health checks',
     ],
-    metric: "Commit to production, automated",
-    technologies: ["Jenkins", "GitLab CI", "GitHub Actions", "Azure DevOps"],
-    iconPath: "M6 3v12M18 9a3 3 0 100-6 3 3 0 000 6zM6 21a3 3 0 100-6 3 3 0 000 6zM18 9a9 9 0 01-9 9"
   },
   {
-    title: "Infrastructure as Code",
-    description: "Environments defined in version control, so provisioning is reviewable, repeatable and recoverable.",
-    capabilities: [
-      "Environment provisioning",
-      "Infrastructure versioning",
-      "Configuration management",
-      "Disaster recovery automation"
+    title: 'Infrastructure as code',
+    body: 'Environments defined in version control, so provisioning is reviewable, repeatable and recoverable.',
+    gets: [
+      'Terraform or Bicep modules for each environment',
+      'Infrastructure changes reviewed like application code',
+      'Environments you can rebuild on demand',
     ],
-    metric: "Repeatable environment provisioning",
-    technologies: ["Terraform", "CloudFormation", "Ansible", "Pulumi"],
-    iconPath: "M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
   },
   {
-    title: "Monitoring & Observability",
-    description: "Metrics, logs and traces unified behind actionable alerts, with load testing and capacity planning to size ahead of demand.",
-    capabilities: [
-      "Application performance monitoring",
-      "Infrastructure health tracking",
-      "Log aggregation and analysis",
-      "Load testing and capacity planning"
+    title: 'Container platforms and observability',
+    body: 'Azure Kubernetes Service platforms with scaling policies and progressive delivery, plus the metrics, logs and traces to see what is happening.',
+    gets: [
+      'AKS clusters with scaling policies',
+      'Blue-green and canary releases',
+      'Alerts routed to a named owner',
     ],
-    metric: "End-to-end observability",
-    technologies: ["Prometheus", "Grafana", "ELK Stack", "K6"],
-    iconPath: "M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
   },
   {
-    title: "Container Orchestration",
-    description: "Kubernetes platforms with scaling policies, service-to-service networking and progressive delivery patterns.",
-    capabilities: [
-      "Container orchestration",
-      "Auto-scaling policies",
-      "Service mesh implementation",
-      "Blue-green and canary releases"
+    title: 'Security in the pipeline',
+    body: 'Scanning, policy checks and secrets handling run inside the pipeline, not as a separate review at the end.',
+    gets: [
+      'Code, dependency and container scanning in CI',
+      'Secrets held in Azure Key Vault',
+      'Pipeline evidence ready for audit',
     ],
-    metric: "Progressive delivery by default",
-    technologies: ["Kubernetes", "Docker", "Istio", "Helm"],
-    iconPath: "M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"
   },
-  {
-    title: "Pipeline Security",
-    description: "Scanning, policy checks and secrets handling run inside the pipeline rather than as a separate review step.",
-    capabilities: [
-      "SAST, DAST and dependency scanning",
-      "Policy-as-code enforcement",
-      "Secrets management and rotation",
-      "Audit-ready pipeline evidence"
-    ],
-    metric: "Security checks in the pipeline",
-    technologies: ["SonarQube", "HashiCorp Vault", "OWASP ZAP", "Snyk"],
-    iconPath: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
-  }
 ]
 
-const engagementScenarios = [
+const SCENARIOS = [
   {
-    client: "SaaS platforms",
-    challenge: "Manual deployments causing frequent outages",
-    solution: "Automated CI/CD with blue-green deployments and defined rollback paths",
-    results: [
-      "Blue-green and canary release patterns",
-      "Automated rollback on failed health checks",
-      "Quality gates before every promotion"
-    ]
+    tag: 'Software & SaaS',
+    problem: 'Manual deployments keep causing outages.',
+    approach: 'Automated CI/CD with blue-green deployments and defined rollback paths.',
+    points: [
+      'Blue-green and canary release patterns',
+      'Automated rollback on failed health checks',
+      'Quality gates before every promotion',
+    ],
   },
   {
-    client: "E-commerce & marketplaces",
-    challenge: "Scaling infrastructure during peak traffic",
-    solution: "Kubernetes auto-scaling with monitoring and capacity planning",
-    results: [
-      "Horizontal pod and node auto-scaling",
-      "Cost visibility through resource tagging",
-      "Load testing ahead of peak periods"
-    ]
+    tag: 'Financial services',
+    problem: 'Every release needs security sign-off.',
+    approach: 'Security scanning and policy checks built into the pipeline across every environment.',
+    points: [
+      'Static, dynamic and dependency scanning in CI',
+      'Secrets management and rotation',
+      'Audit-ready pipeline evidence',
+    ],
   },
   {
-    client: "Financial technology",
-    challenge: "Complex compliance and security requirements",
-    solution: "Automated security scanning and continuous policy checks across environments",
-    results: [
-      "SAST, DAST and dependency scanning in CI",
-      "Secrets management and rotation",
-      "Audit-ready pipeline evidence"
-    ]
-  }
+    tag: 'Legal & professional services',
+    problem: 'A small team looks after too many systems to release by hand.',
+    approach: 'Shared pipeline templates and infrastructure as code, so a small team can run many applications safely.',
+    points: [
+      'Reusable pipeline templates',
+      'Environments rebuilt from code',
+      'A change history for every release',
+    ],
+  },
 ]
+
+const CORE_STACK = [
+  'Azure DevOps',
+  'GitHub Actions',
+  'Terraform',
+  'Bicep',
+  'Azure Kubernetes Service',
+  'Azure Container Registry',
+  'Azure Key Vault',
+  'Azure Monitor',
+]
+
+const ALSO_STACK = ['AWS', 'Google Cloud', 'Jenkins', 'GitLab CI', 'Pulumi', 'Helm', 'Prometheus', 'Grafana']
+
+/* ── Helpers ──────────────────────────────────────── */
+
+function Tick() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ marginTop: '3px', flexShrink: 0 }} aria-hidden="true">
+      <path d="M4 8l3.5 3.5L12 4" stroke="var(--ys-link-on-light)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  )
+}
+
+function TickList({ items }: { items: string[] }) {
+  return (
+    <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: '9px' }}>
+      {items.map((item) => (
+        <li key={item} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
+          <Tick />
+          <span style={{ fontSize: '14px', lineHeight: 1.55, color: 'var(--ys-ink-body)' }}>{item}</span>
+        </li>
+      ))}
+    </ul>
+  )
+}
+
+function Chips({ items }: { items: string[] }) {
+  return (
+    <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+      {items.map((chip) => (
+        <li
+          key={chip}
+          style={{
+            padding: '5px 11px',
+            borderRadius: '6px',
+            background: 'var(--ys-surface-alt)',
+            border: '1px solid var(--ys-border)',
+            fontSize: '13px',
+            fontWeight: 500,
+            color: 'var(--ys-ink-body)',
+          }}
+        >
+          {chip}
+        </li>
+      ))}
+    </ul>
+  )
+}
+
+const labelStyle: React.CSSProperties = {
+  fontSize: '11px',
+  fontWeight: 700,
+  letterSpacing: '0.12em',
+  textTransform: 'uppercase',
+  color: 'var(--ys-ink-muted)',
+  marginBottom: '10px',
+}
 
 /* ── Component ────────────────────────────────────── */
 
 const DevOpsAutomation = () => {
   return (
     <SharedLayout>
-      {/* Hero — Deep Blue */}
+      {/* ── 1. Hero ── */}
       <PageHero
-        eyebrow="DevOps & Automation"
-        title="Ship faster without breaking things."
-        lede="Automated pipelines, infrastructure as code and observability — engineered to take manual steps and guesswork out of your release process."
-        primaryCta={{ label: 'Get DevOps Assessment', href: '/contact-us' }}
-        secondaryCta={{ label: 'How we work', href: '/how-we-work' }}
+        eyebrow="DevOps & Platform Automation"
+        title="Releases that are routine, not risky."
+        lede="CI/CD, infrastructure as code and observability on Microsoft Azure, so every change reaches production through the same tested path."
+        visual="lanes"
+        primaryCta={{ label: PRIMARY_CTA.label, href: PRIMARY_CTA.href }}
+        secondaryCta={{ label: SECONDARY_CTA.label, href: SECONDARY_CTA.href }}
       />
 
-      {/* At a glance */}
-      <PageSection tone="white" eyebrow="At a glance">
-        <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
-          style={{ gap: '16px' }}
-        >
-          {keyCapabilities.map((item) => (
-            <motion.div
-              key={item.label}
-              className="ys-card-light"
-              style={{ padding: '28px 24px', minWidth: 0 }}
-            >
-              <div
-                style={{
-                  fontSize: 'clamp(1.75rem, 3vw, 2.25rem)',
-                  fontWeight: 700,
-                  color: 'var(--ys-ink)',
-                  letterSpacing: '-0.03em',
-                  lineHeight: 1,
-                  marginBottom: '10px'
-                }}
-              >
-                {item.value}
-              </div>
-              <div
-                style={{
-                  fontSize: '14px',
-                  fontWeight: 600,
-                  color: 'var(--ys-link-on-light)',
-                  marginBottom: '6px'
-                }}
-              >
-                {item.label}
-              </div>
-              <div style={{ fontSize: '13px', lineHeight: 1.55, color: 'var(--ys-ink-muted)' }}>
-                {item.sub}
-              </div>
+      {/* ── 2. Situations ── */}
+      <PageSection tone="white" eyebrow="Where teams get stuck" title="Three situations we get called into.">
+        <motion.div className="grid grid-cols-1 md:grid-cols-3" style={{ gap: '20px' }}>
+          {SITUATIONS.map((s) => (
+            <motion.div key={s.quote} className="ys-card-light" style={{ padding: '28px', minWidth: 0 }}>
+              <h3 style={{ fontSize: '18px', fontWeight: 700, letterSpacing: '-0.02em', lineHeight: 1.35, color: 'var(--ys-ink)', marginBottom: '12px', textWrap: 'pretty' }}>
+                &ldquo;{s.quote}&rdquo;
+              </h3>
+              <p style={{ fontSize: '15px', lineHeight: 1.65, color: 'var(--ys-ink-body)', maxWidth: '62ch' }}>{s.body}</p>
             </motion.div>
           ))}
         </motion.div>
       </PageSection>
 
-      {/* Solutions */}
+      {/* ── 3. Services ── */}
       <PageSection
         tone="light"
-        eyebrow="What we deliver"
-        title="The delivery pipeline, end to end."
-        lede="Automation that carries a change from commit to production, with the controls and visibility to run it safely."
+        eyebrow="What we do"
+        title="One tested path from commit to production."
+        lede="We build the pipeline, the platform under it and the controls around it, on Azure by default."
       >
-        <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3"
-          style={{ gap: '24px' }}
-        >
-          {solutions.map((solution) => (
-            <motion.div
-              key={solution.title}
-              className="ys-card-light"
-              style={{
-                padding: '32px',
-                display: 'flex',
-                flexDirection: 'column',
-                minWidth: 0
-              }}
-            >
-              {/* Icon */}
-              <div
-                style={{
-                  width: '48px',
-                  height: '48px',
-                  borderRadius: '12px',
-                  background: 'var(--ys-surface-alt)',
-                  border: '1px solid var(--ys-border)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  marginBottom: '24px',
-                  flexShrink: 0
-                }}
-              >
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--ys-link-on-light)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <path d={solution.iconPath} />
-                </svg>
-              </div>
-
-              <h3
-                style={{
-                  fontSize: '20px',
-                  fontWeight: 700,
-                  letterSpacing: '-0.02em',
-                  marginBottom: '12px'
-                }}
-              >
-                {solution.title}
+        <motion.div className="grid grid-cols-1 lg:grid-cols-2" style={{ gap: '20px' }}>
+          {SERVICES.map((service) => (
+            <motion.div key={service.title} className="ys-card-light" style={{ padding: '32px', display: 'flex', flexDirection: 'column', minWidth: 0 }}>
+              <h3 style={{ fontSize: '20px', fontWeight: 700, letterSpacing: '-0.02em', lineHeight: 1.3, color: 'var(--ys-ink)', marginBottom: '12px' }}>
+                {service.title}
               </h3>
-              <p
-                style={{
-                  fontSize: '15px',
-                  lineHeight: 1.65,
-                  color: 'var(--ys-ink-body)',
-                  marginBottom: '24px'
-                }}
-              >
-                {solution.description}
+              <p style={{ fontSize: '15px', lineHeight: 1.65, color: 'var(--ys-ink-body)', marginBottom: '22px', maxWidth: '62ch' }}>
+                {service.body}
               </p>
-
-              {/* Capabilities */}
-              <div style={{ marginBottom: '24px', flex: 1 }}>
-                {solution.capabilities.map((cap) => (
-                  <div
-                    key={cap}
-                    style={{
-                      display: 'flex',
-                      alignItems: 'flex-start',
-                      gap: '10px',
-                      marginBottom: '10px'
-                    }}
-                  >
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ marginTop: '2px', flexShrink: 0 }} aria-hidden="true">
-                      <path d="M13.333 4L6 11.333 2.667 8" stroke="var(--ys-link-on-light)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                    <span style={{ fontSize: '14px', color: 'var(--ys-ink-body)', lineHeight: 1.5 }}>{cap}</span>
-                  </div>
-                ))}
-              </div>
-
-              {/* Bottom: summary + tech tags */}
-              <div
-                style={{
-                  paddingTop: '20px',
-                  borderTop: '1px solid var(--ys-border)',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '16px'
-                }}
-              >
-                <div
-                  style={{
-                    fontSize: '14px',
-                    fontWeight: 700,
-                    color: 'var(--ys-link-on-light)',
-                    letterSpacing: '-0.01em'
-                  }}
-                >
-                  {solution.metric}
-                </div>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
-                  {solution.technologies.map((tech) => (
-                    <span
-                      key={tech}
-                      style={{
-                        fontSize: '11px',
-                        fontWeight: 600,
-                        color: 'var(--ys-ink-body)',
-                        background: 'var(--ys-surface)',
-                        padding: '4px 10px',
-                        borderRadius: '100px',
-                        border: '1px solid var(--ys-border)',
-                        letterSpacing: '0.01em'
-                      }}
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
+              <p style={labelStyle}>You get</p>
+              <TickList items={service.gets} />
             </motion.div>
           ))}
         </motion.div>
       </PageSection>
 
-      {/* Engagement scenarios */}
+      {/* ── 4. Scenarios ── */}
+      <PageSection tone="white" eyebrow="Where we apply it" title="Typical problems, and the practices we put in place.">
+        <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3" style={{ gap: '20px' }}>
+          {SCENARIOS.map((scenario) => (
+            <motion.div key={scenario.tag} className="ys-card-light" style={{ padding: '30px', display: 'flex', flexDirection: 'column', minWidth: 0 }}>
+              <p style={{ fontSize: '11px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--ys-link-on-light)', marginBottom: '14px' }}>
+                {scenario.tag}
+              </p>
+              <h3 style={{ fontSize: '18px', fontWeight: 700, letterSpacing: '-0.02em', lineHeight: 1.35, color: 'var(--ys-ink)', marginBottom: '10px', textWrap: 'pretty' }}>
+                {scenario.problem}
+              </h3>
+              <p style={{ fontSize: '15px', lineHeight: 1.65, color: 'var(--ys-ink-body)', marginBottom: '20px', maxWidth: '62ch' }}>
+                {scenario.approach}
+              </p>
+              <TickList items={scenario.points} />
+            </motion.div>
+          ))}
+        </motion.div>
+      </PageSection>
+
+      {/* ── 5. Stack ── */}
       <PageSection
-        tone="white"
-        eyebrow="Where we apply it"
-        title="Common DevOps engagement scenarios."
-        lede="Typical delivery problems we take on, and the practices we put in place for each."
+        tone="light"
+        eyebrow="Technology"
+        title="Azure-first, by design."
+        lede="Microsoft Azure is our specialism. If your pipelines already run on AWS, Google Cloud or another toolchain, we work there too."
       >
-        <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
-          style={{ gap: '24px' }}
-        >
-          {engagementScenarios.map((study) => (
-            <motion.div
-              key={study.client}
-              className="ys-card-light"
-              style={{
-                padding: '32px',
-                display: 'flex',
-                flexDirection: 'column',
-                minWidth: 0
-              }}
+        <motion.div className="ys-card-light" style={{ padding: 'clamp(24px, 3.5vw, 36px)', minWidth: 0 }}>
+          <p style={labelStyle}>Core stack</p>
+          <Chips items={CORE_STACK} />
+          <details style={{ marginTop: '22px', paddingTop: '18px', borderTop: '1px solid var(--ys-border)' }}>
+            <summary
+              className="ys-link focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--ys-link-on-light)]"
+              style={{ cursor: 'pointer', fontSize: '14px' }}
             >
-              <p
-                style={{
-                  fontSize: '12px',
-                  fontWeight: 600,
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.08em',
-                  color: 'var(--ys-ink-muted)',
-                  marginBottom: '16px'
-                }}
-              >
-                {study.client}
-              </p>
-
-              <h3
-                style={{
-                  fontSize: '19px',
-                  fontWeight: 700,
-                  letterSpacing: '-0.02em',
-                  marginBottom: '12px',
-                  lineHeight: 1.3
-                }}
-              >
-                {study.challenge}
-              </h3>
-              <p
-                style={{
-                  fontSize: '15px',
-                  lineHeight: 1.65,
-                  color: 'var(--ys-ink-body)',
-                  marginBottom: '28px'
-                }}
-              >
-                {study.solution}
-              </p>
-
-              <div style={{ marginTop: 'auto', paddingTop: '20px', borderTop: '1px solid var(--ys-border)' }}>
-                {study.results.map((result) => (
-                  <div
-                    key={result}
-                    style={{
-                      display: 'flex',
-                      alignItems: 'flex-start',
-                      gap: '10px',
-                      marginBottom: '10px'
-                    }}
-                  >
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ marginTop: '2px', flexShrink: 0 }} aria-hidden="true">
-                      <path d="M4 8l3.5 3.5L12 4" stroke="var(--ys-link-on-light)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                    <span style={{ fontSize: '14px', color: 'var(--ys-ink-body)', lineHeight: 1.5 }}>{result}</span>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-          ))}
+              We also work with
+            </summary>
+            <div style={{ marginTop: '14px' }}>
+              <Chips items={ALSO_STACK} />
+            </div>
+          </details>
         </motion.div>
       </PageSection>
 
-      {/* What the assessment includes */}
-      <PageSection tone="light" eyebrow="What the assessment includes">
-        <div className="flex flex-wrap" style={{ gap: '16px 24px' }}>
-          {[
-            "Free maturity assessment",
-            "Custom automation roadmap",
-            "Tooling recommendations",
-            "No long-term commitment"
-          ].map((item) => (
-            <div key={item} style={{ display: 'flex', alignItems: 'center', gap: '8px', minWidth: 0 }}>
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ flexShrink: 0 }} aria-hidden="true">
-                <path d="M13.333 4L6 11.333 2.667 8" stroke="var(--ys-link-on-light)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-              <span style={{ fontSize: '14px', color: 'var(--ys-ink-body)' }}>{item}</span>
-            </div>
-          ))}
-        </div>
-      </PageSection>
-
-      {/* CTA — Deep Blue */}
+      {/* ── 6. Closing call to action ── */}
       <PageCTA
-        title="Ready to accelerate your delivery?"
-        body="Get a DevOps maturity assessment and see how automated pipelines would change the way your software reaches production."
-        primaryCta={{ label: 'Get DevOps Assessment', href: '/contact-us' }}
-        secondaryCta={{ label: 'Book Strategy Session', href: '/contact-us' }}
+        title="How long does a change take to reach production?"
+        body="If the honest answer is “it depends,” tell us about your release process. We will show you where the time and the risk go."
+        primaryCta={{ label: PRIMARY_CTA.label, href: PRIMARY_CTA.href }}
+        secondaryCta={{ label: SECONDARY_CTA.label, href: SECONDARY_CTA.href }}
       />
     </SharedLayout>
   )

@@ -6,8 +6,7 @@ import { PageHero, PageSection, PageCTA } from '@/components/enterprise'
 import DeliveryStages from '@/components/enterprise/DeliveryStages'
 import EngagementModelsSection from '@/components/enterprise/EngagementModelsSection'
 import { PRIMARY_CTA } from '@/lib/cta'
-
-// Animation variants
+import { WORKING_ACROSS_REGIONS } from '@/lib/regions'
 
 
 // Core principles. Four, not six: "Collaboration over hand-offs" and
@@ -30,30 +29,6 @@ const principles = [
     title: "Working software every two weeks",
     description: "Incremental delivery, never a big reveal at the end."
   }
-]
-
-/**
- * What we can state truthfully about working across regions today.
- * Nothing here claims a certification, an office or a headcount the
- * company does not have.
- */
-const INTERNATIONAL = [
-  {
-    title: 'Your region, your accounts',
-    body: 'We build in your cloud accounts and your chosen region, so data residency stays under your control rather than ours.',
-  },
-  {
-    title: 'A DPA and transfer terms',
-    body: 'We sign a data processing agreement, and use standard contractual clauses where personal data crosses a border.',
-  },
-  {
-    title: 'Invoiced in your currency',
-    body: 'USD, EUR, GBP, AED or INR, with withholding and treaty relief handled in the engagement terms.',
-  },
-  {
-    title: 'Overlapping working hours',
-    body: 'Our day overlaps UK, European and Gulf business hours in full, and US East Coast mornings by arrangement.',
-  },
 ]
 
 export default function HowWeWorkContent() {
@@ -118,96 +93,24 @@ export default function HowWeWorkContent() {
       </PageSection>
 
       {/* Engagement models — moved here from the homepage. Sits before
-          collaboration so the commercial shape is clear first. */}
+          collaboration so the commercial shape is clear first, with the
+          regional practicalities directly after it. */}
       <div id="engagement">
         <EngagementModelsSection />
       </div>
 
-      {/* How We Collaborate */}
-      <PageSection id="collaboration" tone="white" eyebrow="Collaboration" title="How We Collaborate">
-        <motion.div
-          className="grid grid-cols-1 lg:grid-cols-2"
-          style={{ gap: 'clamp(28px, 4vw, 56px)', alignItems: 'start' }}
-        >
-          {/* Working With Your Teams */}
-          <motion.div style={{ minWidth: 0 }}>
-            <h3
-              style={{
-                fontSize: 'clamp(18px, 2vw, 21px)',
-                fontWeight: 700,
-                letterSpacing: '-0.02em',
-                lineHeight: 1.3,
-                marginBottom: '16px'
-              }}
-            >
-              Working With Your Teams
-            </h3>
-            <div
-              style={{
-                fontSize: '15.5px',
-                lineHeight: 1.7,
-                color: 'var(--ys-ink-body)',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '14px'
-              }}
-            >
-              <p>
-                We work with your teams, not over them. Our engagements are designed to integrate with your existing engineering, security, and operations functions.
-              </p>
-              <p>
-                Clear communication and documentation are non-negotiable. You will always know what we are doing, why we are doing it, and what decisions need your input.
-              </p>
-            </div>
-          </motion.div>
-
-          {/* Enterprise Constraints */}
-          <motion.div style={{ minWidth: 0 }}>
-            <h3
-              style={{
-                fontSize: 'clamp(18px, 2vw, 21px)',
-                fontWeight: 700,
-                letterSpacing: '-0.02em',
-                lineHeight: 1.3,
-                marginBottom: '16px'
-              }}
-            >
-              Respecting Enterprise Constraints
-            </h3>
-            <div
-              style={{
-                fontSize: '15.5px',
-                lineHeight: 1.7,
-                color: 'var(--ys-ink-body)',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '14px'
-              }}
-            >
-              <p>
-                We work within your governance frameworks, not around them. Your data ownership is respected throughout—we do not use client data to train models.
-              </p>
-              <p>
-                Security is not an afterthought. We design systems with clear data boundaries, least-privilege access, and audit-friendly architectures.
-              </p>
-            </div>
-          </motion.div>
-        </motion.div>
-      </PageSection>
-
-      {/* Closing CTA */}
       {/* Working across regions. Every line here is something the company
           can actually do today — no certifications are claimed, because
           none are held. */}
       <PageSection
         id="international"
-        tone="light"
+        tone="white"
         eyebrow="Working across regions"
         title="Incorporated in India. Delivering internationally."
-        lede="Clients in the UK, Europe, the United States, the Middle East and India. What that means in practice:"
+        lede="Built for clients across the UK, Europe, the Middle East, the US and India. What that means in practice:"
       >
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4" style={{ gap: '20px' }}>
-          {INTERNATIONAL.map((item) => (
+          {WORKING_ACROSS_REGIONS.map((item) => (
             <div
               key={item.title}
               className="ys-card-light"
@@ -244,12 +147,86 @@ export default function HowWeWorkContent() {
         >
           We design controls against the frameworks your auditors hold you to
           &mdash; GDPR and UK GDPR, SOC 2, ISO/IEC 27001, HIPAA, PCI DSS,
-          India&rsquo;s DPDP Act and regional equivalents &mdash; and produce the
-          evidence your organisation needs. The certifications themselves are
-          assessed against your organisation, and remain yours to hold.
+          India&rsquo;s DPDP Act, the UAE and Saudi PDPLs, US state privacy laws
+          and regional equivalents &mdash; and produce the
+          evidence your organization needs. The certifications themselves are
+          assessed against your organization, and remain yours to hold.
         </p>
       </PageSection>
 
+      {/* How we collaborate */}
+      <PageSection id="collaboration" tone="light" eyebrow="Collaboration" title="How we collaborate">
+        <motion.div
+          className="grid grid-cols-1 lg:grid-cols-2"
+          style={{ gap: 'clamp(28px, 4vw, 56px)', alignItems: 'start' }}
+        >
+          {/* Working with your teams */}
+          <motion.div style={{ minWidth: 0 }}>
+            <h3
+              style={{
+                fontSize: 'clamp(18px, 2vw, 21px)',
+                fontWeight: 700,
+                letterSpacing: '-0.02em',
+                lineHeight: 1.3,
+                marginBottom: '16px'
+              }}
+            >
+              Working with your teams
+            </h3>
+            <div
+              style={{
+                fontSize: '15.5px',
+                lineHeight: 1.7,
+                color: 'var(--ys-ink-body)',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '14px'
+              }}
+            >
+              <p>
+                We work with your teams, not over them. Our engagements are designed to integrate with your existing engineering, security, and operations functions.
+              </p>
+              <p>
+                Clear communication and documentation are non-negotiable. You will always know what we are doing, why we are doing it, and what decisions need your input.
+              </p>
+            </div>
+          </motion.div>
+
+          {/* Enterprise Constraints */}
+          <motion.div style={{ minWidth: 0 }}>
+            <h3
+              style={{
+                fontSize: 'clamp(18px, 2vw, 21px)',
+                fontWeight: 700,
+                letterSpacing: '-0.02em',
+                lineHeight: 1.3,
+                marginBottom: '16px'
+              }}
+            >
+              Respecting enterprise constraints
+            </h3>
+            <div
+              style={{
+                fontSize: '15.5px',
+                lineHeight: 1.7,
+                color: 'var(--ys-ink-body)',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '14px'
+              }}
+            >
+              <p>
+                We work within your governance frameworks, not around them. Your data ownership is respected throughout. We do not use client data to train or fine-tune models, unless a client asks us to in writing for their own dedicated model.
+              </p>
+              <p>
+                Security is not an afterthought. We design systems with clear data boundaries, least-privilege access, and audit-friendly architectures.
+              </p>
+            </div>
+          </motion.div>
+        </motion.div>
+      </PageSection>
+
+      {/* Closing CTA */}
       <PageCTA
         title={'What\u2019s the problem you\u2019d fix first?'}
         body="Describe it in a few lines. A founder replies within one working day with an honest view on whether we can help."

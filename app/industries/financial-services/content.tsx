@@ -4,9 +4,7 @@ import { motion } from 'framer-motion'
 import SharedLayout from '@/components/shared-layout'
 import { PageHero, PageSection, PageCTA } from '@/components/enterprise'
 import { YsIcon, type YsIconName } from '@/components/brand/YsIcon'
-import { PRIMARY_CTA } from '@/lib/cta'
-
-
+import { PRIMARY_CTA, SECONDARY_CTA } from '@/lib/cta'
 
 const atAGlance = [
   { value: "KYC", label: "Onboarding automation", sub: "Document capture, verification and case handling" },
@@ -27,7 +25,7 @@ const pressures = [
   },
   {
     title: "Legacy core systems",
-    description: "Core banking and policy administration platforms are long-lived by design. The pressure is not to replace them, but to build around them without destabilising the systems of record underneath.",
+    description: "Core banking and policy administration platforms are long-lived by design. The pressure is not to replace them, but to build around them without destabilizing the systems of record underneath.",
     points: [
       "Batch windows that constrain what can be real time",
       "Integration through file drops and point-to-point links",
@@ -103,10 +101,10 @@ const whatWeBuild: Array<{
   },
   {
     title: "Applied AI inside controlled workflows",
-    description: "Document extraction, screening triage and case summarisation placed where a human still decides. We treat any model touching credit, risk or eligibility as a governed asset, not a feature toggle.",
+    description: "Document extraction, screening triage and case summarization placed where a human still decides. We treat any model touching credit, risk or eligibility as a governed asset, not a feature toggle.",
     capabilities: [
       "Document understanding for onboarding packs",
-      "Triage and prioritisation with human adjudication",
+      "Triage and prioritization with human adjudication",
       "Model documentation, versioning and monitoring",
       "Explicit boundaries on automated decisioning"
     ],
@@ -119,12 +117,12 @@ const whatWeBuild: Array<{
 const governance = [
   {
     title: "Regulatory reporting obligations",
-    description: "Supervisory regimes such as those administered by the RBI and SEBI set out what must be reported, in what form and on what cycle. We design data platforms so those submissions can be produced from traceable sources and reproduced on request.",
+    description: "Each supervisory regime sets out what must be reported, in what form and on what cycle. We design data platforms so those submissions can be produced from traceable sources and reproduced on request.",
     icon: 'analytics' as YsIconName
   },
   {
     title: "PCI DSS for cardholder data",
-    description: "Where card data is in scope, PCI DSS defines the control expectations for storage, transmission and access. We architect segmentation, key handling and logging so your organisation can evidence those controls — the certification itself remains yours to hold.",
+    description: "Where card data is in scope, PCI DSS defines the control expectations for storage, transmission and access. We architect segmentation, key handling and logging so your organization can evidence those controls — the certification itself remains yours to hold.",
     icon: 'security' as YsIconName
   },
   {
@@ -139,17 +137,30 @@ const governance = [
   }
 ]
 
+/**
+ * Regimes we design reporting and controls for (audit F-02). Listed by
+ * region; this is about the obligations our clients carry, never an
+ * approval or authorization held by us.
+ */
+const regimes = [
+  { region: "UK", names: "FCA, PRA" },
+  { region: "EU", names: "DORA, EBA guidelines" },
+  { region: "UAE", names: "CBUAE, DFSA, ADGM FSRA" },
+  { region: "US", names: "SEC, FINRA" },
+  { region: "India", names: "RBI, SEBI" }
+]
+
 const FinancialServices = () => {
   return (
     <SharedLayout>
       {/* Hero — Deep Blue */}
       <PageHero
         eyebrow="Industries"
-        image={{ src: '/brand/yatisphere/imagery/industry-financial-services.png', alt: 'Financial services technology' }}
         title="Financial services systems built for scrutiny."
-        lede="Onboarding and KYC automation, post-trade and settlement systems, and compliance workflows — for banks, NBFCs, insurers and fintechs where the architecture has to answer to a regulator as well as a customer."
+        lede="Onboarding and KYC automation, post-trade and settlement systems, and compliance workflows — for banks, insurers, wealth and asset managers, and fintechs, where the architecture has to answer to a regulator as well as a customer."
+        visual="network"
         primaryCta={{ label: PRIMARY_CTA.label, href: PRIMARY_CTA.href }}
-        secondaryCta={{ label: 'How we work', href: '/how-we-work' }}
+        secondaryCta={{ label: SECONDARY_CTA.label, href: SECONDARY_CTA.href }}
       />
 
       {/* At a glance */}
@@ -205,7 +216,7 @@ const FinancialServices = () => {
         tone="light"
         eyebrow="The pressures"
         title="What makes financial services engineering hard."
-        lede="These are the structural constraints we design around. They are properties of the sector, not of any one organisation."
+        lede="These are the structural constraints we design around. They are properties of the sector, not of any one organization."
       >
         <motion.div
           className="grid grid-cols-1 sm:grid-cols-2"
@@ -270,8 +281,8 @@ const FinancialServices = () => {
       <PageSection
         tone="white"
         eyebrow="What we build"
-        title="Our services, applied to financial services."
-        lede="The same engineering practice we bring to any enterprise, shaped by the controls this sector operates under."
+        title="What we build for financial services teams."
+        lede="Each of these starts from one of the pressures above and is delivered inside the controls your organization already operates under."
       >
         <motion.div
           className="grid grid-cols-1 sm:grid-cols-2"
@@ -368,8 +379,8 @@ const FinancialServices = () => {
       <PageSection
         tone="light"
         eyebrow="Governance context"
-        title="Standards your organisation is held to."
-        lede="We do not hold these certifications on your behalf. We design and document controls so that your organisation can evidence them against the regimes that apply to it."
+        title="Standards your organization is held to."
+        lede="We do not hold these certifications on your behalf. We design and document controls so that your organization can evidence them against the regimes that apply to it."
       >
         <motion.div
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
@@ -407,6 +418,35 @@ const FinancialServices = () => {
             </motion.div>
           ))}
         </motion.div>
+
+        <div className="ys-card-light" style={{ marginTop: '24px', padding: '28px 24px' }}>
+          <h3
+            style={{
+              fontSize: '17px',
+              fontWeight: 700,
+              letterSpacing: '-0.02em',
+              lineHeight: 1.3,
+              marginBottom: '8px'
+            }}
+          >
+            Regimes we design reporting and controls for
+          </h3>
+          <p style={{ fontSize: '14px', lineHeight: 1.6, color: 'var(--ys-ink-body)', marginBottom: '18px' }}>
+            These are the regimes financial services firms answer to. We are not approved or authorized by any of these regulators; we design the reporting and controls that help your organization meet them.
+          </p>
+          <dl className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5" style={{ gap: '16px' }}>
+            {regimes.map((item) => (
+              <div key={item.region} style={{ minWidth: 0 }}>
+                <dt style={{ fontSize: '13px', fontWeight: 600, color: 'var(--ys-link-on-light)', marginBottom: '4px' }}>
+                  {item.region}
+                </dt>
+                <dd style={{ fontSize: '14px', lineHeight: 1.5, color: 'var(--ys-ink-body)' }}>
+                  {item.names}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </div>
       </PageSection>
 
       {/* CTA — Deep Blue */}
@@ -414,7 +454,7 @@ const FinancialServices = () => {
         title="Talk through a financial services build."
         body="Bring us the constraint — a reporting deadline, a core system you cannot touch, an onboarding queue that stalls. We will tell you how we would architect around it."
         primaryCta={{ label: PRIMARY_CTA.label, href: PRIMARY_CTA.href }}
-        secondaryCta={{ label: 'Explore IT services', href: '/solutions' }}
+        secondaryCta={{ label: SECONDARY_CTA.label, href: SECONDARY_CTA.href }}
       />
     </SharedLayout>
   )

@@ -35,7 +35,7 @@ function ScrollToTop() {
   }, [mounted])
 
   const scrollToTop = () => {
-    // Honour prefers-reduced-motion: jump instead of animating.
+    // Honor prefers-reduced-motion: jump instead of animating.
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     window.scrollTo({
       top: 0,

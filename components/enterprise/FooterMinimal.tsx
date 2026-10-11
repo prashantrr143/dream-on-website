@@ -1,54 +1,42 @@
-import { ArrowRight, Linkedin, ShieldCheck } from 'lucide-react'
-import Image from 'next/image'
-import { LOGO_ASSETS } from '@/components/brand/YatiSphereLogo'
+import { ArrowRight, Linkedin } from 'lucide-react'
+import { Wordmark } from '@/components/brand/Wordmark'
+import { IT_SERVICES, AI_SERVICES, FEATURED_INDUSTRIES, OTHER_INDUSTRIES } from '@/lib/services'
+import { LEGAL_ENTITY_NAME } from '@/lib/legal'
 import { hasArticles } from '@/lib/perspectives'
 import { SITE_CONTACT } from '@/lib/site-contact'
 import { CookieSettingsLink } from '@/components/analytics/CookieSettingsLink'
 
 /**
- * Four link columns mirroring the header IA. The former "Legal" column
- * is gone: its three policy links live in the bottom bar, and Security
- * moved into Company.
+ * Four link columns mirroring the header IA, built from lib/services.ts
+ * so every service is named the same way everywhere (audit S-02).
  */
 const footerColumns = [
   {
-    title: 'IT Services',
+    title: 'Services',
     links: [
-      { name: 'All IT Services', href: '/solutions' },
-      { name: 'Cloud & Infrastructure', href: '/solutions/cloud' },
-      { name: 'DevOps & Automation', href: '/solutions/devops' },
-      { name: 'Data & Analytics', href: '/solutions/data' },
-      { name: 'Enterprise Security', href: '/solutions/security' },
-      { name: 'Legacy Modernisation', href: '/solutions/consulting' },
+      { name: 'All services', href: '/solutions' },
+      ...IT_SERVICES.map((s) => ({ name: s.name, href: s.href })),
     ],
   },
   {
     title: 'Applied AI',
     links: [
-      { name: 'AI Architecture', href: '/applied-ai#architecture' },
-      { name: 'Agentic Automation', href: '/applied-ai#agentic' },
-      { name: 'AI Platforms', href: '/applied-ai#platforms' },
-      { name: 'Responsible AI', href: '/responsible-ai' },
+      { name: 'Applied AI overview', href: '/applied-ai' },
+      ...AI_SERVICES.map((s) => ({ name: s.name, href: s.href })),
     ],
   },
   {
     title: 'Industries',
-    links: [
-      { name: 'Financial Services', href: '/industries/financial-services' },
-      { name: 'Legal & Professional', href: '/industries/legal-professional-services' },
-      { name: 'Healthcare', href: '/industries/healthcare' },
-      { name: 'Government', href: '/industries/government-public-sector' },
-      { name: 'Enterprise & Technology', href: '/industries/enterprise-technology' },
-    ],
+    links: [...FEATURED_INDUSTRIES, ...OTHER_INDUSTRIES].map((i) => ({ name: i.name, href: i.href })),
   },
   {
     title: 'Company',
     links: [
-      { name: 'About Us', href: '/about-us' },
-      { name: 'How We Work', href: '/how-we-work' },
+      { name: 'About us', href: '/about-us' },
+      { name: 'How we work', href: '/how-we-work' },
       // Shown only while there is at least one real article to link to.
       ...(hasArticles ? [{ name: 'Perspectives', href: '/perspectives' }] : []),
-      { name: 'Security', href: '/security' },
+      { name: 'Trust center', href: '/trust' },
       { name: 'Contact', href: '/contact-us' },
     ],
   },
@@ -61,20 +49,10 @@ const FooterMinimal = () => {
     <footer className="ys-footer">
       <div className="enterprise-container-wide ys-footer-inner">
         <div className="ys-footer-grid">
-          {/* Brand block. The supplied lockups all bake in "Technologies
-              Private Limited" and the retired tagline as raster artwork,
-              so the compact mark is set as the icon plus live text. */}
+          {/* Brand block. Wordmark only; the legal name is in the bottom bar. */}
           <div className="ys-footer-brand">
             <a href="/" className="ys-footer-lockup" aria-label="YatiSphere home">
-              <Image
-                src={LOGO_ASSETS.primary.src}
-                alt="YatiSphere Technologies Private Limited"
-                width={LOGO_ASSETS.primary.width}
-                height={LOGO_ASSETS.primary.height}
-                loading="lazy"
-                sizes="280px"
-                className="ys-footer-logo"
-              />
+              <Wordmark tone="light" size={26} />
             </a>
 
             <p className="ys-footer-blurb">
@@ -132,20 +110,20 @@ const FooterMinimal = () => {
         <div className="ys-footer-bottom">
           <div className="ys-footer-copy">
             <p>
-              &copy; {year} YatiSphere Technologies Private Limited
+              &copy; {year} {LEGAL_ENTITY_NAME}
               {SITE_CONTACT.cin && <> &middot; CIN {SITE_CONTACT.cin}</>}
             </p>
             {SITE_CONTACT.registeredAddress && (
-              <p className="ys-footer-address">{SITE_CONTACT.registeredAddress}</p>
+              <p className="ys-footer-address">
+                Registered office: {SITE_CONTACT.registeredAddress}
+              </p>
             )}
+            {SITE_CONTACT.offices.map((office) => (
+              <p key={office.label} className="ys-footer-address">
+                {office.label}: {office.address}
+              </p>
+            ))}
           </div>
-
-          {/* Verifiable government credential — certificate DIPP260262,
-              issued by DPIIT, Ministry of Commerce & Industry. */}
-          <p className="ys-footer-recognition">
-            <ShieldCheck className="w-4 h-4 shrink-0" strokeWidth={1.5} aria-hidden="true" />
-            DPIIT-Recognised Startup &middot; Certificate DIPP260262
-          </p>
 
           <div className="ys-footer-bottom-links">
             <a href="/privacy">Privacy</a>

@@ -149,7 +149,7 @@
        DESIGN TOKENS — SOURCE OF TRUTH
        Warm paper + navy, with amber as the single accent.
        Every pair below was checked for WCAG AA; ratios are noted.
-       Do not introduce colours outside this set.
+       Do not introduce colors outside this set.
        ========================================================== */
 
     /* Dark surfaces */
@@ -979,13 +979,6 @@
   .ys-footer-address {
     margin-top: 4px;
     font-size: 13px;
-  }
-  .ys-footer-recognition {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 14px;
-    color: var(--ink-muted);
   }
   .ys-footer-bottom-links {
     display: flex;
@@ -2054,7 +2047,7 @@
   }
 
   /* ==========================================================
-     Leadership — portrait beside substance, not a centred avatar.
+     Leadership — portrait beside substance, not a centered avatar.
      ========================================================== */
   .ys-leaders {
     display: grid;
@@ -2231,7 +2224,7 @@
     margin-top: 14px;
     text-wrap: balance;
   }
-  /* The only coloured words on the homepage: one in the h1, one in the
+  /* The only colored words on the homepage: one in the h1, one in the
      commitments h2. Amber, and nowhere else.
 
      --amber-500 is 8.51:1 on navy but only 2.04:1 on white, below the
@@ -2802,7 +2795,7 @@
      Two-pillar panel in the hero.
 
      Editorial treatment: a numbered rail, quiet metadata, hairline
-     dividers and a single accent colour. IT Services carries slightly
+     dividers and a single accent color. IT Services carries slightly
      more weight than Applied AI to match the positioning, through
      width and surface rather than a second accent hue.
      ========================================================== */
@@ -2890,7 +2883,7 @@
     max-width: 38rem;
   }
 
-  /* Capability list — hairline separated rows, no coloured bullets */
+  /* Capability list — hairline separated rows, no colored bullets */
   .ys-pillar-list {
     list-style: none;
     margin: 22px 0 0;
@@ -2914,7 +2907,7 @@
     color: rgba(255, 255, 255, 0.88);
     border-bottom: 1px solid rgba(255, 255, 255, 0.055);
   }
-  /* Short vertical tick instead of a coloured dot */
+  /* Short vertical tick instead of a colored dot */
   .ys-pillar-list li::before {
     content: '';
     position: absolute;
@@ -4220,14 +4213,13 @@
   /* ==========================================================
      Navigation — deliberately restrained.
 
-     The logo carries the brand colour, so the header stays
-     Deep Blue / white / light grey with Primary Blue and Cyan
-     used only as small indicators. No gradients, no colourful
+     The logo carries the brand color, so the header stays
+     Deep Blue / white / light gray with Primary Blue and Cyan
+     used only as small indicators. No gradients, no colorful
      panel backgrounds, no full-width overlay across the hero.
      ========================================================== */
 
-  /* Logo slot. The two marks are stacked in a grid cell so swapping
-     between them never shifts the header layout. */
+  /* Logo slot: a single live-text wordmark (components/brand/Wordmark). */
   .ys-nav-logo {
     position: relative;
     display: flex;
@@ -4235,59 +4227,39 @@
     border-radius: 4px;
     height: 100%;
   }
-  .ys-nav-logo > span {
-    grid-area: 1 / 1;
-    display: flex;
-    align-items: center;
-    justify-self: start;
-    align-self: center;
-    /* Each span is only as tall as the row, so its centred image cannot
-       spill past the header edge. */
-    height: 100%;
-    max-height: 100%;
-    overflow: hidden;
-    transition: opacity 220ms ease;
-  }
-  /* Both marks are sized by HEIGHT against the header, so neither can
-     overflow it at any header size, and width follows the aspect ratio. */
-  .ys-nav-logo img {
-    width: auto;
-    object-fit: contain;
-  }
-  /* Updated lockup is 2.87:1 (was 2.04:1), so the heights are lower for
-     the same rendered width: 57/66/71px give ~164/190/204px, inside the
-     145-210px brand target with the tagline still legible. */
-  .ys-logo-img-full {
-    height: 74px;
-    max-height: 100%;
-    width: auto;
-    object-fit: contain;
-    transition: height 250ms ease;
-  }
-  @media (min-width: 640px) {
-    .ys-logo-img-full { height: 88px; }
-  }
-  @media (min-width: 1024px) {
-    .ys-logo-img-full { height: 96px; }
-  }
-  /* Scrolled header is 68px tall, so the lockup scales to fit it. */
-  .ys-nav-logo.is-compact .ys-logo-img-full { height: 48px; }
-  @media (prefers-reduced-motion: reduce) {
-    .ys-logo-img-full { transition: none; }
-  }
   .ys-nav-logo:focus-visible {
     outline: 2px solid var(--ys-cyan);
     outline-offset: 4px;
   }
 
-  /* Compact lockup: mark + wordmark as text. Shown below 768px, where
-     the full lockup's tagline and entity name are illegible. */
-  /* A single lockup. There is no second image to stack against it. */
-
+  /* Wordmark: the icon is the "Y", then "ati" and a blue "Sphere". */
+  .ys-wordmark {
+    display: inline-flex;
+    align-items: baseline;
+    font-family: var(--font-heading), system-ui, sans-serif;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -0.035em;
+    white-space: nowrap;
+    transition: font-size 250ms ease;
+  }
+  .ys-wordmark-y {
+    height: 1.18em;
+    width: auto;
+    margin-right: -0.2em;
+    transform: translateY(0.16em);
+  }
+  .ys-wordmark--dark .ys-wordmark-ati { color: #FFFFFF; }
+  .ys-wordmark--light .ys-wordmark-ati { color: var(--ink); }
+  .ys-wordmark-sphere {
+    color: #2F7BFF;
+    background: linear-gradient(180deg, #4A95FF 0%, #1A62E8 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
   @media (prefers-reduced-motion: reduce) {
-    .ys-nav-logo > span {
-      transition: none;
-    }
+    .ys-wordmark { transition: none; }
   }
 
   .ys-nav-list {
@@ -4318,7 +4290,7 @@
     background-color: rgba(255, 255, 255, 0.06);
   }
   /* Hover / open underline in the logo's orange — the nav's one
-     moment of brand colour, kept to a 2px rule so the logo still
+     moment of brand color, kept to a 2px rule so the logo still
      leads. Wipes in from the left rather than fading. */
   .ys-nav-link::after {
     content: '';

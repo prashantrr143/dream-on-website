@@ -4,9 +4,7 @@ import { motion } from 'framer-motion'
 import SharedLayout from '@/components/shared-layout'
 import { PageHero, PageSection, PageCTA } from '@/components/enterprise'
 import { YsIcon, type YsIconName } from '@/components/brand/YsIcon'
-import { PRIMARY_CTA } from '@/lib/cta'
-
-
+import { PRIMARY_CTA, SECONDARY_CTA } from '@/lib/cta'
 
 const atAGlance = [
   { value: "Consent", label: "Captured as state", sub: "What was agreed, by whom, and when it changed" },
@@ -26,7 +24,7 @@ const pressures = [
     ]
   },
   {
-    title: "Consent that has to be honoured, not just recorded",
+    title: "Consent that has to be honored, not just recorded",
     description: "Consent is not a checkbox at registration. It is scoped, it is withdrawable, and it has to be enforced at every point where data is read or shared — including in downstream analytics that nobody had in mind at the time.",
     points: [
       "Consent scope not represented in the data model",
@@ -36,7 +34,7 @@ const pressures = [
   },
   {
     title: "Access control at clinical speed",
-    description: "Clinicians need the record in front of them without friction, and the same record must not be broadly readable across the organisation. Reconciling urgency with least privilege is an architectural problem, not a training problem.",
+    description: "Clinicians need the record in front of them without friction, and the same record must not be broadly readable across the organization. Reconciling urgency with least privilege is an architectural problem, not a training problem.",
     points: [
       "Broad role grants used as a workaround",
       "Break-glass access without a review path",
@@ -92,7 +90,7 @@ const whatWeBuild: Array<{
     title: "Clinical data platforms",
     description: "Data platforms where consent scope, retention class and access rules travel with the record — so analytics and reporting inherit the same constraints as the source system.",
     capabilities: [
-      "Consent and retention modelled as first-class data",
+      "Consent and retention modeled as first-class data",
       "De-identification pipelines for secondary use",
       "Lineage from reported figure back to source",
       "Retention schedules enforced by the platform"
@@ -106,7 +104,7 @@ const whatWeBuild: Array<{
     description: "Triage support, document extraction and operational forecasting, scoped so a clinician remains the decision-maker and so every model input and output is attributable and reviewable.",
     capabilities: [
       "Clinician-in-the-loop by design",
-      "Data minimisation before any model sees a record",
+      "Data minimization before any model sees a record",
       "Model documentation, versioning and monitoring",
       "Clear separation from clinical decision-making"
     ],
@@ -119,7 +117,7 @@ const whatWeBuild: Array<{
 const governance = [
   {
     title: "HIPAA safeguards",
-    description: "HIPAA sets administrative, physical and technical safeguards for protected health information. We architect and document those technical controls — access, audit, integrity, transmission security — so your organisation can evidence them; the compliance posture remains yours.",
+    description: "HIPAA sets administrative, physical and technical safeguards for protected health information. We architect and document those technical controls — access, audit, integrity, transmission security — so your organization can evidence them; the compliance posture remains yours.",
     icon: 'security' as YsIconName
   },
   {
@@ -134,7 +132,7 @@ const governance = [
   },
   {
     title: "Least-privilege access to PHI",
-    description: "Access should be granted by role and by purpose, scoped to the care relationship, and reviewed. We design the authorisation model and the review mechanics that make that workable at clinical speed.",
+    description: "Access should be granted by role and by purpose, scoped to the care relationship, and reviewed. We design the authorization model and the review mechanics that make that workable at clinical speed.",
     icon: 'consulting' as YsIconName
   },
   {
@@ -150,11 +148,11 @@ const Healthcare = () => {
       {/* Hero — Deep Blue */}
       <PageHero
         eyebrow="Industries"
-        image={{ src: '/brand/yatisphere/imagery/industry-healthcare.png', alt: 'Healthcare technology' }}
         title="Healthcare platforms where the rules are in the architecture."
         lede="Patient platforms and clinical data systems where consent, retention and access rules are built into the design — not layered on afterwards as policy and hope."
+        visual="network"
         primaryCta={{ label: PRIMARY_CTA.label, href: PRIMARY_CTA.href }}
-        secondaryCta={{ label: 'How we work', href: '/how-we-work' }}
+        secondaryCta={{ label: SECONDARY_CTA.label, href: SECONDARY_CTA.href }}
       />
 
       {/* At a glance */}
@@ -275,8 +273,8 @@ const Healthcare = () => {
       <PageSection
         tone="white"
         eyebrow="What we build"
-        title="Our services, applied to healthcare."
-        lede="The same engineering practice we bring to any regulated enterprise, shaped by the sensitivity of the data involved."
+        title="What we build for healthcare teams."
+        lede="Each of these answers one of the tensions above, and is delivered so the clinical systems you already run keep working while the new layer goes in."
       >
         <motion.div
           className="grid grid-cols-1 sm:grid-cols-2"
@@ -373,8 +371,8 @@ const Healthcare = () => {
       <PageSection
         tone="light"
         eyebrow="Governance context"
-        title="Standards your organisation is held to."
-        lede="We do not hold these certifications on your behalf. Our work is to design controls against these standards and produce the evidence your organisation needs to demonstrate them."
+        title="Standards your organization is held to."
+        lede="We do not hold these certifications on your behalf. Our work is to design controls against these standards and produce the evidence your organization needs to demonstrate them."
       >
         <motion.div
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
@@ -419,7 +417,7 @@ const Healthcare = () => {
         title="Talk through a healthcare build."
         body="Bring us the constraint — a consent model that has to hold across systems, an access review you cannot answer, an integration that will not scale. We will tell you how we would design it."
         primaryCta={{ label: PRIMARY_CTA.label, href: PRIMARY_CTA.href }}
-        secondaryCta={{ label: 'Explore IT services', href: '/solutions' }}
+        secondaryCta={{ label: SECONDARY_CTA.label, href: SECONDARY_CTA.href }}
       />
     </SharedLayout>
   )
