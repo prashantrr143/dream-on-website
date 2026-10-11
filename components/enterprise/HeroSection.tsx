@@ -2,13 +2,13 @@
 
 import { motion } from 'motion/react'
 import { ArrowRight } from 'lucide-react'
-import { PRIMARY_CTA, SECONDARY_CTA } from '@/lib/cta'
+import { PRIMARY_CTA } from '@/lib/cta'
 import { HeroVisual } from '@/components/brand/HeroVisual'
 
 
 const PROOF = [
   'One in-house team',
-  'Fixed-price first step',
+  'Senior people on every engagement',
   'Your code in your accounts from day one',
 ]
 
@@ -56,33 +56,31 @@ const HeroSection = () => {
               className="ys-eyebrow ys-eyebrow-on-dark"
               style={{ marginBottom: 'clamp(16px, 2.4vw, 22px)' }}
             >
-              Azure engineering &amp; applied AI{' '}
-              <span aria-hidden="true" style={{ opacity: 0.55 }}>·</span>{' '}
-              UK <span aria-hidden="true" style={{ opacity: 0.55 }}>·</span>{' '}
-              Europe <span aria-hidden="true" style={{ opacity: 0.55 }}>·</span>{' '}
-              Middle East <span aria-hidden="true" style={{ opacity: 0.55 }}>·</span>{' '}
-              US
+              Consulting <span aria-hidden="true" style={{ opacity: 0.55 }}>·</span>{' '}
+              Cloud <span aria-hidden="true" style={{ opacity: 0.55 }}>·</span>{' '}
+              Applied AI <span aria-hidden="true" style={{ opacity: 0.55 }}>·</span>{' '}
+              Engineering
             </motion.p>
 
             <motion.h1
               style={{ color: 'var(--on-dark)', textWrap: 'balance' }}
             >
-              Modernize the systems you run on. Put AI into production &mdash;{' '}
-              <span className="ys-accent-word">safely</span>.
+              Enterprise AI, engineered to be{' '}
+              <span className="ys-accent-word">trusted</span>
             </motion.h1>
 
             <motion.p
               style={{
-                maxWidth: 640,
+                maxWidth: 680,
                 marginTop: 'clamp(16px, 2.2vw, 22px)',
                 fontSize: 'clamp(15px, 1.35vw, 17.5px)',
                 lineHeight: 1.62,
                 color: 'var(--on-dark-muted)',
               }}
             >
-              A senior, in-house team that designs, builds and runs core platforms
-              and governed AI for regulated businesses. Fixed price to start. Your
-              code in your cloud from day one.
+              We advise, build and run the platforms your business depends on — on AWS,
+              Microsoft Azure and Google Cloud — and bring AI into them with Claude and the
+              models you choose, governed from day one.
             </motion.p>
 
             <motion.div
@@ -93,8 +91,8 @@ const HeroSection = () => {
                 {PRIMARY_CTA.label}
                 <ArrowRight className="w-4 h-4 shrink-0" strokeWidth={2.5} aria-hidden="true" />
               </a>
-              <a href={SECONDARY_CTA.href} className="ys-cta-secondary inline-flex items-center">
-                {SECONDARY_CTA.label}
+              <a href="/what-we-do/applied-ai" className="ys-cta-secondary inline-flex items-center">
+                Learn more
               </a>
             </motion.div>
 

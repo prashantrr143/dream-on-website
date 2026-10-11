@@ -11,9 +11,8 @@ const compat = new FlatCompat({
 
 const eslintConfig = [
   ...compat.extends("next/core-web-vitals", "next/typescript"),
-  // Temporarily ignore a file with a syntax error so lint can proceed
   {
-    ignores: ["components/optimized-image.tsx"],
+    ignores: [".next/**", "node_modules/**", "qa/**", "test-results/**", "playwright-report/**", "next-env.d.ts", "Yati-Sphere-Technologies-Presentation.html"],
   },
   {
     rules: {

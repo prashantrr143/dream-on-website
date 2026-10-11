@@ -1,7 +1,8 @@
 /**
  * Working across regions (audit H-06).
  *
- * What the company can state truthfully today. Shown on Home, Contact
+ * What the company can state truthfully today (no commercial or pricing
+ * terms; those belong in the engagement letter). Shown on Home, Contact
  * and How we work from this one list, so the wording never drifts.
  * Nothing here claims a certification, an office or a headcount the
  * company does not have.
@@ -13,10 +14,6 @@ export interface RegionPoint {
 }
 
 export const WORKING_ACROSS_REGIONS: RegionPoint[] = [
-  {
-    title: 'Invoiced in your currency',
-    body: 'USD, EUR, GBP, AED or INR, with withholding and treaty relief handled in the engagement terms.',
-  },
   {
     title: 'Overlapping working hours',
     body: 'Our day overlaps UK, European and Gulf business hours in full, and US East Coast mornings by arrangement.',

@@ -1,0 +1,182 @@
+import { test, expect, type Page } from '@playwright/test'
+import AxeBuilder from '@axe-core/playwright'
+import { NAV } from '../content/nav'
+
+/** Header mega-menu, desktop (>=1200px). */
+
+test.use({ viewport: { width: 1440, height: 900 } })
+
+const trigger = (page: Page, name: string) =>
+  page.locator('.ys-hdr-nav').getByRole('button', { name, exact: true })
+const panel = (page: Page) => page.locator('.ys-mega')
+
+test.beforeEach(async ({ page }) => {
+  await page.goto('/')
+})
+
+test('hover opens after a short delay; leaving the header closes it', async ({ page }) => {
+  await trigger(page, 'What we do').hover()
+  await expect(panel(page)).toBeVisible()
+  await expect(trigger(page, 'What we do')).toHaveAttribute('aria-expanded', 'true')
+
+  // Moving across the panel keeps it open...
+  await page.locator('.ys-mega-a').hover()
+  await page.waitForTimeout(300)
+  await expect(panel(page)).toBeVisible()
+
+  // ...leaving the header closes it.
+  await page.mouse.move(700, 850)
+  await expect(panel(page)).toHaveCount(0)
+})
+
+test('hovering another trigger switches panels', async ({ page }) => {
+  await trigger(page, 'What we do').hover()
+  await expect(panel(page)).toHaveAttribute('aria-label', 'What we do')
+  await trigger(page, 'Who we are').hover()
+  await expect(panel(page)).toHaveAttribute('aria-label', 'Who we are')
+  await expect(panel(page)).toHaveCount(1)
+})
+
+test('click pins a hover-opened panel; clicking again closes it', async ({ page }) => {
+  await trigger(page, 'What we do').hover()
+  await expect(panel(page)).toBeVisible()
+  await trigger(page, 'What we do').click()
+  await page.mouse.move(700, 850)
+  await page.waitForTimeout(400)
+  await expect(panel(page)).toBeVisible()
+
+  await trigger(page, 'What we do').click()
+  await expect(panel(page)).toHaveCount(0)
+  await expect(trigger(page, 'What we do')).toHaveAttribute('aria-expanded', 'false')
+})
+
+test('switching triggers swaps panels; only one is open', async ({ page }) => {
+  await trigger(page, 'What we do').click()
+  await trigger(page, 'Who we are').click()
+  await expect(panel(page)).toHaveCount(1)
+  await expect(panel(page)).toHaveAttribute('aria-label', 'Who we are')
+  await expect(trigger(page, 'What we do')).toHaveAttribute('aria-expanded', 'false')
+})
+
+test('Esc closes and returns focus to the trigger', async ({ page }) => {
+  await trigger(page, 'Who we are').click()
+  await page.keyboard.press('Escape')
+  await expect(panel(page)).toHaveCount(0)
+  await expect(trigger(page, 'Who we are')).toBeFocused()
+})
+
+test('outside click closes', async ({ page }) => {
+  await trigger(page, 'What we do').click()
+  await page.mouse.click(700, 800)
+  await expect(panel(page)).toHaveCount(0)
+})
+
+test('keyboard open moves focus to region A', async ({ page }) => {
+  await trigger(page, 'What we do').focus()
+  await page.keyboard.press('Enter')
+  await expect(panel(page)).toBeVisible()
+  await expect(page.locator('.ys-mega-a a')).toBeFocused()
+})
+
+test('panel opens with no group active; hover activates one', async ({ page }) => {
+  await trigger(page, 'What we do').click()
+  await expect(page.locator('.ys-mega-row.is-active')).toHaveCount(0)
+  await expect(page.locator('.ys-mega-cols')).toHaveCount(0)
+
+  const cloud = page.getByRole('button', { name: /^Cloud\b/ })
+  await cloud.hover()
+  await expect(cloud).toHaveAttribute('aria-expanded', 'true')
+  await expect(page.locator('.ys-mega-cols a').first()).toHaveText('Cloud overview')
+})
+
+test('arrow keys move through groups and into region C', async ({ page }) => {
+  await trigger(page, 'What we do').click()
+  const rows = page.locator('.ys-mega-row')
+  await rows.first().focus()
+  await expect(rows.first()).toHaveAttribute('aria-expanded', 'true')
+
+  await page.keyboard.press('ArrowDown')
+  await expect(rows.nth(1)).toBeFocused()
+  await expect(rows.nth(1)).toHaveAttribute('aria-expanded', 'true')
+
+  await page.keyboard.press('ArrowRight')
+  await expect(page.locator('.ys-mega-cols a').first()).toBeFocused()
+  await page.keyboard.press('ArrowDown')
+  await expect(page.locator('.ys-mega-cols a').nth(1)).toBeFocused()
+
+  await page.keyboard.press('ArrowLeft')
+  await expect(rows.nth(1)).toBeFocused()
+})
+
+test('tabbing out of the panel closes it', async ({ page }) => {
+  await trigger(page, 'Who we are').focus()
+  await page.keyboard.press('Enter')
+  await expect(page.locator('.ys-mega-a a')).toBeFocused()
+  const count = await page.locator('.ys-mega a').count()
+  for (let i = 0; i < count; i++) await page.keyboard.press('Tab')
+  await expect(panel(page)).toHaveCount(0)
+})
+
+test('geometry matches the spec at 1440px', async ({ page }) => {
+  await trigger(page, 'What we do').click()
+  await page.waitForTimeout(400) // let the 300ms slide-in finish
+  const box = async (sel: string) => (await page.locator(sel).first().boundingBox())!
+  expect((await box('.ys-hdr-bar')).height).toBe(76)
+  expect((await box('.ys-mega')).y).toBe(76)
+  expect(Math.abs((await box('.ys-mega-a')).x - 73)).toBeLessThanOrEqual(8)
+  expect(Math.abs((await box('.ys-mega-b')).x - 396)).toBeLessThanOrEqual(8)
+  expect(Math.abs((await box('.ys-mega-c')).x - 745)).toBeLessThanOrEqual(8)
+})
+
+test('opening a panel causes no layout shift', async ({ page }) => {
+  // Home streams some sections in; measure once it has settled, and compare
+  // position and width (a layout shift moves content; it doesn't change
+  // how much content there is).
+  await page.waitForLoadState('networkidle')
+  const box = async () => {
+    const b = (await page.locator('main h1').boundingBox())!
+    return { x: b.x, y: b.y, width: b.width }
+  }
+  const before = await box()
+  await trigger(page, 'What we do').click()
+  await page.waitForTimeout(400)
+  expect(await box()).toEqual(before)
+})
+
+test('every link in the rendered menu answers 200 directly', async ({ request }) => {
+  const hrefs = new Set<string>()
+  for (const item of NAV) {
+    if (item.kind === 'link') hrefs.add(item.href)
+    else {
+      hrefs.add(item.overviewHref)
+      hrefs.add(item.intro.link.href)
+      for (const g of item.groups) {
+        if (g.href) hrefs.add(g.href)
+        for (const c of g.children ?? []) hrefs.add(c.href)
+      }
+    }
+  }
+  expect(hrefs.size).toBeGreaterThan(30)
+  for (const href of hrefs) {
+    const res = await request.get(href.split('#')[0]!, { maxRedirects: 0 })
+    expect(res.status(), href).toBe(200)
+  }
+})
+
+test('no serious or critical axe issues with each panel open', async ({ page }) => {
+  for (const name of ['What we do', 'Who we are']) {
+    await trigger(page, name).click()
+    if (name === 'What we do') await page.getByRole('button', { name: /^Applied AI\b/ }).hover()
+    await page.waitForTimeout(350)
+    const { violations } = await new AxeBuilder({ page }).include('.ys-hdr').analyze()
+    const bad = violations.filter((v) => v.impact === 'serious' || v.impact === 'critical')
+    expect(bad, `${name}: ${bad.map((v) => v.id).join(', ')}`).toEqual([])
+    await page.keyboard.press('Escape')
+  }
+})
+
+test('only one search button shows on desktop', async ({ page }) => {
+  await expect(page.locator('.ys-hdr-search-m')).toBeHidden()
+  await expect(page.locator('.ys-hdr-burger')).toBeHidden()
+  await expect(page.locator('.ys-hdr-right').getByRole('button', { name: 'Search' })).toBeVisible()
+})

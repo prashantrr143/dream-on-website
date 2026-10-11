@@ -162,7 +162,7 @@ export default function PrivacyPage() {
                 <strong>We do not use client data to train machine-learning
                 models.</strong> Client data stays within the boundary agreed in the
                 engagement. Our wider approach to AI governance is set out in our{' '}
-                <a href="/responsible-ai">Responsible AI</a> statement.
+                <a href="/who-we-are/responsible-ai">Responsible AI</a> statement.
               </p>
               <p>
                 We do not carry out behavioral advertising, and we do not make
@@ -256,10 +256,11 @@ export default function PrivacyPage() {
                 </li>
               </ul>
               {/*
-                TODO — CONFIRM BEFORE PUBLISHING.
-                Vercel is named because the site is deployed there. If you add
-                analytics, a CRM, a mail platform or a form backend, each must be
-                named here as a processor. Verify this list is complete.
+                Processors named here must match the Trust center subprocessor
+                table (app/who-we-are/trust/page.tsx). Vercel hosts the site,
+                Google Analytics runs after consent, and Resend delivers contact
+                form messages (app/api/contact/route.ts). Add any new processor
+                to both places.
               */}
               <p>
                 Our website is hosted by <strong>Vercel Inc.</strong>, which
@@ -267,7 +268,9 @@ export default function PrivacyPage() {
                 site. Website analytics is provided by <strong>Google LLC</strong>{' '}
                 (Google Analytics 4), and runs only if you have accepted analytics
                 cookies &mdash; see <a href="#cookies">Cookies</a> for what is set
-                and for how long. Where we engage other processors, we require them
+                and for how long. Messages you send through our contact form are
+                delivered to us by email through <strong>Resend, Inc.</strong>{' '}
+                (email delivery). Where we engage other processors, we require them
                 by contract to protect personal information and to process it only
                 on our instructions.
               </p>
@@ -326,7 +329,7 @@ export default function PrivacyPage() {
                 cookies and no cross-site tracking.
               </p>
 
-              <div className="ys-cookie-table-wrap">
+              <div className="ys-cookie-table-wrap" tabIndex={0} role="region" aria-label="Cookies we use (scrollable table)">
                 <table className="ys-cookie-table">
                   <caption className="sr-only">
                     Cookies used on this website
@@ -376,7 +379,7 @@ export default function PrivacyPage() {
               </p>
               <p>
                 <strong>To change or withdraw consent</strong>, use the
-                &ldquo;Cookie settings&rdquo; link in the footer of any page. It
+                &ldquo;Customize cookies&rdquo; link in the footer of any page. It
                 reopens your consent choices; choose Reject to withdraw, and
                 existing analytics cookies are cleared. If the link is not shown,
                 the site is not loading analytics and there is nothing to consent

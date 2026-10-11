@@ -14,8 +14,8 @@ import { ArrowRight } from 'lucide-react'
  */
 const deliveryPrinciples = [
   {
-    title: "A fixed price for the first step",
-    description: "You know what the first piece of work costs before it starts.",
+    title: "A clear first step",
+    description: "A short Blueprint agrees the problem, the design and the plan before any build begins.",
     accent: "#0A84FF"
   },
   {
@@ -57,7 +57,7 @@ const HowWeWorkSection = () => {
                 fontWeight: 600,
                 textTransform: 'uppercase',
                 letterSpacing: '0.08em',
-                color: 'rgba(10, 132, 255, 0.8)',
+                color: 'var(--blue-600)',
                 marginBottom: '16px'
               }}
             >
@@ -82,7 +82,7 @@ const HowWeWorkSection = () => {
               engagement letter, so you can hold us to it.
             </p>
             <Link
-              href="/how-we-work"
+              href="/who-we-are/how-we-work"
               className="stripe-btn-ghost group"
             >
               See how we deliver

@@ -34,60 +34,23 @@ const nextConfig: NextConfig = {
   compress: true,
   poweredByHeader: false,
   
-  // Bundle analyzer (only in development)
-  ...(process.env['ANALYZE'] === 'true' && {
-    webpack: (config: any) => {
-      config.plugins.push(
-        new (require('webpack-bundle-analyzer').BundleAnalyzerPlugin)()
-      );
-      return config;
-    },
-  }),
-
-  // The Applied AI page moved from /solutions/ai-ml to /applied-ai, so it
-  // reads as the second company pillar rather than one service among six.
-  // Permanent, so search engines transfer the old URL's standing.
-  async redirects() {
-    return [
-      // Canonical host: www -> apex, permanently. Vercel terminates TLS
-      // and upgrades http itself, so only the host needs handling here.
-      {
-        source: '/:path*',
-        has: [{ type: 'host', value: 'www.yatisphere.com' }],
-        destination: 'https://yatisphere.com/:path*',
-        permanent: true,
-      },
-      {
-        source: '/solutions/ai-ml',
-        destination: '/applied-ai',
-        permanent: true,
-      },
-      // /policy was a second, duplicate privacy policy. There is now one
-      // canonical policy at /privacy; the cookies content is a section of it.
-      {
-        source: '/policy',
-        destination: '/privacy#cookies',
-        permanent: true,
-      },
-      // Audit S-02 / I-01 / T-01 renames, and /services, which duplicated
-      // the /solutions hub. Permanent, single hop.
-      { source: '/solutions/consulting', destination: '/solutions/modernization', permanent: true },
-      { source: '/industries/enterprise-technology', destination: '/industries/software-saas', permanent: true },
-      { source: '/security', destination: '/trust', permanent: true },
-      { source: '/services', destination: '/solutions', permanent: true },
-      // Terms of Service was withdrawn pending legal review of the
-      // governing-law and dispute-resolution clauses.
-      {
-        source: '/terms',
-        destination: '/privacy',
-        permanent: true,
-      },
-    ];
-  },
+  // All redirects (www -> apex, trailing slash, legacy URLs) live in
+  // proxy.ts so each one resolves in a single hop. Next's built-in
+  // trailing-slash redirect is switched off for the same reason: it would
+  // otherwise run first and turn one redirect into a chain.
+  skipTrailingSlashRedirect: true,
 
   // Enhanced security and performance headers
   async headers() {
     return [
+      // Preview deployments, *.vercel.app aliases and any other host must
+      // never be indexed as a duplicate of yatisphere.com. Production
+      // pages carry their own robots meta (index, or noindex where meant).
+      {
+        source: '/:path*',
+        missing: [{ type: 'host', value: 'yatisphere.com' }],
+        headers: [{ key: 'X-Robots-Tag', value: 'noindex, nofollow' }],
+      },
       {
         source: '/(.*)',
         headers: [
@@ -119,11 +82,6 @@ const nextConfig: NextConfig = {
           {
             key: 'Permissions-Policy',
             value: 'camera=(), microphone=(), geolocation=()',
-          },
-          // Performance headers
-          {
-            key: 'X-Robots-Tag',
-            value: 'index, follow',
           },
         ],
       },

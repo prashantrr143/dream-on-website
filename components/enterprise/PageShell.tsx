@@ -15,14 +15,16 @@ import { PRIMARY_CTA } from '@/lib/cta'
  */
 
 interface PageHeroProps {
-  eyebrow?: string
+  eyebrow?: string | undefined
   title: string
-  lede?: string
+  lede?: string | undefined
   /** Hero motif; the composition is seeded from the title, so each page differs. */
-  visual?: HeroMotif
-  primaryCta?: { label: string; href: string }
-  secondaryCta?: { label: string; href: string }
-  children?: React.ReactNode
+  visual?: HeroMotif | undefined
+  /** Ancestors, shown as a breadcrumb trail above the kicker. */
+  breadcrumbs?: { name: string; path: string }[] | undefined
+  primaryCta?: { label: string; href: string } | undefined
+  secondaryCta?: { label: string; href: string } | undefined
+  children?: React.ReactNode | undefined
 }
 
 export function PageHero({
@@ -30,6 +32,7 @@ export function PageHero({
   title,
   lede,
   visual,
+  breadcrumbs,
   primaryCta,
   secondaryCta,
   children,
@@ -70,6 +73,16 @@ export function PageHero({
           }}
         >
           <div className="max-w-[780px]">
+            {breadcrumbs && breadcrumbs.length > 0 && (
+              <nav aria-label="Breadcrumb" className="ys-breadcrumbs">
+                <ol>
+                  <li><a href="/">Home</a></li>
+                  {breadcrumbs.map((b) => (
+                    <li key={b.path}><a href={b.path}>{b.name}</a></li>
+                  ))}
+                </ol>
+              </nav>
+            )}
             {eyebrow && (
               <motion.p
                 className="ys-eyebrow ys-eyebrow-on-dark"
@@ -135,11 +148,11 @@ export function PageHero({
 }
 
 interface PageSectionProps {
-  id?: string
-  tone?: 'light' | 'white'
-  eyebrow?: string
-  title?: string
-  lede?: string
+  id?: string | undefined
+  tone?: 'light' | 'white' | undefined
+  eyebrow?: string | undefined
+  title?: string | undefined
+  lede?: string | undefined
   children: React.ReactNode
 }
 
@@ -185,9 +198,9 @@ export function PageSection({
 
 interface PageCTAProps {
   title: string
-  body?: string
-  primaryCta?: { label: string; href: string }
-  secondaryCta?: { label: string; href: string }
+  body?: string | undefined
+  primaryCta?: { label: string; href: string } | undefined
+  secondaryCta?: { label: string; href: string } | undefined
 }
 
 export function PageCTA({

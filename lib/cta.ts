@@ -1,18 +1,22 @@
 /**
- * The two calls to action used site-wide (audit G-17).
+ * The two calls to action used site-wide.
  *
- * Every page uses these labels and no others. While no booking URL is
- * configured, the primary CTA lands on the contact form; once
- * siteConfig.bookingUrl is set, the contact page shows the calendar at
- * the same #book anchor, so no link needs to change.
+ * Primary: "Talk to our experts" (revamp brief). It opens the contact
+ * overlay where JavaScript runs, and falls back to /contact-us. Pass an
+ * interest to preset the form, e.g. contactHref('Claude').
+ * Secondary: the Blueprint, a short discovery engagement.
  */
 
 export const PRIMARY_CTA = {
-  label: 'Book a 30-minute call',
-  href: '/contact-us#book',
+  label: 'Talk to our experts',
+  href: '/contact-us',
 } as const
 
 export const SECONDARY_CTA = {
-  label: 'Get a fixed-price Blueprint',
+  label: 'Start with a Blueprint',
   href: '/blueprint',
 } as const
+
+export function contactHref(interest?: string): string {
+  return interest ? `/contact-us?interest=${encodeURIComponent(interest)}` : PRIMARY_CTA.href
+}

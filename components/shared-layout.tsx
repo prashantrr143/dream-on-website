@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from 'react'
 // import dynamic from 'next/dynamic'
-import { NavigationEnterprise } from '@/components/enterprise'
+import { SiteHeader } from '@/components/nav/SiteHeader'
+import { ContactOverlay } from '@/components/contact/ContactOverlay'
 import { ArrowUp } from 'lucide-react'
 // import ErrorBoundary from '@/components/error-boundary'
 // import { LoadingSpinner } from '@/components/loading-states'
@@ -67,7 +68,7 @@ export default function SharedLayout({ children, className = "", hideFooter = fa
   return (
     <div className="min-h-screen w-full overflow-x-hidden bg-background">
       {/* Navigation */}
-      {!hideNav && <NavigationEnterprise />}
+      {!hideNav && <SiteHeader />}
 
       {/* Main content with proper spacing to account for fixed header */}
       <main className={`relative ${className}`}>
@@ -79,6 +80,9 @@ export default function SharedLayout({ children, className = "", hideFooter = fa
 
       {/* Scroll to top button */}
       <ScrollToTop />
+
+      {/* "How can we help?" overlay, opened by any link to /contact-us */}
+      <ContactOverlay />
     </div>
   )
 }

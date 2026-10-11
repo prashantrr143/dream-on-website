@@ -32,5 +32,38 @@ export const ALL_COUNTRIES = [
   'Uganda', 'Ukraine', 'United Arab Emirates', 'United Kingdom', 'United States', 'Uruguay', 'Uzbekistan', 'Vanuatu', 'Vatican City', 'Venezuela', 'Vietnam', 'Yemen', 'Zambia', 'Zimbabwe',
 ]
 
-export const CONTACT_INTERESTS = ['IT services', 'Applied AI', 'Products', 'Partnership'] as const
+/** "Request for services" areas (revamp brief). */
+export const SERVICE_INTERESTS = [
+  'Consulting',
+  'Cloud: AWS',
+  'Cloud: Azure',
+  'Cloud: Google Cloud',
+  'Cloud: multi-cloud',
+  'Applied AI',
+  'Claude',
+  'Engineering & data',
+] as const
+
+/** Contact overlay topics other than services. */
+export const OTHER_TOPICS = ['Partnership', 'Careers', 'Media', 'Website feedback', 'Security pack'] as const
+
+/** Everything the API accepts as an interest. */
+export const CONTACT_INTERESTS = [...SERVICE_INTERESTS, ...OTHER_TOPICS] as const
+
+/** Map page-level interest presets (contactHref) onto the form's options. */
+export function normalizeInterest(raw: string | null | undefined): string {
+  if (!raw) return ''
+  const v = raw.trim()
+  if ((CONTACT_INTERESTS as readonly string[]).includes(v)) return v
+  const map: Record<string, string> = {
+    security: 'Security pack',
+    Cloud: 'Cloud: multi-cloud',
+    'Financial services': 'Engineering & data',
+    'Legal & professional services': 'Engineering & data',
+    'Software & SaaS': 'Engineering & data',
+    Healthcare: 'Engineering & data',
+    'Public sector': 'Consulting',
+  }
+  return map[v] ?? ''
+}
 export const CONTACT_TIMELINES = ['Now', '1–3 months', '3–6 months', 'Exploring'] as const

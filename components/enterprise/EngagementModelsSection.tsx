@@ -16,23 +16,23 @@ interface EngagementModel {
 const models: EngagementModel[] = [
   {
     title: "Solution Blueprint",
-    fit: "2\u20134 weeks \u00b7 fixed price",
-    body: "A fixed-price blueprint for one named problem: solution design, costed delivery plan and risks. The entry point for most new clients.",
+    fit: "2\u20134 weeks \u00b7 discovery",
+    body: "A short discovery engagement for one named problem: solution design, delivery plan and risks. The usual first step.",
     badge: "Start here",
   },
   {
     title: "Project delivery",
-    fit: "Fixed scope \u00b7 milestone-based",
+    fit: "Defined outcome \u00b7 milestones",
     body: "A defined outcome, delivered end-to-end, with one team accountable for the result.",
   },
   {
     title: "Dedicated teams",
-    fit: "Monthly \u00b7 scale up or down",
+    fit: "Embedded \u00b7 scales with you",
     body: "Engineers and delivery leads embedded with your team, under your priorities, with our delivery discipline.",
   },
   {
     title: "Managed services",
-    fit: "SLA-backed \u00b7 ongoing",
+    fit: "Ongoing \u00b7 run and improve",
     body: "We run and evolve what we (or others) built: cloud, platforms, data pipelines and AI workloads.",
   },
 ]

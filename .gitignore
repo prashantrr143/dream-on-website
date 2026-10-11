@@ -81,3 +81,7 @@ yarn.lock
 # Playwright QA screenshots (large, regenerated on demand)
 /qa/baseline/
 /qa/after/
+/qa/nav/
+test-results/
+playwright-report/
+/qa/baseline-pre-audit/

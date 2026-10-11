@@ -6,11 +6,12 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: '*',
       allow: '/',
-      // /api/ holds no indexable content; the legal pages carry their own
-      // noindex so they are disallowed here only to save crawl budget.
-      disallow: ['/api/', '/privacy'],
+      // /api/ holds no indexable content. Do NOT disallow pages that carry
+      // a noindex (e.g. /privacy): a blocked page's noindex can't be read,
+      // and redirects that land there (/policy, /terms) could not be
+      // followed. /search is crawlable but noindex for the same reason.
+      disallow: ['/api/'],
     },
     sitemap: `${SITE_URL}/sitemap.xml`,
-    host: SITE_URL,
   }
 }

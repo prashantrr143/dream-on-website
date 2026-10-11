@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import { Space_Grotesk, IBM_Plex_Sans, IBM_Plex_Mono } from 'next/font/google'
 import './globals.css'
+import { socialMeta } from '@/lib/seo'
 import { AsyncErrorBoundary } from '@/components/async-error-boundary'
 import { MotionProvider } from '@/components/motion-provider'
 import {
@@ -42,28 +43,28 @@ const ibmPlexMono = IBM_Plex_Mono({
   weight: ['400', '500'],
 })
 
+const DEFAULT_TITLE = 'Enterprise AI, consulting and cloud engineering | YatiSphere'
+const DEFAULT_DESCRIPTION =
+  'We advise, build and run enterprise platforms on AWS, Microsoft Azure and Google Cloud, and bring governed AI into them, with a dedicated Claude practice.'
+
+/**
+ * Site-wide defaults. Every route sets its own title, description,
+ * canonical and social card (lib/seo.ts metaFor / socialMeta); these
+ * apply only where a route sets nothing. No site-wide canonical: a
+ * fallback would point every page that forgets its own at the home page.
+ */
 export const metadata: Metadata = {
   metadataBase: new URL('https://yatisphere.com'),
   title: {
-    default: 'YatiSphere Technologies — Enterprise IT Services & Applied AI',
-    template: '%s | YatiSphere Technologies'
+    default: DEFAULT_TITLE,
+    template: '%s | YatiSphere',
   },
-  description: 'Tell us the business problem — slow onboarding, a system nobody dares touch, data you cannot get answers from, an AI pilot that stalled. One in-house team delivers the working solution, end to end.',
-  keywords: [
-    'enterprise technology', 'cloud infrastructure', 'AI solutions', 'DevOps automation', 
-    'data analytics', 'IT consulting', 'digital transformation', 'cloud migration',
-    'machine learning', 'enterprise software', 'technology consulting', 'cloud services'
-  ],
-  authors: [{ name: 'YatiSphere Technologies', url: 'https://yatisphere.com' }],
-  creator: 'YatiSphere Technologies',
-  publisher: 'YatiSphere Technologies',
-  applicationName: 'YatiSphere Technologies',
-  category: 'Technology',
-  classification: 'Business',
+  description: DEFAULT_DESCRIPTION,
+  applicationName: 'YatiSphere',
+  authors: [{ name: 'YatiSphere Technologies Private Limited', url: 'https://yatisphere.com' }],
+  creator: 'YatiSphere Technologies Private Limited',
+  publisher: 'YatiSphere Technologies Private Limited',
   manifest: '/manifest.json',
-  alternates: {
-    canonical: 'https://yatisphere.com',
-  },
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: 'any' },
@@ -73,45 +74,15 @@ export const metadata: Metadata = {
       { url: '/brand/yatisphere/icon/yatisphere-icon.svg', type: 'image/svg+xml' },
     ],
     shortcut: '/favicon.ico',
-    apple: [
-      { url: '/brand/yatisphere/icon/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
-    ],
+    apple: [{ url: '/brand/yatisphere/icon/apple-touch-icon.png', sizes: '180x180', type: 'image/png' }],
   },
-  openGraph: {
-    type: 'website',
-    locale: 'en_US',
-    url: 'https://yatisphere.com',
-    title: 'YatiSphere Technologies — Enterprise IT Services & Applied AI',
-    description: 'Tell us the business problem — slow onboarding, a system nobody dares touch, data you cannot get answers from, an AI pilot that stalled. One in-house team delivers the working solution, end to end.',
-    siteName: 'YatiSphere Technologies',
-    images: [
-      {
-        url: '/brand/yatisphere/social/og-image.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'YatiSphere Technologies - Enterprise Technology Solutions',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    site: '@YatiSphere',
-    creator: '@YatiSphere',
-    title: 'YatiSphere Technologies — Enterprise IT Services & Applied AI',
-    description: 'Tell us the business problem — slow onboarding, a system nobody dares touch, data you cannot get answers from, an AI pilot that stalled. One in-house team delivers the working solution, end to end.',
-    images: ['/brand/yatisphere/social/og-image.jpg'],
-  },
+  ...socialMeta({ title: DEFAULT_TITLE, description: DEFAULT_DESCRIPTION, url: 'https://yatisphere.com' }),
   robots: {
     index: true,
     follow: true,
-    noarchive: false,
-    nositelinkssearchbox: false,
-    notranslate: false,
-    indexifembedded: true,
     googleBot: {
       index: true,
       follow: true,
-      noimageindex: false,
       'max-video-preview': -1,
       'max-image-preview': 'large',
       'max-snippet': -1,
@@ -148,6 +119,12 @@ export default function RootLayout({
           className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:rounded-lg focus:bg-accent focus:px-4 focus:py-2 focus:text-accent-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
         >
           Skip to main content
+        </a>
+        <a
+          href="#footer"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-52 focus:z-50 focus:rounded-lg focus:bg-accent focus:px-4 focus:py-2 focus:text-accent-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+        >
+          Skip to footer
         </a>
         
         <AsyncErrorBoundary>

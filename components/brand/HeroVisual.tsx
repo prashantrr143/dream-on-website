@@ -43,7 +43,11 @@ function rng(seed: string) {
 
 const r1 = (n: number) => Math.round(n * 10) / 10
 
-function Network({ rand }: { rand: () => number }) {
+function Network({ seed }: { seed: string }) {
+  // A fresh generator per render keeps this pure: React may render a
+  // component more than once (Strict Mode), and every render must draw
+  // the same picture as the server did.
+  const rand = rng(`network:${seed}`)
   const cols = 9
   const rows = 6
   const x0 = 640
@@ -94,7 +98,11 @@ function Network({ rand }: { rand: () => number }) {
   )
 }
 
-function Circuit({ rand }: { rand: () => number }) {
+function Circuit({ seed }: { seed: string }) {
+  // A fresh generator per render keeps this pure: React may render a
+  // component more than once (Strict Mode), and every render must draw
+  // the same picture as the server did.
+  const rand = rng(`circuit:${seed}`)
   const traces: string[] = []
   const pads: { x: number; y: number; accent: boolean }[] = []
   const count = 14
@@ -133,7 +141,11 @@ function Circuit({ rand }: { rand: () => number }) {
   )
 }
 
-function Lanes({ rand }: { rand: () => number }) {
+function Lanes({ seed }: { seed: string }) {
+  // A fresh generator per render keeps this pure: React may render a
+  // component more than once (Strict Mode), and every render must draw
+  // the same picture as the server did.
+  const rand = rng(`lanes:${seed}`)
   const lanes = 5
   const items: React.ReactNode[] = []
   for (let l = 0; l < lanes; l++) {
@@ -166,7 +178,11 @@ function Lanes({ rand }: { rand: () => number }) {
   return <>{items}</>
 }
 
-function Layers({ rand }: { rand: () => number }) {
+function Layers({ seed }: { seed: string }) {
+  // A fresh generator per render keeps this pure: React may render a
+  // component more than once (Strict Mode), and every render must draw
+  // the same picture as the server did.
+  const rand = rng(`layers:${seed}`)
   const items: React.ReactNode[] = []
   const stacks = 3
   for (let s = 0; s < stacks; s++) {
@@ -195,7 +211,6 @@ function Layers({ rand }: { rand: () => number }) {
 }
 
 export function HeroVisual({ motif = 'network', seed }: HeroVisualProps) {
-  const rand = rng(`${motif}:${seed}`)
   const Motif = { network: Network, circuit: Circuit, lanes: Lanes, layers: Layers }[motif]
   return (
     <svg
@@ -212,7 +227,7 @@ export function HeroVisual({ motif = 'network', seed }: HeroVisualProps) {
         </pattern>
       </defs>
       <rect width={W} height={H} fill="url(#ys-hero-grid)" />
-      <Motif rand={rand} />
+      <Motif seed={seed} />
     </svg>
   )
 }

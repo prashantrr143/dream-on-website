@@ -35,7 +35,7 @@ const FinalCTASection = () => {
             marginBottom: '16px'
           }}
         >
-          Tell us the problem. We&rsquo;ll tell you what the first step costs.
+          Tell us the problem. We&rsquo;ll tell you what the first step looks like.
         </motion.h2>
         <motion.p
           style={{
@@ -48,7 +48,7 @@ const FinalCTASection = () => {
             marginRight: 'auto'
           }}
         >
-          Describe what is going wrong in your own words. We reply within one working day, and the first step comes back scoped and priced.
+          Describe what is going wrong in your own words. We reply within one working day, and the first step comes back clearly scoped.
         </motion.p>
 
         {/* Dual CTAs */}

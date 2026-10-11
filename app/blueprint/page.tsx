@@ -8,40 +8,37 @@ import { PRIMARY_CTA } from '@/lib/cta'
 export const metadata: Metadata = metaFor('/blueprint')
 
 /**
- * The fixed-price Solution Blueprint (audit G-17 secondary CTA).
+ * The Solution Blueprint: a short discovery engagement (the site-wide
+ * secondary CTA). Deliberately says nothing about price or fees.
  *
  * Everything here restates the offer already described under Engagement
- * models on /how-we-work: one named problem, 2–4 weeks, fixed price,
- * solution design, costed delivery plan and risks. The price and the
+ * models on /how-we-work: one named problem, 2–4 weeks,
+ * solution design, delivery plan and risks. The
  * sample deliverable appear only once they are set in siteConfig.
  */
 
 const STEPS = [
   { name: 'Discover', body: 'We agree the problem, the constraints and how success will be measured, with the people who own them.' },
   { name: 'Design', body: 'We design the solution against your systems, your cloud and the rules you answer to.' },
-  { name: 'Costed plan', body: 'We turn the design into a delivery plan with a fixed price, milestones and named risks.' },
+  { name: 'Delivery plan', body: 'We turn the design into a delivery plan with scope, milestones, team and named risks.' },
   { name: 'Readout', body: 'We walk your stakeholders through it, and you decide whether to go ahead.' },
 ]
 
 const DELIVERABLES = [
   { name: 'Problem statement', body: 'The problem in business terms, the constraints, and what "solved" will look like.' },
   { name: 'Solution blueprint', body: 'The target architecture and how it fits the systems you already run.' },
-  { name: 'Fixed, costed delivery plan', body: 'Scope, milestones and a fixed price for the build, so the next step has no open-ended estimate.' },
+  { name: 'Delivery plan', body: 'Scope, milestones, team and sequencing for the build, so the next step is clear before it starts.' },
   { name: 'Risk register', body: 'What could go wrong, how likely it is, and what we would do about it.' },
 ]
 
 const FAQ = [
   {
     q: 'Who is the Blueprint for?',
-    a: 'Teams with one named problem — a system nobody dares touch, an AI pilot that stalled, data nobody can get answers from — who want a design and a fixed price before committing to a build.',
+    a: 'Teams with one named problem — a system nobody dares touch, an AI pilot that stalled, data nobody can get answers from — who want a clear design and plan before committing to a build.',
   },
   {
     q: 'How long does it take?',
     a: 'Two to four weeks, depending on the size of the problem and how quickly we can reach the people and systems involved.',
-  },
-  {
-    q: 'What does it cost?',
-    a: 'A fixed price, agreed before the work starts, so you know what the first piece of work costs. The plan it produces then puts a fixed price on the build.',
   },
   {
     q: 'Who does the work?',
@@ -53,13 +50,9 @@ const FAQ = [
   },
 ]
 
-function formatPrice(amount: number, currency: string) {
-  return new Intl.NumberFormat('en-US', { style: 'currency', currency, maximumFractionDigits: 0 }).format(amount)
-}
 
 export default function BlueprintPage() {
-  const { priceFrom, currency, sampleDeliverablePdf } = siteConfig.blueprint
-  const price = priceFrom && currency ? formatPrice(priceFrom, currency) : null
+  const { sampleDeliverablePdf } = siteConfig.blueprint
 
   const faqSchema = {
     '@context': 'https://schema.org',
@@ -77,18 +70,12 @@ export default function BlueprintPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
       <PageHero
-        eyebrow="Solution Blueprint · 2–4 weeks · fixed price"
-        title="Know what it will take, and what it will cost, before you build."
-        lede="One named problem. A solution design, a fixed costed delivery plan and a risk register, delivered by the team that would build it."
+        eyebrow="Solution Blueprint · 2–4 weeks"
+        title="Know what it will take before you build."
+        lede="One named problem. A solution design, a delivery plan and a risk register, delivered by the team that would build it."
         primaryCta={{ label: PRIMARY_CTA.label, href: PRIMARY_CTA.href }}
         visual="lanes"
-      >
-        {price && (
-          <p style={{ fontSize: 15, color: 'var(--on-dark-muted)' }}>
-            From <strong style={{ color: 'var(--on-dark)' }}>{price}</strong>
-          </p>
-        )}
-      </PageHero>
+      />
 
       <PageSection
         tone="light"
@@ -142,7 +129,7 @@ export default function BlueprintPage() {
 
       <PageCTA
         title="Start with one problem."
-        body="Tell us what it is in a 30-minute call. If a Blueprint is the right first step, we'll say so and send a fixed price."
+        body="Tell us what it is. If a Blueprint is the right first step, we'll say so and explain how it would run."
         primaryCta={{ label: PRIMARY_CTA.label, href: PRIMARY_CTA.href }}
       />
     </SharedLayout>

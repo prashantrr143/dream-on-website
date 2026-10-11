@@ -67,7 +67,7 @@ export function trackContactFormSubmit(pathname: string): void {
   push({ event: 'contact_form_submit', form: 'contact', page: pathname })
 }
 
-export type CtaName = 'tell_us_the_problem' | 'see_how_we_deliver'
+export type CtaName = 'talk_to_experts' | 'get_blueprint'
 
 export function trackCtaClick(cta: CtaName, pathname: string): void {
   push({ event: 'cta_click', cta, page: pathname })
@@ -84,4 +84,44 @@ export function trackFileDownload(file: string): void {
 /** Consent was granted or changed. Lets GTM re-evaluate triggers. */
 export function pushConsentUpdate(): void {
   push({ event: 'consent_update' })
+}
+
+/* Navigation (header mega-menu). Labels and hrefs are site copy, never
+ * visitor input, so they are safe to send. */
+
+export function trackNavOpen(menu: string): void {
+  push({ event: 'nav_open', menu })
+}
+
+export function trackNavGroup(menu: string, group: string): void {
+  push({ event: 'nav_group', menu, group })
+}
+
+export function trackNavClick(menu: string, group: string | null, label: string, href: string): void {
+  push({ event: 'nav_click', menu, group: group ?? '', label, href })
+}
+
+export function trackSearchOpen(): void {
+  push({ event: 'search_open' })
+}
+
+/** Length only: the query text itself is visitor input and is never sent. */
+export function trackSearchSubmit(queryLength: number): void {
+  push({ event: 'search_submit', query_length: queryLength })
+}
+
+export function trackRegionSelect(region: string): void {
+  push({ event: 'region_select', region })
+}
+
+export function trackMobileNavOpen(): void {
+  push({ event: 'mobile_nav_open' })
+}
+
+export function trackContactOption(option: string): void {
+  push({ event: 'contact_option', option })
+}
+
+export function trackFormStep(step: number): void {
+  push({ event: 'form_step', step })
 }

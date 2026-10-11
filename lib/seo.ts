@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { CONTENT_PAGES } from '@/content/pages'
 
 /**
  * Per-route metadata, in one place.
@@ -16,6 +17,46 @@ import type { Metadata } from 'next'
 export const SITE_URL = 'https://yatisphere.com'
 export const SITE_NAME = 'YatiSphere'
 
+/**
+ * The share card (app/opengraph-image.tsx). Routes that set their own
+ * openGraph replace the root one wholesale in Next.js, so every route
+ * must re-attach the image, locale and site name: use socialMeta().
+ */
+export const OG_IMAGE = {
+  url: '/opengraph-image',
+  width: 1200,
+  height: 630,
+  alt: 'YatiSphere: Enterprise AI, engineered to be trusted.',
+}
+
+/** openGraph + twitter for one page, with the shared image and locale. */
+export function socialMeta(opts: {
+  title: string
+  description: string
+  url: string
+  type?: 'website' | 'article'
+  publishedTime?: string
+}): Pick<Metadata, 'openGraph' | 'twitter'> {
+  return {
+    openGraph: {
+      type: opts.type ?? 'website',
+      locale: 'en_US',
+      siteName: SITE_NAME,
+      title: opts.title,
+      description: opts.description,
+      url: opts.url,
+      images: [OG_IMAGE],
+      ...(opts.publishedTime ? { publishedTime: opts.publishedTime } : {}),
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: opts.title,
+      description: opts.description,
+      images: [OG_IMAGE.url],
+    },
+  }
+}
+
 interface RouteMeta {
   /** Full <title>. The brand suffix is already included. */
   title: string
@@ -26,124 +67,67 @@ interface RouteMeta {
 
 export const ROUTE_META: Record<string, RouteMeta> = {
   '/': {
-    title: 'Azure engineering and applied AI | YatiSphere',
+    title: 'Enterprise AI, consulting and cloud engineering | YatiSphere',
     description:
-      'A senior, in-house team that modernizes core platforms and puts governed AI into production for regulated businesses. Fixed price to start.',
+      'We advise, build and run enterprise platforms on AWS, Microsoft Azure and Google Cloud, and bring governed AI into them, with a dedicated Claude practice.',
   },
 
-  '/solutions': {
-    title: 'Enterprise IT services | YatiSphere',
-    description:
-      'Modernize, migrate, secure and run the platforms your business depends on. Azure-first IT services, delivered end to end by one senior team.',
-  },
-  '/solutions/software-engineering': {
-    title: 'Software and platform engineering | YatiSphere',
-    description:
-      'Platform blocking the next product? APIs, integration, core platform builds and Java or .NET modernization on Azure, from engineers who support it.',
-  },
-  '/solutions/cloud': {
-    title: 'Cloud and infrastructure | YatiSphere',
-    description:
-      'Cloud costs rising, migration slipping, controls behind? Azure landing zones, migration, FinOps and resilience, built by the team that supports it.',
-  },
-  '/solutions/data': {
-    title: 'Data and analytics | YatiSphere',
-    description:
-      'Same question, three different numbers? Microsoft Fabric, Databricks and Purview on Azure, so your figures hold up for decisions, regulators and clients.',
-  },
-  '/solutions/devops': {
-    title: 'DevOps and platform automation | YatiSphere',
-    description:
-      'Releases that depend on one person\u2019s checklist? CI/CD, infrastructure as code and observability on Azure, so every change takes the same tested path.',
-  },
-  '/solutions/security': {
-    title: 'Security and compliance | YatiSphere',
-    description:
-      'An audit or client security review coming? Identity, zero trust, data protection and audit evidence on Azure, designed against the frameworks you face.',
-  },
-  '/solutions/modernization': {
-    title: 'Modernization and advisory | YatiSphere',
-    description:
-      'Core system too old to touch? Architecture reviews, legacy re-platforming and costed roadmaps on Azure, delivered in reversible steps.',
-  },
-
-  '/applied-ai': {
-    title: 'Applied AI | YatiSphere',
-    description:
-      'AI that moves from pilot to production, with integration, governance and operations owned by one team. Azure-first and model-agnostic.',
-  },
-
-  '/industries': {
-    title: 'Industries we build for | YatiSphere',
-    description:
-      'Systems for financial services, legal and professional services, and software and SaaS companies, where a wrong answer has consequences.',
-  },
-  '/industries/financial-services': {
-    title: 'Financial services technology | YatiSphere',
-    description:
-      'Onboarding, settlement and compliance systems for banks, insurers, wealth and asset managers, and fintechs, built for the regimes you answer to.',
-  },
-  '/industries/legal-professional-services': {
-    title: 'Legal and professional services | YatiSphere',
-    description:
-      'Matters waiting on conflict checks nobody can see, and client files handled by hand. Intake and clearance you can reconstruct later.',
-  },
-  '/industries/healthcare': {
-    title: 'Healthcare technology | YatiSphere',
-    description:
-      'Records, imaging and scheduling that each hold part of the picture. Systems that exchange data safely and prove they did.',
-  },
-  '/industries/government-public-sector': {
-    title: 'Government and public sector | YatiSphere',
-    description:
-      'Citizen services that must be accessible, auditable and resilient, built against the constraints that actually apply.',
-  },
-  '/industries/software-saas': {
-    title: 'Software and SaaS | YatiSphere',
-    description:
-      'Multi-tenant architecture, release controls and safe AI features for software companies answering enterprise customers\u2019 security reviews.',
-  },
-
-  '/how-we-work': {
+  '/who-we-are/how-we-work': {
     title: 'How we work | YatiSphere',
     description:
-      'Discover, design, build, launch and run. Five stages, one in-house team, and a fixed price before any build begins.',
+      'Discover, design, build, launch and run. Five stages, one in-house team, and an agreed plan before any build begins.',
   },
-  '/about-us': {
-    title: 'About us | YatiSphere',
+  '/who-we-are/about': {
+    title: 'About YatiSphere: our vision, principles and people',
     description:
-      'Who we are, how we got here, and why the people who scope your solution are the people who build and run it.',
+      'Senior consultants and engineers who have built and run systems for global banks, consultancies and governments. Our vision, principles and people.',
   },
   '/contact-us': {
     title: 'Contact us | YatiSphere',
     description:
-      'Describe the problem in a few lines. A founder replies within one working day with an honest view on whether we can help.',
+      'Tell us the problem. A senior member of the team replies within one working day with an honest view on whether we are the right team.',
   },
   '/blueprint': {
-    title: 'Fixed-price Blueprint | YatiSphere',
+    title: 'Solution Blueprint | YatiSphere',
     description:
-      'A solution blueprint, a fixed costed delivery plan and a risk register in two to four weeks, before you commit to any build.',
+      'A solution blueprint, a delivery plan and a risk register in two to four weeks, before you commit to any build.',
   },
-  '/case-studies': {
-    title: 'Case studies | YatiSphere',
+  '/customer-stories': {
+    title: 'Customer stories | YatiSphere',
     description:
       'Problems we have solved for regulated businesses, what stood in the way, and the measured result.',
   },
-  '/perspectives': {
-    title: 'Perspectives | YatiSphere',
+  '/insights': {
+    title: 'Insights | YatiSphere',
     description:
-      'Notes on delivering enterprise software, cloud and applied AI in regulated environments.',
+      'Practical notes on Azure, applied AI, security and regulation for teams in regulated businesses, from the engineers who build the systems.',
   },
 
-  '/responsible-ai': {
+  '/who-we-are/responsible-ai': {
     title: 'Responsible AI | YatiSphere',
     description:
       'What we commit to when building AI, what we refuse to build, and how we can be held to it.',
   },
-  '/trust': {
+  '/who-we-are/trust': {
     title: 'Trust center | YatiSphere',
     description:
       'How we protect client systems and data, who processes data for us, our certification status, and how to request an NDA and security pack.',
+  },
+
+  '/who-we-are/leadership': {
+    title: 'Leadership | YatiSphere',
+    description:
+      'The people who lead YatiSphere: senior consultants and engineers who design, build and run systems for regulated businesses.',
+  },
+  '/accessibility': {
+    title: 'Accessibility statement | YatiSphere',
+    description:
+      'How we build this website to WCAG 2.2 AA, what we know does not yet meet it, and how to tell us about a barrier you hit.',
+  },
+  '/search': {
+    title: 'Search | YatiSphere',
+    description: 'Search the YatiSphere site.',
+    noindex: true,
   },
 
   // Legal pages carry no search value and are kept out of the index.
@@ -171,24 +155,16 @@ export function metaFor(route: string): Metadata {
     ...(meta.noindex
       ? { robots: { index: false, follow: true } }
       : {}),
-    openGraph: {
-      type: 'website',
-      siteName: SITE_NAME,
-      title: meta.title,
-      description: meta.description,
-      url,
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: meta.title,
-      description: meta.description,
-    },
+    ...socialMeta({ title: meta.title, description: meta.description, url }),
   }
 }
 
 /** Routes that belong in the sitemap: everything public. */
 export function indexableRoutes(): string[] {
-  return Object.entries(ROUTE_META)
-    .filter(([, m]) => !m.noindex)
-    .map(([route]) => route)
+  return [
+    ...Object.entries(ROUTE_META)
+      .filter(([, m]) => !m.noindex)
+      .map(([route]) => route),
+    ...CONTENT_PAGES.map((p) => p.path),
+  ]
 }

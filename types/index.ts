@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import React from 'react';
 import type { JSX } from 'react';
 // Global type definitions for the application

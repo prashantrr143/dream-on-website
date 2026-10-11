@@ -4,7 +4,6 @@ import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import { YsIcon, type YsIconName } from '@/components/brand/YsIcon'
 import { CapabilityVisual, type VisualKind } from '@/components/enterprise/CapabilityVisual'
-import { FEATURED_INDUSTRIES, OTHER_INDUSTRIES } from '@/lib/services'
 
 
 
@@ -25,7 +24,7 @@ const problems: ProblemCard[] = [
     problem: 'Client onboarding takes weeks and lives in email.',
     body: 'Automated intake, checks and approvals, with a full audit trail.',
     tag: 'Applied AI + Software',
-    href: '/applied-ai',
+    href: '/what-we-do/industries/financial-services',
     icon: 'products',
     visual: 'software',
   },
@@ -33,7 +32,7 @@ const problems: ProblemCard[] = [
     problem: 'Our core system is old and nobody dares touch it.',
     body: 'Step-by-step modernization while the business keeps running.',
     tag: 'Modernization & Advisory',
-    href: '/solutions/modernization',
+    href: '/what-we-do/services/modernization',
     icon: 'growth',
     visual: 'modernization',
   },
@@ -41,7 +40,7 @@ const problems: ProblemCard[] = [
     problem: 'We have the data but can\u2019t get an answer out of it.',
     body: 'One trusted data platform and live dashboards.',
     tag: 'Data & Analytics',
-    href: '/solutions/data',
+    href: '/what-we-do/services/data-analytics',
     icon: 'analytics',
     visual: 'data',
   },
@@ -49,15 +48,15 @@ const problems: ProblemCard[] = [
     problem: 'Our AI pilot worked, and then nothing happened.',
     body: 'The pilot taken to production, with governance in place.',
     tag: 'Applied AI',
-    href: '/applied-ai',
+    href: '/what-we-do/applied-ai',
     icon: 'automation',
-    visual: 'devops',
+    visual: 'ai',
   },
   {
     problem: 'Cloud costs keep rising and we don\u2019t know why.',
     body: 'Cost review, clean-up and a managed platform.',
     tag: 'Cloud & Infrastructure',
-    href: '/solutions/cloud',
+    href: '/what-we-do/cloud',
     icon: 'cloud',
     visual: 'cloud',
   },
@@ -65,7 +64,7 @@ const problems: ProblemCard[] = [
     problem: 'An audit or a client security review is coming.',
     body: 'Controls, logging and evidence built into your systems.',
     tag: 'Security & Compliance',
-    href: '/solutions/security',
+    href: '/what-we-do/services/security-compliance',
     icon: 'security',
     visual: 'security',
   },
@@ -73,20 +72,39 @@ const problems: ProblemCard[] = [
 
 const PILLARS = [
   {
-    label: 'Enterprise IT services',
-    line: 'Microsoft Azure specialists across software, cloud, data, DevOps, modernization and security: the systems your business runs on.',
-    link: { label: 'See all services', href: '/solutions' },
+    label: 'Cloud, engineering & data',
+    line: 'Platforms on AWS, Microsoft Azure and Google Cloud, plus the software, data, delivery and security your business runs on.',
+    link: { label: 'See what we do', href: '/what-we-do' },
   },
   {
     label: 'Applied AI',
-    line: 'Production-grade AI inside the systems you already run, governed from day one. Azure-first, model-agnostic.',
-    link: { label: 'See applied AI', href: '/applied-ai' },
+    line: 'Production-grade AI inside the systems you already run, governed from day one. Model-neutral, with a dedicated Claude practice.',
+    link: { label: 'See applied AI', href: '/what-we-do/applied-ai' },
   },
 ]
 
-// Featured sectors lead; the rest are named as "also" (audit I-01, G-11).
-const SECTORS = FEATURED_INDUSTRIES
-const ALSO = OTHER_INDUSTRIES
+// Built for: three sectors, each with the outcome it buys (audit H-04).
+const BUILT_FOR: { href: string; name: string; outcome: string }[] = [
+  {
+    href: '/what-we-do/industries/financial-services',
+    name: 'Financial services',
+    outcome: 'Onboarding, reporting and core platforms that satisfy a regulator.',
+  },
+  {
+    href: '/what-we-do/industries/legal-professional-services',
+    name: 'Legal & professional services',
+    outcome: 'Intake, conflicts and practice data you can defend.',
+  },
+  {
+    href: '/what-we-do/industries/software-saas',
+    name: 'Software & SaaS',
+    outcome: 'Pass your customers\u2019 security reviews and ship AI features safely.',
+  },
+]
+const ALSO = [
+  { name: 'Healthcare', href: '/what-we-do/industries/healthcare' },
+  { name: 'Public sector', href: '/what-we-do/industries/public-sector' },
+]
 
 const ITServicesSection = () => {
   return (
@@ -160,30 +178,35 @@ const ITServicesSection = () => {
           ))}
         </motion.div>
 
-        {/* Sectors */}
-        <motion.p
-          className="ys-sectors-line"
-        >
-          Built for{' '}
-          {SECTORS.map((sector, i) => (
-            <span key={sector.href}>
-              {i > 0 && (i === SECTORS.length - 1 ? ' and ' : ', ')}
-              <a href={sector.href} className="ys-sectors-link">
-                {sector.name.toLowerCase().replace('software & saas', 'software and SaaS companies')}
-              </a>
-            </span>
-          ))}
-          . Also experienced in{' '}
-          {ALSO.map((sector, i) => (
-            <span key={sector.href}>
-              {i > 0 && ' and '}
-              <a href={sector.href} className="ys-sectors-link">
-                {sector.name.toLowerCase().replace(' & public sector', '')}
-              </a>
-            </span>
-          ))}
-          .
-        </motion.p>
+        {/* Built for */}
+        <div className="ys-builtfor">
+          <h3 className="ys-eyebrow ys-builtfor-title">Built for</h3>
+          <ul className="ys-builtfor-grid">
+            {BUILT_FOR.map((sector) => (
+              <li key={sector.href}>
+                <a href={sector.href} className="ys-builtfor-card">
+                  <span className="ys-builtfor-name">
+                    {sector.name}
+                    <ArrowRight className="w-4 h-4 shrink-0" strokeWidth={2} aria-hidden="true" />
+                  </span>
+                  <span className="ys-builtfor-outcome">{sector.outcome}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+          <p className="ys-builtfor-also">
+            Also experienced in{' '}
+            {ALSO.map((sector, i) => (
+              <span key={sector.href}>
+                {i > 0 && ' and '}
+                <a href={sector.href} className="ys-sectors-link">
+                  {sector.name.toLowerCase()}
+                </a>
+              </span>
+            ))}
+            .
+          </p>
+        </div>
       </div>
     </section>
   )
