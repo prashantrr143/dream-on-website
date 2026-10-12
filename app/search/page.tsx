@@ -41,10 +41,10 @@ export default async function SearchPage({
               minWidth: 0,
               padding: '14px 16px',
               fontSize: 16,
-              border: '1px solid var(--ys-border)',
-              borderRadius: 10,
-              background: 'var(--ys-surface)',
-              color: 'var(--ys-ink)',
+              border: '1px solid var(--grey-200)',
+              borderRadius: 4,
+              background: 'var(--white)',
+              color: 'var(--ink-900)',
             }}
           />
           <button type="submit" className="ys-cta-primary-light">
@@ -53,7 +53,7 @@ export default async function SearchPage({
         </form>
 
         {q && (
-          <p role="status" style={{ marginBottom: 28, color: 'var(--ink-muted)' }}>
+          <p role="status" style={{ marginBottom: 28, color: 'var(--ink-600)' }}>
             {results.length === 0
               ? 'Nothing matched. Try a broader word, such as “cloud”, “data” or “AI”.'
               : `${results.length} result${results.length === 1 ? '' : 's'}`}
@@ -70,11 +70,11 @@ export default async function SearchPage({
               </h2>
               <ul style={{ listStyle: 'none', margin: 0, padding: 0, maxWidth: '70ch' }}>
                 {group.map((r) => (
-                  <li key={r.href} style={{ padding: '16px 0', borderBottom: '1px solid var(--line)' }}>
+                  <li key={r.href} style={{ padding: '16px 0', borderBottom: '1px solid var(--grey-200)' }}>
                     <a href={r.href} className="ys-link" style={{ fontSize: 18, fontWeight: 600 }}>
                       {r.title}
                     </a>
-                    <p style={{ marginTop: 6, fontSize: 15, lineHeight: 1.6, color: 'var(--ink-muted)' }}>{r.description}</p>
+                    <p style={{ marginTop: 6, fontSize: 16, lineHeight: 1.6, color: 'var(--ink-600)' }}>{r.description}</p>
                   </li>
                 ))}
               </ul>

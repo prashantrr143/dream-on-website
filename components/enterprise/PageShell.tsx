@@ -44,7 +44,7 @@ export function PageHero({
   return (
     <section
       className="relative w-full overflow-hidden text-white"
-      style={{ backgroundColor: 'var(--ys-deep-blue)' }}
+      style={{ backgroundColor: 'var(--navy-950)' }}
     >
       <HeroVisual motif={visual} seed={title} />
       {/* Scrims keep headline contrast well above AA over the imagery */}
@@ -93,7 +93,7 @@ export function PageHero({
             )}
 
             <motion.h1
-              style={{ color: 'var(--on-dark)', textWrap: 'balance' }}
+              style={{ color: 'var(--white)', textWrap: 'balance' }}
             >
               {title}
             </motion.h1>
@@ -103,7 +103,7 @@ export function PageHero({
                 className="lead measure"
                 style={{
                   marginTop: 'clamp(14px, 2vw, 20px)',
-                  color: 'var(--on-dark-muted)',
+                  color: 'var(--ink-300)',
                 }}
               >
                 {lede}
@@ -182,7 +182,7 @@ export function PageSection({
                 className="lead measure"
                 style={{
                   marginTop: 18,
-                  color: 'var(--ink-muted)',
+                  color: 'var(--ink-600)',
                 }}
               >
                 {lede}
@@ -226,7 +226,7 @@ export function PageCTA({
         <h2
           style={{
             fontSize: 'clamp(1.7rem, 3.4vw, 2.6rem)',
-            fontWeight: 700,
+            fontWeight: 600,
             letterSpacing: '-0.03em',
             lineHeight: 1.15,
             color: '#ffffff',

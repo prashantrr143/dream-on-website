@@ -87,12 +87,12 @@ export default function BlueprintPage() {
           style={{ gap: 20, listStyle: 'none', margin: 0, padding: 0, counterReset: 'step' }}
         >
           {STEPS.map((step, i) => (
-            <li key={step.name} className="ys-card-light" style={{ padding: 26, minWidth: 0 }}>
+            <li key={step.name} className="ys-open-item" style={{ minWidth: 0 }}>
               <p className="ys-eyebrow" aria-hidden="true" style={{ marginBottom: 10 }}>
                 {String(i + 1).padStart(2, '0')}
               </p>
-              <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--ink)', marginBottom: 8 }}>{step.name}</h3>
-              <p style={{ fontSize: 14, lineHeight: 1.6, color: 'var(--ink-muted)' }}>{step.body}</p>
+              <h3 style={{ fontSize: 17, fontWeight: 600, color: 'var(--ink-900)', marginBottom: 8 }}>{step.name}</h3>
+              <p style={{ fontSize: 16, lineHeight: 1.6, color: 'var(--ink-600)' }}>{step.body}</p>
             </li>
           ))}
         </ol>
@@ -101,9 +101,9 @@ export default function BlueprintPage() {
       <PageSection tone="white" eyebrow="What you get" title="Four deliverables you keep.">
         <ul className="grid grid-cols-1 md:grid-cols-2" style={{ gap: 20, listStyle: 'none', margin: 0, padding: 0 }}>
           {DELIVERABLES.map((d) => (
-            <li key={d.name} className="ys-card-light" style={{ padding: 26, minWidth: 0 }}>
-              <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--ink)', marginBottom: 8 }}>{d.name}</h3>
-              <p style={{ fontSize: 14, lineHeight: 1.6, color: 'var(--ink-muted)' }}>{d.body}</p>
+            <li key={d.name} className="ys-open-item" style={{ minWidth: 0 }}>
+              <h3 style={{ fontSize: 17, fontWeight: 600, color: 'var(--ink-900)', marginBottom: 8 }}>{d.name}</h3>
+              <p style={{ fontSize: 16, lineHeight: 1.6, color: 'var(--ink-600)' }}>{d.body}</p>
             </li>
           ))}
         </ul>
@@ -119,9 +119,9 @@ export default function BlueprintPage() {
       <PageSection tone="light" eyebrow="Questions" title="Before you book.">
         <div style={{ maxWidth: '52rem' }}>
           {FAQ.map((f) => (
-            <details key={f.q} className="ys-faq" style={{ borderBottom: '1px solid var(--line)', padding: '18px 0' }}>
-              <summary style={{ cursor: 'pointer', fontSize: 17, fontWeight: 600, color: 'var(--ink)' }}>{f.q}</summary>
-              <p style={{ marginTop: 10, fontSize: 15, lineHeight: 1.65, color: 'var(--ink-muted)' }}>{f.a}</p>
+            <details key={f.q} className="ys-faq" style={{ borderBottom: '1px solid var(--grey-200)', padding: '18px 0' }}>
+              <summary style={{ cursor: 'pointer', fontSize: 17, fontWeight: 600, color: 'var(--ink-900)' }}>{f.q}</summary>
+              <p style={{ marginTop: 10, fontSize: 16, lineHeight: 1.65, color: 'var(--ink-600)' }}>{f.a}</p>
             </details>
           ))}
         </div>

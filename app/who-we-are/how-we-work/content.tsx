@@ -61,16 +61,15 @@ export default function HowWeWorkContent() {
           {principles.map((principle, index) => (
             <motion.div
               key={index}
-              className="ys-card-light"
+              className="ys-open-item"
               style={{
-                padding: '22px 20px',
                 minWidth: 0
               }}
             >
               <h3
                 style={{
                   fontSize: '16px',
-                  fontWeight: 700,
+                  fontWeight: 600,
                   letterSpacing: '-0.015em',
                   lineHeight: 1.3,
                   marginBottom: '8px'
@@ -80,8 +79,8 @@ export default function HowWeWorkContent() {
               </h3>
               <p
                 style={{
-                  fontSize: '14px',
-                  color: 'var(--ys-ink-body)',
+                  fontSize: '16px',
+                  color: 'var(--ink-600)',
                   lineHeight: 1.6
                 }}
               >
@@ -113,23 +112,23 @@ export default function HowWeWorkContent() {
           {WORKING_ACROSS_REGIONS.map((item) => (
             <div
               key={item.title}
-              className="ys-card-light"
-              style={{ padding: '26px', display: 'flex', flexDirection: 'column', minWidth: 0 }}
+              className="ys-open-item"
+              style={{ display: 'flex', flexDirection: 'column', minWidth: 0 }}
             >
               <h3
                 style={{
                   fontSize: '16.5px',
-                  fontWeight: 700,
+                  fontWeight: 600,
                   letterSpacing: '-0.018em',
                   lineHeight: 1.3,
-                  color: 'var(--ink)',
+                  color: 'var(--ink-900)',
                   marginBottom: '10px',
                   textWrap: 'pretty',
                 }}
               >
                 {item.title}
               </h3>
-              <p style={{ fontSize: '14px', lineHeight: 1.6, color: 'var(--ink-muted)', maxWidth: '62ch' }}>
+              <p style={{ fontSize: '16px', lineHeight: 1.6, color: 'var(--ink-600)', maxWidth: '62ch' }}>
                 {item.body}
               </p>
             </div>
@@ -139,9 +138,9 @@ export default function HowWeWorkContent() {
         <p
           style={{
             marginTop: 'clamp(24px, 3vw, 32px)',
-            fontSize: '14.5px',
+            fontSize: '16px',
             lineHeight: 1.65,
-            color: 'var(--ink-muted)',
+            color: 'var(--ink-600)',
             maxWidth: '70ch',
           }}
         >
@@ -165,7 +164,7 @@ export default function HowWeWorkContent() {
             <h3
               style={{
                 fontSize: 'clamp(18px, 2vw, 21px)',
-                fontWeight: 700,
+                fontWeight: 600,
                 letterSpacing: '-0.02em',
                 lineHeight: 1.3,
                 marginBottom: '16px'
@@ -175,9 +174,9 @@ export default function HowWeWorkContent() {
             </h3>
             <div
               style={{
-                fontSize: '15.5px',
+                fontSize: '16px',
                 lineHeight: 1.7,
-                color: 'var(--ys-ink-body)',
+                color: 'var(--ink-600)',
                 display: 'flex',
                 flexDirection: 'column',
                 gap: '14px'
@@ -197,7 +196,7 @@ export default function HowWeWorkContent() {
             <h3
               style={{
                 fontSize: 'clamp(18px, 2vw, 21px)',
-                fontWeight: 700,
+                fontWeight: 600,
                 letterSpacing: '-0.02em',
                 lineHeight: 1.3,
                 marginBottom: '16px'
@@ -207,9 +206,9 @@ export default function HowWeWorkContent() {
             </h3>
             <div
               style={{
-                fontSize: '15.5px',
+                fontSize: '16px',
                 lineHeight: 1.7,
-                color: 'var(--ys-ink-body)',
+                color: 'var(--ink-600)',
                 display: 'flex',
                 flexDirection: 'column',
                 gap: '14px'

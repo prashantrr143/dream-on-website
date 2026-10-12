@@ -32,7 +32,7 @@ export default function NotFound() {
       <PageSection tone="white">
         <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" style={{ gap: '4px 28px', listStyle: 'none', margin: 0, padding: 0 }}>
           {LINKS.map((l) => (
-            <li key={l.href} style={{ borderBottom: '1px solid var(--line)' }}>
+            <li key={l.href} style={{ borderBottom: '1px solid var(--grey-200)' }}>
               <a href={l.href} className="ys-link-row">
                 <span>
                   <span className="ys-link-row-label">{l.label}</span>

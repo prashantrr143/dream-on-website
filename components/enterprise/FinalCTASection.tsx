@@ -28,7 +28,7 @@ const FinalCTASection = () => {
         <motion.h2
           style={{
             fontSize: 'clamp(2rem, 4vw, 3rem)',
-            fontWeight: 700,
+            fontWeight: 600,
             letterSpacing: '-0.03em',
             lineHeight: 1.1,
             color: 'white',

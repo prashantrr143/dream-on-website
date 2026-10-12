@@ -16,8 +16,8 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        // Three families. `sans` is the body default (also on <body>),
-        // `heading` for h1-h3, `mono` for eyebrows, labels and tags.
+        // One family. `mono` is for code snippets and labels inside
+        // technical diagrams only.
         sans: [
           'var(--font-sans)',
           'IBM Plex Sans',
@@ -25,13 +25,6 @@ const config: Config = {
           'system-ui',
           '-apple-system',
           'Segoe UI',
-          'sans-serif',
-        ],
-        heading: [
-          'var(--font-heading)',
-          'Space Grotesk',
-          'ui-sans-serif',
-          'system-ui',
           'sans-serif',
         ],
         mono: [
@@ -76,43 +69,31 @@ const config: Config = {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
-        chart: {
-          "1": "hsl(var(--chart-1))",
-          "2": "hsl(var(--chart-2))",
-          "3": "hsl(var(--chart-3))",
-          "4": "hsl(var(--chart-4))",
-          "5": "hsl(var(--chart-5))",
-        },
 
-        /* Design tokens. Plain hex vars, so these are used directly
-           (bg-navy-900, text-ink-muted) rather than through hsl(). */
+        /* Design tokens (app/globals.css :root). Plain hex vars, so
+           these are used directly (bg-navy-950, text-ink-600). */
+        "navy-950": "var(--navy-950)",
         "navy-900": "var(--navy-900)",
         "navy-800": "var(--navy-800)",
-        "line-dark": "var(--line-dark)",
-        "line-dark-2": "var(--line-dark-2)",
-        "on-dark": "var(--on-dark)",
-        "on-dark-muted": "var(--on-dark-muted)",
-        "on-dark-label": "var(--on-dark-label)",
-        paper: "var(--paper)",
-        surface: "var(--surface)",
-        line: "var(--line)",
-        ink: "var(--ink)",
-        "ink-muted": "var(--ink-muted)",
         "blue-600": "var(--blue-600)",
-        "blue-400": "var(--blue-400)",
+        "blue-700": "var(--blue-700)",
+        "blue-300": "var(--blue-300)",
         "amber-500": "var(--amber-500)",
-        "amber-700": "var(--amber-700)",
+        "ink-900": "var(--ink-900)",
+        "ink-600": "var(--ink-600)",
+        "ink-300": "var(--ink-300)",
+        "ink-400": "var(--ink-400)",
+        "grey-50": "var(--grey-50)",
+        "grey-200": "var(--grey-200)",
       },
       borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
-        card: "var(--radius-card)",
-        control: "var(--radius-control)",
+        lg: "var(--radius-md)",
+        md: "var(--radius-md)",
+        sm: "var(--radius-sm)",
         pill: "var(--radius-pill)",
       },
       boxShadow: {
-        hover: "var(--shadow-hover)",
+        overlay: "var(--shadow-overlay)",
       },
       animation: {
         float: "float 6s ease-in-out infinite",

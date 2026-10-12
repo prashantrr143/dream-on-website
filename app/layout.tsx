@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Space_Grotesk, IBM_Plex_Sans, IBM_Plex_Mono } from 'next/font/google'
+import { IBM_Plex_Sans, IBM_Plex_Mono } from 'next/font/google'
 import './globals.css'
 import { socialMeta } from '@/lib/seo'
 import { AsyncErrorBoundary } from '@/components/async-error-boundary'
@@ -16,31 +16,24 @@ import {
 } from '@/components/seo/StructuredData'
 
 /**
- * Three families, latin only, display: swap.
- *
- * The site previously loaded five families, of which only one was
- * really used, at a cost of ~1MB of font files. Now 284KB.
+ * One family for everything: IBM Plex Sans, latin only, display: swap
+ * (next/font adds a size-adjusted local fallback, so the swap does not
+ * shift layout). Plex Mono is loaded for code snippets and labels inside
+ * technical diagrams only.
  */
-const spaceGrotesk = Space_Grotesk({
-  subsets: ['latin'],
-  variable: '--font-heading',
-  display: 'swap',
-  weight: ['500', '600'],
-})
-
 const ibmPlexSans = IBM_Plex_Sans({
   subsets: ['latin'],
   variable: '--font-sans',
   display: 'swap',
-  weight: ['400', '500', '600'],
+  weight: ['300', '400', '500', '600'],
 })
 
-/** Eyebrows, small-caps labels and tags only. */
 const ibmPlexMono = IBM_Plex_Mono({
   subsets: ['latin'],
   variable: '--font-mono',
   display: 'swap',
-  weight: ['400', '500'],
+  weight: ['400'],
+  preload: false,
 })
 
 const DEFAULT_TITLE = 'Enterprise AI, consulting and cloud engineering | YatiSphere'
@@ -109,7 +102,7 @@ export default function RootLayout({
         {/* Consent Mode defaults, then GTM. Nothing else goes first. */}
         <GoogleTagManager />
       </head>
-      <body className={`${spaceGrotesk.variable} ${ibmPlexSans.variable} ${ibmPlexMono.variable} min-h-screen bg-background font-sans antialiased`}>
+      <body className={`${ibmPlexSans.variable} ${ibmPlexMono.variable} min-h-screen bg-background font-sans antialiased`}>
         <GoogleTagManagerNoScript />
         <OrganizationSchema />
         <WebSiteSchema />

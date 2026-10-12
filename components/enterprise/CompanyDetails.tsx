@@ -25,8 +25,8 @@ export function CompanyDetails() {
         <dl className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" style={{ gap: '14px 32px', fontSize: 14, lineHeight: 1.55 }}>
           {shown.map(([label, value]) => (
             <div key={label} style={{ minWidth: 0 }}>
-              <dt style={{ color: 'var(--ink-muted)' }}>{label}</dt>
-              <dd style={{ color: 'var(--ink)' }}>{value}</dd>
+              <dt style={{ color: 'var(--ink-600)' }}>{label}</dt>
+              <dd style={{ color: 'var(--ink-900)' }}>{value}</dd>
             </div>
           ))}
         </dl>

@@ -80,7 +80,7 @@ class ErrorBoundary extends Component<Props, State> {
               </div>
               
               <div className="space-y-2">
-                <h1 className="text-2xl font-bold text-foreground">
+                <h1 className="text-2xl font-semibold text-foreground">
                   Something went wrong
                 </h1>
                 <p className="text-muted-foreground">

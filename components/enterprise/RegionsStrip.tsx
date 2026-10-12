@@ -22,11 +22,11 @@ export function RegionsStrip({
         </h2>
         <ul className="grid grid-cols-1 md:grid-cols-3" style={{ gap: 20, listStyle: 'none', margin: 0, padding: 0 }}>
           {WORKING_ACROSS_REGIONS.map((item) => (
-            <li key={item.title} className="ys-card-light" style={{ padding: 26, minWidth: 0 }}>
-              <h3 style={{ fontSize: 16.5, fontWeight: 700, letterSpacing: '-0.018em', lineHeight: 1.3, color: 'var(--ink)', marginBottom: 10 }}>
+            <li key={item.title} className="ys-open-item" style={{ minWidth: 0 }}>
+              <h3 style={{ fontSize: 16.5, fontWeight: 600, letterSpacing: '-0.018em', lineHeight: 1.3, color: 'var(--ink-900)', marginBottom: 10 }}>
                 {item.title}
               </h3>
-              <p style={{ fontSize: 14, lineHeight: 1.6, color: 'var(--ink-muted)' }}>{item.body}</p>
+              <p style={{ fontSize: 16, lineHeight: 1.6, color: 'var(--ink-600)' }}>{item.body}</p>
             </li>
           ))}
         </ul>

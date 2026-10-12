@@ -69,7 +69,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 
       <PageSection tone="white">
         <article style={{ maxWidth: '70ch' }}>
-          <p style={{ fontSize: 14, color: 'var(--ink-muted)', marginBottom: 28 }}>
+          <p style={{ fontSize: 14, color: 'var(--ink-600)', marginBottom: 28 }}>
             {a.author} · {a.readTime}
             {a.publishedAt && <> · Published {longDate(a.publishedAt)}</>}
             {' · '}Facts checked {longDate(a.reviewedAt)}
@@ -78,19 +78,19 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
           {a.sections.map((section, i) => (
             <section key={i} style={{ marginBottom: 32 }}>
               {section.heading && (
-                <h2 style={{ fontSize: 'clamp(22px, 2.4vw, 26px)', lineHeight: 1.3, color: 'var(--ink)', marginBottom: 14 }}>
+                <h2 style={{ fontSize: 'clamp(22px, 2.4vw, 26px)', lineHeight: 1.3, color: 'var(--ink-900)', marginBottom: 14 }}>
                   {section.heading}
                 </h2>
               )}
               {section.paragraphs.map((p, j) => (
-                <p key={j} style={{ fontSize: 17, lineHeight: 1.75, color: 'var(--ink)', marginBottom: 16 }}>
+                <p key={j} style={{ fontSize: 17, lineHeight: 1.75, color: 'var(--ink-900)', marginBottom: 16 }}>
                   {p}
                 </p>
               ))}
               {section.bullets && (
                 <ul style={{ paddingLeft: 22, marginBottom: 16, listStyle: 'disc' }}>
                   {section.bullets.map((b, j) => (
-                    <li key={j} style={{ fontSize: 17, lineHeight: 1.7, color: 'var(--ink)', marginBottom: 8 }}>
+                    <li key={j} style={{ fontSize: 17, lineHeight: 1.7, color: 'var(--ink-900)', marginBottom: 8 }}>
                       {b}
                     </li>
                   ))}
@@ -100,13 +100,13 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
           ))}
 
           {a.sources.length > 0 && (
-            <section aria-labelledby="sources-heading" style={{ borderTop: '1px solid var(--line)', paddingTop: 24, marginTop: 40 }}>
+            <section aria-labelledby="sources-heading" style={{ borderTop: '1px solid var(--grey-200)', paddingTop: 24, marginTop: 40 }}>
               <h2 id="sources-heading" className="ys-eyebrow" style={{ marginBottom: 14 }}>
                 Sources
               </h2>
               <ol style={{ paddingLeft: 22, listStyle: 'decimal' }}>
                 {a.sources.map((s) => (
-                  <li key={s.url} style={{ fontSize: 14, lineHeight: 1.6, color: 'var(--ink-muted)', marginBottom: 8 }}>
+                  <li key={s.url} style={{ fontSize: 14, lineHeight: 1.6, color: 'var(--ink-600)', marginBottom: 8 }}>
                     <a href={s.url} className="ys-link" style={{ fontSize: 14 }} target="_blank" rel="noopener noreferrer">
                       {s.title}
                     </a>
@@ -115,7 +115,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
                   </li>
                 ))}
               </ol>
-              <p style={{ marginTop: 16, fontSize: 13, color: 'var(--ink-muted)' }}>
+              <p style={{ marginTop: 16, fontSize: 14, color: 'var(--ink-600)' }}>
                 This article is general information, not legal or regulatory advice. Rules and products change; check the
                 sources for the current position.
               </p>

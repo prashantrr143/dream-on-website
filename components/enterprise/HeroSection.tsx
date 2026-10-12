@@ -21,7 +21,7 @@ const HeroSection = () => {
   return (
     <section
       className="relative w-full overflow-hidden text-white"
-      style={{ backgroundColor: 'var(--ys-deep-blue)' }}
+      style={{ backgroundColor: 'var(--navy-950)' }}
     >
       {/* Code-native background (audit G-04). */}
       <HeroVisual motif="network" seed="home" />
@@ -63,7 +63,7 @@ const HeroSection = () => {
             </motion.p>
 
             <motion.h1
-              style={{ color: 'var(--on-dark)', textWrap: 'balance' }}
+              style={{ color: 'var(--white)', textWrap: 'balance' }}
             >
               Enterprise AI, engineered to be{' '}
               <span className="ys-accent-word">trusted</span>
@@ -75,7 +75,7 @@ const HeroSection = () => {
                 marginTop: 'clamp(16px, 2.2vw, 22px)',
                 fontSize: 'clamp(15px, 1.35vw, 17.5px)',
                 lineHeight: 1.62,
-                color: 'var(--on-dark-muted)',
+                color: 'var(--ink-300)',
               }}
             >
               We advise, build and run the platforms your business depends on — on AWS,
@@ -104,13 +104,13 @@ const HeroSection = () => {
                 marginTop: 'clamp(22px, 2.8vw, 30px)',
                 fontSize: 'clamp(12.5px, 1vw, 13.5px)',
                 lineHeight: 1.7,
-                color: 'var(--on-dark-muted)',
+                color: 'var(--ink-300)',
               }}
             >
               {PROOF.map((item, i) => (
                 <span key={item} className="inline-flex items-center" style={{ gap: 10 }}>
                   {i > 0 && (
-                    <span aria-hidden="true" style={{ color: 'var(--on-dark-label)' }}>
+                    <span aria-hidden="true" style={{ color: 'var(--ink-400)' }}>
                       ·
                     </span>
                   )}

@@ -39,8 +39,8 @@ export default function InsightsPage() {
                     </span>
                   )}
                 </p>
-                <h2 style={{ fontSize: 21, lineHeight: 1.3, color: 'var(--ink)' }}>{a.title}</h2>
-                <p style={{ marginTop: 10, fontSize: 15, lineHeight: 1.6, color: 'var(--ink-muted)' }}>{a.summary}</p>
+                <h2 style={{ fontSize: 21, lineHeight: 1.3, color: 'var(--ink-900)' }}>{a.title}</h2>
+                <p style={{ marginTop: 10, fontSize: 16, lineHeight: 1.6, color: 'var(--ink-600)' }}>{a.summary}</p>
                 <span className="ys-link" style={{ marginTop: 'auto', paddingTop: 18, display: 'inline-flex', alignItems: 'center', gap: 6 }}>
                   Read · {a.readTime}
                   <ArrowRight className="w-3.5 h-3.5" strokeWidth={2.5} aria-hidden="true" />

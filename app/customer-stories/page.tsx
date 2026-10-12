@@ -86,20 +86,20 @@ export default async function CaseStudiesPage({
             <li key={cs.slug} style={{ minWidth: 0 }}>
               <a href={`/case-studies/${cs.slug}`} className="ys-card-light" style={{ display: 'block', height: '100%', padding: 26 }}>
                 {cs.outcomes[0] && (
-                  <p style={{ fontFamily: 'var(--font-heading)', fontSize: 28, fontWeight: 600, color: 'var(--ink)' }}>
+                  <p style={{ fontFamily: 'var(--font-sans)', fontSize: 28, fontWeight: 600, color: 'var(--ink-900)' }}>
                     {cs.outcomes[0].value}{' '}
-                    <span style={{ fontFamily: 'var(--font-sans)', fontSize: 14, fontWeight: 400, color: 'var(--ink-muted)' }}>
+                    <span style={{ fontFamily: 'var(--font-sans)', fontSize: 14, fontWeight: 400, color: 'var(--ink-600)' }}>
                       {cs.outcomes[0].label}
                     </span>
                   </p>
                 )}
-                <h3 style={{ marginTop: 14, fontSize: 17, fontWeight: 600, color: 'var(--ink)' }}>{cs.title}</h3>
-                <p style={{ marginTop: 8, fontSize: 14, lineHeight: 1.6, color: 'var(--ink-muted)' }}>{cs.summary}</p>
+                <h3 style={{ marginTop: 14, fontSize: 17, fontWeight: 600, color: 'var(--ink-900)' }}>{cs.title}</h3>
+                <p style={{ marginTop: 8, fontSize: 16, lineHeight: 1.6, color: 'var(--ink-600)' }}>{cs.summary}</p>
               </a>
             </li>
           ))}
         </ul>
-        {shown.length === 0 && <p style={{ marginTop: 20, color: 'var(--ink-muted)' }}>No case studies match those filters yet.</p>}
+        {shown.length === 0 && <p style={{ marginTop: 20, color: 'var(--ink-600)' }}>No case studies match those filters yet.</p>}
       </PageSection>
 
       <PageCTA

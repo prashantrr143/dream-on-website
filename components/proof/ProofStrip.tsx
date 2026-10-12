@@ -26,18 +26,18 @@ export function ProofStrip({ tone = 'light' }: { tone?: 'light' | 'dark' }) {
                 <dt className="sr-only">{m.label}</dt>
                 <dd
                   style={{
-                    fontFamily: 'var(--font-heading)',
+                    fontFamily: 'var(--font-sans)',
                     fontSize: 'clamp(26px, 3vw, 34px)',
                     fontWeight: 600,
                     lineHeight: 1.1,
-                    color: onDark ? 'var(--on-dark)' : 'var(--ink)',
+                    color: onDark ? 'var(--white)' : 'var(--ink-900)',
                   }}
                 >
                   {m.value}
                 </dd>
                 <dd
                   aria-hidden="true"
-                  style={{ marginTop: 6, fontSize: 14, lineHeight: 1.5, color: onDark ? 'var(--on-dark-muted)' : 'var(--ink-muted)' }}
+                  style={{ marginTop: 6, fontSize: 14, lineHeight: 1.5, color: onDark ? 'var(--ink-300)' : 'var(--ink-600)' }}
                 >
                   {m.label}
                 </dd>

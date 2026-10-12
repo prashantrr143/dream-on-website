@@ -15,23 +15,19 @@ import { ArrowRight } from 'lucide-react'
 const deliveryPrinciples = [
   {
     title: "A clear first step",
-    description: "A short Blueprint agrees the problem, the design and the plan before any build begins.",
-    accent: "#0A84FF"
+    description: "A short Blueprint agrees the problem, the design and the plan before any build begins."
   },
   {
     title: "One in-house team",
-    description: "No subcontracting, no rotating strangers. The people who scope it build it.",
-    accent: "#00D1FF"
+    description: "No subcontracting, no rotating strangers. The people who scope it build it."
   },
   {
     title: "Your code in your accounts",
-    description: "Repositories and infrastructure are yours from day one, not handed over at the end.",
-    accent: "#00D1FF"
+    description: "Repositories and infrastructure are yours from day one, not handed over at the end."
   },
   {
     title: "Your data stays yours",
-    description: "We do not use client data to train or fine-tune models, unless a client asks us to in writing for their own dedicated model.",
-    accent: "#0A84FF"
+    description: "We do not use client data to train or fine-tune models, unless a client asks us to in writing for their own dedicated model."
   }
 ]
 
@@ -53,27 +49,26 @@ const HowWeWorkSection = () => {
           >
             <p
               style={{
-                fontSize: '14px',
+                fontSize: '13px',
                 fontWeight: 600,
                 textTransform: 'uppercase',
-                letterSpacing: '0.08em',
-                color: 'var(--blue-600)',
+                letterSpacing: '0.12em',
+                color: 'var(--ink-600)',
                 marginBottom: '16px'
               }}
             >
               What you can rely on
             </p>
             <h2
-              style={{ color: 'var(--ink)', marginBottom: '24px' }}
+              style={{ color: 'var(--ink-900)', marginBottom: '24px' }}
             >
-              Dependable,{' '}
-              <span className="ys-accent-word">in writing.</span>
+              Dependable, in writing.
             </h2>
             <p
               style={{
                 fontSize: '17px',
                 lineHeight: 1.65,
-                color: 'var(--ys-ink-muted)',
+                color: 'var(--ink-600)',
                 maxWidth: '480px',
                 marginBottom: '32px'
               }}
@@ -83,7 +78,7 @@ const HowWeWorkSection = () => {
             </p>
             <Link
               href="/who-we-are/how-we-work"
-              className="stripe-btn-ghost group"
+              className="ys-cta-secondary-light group"
             >
               See how we deliver
               <ArrowRight
@@ -107,7 +102,7 @@ const HowWeWorkSection = () => {
                 style={{
                   padding: '24px 0',
                   borderBottom: index < deliveryPrinciples.length - 1
-                    ? '1px solid var(--ys-border)'
+                    ? '1px solid var(--grey-200)'
                     : 'none',
                   display: 'flex',
                   gap: '16px',
@@ -120,7 +115,7 @@ const HowWeWorkSection = () => {
                     width: '8px',
                     height: '8px',
                     borderRadius: '50%',
-                    backgroundColor: principle.accent,
+                    backgroundColor: 'var(--blue-600)',
                     marginTop: '8px',
                     flexShrink: 0,
                     opacity: 0.8
@@ -131,7 +126,7 @@ const HowWeWorkSection = () => {
                     style={{
                       fontSize: '17px',
                       fontWeight: 600,
-                      color: 'var(--ys-ink)',
+                      color: 'var(--ink-900)',
                       marginBottom: '6px'
                     }}
                   >
@@ -139,9 +134,9 @@ const HowWeWorkSection = () => {
                   </h3>
                   <p
                     style={{
-                      fontSize: '15px',
+                      fontSize: '16px',
                       lineHeight: 1.6,
-                      color: 'var(--ys-ink-muted)'
+                      color: 'var(--ink-600)'
                     }}
                   >
                     {principle.description}
