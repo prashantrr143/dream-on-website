@@ -141,7 +141,7 @@ const ITServicesSection = () => {
                 <span className="ys-cap-body">
                   <span className="ys-cap-head">
                     <span className="ys-cap-icon">
-                      <YsIcon name={p.icon} size={22} variant="current" />
+                      <YsIcon name={p.icon} size={22} />
                     </span>
                     <h3 className="ys-cap-title ys-problem-title">
                       &ldquo;{p.problem}&rdquo;

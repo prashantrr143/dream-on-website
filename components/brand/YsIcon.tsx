@@ -3,16 +3,8 @@
 /**
  * YatiSphere brand icon set — inlined as true SVG.
  *
- * The supplied icon files each declare a gradient with id="g". Inlining
- * several of them on one page would produce duplicate DOM ids and every
- * icon would pick up whichever gradient appeared first. Each icon name
- * therefore gets its own deterministic gradient id, which also keeps the
- * markup identical between server and client render.
- *
- * `variant` controls the stroke paint:
- *   - "gradient" reproduces the approved brand gradient
- *   - "current"  inherits `currentColor`, so the icon can be recolored
- *                by its container (hover states, dark/light surfaces)
+ * Single color: strokes use `currentColor`, so the container sets the
+ * color (hover states, light and navy surfaces). No gradients.
  */
 export type YsIconName =
   | 'ai-ml'
@@ -78,7 +70,6 @@ const SHAPES: Record<YsIconName, React.ReactNode> = {
 interface YsIconProps {
   name: YsIconName
   size?: number
-  variant?: 'gradient' | 'current'
   strokeWidth?: number
   className?: string
   /** Supply when the icon carries meaning on its own; omit for decoration. */
@@ -88,20 +79,10 @@ interface YsIconProps {
 export function YsIcon({
   name,
   size = 28,
-  variant = 'gradient',
   strokeWidth = 2.4,
   className,
   title,
 }: YsIconProps) {
-  // Deterministic id derived from the icon itself, not from React tree
-  // position. `useId()` would be hydration-safe in a normal tree, but these
-  // sections are lazy-loaded via next/dynamic, so the client mounts them at a
-  // different position than the server rendered them and the generated ids
-  // diverge. The gradient is identical for every icon of a given variant, so
-  // sharing one id per name is correct — and de-duplicates the <defs>.
-  const gradientId = `ys-icon-grad-${name}`
-  const stroke = variant === 'gradient' ? `url(#${gradientId})` : 'currentColor'
-
   return (
     <svg
       width={size}
@@ -113,18 +94,9 @@ export function YsIcon({
       focusable="false"
     >
       {title ? <title>{title}</title> : null}
-      {variant === 'gradient' && (
-        <defs>
-          <linearGradient id={gradientId} x1="0" y1="1" x2="1" y2="0">
-            <stop stopColor="#0A84FF" />
-            <stop offset=".55" stopColor="#00D1FF" />
-            <stop offset="1" stopColor="#FF9F00" />
-          </linearGradient>
-        </defs>
-      )}
       <g
         fill="none"
-        stroke={stroke}
+        stroke="currentColor"
         strokeWidth={strokeWidth}
         strokeLinecap="round"
         strokeLinejoin="round"

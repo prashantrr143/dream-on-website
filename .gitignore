@@ -87,3 +87,6 @@ playwright-report/
 /qa/baseline-pre-audit/
 /qa/nav-fix/
 /qa/leadership/
+/qa/brand/before/
+/qa/brand/after/
+/qa/brand/report.html

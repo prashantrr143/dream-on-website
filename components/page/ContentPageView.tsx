@@ -20,7 +20,7 @@ import { WorkflowDiagram } from './WorkflowDiagram'
  * Blocks with nothing to show render nothing.
  */
 
-const muted: React.CSSProperties = { fontSize: 15, lineHeight: 1.65, color: 'var(--ink-muted)' }
+const muted: React.CSSProperties = { fontSize: 16, lineHeight: 1.65, color: 'var(--ink-600)' }
 
 function CardGrid({ cards, columns = 3 }: { cards: { title: string; body: string; href?: string; bullets?: string[] }[]; columns?: number | undefined }) {
   const cols = columns === 2 ? 'md:grid-cols-2' : columns === 4 ? 'md:grid-cols-2 lg:grid-cols-4' : 'md:grid-cols-2 lg:grid-cols-3'
@@ -29,12 +29,12 @@ function CardGrid({ cards, columns = 3 }: { cards: { title: string; body: string
       {cards.map((c) => {
         const inner = (
           <>
-            <h3 style={{ fontSize: 18, fontWeight: 700, lineHeight: 1.35, color: 'var(--ink)', marginBottom: 8 }}>{c.title}</h3>
+            <h3 style={{ fontSize: 18, fontWeight: 600, lineHeight: 1.35, color: 'var(--ink-900)', marginBottom: 8 }}>{c.title}</h3>
             <p style={muted}>{c.body}</p>
             {c.bullets && c.bullets.length > 0 && (
               <ul style={{ marginTop: 12, paddingLeft: 18, listStyle: 'disc' }}>
                 {c.bullets.map((b) => (
-                  <li key={b} style={{ ...muted, fontSize: 14, marginBottom: 4 }}>{b}</li>
+                  <li key={b} style={{ ...muted, fontSize: 16, marginBottom: 4 }}>{b}</li>
                 ))}
               </ul>
             )}
@@ -48,11 +48,11 @@ function CardGrid({ cards, columns = 3 }: { cards: { title: string; body: string
         return (
           <li key={c.title} style={{ minWidth: 0 }}>
             {c.href ? (
-              <a href={c.href} className="ys-card-light ys-card-link" style={{ display: 'flex', flexDirection: 'column', height: '100%', padding: 26 }}>
+              <a href={c.href} className="ys-open-item" style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
                 {inner}
               </a>
             ) : (
-              <div className="ys-card-light" style={{ height: '100%', padding: 26 }}>{inner}</div>
+              <div className="ys-open-item" style={{ height: '100%' }}>{inner}</div>
             )}
           </li>
         )
@@ -119,7 +119,7 @@ function BlockView({ block, tone }: { block: Block; tone: 'white' | 'light' }) {
               label: t.label,
               content: (
                 <div style={{ maxWidth: '70ch' }}>
-                  <p style={{ fontSize: 17, lineHeight: 1.7, color: 'var(--ink)' }}>{t.description}</p>
+                  <p style={{ fontSize: 17, lineHeight: 1.7, color: 'var(--ink-900)' }}>{t.description}</p>
                   <ul style={{ marginTop: 16, paddingLeft: 20, listStyle: 'disc' }}>
                     {t.bullets.map((b) => (
                       <li key={b} style={{ ...muted, marginBottom: 6 }}>{b}</li>
@@ -136,10 +136,10 @@ function BlockView({ block, tone }: { block: Block; tone: 'white' | 'light' }) {
         <PageSection id={id} tone={tone} {...head}>
           <ol className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4" style={{ gap: 20, listStyle: 'none', margin: 0, padding: 0 }}>
             {block.steps.map((s, i) => (
-              <li key={s.title} className="ys-card-light" style={{ padding: 26, minWidth: 0 }}>
+              <li key={s.title} className="ys-open-item" style={{ minWidth: 0 }}>
                 <p className="ys-eyebrow" aria-hidden="true" style={{ marginBottom: 10 }}>{String(i + 1).padStart(2, '0')}</p>
-                <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--ink)', marginBottom: 8 }}>{s.title}</h3>
-                <p style={{ ...muted, fontSize: 14 }}>{s.body}</p>
+                <h3 style={{ fontSize: 17, fontWeight: 600, color: 'var(--ink-900)', marginBottom: 8 }}>{s.title}</h3>
+                <p style={{ ...muted, fontSize: 16 }}>{s.body}</p>
               </li>
             ))}
           </ol>
@@ -191,7 +191,7 @@ function BlockView({ block, tone }: { block: Block; tone: 'white' | 'light' }) {
         <PageSection id={id} tone={tone} {...head}>
           <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" style={{ gap: '4px 28px', listStyle: 'none', margin: 0, padding: 0 }}>
             {block.links.map((l) => (
-              <li key={l.href} style={{ borderBottom: '1px solid var(--line)' }}>
+              <li key={l.href} style={{ borderBottom: '1px solid var(--grey-200)' }}>
                 <a href={l.href} className="ys-link-row">
                   <span>
                     <span className="ys-link-row-label">{l.label}</span>
@@ -245,7 +245,7 @@ function BlockView({ block, tone }: { block: Block; tone: 'white' | 'light' }) {
     case 'note':
       return (
         <PageSection id={id} tone={tone}>
-          <p style={{ fontSize: 13, lineHeight: 1.6, color: 'var(--ink-muted)', maxWidth: '80ch' }}>{block.text}</p>
+          <p style={{ fontSize: 14, lineHeight: 1.6, color: 'var(--ink-600)', maxWidth: '80ch' }}>{block.text}</p>
         </PageSection>
       )
     case 'workflow':
@@ -258,13 +258,13 @@ function BlockView({ block, tone }: { block: Block; tone: 'white' | 'light' }) {
       return (
         <PageSection id={id} tone={tone} eyebrow={block.kicker ?? 'Model-neutral'} title={block.title ?? 'Model-neutral by design'} lede={block.lede ?? 'We choose the model that fits the task and run it where your data lives.'}>
           <div className="grid grid-cols-1 md:grid-cols-2" style={{ gap: 20 }}>
-            <div className="ys-card-light" style={{ padding: 26 }}>
+            <div className="ys-open-item">
               <p className="ys-offer-label">Models we build with</p>
               <ul className="ys-chip-row">
                 {['Claude', 'OpenAI models', 'Open-weight models'].map((m) => <li key={m}>{m}</li>)}
               </ul>
             </div>
-            <div className="ys-card-light" style={{ padding: 26 }}>
+            <div className="ys-open-item">
               <p className="ys-offer-label">Where they run</p>
               <ul className="ys-chip-row">
                 {['Amazon Bedrock', 'Google Cloud Vertex AI', 'Microsoft Foundry', 'Direct APIs'].map((m) => <li key={m}>{m}</li>)}

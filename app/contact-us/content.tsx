@@ -64,27 +64,27 @@ export default function ContactPage() {
           {/* ── Left column — context ── */}
           <div style={{ minWidth: 0 }}>
             <div style={{ marginBottom: '48px' }}>
-              <h2 style={{ fontSize: '22px', fontWeight: 700, letterSpacing: '-0.02em', color: 'var(--ys-ink)', marginBottom: '24px' }}>
+              <h2 style={{ fontSize: '22px', fontWeight: 600, letterSpacing: '-0.02em', color: 'var(--ink-900)', marginBottom: '24px' }}>
                 When it makes sense to reach out
               </h2>
               <ul style={{ display: 'flex', flexDirection: 'column', gap: '16px', listStyle: 'none', margin: 0, padding: 0 }}>
                 {reachOutScenarios.map((scenario) => (
                   <li
                     key={scenario}
-                    className="ys-card-light"
-                    style={{ display: 'flex', alignItems: 'flex-start', gap: '14px', padding: '16px 20px', minWidth: 0 }}
+                    className="ys-open-item"
+                    style={{ display: 'flex', alignItems: 'flex-start', gap: '14px', minWidth: 0 }}
                   >
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ marginTop: '2px', flexShrink: 0 }} aria-hidden="true">
-                      <path d="M13.333 4L6 11.333 2.667 8" stroke="var(--ys-link-on-light)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                      <path d="M13.333 4L6 11.333 2.667 8" stroke="var(--blue-600)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
-                    <span style={{ fontSize: '15px', color: 'var(--ys-ink-body)', lineHeight: 1.6 }}>{scenario}</span>
+                    <span style={{ fontSize: '16px', color: 'var(--ink-600)', lineHeight: 1.6 }}>{scenario}</span>
                   </li>
                 ))}
               </ul>
             </div>
 
             <div style={{ marginBottom: '48px' }}>
-              <h2 style={{ fontSize: '22px', fontWeight: 700, letterSpacing: '-0.02em', color: 'var(--ys-ink)', marginBottom: '24px' }}>
+              <h2 style={{ fontSize: '22px', fontWeight: 600, letterSpacing: '-0.02em', color: 'var(--ink-900)', marginBottom: '24px' }}>
                 Reach us directly
               </h2>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
@@ -92,38 +92,38 @@ export default function ContactPage() {
                   <a
                     key={channel.label}
                     href={channel.href}
-                    className="ys-card-light"
-                    style={{ display: 'flex', alignItems: 'center', gap: '16px', padding: '20px 24px', minWidth: 0, textDecoration: 'none' }}
+                    className="ys-open-item"
+                    style={{ display: 'flex', alignItems: 'center', gap: '16px', minWidth: 0, textDecoration: 'none' }}
                   >
                     <span
                       style={{
                         width: '44px',
                         height: '44px',
-                        borderRadius: '10px',
-                        background: 'var(--ys-surface-alt)',
-                        border: '1px solid var(--ys-border)',
+                        borderRadius: '8px',
+                        background: 'var(--grey-50)',
+                        border: '1px solid var(--grey-200)',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
                         flexShrink: 0,
                       }}
                     >
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--ys-link-on-light)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--blue-600)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                         <path d={channel.iconPath} />
                       </svg>
                     </span>
                     <span style={{ minWidth: 0 }}>
-                      <span style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: 'var(--ys-ink-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '2px' }}>
+                      <span style={{ display: 'block', fontSize: '13px', fontWeight: 600, color: 'var(--ink-600)', textTransform: 'uppercase', letterSpacing: '0.12em', marginBottom: '2px' }}>
                         {channel.label}
                       </span>
-                      <span style={{ display: 'block', fontSize: '15px', fontWeight: 600, color: 'var(--ys-link-on-light)', overflowWrap: 'anywhere' }}>
+                      <span style={{ display: 'block', fontSize: '16px', fontWeight: 600, color: 'var(--blue-600)', overflowWrap: 'anywhere' }}>
                         {channel.value}
                       </span>
                     </span>
                   </a>
                 ))}
                 {SITE_CONTACT.phone && (
-                  <a href={`tel:${SITE_CONTACT.phone.replace(/\s+/g, '')}`} className="ys-card-light" style={{ padding: '20px 24px', fontWeight: 600, color: 'var(--ys-link-on-light)' }}>
+                  <a href={`tel:${SITE_CONTACT.phone.replace(/\s+/g, '')}`} className="ys-open-item" style={{ fontWeight: 600, color: 'var(--blue-600)' }}>
                     {SITE_CONTACT.phone}
                   </a>
                 )}
@@ -131,8 +131,8 @@ export default function ContactPage() {
 
               {/* Registered entity (audit CT-04, G-06) */}
               {(SITE_CONTACT.registeredAddress || siteConfig.company.cin) && (
-                <address style={{ fontStyle: 'normal', marginTop: 20, fontSize: 14, lineHeight: 1.65, color: 'var(--ys-ink-body)' }}>
-                  <strong style={{ color: 'var(--ys-ink)' }}>{siteConfig.company.legalName}</strong>
+                <address style={{ fontStyle: 'normal', marginTop: 20, fontSize: 14, lineHeight: 1.65, color: 'var(--ink-600)' }}>
+                  <strong style={{ color: 'var(--ink-900)' }}>{siteConfig.company.legalName}</strong>
                   {SITE_CONTACT.registeredAddress && (
                     <>
                       <br />
@@ -149,8 +149,8 @@ export default function ContactPage() {
               )}
             </div>
 
-            <div style={{ padding: '20px 24px', background: 'var(--ys-surface-alt)', borderRadius: '12px', borderLeft: '3px solid var(--ys-link-on-light)' }}>
-              <p style={{ fontSize: '14px', lineHeight: 1.7, color: 'var(--ys-ink-body)' }}>
+            <div style={{ padding: '20px 24px', background: 'var(--grey-50)', borderRadius: '8px', borderLeft: '3px solid var(--blue-600)' }}>
+              <p style={{ fontSize: '14px', lineHeight: 1.7, color: 'var(--ink-600)' }}>
                 All conversations are confidential. Tell us as much or as little as
                 you&apos;re able to share at this stage.
               </p>
@@ -161,20 +161,20 @@ export default function ContactPage() {
           <div id="book" style={{ minWidth: 0, scrollMarginTop: 96 }}>
             {siteConfig.bookingUrl && (
               <div style={{ marginBottom: 32 }}>
-                <h2 style={{ fontSize: 22, fontWeight: 700, color: 'var(--ys-ink)', marginBottom: 12 }}>Pick a time to talk</h2>
+                <h2 style={{ fontSize: 22, fontWeight: 600, color: 'var(--ink-900)', marginBottom: 12 }}>Pick a time to talk</h2>
                 <iframe
                   src={siteConfig.bookingUrl}
                   title="Book a call with YatiSphere"
                   loading="lazy"
-                  style={{ width: '100%', minHeight: 640, border: '1px solid var(--ys-border)', borderRadius: 14 }}
+                  style={{ width: '100%', minHeight: 640, border: '1px solid var(--grey-200)', borderRadius: 8 }}
                 />
               </div>
             )}
-            <div style={{ background: 'var(--ys-surface-alt)', borderRadius: 20, padding: 'clamp(24px, 4vw, 40px)', border: '1px solid var(--ys-border)' }}>
-              <h2 style={{ fontSize: 22, fontWeight: 700, letterSpacing: '-0.02em', color: 'var(--ys-ink)', marginBottom: 6 }}>
+            <div style={{ background: 'var(--grey-50)', borderRadius: 8, padding: 'clamp(24px, 4vw, 40px)', border: '1px solid var(--grey-200)' }}>
+              <h2 style={{ fontSize: 22, fontWeight: 600, letterSpacing: '-0.02em', color: 'var(--ink-900)', marginBottom: 6 }}>
                 {preset.topic === 'services' ? 'Request for services' : preset.topic}
               </h2>
-              <p style={{ fontSize: 15, color: 'var(--ys-ink-body)', marginBottom: 24 }}>
+              <p style={{ fontSize: 14, color: 'var(--ink-600)', marginBottom: 24 }}>
                 Fields marked <span aria-hidden="true">*</span><span className="sr-only">with an asterisk</span> are required.
               </p>
               <ContactForm key={`${preset.topic}:${preset.interest}`} topic={preset.topic} initialInterest={preset.interest} />

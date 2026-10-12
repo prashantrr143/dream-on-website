@@ -40,8 +40,8 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
             {cs.outcomes.map((o) => (
               <div key={o.label} style={{ maxWidth: 240 }}>
                 <dt className="sr-only">{o.label}</dt>
-                <dd style={{ fontFamily: 'var(--font-heading)', fontSize: 34, fontWeight: 600, color: 'var(--on-dark)' }}>{o.value}</dd>
-                <dd aria-hidden="true" style={{ fontSize: 14, color: 'var(--on-dark-muted)' }}>{o.label}</dd>
+                <dd style={{ fontFamily: 'var(--font-sans)', fontSize: 34, fontWeight: 600, color: 'var(--white)' }}>{o.value}</dd>
+                <dd aria-hidden="true" style={{ fontSize: 14, color: 'var(--ink-300)' }}>{o.label}</dd>
               </div>
             ))}
           </dl>
@@ -74,8 +74,8 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
       {cs.quote && (
         <PageSection tone="light">
           <figure>
-            <blockquote style={{ fontSize: 22, lineHeight: 1.45, color: 'var(--ink)' }}>&ldquo;{cs.quote.text}&rdquo;</blockquote>
-            <figcaption style={{ marginTop: 12, color: 'var(--ink-muted)' }}>
+            <blockquote style={{ fontSize: 22, lineHeight: 1.45, color: 'var(--ink-900)' }}>&ldquo;{cs.quote.text}&rdquo;</blockquote>
+            <figcaption style={{ marginTop: 12, color: 'var(--ink-600)' }}>
               {cs.quote.name}, {cs.quote.role}
             </figcaption>
           </figure>

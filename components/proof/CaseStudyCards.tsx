@@ -23,15 +23,15 @@ export function CaseStudyCards({ limit = 3, title = 'Recent work' }: { limit?: n
               <li key={cs.slug} style={{ minWidth: 0 }}>
                 <a href={`/case-studies/${cs.slug}`} className="ys-card-light group" style={{ display: 'flex', flexDirection: 'column', height: '100%', padding: 26 }}>
                   {lead && (
-                    <p style={{ fontFamily: 'var(--font-heading)', fontSize: 30, fontWeight: 600, lineHeight: 1.1, color: 'var(--ink)' }}>
+                    <p style={{ fontFamily: 'var(--font-sans)', fontSize: 30, fontWeight: 600, lineHeight: 1.1, color: 'var(--ink-900)' }}>
                       {lead.value}
-                      <span style={{ display: 'block', marginTop: 6, fontFamily: 'var(--font-sans)', fontSize: 14, fontWeight: 400, color: 'var(--ink-muted)' }}>
+                      <span style={{ display: 'block', marginTop: 6, fontFamily: 'var(--font-sans)', fontSize: 14, fontWeight: 400, color: 'var(--ink-600)' }}>
                         {lead.label}
                       </span>
                     </p>
                   )}
-                  <h3 style={{ marginTop: 18, fontSize: 17, fontWeight: 600, lineHeight: 1.35, color: 'var(--ink)' }}>{cs.title}</h3>
-                  <p style={{ marginTop: 8, fontSize: 13, color: 'var(--ink-muted)' }}>
+                  <h3 style={{ marginTop: 18, fontSize: 17, fontWeight: 600, lineHeight: 1.35, color: 'var(--ink-900)' }}>{cs.title}</h3>
+                  <p style={{ marginTop: 8, fontSize: 14, color: 'var(--ink-600)' }}>
                     {cs.industry} · {cs.region}
                   </p>
                   <span className="ys-link" style={{ marginTop: 'auto', paddingTop: 18, display: 'inline-flex', alignItems: 'center', gap: 6 }}>

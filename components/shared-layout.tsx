@@ -1,12 +1,9 @@
 "use client"
 
 import { useState, useEffect } from 'react'
-// import dynamic from 'next/dynamic'
 import { SiteHeader } from '@/components/nav/SiteHeader'
 import { ContactOverlay } from '@/components/contact/ContactOverlay'
 import { ArrowUp } from 'lucide-react'
-// import ErrorBoundary from '@/components/error-boundary'
-// import { LoadingSpinner } from '@/components/loading-states'
 
 // Import enterprise footer
 import { FooterMinimal } from '@/components/enterprise'

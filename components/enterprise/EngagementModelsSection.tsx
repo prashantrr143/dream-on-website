@@ -56,9 +56,9 @@ const EngagementModelsSection = () => {
         {/* One bordered slab; the 1px grid gap becomes the hairline dividers. */}
         <motion.div
           style={{
-            border: '1px solid var(--ys-border)',
-            borderRadius: 14,
-            background: 'var(--ys-surface)',
+            border: '1px solid var(--grey-200)',
+            borderRadius: 8,
+            background: 'var(--white)',
             overflow: 'hidden',
             marginTop: 'clamp(32px, 4vw, 48px)',
           }}
@@ -67,7 +67,7 @@ const EngagementModelsSection = () => {
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
             style={{
               gap: 1,
-              background: 'var(--ys-border)',
+              background: 'var(--grey-200)',
             }}
           >
             {models.map((model) => (
@@ -75,7 +75,7 @@ const EngagementModelsSection = () => {
                 key={model.title}
                 style={{
                   minWidth: 0,
-                  background: 'var(--ys-surface)',
+                  background: 'var(--white)',
                   padding: 'clamp(22px, 2.6vw, 30px)',
                 }}
               >
@@ -90,10 +90,10 @@ const EngagementModelsSection = () => {
                   <h3
                     style={{
                       fontSize: 16,
-                      fontWeight: 700,
+                      fontWeight: 600,
                       letterSpacing: '-0.015em',
                       lineHeight: 1.3,
-                      color: 'var(--ys-ink)',
+                      color: 'var(--ink-900)',
                     }}
                   >
                     {model.title}
@@ -102,15 +102,13 @@ const EngagementModelsSection = () => {
                     <span
                       style={{
                         display: 'inline-block',
-                        padding: '3px 8px',
-                        borderRadius: 100,
-                        background: 'rgba(255, 138, 0, 0.12)',
-                        border: '1px solid rgba(255, 138, 0, 0.42)',
-                        fontSize: 10.5,
-                        fontWeight: 700,
-                        letterSpacing: '0.04em',
-                        textTransform: 'uppercase',
-                        color: 'var(--ys-orange-ink)',
+                        padding: '4px 8px',
+                        borderRadius: 'var(--radius-sm)',
+                        background: 'var(--grey-50)',
+                        border: '1px solid var(--grey-200)',
+                        fontSize: 13,
+                        fontWeight: 600,
+                        color: 'var(--blue-600)',
                         whiteSpace: 'nowrap',
                       }}
                     >
@@ -120,9 +118,9 @@ const EngagementModelsSection = () => {
                 </div>
                 <p
                   style={{
-                    fontSize: 12,
+                    fontSize: 14,
                     lineHeight: 1.5,
-                    color: 'var(--ys-ink-muted)',
+                    color: 'var(--ink-600)',
                     marginTop: 4,
                     marginBottom: 12,
                   }}
@@ -131,9 +129,9 @@ const EngagementModelsSection = () => {
                 </p>
                 <p
                   style={{
-                    fontSize: 14,
+                    fontSize: 16,
                     lineHeight: 1.6,
-                    color: 'var(--ys-ink-body)',
+                    color: 'var(--ink-600)',
                   }}
                 >
                   {model.body}

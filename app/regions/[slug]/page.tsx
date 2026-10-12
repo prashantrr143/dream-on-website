@@ -35,9 +35,9 @@ function DefinitionGrid({ items }: { items: { term: string; detail: string }[] }
   return (
     <dl className="grid grid-cols-1 md:grid-cols-2" style={{ gap: 20 }}>
       {items.map((item) => (
-        <div key={item.term} className="ys-card-light" style={{ padding: 24, minWidth: 0 }}>
-          <dt style={{ fontSize: 16.5, fontWeight: 700, color: 'var(--ink)', marginBottom: 8 }}>{item.term}</dt>
-          <dd style={{ fontSize: 15, lineHeight: 1.6, color: 'var(--ink-muted)' }}>{item.detail}</dd>
+        <div key={item.term} className="ys-open-item" style={{ minWidth: 0 }}>
+          <dt style={{ fontSize: 16.5, fontWeight: 600, color: 'var(--ink-900)', marginBottom: 8 }}>{item.term}</dt>
+          <dd style={{ fontSize: 16, lineHeight: 1.6, color: 'var(--ink-600)' }}>{item.detail}</dd>
         </div>
       ))}
     </dl>
@@ -74,7 +74,7 @@ export default async function RegionPage({ params }: { params: Promise<{ slug: s
 
       <PageSection tone="light" eyebrow="Working arrangements" title="Hours, data terms and delivery">
         <DefinitionGrid items={r.commercial.map((x) => ({ term: x.title, detail: x.body }))} />
-        <p style={{ marginTop: 24, fontSize: 15, lineHeight: 1.65, color: 'var(--ink-muted)', maxWidth: '70ch' }}>{r.presence}</p>
+        <p style={{ marginTop: 24, fontSize: 16, lineHeight: 1.65, color: 'var(--ink-600)', maxWidth: '70ch' }}>{r.presence}</p>
       </PageSection>
 
       <PageSection tone="white">
@@ -84,7 +84,7 @@ export default async function RegionPage({ params }: { params: Promise<{ slug: s
           </h2>
           <ol style={{ paddingLeft: 22, listStyle: 'decimal' }}>
             {r.sources.map((s) => (
-              <li key={s.url} style={{ fontSize: 14, lineHeight: 1.6, color: 'var(--ink-muted)', marginBottom: 8 }}>
+              <li key={s.url} style={{ fontSize: 14, lineHeight: 1.6, color: 'var(--ink-600)', marginBottom: 8 }}>
                 <a href={s.url} className="ys-link" style={{ fontSize: 14 }} target="_blank" rel="noopener noreferrer">
                   {s.title}
                 </a>
@@ -93,7 +93,7 @@ export default async function RegionPage({ params }: { params: Promise<{ slug: s
               </li>
             ))}
           </ol>
-          <p style={{ marginTop: 16, fontSize: 13, color: 'var(--ink-muted)' }}>
+          <p style={{ marginTop: 16, fontSize: 14, color: 'var(--ink-600)' }}>
             Facts checked {longDate(r.reviewedAt)}. General information, not legal advice.
           </p>
         </section>

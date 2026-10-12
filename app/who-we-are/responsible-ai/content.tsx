@@ -231,10 +231,10 @@ const ResponsibleAIContent = () => {
                 id="framework-alignment"
                 style={{
                   fontSize: '17px',
-                  fontWeight: 700,
+                  fontWeight: 600,
                   letterSpacing: '-0.015em',
                   lineHeight: 1.3,
-                  color: 'var(--ink)',
+                  color: 'var(--ink-900)',
                   marginTop: '28px',
                   marginBottom: '10px',
                 }}
@@ -269,7 +269,7 @@ const ResponsibleAIContent = () => {
                             fontWeight: 600,
                             letterSpacing: 'normal',
                             textTransform: 'none',
-                            color: 'var(--ink)',
+                            color: 'var(--ink-900)',
                             background: 'transparent',
                             whiteSpace: 'normal',
                             ...(i === ALIGNMENT.length - 1 ? { borderBottom: 0 } : {}),

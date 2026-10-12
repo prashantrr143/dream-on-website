@@ -207,7 +207,7 @@ export default function TrustPage() {
                             fontWeight: 600,
                             letterSpacing: 'normal',
                             textTransform: 'none',
-                            color: 'var(--ink)',
+                            color: 'var(--ink-900)',
                             background: 'transparent',
                             whiteSpace: 'normal',
                             borderBottom: i === SUBPROCESSORS.length - 1 ? 0 : undefined,
