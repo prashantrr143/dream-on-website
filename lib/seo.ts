@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { CONTENT_PAGES } from '@/content/pages'
 
 /**
  * Per-route metadata, in one place.
@@ -16,6 +17,46 @@ import type { Metadata } from 'next'
 export const SITE_URL = 'https://yatisphere.com'
 export const SITE_NAME = 'YatiSphere'
 
+/**
+ * The share card (app/opengraph-image.tsx). Routes that set their own
+ * openGraph replace the root one wholesale in Next.js, so every route
+ * must re-attach the image, locale and site name: use socialMeta().
+ */
+export const OG_IMAGE = {
+  url: '/opengraph-image',
+  width: 1200,
+  height: 630,
+  alt: 'YatiSphere: Enterprise AI, engineered to be trusted.',
+}
+
+/** openGraph + twitter for one page, with the shared image and locale. */
+export function socialMeta(opts: {
+  title: string
+  description: string
+  url: string
+  type?: 'website' | 'article'
+  publishedTime?: string
+}): Pick<Metadata, 'openGraph' | 'twitter'> {
+  return {
+    openGraph: {
+      type: opts.type ?? 'website',
+      locale: 'en_US',
+      siteName: SITE_NAME,
+      title: opts.title,
+      description: opts.description,
+      url: opts.url,
+      images: [OG_IMAGE],
+      ...(opts.publishedTime ? { publishedTime: opts.publishedTime } : {}),
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: opts.title,
+      description: opts.description,
+      images: [OG_IMAGE.url],
+    },
+  }
+}
+
 interface RouteMeta {
   /** Full <title>. The brand suffix is already included. */
   title: string
@@ -26,118 +67,67 @@ interface RouteMeta {
 
 export const ROUTE_META: Record<string, RouteMeta> = {
   '/': {
-    // 71 characters, over the 60-character guideline. Kept because the
-    // brief specifies this exact string; Google will truncate the tail
-    // in results. Shortening to "...fix real problems | YatiSphere"
-    // would fit in 62.
-    title: 'IT services and applied AI that fix real business problems | YatiSphere',
+    title: 'Enterprise AI, consulting and cloud engineering | YatiSphere',
     description:
-      'Slow onboarding, systems nobody dares touch, data you cannot get answers from. Tell us the problem and one in-house team delivers the working solution.',
+      'We advise, build and run enterprise platforms on AWS, Microsoft Azure and Google Cloud, and bring governed AI into them, with a dedicated Claude practice.',
   },
 
-  '/solutions': {
-    title: 'Enterprise IT services | YatiSphere',
-    description:
-      'Software, cloud, data, DevOps, modernisation and security, delivered end to end by the team that scoped the work.',
-  },
-  '/solutions/cloud': {
-    title: 'Cloud and infrastructure | YatiSphere',
-    description:
-      'Rising cloud costs, unclear ownership and migrations that stall. Secure foundations and a platform your own engineers can run.',
-  },
-  '/solutions/data': {
-    title: 'Data and analytics | YatiSphere',
-    description:
-      'The data exists but nobody can get an answer from it. One trusted platform, governed pipelines and dashboards people actually use.',
-  },
-  '/solutions/devops': {
-    title: 'DevOps and automation | YatiSphere',
-    description:
-      'Releases that take days and break things. Automated delivery and infrastructure, without losing engineering control.',
-  },
-  '/solutions/security': {
-    title: 'Enterprise security | YatiSphere',
-    description:
-      'An audit or client security review is coming. Controls, logging and evidence built into your systems rather than bolted on.',
-  },
-  '/solutions/consulting': {
-    title: 'Legacy modernisation and advisory | YatiSphere',
-    description:
-      'A core system nobody dares touch. Step-by-step modernisation that keeps the business running while it happens.',
-  },
-
-  '/applied-ai': {
-    title: 'Applied AI | YatiSphere',
-    description:
-      'Most AI pilots never leave the sandbox. We own the integration, the governance and the operations, so the work reaches production.',
-  },
-
-  '/industries': {
-    title: 'Industries we work in | YatiSphere',
-    description:
-      'Regulated and high-trust environments where a wrong answer has consequences: finance, legal, healthcare, government and technology.',
-  },
-  '/industries/financial-services': {
-    title: 'Financial services technology | YatiSphere',
-    description:
-      'Onboarding that takes weeks, evidence auditors keep asking for, and core systems that cannot go down.',
-  },
-  '/industries/legal-professional-services': {
-    title: 'Legal and professional services | YatiSphere',
-    description:
-      'Matters waiting on conflict checks nobody can see, and client files handled by hand. Intake and clearance you can reconstruct later.',
-  },
-  '/industries/healthcare': {
-    title: 'Healthcare technology | YatiSphere',
-    description:
-      'Records, imaging and scheduling that each hold part of the picture. Systems that exchange data safely and prove they did.',
-  },
-  '/industries/government-public-sector': {
-    title: 'Government and public sector | YatiSphere',
-    description:
-      'Citizen services that must be accessible, auditable and resilient, built against the constraints that actually apply.',
-  },
-  '/industries/enterprise-technology': {
-    title: 'Enterprise and technology firms | YatiSphere',
-    description:
-      'Platforms under load, security reviews from your own customers, and the evidence your buyers ask for before they sign.',
-  },
-
-  '/how-we-work': {
+  '/who-we-are/how-we-work': {
     title: 'How we work | YatiSphere',
     description:
-      'Discover, design, build, launch and run. Five stages, one in-house team, and a fixed price before any build begins.',
+      'Discover, design, build, launch and run. Five stages, one in-house team, and an agreed plan before any build begins.',
   },
-  '/about-us': {
-    title: 'About us | YatiSphere',
+  '/who-we-are/about': {
+    title: 'About YatiSphere: our vision, principles and people',
     description:
-      'Who we are, how we got here, and why the people who scope your solution are the people who build and run it.',
+      'Senior consultants and engineers who have built and run systems for global banks, consultancies and governments. Our vision, principles and people.',
   },
   '/contact-us': {
     title: 'Contact us | YatiSphere',
     description:
-      'Describe the problem in a few lines. A founder replies within one working day with an honest view on whether we can help.',
+      'Tell us the problem. A senior member of the team replies within one working day with an honest view on whether we are the right team.',
   },
-  '/perspectives': {
-    title: 'Perspectives | YatiSphere',
+  '/blueprint': {
+    title: 'Solution Blueprint | YatiSphere',
     description:
-      'Notes on delivering enterprise software, cloud and applied AI in regulated environments.',
+      'A solution blueprint, a delivery plan and a risk register in two to four weeks, before you commit to any build.',
   },
-  '/services': {
-    title: 'Services | YatiSphere',
+  '/customer-stories': {
+    title: 'Customer stories | YatiSphere',
     description:
-      'What we build, run and advise on across software, cloud, data, security and applied AI.',
+      'Problems we have solved for regulated businesses, what stood in the way, and the measured result.',
+  },
+  '/insights': {
+    title: 'Insights | YatiSphere',
+    description:
+      'Practical notes on Azure, applied AI, security and regulation for teams in regulated businesses, from the engineers who build the systems.',
   },
 
-  '/responsible-ai': {
+  '/who-we-are/responsible-ai': {
     title: 'Responsible AI | YatiSphere',
     description:
       'What we commit to when building AI, what we refuse to build, and how we can be held to it.',
   },
-  '/security': {
-    title: 'Security | YatiSphere',
+  '/who-we-are/trust': {
+    title: 'Trust center | YatiSphere',
     description:
-      'How we protect client systems and data: access control, logging, and evidence your auditors can use.',
+      'How we protect client systems and data, who processes data for us, our certification status, and how to request an NDA and security pack.',
+  },
+
+  '/who-we-are/leadership': {
+    title: 'Leadership | YatiSphere',
+    description:
+      'The people who lead YatiSphere: senior consultants and engineers who design, build and run systems for regulated businesses.',
+  },
+  '/accessibility': {
+    title: 'Accessibility statement | YatiSphere',
+    description:
+      'How we build this website to WCAG 2.2 AA, what we know does not yet meet it, and how to tell us about a barrier you hit.',
+  },
+  '/search': {
+    title: 'Search | YatiSphere',
+    description: 'Search the YatiSphere site.',
+    noindex: true,
   },
 
   // Legal pages carry no search value and are kept out of the index.
@@ -165,24 +155,16 @@ export function metaFor(route: string): Metadata {
     ...(meta.noindex
       ? { robots: { index: false, follow: true } }
       : {}),
-    openGraph: {
-      type: 'website',
-      siteName: SITE_NAME,
-      title: meta.title,
-      description: meta.description,
-      url,
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: meta.title,
-      description: meta.description,
-    },
+    ...socialMeta({ title: meta.title, description: meta.description, url }),
   }
 }
 
 /** Routes that belong in the sitemap: everything public. */
 export function indexableRoutes(): string[] {
-  return Object.entries(ROUTE_META)
-    .filter(([, m]) => !m.noindex)
-    .map(([route]) => route)
+  return [
+    ...Object.entries(ROUTE_META)
+      .filter(([, m]) => !m.noindex)
+      .map(([route]) => route),
+    ...CONTENT_PAGES.map((p) => p.path),
+  ]
 }

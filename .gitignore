@@ -77,3 +77,13 @@ temp/
 # Package manager locks (keeping pnpm-lock.yaml)
 package-lock.json
 yarn.lock
+
+# Playwright QA screenshots (large, regenerated on demand)
+/qa/baseline/
+/qa/after/
+/qa/nav/
+test-results/
+playwright-report/
+/qa/baseline-pre-audit/
+/qa/nav-fix/
+/qa/leadership/

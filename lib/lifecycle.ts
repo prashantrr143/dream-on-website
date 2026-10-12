@@ -25,8 +25,8 @@ export const LIFECYCLE: Stage[] = [
   {
     n: '02',
     name: 'Design',
-    line: 'We design the solution and price it before any build begins.',
-    gets: ['A solution blueprint', 'A fixed, costed delivery plan'],
+    line: 'We design the solution and agree the plan before any build begins.',
+    gets: ['A solution blueprint', 'A delivery plan with milestones'],
   },
   {
     n: '03',

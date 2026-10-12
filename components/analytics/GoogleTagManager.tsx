@@ -8,7 +8,7 @@ import { GTM_ID, shouldLoadGtm } from '@/lib/analytics'
  * before consent is known. It is emitted as a plain inline <script> in
  * <head> rather than through next/script, because that is the only way
  * to guarantee it runs first: next/script's `beforeInteractive` is not
- * honoured inside client components, and `afterInteractive` would race
+ * honored inside client components, and `afterInteractive` would race
  * the container.
  *
  * Everything except security_storage defaults to denied. `wait_for_update`

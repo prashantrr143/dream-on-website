@@ -41,7 +41,7 @@ export function CookieSettingsLink() {
       onClick={() => window.ysOpenConsentPreferences?.()}
       className="ys-footer-cookie-settings"
     >
-      Cookie settings
+      Customize cookies
     </button>
   )
 }

@@ -17,8 +17,8 @@ const DOWNLOAD_EXTENSIONS = ['.pdf', '.docx', '.xlsx']
  * also point at /contact-us.
  */
 const CTA_BY_LABEL: Record<string, CtaName> = {
-  [PRIMARY_CTA.label.toLowerCase()]: 'tell_us_the_problem',
-  [SECONDARY_CTA.label.toLowerCase()]: 'see_how_we_deliver',
+  [PRIMARY_CTA.label.toLowerCase()]: 'talk_to_experts',
+  [SECONDARY_CTA.label.toLowerCase()]: 'get_blueprint',
 }
 
 /**

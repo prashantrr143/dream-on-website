@@ -1,5 +1,7 @@
+import { Fragment } from 'react'
 import { SITE_URL, SITE_NAME } from '@/lib/seo'
 import { SITE_CONTACT } from '@/lib/site-contact'
+import { siteConfig } from '@/lib/site.config'
 import { LEGAL_ENTITY_NAME } from '@/lib/legal'
 
 /**
@@ -23,8 +25,9 @@ function jsonLd(data: unknown) {
 }
 
 export function OrganizationSchema() {
-  const address = SITE_CONTACT.registeredAddress
+  const office = siteConfig.company.registeredOffice
   const linkedin = SITE_CONTACT.linkedin
+  const phone = SITE_CONTACT.phone
 
   return jsonLd({
     '@context': 'https://schema.org',
@@ -36,23 +39,35 @@ export function OrganizationSchema() {
     logo: `${SITE_URL}/brand/yatisphere/icon/yatisphere-icon-512.png`,
     image: `${SITE_URL}/brand/yatisphere/social/og-image.jpg`,
     description:
-      'Enterprise IT services and applied AI, delivered end to end by one in-house team.',
+      'Consulting, cloud engineering and applied AI for regulated businesses: we advise, build and run platforms on AWS, Microsoft Azure and Google Cloud, and bring governed AI into them, with a dedicated Claude practice.',
+    slogan: 'Enterprise AI, engineered to be trusted',
     email: SITE_CONTACT.email,
-    foundingDate: '2025-12',
+    foundingDate: '2025-12-22',
+    ...(siteConfig.company.cin ? { identifier: { '@type': 'PropertyValue', propertyID: 'CIN', value: siteConfig.company.cin } } : {}),
+    ...(phone ? { telephone: phone } : {}),
     ...(linkedin ? { sameAs: [linkedin] } : {}),
     address: {
       '@type': 'PostalAddress',
-      addressCountry: 'IN',
-      ...(address ? { streetAddress: address } : {}),
+      addressCountry: office.country,
+      ...(office.streetAddress ? { streetAddress: office.streetAddress } : {}),
+      ...(office.locality ? { addressLocality: office.locality } : {}),
+      ...(office.region ? { addressRegion: office.region } : {}),
+      ...(office.postalCode ? { postalCode: office.postalCode } : {}),
     },
     knowsAbout: [
-      'Enterprise software development',
-      'Cloud infrastructure',
+      'Technology strategy and enterprise architecture',
+      'Amazon Web Services',
+      'Microsoft Azure',
+      'Google Cloud',
+      'Cloud migration and FinOps',
+      'Applied AI and agentic automation',
+      'Claude',
+      'AI governance',
+      'Software and platform engineering',
       'Data and analytics',
-      'DevOps automation',
-      'Legacy modernisation',
-      'Enterprise security',
-      'Applied AI',
+      'DevOps and platform engineering',
+      'Security and compliance',
+      'Legacy modernization',
     ],
   })
 }
@@ -64,7 +79,13 @@ export function WebSiteSchema() {
     '@id': `${SITE_URL}/#website`,
     url: SITE_URL,
     name: SITE_NAME,
+    inLanguage: 'en-US',
     publisher: { '@id': ORG_ID },
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: { '@type': 'EntryPoint', urlTemplate: `${SITE_URL}/search?q={search_term_string}` },
+      'query-input': 'required name=search_term_string',
+    },
   })
 }
 
@@ -78,8 +99,9 @@ interface ServiceDef {
 export function ServiceSchema({ services }: { services: ServiceDef[] }) {
   return (
     <>
-      {services.map((service) =>
-        jsonLd({
+      {services.map((service) => (
+        <Fragment key={service.url}>
+          {jsonLd({
           '@context': 'https://schema.org',
           '@type': 'Service',
           name: service.name,
@@ -91,9 +113,12 @@ export function ServiceSchema({ services }: { services: ServiceDef[] }) {
             { '@type': 'Country', name: 'United States' },
             { '@type': 'Country', name: 'India' },
             { '@type': 'Country', name: 'United Arab Emirates' },
+            { '@type': 'Country', name: 'Saudi Arabia' },
+            { '@type': 'Place', name: 'Europe' },
           ],
-        })
-      )}
+          })}
+        </Fragment>
+      ))}
     </>
   )
 }

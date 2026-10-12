@@ -1,15 +1,14 @@
 "use client"
 
-import Image from 'next/image'
 import { motion } from 'motion/react'
 import { ArrowRight } from 'lucide-react'
-import { PRIMARY_CTA, SECONDARY_CTA } from '@/lib/cta'
-import { HeroAtmosphere } from '@/components/enterprise/HeroAtmosphere'
+import { PRIMARY_CTA } from '@/lib/cta'
+import { HeroVisual } from '@/components/brand/HeroVisual'
 
 
 const PROOF = [
   'One in-house team',
-  'Fixed-price first step',
+  'Senior people on every engagement',
   'Your code in your accounts from day one',
 ]
 
@@ -24,22 +23,8 @@ const HeroSection = () => {
       className="relative w-full overflow-hidden text-white"
       style={{ backgroundColor: 'var(--ys-deep-blue)' }}
     >
-      {/* Approved hero imagery — background layer only */}
-      <Image
-        src="/brand/yatisphere/imagery/hero-earth-network.png"
-        alt=""
-        aria-hidden="true"
-        fill
-        priority
-        sizes="100vw"
-        className="object-cover"
-        style={{ objectPosition: 'right center' }}
-      />
-
-      {/* Animated network + atmosphere over the static Earth plate.
-          Sits above the image but below the scrims, so it never
-          competes with headline contrast. */}
-      <HeroAtmosphere />
+      {/* Code-native background (audit G-04). */}
+      <HeroVisual motif="network" seed="home" />
 
       {/* Legibility scrims */}
       <div
@@ -47,7 +32,7 @@ const HeroSection = () => {
         className="absolute inset-0"
         style={{
           background:
-            'linear-gradient(90deg, rgba(11,30,61,0.97) 0%, rgba(11,30,61,0.92) 42%, rgba(11,30,61,0.66) 68%, rgba(11,30,61,0.42) 100%)',
+            'linear-gradient(90deg, rgb(var(--navy-950-rgb) / 0.97) 0%, rgb(var(--navy-950-rgb) / 0.92) 42%, rgb(var(--navy-950-rgb) / 0.66) 68%, rgb(var(--navy-950-rgb) / 0.42) 100%)',
         }}
       />
       <div
@@ -55,7 +40,7 @@ const HeroSection = () => {
         className="absolute inset-0"
         style={{
           background:
-            'linear-gradient(to bottom, rgba(11,30,61,0.82) 0%, rgba(11,30,61,0.10) 26%, rgba(11,30,61,0.55) 78%, rgba(11,30,61,0.94) 100%)',
+            'linear-gradient(to bottom, rgb(var(--navy-950-rgb) / 0.82) 0%, rgb(var(--navy-950-rgb) / 0.10) 26%, rgb(var(--navy-950-rgb) / 0.55) 78%, rgb(var(--navy-950-rgb) / 0.94) 100%)',
         }}
       />
 
@@ -71,29 +56,31 @@ const HeroSection = () => {
               className="ys-eyebrow ys-eyebrow-on-dark"
               style={{ marginBottom: 'clamp(16px, 2.4vw, 22px)' }}
             >
-              IT Services <span aria-hidden="true" style={{ opacity: 0.55 }}>·</span>{' '}
-              Applied AI
+              Consulting <span aria-hidden="true" style={{ opacity: 0.55 }}>·</span>{' '}
+              Cloud <span aria-hidden="true" style={{ opacity: 0.55 }}>·</span>{' '}
+              Applied AI <span aria-hidden="true" style={{ opacity: 0.55 }}>·</span>{' '}
+              Engineering
             </motion.p>
 
             <motion.h1
               style={{ color: 'var(--on-dark)', textWrap: 'balance' }}
             >
-              Technology that fixes the problem you{' '}
-              <span className="ys-accent-word">actually</span> have.
+              Enterprise AI, engineered to be{' '}
+              <span className="ys-accent-word">trusted</span>
             </motion.h1>
 
             <motion.p
               style={{
-                maxWidth: 640,
+                maxWidth: 680,
                 marginTop: 'clamp(16px, 2.2vw, 22px)',
                 fontSize: 'clamp(15px, 1.35vw, 17.5px)',
                 lineHeight: 1.62,
                 color: 'var(--on-dark-muted)',
               }}
             >
-              Slow onboarding. Systems nobody dares touch. Data you can&rsquo;t get
-              answers from. AI pilots that went nowhere. Tell us the business problem
-              and our in-house team delivers the working solution, end to end.
+              We advise, build and run the platforms your business depends on — on AWS,
+              Microsoft Azure and Google Cloud — and bring AI into them with Claude and the
+              models you choose, governed from day one.
             </motion.p>
 
             <motion.div
@@ -104,8 +91,8 @@ const HeroSection = () => {
                 {PRIMARY_CTA.label}
                 <ArrowRight className="w-4 h-4 shrink-0" strokeWidth={2.5} aria-hidden="true" />
               </a>
-              <a href={SECONDARY_CTA.href} className="ys-cta-secondary inline-flex items-center">
-                {SECONDARY_CTA.label}
+              <a href="/what-we-do/applied-ai" className="ys-cta-secondary inline-flex items-center">
+                Learn more
               </a>
             </motion.div>
 

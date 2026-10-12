@@ -1,13 +1,13 @@
 "use client"
 
-import Image from 'next/image'
+import { HeroVisual, type HeroMotif } from '@/components/brand/HeroVisual'
 import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import { PRIMARY_CTA } from '@/lib/cta'
 
 /**
  * Shared page primitives so inner pages use the same system as the
- * homepage: a Deep Blue hero over the approved imagery, light content
+ * homepage: a Deep Blue hero over a code-native visual, light content
  * sections, and a Deep Blue closing CTA.
  *
  * These wrap the existing `ys-*` classes rather than introducing new
@@ -15,21 +15,24 @@ import { PRIMARY_CTA } from '@/lib/cta'
  */
 
 interface PageHeroProps {
-  eyebrow?: string
+  eyebrow?: string | undefined
   title: string
-  lede?: string
-  /** Background image. Defaults to the brand Earth/network hero plate. */
-  image?: { src: string; alt?: string }
-  primaryCta?: { label: string; href: string }
-  secondaryCta?: { label: string; href: string }
-  children?: React.ReactNode
+  lede?: string | undefined
+  /** Hero motif; the composition is seeded from the title, so each page differs. */
+  visual?: HeroMotif | undefined
+  /** Ancestors, shown as a breadcrumb trail above the kicker. */
+  breadcrumbs?: { name: string; path: string }[] | undefined
+  primaryCta?: { label: string; href: string } | undefined
+  secondaryCta?: { label: string; href: string } | undefined
+  children?: React.ReactNode | undefined
 }
 
 export function PageHero({
   eyebrow,
   title,
   lede,
-  image,
+  visual,
+  breadcrumbs,
   primaryCta,
   secondaryCta,
   children,
@@ -43,23 +46,14 @@ export function PageHero({
       className="relative w-full overflow-hidden text-white"
       style={{ backgroundColor: 'var(--ys-deep-blue)' }}
     >
-      <Image
-        src={image?.src ?? '/brand/yatisphere/imagery/hero-earth-network.png'}
-        alt={image?.alt ?? ''}
-        aria-hidden={image?.alt ? undefined : true}
-        fill
-        priority
-        sizes="100vw"
-        className="object-cover"
-        style={{ objectPosition: 'right center' }}
-      />
+      <HeroVisual motif={visual} seed={title} />
       {/* Scrims keep headline contrast well above AA over the imagery */}
       <div
         aria-hidden="true"
         className="absolute inset-0"
         style={{
           background:
-            'linear-gradient(90deg, rgba(11,30,61,0.97) 0%, rgba(11,30,61,0.93) 44%, rgba(11,30,61,0.70) 70%, rgba(11,30,61,0.46) 100%)',
+            'linear-gradient(90deg, rgb(var(--navy-950-rgb) / 0.97) 0%, rgb(var(--navy-950-rgb) / 0.93) 44%, rgb(var(--navy-950-rgb) / 0.70) 70%, rgb(var(--navy-950-rgb) / 0.46) 100%)',
         }}
       />
       <div
@@ -67,7 +61,7 @@ export function PageHero({
         className="absolute inset-0"
         style={{
           background:
-            'linear-gradient(to bottom, rgba(11,30,61,0.85) 0%, rgba(11,30,61,0.12) 30%, rgba(11,30,61,0.60) 80%, rgba(11,30,61,0.95) 100%)',
+            'linear-gradient(to bottom, rgb(var(--navy-950-rgb) / 0.85) 0%, rgb(var(--navy-950-rgb) / 0.12) 30%, rgb(var(--navy-950-rgb) / 0.60) 80%, rgb(var(--navy-950-rgb) / 0.95) 100%)',
         }}
       />
 
@@ -79,6 +73,16 @@ export function PageHero({
           }}
         >
           <div className="max-w-[780px]">
+            {breadcrumbs && breadcrumbs.length > 0 && (
+              <nav aria-label="Breadcrumb" className="ys-breadcrumbs">
+                <ol>
+                  <li><a href="/">Home</a></li>
+                  {breadcrumbs.map((b) => (
+                    <li key={b.path}><a href={b.path}>{b.name}</a></li>
+                  ))}
+                </ol>
+              </nav>
+            )}
             {eyebrow && (
               <motion.p
                 className="ys-eyebrow ys-eyebrow-on-dark"
@@ -144,11 +148,11 @@ export function PageHero({
 }
 
 interface PageSectionProps {
-  id?: string
-  tone?: 'light' | 'white'
-  eyebrow?: string
-  title?: string
-  lede?: string
+  id?: string | undefined
+  tone?: 'light' | 'white' | undefined
+  eyebrow?: string | undefined
+  title?: string | undefined
+  lede?: string | undefined
   children: React.ReactNode
 }
 
@@ -194,9 +198,9 @@ export function PageSection({
 
 interface PageCTAProps {
   title: string
-  body?: string
-  primaryCta?: { label: string; href: string }
-  secondaryCta?: { label: string; href: string }
+  body?: string | undefined
+  primaryCta?: { label: string; href: string } | undefined
+  secondaryCta?: { label: string; href: string } | undefined
 }
 
 export function PageCTA({
@@ -210,7 +214,7 @@ export function PageCTA({
       style={{
         paddingTop: 'clamp(54px, 6vw, 76px)',
         paddingBottom: 'clamp(60px, 6.6vw, 84px)',
-        backgroundColor: 'var(--navy-900)',
+        backgroundColor: 'var(--navy-950)',
         position: 'relative',
         overflow: 'hidden',
       }}
