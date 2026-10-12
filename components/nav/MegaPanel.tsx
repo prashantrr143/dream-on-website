@@ -1,7 +1,9 @@
 "use client"
 
 import { useCallback, useEffect, useRef, useState } from 'react'
+import Image from 'next/image'
 import { ArrowRight, ChevronRight } from 'lucide-react'
+import { HeroVisual } from '@/components/brand/HeroVisual'
 import type { NavGroup, NavPanel } from '@/lib/nav'
 import { trackNavGroup } from '@/lib/analytics'
 
@@ -111,6 +113,7 @@ export function MegaPanel({
 
   const activeGroup = active !== null ? panel.groups[active] : null
   const hasGroups = panel.groups.some((g) => g.children)
+  const featured = panel.featured
 
   return (
     <div className="ys-hdr-container ys-mega-inner">
@@ -171,7 +174,7 @@ export function MegaPanel({
       </ul>
 
       {/* C — the active group's links. Empty until a group is chosen. */}
-      {hasGroups && (
+      {(hasGroups || featured) && (
         <div
           id={cId}
           className="ys-mega-c"
@@ -181,6 +184,28 @@ export function MegaPanel({
           aria-label={activeGroup ? activeGroup.label : undefined}
           role={activeGroup ? 'region' : undefined}
         >
+          {/* Default content: the featured card, until a group is chosen. */}
+          {!activeGroup && featured && (
+            <a
+              href={featured.href}
+              className="ys-mega-featured"
+              onClick={() => onNavigate(null, featured.title, featured.href)}
+            >
+              <span className="ys-mega-featured-media" aria-hidden={featured.image ? undefined : true}>
+                {featured.image ? (
+                  <Image src={featured.image} alt={featured.imageAlt ?? ''} fill sizes="520px" style={{ objectFit: 'cover' }} />
+                ) : (
+                  <HeroVisual motif="circuit" seed={featured.title} />
+                )}
+              </span>
+              <span className="ys-mega-featured-kicker">{featured.kicker}</span>
+              <span className="ys-mega-featured-title">{featured.title}</span>
+              <span className="ys-mega-featured-summary">{featured.summary}</span>
+              <span className="ys-mega-featured-more">
+                Read more <ArrowRight className="w-4 h-4" strokeWidth={2} aria-hidden="true" />
+              </span>
+            </a>
+          )}
           {activeGroup?.children && (
             <ul className="ys-mega-cols">
               {activeGroup.children.map((link) => (

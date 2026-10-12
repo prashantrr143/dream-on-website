@@ -72,3 +72,10 @@ test('each home problem card links somewhere different (H-03)', async ({ page })
   expect(hrefs.length).toBe(6)
   expect(new Set(hrefs).size).toBe(6)
 })
+
+test('the published-insights switch agrees with the article files', async () => {
+  const { ALL_ARTICLES } = await import('../lib/insights')
+  const { PUBLISHED_INSIGHT_SLUGS } = await import('../lib/insights/published')
+  const published = ALL_ARTICLES.filter((a) => a.status === 'published').map((a) => a.slug).sort()
+  expect([...PUBLISHED_INSIGHT_SLUGS].sort()).toEqual(published)
+})

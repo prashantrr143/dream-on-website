@@ -35,8 +35,7 @@ export const publishedArticles = ALL_ARTICLES.filter((a) => a.status === 'publis
 /** What the /insights pages render: published, plus drafts in preview. */
 export const visibleArticles = (INSIGHTS_PREVIEW ? ALL_ARTICLES : publishedArticles).slice().sort(byDate)
 
-/** True once at least one article is published (drives nav, footer, sitemap). */
-export const hasArticles = publishedArticles.length > 0
+export { hasArticles, PUBLISHED_INSIGHT_SLUGS } from './published'
 
 export function getVisibleArticle(slug: string): Article | undefined {
   return visibleArticles.find((a) => a.slug === slug)

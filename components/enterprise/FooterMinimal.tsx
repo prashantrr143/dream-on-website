@@ -1,16 +1,18 @@
-import { ArrowRight, Linkedin } from 'lucide-react'
-import { Wordmark } from '@/components/brand/Wordmark'
+import Image from 'next/image'
+import { ArrowRight, Linkedin, Mail } from 'lucide-react'
 import { LEGAL_ENTITY_NAME } from '@/lib/legal'
 import { CAREERS_URL } from '@/lib/nav'
 import { siteConfig } from '@/lib/site.config'
-import { hasArticles } from '@/lib/insights'
+import { hasArticles } from '@/lib/insights/published'
 import { SITE_CONTACT } from '@/lib/site-contact'
 import { CookieSettingsLink } from '@/components/analytics/CookieSettingsLink'
 
 /**
  * Site footer: dark, restrained, enterprise register.
  *
- * Three link columns and one action. Desktop mega-panels render their
+ * The header already carries the full lockup, so the footer signs off
+ * with the Y mark and the brand line rather than repeating the logo.
+ * Three link columns, a company-details column, one action. Desktop mega-panels render their
  * links only when opened, so these columns are also how crawlers reach
  * every pillar, industry and Who-we-are page; regional pages are linked
  * from the "Working across regions" strip instead.
@@ -58,8 +60,21 @@ const FooterMinimal = () => {
     <footer id="footer" className="ys-ftr">
       <div className="enterprise-container-wide">
         <div className="ys-ftr-top">
-          <a href="/" className="ys-ftr-logo" aria-label="YatiSphere home">
-            <Wordmark tone="dark" height={60} />
+          <a href="/" className="ys-ftr-brand" aria-label="YatiSphere home">
+            <Image
+              src="/brand/yatisphere/icon/yatisphere-icon-192.png"
+              alt=""
+              aria-hidden="true"
+              width={48}
+              height={48}
+              sizes="48px"
+              className="ys-ftr-mark"
+            />
+            <span className="ys-ftr-statement">
+              Enterprise AI, engineered
+              <br />
+              to be <span className="ys-ftr-accent">trusted</span>.
+            </span>
           </a>
           <a href="/contact-us" className="ys-ftr-cta">
             Contact us
@@ -67,34 +82,61 @@ const FooterMinimal = () => {
           </a>
         </div>
 
-        <nav className="ys-ftr-cols" aria-label="Footer">
-          {columns.map((col) => (
-            <div key={col.title}>
-              <h2 className="ys-ftr-heading">{col.title}</h2>
-              <ul>
-                {col.links.map((l) => (
-                  <li key={l.href}>
-                    <a href={l.href}>{l.name}</a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </nav>
+        <div className="ys-ftr-main">
+          <nav className="ys-ftr-cols" aria-label="Footer">
+            {columns.map((col) => (
+              <div key={col.title}>
+                <h2 className="ys-ftr-heading">{col.title}</h2>
+                <ul>
+                  {col.links.map((l) => (
+                    <li key={l.href}>
+                      <a href={l.href}>{l.name}</a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </nav>
+
+          <div className="ys-ftr-company">
+            <h2 className="ys-ftr-heading">Company</h2>
+            <dl>
+              <div>
+                <dt>Legal name</dt>
+                <dd>{LEGAL_ENTITY_NAME}</dd>
+              </div>
+              {SITE_CONTACT.cin && (
+                <div>
+                  <dt>CIN</dt>
+                  <dd className="ys-ftr-mono">{SITE_CONTACT.cin}</dd>
+                </div>
+              )}
+              {SITE_CONTACT.registeredAddress && (
+                <div>
+                  <dt>Registered office</dt>
+                  <dd>{SITE_CONTACT.registeredAddress}</dd>
+                </div>
+              )}
+              {SITE_CONTACT.offices.map((o) => (
+                <div key={o.label}>
+                  <dt>{o.label}</dt>
+                  <dd>{o.address}</dd>
+                </div>
+              ))}
+            </dl>
+            {SITE_CONTACT.email && (
+              <a href={`mailto:${SITE_CONTACT.email}`} className="ys-ftr-email">
+                <Mail className="w-4 h-4" strokeWidth={1.75} aria-hidden="true" />
+                {SITE_CONTACT.email}
+              </a>
+            )}
+          </div>
+        </div>
 
         <div className="ys-ftr-bottom">
-          <div className="ys-ftr-legal">
-            <p>
-              &copy; {year} {LEGAL_ENTITY_NAME}
-              {SITE_CONTACT.cin && <> &middot; CIN {SITE_CONTACT.cin}</>}
-            </p>
-            {SITE_CONTACT.registeredAddress && <p>Registered office: {SITE_CONTACT.registeredAddress}</p>}
-            {SITE_CONTACT.offices.map((o) => (
-              <p key={o.label}>
-                {o.label}: {o.address}
-              </p>
-            ))}
-          </div>
+          <p className="ys-ftr-copy">
+            &copy; {year} {LEGAL_ENTITY_NAME}. All rights reserved.
+          </p>
           <div className="ys-ftr-links">
             <a href="/privacy">Privacy</a>
             <a href="/privacy#cookies">Cookies</a>
@@ -114,11 +156,6 @@ const FooterMinimal = () => {
             )}
           </div>
         </div>
-
-        <p className="ys-ftr-tm">
-          AWS, Microsoft Azure, Google Cloud, Claude and Anthropic are trademarks of their respective owners. YatiSphere is
-          an independent company.
-        </p>
       </div>
     </footer>
   )

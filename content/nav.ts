@@ -3,7 +3,7 @@ import { hasMembership } from './types'
 import { stories } from './stories'
 import { news } from './news'
 import { events } from './events'
-import { insights } from './insights'
+import { hasArticles } from '@/lib/insights/published'
 
 /**
  * Header menu tree for the revamp (brief section 4), as data.
@@ -39,8 +39,27 @@ export interface NavPanel {
   /** Section overview page: first row of the mobile menu, link for crawlers. */
   overviewHref: string
   intro: { heading: string; body: string; link: NavLink }
+  /**
+   * Region C's default content: shown when the panel opens, until a group
+   * is activated, so region C is never blank. Omit it to leave region C
+   * empty. tests/nav.spec.ts fails if its href isn't a live route (checked
+   * there rather than here, so the header doesn't ship page data).
+   */
+  featured?: NavFeatured
   groups: NavGroup[]
   hidden?: Hidden
+}
+
+export interface NavFeatured {
+  /** Shown UPPERCASE. */
+  kicker: string
+  title: string
+  /** One line. */
+  summary: string
+  href: string
+  /** Path under /public; without one, a code-drawn placeholder is shown. */
+  image?: string
+  imageAlt?: string
 }
 
 export interface NavDirect {
@@ -65,6 +84,12 @@ export const NAV_TREE: NavItem[] = [
     id: 'what-we-do',
     label: 'What we do',
     overviewHref: '/what-we-do',
+    featured: {
+      kicker: 'Applied AI',
+      title: 'Claude, put to work safely',
+      summary: 'Adopt Claude and build governed agents inside your cloud boundary.',
+      href: '/what-we-do/applied-ai/claude',
+    },
     intro: {
       heading: 'Enterprise AI, engineered to be trusted',
       body: 'We advise, build and run enterprise platforms on any major cloud, and bring governed AI into them.',
@@ -138,6 +163,14 @@ export const NAV_TREE: NavItem[] = [
     id: 'who-we-are',
     label: 'Who we are',
     overviewHref: '/who-we-are/about',
+    // The brief's "A fixed price for the first step" is reworded: pricing
+    // language was removed site-wide (owner decision, 2026-10-11).
+    featured: {
+      kicker: 'How we work',
+      title: 'Start with a Blueprint',
+      summary: 'A 2–4 week discovery engagement before any build.',
+      href: '/blueprint',
+    },
     intro: {
       heading: 'About YatiSphere',
       body: 'A senior team of consultants and engineers who design, build and run systems for regulated businesses.',
@@ -162,7 +195,7 @@ export const NAV_TREE: NavItem[] = [
       link: { label: 'Read the latest', href: '/insights' },
     },
     groups: [
-      { label: 'Insights', href: '/insights', hidden: () => insights.length === 0 },
+      { label: 'Insights', href: '/insights', hidden: () => !hasArticles },
       { label: 'Customer stories', href: '/customer-stories', hidden: () => stories.length === 0 },
       { label: 'News', href: '/news', hidden: () => news.length === 0 },
       { label: 'Events', href: '/events', hidden: () => events.length === 0 },

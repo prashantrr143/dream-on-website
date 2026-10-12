@@ -32,7 +32,7 @@ const HeroSection = () => {
         className="absolute inset-0"
         style={{
           background:
-            'linear-gradient(90deg, rgba(11,30,61,0.97) 0%, rgba(11,30,61,0.92) 42%, rgba(11,30,61,0.66) 68%, rgba(11,30,61,0.42) 100%)',
+            'linear-gradient(90deg, rgb(var(--navy-950-rgb) / 0.97) 0%, rgb(var(--navy-950-rgb) / 0.92) 42%, rgb(var(--navy-950-rgb) / 0.66) 68%, rgb(var(--navy-950-rgb) / 0.42) 100%)',
         }}
       />
       <div
@@ -40,7 +40,7 @@ const HeroSection = () => {
         className="absolute inset-0"
         style={{
           background:
-            'linear-gradient(to bottom, rgba(11,30,61,0.82) 0%, rgba(11,30,61,0.10) 26%, rgba(11,30,61,0.55) 78%, rgba(11,30,61,0.94) 100%)',
+            'linear-gradient(to bottom, rgb(var(--navy-950-rgb) / 0.82) 0%, rgb(var(--navy-950-rgb) / 0.10) 26%, rgb(var(--navy-950-rgb) / 0.55) 78%, rgb(var(--navy-950-rgb) / 0.94) 100%)',
         }}
       />
 

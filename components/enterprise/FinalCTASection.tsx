@@ -15,7 +15,7 @@ const FinalCTASection = () => {
         paddingBottom: 'clamp(64px, 7vw, 92px)',
         // Deep Blue that eases toward the light footer at the bottom
         // edge, so the dark CTA does not cut hard against it.
-        backgroundColor: 'var(--navy-900)',
+        backgroundColor: 'var(--navy-950)',
         position: 'relative',
         overflow: 'hidden'
       }}

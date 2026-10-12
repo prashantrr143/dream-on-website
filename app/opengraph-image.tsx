@@ -16,7 +16,7 @@ export const alt = 'YatiSphere: Enterprise AI, engineered to be trusted.'
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
-const NAVY = '#0A1A33'
+const NAVY = '#0A1628' // --navy-950
 const PAPER = '#F7F4EE'
 const AMBER = '#F5A524'
 const MUTED = '#A6B1C4'
@@ -40,7 +40,6 @@ export default async function OpengraphImage() {
         }}
       >
         {/* Original lockup at 2.87:1 */}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={logoSrc} width={287} height={100} alt="" />
 
         <div style={{ display: 'flex', flexDirection: 'column' }}>

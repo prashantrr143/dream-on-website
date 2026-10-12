@@ -53,7 +53,7 @@ export function PageHero({
         className="absolute inset-0"
         style={{
           background:
-            'linear-gradient(90deg, rgba(11,30,61,0.97) 0%, rgba(11,30,61,0.93) 44%, rgba(11,30,61,0.70) 70%, rgba(11,30,61,0.46) 100%)',
+            'linear-gradient(90deg, rgb(var(--navy-950-rgb) / 0.97) 0%, rgb(var(--navy-950-rgb) / 0.93) 44%, rgb(var(--navy-950-rgb) / 0.70) 70%, rgb(var(--navy-950-rgb) / 0.46) 100%)',
         }}
       />
       <div
@@ -61,7 +61,7 @@ export function PageHero({
         className="absolute inset-0"
         style={{
           background:
-            'linear-gradient(to bottom, rgba(11,30,61,0.85) 0%, rgba(11,30,61,0.12) 30%, rgba(11,30,61,0.60) 80%, rgba(11,30,61,0.95) 100%)',
+            'linear-gradient(to bottom, rgb(var(--navy-950-rgb) / 0.85) 0%, rgb(var(--navy-950-rgb) / 0.12) 30%, rgb(var(--navy-950-rgb) / 0.60) 80%, rgb(var(--navy-950-rgb) / 0.95) 100%)',
         }}
       />
 
@@ -214,7 +214,7 @@ export function PageCTA({
       style={{
         paddingTop: 'clamp(54px, 6vw, 76px)',
         paddingBottom: 'clamp(60px, 6.6vw, 84px)',
-        backgroundColor: 'var(--navy-900)',
+        backgroundColor: 'var(--navy-950)',
         position: 'relative',
         overflow: 'hidden',
       }}

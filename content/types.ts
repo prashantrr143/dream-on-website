@@ -37,15 +37,32 @@ export interface CollectionItem {
   href: string
 }
 
-export interface Person {
+export interface LeaderPhoto {
+  src: string
+  /** "{name}, {role}". */
+  alt: string
+  /** Natural size of the file, for next/image (no layout shift). */
+  width: number
+  height: number
+  /** cutout: plain/transparent background, unframed, bottom-aligned. framed: 4:5 crop, 8px radius. */
+  style: 'cutout' | 'framed'
+}
+
+/** A person the site may name (revamp rule 5). Never invent bios, quotes or achievements. */
+export interface Leader {
+  slug: string
   name: string
+  /** Shown uppercase on the listing. */
   role: string
-  /** e.g. 'consulting', 'cloud', 'applied-ai', 'engineering-data', 'leadership'. */
-  practice: string
-  /** Path under /public, 3:4 portrait. Empty until a professional headshot exists. */
-  photo: string
-  bio: string
-  linkedinUrl: string
+  group: 'leadership' | 'advisors'
+  order: number
+  /** Shown on the listing. Target 60–90 words, written or approved by the person. */
+  summary: string
+  /** Long-form paragraphs; a /who-we-are/leadership/[slug] page exists only when set. */
+  bio?: string[]
+  pullQuote?: string
+  photo?: LeaderPhoto
+  linkedinUrl?: string
 }
 
 export interface Partner {

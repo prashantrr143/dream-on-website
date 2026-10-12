@@ -85,3 +85,5 @@ yarn.lock
 test-results/
 playwright-report/
 /qa/baseline-pre-audit/
+/qa/nav-fix/
+/qa/leadership/

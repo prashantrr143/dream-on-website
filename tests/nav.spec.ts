@@ -180,3 +180,64 @@ test('only one search button shows on desktop', async ({ page }) => {
   await expect(page.locator('.ys-hdr-burger')).toBeHidden()
   await expect(page.locator('.ys-hdr-right').getByRole('button', { name: 'Search' })).toBeVisible()
 })
+
+/* ---- Mega-menu separation from the page (nav-fix) ---- */
+
+test('region C shows the featured card on open; a group replaces it; reopening restores it', async ({ page }) => {
+  await trigger(page, 'What we do').click()
+  const card = page.locator('.ys-mega-featured')
+  await expect(card).toBeVisible()
+  await expect(card).toHaveAttribute('href', '/what-we-do/applied-ai/claude')
+
+  await page.getByRole('button', { name: /^Cloud\b/ }).hover()
+  await expect(page.locator('.ys-mega-cols')).toBeVisible()
+  await expect(card).toHaveCount(0)
+
+  await page.keyboard.press('Escape')
+  await trigger(page, 'What we do').click()
+  await expect(page.locator('.ys-mega-featured')).toBeVisible()
+})
+
+test('scrim click closes the panel and returns focus to the trigger', async ({ page }) => {
+  await trigger(page, 'What we do').click()
+  const scrim = page.locator('.ys-nav-scrim')
+  await expect(scrim).toBeVisible()
+  await expect(scrim).toHaveAttribute('aria-hidden', 'true')
+  await page.mouse.click(1400, 860)
+  await expect(panel(page)).toHaveCount(0)
+  await expect(trigger(page, 'What we do')).toBeFocused()
+  await expect(scrim).toHaveCount(0)
+})
+
+test('open panel has a visible edge and the header switches to the panel colour', async ({ page }) => {
+  await trigger(page, 'What we do').click()
+  await page.waitForTimeout(400)
+  const mega = await panel(page).evaluate((el) => {
+    const s = getComputedStyle(el)
+    return { border: s.borderBottomWidth, shadow: s.boxShadow, bg: s.backgroundColor }
+  })
+  expect(mega.border).toBe('1px')
+  expect(mega.shadow).not.toBe('none')
+  const header = await page.locator('.ys-hdr').evaluate((el) => getComputedStyle(el).backgroundColor)
+  expect(header).toBe(mega.bg)
+  // At rest the header is the page navy, a different colour from the panel.
+  await page.keyboard.press('Escape')
+  await page.waitForTimeout(300)
+  const rest = await page.locator('.ys-hdr').evaluate((el) => getComputedStyle(el).backgroundColor)
+  expect(rest).not.toBe(mega.bg)
+})
+
+test('every featured card links to a live route', async ({ request }) => {
+  for (const item of NAV) {
+    if (item.kind !== 'panel' || !item.featured) continue
+    const res = await request.get(item.featured.href, { maxRedirects: 0 })
+    expect(res.status(), item.featured.href).toBe(200)
+  }
+})
+
+test('no serious or critical axe issues with the panel and scrim open', async ({ page }) => {
+  await trigger(page, 'Who we are').click()
+  await page.waitForTimeout(350)
+  const { violations } = await new AxeBuilder({ page }).analyze()
+  expect(violations.filter((v) => v.impact === 'serious' || v.impact === 'critical').map((v) => v.id)).toEqual([])
+})

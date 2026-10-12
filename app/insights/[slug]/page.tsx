@@ -61,8 +61,8 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
       <PageHero eyebrow={`Insights · ${a.category}`} title={a.title} lede={a.summary} visual="lanes">
         {a.status === 'draft' && (
           <p role="note" style={{ display: 'inline-block', padding: '10px 14px', borderRadius: 8, background: '#FEF3C7', color: '#92400E', fontSize: 14, lineHeight: 1.5 }}>
-            Draft, not published. Visible only in development or preview builds. After review, set status to
-            &lsquo;published&rsquo; and add publishedAt in lib/insights/articles/{a.slug}.ts.
+            Draft, not published. Visible only in development or preview builds. To publish: add &lsquo;{a.slug}&rsquo; to
+            lib/insights/published.ts, and set status to &lsquo;published&rsquo; and publishedAt in lib/insights/articles/{a.slug}.ts.
           </p>
         )}
       </PageHero>

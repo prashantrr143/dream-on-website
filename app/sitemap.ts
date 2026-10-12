@@ -1,6 +1,7 @@
 import type { MetadataRoute } from 'next'
 import { hasArticles, publishedArticles } from '@/lib/insights'
 import { REGION_PAGES } from '@/lib/region-pages'
+import { people, hasBio } from '@/content/people'
 import { siteConfig } from '@/lib/site.config'
 import { SITE_URL, indexableRoutes } from '@/lib/seo'
 
@@ -57,8 +58,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const caseStudyRoutes = siteConfig.caseStudies.map((cs) => `/customer-stories/${cs.slug}`)
   const articleRoutes = publishedArticles.map((a) => `/insights/${a.slug}`)
   const regionRoutes = REGION_PAGES.map((r) => `/regions/${r.slug}`)
+  // Leader bio pages exist only once a bio is written.
+  const leaderRoutes = people.filter(hasBio).map((p) => `/who-we-are/leadership/${p.slug}`)
 
-  return [...routes, ...caseStudyRoutes, ...articleRoutes, ...regionRoutes].map((route) => {
+  return [...routes, ...caseStudyRoutes, ...articleRoutes, ...regionRoutes, ...leaderRoutes].map((route) => {
     const lastModified = lastModifiedFor(route)
     return {
       url: `${SITE_URL}${route === '/' ? '' : route}`,

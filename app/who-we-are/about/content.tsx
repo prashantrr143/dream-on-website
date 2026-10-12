@@ -4,7 +4,7 @@ import SharedLayout from '@/components/shared-layout'
 import { PageHero, PageCTA } from '@/components/enterprise'
 import { CompanyDetails } from '@/components/enterprise/CompanyDetails'
 import { PRIMARY_CTA, SECONDARY_CTA } from '@/lib/cta'
-import { people } from '@/content/people'
+import { peopleIn } from '@/content/people'
 import { founderLetter, principles, experience, howWeWork } from '@/content/about'
 
 /**
@@ -149,13 +149,13 @@ export default function AboutUs() {
             </a>
           </div>
           <ul className="ys-about-people">
-            {people.map((p) => (
+            {peopleIn('leadership').map((p) => (
               <li key={p.name}>
                 {p.photo && (
                   <div className="ys-about-people-photo">
                     <Image
-                      src={p.photo}
-                      alt={`${p.name}, ${p.role}`}
+                      src={p.photo.src}
+                      alt={p.photo.alt}
                       fill
                       loading="eager"
                       sizes="(max-width: 640px) 40vw, 160px"
@@ -166,7 +166,7 @@ export default function AboutUs() {
                 <div>
                   <h3>{p.name}</h3>
                   <p className="ys-about-people-role">{p.role}</p>
-                  <p>{p.bio}</p>
+                  <p>{p.summary}</p>
                 </div>
               </li>
             ))}

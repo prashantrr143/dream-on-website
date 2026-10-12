@@ -24,7 +24,7 @@ function Ground({ children }: { children: React.ReactNode }) {
   return (
     <span className="ys-cap-visual" aria-hidden="true">
       <svg viewBox="0 0 400 220" preserveAspectRatio="xMidYMid meet" className="ys-cap-svg" focusable="false">
-        <rect width="400" height="220" fill="#0A1A33" />
+        <rect width="400" height="220" style={{ fill: 'var(--navy-950)' }} />
         {children}
       </svg>
     </span>
@@ -84,7 +84,7 @@ function Software() {
             {state === 'wait' && (
               <g>
                 <rect x={262} y={y - 11} width={64} height={22} rx={5} fill={AMBER} />
-                <text x={294} y={y + 4} fontSize={11} fontWeight={600} fill="#0A1A33" textAnchor="middle">
+                <text x={294} y={y + 4} fontSize={11} fontWeight={600} style={{ fill: 'var(--navy-950)' }} textAnchor="middle">
                   Approve
                 </text>
               </g>

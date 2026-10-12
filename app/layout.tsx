@@ -95,7 +95,7 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 5,
   userScalable: true,
-  themeColor: '#0B1E3D', // YatiSphere Deep Blue
+  themeColor: '#0A1628', // --navy-950
 }
 
 export default function RootLayout({

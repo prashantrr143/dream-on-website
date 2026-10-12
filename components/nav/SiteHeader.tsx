@@ -32,6 +32,10 @@ type Opened = 'hover' | 'click' | 'key'
 
 export function SiteHeader() {
   const [openId, setOpenId] = useState<string | null>(null)
+  // Increments each time the menu opens from closed, so a quick reopen
+  // (while the exit animation runs) still starts with no group active and
+  // the featured card showing.
+  const [openSession, setOpenSession] = useState(0)
   const [searchOpen, setSearchOpen] = useState(false)
   const [regionOpen, setRegionOpen] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
@@ -64,6 +68,7 @@ export function SiteHeader() {
     setRegionOpen(false)
     setOpenId((cur) => {
       if (cur !== id) trackNavOpen(id)
+      if (cur === null) setOpenSession((n) => n + 1)
       return id
     })
     openedBy.current = how
@@ -233,7 +238,7 @@ export function SiteHeader() {
   return (
     <header
       ref={headerRef}
-      className={`ys-hdr${openId || regionOpen ? ' is-open' : ''}${mobileOpen ? ' is-mobile-open' : ''}`}
+      className={`ys-hdr${openId || regionOpen || searchOpen ? ' is-open' : ''}${mobileOpen ? ' is-mobile-open' : ''}`}
       onPointerEnter={onHeaderEnter}
       onPointerLeave={onHeaderLeave}
       // Tabbing out of the header closes a desktop panel or the region menu.
@@ -325,6 +330,28 @@ export function SiteHeader() {
         </button>
       </div>
 
+      {/* Page scrim under an open mega-panel: separates the menu from the
+          page. Click closes and returns focus to the trigger; pointing at
+          it closes a hover-opened panel. No scroll lock. */}
+      <AnimatePresence>
+        {openPanel && (
+          <motion.div
+            key="scrim"
+            className="ys-nav-scrim"
+            aria-hidden="true"
+            initial={reduce ? false : { opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={reduce ? { opacity: 0, transition: { duration: 0 } } : { opacity: 0 }}
+            transition={{ duration: reduce ? 0 : 0.2 }}
+            onMouseDown={(e) => {
+              e.preventDefault()
+              closePanel(true)
+            }}
+            onPointerEnter={onPlainEnter}
+          />
+        )}
+      </AnimatePresence>
+
       {/* Desktop mega-panel. Keyed on open/closed only, so switching
           triggers swaps the content without replaying the animation. */}
       <AnimatePresence>
@@ -340,7 +367,7 @@ export function SiteHeader() {
             exit={reduce ? { opacity: 0, transition: { duration: 0 } } : { opacity: 0, y: -8 }}
             transition={{ duration: reduce ? 0 : 0.3, ease: [0.23, 1, 0.32, 1] }}
           >
-            <MegaPanel panel={openPanel} regionId={regionId} introRef={introRef} onNavigate={onNavigate} />
+            <MegaPanel key={openSession} panel={openPanel} regionId={regionId} introRef={introRef} onNavigate={onNavigate} />
           </motion.div>
         )}
       </AnimatePresence>
