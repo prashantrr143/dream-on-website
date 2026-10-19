@@ -150,7 +150,7 @@ export const siteConfig: SiteConfig = {
     offices: [],
     phone: '',
     email: 'sales@yatisphere.com',
-    linkedinUrl: 'https://www.linkedin.com/company/145293614/',
+    linkedinUrl: 'https://www.linkedin.com/company/yatisphere/',
     regionsServed: [],
   },
   social: {},

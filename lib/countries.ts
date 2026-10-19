@@ -37,7 +37,6 @@ export const SERVICE_INTERESTS = [
   'Consulting',
   'Cloud: AWS',
   'Cloud: Azure',
-  'Cloud: Google Cloud',
   'Cloud: multi-cloud',
   'Applied AI',
   'Claude',
