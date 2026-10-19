@@ -18,7 +18,7 @@ export const contentType = 'image/png'
 
 const NAVY = '#0A1628' // --navy-950
 const PAPER = '#F7F4EE'
-const AMBER = '#F5A524'
+const AMBER = '#F8B800' // logo yellow
 const MUTED = '#A6B1C4'
 const LINE = '#294474'
 

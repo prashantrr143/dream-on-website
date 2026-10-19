@@ -3345,3 +3345,82 @@ textarea.ys-input { resize: vertical; min-height: 110px; }
 .ys-ldr-grid .ys-ldr-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 18%; }
 .ys-ldr-grid .ys-ldr-name { font-size: clamp(22px, 2vw, 26px); }
 .ys-ldr-grid .ys-ldr-summary { font-size: 16px; }
+
+/* ==========================================================
+   Home: Problems we fix, as a picker (components/home/ProblemPicker).
+   List left, one large illustration right; on small screens the
+   illustration opens under the active item. Yellow marks the active
+   item (a bar, never text on white). Motion is opacity/transform only
+   and off under prefers-reduced-motion.
+   ========================================================== */
+.ys-pp { display: grid; grid-template-columns: minmax(0, 1fr); gap: 32px; margin-top: clamp(8px, 1.5vw, 16px); }
+@media (min-width: 1024px) {
+  .ys-pp { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(32px, 4vw, 64px); align-items: center; }
+}
+.ys-pp-list { display: flex; flex-direction: column; border-top: 1px solid var(--grey-200); }
+.ys-pp-item { border-bottom: 1px solid var(--grey-200); }
+.ys-pp-tab {
+  position: relative;
+  display: flex; align-items: baseline; gap: 16px;
+  width: 100%; padding: 18px 8px 18px 20px;
+  background: none; border: 0; text-align: left; cursor: pointer;
+  color: var(--ink-600);
+  transition: color 200ms ease, background-color 200ms ease;
+}
+.ys-pp-tab::before {
+  content: ''; position: absolute; left: 0; top: 14px; bottom: 14px; width: 3px; border-radius: 2px;
+  background: var(--amber-500); transform: scaleY(0); transform-origin: top;
+  transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.ys-pp-tab:hover { color: var(--ink-900); }
+.ys-pp-item.is-active .ys-pp-tab { color: var(--ink-900); }
+.ys-pp-item.is-active .ys-pp-tab::before { transform: scaleY(1); }
+.ys-pp-tab:focus-visible { outline: 2px solid var(--blue-600); outline-offset: -2px; border-radius: 4px; }
+.ys-pp-n { flex-shrink: 0; font-size: 13px; font-weight: 600; letter-spacing: 0.08em; color: var(--ink-600); font-variant-numeric: tabular-nums; }
+.ys-pp-q { font-size: clamp(16.5px, 1.35vw, 18.5px); font-weight: 500; line-height: 1.4; letter-spacing: -0.005em; }
+.ys-pp-item.is-active .ys-pp-q { font-weight: 600; }
+
+/* Auto-advance progress: a hairline under the active item that fills
+   over the rotation interval (5.5s, matches ROTATE_MS). */
+.ys-pp-progress { position: absolute; left: 20px; right: 8px; bottom: -1px; height: 2px; background: var(--amber-500); transform: scaleX(0); transform-origin: left; opacity: 0; }
+.ys-pp.is-rotating .ys-pp-item.is-active .ys-pp-progress { opacity: 1; animation: ys-pp-progress 5500ms linear forwards; }
+@keyframes ys-pp-progress { to { transform: scaleX(1); } }
+
+/* The stage: illustration over a dark caption, one card. */
+.ys-pp-panel { display: none; }
+@media (min-width: 1024px) { .ys-pp-panel { display: block; } .ys-pp-inline { display: none; } }
+.ys-pp-inline { padding: 4px 0 20px; }
+.ys-pp-stage {
+  border-radius: var(--radius-md); overflow: hidden; background: var(--navy-950);
+  box-shadow: 0 24px 48px -28px rgb(10 22 40 / 0.45);
+  animation: ys-pp-in 420ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.ys-pp-art { position: relative; aspect-ratio: 400 / 220; overflow: hidden; border-bottom: 1px solid var(--rule-navy); }
+/* .ys-cap-visual fills its parent absolutely (see .ys-cap-media). */
+.ys-pp-caption { display: grid; gap: 6px; padding: clamp(18px, 2vw, 26px) clamp(20px, 2.4vw, 32px) clamp(20px, 2.4vw, 28px); }
+.ys-pp-area { font-size: 12.5px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--amber-500); }
+.ys-pp-answer { font-size: clamp(19px, 1.8vw, 24px); font-weight: 600; line-height: 1.3; letter-spacing: -0.015em; color: var(--white); }
+.ys-pp-link { display: inline-flex; align-items: center; gap: 6px; margin-top: 8px; font-size: 15.5px; font-weight: 600; color: var(--blue-300); text-decoration: none; width: fit-content; }
+.ys-pp-link svg { transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1); }
+.ys-pp-link:hover { color: var(--amber-500); }
+.ys-pp-link:hover svg, .ys-pp-link:focus-visible svg { transform: translateX(4px); }
+.ys-pp-link:focus-visible { outline: 2px solid var(--blue-300); outline-offset: 3px; border-radius: 2px; }
+
+/* Entrance: the card fades up, then the illustration's parts appear in
+   sequence (the window, then each row, line or bar). */
+@keyframes ys-pp-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+@keyframes ys-pp-part { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.ys-pp-art .ys-cap-svg > *:not(:first-child) { animation: ys-pp-part 480ms cubic-bezier(0.22, 1, 0.36, 1) both; transform-box: fill-box; }
+.ys-pp-art .ys-cap-svg > *:nth-child(2) { animation-delay: 80ms; }
+.ys-pp-art .ys-cap-svg > *:nth-child(3) { animation-delay: 160ms; }
+.ys-pp-art .ys-cap-svg > *:nth-child(4) { animation-delay: 240ms; }
+.ys-pp-art .ys-cap-svg > *:nth-child(5) { animation-delay: 320ms; }
+.ys-pp-art .ys-cap-svg > *:nth-child(6) { animation-delay: 400ms; }
+.ys-pp-art .ys-cap-svg > *:nth-child(7) { animation-delay: 480ms; }
+.ys-pp-art .ys-cap-svg > *:nth-child(n+8) { animation-delay: 560ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  .ys-pp-stage, .ys-pp-art .ys-cap-svg > * { animation: none; }
+  .ys-pp-tab::before, .ys-pp-link svg { transition: none; }
+  .ys-pp.is-rotating .ys-pp-item.is-active .ys-pp-progress { animation: none; opacity: 0; }
+}

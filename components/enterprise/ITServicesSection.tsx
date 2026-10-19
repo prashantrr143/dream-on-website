@@ -2,73 +2,10 @@
 
 import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
-import { YsIcon, type YsIconName } from '@/components/brand/YsIcon'
-import { CapabilityVisual, type VisualKind } from '@/components/enterprise/CapabilityVisual'
+import { ProblemPicker } from '@/components/home/ProblemPicker'
 
 
 
-interface ProblemCard {
-  /** The problem, quoted, used as the card title. */
-  problem: string
-  /** What we deliver in response. */
-  body: string
-  /** The service behind it. */
-  tag: string
-  href: string
-  icon: YsIconName
-  visual: VisualKind
-}
-
-const problems: ProblemCard[] = [
-  {
-    problem: 'Our core system is old and nobody dares touch it.',
-    body: 'Modernized in steps, with no big-bang cutover.',
-    tag: 'Modernization & Advisory',
-    href: '/what-we-do/services/modernization',
-    icon: 'growth',
-    visual: 'modernization',
-  },
-  {
-    problem: 'Cloud costs keep rising and we don\u2019t know why.',
-    body: 'Find the waste, cut it, keep it down.',
-    tag: 'Cloud & Infrastructure',
-    href: '/what-we-do/cloud',
-    icon: 'cloud',
-    visual: 'cloud',
-  },
-  {
-    problem: 'We have the data but can\u2019t get an answer out of it.',
-    body: 'One trusted platform, live dashboards.',
-    tag: 'Data & Analytics',
-    href: '/what-we-do/services/data-analytics',
-    icon: 'analytics',
-    visual: 'data',
-  },
-  {
-    problem: 'An audit or a client security review is coming.',
-    body: 'Evidence built into your systems.',
-    tag: 'Security & Compliance',
-    href: '/what-we-do/services/security-compliance',
-    icon: 'security',
-    visual: 'security',
-  },
-  {
-    problem: 'Client onboarding takes weeks and lives in email.',
-    body: 'Automated intake with a full audit trail.',
-    tag: 'Software + Applied AI',
-    href: '/what-we-do/industries/financial-services',
-    icon: 'products',
-    visual: 'software',
-  },
-  {
-    problem: 'Our AI pilot worked, and then nothing happened.',
-    body: 'Taken to production, governed.',
-    tag: 'Applied AI',
-    href: '/what-we-do/applied-ai',
-    icon: 'automation',
-    visual: 'ai',
-  },
-]
 
 // Built for: three sectors, each with the outcome it buys (audit H-04).
 const BUILT_FOR: { href: string; name: string; outcome: string }[] = [
@@ -104,43 +41,11 @@ const ITServicesSection = () => {
             </h2>
           </div>
           <div className="ys-cap-intro-aside">
-            <p>Sound familiar? Let&rsquo;s talk.</p>
+            <p>Pick the one that sounds like your week.</p>
           </div>
         </motion.div>
 
-        {/* Problem grid */}
-        <motion.ul
-          className="ys-cap-grid"
-        >
-          {problems.map((p) => (
-            <motion.li key={p.problem} style={{ minWidth: 0 }}>
-              <a href={p.href} className="ys-cap-card group">
-                {/* Visual panel */}
-                <span className="ys-cap-media">
-                  <CapabilityVisual kind={p.visual} />
-                </span>
-
-                {/* Content */}
-                <span className="ys-cap-body">
-                  <span className="ys-cap-head">
-                    <span className="ys-cap-icon">
-                      <YsIcon name={p.icon} size={22} />
-                    </span>
-                    <h3 className="ys-cap-title ys-problem-title">
-                      &ldquo;{p.problem}&rdquo;
-                    </h3>
-                    <span className="ys-cap-arrow" aria-hidden="true">
-                      <ArrowRight className="w-4 h-4" strokeWidth={2} />
-                    </span>
-                  </span>
-
-                  <span className="ys-cap-desc">{p.body}</span>
-
-                </span>
-              </a>
-            </motion.li>
-          ))}
-        </motion.ul>
+        <ProblemPicker />
 
         {/* Built for */}
         <div className="ys-builtfor">
