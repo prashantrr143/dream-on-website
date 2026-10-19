@@ -4018,3 +4018,89 @@ textarea.ys-input { resize: vertical; min-height: 110px; line-height: 1.55; }
   .ys-ind-build > li, .ys-ind-build > li::before, .ys-ind-hub a, .ys-ind-hub a::before, .ys-ind-more svg { transition: none; }
   .ys-ind-build > li:hover, .ys-ind-hub a:hover, .ys-ind-hub a:focus-visible { transform: none; }
 }
+
+/* ==========================================================================
+   Motion pass (2026-10-19): scroll reveal, live hero board, buttons, page
+   transitions, smooth FAQs, service-page cards. Every effect is off under
+   prefers-reduced-motion.
+   ========================================================================== */
+
+/* 1. Scroll reveal (components/motion/ScrollReveal.tsx). Elements slide up
+   into place; they are never transparent, so a reader who jumps down the
+   page never meets a blank section (audit G-03). Uses the standalone
+   `translate` and `scale` properties, so it never fights a card's own
+   hover transform. */
+@keyframes ys-reveal { from { translate: 0 28px; scale: 0.985; } to { translate: 0 0; scale: 1; } }
+.ys-r-on [data-ys-r]:not(.is-in) { translate: 0 28px; scale: 0.985; }
+.ys-r-on [data-ys-r].is-in:not(.is-instant) { animation: ys-reveal 700ms cubic-bezier(0.22, 1, 0.36, 1) var(--ys-r-delay, 0ms) both; }
+
+/* 2. Live hero board */
+.ys-hero-board-count { margin-left: auto; font-variant-numeric: tabular-nums; color: var(--ink-300); }
+.ys-hero-board-progress { height: 3px; background: var(--rule-navy); }
+.ys-hero-board-progress span { display: block; height: 100%; background: var(--amber-500); transition: width 700ms cubic-bezier(0.22, 1, 0.36, 1); }
+.ys-hero-board li { transition: background-color 400ms ease; }
+.ys-hero-board li.is-active { background: rgb(255 255 255 / 0.025); }
+.ys-hero-board-mark { transition: background-color 300ms ease, border-color 300ms ease, box-shadow 300ms ease; }
+.ys-hero-board li.is-done .ys-hero-board-mark svg { animation: ys-check-pop 420ms cubic-bezier(0.34, 1.56, 0.64, 1); }
+@keyframes ys-check-pop { from { transform: scale(0.2); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+.ys-hero-board li.is-active .ys-hero-board-mark { animation: ys-pulse 1.8s ease-out infinite; }
+@keyframes ys-pulse { 0% { outline: 0 solid rgb(248 184 0 / 0.45); outline-offset: 0; } 100% { outline: 8px solid rgb(248 184 0 / 0); outline-offset: 2px; } }
+.ys-hero-board-meta, .ys-hero-board-state, .ys-hero-board-label { transition: color 300ms ease; }
+
+/* 3. Buttons: lift and glow on hover, arrow nudges, press on click. */
+.ys-cta-primary, .ys-cta-secondary, .ys-cta-primary-light, .ys-cta-secondary-light {
+  transition: background-color 180ms ease-out, border-color 180ms ease-out, color 180ms ease-out, transform 180ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 220ms ease-out;
+}
+.ys-cta-primary:hover, .ys-cta-primary-light:hover { transform: translateY(-1px); box-shadow: 0 10px 24px -10px rgb(31 79 191 / 0.65); }
+.ys-cta-secondary:hover, .ys-cta-secondary-light:hover { transform: translateY(-1px); }
+.ys-cta-primary:active, .ys-cta-primary-light:active, .ys-cta-secondary:active, .ys-cta-secondary-light:active { transform: translateY(0) scale(0.97); box-shadow: none; transition-duration: 80ms; }
+.ys-cta-primary svg, .ys-cta-primary-light svg, .ys-cta-secondary svg, .ys-cta-secondary-light svg { transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1); }
+.ys-cta-primary:hover svg, .ys-cta-primary-light:hover svg, .ys-cta-secondary:hover svg, .ys-cta-secondary-light:hover svg { transform: translateX(3px); }
+
+/* 4. Page transitions: a soft cross-fade between pages in browsers that
+   support cross-document view transitions; the header stays put. */
+@view-transition { navigation: auto; }
+.ys-hdr { view-transition-name: ys-header; }
+::view-transition-old(root) { animation: ys-vt-out 180ms ease-in both; }
+::view-transition-new(root) { animation: ys-vt-in 280ms cubic-bezier(0.22, 1, 0.36, 1) both; }
+@keyframes ys-vt-out { to { opacity: 0; } }
+@keyframes ys-vt-in { from { opacity: 0; translate: 0 8px; } }
+
+/* 5. FAQs and accordions: a chevron that turns, and a smooth open where
+   the browser supports animating details content. */
+:root { interpolate-size: allow-keywords; }
+.ys-faq summary { display: flex; align-items: center; justify-content: space-between; gap: 16px; list-style: none; transition: color 160ms ease-out; }
+.ys-faq summary::-webkit-details-marker { display: none; }
+.ys-faq summary::after {
+  content: ''; flex: none; width: 9px; height: 9px; margin-right: 4px;
+  border-right: 2px solid currentColor; border-bottom: 2px solid currentColor;
+  transform: translateY(-3px) rotate(45deg); transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.ys-faq[open] summary::after { transform: translateY(2px) rotate(-135deg); }
+.ys-faq summary:hover { color: var(--blue-600); }
+.ys-faq::details-content { height: 0; overflow: clip; transition: height 320ms cubic-bezier(0.22, 1, 0.36, 1), content-visibility 320ms allow-discrete; }
+.ys-faq[open]::details-content { height: auto; }
+
+/* 6. Service-page cards (open items): a yellow bar draws across the
+   hairline, the title turns blue, the arrow nudges. */
+a.ys-open-item { position: relative; }
+a.ys-open-item::before { content: ''; position: absolute; top: -1px; left: 0; right: 0; height: 2px; background: var(--amber-500); transform: scaleX(0); transform-origin: left; transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1); }
+a.ys-open-item:hover::before, a.ys-open-item:focus-visible::before { transform: scaleX(1); }
+a.ys-open-item h3 { transition: color 180ms ease-out; }
+a.ys-open-item .ys-card-more svg { transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1); }
+a.ys-open-item:hover .ys-card-more svg { transform: translateX(4px); }
+.ys-link-row svg { transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1); }
+.ys-link-row:hover svg { transform: translateX(4px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .ys-r-on [data-ys-r]:not(.is-in) { translate: none; scale: none; }
+  .ys-r-on [data-ys-r].is-in { animation: none; }
+  .ys-hero-board li.is-active .ys-hero-board-mark, .ys-hero-board li.is-done .ys-hero-board-mark svg { animation: none; }
+  .ys-hero-board-progress span { transition: none; }
+  .ys-cta-primary:hover, .ys-cta-primary-light:hover, .ys-cta-secondary:hover, .ys-cta-secondary-light:hover,
+  .ys-cta-primary:active, .ys-cta-primary-light:active, .ys-cta-secondary:active, .ys-cta-secondary-light:active { transform: none; }
+  .ys-cta-primary:hover svg, .ys-cta-primary-light:hover svg, .ys-cta-secondary:hover svg, .ys-cta-secondary-light:hover svg { transform: none; }
+  ::view-transition-old(root), ::view-transition-new(root) { animation: none; }
+  .ys-faq::details-content { transition: none; }
+  .ys-faq summary::after, a.ys-open-item::before { transition: none; }
+}
