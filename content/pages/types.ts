@@ -80,6 +80,40 @@ export type Block =
   /** In focus: tabs from stories/insights/news/events filtered by these tags; hidden when empty. */
   | (BlockBase & { type: 'inFocus'; industries?: IndustrySlug[]; services?: string[]; clouds?: Cloud[] })
 
+/**
+ * Industry pages (rewrite, 2026-10-19). Rendered by IndustryView in full:
+ * the brevity rules for service pages do not apply, because each section
+ * here has to deliver what its heading promises.
+ */
+export interface IndustryDetail {
+  slug: IndustrySlug
+  /** Who we work with, as short chips. */
+  forWho: string[]
+  /** What makes IT in this sector different. */
+  context: { title: string; paragraphs: string[] }
+  /** Problem-led capabilities. */
+  build: {
+    title: string
+    /** In the client's words. */
+    problem: string
+    body: string
+    bullets: string[]
+    outcome: string
+    href: string
+    linkLabel: string
+  }[]
+  standards: {
+    lede: string
+    /** Regulators and rule-makers by region, where the sector has them. */
+    regions?: { region: string; bodies: string }[]
+    items: { title: string; body: string }[]
+  }
+  /** The first engagement, made specific to the sector. */
+  start: { lede: string; steps: { title: string; body: string }[] }
+  related: LinkItem[]
+  cta: { title: string; body: string }
+}
+
 export interface ContentPage {
   /** Full path, e.g. "/what-we-do/cloud/aws". */
   path: string
@@ -94,4 +128,8 @@ export interface ContentPage {
   contactInterest?: string
   /** Contact banner override. */
   contact?: { title: string; body: string }
+  /** Industry page: rendered by IndustryView instead of the block list. */
+  industry?: IndustryDetail
+  /** Section hub rendered by its own view. */
+  hub?: 'industries'
 }

@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { CONTENT_PAGES, getContentPage } from '@/content/pages'
 import { ContentPageView } from '@/components/page/ContentPageView'
+import { IndustriesHub, IndustryView } from '@/components/industries/IndustryView'
 import { SITE_URL, socialMeta } from '@/lib/seo'
 
 /** Every /what-we-do page is data in content/pages/; unknown paths 404. */
@@ -28,5 +29,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug?: st
 export default async function Page({ params }: { params: Promise<{ slug?: string[] }> }) {
   const page = getContentPage(pathFor((await params).slug))
   if (!page) notFound()
+  if (page.hub === 'industries') return <IndustriesHub page={page} />
+  if (page.industry) return <IndustryView page={page} d={page.industry} />
   return <ContentPageView page={page} />
 }

@@ -5,6 +5,7 @@ import { pages as cloud } from './cloud'
 import { pages as appliedAi } from './applied-ai'
 import { pages as engineeringData } from './engineering-data'
 import { pages as industries } from './industries'
+import { pages as industriesLive } from './industries-live'
 
 export type { ContentPage } from './types'
 
@@ -26,6 +27,7 @@ export const CONTENT_PAGES: ContentPage[] = [
   ...cloud,
   ...appliedAi,
   ...engineeringData,
+  ...industriesLive,
   ...industries,
 ].filter((p) => !RETIRED_PATHS.has(p.path))
 
