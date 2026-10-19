@@ -16,6 +16,7 @@ export default function AccessibilityPage() {
     <SharedLayout>
       <PageHero eyebrow="ACCESSIBILITY" title="Accessibility statement" lede="We want everyone to be able to use this website, including people who use assistive technology." visual="network" />
       <PageSection tone="white">
+        <div className="ys-statement-layout">
         <div className="ys-prose" style={{ maxWidth: '70ch', display: 'grid', gap: 18, fontSize: 16, lineHeight: 1.7, color: 'var(--ink-900)' }}>
           <h2 style={{ fontSize: 22 }}>Our target</h2>
           <p>
@@ -34,6 +35,13 @@ export default function AccessibilityPage() {
             happened. We will reply within one working day and tell you what we will do about it.
           </p>
           <p style={{ fontSize: 14, color: 'var(--ink-600)' }}>Last updated {LEGAL_LAST_UPDATED}.</p>
+        </div>
+        <aside className="ys-art-cta ys-statement-aside" aria-label="Report a barrier">
+          <p className="ys-art-cta-kicker">Found a barrier?</p>
+          <p className="ys-art-cta-title">Tell us and we will fix it.</p>
+          <p className="ys-art-cta-body">Send the page address and what happened. We reply within one working day.</p>
+          <a href={`mailto:${SITE_CONTACT.email}`} className="ys-cta-primary inline-flex items-center">Email {SITE_CONTACT.email}</a>
+        </aside>
         </div>
       </PageSection>
     </SharedLayout>
