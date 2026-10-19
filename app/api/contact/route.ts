@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import { ALL_COUNTRIES, CONTACT_INTERESTS, CONTACT_TIMELINES } from '@/lib/countries'
+import { ACK_SUBJECT, ackHtml, ackText, notifyHtml, notifySubject, notifyText, type Inquiry } from '@/lib/contact-email'
 
 /**
  * Contact form handler.
@@ -11,6 +12,9 @@ import { ALL_COUNTRIES, CONTACT_INTERESTS, CONTACT_TIMELINES } from '@/lib/count
  *   RESEND_API_KEY      API key
  *   CONTACT_TO_EMAIL    inbox that receives inquiries
  *   CONTACT_FROM_EMAIL  sender on a domain verified in Resend
+ *
+ * After the inquiry reaches the inbox, the visitor gets a short
+ * acknowledgement (best effort: if it fails, the inquiry still counts).
  *
  * Until they are set the route answers 503, and the form tells the
  * visitor to email instead — it never claims a message was sent when
@@ -35,8 +39,14 @@ function rateLimited(ip: string): boolean {
 }
 
 const str = (v: unknown, max: number) => (typeof v === 'string' ? v.trim().slice(0, max) : '')
-const escapeHtml = (s: string) =>
-  s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c] as string)
+
+async function send(apiKey: string, payload: Record<string, unknown>) {
+  return fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+  })
+}
 
 export async function POST(request: Request) {
   let body: Record<string, unknown>
@@ -53,7 +63,8 @@ export async function POST(request: Request) {
   const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ?? 'unknown'
   if (rateLimited(ip)) return NextResponse.json({ error: 'rate_limited' }, { status: 429 })
 
-  const data = {
+  const rawPage = str(body['page'], 200)
+  const data: Inquiry = {
     name: str(body['name'], MAX.name),
     email: str(body['email'], MAX.email),
     company: str(body['company'], MAX.company),
@@ -62,6 +73,8 @@ export async function POST(request: Request) {
     interest: str(body['interest'], 40),
     timeline: str(body['timeline'], 40),
     problem: str(body['problem'], MAX.problem),
+    // Only a same-site path, shown as a link in the notification.
+    page: /^\/[\w\-/]*$/.test(rawPage) ? rawPage : '',
   }
 
   const errors: string[] = []
@@ -80,41 +93,33 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'not_configured' }, { status: 503 })
   }
 
-  const rows: [string, string][] = [
-    ['Name', data.name],
-    ['Email', data.email],
-    ['Company', data.company],
-    ['Role', data.role],
-    ['Country', data.country],
-    ['Interest', data.interest],
-    ['Timeline', data.timeline],
-  ]
-  const text =
-    rows.filter(([, v]) => v).map(([k, v]) => `${k}: ${v}`).join('\n') +
-    `\n\nProblem:\n${data.problem || '(not given)'}`
-  const html =
-    `<table>${rows
-      .filter(([, v]) => v)
-      .map(([k, v]) => `<tr><th align="left">${k}</th><td>${escapeHtml(v)}</td></tr>`)
-      .join('')}</table>` +
-    `<p><strong>Problem</strong></p><p style="white-space:pre-wrap">${escapeHtml(data.problem || '(not given)')}</p>`
-
-  const res = await fetch('https://api.resend.com/emails', {
-    method: 'POST',
-    headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      from,
-      to: [to],
-      reply_to: data.email,
-      subject: `Website inquiry: ${data.company} (${data.country})`,
-      text,
-      html,
-    }),
+  const now = new Date()
+  const res = await send(apiKey, {
+    from,
+    to: [to],
+    reply_to: data.email,
+    subject: notifySubject(data),
+    text: notifyText(data, now),
+    html: notifyHtml(data, now),
   })
 
   if (!res.ok) {
     console.error('Contact form delivery failed', res.status, await res.text().catch(() => ''))
     return NextResponse.json({ error: 'delivery_failed' }, { status: 502 })
   }
+
+  // Acknowledge the visitor. Replies go to the sales inbox.
+  // Same sending address, but the visitor sees the company, not "Website".
+  const fromAddress = from.match(/<([^>]+)>/)?.[1] ?? from
+  const ack = await send(apiKey, {
+    from: `YatiSphere <${fromAddress}>`,
+    to: [data.email],
+    reply_to: to,
+    subject: ACK_SUBJECT,
+    text: ackText(data.name),
+    html: ackHtml(data.name),
+  }).catch(() => null)
+  if (ack && !ack.ok) console.error('Contact acknowledgement failed', ack.status, await ack.text().catch(() => ''))
+
   return NextResponse.json({ ok: true })
 }
