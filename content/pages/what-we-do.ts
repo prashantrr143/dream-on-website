@@ -22,7 +22,7 @@ export const pages: ContentPage[] = [
         type: 'statement',
         kicker: 'Our view',
         title: 'AI is only as trustworthy as the platform under it',
-        text: 'Enterprise AI fails less often on the model than on everything around it: the cloud foundations, the data, the controls and the people who run it. We work on all five layers, with one accountable senior team, so what reaches production is something your auditors, customers and engineers can live with.',
+        text: 'Enterprise AI fails less often on the model than on everything around it: the cloud foundations, the data, the controls and the people who run it. We work on all five layers, with senior engineers on the work, so what reaches production is something your auditors, customers and engineers can live with.',
       },
       {
         type: 'layers',

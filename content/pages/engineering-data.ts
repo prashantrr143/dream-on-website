@@ -24,7 +24,7 @@ export const pages: ContentPage[] = [
     meta: {
       title: 'Software, data & DevOps engineering | YatiSphere',
       description:
-        'Software engineering, data platforms, DevOps, security and legacy modernization on AWS, Microsoft Azure or Google Cloud, by one accountable senior team.',
+        'Software engineering, data platforms, DevOps, security and legacy modernization on AWS or Microsoft Azure, built by senior engineers.',
     },
     hero: {
       kicker: 'WHAT WE DO / ENGINEERING & DATA',
@@ -37,7 +37,7 @@ export const pages: ContentPage[] = [
     blocks: [
       {
         type: 'statement',
-        text: 'The systems your business runs on have to keep running while they change. We design, build and modernize them with one accountable senior team, on AWS, Microsoft Azure or Google Cloud. We recommend what fits, not what we resell, and the code, the cloud accounts and the region are yours from day one.',
+        text: 'The systems your business runs on have to keep running while they change. Senior engineers design, build and modernize them on AWS or Microsoft Azure. We recommend what fits, not what we resell, and the code, the cloud accounts and the region are yours from day one.',
       },
       {
         type: 'cards',
