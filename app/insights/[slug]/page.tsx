@@ -20,13 +20,17 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const a = getVisibleArticle((await params).slug)
   if (!a) return {}
   const url = `${SITE_URL}/insights/${a.slug}`
+  // Google shows about 60 characters; the brand suffix goes when it would
+  // push the title past that, so the article's own words are never cut.
+  const base = a.seoTitle ?? a.title
+  const title = `${base} | ${SITE_NAME}`.length <= 60 ? `${base} | ${SITE_NAME}` : base
   return {
-    title: { absolute: `${a.title} | ${SITE_NAME}` },
+    title: { absolute: title },
     description: a.summary,
     alternates: { canonical: url },
     ...(a.status === 'draft' ? { robots: { index: false, follow: false } } : {}),
     ...socialMeta({
-      title: `${a.title} | ${SITE_NAME}`,
+      title,
       description: a.summary,
       url,
       type: 'article',

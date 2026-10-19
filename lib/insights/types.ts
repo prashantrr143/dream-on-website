@@ -23,6 +23,8 @@ export interface ArticleSection {
 export interface Article {
   slug: string
   title: string
+  /** Shorter title for search results when `title` runs past ~60 characters. */
+  seoTitle?: string
   /** One or two sentences. Also the meta description: 155 characters max. */
   summary: string
   category: 'Applied AI' | 'Regulation' | 'Security & Compliance' | 'Cloud' | 'Financial services'

@@ -5,6 +5,7 @@ export const article: Article = {
   title: 'Azure OpenAI in UAE North: what data residency actually covers',
   summary:
     'A UAE North resource does not keep every prompt in the UAE. What each deployment type does, how abuse monitoring works, and what to configure.',
+  seoTitle: 'Azure OpenAI in UAE North: what data residency covers',
   category: 'Cloud',
   readTime: '6 min read',
   author: 'YatiSphere team',
