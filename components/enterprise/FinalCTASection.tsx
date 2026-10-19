@@ -35,7 +35,7 @@ const FinalCTASection = () => {
             marginBottom: '16px'
           }}
         >
-          Tell us the problem.
+          What are you working on?
         </motion.h2>
         <motion.p
           style={{

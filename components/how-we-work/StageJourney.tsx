@@ -128,8 +128,7 @@ export function StageJourney() {
       </div>
 
       <p className="ys-sj-legend">
-        <span className="ys-sj-gate-mark" aria-hidden="true" /> A decision point. At each one you can continue with
-        us, change course, or take the work in-house: the blueprint, the code and the run guide are yours.
+        <span className="ys-sj-gate-mark" aria-hidden="true" /> A decision point between stages.
       </p>
     </div>
   )

@@ -19,9 +19,8 @@ export function Partners() {
     <section className="ys-section-white" aria-labelledby="home-partners">
       <div className="enterprise-container-wide ys-partners">
         <div className="ys-partners-intro">
-          <p className="ys-eyebrow">Partners</p>
-          <h2 id="home-partners">Who we deliver with.</h2>
-          <p>Specialist firms we work alongside when a project needs more than we do ourselves.</p>
+          <h2 id="home-partners">Firms we deliver with</h2>
+          <p>When a project needs specialist operations or coverage we don’t have in-house, we bring in a partner we already work with, and we stay accountable for the result.</p>
         </div>
 
         <ul className="ys-partners-list">

@@ -1,5 +1,6 @@
 "use client"
 
+import { useEffect, useRef, useState } from 'react'
 import { motion } from 'motion/react'
 import { ArrowRight, Check } from 'lucide-react'
 import { PRIMARY_CTA } from '@/lib/cta'
@@ -16,37 +17,77 @@ const PROOF = [
   'Your code, your accounts',
 ]
 
-/** Illustrative only: what an engagement looks like, not a client's data. */
-const BOARD: { label: string; meta: string; state: 'done' | 'active' | 'next' }[] = [
-  { label: 'Blueprint agreed', meta: 'Plan and risks signed off', state: 'done' },
-  { label: 'Landing zone live', meta: 'Your account, your region', state: 'done' },
-  { label: 'Core API modernization', meta: 'Sprint 4 of 6', state: 'active' },
-  { label: 'Onboarding agent', meta: 'Evaluation passed', state: 'active' },
-  { label: 'Run and improve', meta: 'Monitored and improved', state: 'next' },
+/**
+ * Illustrative only: what an engagement looks like, not a client's data.
+ *
+ * The board plays the engagement forward: each step completes, the next
+ * starts, the progress bar fills, then it rests and starts again. Runs
+ * only while on screen and the tab is visible; static under reduced
+ * motion. The first render matches the server (step 2) so hydration is
+ * clean.
+ */
+const BOARD: { label: string; active: string; done: string }[] = [
+  { label: 'Blueprint agreed', active: 'Discovery in progress', done: 'Plan and risks signed off' },
+  { label: 'Landing zone live', active: 'Building in your account', done: 'Your account, your region' },
+  { label: 'Core API modernization', active: 'Sprint 4 of 6', done: 'Released, legacy path retired' },
+  { label: 'Onboarding agent', active: 'Evaluation running', done: 'Evaluation passed' },
+  { label: 'Run and improve', active: 'Monitoring live', done: 'Monitored and improved' },
 ]
+const START = 2
+const STEP_MS = 2600
 
 function EngagementBoard() {
+  const [step, setStep] = useState(START)
+  const ref = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    const el = ref.current
+    if (!el) return
+    let visible = false
+    let timer: number | undefined
+    const tick = () => {
+      // After the last step completes, rest a beat, then begin again.
+      setStep((s) => (s >= BOARD.length ? 1 : s + 1))
+      timer = window.setTimeout(tick, STEP_MS)
+    }
+    const run = () => {
+      window.clearTimeout(timer)
+      if (visible && document.visibilityState === 'visible') timer = window.setTimeout(tick, STEP_MS)
+    }
+    const io = new IntersectionObserver(([e]) => { visible = !!e?.isIntersecting; run() }, { threshold: 0.3 })
+    io.observe(el)
+    document.addEventListener('visibilitychange', run)
+    return () => { io.disconnect(); document.removeEventListener('visibilitychange', run); window.clearTimeout(timer) }
+  }, [])
+
+  const done = Math.min(step, BOARD.length)
   return (
-    <div className="ys-hero-board" aria-hidden="true">
+    <div className="ys-hero-board" aria-hidden="true" ref={ref}>
       <div className="ys-hero-board-head">
         <span className="ys-hero-board-dots"><i /><i /><i /></span>
         <span>Engagement board</span>
+        <span className="ys-hero-board-count">{done} of {BOARD.length} done</span>
       </div>
+      <div className="ys-hero-board-progress"><span style={{ width: `${(done / BOARD.length) * 100}%` }} /></div>
       <ul>
-        {BOARD.map((row) => (
-          <li key={row.label} className={`is-${row.state}`}>
-            <span className="ys-hero-board-mark">
-              {row.state === 'done' ? <Check className="w-3.5 h-3.5" strokeWidth={3} /> : null}
-            </span>
-            <span className="ys-hero-board-text">
-              <span className="ys-hero-board-label">{row.label}</span>
-              <span className="ys-hero-board-meta">{row.meta}</span>
-            </span>
-            <span className="ys-hero-board-state">
-              {row.state === 'done' ? 'Done' : row.state === 'active' ? 'In progress' : 'Next'}
-            </span>
-          </li>
-        ))}
+        {BOARD.map((row, i) => {
+          const state = i < step ? 'done' : i === step ? 'active' : 'next'
+          return (
+            <li key={row.label} className={`is-${state}`}>
+              <span className="ys-hero-board-mark">
+                {state === 'done' ? <Check className="w-3.5 h-3.5" strokeWidth={3} /> : null}
+              </span>
+              <span className="ys-hero-board-text">
+                <span className="ys-hero-board-label">{row.label}</span>
+                <span className="ys-hero-board-meta">{state === 'done' ? row.done : state === 'active' ? row.active : 'Planned'}</span>
+              </span>
+              <span className="ys-hero-board-state">
+                {state === 'done' ? 'Done' : state === 'active' ? 'In progress' : 'Next'}
+              </span>
+            </li>
+          )
+        })}
       </ul>
     </div>
   )

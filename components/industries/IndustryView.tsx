@@ -112,7 +112,7 @@ export function IndustryView({ page, d }: { page: ContentPage; d: IndustryDetail
           <div className="ys-rai-band-head">
             <div>
               <p className="ys-eyebrow ys-eyebrow-on-dark">How to start</p>
-              <h2 id="ind-start">A plan before any build.</h2>
+              <h2 id="ind-start">Start with a two-to-four-week plan</h2>
             </div>
             <p>{d.start.lede}</p>
           </div>
@@ -196,7 +196,7 @@ export function IndustriesHub({ page }: { page: ContentPage }) {
         breadcrumbs={page.parents}
         primaryCta={{ label: PRIMARY_CTA.label, href: PRIMARY_CTA.href }}
       />
-      <PageSection tone="white" eyebrow="Our sectors" title="Three sectors, one standard of engineering.">
+      <PageSection tone="white" title="What we build in each sector">
         <ul className="ys-ind-hub">
           {industries.map((p) => (
             <li key={p.path}>
@@ -222,7 +222,7 @@ export function IndustriesHub({ page }: { page: ContentPage }) {
         </p>
       </PageSection>
       <PageCTA
-        title="Tell us the problem."
+        title="What are you working on?"
         body="A senior engineer replies within one working day."
         primaryCta={{ label: PRIMARY_CTA.label, href: PRIMARY_CTA.href }}
         secondaryCta={{ label: 'Start with a Blueprint', href: '/blueprint' }}

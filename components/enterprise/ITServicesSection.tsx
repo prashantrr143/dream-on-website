@@ -22,7 +22,7 @@ const BUILT_FOR: { href: string; name: string; outcome: string }[] = [
   {
     href: '/what-we-do/industries/software-saas',
     name: 'Software & SaaS',
-    outcome: 'Pass security reviews. Ship AI safely.',
+    outcome: 'Win security reviews and ship AI customers trust.',
   },
 ]
 
@@ -35,9 +35,8 @@ const ITServicesSection = () => {
           className="ys-cap-intro"
         >
           <div style={{ minWidth: 0 }}>
-            <p className="ys-eyebrow">Problems we fix</p>
             <h2 className="ys-cap-headline">
-              Start with the problem, not the technology.
+              Problems clients usually bring us
             </h2>
           </div>
           <div className="ys-cap-intro-aside">

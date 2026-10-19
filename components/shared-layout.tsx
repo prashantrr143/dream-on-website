@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { SiteHeader } from '@/components/nav/SiteHeader'
+import { ScrollReveal } from '@/components/motion/ScrollReveal'
 import { ContactOverlay } from '@/components/contact/ContactOverlay'
 import { ArrowUp } from 'lucide-react'
 
@@ -80,6 +81,9 @@ export default function SharedLayout({ children, className = "", hideFooter = fa
 
       {/* "How can we help?" overlay, opened by any link to /contact-us */}
       <ContactOverlay />
+
+      {/* Sections and cards slide up as they scroll into view */}
+      <ScrollReveal />
     </div>
   )
 }

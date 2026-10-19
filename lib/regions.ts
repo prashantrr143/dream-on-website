@@ -5,7 +5,8 @@
  * terms; those belong in the engagement letter). Shown on Home, Contact
  * and How we work from this one list, so the wording never drifts.
  * Nothing here claims a certification, an office or a headcount the
- * company does not have.
+ * company does not have. Contract terms (DPA, SCCs, NDA) are listed once,
+ * in components/enterprise/WorkingWithUs.tsx.
  */
 
 export interface RegionPoint {
@@ -21,9 +22,5 @@ export const WORKING_ACROSS_REGIONS: RegionPoint[] = [
   {
     title: 'Your cloud, your region',
     body: 'We build in your cloud accounts and your chosen region, so data residency stays under your control rather than ours.',
-  },
-  {
-    title: 'DPA and SCCs as standard',
-    body: 'We sign a data processing agreement, and use standard contractual clauses where personal data crosses a border.',
   },
 ]

@@ -3716,7 +3716,7 @@ textarea.ys-input { resize: vertical; min-height: 110px; line-height: 1.55; }
 
 /* Working across regions */
 .ys-hww-regions { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; }
-@media (min-width: 768px) { .ys-hww-regions { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (min-width: 768px) { .ys-hww-regions { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .ys-hww-regions li { padding: 26px; background: var(--white); border: 1px solid var(--grey-200); border-radius: var(--radius-md); }
 .ys-hww-regions h3 { margin: 18px 0 8px; font-size: 17px; font-weight: 600; letter-spacing: -0.015em; color: var(--ink-900); }
 .ys-hww-regions p { font-size: 15.5px; line-height: 1.6; color: var(--ink-600); }
@@ -4018,3 +4018,148 @@ textarea.ys-input { resize: vertical; min-height: 110px; line-height: 1.55; }
   .ys-ind-build > li, .ys-ind-build > li::before, .ys-ind-hub a, .ys-ind-hub a::before, .ys-ind-more svg { transition: none; }
   .ys-ind-build > li:hover, .ys-ind-hub a:hover, .ys-ind-hub a:focus-visible { transform: none; }
 }
+
+/* ==========================================================================
+   Motion pass (2026-10-19): scroll reveal, live hero board, buttons, page
+   transitions, smooth FAQs, service-page cards. Every effect is off under
+   prefers-reduced-motion.
+   ========================================================================== */
+
+/* 1. Scroll reveal (components/motion/ScrollReveal.tsx). Elements slide up
+   into place; they are never transparent, so a reader who jumps down the
+   page never meets a blank section (audit G-03). Uses the standalone
+   `translate` and `scale` properties, so it never fights a card's own
+   hover transform. */
+@keyframes ys-reveal { from { translate: 0 28px; scale: 0.985; } to { translate: 0 0; scale: 1; } }
+.ys-r-on [data-ys-r]:not(.is-in) { translate: 0 28px; scale: 0.985; }
+.ys-r-on [data-ys-r].is-in:not(.is-instant) { animation: ys-reveal 700ms cubic-bezier(0.22, 1, 0.36, 1) var(--ys-r-delay, 0ms) both; }
+
+/* 2. Live hero board */
+.ys-hero-board-count { margin-left: auto; font-variant-numeric: tabular-nums; color: var(--ink-300); }
+.ys-hero-board-progress { height: 3px; background: var(--rule-navy); }
+.ys-hero-board-progress span { display: block; height: 100%; background: var(--amber-500); transition: width 700ms cubic-bezier(0.22, 1, 0.36, 1); }
+.ys-hero-board li { transition: background-color 400ms ease; }
+.ys-hero-board li.is-active { background: rgb(255 255 255 / 0.025); }
+.ys-hero-board-mark { transition: background-color 300ms ease, border-color 300ms ease, box-shadow 300ms ease; }
+.ys-hero-board li.is-done .ys-hero-board-mark svg { animation: ys-check-pop 420ms cubic-bezier(0.34, 1.56, 0.64, 1); }
+@keyframes ys-check-pop { from { transform: scale(0.2); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+.ys-hero-board li.is-active .ys-hero-board-mark { animation: ys-pulse 1.8s ease-out infinite; }
+@keyframes ys-pulse { 0% { outline: 0 solid rgb(248 184 0 / 0.45); outline-offset: 0; } 100% { outline: 8px solid rgb(248 184 0 / 0); outline-offset: 2px; } }
+.ys-hero-board-meta, .ys-hero-board-state, .ys-hero-board-label { transition: color 300ms ease; }
+
+/* 3. Buttons: lift and glow on hover, arrow nudges, press on click. */
+.ys-cta-primary, .ys-cta-secondary, .ys-cta-primary-light, .ys-cta-secondary-light {
+  transition: background-color 180ms ease-out, border-color 180ms ease-out, color 180ms ease-out, transform 180ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 220ms ease-out;
+}
+.ys-cta-primary:hover, .ys-cta-primary-light:hover { transform: translateY(-1px); box-shadow: 0 10px 24px -10px rgb(31 79 191 / 0.65); }
+.ys-cta-secondary:hover, .ys-cta-secondary-light:hover { transform: translateY(-1px); }
+.ys-cta-primary:active, .ys-cta-primary-light:active, .ys-cta-secondary:active, .ys-cta-secondary-light:active { transform: translateY(0) scale(0.97); box-shadow: none; transition-duration: 80ms; }
+.ys-cta-primary svg, .ys-cta-primary-light svg, .ys-cta-secondary svg, .ys-cta-secondary-light svg { transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1); }
+.ys-cta-primary:hover svg, .ys-cta-primary-light:hover svg, .ys-cta-secondary:hover svg, .ys-cta-secondary-light:hover svg { transform: translateX(3px); }
+
+/* 4. Page transitions: a soft cross-fade between pages in browsers that
+   support cross-document view transitions; the header stays put. */
+@view-transition { navigation: auto; }
+.ys-hdr { view-transition-name: ys-header; }
+::view-transition-old(root) { animation: ys-vt-out 180ms ease-in both; }
+::view-transition-new(root) { animation: ys-vt-in 280ms cubic-bezier(0.22, 1, 0.36, 1) both; }
+@keyframes ys-vt-out { to { opacity: 0; } }
+@keyframes ys-vt-in { from { opacity: 0; translate: 0 8px; } }
+
+/* 5. FAQs and accordions: a chevron that turns, and a smooth open where
+   the browser supports animating details content. */
+:root { interpolate-size: allow-keywords; }
+.ys-faq summary { display: flex; align-items: center; justify-content: space-between; gap: 16px; list-style: none; transition: color 160ms ease-out; }
+.ys-faq summary::-webkit-details-marker { display: none; }
+.ys-faq summary::after {
+  content: ''; flex: none; width: 9px; height: 9px; margin-right: 4px;
+  border-right: 2px solid currentColor; border-bottom: 2px solid currentColor;
+  transform: translateY(-3px) rotate(45deg); transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.ys-faq[open] summary::after { transform: translateY(2px) rotate(-135deg); }
+.ys-faq summary:hover { color: var(--blue-600); }
+.ys-faq::details-content { height: 0; overflow: clip; transition: height 320ms cubic-bezier(0.22, 1, 0.36, 1), content-visibility 320ms allow-discrete; }
+.ys-faq[open]::details-content { height: auto; }
+
+/* 6. Service-page cards (open items): a yellow bar draws across the
+   hairline, the title turns blue, the arrow nudges. */
+a.ys-open-item { position: relative; }
+a.ys-open-item::before { content: ''; position: absolute; top: -1px; left: 0; right: 0; height: 2px; background: var(--amber-500); transform: scaleX(0); transform-origin: left; transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1); }
+a.ys-open-item:hover::before, a.ys-open-item:focus-visible::before { transform: scaleX(1); }
+a.ys-open-item h3 { transition: color 180ms ease-out; }
+a.ys-open-item .ys-card-more svg { transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1); }
+a.ys-open-item:hover .ys-card-more svg { transform: translateX(4px); }
+.ys-link-row svg { transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1); }
+.ys-link-row:hover svg { transform: translateX(4px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .ys-r-on [data-ys-r]:not(.is-in) { translate: none; scale: none; }
+  .ys-r-on [data-ys-r].is-in { animation: none; }
+  .ys-hero-board li.is-active .ys-hero-board-mark, .ys-hero-board li.is-done .ys-hero-board-mark svg { animation: none; }
+  .ys-hero-board-progress span { transition: none; }
+  .ys-cta-primary:hover, .ys-cta-primary-light:hover, .ys-cta-secondary:hover, .ys-cta-secondary-light:hover,
+  .ys-cta-primary:active, .ys-cta-primary-light:active, .ys-cta-secondary:active, .ys-cta-secondary-light:active { transform: none; }
+  .ys-cta-primary:hover svg, .ys-cta-primary-light:hover svg, .ys-cta-secondary:hover svg, .ys-cta-secondary-light:hover svg { transform: none; }
+  ::view-transition-old(root), ::view-transition-new(root) { animation: none; }
+  .ys-faq::details-content { transition: none; }
+  .ys-faq summary::after, a.ys-open-item::before { transition: none; }
+}
+
+/* ==========================================================================
+   De-template pass (2026-10-19): editorial layouts, quieter effects.
+   ========================================================================== */
+
+/* Section intros without an eyebrow above them. */
+.ys-practices-intro h2, .ys-how-intro h2, .ys-partners-intro h2, .ys-cap-intro h2, .ys-hww-band h2 { margin-top: 0; }
+.ys-hww-band h2 { max-width: 30ch; }
+
+/* Pull quote */
+.ys-pullquote-wrap { padding-top: clamp(48px, 6vw, 80px); padding-bottom: clamp(48px, 6vw, 80px); }
+.ys-pullquote { margin: 0 auto; max-width: 58rem; padding-left: clamp(20px, 3vw, 36px); border-left: 3px solid var(--amber-500); }
+.ys-pullquote blockquote { margin: 0; }
+.ys-pullquote blockquote p { font-size: clamp(22px, 2.6vw, 32px); line-height: 1.35; letter-spacing: -0.02em; font-weight: 500; color: var(--ink-900); text-wrap: pretty; }
+.ys-pullquote figcaption { margin-top: 18px; font-size: 14px; color: var(--ink-600); }
+
+/* How we work principles: an editorial list on the navy band, not cards. */
+.ys-hww-principles li { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 0 20px; padding: 24px 0 0; border: 0; border-top: 1px solid var(--rule-navy); border-radius: 0; background: none; transform: none !important; }
+.ys-hww-principles li::before { display: none; }
+.ys-hww-principles li:hover { background: none; }
+.ys-hww-principles .ys-hww-n { font-size: clamp(28px, 3vw, 40px); font-weight: 500; letter-spacing: -0.02em; line-height: 1; color: var(--amber-500); }
+.ys-hww-principles h3 { margin: 4px 0 8px; font-size: 19px; }
+@media (min-width: 1100px) { .ys-hww-principles { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 56px; } }
+
+/* Tables (frameworks and similar) */
+.ys-table-wrap { overflow-x: auto; border: 1px solid var(--grey-200); border-radius: var(--radius-md); background: var(--white); }
+.ys-table-wrap:focus-visible { outline: 2px solid var(--blue-600); outline-offset: 2px; }
+.ys-table { width: 100%; border-collapse: collapse; min-width: 560px; }
+.ys-table th, .ys-table td { padding: 16px 20px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--grey-200); font-size: 15.5px; line-height: 1.55; }
+.ys-table thead th { font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-600); background: var(--grey-50); }
+.ys-table tbody th { width: 28%; font-weight: 600; color: var(--ink-900); }
+.ys-table tbody td { color: var(--ink-600); }
+.ys-table tbody tr:last-child th, .ys-table tbody tr:last-child td { border-bottom: 0; }
+
+/* Quieter effects: the lift and yellow bar stay on the primary cards only
+   (home practices, insight cards, industry hub). Everywhere else hover is
+   a border-color change, and items that are not links do not react. */
+a.ys-open-item::before,
+.ys-partner-card::before,
+.ys-hww-models li::before,
+.ys-rai-commit a::before,
+.ys-ind-build > li::before { display: none; }
+.ys-partner-card:hover, .ys-partner-card:focus-visible,
+.ys-rai-commit a:hover, .ys-rai-commit a:focus-visible { transform: none; box-shadow: none; border-color: var(--blue-600); }
+.ys-hww-models li:hover, .ys-ind-build > li:hover { transform: none; box-shadow: none; border-color: var(--grey-200); }
+.ys-hww-models li.is-featured:hover { border-color: var(--navy-950); }
+.ys-rai-lines li:hover { background: var(--navy-950); }
+
+/* Working with us: an editorial definition list, not cards. */
+.ys-wwu { display: grid; grid-template-columns: minmax(0, 1fr); gap: 28px 64px; align-items: start; }
+@media (min-width: 1024px) { .ys-wwu { grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); } }
+.ys-wwu-intro p { margin-top: 14px; font-size: 16.5px; line-height: 1.6; color: var(--ink-600); max-width: 36ch; }
+.ys-wwu-list { margin: 0; border-top: 1px solid var(--grey-200); }
+.ys-wwu-list > div { display: grid; grid-template-columns: minmax(0, 1fr); gap: 4px 32px; padding: 18px 0; border-bottom: 1px solid var(--grey-200); }
+@media (min-width: 640px) { .ys-wwu-list > div { grid-template-columns: 180px minmax(0, 1fr); } }
+.ys-wwu-list dt { font-size: 15.5px; font-weight: 600; color: var(--ink-900); }
+.ys-wwu-list dd { margin: 0; font-size: 15.5px; line-height: 1.6; color: var(--ink-600); }
+.ys-wwu-link { display: inline-flex; align-items: center; gap: 6px; margin-left: 8px; font-weight: 600; color: var(--blue-600); text-decoration: none; }
+.ys-wwu-link:hover { text-decoration: underline; text-underline-offset: 3px; }
