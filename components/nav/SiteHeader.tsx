@@ -1,6 +1,6 @@
 "use client"
 
-import { useCallback, useEffect, useId, useRef, useState } from 'react'
+import { useCallback, useEffect, useId, useLayoutEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { ChevronDown, Search } from 'lucide-react'
 import { Wordmark } from '@/components/brand/Wordmark'
@@ -26,7 +26,36 @@ import { MobileNav } from './MobileNav'
  */
 
 const HOVER_OPEN_MS = 100
-const HOVER_CLOSE_MS = 220
+const HOVER_CLOSE_MS = 200
+/** Switching between open panels waits this long, so a pointer crossing a
+ *  neighbouring trigger on its way down into the panel does not switch. */
+const HOVER_SWITCH_MS = 70
+
+const EASE = [0.22, 1, 0.36, 1] as const
+const PANEL_IDS = NAV.filter((n) => n.kind === 'panel').map((n) => n.id)
+
+/** Animates its height to fit its content (the panel morphs between menus). */
+function AutoHeight({ children, reduce }: { children: React.ReactNode; reduce: boolean }) {
+  const inner = useRef<HTMLDivElement>(null)
+  const [height, setHeight] = useState<number | 'auto'>('auto')
+  useLayoutEffect(() => {
+    const el = inner.current
+    if (!el) return
+    const ro = new ResizeObserver(() => setHeight(el.offsetHeight))
+    ro.observe(el)
+    return () => ro.disconnect()
+  }, [])
+  return (
+    <motion.div
+      className="ys-mega-morph"
+      initial={false}
+      animate={{ height }}
+      transition={{ duration: reduce ? 0 : 0.24, ease: EASE }}
+    >
+      <div ref={inner}>{children}</div>
+    </motion.div>
+  )
+}
 
 type Opened = 'hover' | 'click' | 'key'
 
@@ -36,6 +65,10 @@ export function SiteHeader() {
   // (while the exit animation runs) still starts with no group active and
   // the featured card showing.
   const [openSession, setOpenSession] = useState(0)
+  // Direction of the last switch (-1 left, 1 right), for the content slide;
+  // and whether the panel has switched since it opened (stagger plays once).
+  const [dir, setDir] = useState(0)
+  const [switched, setSwitched] = useState(false)
   const [searchOpen, setSearchOpen] = useState(false)
   const [regionOpen, setRegionOpen] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
@@ -68,7 +101,14 @@ export function SiteHeader() {
     setRegionOpen(false)
     setOpenId((cur) => {
       if (cur !== id) trackNavOpen(id)
-      if (cur === null) setOpenSession((n) => n + 1)
+      if (cur === null) {
+        setOpenSession((n) => n + 1)
+        setSwitched(false)
+        setDir(0)
+      } else if (cur !== id) {
+        setSwitched(true)
+        setDir(Math.sign(PANEL_IDS.indexOf(id) - PANEL_IDS.indexOf(cur)))
+      }
       return id
     })
     openedBy.current = how
@@ -90,14 +130,17 @@ export function SiteHeader() {
     // Already open (any panel): switch instantly; otherwise wait briefly
     // so a pointer just passing over the bar does not flash a panel.
     if (openId) {
-      if (openId !== id && openedBy.current === 'hover') showPanel(id, 'hover')
+      if (openId !== id && openedBy.current === 'hover') {
+        hoverTimer.current = setTimeout(() => showPanel(id, 'hover'), HOVER_SWITCH_MS)
+      }
       return
     }
     hoverTimer.current = setTimeout(() => showPanel(id, 'hover'), HOVER_OPEN_MS)
   }
   const onTriggerLeave = (e: React.PointerEvent) => {
     if (e.pointerType !== 'mouse') return
-    if (!openId) clearHover()
+    // Cancels a pending open, or a pending switch the pointer only passed through.
+    clearHover()
   }
   // Pointing at a non-panel item (logo, "How we work", CTA) closes a hover panel.
   const onPlainEnter = (e: React.PointerEvent) => {
@@ -284,6 +327,15 @@ export function SiteHeader() {
                   >
                     {item.label}
                     <ChevronDown className="ys-hdr-chev" strokeWidth={2} aria-hidden="true" />
+                    {/* One indicator that glides between open triggers. */}
+                    {openId === item.id && (
+                      <motion.span
+                        layoutId="ys-hdr-ind"
+                        className="ys-hdr-ind"
+                        aria-hidden="true"
+                        transition={{ duration: reduce ? 0 : 0.24, ease: EASE }}
+                      />
+                    )}
                   </button>
                 </li>
               )
@@ -341,7 +393,7 @@ export function SiteHeader() {
             aria-hidden="true"
             initial={reduce ? false : { opacity: 0 }}
             animate={{ opacity: 1 }}
-            exit={reduce ? { opacity: 0, transition: { duration: 0 } } : { opacity: 0 }}
+            exit={reduce ? { opacity: 0, transition: { duration: 0 } } : { opacity: 0, transition: { duration: 0.12 } }}
             transition={{ duration: reduce ? 0 : 0.2 }}
             onMouseDown={(e) => {
               e.preventDefault()
@@ -352,8 +404,9 @@ export function SiteHeader() {
         )}
       </AnimatePresence>
 
-      {/* Desktop mega-panel. Keyed on open/closed only, so switching
-          triggers swaps the content without replaying the animation. */}
+      {/* Desktop mega-panel. The card is keyed on open/closed only, so
+          switching triggers morphs it (height) and slides the content in
+          the direction of travel instead of replaying the entrance. */}
       <AnimatePresence>
         {openPanel && (
           <motion.div
@@ -362,12 +415,37 @@ export function SiteHeader() {
             role="region"
             aria-label={openPanel.label}
             className="ys-mega"
-            initial={reduce ? false : { opacity: 0, y: -10, scale: 0.985 }}
+            initial={reduce ? { opacity: 0 } : { opacity: 0, y: -8, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={reduce ? { opacity: 0, transition: { duration: 0 } } : { opacity: 0, y: -6, scale: 0.99, transition: { duration: 0.16 } }}
-            transition={{ duration: reduce ? 0 : 0.32, ease: [0.23, 1, 0.32, 1] }}
+            exit={reduce ? { opacity: 0, transition: { duration: 0.08 } } : { opacity: 0, y: -4, scale: 0.99, transition: { duration: 0.12, ease: 'easeIn' } }}
+            transition={{ duration: reduce ? 0.12 : 0.2, ease: EASE }}
           >
-            <MegaPanel key={openSession} panel={openPanel} regionId={regionId} introRef={introRef} onNavigate={onNavigate} />
+            <AutoHeight reduce={!!reduce}>
+              <AnimatePresence mode="popLayout" initial={false} custom={dir}>
+                <motion.div
+                  key={`${openSession}-${openPanel.id}`}
+                  className="ys-mega-slide"
+                  custom={dir}
+                  variants={{
+                    enter: (d: number) => (reduce ? { opacity: 0 } : { opacity: 0, x: d * 28 }),
+                    center: { opacity: 1, x: 0 },
+                    exit: (d: number) => (reduce ? { opacity: 0 } : { opacity: 0, x: d * -28 }),
+                  }}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  transition={{ duration: reduce ? 0.1 : 0.22, ease: EASE }}
+                >
+                  <MegaPanel
+                    panel={openPanel}
+                    regionId={regionId}
+                    introRef={introRef}
+                    onNavigate={onNavigate}
+                    stagger={!switched && !reduce}
+                  />
+                </motion.div>
+              </AnimatePresence>
+            </AutoHeight>
           </motion.div>
         )}
       </AnimatePresence>

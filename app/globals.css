@@ -4196,8 +4196,65 @@ a.ys-open-item::before,
   background: linear-gradient(90deg, transparent, rgb(248 184 0 / 0.55), transparent);
 }
 .ys-mega .ys-hdr-container { padding-inline: clamp(24px, 3vw, 40px); }
-.ys-nav-scrim { background: rgb(5 10 20 / 0.55); backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px); }
-@media (prefers-reduced-motion: reduce) { .ys-nav-scrim { backdrop-filter: none; -webkit-backdrop-filter: none; } }
+.ys-nav-scrim { background: rgb(5 10 20 / 0.08); }
+
+/* ---- Nav motion pass (2026-10-20): morphing panel, gliding indicator,
+   hover detail, Blueprint preview. All motion is transform/opacity. ---- */
+.ys-mega-morph { overflow: clip; overflow-clip-margin: 8px; }
+.ys-mega-morph > div { position: relative; }
+
+/* The open indicator is one element that glides between triggers; the
+   per-trigger underline stays for hover and keyboard focus. */
+.ys-hdr .ys-hdr-trigger.is-open::after { opacity: 0; }
+.ys-hdr-ind {
+  position: absolute; left: 8px; right: 8px; bottom: calc(50% - 16px);
+  height: 2px; border-radius: 2px; background: var(--amber-500);
+}
+
+/* Group rows: a faint tint and the chevron nudges toward the links. */
+.ys-mega-row { border-radius: var(--radius-sm); transition: color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease; }
+.ys-mega-row:hover, .ys-mega-row.is-active { background-color: rgb(255 255 255 / 0.04); }
+.ys-mega-row-chev { transition: transform 0.18s cubic-bezier(0.22, 1, 0.36, 1); }
+.ys-mega-row:hover .ys-mega-row-chev, .ys-mega-row.is-active .ys-mega-row-chev { transform: translateX(2px); }
+
+/* Sub-links slide 2px; arrows nudge. */
+.ys-mega-link { display: inline-block; transition: color 0.15s ease, transform 0.18s cubic-bezier(0.22, 1, 0.36, 1); }
+.ys-mega-link:hover, .ys-mega-link:focus-visible { transform: translateX(2px); }
+.ys-mega-arrow svg, .ys-mega-featured-more svg { transition: transform 0.18s cubic-bezier(0.22, 1, 0.36, 1); }
+.ys-mega-arrow:hover svg, .ys-mega-featured:hover .ys-mega-featured-more svg { transform: translateX(3px); }
+
+/* Featured card: the preview lifts a touch. */
+.ys-mega-featured-media { transition: transform 0.24s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.24s ease; }
+.ys-mega-featured:hover .ys-mega-featured-media,
+.ys-mega-featured:focus-visible .ys-mega-featured-media { transform: translateY(-2px); box-shadow: 0 16px 32px -16px rgb(0 0 0 / 0.6); }
+
+/* Blueprint preview: the four weeks as a small timeline. */
+.ys-mega-steps {
+  position: absolute; inset: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px;
+  align-content: center; padding: 0 22px;
+  background: radial-gradient(90% 120% at 0% 100%, rgb(31 79 191 / 0.35), transparent 60%), var(--navy-950);
+}
+.ys-mega-step {
+  position: relative; display: grid; gap: 4px; padding-top: 18px; border-top: 2px solid rgb(255 255 255 / 0.14);
+}
+.ys-mega-step::before {
+  content: ''; position: absolute; top: -6px; left: 0; width: 10px; height: 10px; border-radius: 50%;
+  background: var(--blue-600); box-shadow: 0 0 0 3px var(--navy-950);
+}
+.ys-mega-step:last-child::before { background: var(--amber-500); }
+.ys-mega-step-n { font-family: var(--font-mono), 'IBM Plex Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-400); }
+.ys-mega-step-name { font-size: 15px; font-weight: 500; color: var(--white); }
+.ys-mega-featured:hover .ys-mega-step::before { transform: scale(1.15); }
+.ys-mega-step::before { transition: transform 0.2s ease; }
+
+@media (prefers-reduced-motion: reduce) {
+  .ys-mega-row, .ys-mega-row-chev, .ys-mega-link, .ys-mega-arrow svg, .ys-mega-featured-more svg,
+  .ys-mega-featured-media, .ys-mega-step::before { transition: none; }
+  .ys-mega-link:hover, .ys-mega-link:focus-visible, .ys-mega-row:hover .ys-mega-row-chev,
+  .ys-mega-row.is-active .ys-mega-row-chev, .ys-mega-arrow:hover svg,
+  .ys-mega-featured:hover .ys-mega-featured-more svg, .ys-mega-featured:hover .ys-mega-featured-media,
+  .ys-mega-featured:hover .ys-mega-step::before { transform: none; }
+}
 
 /* ---- Leadership: team experience lede (review 2026-10-20) ---- */
 .ys-ldr-team-lede { margin: -8px 0 28px; font-size: 16.5px; line-height: 1.6; color: var(--ink-300); max-width: 60ch; }
