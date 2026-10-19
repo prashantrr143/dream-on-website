@@ -24,9 +24,9 @@ const reachOutScenarios = [
 
 const contactChannels = [
   {
-    label: 'General inquiries',
-    value: 'hello@yatisphere.com',
-    href: 'mailto:hello@yatisphere.com',
+    label: 'Sales and general inquiries',
+    value: 'sales@yatisphere.com',
+    href: 'mailto:sales@yatisphere.com',
     iconPath: 'M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z',
   },
   {
@@ -34,6 +34,13 @@ const contactChannels = [
     value: 'architects@yatisphere.com',
     href: 'mailto:architects@yatisphere.com',
     iconPath: 'M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4',
+  },
+  {
+    label: 'LinkedIn',
+    value: 'Follow YatiSphere',
+    href: 'https://www.linkedin.com/company/145293614/',
+    external: true,
+    iconPath: 'M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6zM2 9h4v12H2zM4 6a2 2 0 100-4 2 2 0 000 4z',
   },
 ]
 
@@ -92,6 +99,7 @@ export default function ContactPage() {
                   <a
                     key={channel.label}
                     href={channel.href}
+                    {...('external' in channel && channel.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                     className="ys-open-item"
                     style={{ display: 'flex', alignItems: 'center', gap: '16px', minWidth: 0, textDecoration: 'none' }}
                   >
