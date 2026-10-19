@@ -48,7 +48,7 @@ const FinalCTASection = () => {
             marginRight: 'auto'
           }}
         >
-          We reply within one working day.
+          For clients in the US, UK, Europe, the Middle East and India. We reply within one working day.
         </motion.p>
 
         {/* Dual CTAs */}

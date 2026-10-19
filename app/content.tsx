@@ -5,7 +5,6 @@ import FinalCTASection from '@/components/enterprise/FinalCTASection'
 import { ProofStrip } from '@/components/proof/ProofStrip'
 import { CaseStudyCards } from '@/components/proof/CaseStudyCards'
 import { Practices } from '@/components/home/Practices'
-import { HowWeWorkHome } from '@/components/home/HowWeWorkHome'
 import { LatestInsights } from '@/components/home/LatestInsights'
 
 /**
@@ -32,8 +31,6 @@ export default function Home() {
 
       {/* Renders nothing until siteConfig.caseStudies is filled */}
       <CaseStudyCards />
-
-      <HowWeWorkHome />
 
       <LatestInsights />
 
