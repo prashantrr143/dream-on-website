@@ -2820,10 +2820,12 @@ textarea.ys-input { resize: vertical; min-height: 110px; }
    Footer (components/enterprise/FooterMinimal): dark, restrained
    ========================================================== */
 .ys-ftr {
-  background: var(--navy-950);
+  /* A shade darker than the CTA band above, so the two never read as
+     one block. ink-300/ink-400 contrast only rises on it. */
+  background: #060E1B;
   color: var(--ink-300);
   border-top: 1px solid var(--rule-navy);
-  padding-block: clamp(56px, 7vw, 88px) 28px;
+  padding-block: clamp(48px, 6vw, 72px) 28px;
 }
 .ys-ftr-top {
   display: flex;
@@ -2873,11 +2875,21 @@ textarea.ys-input { resize: vertical; min-height: 110px; }
   padding-block: clamp(40px, 5vw, 64px);
 }
 @media (min-width: 1024px) {
-  .ys-ftr-main { grid-template-columns: minmax(0, 3fr) minmax(0, 1.25fr); gap: 64px; }
+  .ys-ftr-main { grid-template-columns: minmax(0, 1.15fr) minmax(0, 3fr) minmax(0, 1.25fr); gap: 56px; padding-top: 0; }
 }
+.ys-ftr-brandcol { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
+.ys-ftr-logo { display: inline-flex; border-radius: var(--radius-sm); }
+.ys-ftr-line { font-size: 14.5px; line-height: 1.6; color: var(--ink-400); max-width: 26ch; }
+.ys-ftr-social {
+  display: inline-flex; align-items: center; gap: 8px; margin-top: 4px;
+  padding: 8px 14px; border: 1px solid var(--rule-navy-strong); border-radius: 999px;
+  font-size: 14px; font-weight: 500; color: var(--white); text-decoration: none;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+.ys-ftr-social:hover { border-color: var(--amber-500); color: var(--amber-500); }
 .ys-ftr-cols {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 32px;
 }
 @media (min-width: 640px) { .ys-ftr-cols { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
@@ -2948,7 +2960,6 @@ textarea.ys-input { resize: vertical; min-height: 110px; }
 }
 .ys-ftr-links a:hover,
 .ys-ftr-links button:hover { color: var(--white); text-decoration: underline; text-underline-offset: 3px; }
-.ys-ftr-social { display: inline-flex; }
 
 .ys-ftr a:focus-visible,
 .ys-ftr button:focus-visible { outline: 2px solid var(--blue-300); outline-offset: 3px; border-radius: 2px; }

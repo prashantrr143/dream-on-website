@@ -1,5 +1,5 @@
-import Image from 'next/image'
-import { ArrowRight, Linkedin, Mail } from 'lucide-react'
+import { Linkedin, Mail } from 'lucide-react'
+import { Wordmark } from '@/components/brand/Wordmark'
 import { LEGAL_ENTITY_NAME } from '@/lib/legal'
 import { CAREERS_URL } from '@/lib/nav'
 import { siteConfig } from '@/lib/site.config'
@@ -10,9 +10,10 @@ import { CookieSettingsLink } from '@/components/analytics/CookieSettingsLink'
 /**
  * Site footer: dark, restrained, enterprise register.
  *
- * The header already carries the full lockup, so the footer signs off
- * with the Y mark and the brand line rather than repeating the logo.
- * Three link columns, a company-details column, one action. Desktop mega-panels render their
+ * No call to action and no repeated tagline (owner feedback, 2026-10-19):
+ * every page already ends with a CTA band, and a second "Talk to us"
+ * right under it read as clutter. Brand column (logo, one line,
+ * LinkedIn), three link columns, a company-details column. Desktop mega-panels render their
  * links only when opened, so these columns are also how crawlers reach
  * every pillar, industry and Who-we-are page; regional pages are linked
  * from the "Working across regions" strip instead.
@@ -57,30 +58,26 @@ const FooterMinimal = () => {
   return (
     <footer id="footer" className="ys-ftr">
       <div className="enterprise-container-wide">
-        <div className="ys-ftr-top">
-          <a href="/" className="ys-ftr-brand" aria-label="YatiSphere home">
-            <Image
-              src="/brand/yatisphere/icon/yatisphere-icon-192.png"
-              alt=""
-              aria-hidden="true"
-              width={48}
-              height={48}
-              sizes="48px"
-              className="ys-ftr-mark"
-            />
-            <span className="ys-ftr-statement">
-              Enterprise IT, built properly.
-              <br />
-              AI where it <span className="ys-ftr-accent">pays</span>.
-            </span>
-          </a>
-          <a href="/contact-us" className="ys-ftr-cta">
-            Talk to us
-            <ArrowRight className="w-4 h-4" strokeWidth={2} aria-hidden="true" />
-          </a>
-        </div>
 
         <div className="ys-ftr-main">
+          <div className="ys-ftr-brandcol">
+            <a href="/" className="ys-ftr-logo" aria-label="YatiSphere home">
+              <Wordmark tone="dark" height={44} />
+            </a>
+            <p className="ys-ftr-line">IT services and applied AI for clients worldwide.</p>
+            {SITE_CONTACT.linkedin && (
+              <a
+                href={SITE_CONTACT.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="ys-ftr-social"
+              >
+                <Linkedin className="w-4 h-4" strokeWidth={1.75} aria-hidden="true" />
+                Follow us on LinkedIn
+              </a>
+            )}
+          </div>
+
           <nav className="ys-ftr-cols" aria-label="Footer">
             {columns.map((col) => (
               <div key={col.title}>
@@ -141,17 +138,6 @@ const FooterMinimal = () => {
             <a href="/accessibility">Accessibility</a>
             <a href="/who-we-are/trust#incidents">Security</a>
             <CookieSettingsLink />
-            {SITE_CONTACT.linkedin && (
-              <a
-                href={SITE_CONTACT.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="YatiSphere on LinkedIn"
-                className="ys-ftr-social"
-              >
-                <Linkedin className="w-4 h-4" strokeWidth={1.75} aria-hidden="true" />
-              </a>
-            )}
           </div>
         </div>
       </div>
