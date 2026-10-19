@@ -22,7 +22,7 @@ interface ProblemCard {
 const problems: ProblemCard[] = [
   {
     problem: 'Our core system is old and nobody dares touch it.',
-    body: 'Step-by-step modernization while the business keeps running.',
+    body: 'Modernized in steps, with no big-bang cutover.',
     tag: 'Modernization & Advisory',
     href: '/what-we-do/services/modernization',
     icon: 'growth',
@@ -30,7 +30,7 @@ const problems: ProblemCard[] = [
   },
   {
     problem: 'Cloud costs keep rising and we don\u2019t know why.',
-    body: 'Cost review, clean-up and a managed platform.',
+    body: 'Find the waste, cut it, keep it down.',
     tag: 'Cloud & Infrastructure',
     href: '/what-we-do/cloud',
     icon: 'cloud',
@@ -38,7 +38,7 @@ const problems: ProblemCard[] = [
   },
   {
     problem: 'We have the data but can\u2019t get an answer out of it.',
-    body: 'One trusted data platform and live dashboards.',
+    body: 'One trusted platform, live dashboards.',
     tag: 'Data & Analytics',
     href: '/what-we-do/services/data-analytics',
     icon: 'analytics',
@@ -46,7 +46,7 @@ const problems: ProblemCard[] = [
   },
   {
     problem: 'An audit or a client security review is coming.',
-    body: 'Controls, logging and evidence built into your systems.',
+    body: 'Evidence built into your systems.',
     tag: 'Security & Compliance',
     href: '/what-we-do/services/security-compliance',
     icon: 'security',
@@ -54,7 +54,7 @@ const problems: ProblemCard[] = [
   },
   {
     problem: 'Client onboarding takes weeks and lives in email.',
-    body: 'Automated intake, checks and approvals, with a full audit trail.',
+    body: 'Automated intake with a full audit trail.',
     tag: 'Software + Applied AI',
     href: '/what-we-do/industries/financial-services',
     icon: 'products',
@@ -62,7 +62,7 @@ const problems: ProblemCard[] = [
   },
   {
     problem: 'Our AI pilot worked, and then nothing happened.',
-    body: 'The pilot taken to production, with governance in place.',
+    body: 'Taken to production, governed.',
     tag: 'Applied AI',
     href: '/what-we-do/applied-ai',
     icon: 'automation',
@@ -75,17 +75,17 @@ const BUILT_FOR: { href: string; name: string; outcome: string }[] = [
   {
     href: '/what-we-do/industries/financial-services',
     name: 'Financial services',
-    outcome: 'Onboarding, reporting and core platforms that satisfy a regulator.',
+    outcome: 'Regulator-ready platforms.',
   },
   {
     href: '/what-we-do/industries/legal-professional-services',
     name: 'Legal & professional services',
-    outcome: 'Intake, conflicts and practice data you can defend.',
+    outcome: 'Intake and conflicts you can defend.',
   },
   {
     href: '/what-we-do/industries/software-saas',
     name: 'Software & SaaS',
-    outcome: 'Pass your customers\u2019 security reviews and ship AI features safely.',
+    outcome: 'Pass security reviews. Ship AI safely.',
   },
 ]
 
@@ -104,7 +104,7 @@ const ITServicesSection = () => {
             </h2>
           </div>
           <div className="ys-cap-intro-aside">
-            <p>If one of these sounds like your week, we should talk. Most start as a short, scoped Blueprint.</p>
+            <p>Sound familiar? Let&rsquo;s talk.</p>
           </div>
         </motion.div>
 
@@ -136,9 +136,6 @@ const ITServicesSection = () => {
 
                   <span className="ys-cap-desc">{p.body}</span>
 
-                  <span className="ys-cap-tags">
-                    <span className="ys-cap-tag">{p.tag}</span>
-                  </span>
                 </span>
               </a>
             </motion.li>

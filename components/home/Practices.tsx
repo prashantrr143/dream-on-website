@@ -23,7 +23,7 @@ const PRACTICES: Practice[] = [
   {
     eyebrow: 'Practice 01',
     title: 'Enterprise IT services',
-    line: 'The systems your business runs on, designed, built and run by the people who scoped them.',
+    line: 'The systems your business runs on.',
     links: [
       { label: 'Cloud and infrastructure', href: '/what-we-do/cloud' },
       { label: 'Software engineering', href: '/what-we-do/services/software-engineering' },
@@ -32,29 +32,27 @@ const PRACTICES: Practice[] = [
       { label: 'Security and compliance', href: '/what-we-do/services/security-compliance' },
       { label: 'Application modernization', href: '/what-we-do/services/modernization' },
       { label: 'Technology consulting', href: '/what-we-do/consulting' },
-      { label: 'Cloud cost management (FinOps)', href: '/what-we-do/cloud/finops' },
     ],
     chips: [
       { label: 'AWS', href: '/what-we-do/cloud/aws' },
       { label: 'Microsoft Azure', href: '/what-we-do/cloud/microsoft-azure' },
     ],
-    foot: 'Built in your accounts, on the cloud that fits your estate.',
+    foot: '',
     cta: { label: 'Explore IT services', href: '/what-we-do/engineering-data' },
     tone: 'light',
   },
   {
     eyebrow: 'Practice 02',
     title: 'Applied AI',
-    line: 'AI built into those systems: evaluated before it goes live, approved by a person where it matters, logged at every step.',
+    line: 'Governed AI inside those systems.',
     links: [
       { label: 'Agentic automation', href: '/what-we-do/applied-ai/agentic-automation' },
       { label: 'Knowledge assistants', href: '/what-we-do/applied-ai/knowledge-assistants' },
       { label: 'Enterprise AI platforms', href: '/what-we-do/applied-ai/ai-platforms' },
       { label: 'AI governance', href: '/what-we-do/applied-ai/ai-governance' },
-      { label: 'AI-assisted engineering', href: '/what-we-do/applied-ai/ai-assisted-engineering' },
       { label: 'Building with Claude', href: '/what-we-do/applied-ai/claude' },
     ],
-    foot: 'Model-neutral: Claude, OpenAI and open-weight models.',
+    foot: 'Claude, OpenAI or open-weight models.',
     cta: { label: 'Explore applied AI', href: '/what-we-do/applied-ai' },
     tone: 'dark',
   },
@@ -67,10 +65,6 @@ export function Practices() {
         <div className="ys-practices-intro">
           <p className="ys-eyebrow">What we do</p>
           <h2 id="home-practices">Two practices. One accountable team.</h2>
-          <p>
-            Most of our work is the IT your business already depends on. AI comes in where
-            it measurably earns its place, and we will tell you when it does not.
-          </p>
         </div>
 
         <div className="ys-practices-grid">
@@ -98,7 +92,7 @@ export function Practices() {
                 </div>
               )}
               <div className="ys-practice-foot">
-                <p>{p.foot}</p>
+                {p.foot && <p>{p.foot}</p>}
                 <a href={p.cta.href} className="ys-practice-cta">
                   {p.cta.label}
                   <ArrowRight className="w-3.5 h-3.5 shrink-0" strokeWidth={2.5} aria-hidden="true" />

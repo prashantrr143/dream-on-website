@@ -9,17 +9,12 @@ import { SECONDARY_CTA } from '@/lib/cta'
  */
 
 const COMMITMENTS = [
-  { title: 'A scoped first step', body: 'A short Blueprint agrees the problem, the design and the plan before any build begins.' },
-  { title: 'One in-house team', body: 'No subcontracting and no rotating strangers. The people who scope the work build it.' },
-  { title: 'Your code in your accounts', body: 'Repositories and infrastructure are yours from day one, not handed over at the end.' },
-  { title: 'Your data stays yours', body: 'We never use client data to train models unless you ask us to, in writing, for your own model.' },
+  'Scoped first step',
+  'One in-house team',
+  'Your code, your accounts',
+  'Your data stays yours',
 ]
 
-const GLOBAL = [
-  { title: 'Working hours that overlap yours', body: 'Full overlap with UK, European and Gulf hours; US East Coast mornings by arrangement.' },
-  { title: 'Your cloud, your region', body: 'We build in your accounts and your chosen region, so data residency stays under your control.' },
-  { title: 'Data terms as standard', body: 'A data processing agreement on every engagement, with standard contractual clauses for cross-border data.' },
-]
 
 export function HowWeWorkHome() {
   return (
@@ -28,7 +23,7 @@ export function HowWeWorkHome() {
         <div className="ys-how-intro">
           <div>
             <p className="ys-eyebrow">How we work</p>
-            <h2 id="home-how">From first conversation to running system, with no handovers.</h2>
+            <h2 id="home-how">Five stages. One team. No handovers.</h2>
           </div>
           <a href="/who-we-are/how-we-work" className="ys-link ys-how-link">
             See our delivery model
@@ -41,18 +36,16 @@ export function HowWeWorkHome() {
             <li key={stage.n} className="ys-stage-item">
               <span className="ys-stage-n" aria-hidden="true">{stage.n}</span>
               <h3 className="ys-stage-title">{stage.name}</h3>
-              <p className="ys-stage-line">{stage.line}</p>
             </li>
           ))}
         </ol>
 
         <div className="ys-how-commit">
-          <h3 className="ys-eyebrow">In the engagement letter, not just on this page</h3>
+          <h3 className="ys-eyebrow">Written into every contract</h3>
           <ul>
             {COMMITMENTS.map((c) => (
-              <li key={c.title}>
-                <h4>{c.title}</h4>
-                <p>{c.body}</p>
+              <li key={c}>
+                <h4>{c}</h4>
               </li>
             ))}
           </ul>
@@ -66,14 +59,6 @@ export function HowWeWorkHome() {
               <ArrowRight className="w-3.5 h-3.5 shrink-0" strokeWidth={2.5} aria-hidden="true" />
             </a>
           </div>
-          <ul>
-            {GLOBAL.map((g) => (
-              <li key={g.title}>
-                <h4>{g.title}</h4>
-                <p>{g.body}</p>
-              </li>
-            ))}
-          </ul>
         </div>
       </div>
     </section>

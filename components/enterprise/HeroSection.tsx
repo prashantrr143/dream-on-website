@@ -11,18 +11,18 @@ import { HeroVisual } from '@/components/brand/HeroVisual'
  */
 
 const PROOF = [
-  'One senior in-house team',
-  'A scoped first step before any build',
-  'Your code in your accounts from day one',
+  'One in-house team',
+  'Scoped first step',
+  'Your code, your accounts',
 ]
 
 /** Illustrative only: what an engagement looks like, not a client's data. */
 const BOARD: { label: string; meta: string; state: 'done' | 'active' | 'next' }[] = [
-  { label: 'Blueprint agreed', meta: 'Design, plan and risks signed off', state: 'done' },
-  { label: 'Landing zone live', meta: 'Your cloud account, your region', state: 'done' },
-  { label: 'Core API modernization', meta: 'Sprint 4 of 6 · working software every two weeks', state: 'active' },
-  { label: 'Onboarding agent', meta: 'Evaluation passed · human approval in place', state: 'active' },
-  { label: 'Run and improve', meta: 'Monitored by the team that built it', state: 'next' },
+  { label: 'Blueprint agreed', meta: 'Plan and risks signed off', state: 'done' },
+  { label: 'Landing zone live', meta: 'Your account, your region', state: 'done' },
+  { label: 'Core API modernization', meta: 'Sprint 4 of 6', state: 'active' },
+  { label: 'Onboarding agent', meta: 'Evaluation passed', state: 'active' },
+  { label: 'Run and improve', meta: 'Same team', state: 'next' },
 ]
 
 function EngagementBoard() {
@@ -98,9 +98,8 @@ const HeroSection = () => {
                 color: 'var(--ink-300)',
               }}
             >
-              Cloud, software, data and security for growing companies and regulated
-              enterprises, delivered end to end by one senior in-house team. When AI is
-              the right answer, we build it into the systems you already run.
+              Cloud, software, data and security, built and run by one senior
+              team. AI only where it pays off.
             </motion.p>
 
             <motion.div

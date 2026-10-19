@@ -78,6 +78,6 @@ export const howWeWork = [
   },
   {
     title: 'Built for five regions',
-    body: 'Delivered from India for clients across the UK, Europe, the Middle East, the US and India, with working hours that overlap yours.',
+    body: 'Delivered from India for clients in the US, UK, Europe, the Middle East and India.',
   },
 ]

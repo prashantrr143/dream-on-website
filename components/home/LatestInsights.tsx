@@ -19,7 +19,7 @@ export function LatestInsights() {
         <div className="ys-how-intro">
           <div>
             <p className="ys-eyebrow">Insights</p>
-            <h2 id="home-insights">How we think about the work.</h2>
+            <h2 id="home-insights">How we think.</h2>
           </div>
           <a href="/insights" className="ys-link ys-how-link">
             All insights
@@ -32,7 +32,6 @@ export function LatestInsights() {
               <a href={`/insights/${a.slug}`} className="ys-insight-card">
                 <span className="ys-insight-meta">{a.category} · {a.readTime}</span>
                 <span className="ys-insight-title">{a.title}</span>
-                <span className="ys-insight-summary">{a.summary}</span>
                 <span className="ys-card-more" aria-hidden="true">
                   Read the article <ArrowRight className="w-3.5 h-3.5" strokeWidth={2.5} />
                 </span>

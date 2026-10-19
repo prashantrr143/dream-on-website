@@ -144,85 +144,8 @@ export default function HowWeWorkContent() {
             maxWidth: '70ch',
           }}
         >
-          We design controls against the frameworks your auditors hold you to
-          &mdash; GDPR and UK GDPR, SOC 2, ISO/IEC 27001, HIPAA, PCI DSS,
-          India&rsquo;s DPDP Act, the UAE and Saudi PDPLs, US state privacy laws
-          and regional equivalents &mdash; and produce the
-          evidence your organization needs. The certifications themselves are
-          assessed against your organization, and remain yours to hold.
+          We design controls for GDPR, SOC 2, ISO/IEC 27001, HIPAA, PCI DSS, India&rsquo;s DPDP Act and regional equivalents. The certifications stay yours.
         </p>
-      </PageSection>
-
-      {/* How we collaborate */}
-      <PageSection id="collaboration" tone="light" eyebrow="Collaboration" title="How we collaborate">
-        <motion.div
-          className="grid grid-cols-1 lg:grid-cols-2"
-          style={{ gap: 'clamp(28px, 4vw, 56px)', alignItems: 'start' }}
-        >
-          {/* Working with your teams */}
-          <motion.div style={{ minWidth: 0 }}>
-            <h3
-              style={{
-                fontSize: 'clamp(18px, 2vw, 21px)',
-                fontWeight: 600,
-                letterSpacing: '-0.02em',
-                lineHeight: 1.3,
-                marginBottom: '16px'
-              }}
-            >
-              Working with your teams
-            </h3>
-            <div
-              style={{
-                fontSize: '16px',
-                lineHeight: 1.7,
-                color: 'var(--ink-600)',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '14px'
-              }}
-            >
-              <p>
-                We work with your teams, not over them. Our engagements are designed to integrate with your existing engineering, security, and operations functions.
-              </p>
-              <p>
-                Clear communication and documentation are non-negotiable. You will always know what we are doing, why we are doing it, and what decisions need your input.
-              </p>
-            </div>
-          </motion.div>
-
-          {/* Enterprise Constraints */}
-          <motion.div style={{ minWidth: 0 }}>
-            <h3
-              style={{
-                fontSize: 'clamp(18px, 2vw, 21px)',
-                fontWeight: 600,
-                letterSpacing: '-0.02em',
-                lineHeight: 1.3,
-                marginBottom: '16px'
-              }}
-            >
-              Respecting enterprise constraints
-            </h3>
-            <div
-              style={{
-                fontSize: '16px',
-                lineHeight: 1.7,
-                color: 'var(--ink-600)',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '14px'
-              }}
-            >
-              <p>
-                We work within your governance frameworks, not around them. Your data ownership is respected throughout. We do not use client data to train or fine-tune models, unless a client asks us to in writing for their own dedicated model.
-              </p>
-              <p>
-                Security is not an afterthought. We design systems with clear data boundaries, least-privilege access, and audit-friendly architectures.
-              </p>
-            </div>
-          </motion.div>
-        </motion.div>
       </PageSection>
 
       {/* Closing CTA */}
