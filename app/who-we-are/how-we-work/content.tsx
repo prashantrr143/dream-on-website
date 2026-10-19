@@ -1,7 +1,8 @@
-import { ArrowRight, Clock, Cloud, FileCheck2, GitBranch, PenTool, RefreshCw, ShieldCheck } from 'lucide-react'
+import { ArrowRight, Clock, Cloud } from 'lucide-react'
 import SharedLayout from '@/components/shared-layout'
 import { PageHero, PageSection, PageCTA } from '@/components/enterprise'
 import { StageJourney } from '@/components/how-we-work/StageJourney'
+import { WorkingWithUs } from '@/components/enterprise/WorkingWithUs'
 import { PRIMARY_CTA } from '@/lib/cta'
 import { WORKING_ACROSS_REGIONS } from '@/lib/regions'
 
@@ -13,22 +14,18 @@ import { WORKING_ACROSS_REGIONS } from '@/lib/regions'
 
 const PRINCIPLES = [
   {
-    icon: PenTool,
     title: 'Design before code',
     body: 'Decisions that are expensive to reverse are made deliberately, before build begins.',
   },
   {
-    icon: ShieldCheck,
     title: 'Security by design',
-    body: 'Security, compliance and auditability are built in from the first sprint, not added before a review.',
+    body: 'Security, compliance and auditability are part of the first sprint’s definition of done.',
   },
   {
-    icon: GitBranch,
     title: 'Clear ownership',
     body: 'Every deliverable has an owner. Every decision has a trail.',
   },
   {
-    icon: RefreshCw,
     title: 'Working software every two weeks',
     body: 'Incremental delivery, never a big reveal at the end.',
   },
@@ -62,7 +59,7 @@ const MODELS = [
   },
 ]
 
-const REGION_ICONS = [Clock, Cloud, FileCheck2]
+const REGION_ICONS = [Clock, Cloud]
 
 const FRAMEWORKS = ['GDPR', 'SOC 2', 'ISO/IEC 27001', 'HIPAA', 'PCI DSS', 'DPDP Act']
 
@@ -82,26 +79,39 @@ export default function HowWeWorkContent() {
         id="delivery"
         tone="light"
         eyebrow="Delivery model"
-        title="Five stages. A clear decision at each one."
+        title="Five stages, and a decision for you at the end of each"
         lede="The depth of each stage changes with the size and risk of the work. The order does not."
       >
         <StageJourney />
       </PageSection>
 
+      {/* Editorial pull quote: the page's central promise, said once, large. */}
+      <section className="ys-section-white ys-pullquote-wrap" aria-label="Our commitment">
+        <div className="enterprise-container-wide">
+          <figure className="ys-pullquote">
+            <blockquote>
+              <p>
+                At the end of every stage you can carry on with us, change course, or take the work in-house. The
+                blueprint, the code and the run guide belong to you from day one.
+              </p>
+            </blockquote>
+            <figcaption>The YatiSphere engagement model</figcaption>
+          </figure>
+        </div>
+      </section>
+
       {/* The page's one navy feature band. */}
       <section id="principles" className="ys-hww-band" aria-labelledby="hww-principles">
         <div className="enterprise-container-wide">
-          <p className="ys-eyebrow ys-eyebrow-on-dark">Principles</p>
-          <h2 id="hww-principles">What stays constant.</h2>
+          <h2 id="hww-principles">What we do the same way on every engagement</h2>
           <ol className="ys-hww-principles">
             {PRINCIPLES.map((p, i) => (
               <li key={p.title}>
-                <span className="ys-hww-principle-top">
-                  <span className="ys-hww-icon" aria-hidden="true"><p.icon strokeWidth={1.75} /></span>
-                  <span className="ys-hww-n" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
-                </span>
-                <h3>{p.title}</h3>
-                <p>{p.body}</p>
+                <span className="ys-hww-n" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+                <div>
+                  <h3>{p.title}</h3>
+                  <p>{p.body}</p>
+                </div>
               </li>
             ))}
           </ol>
@@ -138,11 +148,13 @@ export default function HowWeWorkContent() {
 
       {/* Every line here is something the company can do today. No
           certifications are claimed, because none are held. */}
+      <WorkingWithUs tone="light" />
+
       <PageSection
         id="international"
-        tone="light"
+        tone="white"
         eyebrow="Working across regions"
-        title="Incorporated in India. Delivering internationally."
+        title="Based in India, working with clients in five regions"
         lede="For clients in the UK, Europe, the Middle East, the US and India."
       >
         <ul className="ys-hww-regions">

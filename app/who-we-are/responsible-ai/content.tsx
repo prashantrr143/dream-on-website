@@ -19,7 +19,7 @@ const COMMITMENTS = [
   {
     icon: Database,
     title: 'Your data does not train models',
-    body: 'Not ours, not a provider’s. The only exception is a dedicated model for you, at your written request.',
+    body: 'Neither our models nor a provider’s. The one exception is a dedicated model built for you, at your written request.',
     href: '#data',
   },
   {
@@ -31,7 +31,7 @@ const COMMITMENTS = [
   {
     icon: Gauge,
     title: 'Measured before it ships',
-    body: 'Tested against a target you set, on data like yours. Never launched on a demo.',
+    body: 'Tested against a target you set, on data like yours, before anyone outside the project sees it.',
     href: '#controls',
   },
   {
@@ -67,7 +67,7 @@ const CONTROLS = [
     title: 'Design the oversight',
     points: [
       'Approval sits with the person accountable for the decision',
-      'Reviewers see the basis for a recommendation, not just the answer',
+      'Reviewers see the evidence behind each recommendation',
       'Rejecting an output is as easy as accepting it',
       'A documented off switch and escalation path',
     ],
@@ -119,14 +119,14 @@ const ALIGNMENT = [
 
 const WE_DO = [
   'Leadership owns this policy; it is not left to the engineer on a project',
-  'We raise a use close to a red line before work starts, not after',
+  'If a use comes close to a red line, we raise it before work starts',
   'We say plainly when a system misses its target',
   'We tell you about material changes in the provider terms we depend on',
   'We support you if a regulator or affected person must be notified',
 ]
 
 const YOU_DO = [
-  'Keep the human review steps, rather than removing them for throughput',
+  'Keep the human review steps in place, even when volumes rise',
   'Tell us before using the system for a materially different purpose',
   'Maintain the monitoring we hand over, and act on it',
   'Tell people AI is in use where the law or fairness requires it',
@@ -145,7 +145,7 @@ export default function ResponsibleAIContent() {
       />
 
       {/* Four commitments */}
-      <PageSection tone="white" eyebrow="Our commitments" title="Four promises, in every AI engagement.">
+      <PageSection tone="white" title="Four commitments we make on every AI engagement">
         <ul className="ys-rai-commit">
           {COMMITMENTS.map((c) => (
             <li key={c.title}>
@@ -223,7 +223,7 @@ export default function ResponsibleAIContent() {
       </PageSection>
 
       {/* Data and models */}
-      <PageSection id="data" tone="white" eyebrow="Data and models" title="Your data stays yours.">
+      <PageSection id="data" tone="white" eyebrow="Data and models" title="How we handle your data and third-party models">
         <div className="ys-rai-two">
           <div className="ys-rai-panel">
             <p className="ys-rai-panel-kicker">Your data</p>
@@ -251,17 +251,27 @@ export default function ResponsibleAIContent() {
         eyebrow="Framework alignment"
         title="Designed to the frameworks your regulators use."
       >
-        <ul className="ys-rai-frameworks">
-          {ALIGNMENT.map((f) => (
-            <li key={f.name}>
-              <h3>{f.name}</h3>
-              <p>{f.how}</p>
-            </li>
-          ))}
-        </ul>
+        <div className="ys-table-wrap" role="region" aria-label="Framework alignment" tabIndex={0}>
+          <table className="ys-table">
+            <thead>
+              <tr>
+                <th scope="col">Framework</th>
+                <th scope="col">How our delivery lines up with it</th>
+              </tr>
+            </thead>
+            <tbody>
+              {ALIGNMENT.map((f) => (
+                <tr key={f.name}>
+                  <th scope="row">{f.name}</th>
+                  <td>{f.how}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
         <p className="ys-rai-disclaimer">
           <ShieldAlert className="w-4 h-4 shrink-0" strokeWidth={2} aria-hidden="true" />
-          Alignment, not certification. YatiSphere holds no AI certification, and none of these frameworks has assessed us.
+          These are frameworks we design to. YatiSphere holds no AI certification, and none of these frameworks has assessed us.
         </p>
       </PageSection>
 
@@ -270,7 +280,7 @@ export default function ResponsibleAIContent() {
         id="accountability"
         tone="white"
         eyebrow="Accountability"
-        title="Responsible AI is a shared obligation."
+        title="Who is accountable for what"
       >
         <div className="ys-rai-two">
           <div className="ys-rai-list">

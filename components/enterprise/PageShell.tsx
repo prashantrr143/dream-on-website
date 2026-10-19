@@ -159,7 +159,7 @@ interface PageSectionProps {
 export function PageSection({
   id,
   tone = 'white',
-  eyebrow,
+  eyebrow: _eyebrow,
   title,
   lede,
   children,
@@ -167,13 +167,15 @@ export function PageSection({
   return (
     <section id={id} className={tone === 'light' ? 'ys-section-light' : 'ys-section-white'}>
       <div className="enterprise-container-wide">
-        {(eyebrow || title || lede) && (
+        {(title || lede) && (
           <motion.div
             style={{ marginBottom: 'clamp(24px, 3vw, 34px)' }}
           >
-            {eyebrow && <p className="ys-eyebrow">{eyebrow}</p>}
+            {/* Section eyebrows are no longer shown (2026-10-19: a small-caps
+                label over every heading read as templated). The prop is kept
+                so existing content compiles; heroes and navy bands keep theirs. */}
             {title && (
-              <h2 style={{ marginTop: 14, marginBottom: 16, textWrap: 'balance' }}>
+              <h2 style={{ marginTop: 0, marginBottom: 16, textWrap: 'balance' }}>
                 {title}
               </h2>
             )}

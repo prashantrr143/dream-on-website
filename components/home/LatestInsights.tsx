@@ -18,8 +18,7 @@ export function LatestInsights() {
       <div className="enterprise-container-wide">
         <div className="ys-how-intro">
           <div>
-            <p className="ys-eyebrow">Insights</p>
-            <h2 id="home-insights">How we think.</h2>
+            <h2 id="home-insights">Recent writing from our engineers</h2>
           </div>
           <a href="/insights" className="ys-link ys-how-link">
             All insights

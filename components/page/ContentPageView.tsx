@@ -323,7 +323,7 @@ export function ContentPageView({ page }: { page: ContentPage }) {
         return <BlockView key={`${block.type}-${i}`} block={block} tone={tone} />
       })}
       <PageCTA
-        title={page.contact?.title ?? 'Tell us the problem.'}
+        title={page.contact?.title ?? 'What are you working on?'}
         body={page.contact?.body ? firstSentence(page.contact.body) : 'We reply within one working day.'}
         primaryCta={{ label: PRIMARY_CTA.label, href: contactHref(page.contactInterest) }}
         secondaryCta={{ label: SECONDARY_CTA.label, href: SECONDARY_CTA.href }}

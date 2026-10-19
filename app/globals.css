@@ -3716,7 +3716,7 @@ textarea.ys-input { resize: vertical; min-height: 110px; line-height: 1.55; }
 
 /* Working across regions */
 .ys-hww-regions { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; }
-@media (min-width: 768px) { .ys-hww-regions { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (min-width: 768px) { .ys-hww-regions { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .ys-hww-regions li { padding: 26px; background: var(--white); border: 1px solid var(--grey-200); border-radius: var(--radius-md); }
 .ys-hww-regions h3 { margin: 18px 0 8px; font-size: 17px; font-weight: 600; letter-spacing: -0.015em; color: var(--ink-900); }
 .ys-hww-regions p { font-size: 15.5px; line-height: 1.6; color: var(--ink-600); }
@@ -4104,3 +4104,62 @@ a.ys-open-item:hover .ys-card-more svg { transform: translateX(4px); }
   .ys-faq::details-content { transition: none; }
   .ys-faq summary::after, a.ys-open-item::before { transition: none; }
 }
+
+/* ==========================================================================
+   De-template pass (2026-10-19): editorial layouts, quieter effects.
+   ========================================================================== */
+
+/* Section intros without an eyebrow above them. */
+.ys-practices-intro h2, .ys-how-intro h2, .ys-partners-intro h2, .ys-cap-intro h2, .ys-hww-band h2 { margin-top: 0; }
+.ys-hww-band h2 { max-width: 30ch; }
+
+/* Pull quote */
+.ys-pullquote-wrap { padding-top: clamp(48px, 6vw, 80px); padding-bottom: clamp(48px, 6vw, 80px); }
+.ys-pullquote { margin: 0 auto; max-width: 58rem; padding-left: clamp(20px, 3vw, 36px); border-left: 3px solid var(--amber-500); }
+.ys-pullquote blockquote { margin: 0; }
+.ys-pullquote blockquote p { font-size: clamp(22px, 2.6vw, 32px); line-height: 1.35; letter-spacing: -0.02em; font-weight: 500; color: var(--ink-900); text-wrap: pretty; }
+.ys-pullquote figcaption { margin-top: 18px; font-size: 14px; color: var(--ink-600); }
+
+/* How we work principles: an editorial list on the navy band, not cards. */
+.ys-hww-principles li { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 0 20px; padding: 24px 0 0; border: 0; border-top: 1px solid var(--rule-navy); border-radius: 0; background: none; transform: none !important; }
+.ys-hww-principles li::before { display: none; }
+.ys-hww-principles li:hover { background: none; }
+.ys-hww-principles .ys-hww-n { font-size: clamp(28px, 3vw, 40px); font-weight: 500; letter-spacing: -0.02em; line-height: 1; color: var(--amber-500); }
+.ys-hww-principles h3 { margin: 4px 0 8px; font-size: 19px; }
+@media (min-width: 1100px) { .ys-hww-principles { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 56px; } }
+
+/* Tables (frameworks and similar) */
+.ys-table-wrap { overflow-x: auto; border: 1px solid var(--grey-200); border-radius: var(--radius-md); background: var(--white); }
+.ys-table-wrap:focus-visible { outline: 2px solid var(--blue-600); outline-offset: 2px; }
+.ys-table { width: 100%; border-collapse: collapse; min-width: 560px; }
+.ys-table th, .ys-table td { padding: 16px 20px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--grey-200); font-size: 15.5px; line-height: 1.55; }
+.ys-table thead th { font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-600); background: var(--grey-50); }
+.ys-table tbody th { width: 28%; font-weight: 600; color: var(--ink-900); }
+.ys-table tbody td { color: var(--ink-600); }
+.ys-table tbody tr:last-child th, .ys-table tbody tr:last-child td { border-bottom: 0; }
+
+/* Quieter effects: the lift and yellow bar stay on the primary cards only
+   (home practices, insight cards, industry hub). Everywhere else hover is
+   a border-color change, and items that are not links do not react. */
+a.ys-open-item::before,
+.ys-partner-card::before,
+.ys-hww-models li::before,
+.ys-rai-commit a::before,
+.ys-ind-build > li::before { display: none; }
+.ys-partner-card:hover, .ys-partner-card:focus-visible,
+.ys-rai-commit a:hover, .ys-rai-commit a:focus-visible { transform: none; box-shadow: none; border-color: var(--blue-600); }
+.ys-hww-models li:hover, .ys-ind-build > li:hover { transform: none; box-shadow: none; border-color: var(--grey-200); }
+.ys-hww-models li.is-featured:hover { border-color: var(--navy-950); }
+.ys-rai-lines li:hover { background: var(--navy-950); }
+
+/* Working with us: an editorial definition list, not cards. */
+.ys-wwu { display: grid; grid-template-columns: minmax(0, 1fr); gap: 28px 64px; align-items: start; }
+@media (min-width: 1024px) { .ys-wwu { grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); } }
+.ys-wwu-intro p { margin-top: 14px; font-size: 16.5px; line-height: 1.6; color: var(--ink-600); max-width: 36ch; }
+.ys-wwu-list { margin: 0; border-top: 1px solid var(--grey-200); }
+.ys-wwu-list > div { display: grid; grid-template-columns: minmax(0, 1fr); gap: 4px 32px; padding: 18px 0; border-bottom: 1px solid var(--grey-200); }
+@media (min-width: 640px) { .ys-wwu-list > div { grid-template-columns: 180px minmax(0, 1fr); } }
+.ys-wwu-list dt { font-size: 15.5px; font-weight: 600; color: var(--ink-900); }
+.ys-wwu-list dd { margin: 0; font-size: 15.5px; line-height: 1.6; color: var(--ink-600); }
+.ys-wwu-link { display: inline-flex; align-items: center; gap: 6px; margin-left: 8px; font-weight: 600; color: var(--blue-600); text-decoration: none; }
+.ys-wwu-link:hover { text-decoration: underline; text-underline-offset: 3px; }

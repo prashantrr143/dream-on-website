@@ -63,8 +63,7 @@ export function Practices() {
     <section className="ys-section-light" aria-labelledby="home-practices">
       <div className="enterprise-container-wide">
         <div className="ys-practices-intro">
-          <p className="ys-eyebrow">What we do</p>
-          <h2 id="home-practices">Two practices. IT first, AI where it pays.</h2>
+          <h2 id="home-practices">Two practices: the systems you run on, and the AI you add to them</h2>
         </div>
 
         <div className="ys-practices-grid">

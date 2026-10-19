@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import SharedLayout from '@/components/shared-layout'
 import { PageHero, PageSection } from '@/components/enterprise'
 import { RegionsStrip } from '@/components/enterprise/RegionsStrip'
+import { WorkingWithUs } from '@/components/enterprise/WorkingWithUs'
 import { ContactForm } from '@/components/contact/ContactForm'
 import { siteConfig } from '@/lib/site.config'
 import { SITE_CONTACT } from '@/lib/site-contact'
@@ -58,7 +59,7 @@ export default function ContactPage() {
     <SharedLayout>
       <PageHero
         eyebrow="CONTACT"
-        title="Tell us the problem."
+        title="What are you working on?"
         lede="A senior member of the team replies within one working day — with an honest view on whether we're the right team."
         visual="network"
       />
@@ -192,7 +193,10 @@ export default function ContactPage() {
       </PageSection>
 
       {/* Hours, data terms and data residency */}
-      <RegionsStrip title="Working with us from the UK, Europe, the Middle East, the US or India." />
+      <RegionsStrip title="Working with clients in the UK, Europe, the Middle East, the US and India" />
+
+      {/* Contract, data and security terms in one place */}
+      <WorkingWithUs tone="white" title="Before we start" />
     </SharedLayout>
   )
 }

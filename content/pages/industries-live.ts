@@ -34,7 +34,7 @@ export const pages: ContentPage[] = [
     },
     hero: {
       kicker: 'Industries',
-      h1: 'Built for work that faces scrutiny.',
+      h1: 'Industries we know well',
       subhead:
         'We focus on three sectors where a system has to answer to a regulator, a client or an enterprise buyer, as well as to its users.',
     },
@@ -114,7 +114,7 @@ export const pages: ContentPage[] = [
         {
           title: 'Core modernization and regulatory data',
           problem: 'The core system is decades old, and every regulatory report is rebuilt by hand.',
-          body: 'API and event layers that let modern channels work with long-lived core systems without a rewrite, and reporting data with lineage, so a submission can be reproduced rather than reconstructed. Built on AWS or Microsoft Azure, in your accounts and your region.',
+          body: 'API and event layers that let modern channels work with long-lived core systems without a rewrite, and reporting data with lineage, so any submission can be regenerated from source on request. Built on AWS or Microsoft Azure, in your accounts and your region.',
           bullets: [
             'Stable interfaces in front, systems of record behind',
             'Lineage captured as part of the pipeline',
@@ -149,11 +149,11 @@ export const pages: ContentPage[] = [
           },
           {
             title: 'Audit trail and data residency',
-            body: 'Regulated workloads need a defensible record of access and change, and a clear answer on where data sits. Both are design decisions, made at the start rather than retrofitted before an inspection.',
+            body: 'Regulated workloads need a defensible record of access and change, and a clear answer on where data sits. We settle both at design time; retrofitting them a month before an inspection is expensive and rarely convincing.',
           },
           {
             title: 'Model governance for AI in decisions',
-            body: 'Any model that influences credit, pricing or risk needs a documented purpose, data provenance, validation, monitoring and a route to challenge a decision. We build those controls with the model, not after it. We do not use client data to train or fine-tune models, unless you ask us to in writing for your own dedicated model.',
+            body: 'Any model that influences credit, pricing or risk needs a documented purpose, data provenance, validation, monitoring and a route to challenge a decision. We build those controls alongside the model, from the first sprint. We do not use client data to train or fine-tune models, unless you ask us to in writing for your own dedicated model.',
           },
         ],
       },
@@ -205,14 +205,14 @@ export const pages: ContentPage[] = [
         title: 'Why professional services IT is different',
         paragraphs: [
           'A professional firm runs on client confidence. Intake has to clear before work can start, the same client often lives in several systems, and AI raises a direct question about what a model is allowed to see.',
-          'So we treat confidentiality as a property of the architecture, not a policy document beside it: who can see a matter is enforced in the system, every clearance decision is recorded, and AI works only inside the boundaries your firm sets.',
+          'So we build confidentiality into the system itself. Who can see a matter is enforced in software, every clearance decision is recorded, and AI works only inside the boundaries your firm sets.',
         ],
       },
       build: [
         {
           title: 'Client intake and conflict checks',
           problem: 'Opening a matter takes days, and conflict results live in email.',
-          body: 'Structured intake that captures parties as data rather than free text, runs conflict searches against them, routes approvals to named people and keeps a record of why each engagement was cleared.',
+          body: 'Structured intake that records every party as structured data, runs conflict searches against them, routes approvals to named people and keeps a record of why each engagement was cleared.',
           bullets: [
             'Party and related-entity data modeling',
             'Conflict search with a retained result record',
@@ -225,11 +225,11 @@ export const pages: ContentPage[] = [
         {
           title: 'Practice-system integration',
           problem: 'The same client exists in five systems, and none of them agree.',
-          body: 'Integration between practice management, document management, finance and CRM, so a client or matter is one record with one owner rather than several partial copies.',
+          body: 'Integration between practice management, document management, finance and CRM, so each client and matter has one record and one owner.',
           bullets: [
             'API-led integration between practice systems',
             'Master client and matter records',
-            'Event-driven synchronization, not nightly exports',
+            'Changes sync as they happen, with no nightly exports',
           ],
           outcome: 'One trusted record per client and matter, across every system.',
           href: '/what-we-do/services/software-engineering',
@@ -273,7 +273,7 @@ export const pages: ContentPage[] = [
         items: [
           {
             title: 'Confidentiality and privilege',
-            body: 'The duty of confidence and legal professional privilege are your firm’s obligations. We turn them into access models, storage boundaries and logging, so the architecture reflects the duty rather than working against it.',
+            body: 'The duty of confidence and legal professional privilege are your firm’s obligations. We turn them into access models, storage boundaries and logging that a partner can explain to a client.',
           },
           {
             title: 'Conflicts of interest',
@@ -281,7 +281,7 @@ export const pages: ContentPage[] = [
           },
           {
             title: 'Retention and disposal',
-            body: 'Matter files carry retention periods set by regulation, limitation and engagement terms. We build those schedules into the platform, so retention and disposal are enforced, not left to memory.',
+            body: 'Matter files carry retention periods set by regulation, limitation and engagement terms. We build those schedules into the platform, so files are kept and disposed of on time without anyone having to remember.',
           },
           {
             title: 'Privacy law',
@@ -329,7 +329,7 @@ export const pages: ContentPage[] = [
     },
     hero: {
       kicker: 'Industries · Software & SaaS',
-      h1: 'Pass the security review. Ship AI safely.',
+      h1: 'Win enterprise security reviews and ship AI features customers trust',
       subhead:
         'We help software companies win enterprise deals: platforms that scale, security evidence that answers the questionnaire, and AI features customers trust.',
     },
@@ -341,7 +341,7 @@ export const pages: ContentPage[] = [
         title: 'Why SaaS IT is different',
         paragraphs: [
           'Your biggest prospects send a security questionnaire before they sign, the platform is straining under the tenants it already has, and the roadmap now includes AI. All of it has to happen while the product keeps shipping.',
-          'So we build security evidence into the pipeline rather than a spreadsheet, design tenancy deliberately, and treat AI features like any other product surface: scoped, tested and monitored.',
+          'In practice that means three habits. Security evidence comes out of the pipeline automatically. Tenancy is a deliberate design decision with known costs. AI features are scoped, tested and monitored like any other part of the product.',
         ],
       },
       build: [
@@ -351,7 +351,7 @@ export const pages: ContentPage[] = [
           body: 'Control design, logging and evidence generation mapped to the Trust Services Criteria or ISO/IEC 27001 Annex A, so questionnaires and audits find a system that matches its documentation.',
           bullets: [
             'Control design mapped to the criteria your auditor tests',
-            'Evidence generated by the pipeline, not collected by hand',
+            'Evidence generated by the pipeline on every release',
             'Answers for CAIQ, SIG and custom questionnaires',
           ],
           outcome: 'Security reviews stop blocking deals.',
@@ -361,7 +361,7 @@ export const pages: ContentPage[] = [
         {
           title: 'Platform modernization without a rewrite',
           problem: 'The monolith slows every release, but a rewrite would stop the roadmap.',
-          body: 'Decomposition planned around the seams that actually constrain you, sequenced so the product keeps shipping. We design the target and the route to it, rather than proposing a rewrite.',
+          body: 'Decomposition planned around the seams that actually constrain you, sequenced so the product keeps shipping. We design the target and the route to it; in our experience a full rewrite is rarely the cheapest path.',
           bullets: [
             'Seam analysis and decomposition sequencing',
             'Strangler-pattern migration paths',
@@ -415,7 +415,7 @@ export const pages: ContentPage[] = [
           },
           {
             title: 'Privacy and data protection',
-            body: 'The GDPR and UK GDPR, US state privacy laws and India’s DPDP Act drive residency, retention, subject-rights and subprocessor commitments. We design data flows and deletion paths so those commitments are enforced in the platform, not only in the contract.',
+            body: 'The GDPR and UK GDPR, US state privacy laws and India’s DPDP Act drive residency, retention, subject-rights and subprocessor commitments. We design data flows and deletion paths so the commitments in your contracts are actually enforced by the platform.',
           },
           {
             title: 'Change control and supply chain',
