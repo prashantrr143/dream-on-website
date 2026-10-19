@@ -187,7 +187,7 @@ test('region C shows the featured card on open; a group replaces it; reopening r
   await trigger(page, 'What we do').click()
   const card = page.locator('.ys-mega-featured')
   await expect(card).toBeVisible()
-  await expect(card).toHaveAttribute('href', '/what-we-do/applied-ai/claude')
+  await expect(card).toHaveAttribute('href', '/blueprint')
 
   await page.getByRole('button', { name: /^Cloud\b/ }).hover()
   await expect(page.locator('.ys-mega-cols')).toBeVisible()

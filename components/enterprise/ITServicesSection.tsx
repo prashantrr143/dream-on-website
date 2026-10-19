@@ -21,36 +21,12 @@ interface ProblemCard {
 
 const problems: ProblemCard[] = [
   {
-    problem: 'Client onboarding takes weeks and lives in email.',
-    body: 'Automated intake, checks and approvals, with a full audit trail.',
-    tag: 'Applied AI + Software',
-    href: '/what-we-do/industries/financial-services',
-    icon: 'products',
-    visual: 'software',
-  },
-  {
     problem: 'Our core system is old and nobody dares touch it.',
     body: 'Step-by-step modernization while the business keeps running.',
     tag: 'Modernization & Advisory',
     href: '/what-we-do/services/modernization',
     icon: 'growth',
     visual: 'modernization',
-  },
-  {
-    problem: 'We have the data but can\u2019t get an answer out of it.',
-    body: 'One trusted data platform and live dashboards.',
-    tag: 'Data & Analytics',
-    href: '/what-we-do/services/data-analytics',
-    icon: 'analytics',
-    visual: 'data',
-  },
-  {
-    problem: 'Our AI pilot worked, and then nothing happened.',
-    body: 'The pilot taken to production, with governance in place.',
-    tag: 'Applied AI',
-    href: '/what-we-do/applied-ai',
-    icon: 'automation',
-    visual: 'ai',
   },
   {
     problem: 'Cloud costs keep rising and we don\u2019t know why.',
@@ -61,6 +37,14 @@ const problems: ProblemCard[] = [
     visual: 'cloud',
   },
   {
+    problem: 'We have the data but can\u2019t get an answer out of it.',
+    body: 'One trusted data platform and live dashboards.',
+    tag: 'Data & Analytics',
+    href: '/what-we-do/services/data-analytics',
+    icon: 'analytics',
+    visual: 'data',
+  },
+  {
     problem: 'An audit or a client security review is coming.',
     body: 'Controls, logging and evidence built into your systems.',
     tag: 'Security & Compliance',
@@ -68,18 +52,21 @@ const problems: ProblemCard[] = [
     icon: 'security',
     visual: 'security',
   },
-]
-
-const PILLARS = [
   {
-    label: 'Cloud, engineering & data',
-    line: 'Platforms on AWS, Microsoft Azure and Google Cloud, plus the software, data, delivery and security your business runs on.',
-    link: { label: 'See what we do', href: '/what-we-do' },
+    problem: 'Client onboarding takes weeks and lives in email.',
+    body: 'Automated intake, checks and approvals, with a full audit trail.',
+    tag: 'Software + Applied AI',
+    href: '/what-we-do/industries/financial-services',
+    icon: 'products',
+    visual: 'software',
   },
   {
-    label: 'Applied AI',
-    line: 'Production-grade AI inside the systems you already run, governed from day one. Model-neutral, with a dedicated Claude practice.',
-    link: { label: 'See applied AI', href: '/what-we-do/applied-ai' },
+    problem: 'Our AI pilot worked, and then nothing happened.',
+    body: 'The pilot taken to production, with governance in place.',
+    tag: 'Applied AI',
+    href: '/what-we-do/applied-ai',
+    icon: 'automation',
+    visual: 'ai',
   },
 ]
 
@@ -101,10 +88,6 @@ const BUILT_FOR: { href: string; name: string; outcome: string }[] = [
     outcome: 'Pass your customers\u2019 security reviews and ship AI features safely.',
   },
 ]
-const ALSO = [
-  { name: 'Healthcare', href: '/what-we-do/industries/healthcare' },
-  { name: 'Public sector', href: '/what-we-do/industries/public-sector' },
-]
 
 const ITServicesSection = () => {
   return (
@@ -115,13 +98,13 @@ const ITServicesSection = () => {
           className="ys-cap-intro"
         >
           <div style={{ minWidth: 0 }}>
-            <p className="ys-eyebrow">Problems we solve</p>
+            <p className="ys-eyebrow">Problems we fix</p>
             <h2 className="ys-cap-headline">
               Start with the problem, not the technology.
             </h2>
           </div>
           <div className="ys-cap-intro-aside">
-            <p>If one of these sounds like your week, we should talk.</p>
+            <p>If one of these sounds like your week, we should talk. Most start as a short, scoped Blueprint.</p>
           </div>
         </motion.div>
 
@@ -162,22 +145,6 @@ const ITServicesSection = () => {
           ))}
         </motion.ul>
 
-        {/* Two pillars behind the work */}
-        <motion.div
-          className="ys-pillars-strip"
-        >
-          {PILLARS.map((pillar) => (
-            <div key={pillar.label} className="ys-pillars-item">
-              <h3 className="ys-pillars-label">{pillar.label}</h3>
-              <p className="ys-pillars-line">{pillar.line}</p>
-              <a href={pillar.link.href} className="ys-link ys-pillars-link">
-                {pillar.link.label}
-                <ArrowRight className="w-3.5 h-3.5 shrink-0" strokeWidth={2.5} aria-hidden="true" />
-              </a>
-            </div>
-          ))}
-        </motion.div>
-
         {/* Built for */}
         <div className="ys-builtfor">
           <h3 className="ys-eyebrow ys-builtfor-title">Built for</h3>
@@ -194,18 +161,6 @@ const ITServicesSection = () => {
               </li>
             ))}
           </ul>
-          <p className="ys-builtfor-also">
-            Also experienced in{' '}
-            {ALSO.map((sector, i) => (
-              <span key={sector.href}>
-                {i > 0 && ' and '}
-                <a href={sector.href} className="ys-sectors-link">
-                  {sector.name.toLowerCase()}
-                </a>
-              </span>
-            ))}
-            .
-          </p>
         </div>
       </div>
     </section>

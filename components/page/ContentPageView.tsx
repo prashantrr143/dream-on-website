@@ -90,7 +90,6 @@ function InFocus({ block }: { block: Extract<Block, { type: 'inFocus' }> }) {
 const CLOUDS = [
   { name: 'AWS', href: '/what-we-do/cloud/aws', body: 'Landing zones, migration, data and AI workloads, and cost control on AWS.' },
   { name: 'Microsoft Azure', href: '/what-we-do/cloud/microsoft-azure', body: 'Governed Azure platforms, from landing zones to data and AI workloads.' },
-  { name: 'Google Cloud', href: '/what-we-do/cloud/google-cloud', body: 'Secure foundations, data platforms and AI workloads on Google Cloud.' },
 ]
 
 function BlockView({ block, tone }: { block: Block; tone: 'white' | 'light' }) {
@@ -309,7 +308,7 @@ export function ContentPageView({ page }: { page: ContentPage }) {
         return <BlockView key={`${block.type}-${i}`} block={block} tone={tone} />
       })}
       <PageCTA
-        title={page.contact?.title ?? 'Enterprise AI, engineered to be trusted'}
+        title={page.contact?.title ?? 'Tell us the problem. We will scope the first step.'}
         body={page.contact?.body ?? 'Tell us what you are working on. A senior member of the team replies within one working day.'}
         primaryCta={{ label: PRIMARY_CTA.label, href: contactHref(page.contactInterest) }}
         secondaryCta={{ label: SECONDARY_CTA.label, href: SECONDARY_CTA.href }}

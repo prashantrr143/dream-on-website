@@ -7,15 +7,15 @@ export const pages: ContentPage[] = [
     name: 'What we do',
     parents: [],
     meta: {
-      title: 'Consulting, cloud and applied AI services | YatiSphere',
+      title: 'IT services and applied AI | YatiSphere',
       description:
-        'We advise, build and run enterprise platforms on AWS, Microsoft Azure and Google Cloud, and bring governed AI into them with Claude and the models you choose.',
+        'Cloud, software, data, security and consulting, delivered end to end by one in-house team, with governed AI built in where it pays.',
     },
     hero: {
       kicker: 'WHAT WE DO',
-      h1: 'Enterprise AI, engineered to be trusted',
+      h1: 'Enterprise IT services, with AI where it pays',
       subhead:
-        'We advise, build and run the platforms your business depends on — on AWS, Microsoft Azure and Google Cloud — and bring AI into them with Claude and the models you choose, governed from day one.',
+        'We advise on, build and run the systems your business depends on, on AWS, Microsoft Azure or Google Cloud. When AI is the right answer, we build it into those systems and govern it from day one.',
     },
     blocks: [
       {
@@ -93,8 +93,6 @@ export const pages: ContentPage[] = [
           { label: 'Financial services', href: '/what-we-do/industries/financial-services', descriptor: 'Banks, insurers, wealth managers and fintechs' },
           { label: 'Legal & professional services', href: '/what-we-do/industries/legal-professional-services', descriptor: 'Law firms and advisory practices' },
           { label: 'Software & SaaS', href: '/what-we-do/industries/software-saas', descriptor: 'Product companies selling to the enterprise' },
-          { label: 'Healthcare', href: '/what-we-do/industries/healthcare', descriptor: 'Clinical and administrative systems' },
-          { label: 'Public sector', href: '/what-we-do/industries/public-sector', descriptor: 'Public bodies and their delivery teams' },
         ],
       },
     ],

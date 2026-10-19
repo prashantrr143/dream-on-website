@@ -85,15 +85,15 @@ export const NAV_TREE: NavItem[] = [
     label: 'What we do',
     overviewHref: '/what-we-do',
     featured: {
-      kicker: 'Applied AI',
-      title: 'Claude, put to work safely',
-      summary: 'Adopt Claude and build governed agents inside your cloud boundary.',
-      href: '/what-we-do/applied-ai/claude',
+      kicker: 'Start here',
+      title: 'The Solution Blueprint',
+      summary: 'Two to four weeks to agree the problem, the design and the plan before any build.',
+      href: '/blueprint',
     },
     intro: {
-      heading: 'Enterprise AI, engineered to be trusted',
-      body: 'We advise, build and run enterprise platforms on any major cloud, and bring governed AI into them.',
-      link: { label: 'Talk to our experts', href: '/contact-us' },
+      heading: 'Enterprise IT, built properly. AI where it pays.',
+      body: 'Cloud, software, data and security, delivered by one senior in-house team, with AI built in where it earns its place.',
+      link: { label: 'Talk to us', href: '/contact-us' },
     },
     groups: [
       {
@@ -102,8 +102,6 @@ export const NAV_TREE: NavItem[] = [
           { label: 'Financial services', href: `${W}/industries/financial-services` },
           { label: 'Legal & professional services', href: `${W}/industries/legal-professional-services` },
           { label: 'Software & SaaS', href: `${W}/industries/software-saas` },
-          { label: 'Healthcare', href: `${W}/industries/healthcare` },
-          { label: 'Public sector', href: `${W}/industries/public-sector` },
         ],
       },
       {
@@ -124,7 +122,6 @@ export const NAV_TREE: NavItem[] = [
           { label: 'Cloud overview', href: `${W}/cloud` },
           { label: 'AWS', href: `${W}/cloud/aws` },
           { label: 'Microsoft Azure', href: `${W}/cloud/microsoft-azure` },
-          { label: 'Google Cloud', href: `${W}/cloud/google-cloud` },
           { label: 'Migration', href: `${W}/cloud/migration` },
           { label: 'Landing zones', href: `${W}/cloud/landing-zones` },
           { label: 'FinOps', href: `${W}/cloud/finops` },

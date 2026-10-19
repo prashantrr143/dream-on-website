@@ -3154,3 +3154,110 @@ textarea.ys-input { resize: vertical; min-height: 110px; }
 }
 @media (min-width: 1024px) { .ys-ldr-quote { margin-top: 120px; position: sticky; top: calc(var(--header-h) + 24px); } }
 .ys-ldr-quote p { font-family: var(--font-sans), system-ui, sans-serif; font-size: 20px; line-height: 1.45; color: var(--ink-900); }
+
+/* ==========================================================
+   Positioning refresh (2026-10-19): home hero board, practices,
+   how-we-work, insights, header CTA, mobile tabs. Tokens only.
+   ========================================================== */
+.ys-hero-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 48px; align-items: center; }
+@media (min-width: 1100px) { .ys-hero-grid { grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: 64px; } }
+.ys-hero-proof { display: flex; flex-wrap: wrap; gap: 10px 22px; margin: clamp(24px, 3vw, 32px) 0 0; padding: 0; list-style: none; font-size: 14.5px; color: var(--ink-300); }
+.ys-hero-proof li { display: inline-flex; align-items: center; gap: 8px; }
+.ys-hero-proof svg { color: var(--blue-300); }
+
+.ys-hero-board { display: none; background: var(--navy-900); border: 1px solid var(--rule-navy); border-radius: var(--radius-md); box-shadow: var(--shadow-overlay); overflow: hidden; }
+@media (min-width: 1100px) { .ys-hero-board { display: block; } }
+.ys-hero-board-head { display: flex; align-items: center; gap: 12px; padding: 14px 18px; border-bottom: 1px solid var(--rule-navy); font-size: 13px; letter-spacing: 0.04em; color: var(--ink-400); }
+.ys-hero-board-dots { display: inline-flex; gap: 6px; }
+.ys-hero-board-dots i { width: 8px; height: 8px; border-radius: 50%; background: var(--rule-navy-strong); }
+.ys-hero-board ul { list-style: none; margin: 0; padding: 6px 0; }
+.ys-hero-board li { display: grid; grid-template-columns: 22px minmax(0, 1fr) auto; gap: 14px; align-items: start; padding: 14px 18px; border-bottom: 1px solid var(--rule-navy); }
+.ys-hero-board li:last-child { border-bottom: 0; }
+.ys-hero-board-mark { width: 22px; height: 22px; margin-top: 1px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; border: 1.5px solid var(--rule-navy-strong); color: var(--white); }
+.ys-hero-board li.is-done .ys-hero-board-mark { background: var(--blue-600); border-color: var(--blue-600); }
+.ys-hero-board li.is-active .ys-hero-board-mark { border-color: var(--amber-500); box-shadow: inset 0 0 0 4px var(--navy-900), inset 0 0 0 11px var(--amber-500); }
+.ys-hero-board-text { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.ys-hero-board-label { font-size: 15.5px; font-weight: 600; color: var(--white); }
+.ys-hero-board-meta { font-size: 13.5px; line-height: 1.45; color: var(--ink-400); }
+.ys-hero-board-state { font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-400); padding-top: 3px; white-space: nowrap; }
+.ys-hero-board li.is-active .ys-hero-board-state { color: var(--amber-500); }
+.ys-hero-board li.is-next .ys-hero-board-label { color: var(--ink-300); } /* dimmed by color, not opacity: opacity failed 4.5:1 on the meta text */
+
+.ys-practices-intro { max-width: 46rem; margin-bottom: clamp(28px, 4vw, 44px); }
+.ys-practices-intro h2 { margin: 12px 0 14px; }
+.ys-practices-intro p:last-child { font-size: 17px; line-height: 1.65; color: var(--ink-600); }
+.ys-practices-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; }
+@media (min-width: 1024px) { .ys-practices-grid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); } }
+.ys-practice { display: flex; flex-direction: column; padding: clamp(24px, 3vw, 40px); border-radius: var(--radius-md); }
+.ys-practice-light { background: var(--white); border: 1px solid var(--grey-200); }
+.ys-practice-dark { background: var(--navy-950); color: var(--ink-300); }
+.ys-practice-eyebrow { font-size: 13px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-600); }
+.ys-practice-dark .ys-practice-eyebrow { color: var(--ink-400); }
+.ys-section-light .ys-practice-title, .ys-practice-title { margin: 10px 0 10px; font-size: clamp(24px, 2.4vw, 30px); font-weight: 600; letter-spacing: -0.02em; line-height: 1.15; color: var(--ink-900); }
+.ys-section-light .ys-practice-dark .ys-practice-title { color: var(--white); }
+.ys-practice-line { font-size: 16.5px; line-height: 1.6; color: var(--ink-600); max-width: 52ch; }
+.ys-practice-dark .ys-practice-line { color: var(--ink-300); }
+.ys-practice-links { list-style: none; margin: 24px 0 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr); column-gap: 28px; }
+@media (min-width: 640px) { .ys-practice-light .ys-practice-links { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.ys-practice-links a { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 13px 0; border-bottom: 1px solid var(--grey-200); font-size: 16px; font-weight: 500; color: var(--ink-900); text-decoration: none; }
+.ys-practice-dark .ys-practice-links a { border-color: var(--rule-navy); color: var(--white); }
+.ys-practice-links a svg { color: var(--blue-600); transition: transform 160ms ease-out; }
+.ys-practice-dark .ys-practice-links a svg { color: var(--blue-300); }
+.ys-practice-links a:hover svg { transform: translateX(3px); }
+.ys-practice-links a:hover span { text-decoration: underline; text-underline-offset: 3px; }
+.ys-practice-foot { margin-top: auto; padding-top: 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px; }
+.ys-practice-foot p { font-size: 14.5px; color: var(--ink-600); }
+.ys-practice-dark .ys-practice-foot p { color: var(--ink-400); }
+.ys-practice-cta { display: inline-flex; align-items: center; gap: 6px; font-size: 15.5px; font-weight: 600; color: var(--blue-600); text-decoration: none; }
+.ys-practice-dark .ys-practice-cta { color: var(--blue-300); }
+.ys-practice-cta:hover { text-decoration: underline; text-underline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { .ys-practice-links a svg { transition: none; } }
+
+.ys-how-intro { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px 32px; margin-bottom: clamp(24px, 3.5vw, 40px); }
+.ys-how-intro h2 { margin-top: 12px; max-width: 26ch; text-wrap: balance; }
+.ys-how-link { display: inline-flex; align-items: center; gap: 6px; }
+.ys-how-commit { margin-top: clamp(40px, 5vw, 64px); padding-top: clamp(28px, 3.5vw, 40px); border-top: 1px solid var(--grey-200); }
+.ys-how-commit ul, .ys-how-global ul { list-style: none; margin: 20px 0 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: 24px 28px; }
+@media (min-width: 720px) { .ys-how-commit ul { grid-template-columns: repeat(2, minmax(0, 1fr)); } .ys-how-global ul { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (min-width: 1100px) { .ys-how-commit ul { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.ys-section-white .ys-how-commit h4, .ys-section-white .ys-how-global h4 { font-size: 17px; font-weight: 600; color: var(--ink-900); margin-bottom: 6px; }
+.ys-how-commit li { padding-left: 16px; border-left: 2px solid var(--blue-600); }
+.ys-how-commit p, .ys-how-global p { font-size: 15.5px; line-height: 1.6; color: var(--ink-600); }
+.ys-how-global { margin-top: clamp(40px, 5vw, 64px); padding: clamp(24px, 3vw, 36px); background: var(--grey-50); border-radius: var(--radius-md); }
+.ys-how-global-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 12px 24px; }
+.ys-section-white .ys-how-global-head h3 { font-size: clamp(20px, 2vw, 24px); font-weight: 600; letter-spacing: -0.015em; color: var(--ink-900); max-width: 40ch; }
+.ys-how-global-head .ys-link { display: inline-flex; align-items: center; gap: 6px; }
+
+.ys-insight-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; }
+@media (min-width: 900px) { .ys-insight-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.ys-insight-card { display: flex; flex-direction: column; height: 100%; padding: 26px; background: var(--white); border: 1px solid var(--grey-200); border-radius: var(--radius-md); text-decoration: none; transition: border-color 160ms ease-out; }
+.ys-insight-card:hover { border-color: var(--blue-600); }
+.ys-insight-meta { font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-600); }
+.ys-insight-title { margin-top: 12px; font-size: 20px; font-weight: 600; line-height: 1.3; letter-spacing: -0.015em; color: var(--ink-900); }
+.ys-insight-summary { margin-top: 10px; font-size: 15.5px; line-height: 1.6; color: var(--ink-600); }
+@media (prefers-reduced-motion: reduce) { .ys-insight-card { transition: none; } }
+
+/* Header: the one primary action, as a filled button (was grey text). */
+.ys-hdr-contact { height: 42px; padding: 0 20px; border-radius: var(--radius-pill); background: var(--blue-600); color: var(--white); font-size: 15.5px; font-weight: 500; }
+.ys-hdr-contact:hover { background: var(--blue-700); color: var(--white); }
+
+/* Tabs: scroll sideways on narrow screens instead of wrapping to two rows. */
+@media (max-width: 720px) {
+  .ys-tabs { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+  .ys-tabs::-webkit-scrollbar { display: none; }
+  .ys-tab { flex: 0 0 auto; white-space: nowrap; }
+}
+.ys-practice-chips { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 28px; }
+.ys-practice-chips span { font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-600); margin-right: 4px; }
+.ys-practice-chips a { display: inline-flex; align-items: center; height: 36px; padding: 0 16px; border: 1px solid var(--grey-200); border-radius: var(--radius-pill); font-size: 15px; font-weight: 500; color: var(--ink-900); text-decoration: none; background: var(--grey-50); }
+.ys-practice-chips a:hover { border-color: var(--blue-600); color: var(--blue-600); }
+
+/* Leadership: compact card grid; same 4:5 crop for every portrait. */
+.ys-ldr-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 40px 32px; margin-top: 28px; }
+@media (min-width: 640px) { .ys-ldr-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1024px) { .ys-ldr-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.ys-ldr-grid .ys-ldr-row { display: flex !important; flex-direction: column; gap: 20px; margin: 0 !important; }
+.ys-ldr-grid .ys-ldr-photo { order: -1 !important; max-width: none; margin: 0; width: 100%; aspect-ratio: 4 / 5; border-radius: var(--radius-md); overflow: hidden; background: var(--grey-50); }
+.ys-ldr-grid .ys-ldr-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 18%; }
+.ys-ldr-grid .ys-ldr-name { font-size: clamp(22px, 2vw, 26px); }
+.ys-ldr-grid .ys-ldr-summary { font-size: 16px; }

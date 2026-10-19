@@ -8,7 +8,18 @@ import { pages as industries } from './industries'
 
 export type { ContentPage } from './types'
 
-/** Every data-driven page under /what-we-do. */
+/**
+ * Pages kept as content but not published (positioning refresh,
+ * 2026-10-19: fewer, deeper pages). Each one 308-redirects to its parent
+ * in proxy.ts. Remove a path here to bring the page back.
+ */
+export const RETIRED_PATHS = new Set<string>([
+  '/what-we-do/cloud/google-cloud',
+  '/what-we-do/industries/healthcare',
+  '/what-we-do/industries/public-sector',
+])
+
+/** Every published data-driven page under /what-we-do. */
 export const CONTENT_PAGES: ContentPage[] = [
   ...whatWeDo,
   ...consulting,
@@ -16,7 +27,7 @@ export const CONTENT_PAGES: ContentPage[] = [
   ...appliedAi,
   ...engineeringData,
   ...industries,
-]
+].filter((p) => !RETIRED_PATHS.has(p.path))
 
 export function getContentPage(path: string): ContentPage | undefined {
   return CONTENT_PAGES.find((p) => p.path === path)

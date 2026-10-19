@@ -13,8 +13,9 @@ import type { Leader } from '@/content/types'
 export const metadata: Metadata = metaFor('/who-we-are/leadership')
 
 /**
- * Leadership listing: one full-width row per person, alternating sides
- * on wide screens (photo-first single column below 1024px). People come
+ * Leadership listing: a compact grid of cards, photo above text, with
+ * every portrait cropped to the same 4:5 frame (positioning refresh,
+ * 2026-10-19; was one alternating full-width row per person). People come
  * from content/people.ts; a group renders only if it has people.
  */
 
@@ -93,10 +94,12 @@ export default function LeadershipPage() {
             return (
               <div key={g.id} className="ys-ldr-group">
                 <h2 className="ys-ldr-kicker">{g.kicker}</h2>
-                {list.map((person) => {
-                  const i = rowIndex++
-                  return <PersonRow key={person.slug} person={person} index={i} eager={i === 0} />
-                })}
+                <div className="ys-ldr-grid">
+                  {list.map((person) => {
+                    const i = rowIndex++
+                    return <PersonRow key={person.slug} person={person} index={i} eager={i === 0} />
+                  })}
+                </div>
               </div>
             )
           })}

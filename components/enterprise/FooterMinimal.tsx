@@ -21,11 +21,11 @@ const columns = [
   {
     title: 'What we do',
     links: [
-      { name: 'Consulting', href: '/what-we-do/consulting' },
+      { name: 'IT services', href: '/what-we-do/engineering-data' },
       { name: 'Cloud', href: '/what-we-do/cloud' },
+      { name: 'Consulting', href: '/what-we-do/consulting' },
       { name: 'Applied AI', href: '/what-we-do/applied-ai' },
-      { name: 'Claude practice', href: '/what-we-do/applied-ai/claude' },
-      { name: 'Engineering & data', href: '/what-we-do/engineering-data' },
+      { name: 'Solution Blueprint', href: '/blueprint' },
     ],
   },
   {
@@ -34,8 +34,6 @@ const columns = [
       { name: 'Financial services', href: '/what-we-do/industries/financial-services' },
       { name: 'Legal & professional services', href: '/what-we-do/industries/legal-professional-services' },
       { name: 'Software & SaaS', href: '/what-we-do/industries/software-saas' },
-      { name: 'Healthcare', href: '/what-we-do/industries/healthcare' },
-      { name: 'Public sector', href: '/what-we-do/industries/public-sector' },
     ],
   },
   {
@@ -71,13 +69,13 @@ const FooterMinimal = () => {
               className="ys-ftr-mark"
             />
             <span className="ys-ftr-statement">
-              Enterprise AI, engineered
+              Enterprise IT, built properly.
               <br />
-              to be <span className="ys-ftr-accent">trusted</span>.
+              AI where it <span className="ys-ftr-accent">pays</span>.
             </span>
           </a>
           <a href="/contact-us" className="ys-ftr-cta">
-            Contact us
+            Talk to us
             <ArrowRight className="w-4 h-4" strokeWidth={2} aria-hidden="true" />
           </a>
         </div>

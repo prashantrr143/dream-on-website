@@ -38,8 +38,12 @@ export const LEGACY: Record<string, string> = {
   '/industries': '/what-we-do#industries',
   '/industries/financial-services': '/what-we-do/industries/financial-services',
   '/industries/legal-professional-services': '/what-we-do/industries/legal-professional-services',
-  '/industries/healthcare': '/what-we-do/industries/healthcare',
-  '/industries/government-public-sector': '/what-we-do/industries/public-sector',
+  '/industries/healthcare': '/what-we-do',
+  '/industries/government-public-sector': '/what-we-do',
+  // Retired in the positioning refresh (content/pages RETIRED_PATHS)
+  '/what-we-do/cloud/google-cloud': '/what-we-do/cloud',
+  '/what-we-do/industries/healthcare': '/what-we-do',
+  '/what-we-do/industries/public-sector': '/what-we-do',
   '/industries/enterprise-technology': '/what-we-do/industries/software-saas',
   '/industries/software-saas': '/what-we-do/industries/software-saas',
   // Who we are
