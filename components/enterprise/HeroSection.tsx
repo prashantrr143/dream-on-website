@@ -86,7 +86,7 @@ const HeroSection = () => {
             </motion.p>
 
             <motion.h1 style={{ color: 'var(--white)', textWrap: 'balance' }}>
-              Enterprise IT, built properly. AI where it pays.
+              Enterprise IT, built properly. AI where it <span className="ys-accent-word">pays</span>.
             </motion.h1>
 
             <motion.p
@@ -98,8 +98,8 @@ const HeroSection = () => {
                 color: 'var(--ink-300)',
               }}
             >
-              Cloud, software, data and security, built and run by one senior
-              team. AI only where it pays off.
+              Cloud, software, data and security, built and run by senior
+              engineers. AI only where it pays off.
             </motion.p>
 
             <motion.div

@@ -41,9 +41,11 @@
     --blue-700: #183F99;      /* primary hover/pressed. white on it 9.50:1 */
     --blue-300: #6E93E6;      /* links and underlines on navy only. 6.03:1 on navy-950 */
 
-    /* Accent: one hero word, data highlights, small rules. Never on
-       white, never a button fill, never body text. 8.88:1 on navy-950. */
-    --amber-500: #F5A524;
+    /* Accent: the logo yellow (owner request, 2026-10-19). Highlights
+       only: one hero word, active and hover states on navy, data marks
+       and small rules. Never text on white (1.7:1), never a button fill,
+       never body text. 11.2:1 on navy-950. */
+    --amber-500: #F8B800;
 
     /* Ink */
     --ink-900: #0A1A33;       /* headings on light. 17.38:1 white, 16.17:1 grey-50 */
@@ -350,7 +352,7 @@
     color: var(--ink-600);
   }
   .ys-eyebrow-on-dark {
-    color: var(--ink-400);
+    color: var(--amber-500);
   }
 
   /* Card: 8px radius, flat. 1px grey-200 border on white; on grey-50
@@ -1842,12 +1844,17 @@
   /* ~4px under the text baseline at 17px in a 76px bar. */
   bottom: calc(50% - 16px);
   height: 2px;
-  background: var(--blue-300);
+  background: var(--amber-500);
   opacity: 0;
   transition: opacity 0.15s ease;
 }
 .ys-hdr-trigger:hover::after { opacity: 0.5; }
-.ys-hdr-trigger.is-open::after { opacity: 1; }
+.ys-hdr-trigger.is-open::after,
+.ys-hdr-trigger:focus-visible::after { opacity: 1; }
+/* Triggers span the full bar height, so a box outline drew a tall frame
+   that only appeared on keyboard focus. The yellow underline is the
+   focus indicator instead, the same mark as the open state. */
+.ys-hdr .ys-hdr-trigger:focus-visible { outline: none; color: var(--white); }
 .ys-hdr-trigger:hover { color: var(--white); }
 .ys-hdr-chev {
   width: 12px;
@@ -1912,7 +1919,7 @@
   color: var(--white);
   text-decoration: none;
 }
-.ys-mega-arrow:hover { text-decoration: underline; text-underline-offset: 4px; }
+.ys-mega-arrow:hover { color: var(--amber-500); }
 
 /* B — group list */
 .ys-mega-b {
@@ -1942,10 +1949,13 @@
   cursor: pointer;
   text-decoration: none;
 }
-.ys-mega-row:hover { color: var(--white); }
+/* Hover and active look the same in every panel: white text and a
+   yellow bar, no fill (was a fill on group rows only). */
+.ys-mega-row { box-shadow: inset 2px 0 0 transparent; transition: color 0.15s ease, box-shadow 0.15s ease; }
+.ys-mega-row:hover,
 .ys-mega-row.is-active {
-  background: var(--navy-800);
   color: var(--white);
+  box-shadow: inset 2px 0 0 var(--amber-500);
 }
 .ys-mega-row-chev { width: 16px; height: 16px; flex-shrink: 0; }
 
@@ -1976,9 +1986,7 @@
 }
 .ys-mega-link:hover,
 .ys-mega-link:focus-visible {
-  color: var(--white);
-  text-decoration: underline;
-  text-underline-offset: 4px;
+  color: var(--amber-500);
 }
 
 
@@ -2842,7 +2850,7 @@ textarea.ys-input { resize: vertical; min-height: 110px; }
   font-weight: 500;
   letter-spacing: -0.015em;
 }
-.ys-ftr-accent { color: inherit; }
+.ys-ftr-accent { color: var(--amber-500); }
 .ys-ftr-cta {
   display: inline-flex;
   align-items: center;
@@ -3007,7 +3015,9 @@ textarea.ys-input { resize: vertical; min-height: 110px; }
   color: var(--white);
 }
 .ys-mega-featured:hover .ys-mega-featured-title,
-.ys-mega-featured:focus-visible .ys-mega-featured-title { text-decoration: underline; text-underline-offset: 4px; }
+.ys-mega-featured:focus-visible .ys-mega-featured-title,
+.ys-mega-featured:hover .ys-mega-featured-more { color: var(--amber-500); }
+.ys-mega-featured-kicker { color: var(--amber-500); }
 
 /* ==========================================================
    Leadership listing and bio pages (app/who-we-are/leadership)
@@ -3163,7 +3173,7 @@ textarea.ys-input { resize: vertical; min-height: 110px; }
 @media (min-width: 1100px) { .ys-hero-grid { grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: 64px; } }
 .ys-hero-proof { display: flex; flex-wrap: wrap; gap: 10px 22px; margin: clamp(24px, 3vw, 32px) 0 0; padding: 0; list-style: none; font-size: 14.5px; color: var(--ink-300); }
 .ys-hero-proof li { display: inline-flex; align-items: center; gap: 8px; }
-.ys-hero-proof svg { color: var(--blue-300); }
+.ys-hero-proof svg { color: var(--amber-500); }
 
 .ys-hero-board { display: none; background: var(--navy-900); border: 1px solid var(--rule-navy); border-radius: var(--radius-md); box-shadow: var(--shadow-overlay); overflow: hidden; }
 @media (min-width: 1100px) { .ys-hero-board { display: block; } }
@@ -3192,7 +3202,7 @@ textarea.ys-input { resize: vertical; min-height: 110px; }
 .ys-practice-light { background: var(--white); border: 1px solid var(--grey-200); }
 .ys-practice-dark { background: var(--navy-950); color: var(--ink-300); }
 .ys-practice-eyebrow { font-size: 13px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-600); }
-.ys-practice-dark .ys-practice-eyebrow { color: var(--ink-400); }
+.ys-practice-dark .ys-practice-eyebrow { color: var(--amber-500); }
 .ys-section-light .ys-practice-title, .ys-practice-title { margin: 10px 0 10px; font-size: clamp(24px, 2.4vw, 30px); font-weight: 600; letter-spacing: -0.02em; line-height: 1.15; color: var(--ink-900); }
 .ys-section-light .ys-practice-dark .ys-practice-title { color: var(--white); }
 .ys-practice-line { font-size: 16.5px; line-height: 1.6; color: var(--ink-600); max-width: 52ch; }
@@ -3221,7 +3231,7 @@ textarea.ys-input { resize: vertical; min-height: 110px; }
 @media (min-width: 720px) { .ys-how-commit ul { grid-template-columns: repeat(2, minmax(0, 1fr)); } .ys-how-global ul { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 @media (min-width: 1100px) { .ys-how-commit ul { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
 .ys-section-white .ys-how-commit h4, .ys-section-white .ys-how-global h4 { font-size: 17px; font-weight: 600; color: var(--ink-900); margin-bottom: 6px; }
-.ys-how-commit li { padding-left: 16px; border-left: 2px solid var(--blue-600); }
+.ys-how-commit li { padding-left: 16px; border-left: 3px solid var(--amber-500); }
 .ys-how-commit p, .ys-how-global p { font-size: 15.5px; line-height: 1.6; color: var(--ink-600); }
 .ys-how-global { margin-top: clamp(40px, 5vw, 64px); padding: clamp(24px, 3vw, 36px); background: var(--grey-50); border-radius: var(--radius-md); }
 .ys-how-global-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 12px 24px; }

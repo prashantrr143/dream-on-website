@@ -91,9 +91,9 @@ export const NAV_TREE: NavItem[] = [
       href: '/blueprint',
     },
     intro: {
-      heading: 'Enterprise IT, built properly. AI where it pays.',
-      body: 'Cloud, software, data and security, built and run by senior engineers, with AI where it earns its place.',
-      link: { label: 'Talk to us', href: '/contact-us' },
+      heading: 'What we do',
+      body: 'IT services and applied AI, built and run by senior engineers.',
+      link: { label: 'Explore what we do', href: '/what-we-do' },
     },
     groups: [
       {
@@ -169,9 +169,9 @@ export const NAV_TREE: NavItem[] = [
       href: '/blueprint',
     },
     intro: {
-      heading: 'About YatiSphere',
-      body: 'A senior team of consultants and engineers who design, build and run systems for regulated businesses.',
-      link: { label: 'Discover how we work', href: '/who-we-are/how-we-work' },
+      heading: 'Who we are',
+      body: 'Senior consultants and engineers, and how we work.',
+      link: { label: 'Explore who we are', href: '/who-we-are/about' },
     },
     groups: [
       { label: 'About us', href: '/who-we-are/about' },
@@ -186,13 +186,22 @@ export const NAV_TREE: NavItem[] = [
     id: 'insights',
     label: 'Insights',
     overviewHref: '/insights',
+    featured: {
+      kicker: 'Latest insight',
+      title: 'Taking an AI pilot to production',
+      summary: 'What changes between a demo and a system a regulated business can run.',
+      href: '/insights/taking-an-ai-pilot-to-production',
+    },
     intro: {
       heading: 'Insights',
-      body: 'Perspectives on cloud, AI and governance from engineers who build it.',
-      link: { label: 'Read the latest', href: '/insights' },
+      body: 'Notes on cloud, AI and governance from engineers who build it.',
+      link: { label: 'Explore insights', href: '/insights' },
     },
     groups: [
-      { label: 'Insights', href: '/insights', hidden: () => !hasArticles },
+      { label: 'All insights', href: '/insights', hidden: () => !hasArticles },
+      { label: 'AI pilots to production', href: '/insights/taking-an-ai-pilot-to-production', hidden: () => !hasArticles },
+      { label: 'KYC without black boxes', href: '/insights/kyc-automation-without-black-boxes', hidden: () => !hasArticles },
+      { label: 'SOC 2 evidence from pipelines', href: '/insights/soc-2-evidence-from-pipelines', hidden: () => !hasArticles },
       { label: 'Customer stories', href: '/customer-stories', hidden: () => stories.length === 0 },
       { label: 'News', href: '/news', hidden: () => news.length === 0 },
       { label: 'Events', href: '/events', hidden: () => events.length === 0 },
