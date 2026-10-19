@@ -1,35 +1,70 @@
-"use client"
-
-import { motion } from 'framer-motion'
+import { ArrowRight, Clock, Cloud, FileCheck2, GitBranch, PenTool, RefreshCw, ShieldCheck } from 'lucide-react'
 import SharedLayout from '@/components/shared-layout'
 import { PageHero, PageSection, PageCTA } from '@/components/enterprise'
-import DeliveryStages from '@/components/enterprise/DeliveryStages'
-import EngagementModelsSection from '@/components/enterprise/EngagementModelsSection'
+import { StageJourney } from '@/components/how-we-work/StageJourney'
 import { PRIMARY_CTA } from '@/lib/cta'
 import { WORKING_ACROSS_REGIONS } from '@/lib/regions'
 
+/**
+ * How we work (redesign, 2026-10-19). Order: the path and its decisions,
+ * what never changes (the page's one navy feature band), how to buy it,
+ * and the practicalities of working across regions.
+ */
 
-// Core principles. Four, not six: "Collaboration over hand-offs" and
-// "Transparency throughout" are covered by the delivery and collaboration
-// sections, so repeating them here diluted the list.
-const principles = [
+const PRINCIPLES = [
   {
-    title: "Design before code",
-    description: "Decisions that are expensive to reverse are made deliberately, before build begins."
+    icon: PenTool,
+    title: 'Design before code',
+    body: 'Decisions that are expensive to reverse are made deliberately, before build begins.',
   },
   {
-    title: "Governance and security by design",
-    description: "Security, compliance and auditability are built in from the first sprint, not added before a review."
+    icon: ShieldCheck,
+    title: 'Security by design',
+    body: 'Security, compliance and auditability are built in from the first sprint, not added before a review.',
   },
   {
-    title: "Clear ownership",
-    description: "Every deliverable has an owner. Every decision has a trail."
+    icon: GitBranch,
+    title: 'Clear ownership',
+    body: 'Every deliverable has an owner. Every decision has a trail.',
   },
   {
-    title: "Working software every two weeks",
-    description: "Incremental delivery, never a big reveal at the end."
-  }
+    icon: RefreshCw,
+    title: 'Working software every two weeks',
+    body: 'Incremental delivery, never a big reveal at the end.',
+  },
 ]
+
+const MODELS = [
+  {
+    title: 'Solution Blueprint',
+    fit: '2–4 weeks · discovery',
+    body: 'Discovery for one named problem: solution design, delivery plan and risks.',
+    best: 'You have a problem and need a plan you can trust.',
+    featured: true,
+  },
+  {
+    title: 'Project delivery',
+    fit: 'Defined outcome · milestones',
+    body: 'A defined outcome, delivered end to end against agreed milestones.',
+    best: 'The outcome is clear and the scope can be fixed.',
+  },
+  {
+    title: 'Dedicated teams',
+    fit: 'Embedded · scales with you',
+    body: 'Engineers and delivery leads in your team, on your priorities, with our delivery discipline.',
+    best: 'The roadmap is yours and you need senior capacity.',
+  },
+  {
+    title: 'Managed services',
+    fit: 'Ongoing · run and improve',
+    body: 'We run and improve what we, or others, built: cloud, platforms, data pipelines and AI workloads.',
+    best: 'The system is live and has to stay healthy.',
+  },
+]
+
+const REGION_ICONS = [Clock, Cloud, FileCheck2]
+
+const FRAMEWORKS = ['GDPR', 'SOC 2', 'ISO/IEC 27001', 'HIPAA', 'PCI DSS', 'DPDP Act']
 
 export default function HowWeWorkContent() {
   return (
@@ -38,120 +73,103 @@ export default function HowWeWorkContent() {
         eyebrow="How we work"
         title="From first conversation to running system."
         lede="Senior engineers lead every stage. You decide at each step whether to continue with us or take it in-house."
+        visual="lanes"
         primaryCta={{ label: PRIMARY_CTA.label, href: PRIMARY_CTA.href }}
+        secondaryCta={{ label: 'Start with a Blueprint', href: '/blueprint' }}
       />
 
-      {/* Delivery model — five stages, shared with the homepage */}
       <PageSection
         id="delivery"
         tone="light"
         eyebrow="Delivery model"
         title="Five stages. A clear decision at each one."
-        lede="Every engagement follows the same path. The depth of each stage changes with the size and risk of the work; the order does not."
+        lede="The depth of each stage changes with the size and risk of the work. The order does not."
       >
-        <DeliveryStages />
+        <StageJourney />
       </PageSection>
 
-      {/* Principles Section */}
-      <PageSection id="principles" tone="white" eyebrow="Principles" title="What stays constant.">
-        <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
-          style={{ gap: 16 }}
-        >
-          {principles.map((principle, index) => (
-            <motion.div
-              key={index}
-              className="ys-open-item"
-              style={{
-                minWidth: 0
-              }}
-            >
-              <h3
-                style={{
-                  fontSize: '16px',
-                  fontWeight: 600,
-                  letterSpacing: '-0.015em',
-                  lineHeight: 1.3,
-                  marginBottom: '8px'
-                }}
-              >
-                {principle.title}
-              </h3>
-              <p
-                style={{
-                  fontSize: '16px',
-                  color: 'var(--ink-600)',
-                  lineHeight: 1.6
-                }}
-              >
-                {principle.description}
+      {/* The page's one navy feature band. */}
+      <section id="principles" className="ys-hww-band" aria-labelledby="hww-principles">
+        <div className="enterprise-container-wide">
+          <p className="ys-eyebrow ys-eyebrow-on-dark">Principles</p>
+          <h2 id="hww-principles">What stays constant.</h2>
+          <ol className="ys-hww-principles">
+            {PRINCIPLES.map((p, i) => (
+              <li key={p.title}>
+                <span className="ys-hww-principle-top">
+                  <span className="ys-hww-icon" aria-hidden="true"><p.icon strokeWidth={1.75} /></span>
+                  <span className="ys-hww-n" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+                </span>
+                <h3>{p.title}</h3>
+                <p>{p.body}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <PageSection
+        id="engagement"
+        tone="white"
+        eyebrow="Engagement models"
+        title="Work with us the way your organization buys."
+      >
+        <ul className="ys-hww-models">
+          {MODELS.map((m) => (
+            <li key={m.title} className={m.featured ? 'is-featured' : ''}>
+              {m.featured && <p className="ys-hww-badge">Start here</p>}
+              <h3>{m.title}</h3>
+              <p className="ys-hww-fit">{m.fit}</p>
+              <p className="ys-hww-body">{m.body}</p>
+              <p className="ys-hww-best">
+                <span>Best when</span>
+                {m.best}
               </p>
-            </motion.div>
+              {m.featured && (
+                <a href="/blueprint" className="ys-hww-more">
+                  How the Blueprint works
+                  <ArrowRight className="w-4 h-4" strokeWidth={2.25} aria-hidden="true" />
+                </a>
+              )}
+            </li>
           ))}
-        </motion.div>
+        </ul>
       </PageSection>
 
-      {/* Engagement models — moved here from the homepage. Sits before
-          collaboration so the commercial shape is clear first, with the
-          regional practicalities directly after it. */}
-      <div id="engagement">
-        <EngagementModelsSection />
-      </div>
-
-      {/* Working across regions. Every line here is something the company
-          can actually do today — no certifications are claimed, because
-          none are held. */}
+      {/* Every line here is something the company can do today. No
+          certifications are claimed, because none are held. */}
       <PageSection
         id="international"
-        tone="white"
+        tone="light"
         eyebrow="Working across regions"
         title="Incorporated in India. Delivering internationally."
-        lede="Built for clients across the UK, Europe, the Middle East, the US and India. What that means in practice:"
+        lede="For clients in the UK, Europe, the Middle East, the US and India."
       >
-        <div className="grid grid-cols-1 md:grid-cols-3" style={{ gap: '20px' }}>
-          {WORKING_ACROSS_REGIONS.map((item) => (
-            <div
-              key={item.title}
-              className="ys-open-item"
-              style={{ display: 'flex', flexDirection: 'column', minWidth: 0 }}
-            >
-              <h3
-                style={{
-                  fontSize: '16.5px',
-                  fontWeight: 600,
-                  letterSpacing: '-0.018em',
-                  lineHeight: 1.3,
-                  color: 'var(--ink-900)',
-                  marginBottom: '10px',
-                  textWrap: 'pretty',
-                }}
-              >
-                {item.title}
-              </h3>
-              <p style={{ fontSize: '16px', lineHeight: 1.6, color: 'var(--ink-600)', maxWidth: '62ch' }}>
-                {item.body}
-              </p>
-            </div>
-          ))}
+        <ul className="ys-hww-regions">
+          {WORKING_ACROSS_REGIONS.map((item, i) => {
+            const Icon = REGION_ICONS[i] ?? Clock
+            return (
+              <li key={item.title}>
+                <span className="ys-hww-icon is-light" aria-hidden="true"><Icon strokeWidth={1.75} /></span>
+                <h3>{item.title}</h3>
+                <p>{item.body}</p>
+              </li>
+            )
+          })}
+        </ul>
+        <div className="ys-hww-frameworks">
+          <p>We design controls for</p>
+          <ul>
+            {FRAMEWORKS.map((f) => <li key={f}>{f}</li>)}
+            <li>and regional equivalents</li>
+          </ul>
+          <p className="ys-hww-frameworks-note">The certifications stay yours.</p>
         </div>
-
-        <p
-          style={{
-            marginTop: 'clamp(24px, 3vw, 32px)',
-            fontSize: '16px',
-            lineHeight: 1.65,
-            color: 'var(--ink-600)',
-            maxWidth: '70ch',
-          }}
-        >
-          We design controls for GDPR, SOC 2, ISO/IEC 27001, HIPAA, PCI DSS, India&rsquo;s DPDP Act and regional equivalents. The certifications stay yours.
-        </p>
       </PageSection>
 
-      {/* Closing CTA */}
       <PageCTA
-        title={'What\u2019s the problem you\u2019d fix first?'}
-        body="Describe it in a few lines. A founder replies within one working day with an honest view on whether we can help."
+        title={'What’s the problem you’d fix first?'}
+        body="Describe it in a few lines. A senior member of the team replies within one working day, with an honest view on whether we can help."
         primaryCta={{ label: PRIMARY_CTA.label, href: PRIMARY_CTA.href }}
       />
     </SharedLayout>
