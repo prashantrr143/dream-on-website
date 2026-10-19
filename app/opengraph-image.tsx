@@ -12,13 +12,13 @@ import { ImageResponse } from 'next/og'
  */
 
 export const runtime = 'nodejs'
-export const alt = 'YatiSphere: Enterprise AI, engineered to be trusted.'
+export const alt = 'YatiSphere: Enterprise IT, built properly. AI where it pays.'
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
 const NAVY = '#0A1628' // --navy-950
 const PAPER = '#F7F4EE'
-const AMBER = '#F5A524'
+const AMBER = '#F8B800' // logo yellow
 const MUTED = '#A6B1C4'
 const LINE = '#294474'
 
@@ -46,13 +46,13 @@ export default async function OpengraphImage() {
           {/* Two explicit lines: next/og lays inline spans out as flex
               items, so a single wrapped sentence breaks unpredictably. */}
           <div style={{ display: 'flex', flexDirection: 'column', fontSize: 76, lineHeight: 1.08, fontWeight: 600, letterSpacing: -2 }}>
-            <div style={{ display: 'flex', color: PAPER }}>Enterprise AI, engineered</div>
+            <div style={{ display: 'flex', color: PAPER }}>Enterprise IT, built properly.</div>
             <div style={{ display: 'flex', color: PAPER }}>
-              to be&nbsp;<span style={{ color: AMBER }}>trusted</span>
+              AI where it&nbsp;<span style={{ color: AMBER }}>pays</span>.
             </div>
           </div>
           <div style={{ display: 'flex', marginTop: 24, fontSize: 28, lineHeight: 1.4, color: MUTED, maxWidth: 980 }}>
-            We advise, build and run platforms on AWS, Microsoft Azure and Google Cloud, and bring governed AI into them.
+            Cloud, software, data and security, built and run by senior engineers, with governed AI built in.
           </div>
         </div>
 

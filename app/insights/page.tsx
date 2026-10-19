@@ -21,7 +21,7 @@ export default function InsightsPage() {
     <SharedLayout>
       <PageHero
         eyebrow="Insights"
-        title="Notes from the people who build the systems."
+        title="Notes from engineers who build the systems."
         lede="Practical writing on Azure, applied AI, security and regulation for teams in regulated businesses."
         visual="lanes"
       />

@@ -66,11 +66,29 @@ test('no meta keywords, and service pages carry Service schema (G-14)', async ({
   expect(types).toContain('Organization')
 })
 
-test('each home problem card links somewhere different (H-03)', async ({ page }) => {
+test('each home problem links somewhere different (H-03)', async ({ page }) => {
   await page.goto('/')
-  const hrefs = await page.locator('.ys-cap-card').evaluateAll((els) => els.map((e) => e.getAttribute('href')))
-  expect(hrefs.length).toBe(6)
+  const tabs = page.locator('.ys-pp-tab')
+  await expect(tabs).toHaveCount(6)
+  const hrefs: (string | null)[] = []
+  for (let i = 0; i < 6; i++) {
+    await tabs.nth(i).click()
+    await expect(tabs.nth(i)).toHaveAttribute('aria-selected', 'true')
+    hrefs.push(await page.locator('#pp-panel .ys-pp-link').getAttribute('href'))
+  }
   expect(new Set(hrefs).size).toBe(6)
+})
+
+test('problem picker: arrow keys move between problems and stop auto-advance', async ({ page }) => {
+  await page.goto('/')
+  await page.locator('.ys-pp-tab').first().focus()
+  await page.keyboard.press('ArrowDown')
+  await expect(page.locator('#pp-tab-1')).toBeFocused()
+  await expect(page.locator('#pp-tab-1')).toHaveAttribute('aria-selected', 'true')
+  await page.keyboard.press('End')
+  await expect(page.locator('#pp-tab-5')).toHaveAttribute('aria-selected', 'true')
+  await page.waitForTimeout(6000)
+  await expect(page.locator('#pp-tab-5')).toHaveAttribute('aria-selected', 'true')
 })
 
 test('the published-insights switch agrees with the article files', async () => {

@@ -17,7 +17,7 @@ const MUTED = '#8FA6CC'
 const LINE = 'rgba(143,166,204,0.35)'
 const PANEL = '#10244A'
 const BLUE = '#5B8CFF'
-const AMBER = '#F5A524'
+const AMBER = '#F8B800' // logo yellow
 const GREEN = '#4CC38A'
 
 function Ground({ children }: { children: React.ReactNode }) {
@@ -55,7 +55,7 @@ const Tick = ({ x, y }: { x: number; y: number }) => (
 
 const Pending = ({ x, y }: { x: number; y: number }) => (
   <g>
-    <circle cx={x} cy={y} r={7} fill="rgba(245,165,36,0.18)" />
+    <circle cx={x} cy={y} r={7} fill="rgba(248,184,0,0.18)" />
     <circle cx={x} cy={y} r={2.5} fill={AMBER} />
   </g>
 )
@@ -106,7 +106,7 @@ function Modernization() {
         width={w}
         height={34}
         rx={6}
-        fill={tone === 'facade' ? 'rgba(245,165,36,0.14)' : PANEL}
+        fill={tone === 'facade' ? 'rgba(248,184,0,0.14)' : PANEL}
         stroke={tone === 'facade' ? AMBER : tone === 'new' ? BLUE : LINE}
         strokeDasharray={tone === 'old' ? '4 3' : undefined}
       />
@@ -165,7 +165,7 @@ function Ai() {
         const live = i === 3
         return (
           <g key={s}>
-            <rect x={x} y={44} width={76} height={34} rx={17} fill={live ? 'rgba(245,165,36,0.16)' : PANEL} stroke={live ? AMBER : BLUE} />
+            <rect x={x} y={44} width={76} height={34} rx={17} fill={live ? 'rgba(248,184,0,0.16)' : PANEL} stroke={live ? AMBER : BLUE} />
             <text x={x + 38} y={65} fontSize={11.5} fill={INK} textAnchor="middle">
               {s}
             </text>

@@ -26,7 +26,7 @@ export const OG_IMAGE = {
   url: '/opengraph-image',
   width: 1200,
   height: 630,
-  alt: 'YatiSphere: Enterprise AI, engineered to be trusted.',
+  alt: 'YatiSphere: Enterprise IT, built properly. AI where it pays.',
 }
 
 /** openGraph + twitter for one page, with the shared image and locale. */
@@ -67,15 +67,15 @@ interface RouteMeta {
 
 export const ROUTE_META: Record<string, RouteMeta> = {
   '/': {
-    title: 'Enterprise AI, consulting and cloud engineering | YatiSphere',
+    title: 'IT services and applied AI, built properly | YatiSphere',
     description:
-      'We advise, build and run enterprise platforms on AWS, Microsoft Azure and Google Cloud, and bring governed AI into them, with a dedicated Claude practice.',
+      'Cloud, software, data and security for growing companies and regulated enterprises, built and run by senior engineers, with governed AI where it pays.',
   },
 
   '/who-we-are/how-we-work': {
     title: 'How we work | YatiSphere',
     description:
-      'Discover, design, build, launch and run. Five stages, one in-house team, and an agreed plan before any build begins.',
+      'Discover, design, build, launch and run. Five stages, senior engineers, and an agreed plan before any build begins.',
   },
   '/who-we-are/about': {
     title: 'About YatiSphere: our vision, principles and people',

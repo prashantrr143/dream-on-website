@@ -1,14 +1,14 @@
 /**
  * The two calls to action used site-wide.
  *
- * Primary: "Talk to our experts" (revamp brief). It opens the contact
+ * Primary: "Talk to us" (positioning refresh, 2026-10-19). It opens the contact
  * overlay where JavaScript runs, and falls back to /contact-us. Pass an
  * interest to preset the form, e.g. contactHref('Claude').
  * Secondary: the Blueprint, a short discovery engagement.
  */
 
 export const PRIMARY_CTA = {
-  label: 'Talk to our experts',
+  label: 'Talk to us',
   href: '/contact-us',
 } as const
 

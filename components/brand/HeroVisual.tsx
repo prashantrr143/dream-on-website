@@ -23,7 +23,7 @@ const W = 1600
 const H = 800
 const LINE = 'rgba(143,166,204,0.30)'
 const NODE = 'rgba(91,140,255,0.70)'
-const AMBER = '#F5A524'
+const AMBER = '#F8B800' // logo yellow
 
 /** Small deterministic PRNG (mulberry32), seeded from a string hash. */
 function rng(seed: string) {
@@ -166,7 +166,7 @@ function Lanes({ seed }: { seed: string }) {
           width={r1(w)}
           height={32}
           rx={6}
-          fill={accent ? 'rgba(245,165,36,0.18)' : 'rgba(16,36,74,0.9)'}
+          fill={accent ? 'rgba(248,184,0,0.18)' : 'rgba(16,36,74,0.9)'}
           stroke={accent ? AMBER : NODE}
           strokeOpacity={accent ? 0.9 : 0.55}
         />
@@ -200,7 +200,7 @@ function Layers({ seed }: { seed: string }) {
         <path
           key={`${s}-${l}`}
           d={d}
-          fill={accent ? 'rgba(245,165,36,0.16)' : 'rgba(16,36,74,0.85)'}
+          fill={accent ? 'rgba(248,184,0,0.16)' : 'rgba(16,36,74,0.85)'}
           stroke={accent ? AMBER : NODE}
           strokeOpacity={accent ? 0.9 : 0.5}
         />

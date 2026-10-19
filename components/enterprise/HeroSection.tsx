@@ -1,86 +1,105 @@
 "use client"
 
 import { motion } from 'motion/react'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, Check } from 'lucide-react'
 import { PRIMARY_CTA } from '@/lib/cta'
 import { HeroVisual } from '@/components/brand/HeroVisual'
 
+/**
+ * Home hero. Positioning (owner decision, 2026-10-19): a global IT
+ * services firm first, applied AI second. Copy is US English.
+ */
 
 const PROOF = [
-  'One in-house team',
-  'Senior people on every engagement',
-  'Your code in your accounts from day one',
+  'Senior engineers',
+  'Scoped first step',
+  'Your code, your accounts',
 ]
 
+/** Illustrative only: what an engagement looks like, not a client's data. */
+const BOARD: { label: string; meta: string; state: 'done' | 'active' | 'next' }[] = [
+  { label: 'Blueprint agreed', meta: 'Plan and risks signed off', state: 'done' },
+  { label: 'Landing zone live', meta: 'Your account, your region', state: 'done' },
+  { label: 'Core API modernization', meta: 'Sprint 4 of 6', state: 'active' },
+  { label: 'Onboarding agent', meta: 'Evaluation passed', state: 'active' },
+  { label: 'Run and improve', meta: 'Monitored and improved', state: 'next' },
+]
+
+function EngagementBoard() {
+  return (
+    <div className="ys-hero-board" aria-hidden="true">
+      <div className="ys-hero-board-head">
+        <span className="ys-hero-board-dots"><i /><i /><i /></span>
+        <span>Engagement board</span>
+      </div>
+      <ul>
+        {BOARD.map((row) => (
+          <li key={row.label} className={`is-${row.state}`}>
+            <span className="ys-hero-board-mark">
+              {row.state === 'done' ? <Check className="w-3.5 h-3.5" strokeWidth={3} /> : null}
+            </span>
+            <span className="ys-hero-board-text">
+              <span className="ys-hero-board-label">{row.label}</span>
+              <span className="ys-hero-board-meta">{row.meta}</span>
+            </span>
+            <span className="ys-hero-board-state">
+              {row.state === 'done' ? 'Done' : row.state === 'active' ? 'In progress' : 'Next'}
+            </span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
+}
+
 const HeroSection = () => {
-
-  // MotionConfig reducedMotion="user" (see MotionProvider) makes Framer skip
-  // these transforms for users who ask for reduced motion. The markup stays
-  // identical either way, which is what keeps SSR and hydration in agreement.
-
   return (
     <section
       className="relative w-full overflow-hidden text-white"
       style={{ backgroundColor: 'var(--navy-950)' }}
     >
-      {/* Code-native background (audit G-04). */}
       <HeroVisual motif="network" seed="home" />
 
-      {/* Legibility scrims */}
       <div
         aria-hidden="true"
         className="absolute inset-0"
         style={{
           background:
-            'linear-gradient(90deg, rgb(var(--navy-950-rgb) / 0.97) 0%, rgb(var(--navy-950-rgb) / 0.92) 42%, rgb(var(--navy-950-rgb) / 0.66) 68%, rgb(var(--navy-950-rgb) / 0.42) 100%)',
-        }}
-      />
-      <div
-        aria-hidden="true"
-        className="absolute inset-0"
-        style={{
-          background:
-            'linear-gradient(to bottom, rgb(var(--navy-950-rgb) / 0.82) 0%, rgb(var(--navy-950-rgb) / 0.10) 26%, rgb(var(--navy-950-rgb) / 0.55) 78%, rgb(var(--navy-950-rgb) / 0.94) 100%)',
+            'linear-gradient(90deg, rgb(var(--navy-950-rgb) / 0.97) 0%, rgb(var(--navy-950-rgb) / 0.9) 50%, rgb(var(--navy-950-rgb) / 0.8) 100%)',
         }}
       />
 
       <div className="relative z-10 enterprise-container-wide">
         <div
+          className="ys-hero-grid"
           style={{
-            paddingTop: 'clamp(134px, 13.5vw, 176px)',
-            paddingBottom: 'clamp(46px, 5vw, 66px)',
+            paddingTop: 'clamp(124px, 12vw, 164px)',
+            paddingBottom: 'clamp(52px, 6vw, 84px)',
           }}
         >
-          <div className="max-w-[760px]">
+          <div style={{ minWidth: 0 }}>
             <motion.p
               className="ys-eyebrow ys-eyebrow-on-dark"
               style={{ marginBottom: 'clamp(16px, 2.4vw, 22px)' }}
             >
-              Consulting <span aria-hidden="true" style={{ opacity: 0.55 }}>·</span>{' '}
-              Cloud <span aria-hidden="true" style={{ opacity: 0.55 }}>·</span>{' '}
-              Applied AI <span aria-hidden="true" style={{ opacity: 0.55 }}>·</span>{' '}
-              Engineering
+              IT services <span aria-hidden="true" style={{ opacity: 0.55 }}>·</span> Applied AI
             </motion.p>
 
-            <motion.h1
-              style={{ color: 'var(--white)', textWrap: 'balance' }}
-            >
-              Enterprise AI, engineered to be{' '}
-              <span className="ys-accent-word">trusted</span>
+            <motion.h1 style={{ color: 'var(--white)', textWrap: 'balance' }}>
+              Enterprise IT, built properly. AI where it <span className="ys-accent-word">pays</span>.
             </motion.h1>
 
             <motion.p
               style={{
-                maxWidth: 680,
+                maxWidth: 620,
                 marginTop: 'clamp(16px, 2.2vw, 22px)',
-                fontSize: 'clamp(15px, 1.35vw, 17.5px)',
+                fontSize: 'clamp(15.5px, 1.35vw, 18px)',
                 lineHeight: 1.62,
                 color: 'var(--ink-300)',
               }}
             >
-              We advise, build and run the platforms your business depends on — on AWS,
-              Microsoft Azure and Google Cloud — and bring AI into them with Claude and the
-              models you choose, governed from day one.
+              Cloud, software, data and security, built and run by senior
+              engineers. AI only where it pays off.
             </motion.p>
 
             <motion.div
@@ -91,35 +110,22 @@ const HeroSection = () => {
                 {PRIMARY_CTA.label}
                 <ArrowRight className="w-4 h-4 shrink-0" strokeWidth={2.5} aria-hidden="true" />
               </a>
-              <a href="/what-we-do/applied-ai" className="ys-cta-secondary inline-flex items-center">
-                Learn more
+              <a href="/what-we-do" className="ys-cta-secondary inline-flex items-center">
+                See what we do
               </a>
             </motion.div>
 
-            {/* Proof line — wraps on narrow viewports */}
-            <motion.p
-              className="flex flex-wrap items-center"
-              style={{
-                gap: '0 10px',
-                marginTop: 'clamp(22px, 2.8vw, 30px)',
-                fontSize: 'clamp(12.5px, 1vw, 13.5px)',
-                lineHeight: 1.7,
-                color: 'var(--ink-300)',
-              }}
-            >
-              {PROOF.map((item, i) => (
-                <span key={item} className="inline-flex items-center" style={{ gap: 10 }}>
-                  {i > 0 && (
-                    <span aria-hidden="true" style={{ color: 'var(--ink-400)' }}>
-                      ·
-                    </span>
-                  )}
+            <ul className="ys-hero-proof">
+              {PROOF.map((item) => (
+                <li key={item}>
+                  <Check className="w-4 h-4 shrink-0" strokeWidth={2.5} aria-hidden="true" />
                   {item}
-                </span>
+                </li>
               ))}
-            </motion.p>
+            </ul>
           </div>
 
+          <EngagementBoard />
         </div>
       </div>
     </section>

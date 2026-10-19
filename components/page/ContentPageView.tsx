@@ -90,24 +90,38 @@ function InFocus({ block }: { block: Extract<Block, { type: 'inFocus' }> }) {
 const CLOUDS = [
   { name: 'AWS', href: '/what-we-do/cloud/aws', body: 'Landing zones, migration, data and AI workloads, and cost control on AWS.' },
   { name: 'Microsoft Azure', href: '/what-we-do/cloud/microsoft-azure', body: 'Governed Azure platforms, from landing zones to data and AI workloads.' },
-  { name: 'Google Cloud', href: '/what-we-do/cloud/google-cloud', body: 'Secure foundations, data platforms and AI workloads on Google Cloud.' },
 ]
 
+/**
+ * Brevity rules (owner request, 2026-10-19: "still too wordy"). The data
+ * in content/pages keeps the full copy; pages show the short form:
+ * no section ledes, one sentence per card, step or statement, and at most
+ * three bullets per tab or five list items. FAQs stay whole: they are
+ * collapsed by default and feed FAQPage structured data.
+ */
+export function firstSentence(text: string): string {
+  const m = text.match(/^(.+?[.!?])(?=\s+[A-Z(“"‘])/)
+  const first = m?.[1]
+  return first && first.length >= 24 ? first : text
+}
+const MAX_TAB_BULLETS = 3
+const MAX_LIST_ITEMS = 5
+
 function BlockView({ block, tone }: { block: Block; tone: 'white' | 'light' }) {
-  const head = 'title' in block ? { eyebrow: block.kicker, title: block.title, lede: block.lede } : {}
+  const head = 'title' in block ? { eyebrow: block.kicker, title: block.title } : {}
   const id = block.id
   switch (block.type) {
     case 'statement':
       return (
         <PageSection id={id} tone={tone} {...head}>
-          <p className="ys-statement">{block.text}</p>
+          <p className="ys-statement">{firstSentence(block.text)}</p>
         </PageSection>
       )
     case 'cards':
       if (block.cards.length === 0) return null
       return (
         <PageSection id={id} tone={tone} {...head}>
-          <CardGrid cards={block.cards} columns={block.columns} />
+          <CardGrid cards={block.cards.map((c) => ({ ...c, body: firstSentence(c.body), ...(c.bullets ? { bullets: c.bullets.slice(0, 3) } : {}) }))} columns={block.columns} />
         </PageSection>
       )
     case 'tabs':
@@ -119,9 +133,9 @@ function BlockView({ block, tone }: { block: Block; tone: 'white' | 'light' }) {
               label: t.label,
               content: (
                 <div style={{ maxWidth: '70ch' }}>
-                  <p style={{ fontSize: 17, lineHeight: 1.7, color: 'var(--ink-900)' }}>{t.description}</p>
+                  <p style={{ fontSize: 17, lineHeight: 1.7, color: 'var(--ink-900)' }}>{firstSentence(t.description)}</p>
                   <ul style={{ marginTop: 16, paddingLeft: 20, listStyle: 'disc' }}>
-                    {t.bullets.map((b) => (
+                    {t.bullets.slice(0, MAX_TAB_BULLETS).map((b) => (
                       <li key={b} style={{ ...muted, marginBottom: 6 }}>{b}</li>
                     ))}
                   </ul>
@@ -139,7 +153,7 @@ function BlockView({ block, tone }: { block: Block; tone: 'white' | 'light' }) {
               <li key={s.title} className="ys-open-item" style={{ minWidth: 0 }}>
                 <p className="ys-eyebrow" aria-hidden="true" style={{ marginBottom: 10 }}>{String(i + 1).padStart(2, '0')}</p>
                 <h3 style={{ fontSize: 17, fontWeight: 600, color: 'var(--ink-900)', marginBottom: 8 }}>{s.title}</h3>
-                <p style={{ ...muted, fontSize: 16 }}>{s.body}</p>
+                <p style={{ ...muted, fontSize: 16 }}>{firstSentence(s.body)}</p>
               </li>
             ))}
           </ol>
@@ -150,7 +164,7 @@ function BlockView({ block, tone }: { block: Block; tone: 'white' | 'light' }) {
       return (
         <PageSection id={id} tone={tone} {...head}>
           <ul className="ys-check-list">
-            {block.items.map((item) => (
+            {block.items.slice(0, MAX_LIST_ITEMS).map((item) => (
               <li key={item}>{item}</li>
             ))}
           </ul>
@@ -250,13 +264,13 @@ function BlockView({ block, tone }: { block: Block; tone: 'white' | 'light' }) {
       )
     case 'workflow':
       return (
-        <PageSection id={id} tone={tone} eyebrow={block.kicker ?? 'How it works'} title={block.title ?? 'Human + AI in control'} lede={block.lede ?? 'Agents do the routine work; a person approves what matters, and every step is logged. Select a step to see the detail.'}>
+        <PageSection id={id} tone={tone} eyebrow={block.kicker ?? 'How it works'} title={block.title ?? 'Human + AI in control'}>
           <WorkflowDiagram />
         </PageSection>
       )
     case 'modelNeutral':
       return (
-        <PageSection id={id} tone={tone} eyebrow={block.kicker ?? 'Model-neutral'} title={block.title ?? 'Model-neutral by design'} lede={block.lede ?? 'We choose the model that fits the task and run it where your data lives.'}>
+        <PageSection id={id} tone={tone} eyebrow={block.kicker ?? 'Model-neutral'} title={block.title ?? 'Model-neutral by design'}>
           <div className="grid grid-cols-1 md:grid-cols-2" style={{ gap: 20 }}>
             <div className="ys-open-item">
               <p className="ys-offer-label">Models we build with</p>
@@ -278,7 +292,7 @@ function BlockView({ block, tone }: { block: Block; tone: 'white' | 'light' }) {
       )
     case 'cloudChooser':
       return (
-        <PageSection id={id} tone={tone} eyebrow={block.kicker ?? 'Multi-cloud'} title={block.title ?? 'Choose your cloud'} lede={block.lede}>
+        <PageSection id={id} tone={tone} eyebrow={block.kicker ?? 'Multi-cloud'} title={block.title ?? 'Choose your cloud'}>
           <CardGrid cards={CLOUDS.map((c) => ({ title: c.name, body: c.body, href: c.href }))} />
         </PageSection>
       )
@@ -299,7 +313,7 @@ export function ContentPageView({ page }: { page: ContentPage }) {
       <PageHero
         eyebrow={page.hero.kicker}
         title={page.hero.h1}
-        lede={page.hero.subhead}
+        lede={firstSentence(page.hero.subhead)}
         primaryCta={{ label: PRIMARY_CTA.label, href: contactHref(page.contactInterest) }}
         visual={page.path.includes('/cloud') ? 'layers' : page.path.includes('/applied-ai') ? 'circuit' : page.path.includes('/industries') ? 'network' : 'lanes'}
         breadcrumbs={page.parents}
@@ -309,8 +323,8 @@ export function ContentPageView({ page }: { page: ContentPage }) {
         return <BlockView key={`${block.type}-${i}`} block={block} tone={tone} />
       })}
       <PageCTA
-        title={page.contact?.title ?? 'Enterprise AI, engineered to be trusted'}
-        body={page.contact?.body ?? 'Tell us what you are working on. A senior member of the team replies within one working day.'}
+        title={page.contact?.title ?? 'Tell us the problem.'}
+        body={page.contact?.body ? firstSentence(page.contact.body) : 'We reply within one working day.'}
         primaryCta={{ label: PRIMARY_CTA.label, href: contactHref(page.contactInterest) }}
         secondaryCta={{ label: SECONDARY_CTA.label, href: SECONDARY_CTA.href }}
       />

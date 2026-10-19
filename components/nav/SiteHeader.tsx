@@ -311,7 +311,7 @@ export function SiteHeader() {
           )}
           {/* Opens the "How can we help?" overlay (components/contact). */}
           <a href="/contact-us" className="ys-hdr-contact">
-            Contact us
+            Talk to us
           </a>
         </div>
 

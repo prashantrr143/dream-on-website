@@ -39,8 +39,8 @@ export function OrganizationSchema() {
     logo: `${SITE_URL}/brand/yatisphere/icon/yatisphere-icon-512.png`,
     image: `${SITE_URL}/brand/yatisphere/social/og-image.jpg`,
     description:
-      'Consulting, cloud engineering and applied AI for regulated businesses: we advise, build and run platforms on AWS, Microsoft Azure and Google Cloud, and bring governed AI into them, with a dedicated Claude practice.',
-    slogan: 'Enterprise AI, engineered to be trusted',
+      'IT services and applied AI for growing companies and regulated enterprises worldwide: cloud, software, data, security and consulting from senior engineers, with governed AI built in where it pays.',
+    slogan: 'Enterprise IT, built properly. AI where it pays.',
     email: SITE_CONTACT.email,
     foundingDate: '2025-12-22',
     ...(siteConfig.company.cin ? { identifier: { '@type': 'PropertyValue', propertyID: 'CIN', value: siteConfig.company.cin } } : {}),

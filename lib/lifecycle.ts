@@ -45,7 +45,7 @@ export const LIFECYCLE: Stage[] = [
     name: 'Run',
     line: 'We support, monitor and improve what we delivered, or hand over to your team.',
     gets: [
-      'Monitoring and support from the team that built it',
+      'Monitoring, support and a plan for improvement',
       'A plan for ongoing improvement',
     ],
   },
