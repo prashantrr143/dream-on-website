@@ -52,7 +52,7 @@ export default async function OpengraphImage() {
             </div>
           </div>
           <div style={{ display: 'flex', marginTop: 24, fontSize: 28, lineHeight: 1.4, color: MUTED, maxWidth: 980 }}>
-            Cloud, software, data and security, delivered end to end by one in-house team, with governed AI built in.
+            Cloud, software, data and security, built and run by senior engineers, with governed AI built in.
           </div>
         </div>
 

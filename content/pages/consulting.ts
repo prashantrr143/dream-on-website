@@ -60,7 +60,7 @@ export const pages: ContentPage[] = [
     blocks: [
       {
         type: 'statement',
-        text: 'Most expensive technology mistakes are made before a line of code is written: the wrong platform, a vendor-shaped roadmap, an AI pilot with no route to production. We give you an independent view, a design that fits the systems you already run, and a clear plan for what comes next. We recommend the cloud and model that fit, not the one we resell, and the people who advise you are the people who build and run what you decide.',
+        text: 'Most expensive technology mistakes are made before a line of code is written: the wrong platform, a vendor-shaped roadmap, an AI pilot with no route to production. We give you an independent view, a design that fits the systems you already run, and a clear plan for what comes next. We recommend the cloud and model that fit, not the one we resell, and we design only what can actually be delivered.',
       },
       {
         type: 'cards',
@@ -258,7 +258,7 @@ export const pages: ContentPage[] = [
           },
           {
             q: 'Who does the work?',
-            a: 'Senior consultants and engineers from our in-house team. The people who shape your strategy are the people who would build and run what follows.',
+            a: 'Senior consultants and engineers who have built and run systems like yours, so the strategy is one that can be delivered.',
           },
           {
             q: 'How do we start?',
@@ -274,7 +274,7 @@ export const pages: ContentPage[] = [
           { label: 'Enterprise architecture', href: `${C}/enterprise-architecture`, descriptor: 'A target architecture that fits what you run.' },
           { label: 'Modernization roadmaps', href: `${C}/modernization-roadmaps`, descriptor: 'A sequenced, costed plan for aging systems.' },
           { label: 'AI strategy & readiness', href: `${C}/ai-strategy`, descriptor: 'AI use cases with a route to production.' },
-          { label: 'How we work', href: '/who-we-are/how-we-work', descriptor: 'One team, from first conversation to running system.' },
+          { label: 'How we work', href: '/who-we-are/how-we-work', descriptor: 'Five stages, from first conversation to running system.' },
         ],
       },
       IN_FOCUS,
@@ -354,7 +354,7 @@ export const pages: ContentPage[] = [
         items: [
           {
             q: 'Do you only design, or do you build too?',
-            a: 'Both. The people who design your architecture are the people who build and run it, so the design has to be one we can deliver.',
+            a: 'Both. We can build what we design, or hand it to your team with everything they need.',
           },
           {
             q: 'Which clouds do you design for?',
@@ -562,7 +562,7 @@ export const pages: ContentPage[] = [
           },
           {
             q: 'Can you put the changes in place?',
-            a: 'Yes. The same team designs the plan, makes the changes and can stay to run the platform.',
+            a: 'Yes. We can design the plan, make the changes and run the platform if you need it.',
           },
         ],
       },
@@ -762,7 +762,7 @@ export const pages: ContentPage[] = [
           },
           {
             q: 'Can you help after the deal?',
-            a: 'Yes. The same team can design and deliver the remediation, and run the platform if you need it.',
+            a: 'Yes. We can design and deliver the remediation, and run the platform if you need it.',
           },
         ],
       },

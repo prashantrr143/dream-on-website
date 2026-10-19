@@ -10,7 +10,7 @@ import { SECONDARY_CTA } from '@/lib/cta'
 
 const COMMITMENTS = [
   'Scoped first step',
-  'One in-house team',
+  'Senior engineers on the work',
   'Your code, your accounts',
   'Your data stays yours',
 ]
@@ -23,7 +23,7 @@ export function HowWeWorkHome() {
         <div className="ys-how-intro">
           <div>
             <p className="ys-eyebrow">How we work</p>
-            <h2 id="home-how">Five stages. One team. No handovers.</h2>
+            <h2 id="home-how">Five stages. A clear decision at each one.</h2>
           </div>
           <a href="/who-we-are/how-we-work" className="ys-link ys-how-link">
             See our delivery model

@@ -9,7 +9,7 @@ export const pages: ContentPage[] = [
     meta: {
       title: 'IT services and applied AI | YatiSphere',
       description:
-        'Cloud, software, data, security and consulting, delivered end to end by one in-house team, with governed AI built in where it pays.',
+        'Cloud, software, data, security and consulting, built and run by senior engineers, with governed AI where it pays.',
     },
     hero: {
       kicker: 'WHAT WE DO',

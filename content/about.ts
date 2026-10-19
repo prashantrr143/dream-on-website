@@ -34,8 +34,8 @@ export const principles = [
     body: 'The decisions that are expensive to reverse are made deliberately, early, and with the people who will operate the result.',
   },
   {
-    title: 'One accountable team',
-    body: 'The people who advise you are the people who build and run what we deliver. No handovers, no rotating strangers.',
+    title: 'Senior people on the work',
+    body: 'Senior engineers lead and do the work, from design to production.',
   },
   {
     title: 'Governed AI, or no AI',
@@ -69,8 +69,8 @@ export const experience = [
 
 export const howWeWork = [
   {
-    title: 'Senior and in-house',
-    body: 'Every engagement is led and delivered by senior people employed by YatiSphere.',
+    title: 'Senior-led',
+    body: 'Every engagement is led by senior engineers.',
   },
   {
     title: 'Built in your accounts',

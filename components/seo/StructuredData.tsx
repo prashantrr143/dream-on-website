@@ -39,7 +39,7 @@ export function OrganizationSchema() {
     logo: `${SITE_URL}/brand/yatisphere/icon/yatisphere-icon-512.png`,
     image: `${SITE_URL}/brand/yatisphere/social/og-image.jpg`,
     description:
-      'IT services and applied AI for growing companies and regulated enterprises worldwide: cloud, software, data, security and consulting from one in-house team, with governed AI built in where it pays.',
+      'IT services and applied AI for growing companies and regulated enterprises worldwide: cloud, software, data, security and consulting from senior engineers, with governed AI built in where it pays.',
     slogan: 'Enterprise IT, built properly. AI where it pays.',
     email: SITE_CONTACT.email,
     foundingDate: '2025-12-22',

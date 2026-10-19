@@ -69,13 +69,13 @@ export const ROUTE_META: Record<string, RouteMeta> = {
   '/': {
     title: 'IT services and applied AI, built properly | YatiSphere',
     description:
-      'Cloud, software, data and security for growing companies and regulated enterprises, from one in-house team, with governed AI where it pays.',
+      'Cloud, software, data and security for growing companies and regulated enterprises, built and run by senior engineers, with governed AI where it pays.',
   },
 
   '/who-we-are/how-we-work': {
     title: 'How we work | YatiSphere',
     description:
-      'Discover, design, build, launch and run. Five stages, one in-house team, and an agreed plan before any build begins.',
+      'Discover, design, build, launch and run. Five stages, senior engineers, and an agreed plan before any build begins.',
   },
   '/who-we-are/about': {
     title: 'About YatiSphere: our vision, principles and people',

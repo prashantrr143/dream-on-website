@@ -36,8 +36,8 @@ export default function HowWeWorkContent() {
     <SharedLayout>
       <PageHero
         eyebrow="How we work"
-        title="One team, from first conversation to running system."
-        lede="Our delivery team is fully in-house. The people who scope your solution are the people who build it, launch it and stay to run it."
+        title="From first conversation to running system."
+        lede="Senior engineers lead every stage. You decide at each step whether to continue with us or take it in-house."
         primaryCta={{ label: PRIMARY_CTA.label, href: PRIMARY_CTA.href }}
       />
 
@@ -46,7 +46,7 @@ export default function HowWeWorkContent() {
         id="delivery"
         tone="light"
         eyebrow="Delivery model"
-        title="Five stages. No handovers."
+        title="Five stages. A clear decision at each one."
         lede="Every engagement follows the same path. The depth of each stage changes with the size and risk of the work; the order does not."
       >
         <DeliveryStages />

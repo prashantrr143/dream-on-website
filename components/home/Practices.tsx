@@ -64,7 +64,7 @@ export function Practices() {
       <div className="enterprise-container-wide">
         <div className="ys-practices-intro">
           <p className="ys-eyebrow">What we do</p>
-          <h2 id="home-practices">Two practices. One accountable team.</h2>
+          <h2 id="home-practices">Two practices. IT first, AI where it pays.</h2>
         </div>
 
         <div className="ys-practices-grid">

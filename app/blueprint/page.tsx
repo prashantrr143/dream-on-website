@@ -42,7 +42,7 @@ const FAQ = [
   },
   {
     q: 'Who does the work?',
-    a: 'The same in-house team that would build it. The people who scope your solution are the people who build it, launch it and stay to run it.',
+    a: 'Senior engineers who have built and run systems like yours. You can take the Blueprint to any team, or ask us to build it.',
   },
   {
     q: 'What happens to our data during the Blueprint?',

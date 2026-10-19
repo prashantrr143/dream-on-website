@@ -19,7 +19,7 @@ const reachOutScenarios = [
   "You're planning or modernizing a critical software, cloud or AI system",
   'You want a second opinion on architecture, delivery or risk',
   "You're operating in a regulated or security-sensitive environment",
-  "You're looking for one accountable team, not a quick build",
+  "You want it built properly, not just built fast",
 ]
 
 const contactChannels = [

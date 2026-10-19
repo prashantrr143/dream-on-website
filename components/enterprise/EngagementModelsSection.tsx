@@ -23,7 +23,7 @@ const models: EngagementModel[] = [
   {
     title: "Project delivery",
     fit: "Defined outcome \u00b7 milestones",
-    body: "A defined outcome, delivered end-to-end, with one team accountable for the result.",
+    body: "A defined outcome, delivered end to end against agreed milestones.",
   },
   {
     title: "Dedicated teams",

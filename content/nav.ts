@@ -92,7 +92,7 @@ export const NAV_TREE: NavItem[] = [
     },
     intro: {
       heading: 'Enterprise IT, built properly. AI where it pays.',
-      body: 'Cloud, software, data and security, delivered by one senior in-house team, with AI built in where it earns its place.',
+      body: 'Cloud, software, data and security, built and run by senior engineers, with AI where it earns its place.',
       link: { label: 'Talk to us', href: '/contact-us' },
     },
     groups: [
@@ -188,7 +188,7 @@ export const NAV_TREE: NavItem[] = [
     overviewHref: '/insights',
     intro: {
       heading: 'Insights',
-      body: 'Perspectives on cloud, AI and governance from the people who build it.',
+      body: 'Perspectives on cloud, AI and governance from engineers who build it.',
       link: { label: 'Read the latest', href: '/insights' },
     },
     groups: [

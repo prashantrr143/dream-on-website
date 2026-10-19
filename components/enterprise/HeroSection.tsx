@@ -11,7 +11,7 @@ import { HeroVisual } from '@/components/brand/HeroVisual'
  */
 
 const PROOF = [
-  'One in-house team',
+  'Senior engineers',
   'Scoped first step',
   'Your code, your accounts',
 ]
@@ -22,7 +22,7 @@ const BOARD: { label: string; meta: string; state: 'done' | 'active' | 'next' }[
   { label: 'Landing zone live', meta: 'Your account, your region', state: 'done' },
   { label: 'Core API modernization', meta: 'Sprint 4 of 6', state: 'active' },
   { label: 'Onboarding agent', meta: 'Evaluation passed', state: 'active' },
-  { label: 'Run and improve', meta: 'Same team', state: 'next' },
+  { label: 'Run and improve', meta: 'Monitored and improved', state: 'next' },
 ]
 
 function EngagementBoard() {

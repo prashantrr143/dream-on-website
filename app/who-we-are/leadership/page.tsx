@@ -115,10 +115,10 @@ export default function LeadershipPage() {
           <div>
             <p className="ys-ldr-kicker" style={{ marginBottom: 12 }}>How we work</p>
             <h2 id="ldr-teaser-title" className="ys-ldr-teaser-title">
-              One accountable team, from advice to operations
+              How we take work from advice to operations
             </h2>
             <p className="ys-ldr-summary">
-              The people who advise you are the people who build and run what we deliver.
+              Five stages, a scoped first step, and your code in your accounts from day one.
             </p>
             <a href="/who-we-are/how-we-work" className="ys-ldr-more" aria-label="Read more about how we work">
               <span aria-hidden="true">Read more</span>
