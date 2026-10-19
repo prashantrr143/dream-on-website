@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { IBM_Plex_Sans, IBM_Plex_Mono } from 'next/font/google'
+import localFont from 'next/font/local'
 import './globals.css'
 import { socialMeta } from '@/lib/seo'
 import { AsyncErrorBoundary } from '@/components/async-error-boundary'
@@ -20,20 +20,30 @@ import {
  * (next/font adds a size-adjusted local fallback, so the swap does not
  * shift layout). Plex Mono is loaded for code snippets and labels inside
  * technical diagrams only.
+ *
+ * Self-hosted from app/fonts (Fontsource 5.3.0, SIL Open Font License).
+ * next/font/google downloads the files at build time, and a failed
+ * download from Google failed the whole Vercel build (2026-10-19), so the
+ * build no longer depends on the network.
  */
-const ibmPlexSans = IBM_Plex_Sans({
-  subsets: ['latin'],
+const ibmPlexSans = localFont({
+  src: [
+    { path: './fonts/ibm-plex-sans-latin-300-normal.woff2', weight: '300', style: 'normal' },
+    { path: './fonts/ibm-plex-sans-latin-400-normal.woff2', weight: '400', style: 'normal' },
+    { path: './fonts/ibm-plex-sans-latin-500-normal.woff2', weight: '500', style: 'normal' },
+    { path: './fonts/ibm-plex-sans-latin-600-normal.woff2', weight: '600', style: 'normal' },
+  ],
   variable: '--font-sans',
   display: 'swap',
-  weight: ['300', '400', '500', '600'],
+  fallback: ['system-ui', 'Segoe UI', 'Arial', 'sans-serif'],
 })
 
-const ibmPlexMono = IBM_Plex_Mono({
-  subsets: ['latin'],
+const ibmPlexMono = localFont({
+  src: [{ path: './fonts/ibm-plex-mono-latin-400-normal.woff2', weight: '400', style: 'normal' }],
   variable: '--font-mono',
   display: 'swap',
-  weight: ['400'],
   preload: false,
+  fallback: ['ui-monospace', 'Menlo', 'Consolas', 'monospace'],
 })
 
 // Same positioning as the home page (lib/seo.ts '/').
