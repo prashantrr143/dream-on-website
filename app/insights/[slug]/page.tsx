@@ -5,12 +5,26 @@ import { PageHero, PageSection, PageCTA } from '@/components/enterprise'
 import { SITE_URL, SITE_NAME, socialMeta } from '@/lib/seo'
 import { visibleArticles, getVisibleArticle } from '@/lib/insights'
 import { PRIMARY_CTA, SECONDARY_CTA } from '@/lib/cta'
+import { ArrowRight } from 'lucide-react'
+import { ArticleToc } from '@/components/insights/ArticleToc'
 
 /** Only visible articles get pages; drafts exist only in preview builds. */
 export const dynamicParams = false
 
 export function generateStaticParams() {
   return visibleArticles.map((a) => ({ slug: a.slug }))
+}
+
+/** Stable, unique anchors from section headings. */
+function sectionIds(headings: (string | undefined)[]): string[] {
+  const seen = new Map<string, number>()
+  return headings.map((h) => {
+    if (!h) return ''
+    const base = h.toLowerCase().normalize('NFKD').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 60) || 'section'
+    const n = (seen.get(base) ?? 0) + 1
+    seen.set(base, n)
+    return n === 1 ? base : `${base}-${n}`
+  })
 }
 
 const longDate = (iso: string) =>
@@ -42,6 +56,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
   const a = getVisibleArticle((await params).slug)
   if (!a) notFound()
+
+  const ids = sectionIds(a.sections.map((x) => x.heading))
+  const toc = a.sections
+    .map((x, i) => (x.heading ? { id: ids[i]!, label: x.heading } : null))
+    .filter((x): x is { id: string; label: string } => x !== null)
+  if (a.sources.length > 0) toc.push({ id: 'sources', label: 'Sources' })
 
   const schema =
     a.status === 'published'
@@ -75,77 +95,83 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
       </PageHero>
 
       <PageSection tone="white">
-        <article style={{ maxWidth: '70ch' }}>
-          <p style={{ fontSize: 14, color: 'var(--ink-600)', marginBottom: 28 }}>
-            {a.author} · {a.readTime}
-            {a.publishedAt && <> · Published {longDate(a.publishedAt)}</>}
-            {' · '}Facts checked {longDate(a.reviewedAt)}
-          </p>
+        <div className="ys-art-layout">
+          {/* Details first in the DOM, so small screens see them before the text. */}
+          <aside className="ys-art-aside" aria-label="About this article">
+            <dl className="ys-art-meta">
+              <div><dt>Written by</dt><dd>{a.author}</dd></div>
+              <div><dt>Reading time</dt><dd>{a.readTime}</dd></div>
+              {a.publishedAt && <div><dt>Published</dt><dd>{longDate(a.publishedAt)}</dd></div>}
+              <div><dt>Facts checked</dt><dd>{longDate(a.reviewedAt)}</dd></div>
+            </dl>
+            <div className="ys-art-cta">
+              <p className="ys-art-cta-kicker">{a.category}</p>
+              <p className="ys-art-cta-title">Working on this now?</p>
+              <p className="ys-art-cta-body">A senior engineer replies within one working day.</p>
+              <a href={PRIMARY_CTA.href} className="ys-cta-primary inline-flex items-center gap-2">
+                {PRIMARY_CTA.label}
+                <ArrowRight className="w-4 h-4 shrink-0" strokeWidth={2.5} aria-hidden="true" />
+              </a>
+            </div>
+          </aside>
 
-          {a.sections.map((section, i) => (
-            <section key={i} style={{ marginBottom: 32 }}>
-              {section.heading && (
-                <h2 style={{ fontSize: 'clamp(22px, 2.4vw, 26px)', lineHeight: 1.3, color: 'var(--ink-900)', marginBottom: 14 }}>
-                  {section.heading}
-                </h2>
-              )}
-              {section.paragraphs.map((p, j) => (
-                <p key={j} style={{ fontSize: 17, lineHeight: 1.75, color: 'var(--ink-900)', marginBottom: 16 }}>
-                  {p}
+          <ArticleToc items={toc} />
+
+          <article className="ys-art">
+            {a.sections.map((section, i) => (
+              <section key={i} id={section.heading ? ids[i] : undefined}>
+                {section.heading && <h2>{section.heading}</h2>}
+                {section.paragraphs.map((p, j) => (
+                  <p key={j}>{p}</p>
+                ))}
+                {section.bullets && (
+                  <ul>
+                    {section.bullets.map((b, j) => (
+                      <li key={j}>{b}</li>
+                    ))}
+                  </ul>
+                )}
+              </section>
+            ))}
+
+            {a.sources.length > 0 && (
+              <section id="sources" aria-labelledby="sources-heading" className="ys-art-sources">
+                <h2 id="sources-heading" className="ys-eyebrow">Sources</h2>
+                <ol>
+                  {a.sources.map((s) => (
+                    <li key={s.url}>
+                      <a href={s.url} className="ys-link" target="_blank" rel="noopener noreferrer">
+                        {s.title}
+                      </a>
+                      {' — '}
+                      {s.publisher}
+                    </li>
+                  ))}
+                </ol>
+                <p>
+                  This article is general information, not legal or regulatory advice. Rules and products change; check the
+                  sources for the current position.
                 </p>
-              ))}
-              {section.bullets && (
-                <ul style={{ paddingLeft: 22, marginBottom: 16, listStyle: 'disc' }}>
-                  {section.bullets.map((b, j) => (
-                    <li key={j} style={{ fontSize: 17, lineHeight: 1.7, color: 'var(--ink-900)', marginBottom: 8 }}>
-                      {b}
+              </section>
+            )}
+
+            {a.related.length > 0 && (
+              <nav aria-label="Related" className="ys-art-related">
+                <h2 className="ys-eyebrow">Related</h2>
+                <ul>
+                  {a.related.map((r) => (
+                    <li key={r.href}>
+                      <a href={r.href}>
+                        {r.label}
+                        <ArrowRight className="w-4 h-4 shrink-0" strokeWidth={2.25} aria-hidden="true" />
+                      </a>
                     </li>
                   ))}
                 </ul>
-              )}
-            </section>
-          ))}
-
-          {a.sources.length > 0 && (
-            <section aria-labelledby="sources-heading" style={{ borderTop: '1px solid var(--grey-200)', paddingTop: 24, marginTop: 40 }}>
-              <h2 id="sources-heading" className="ys-eyebrow" style={{ marginBottom: 14 }}>
-                Sources
-              </h2>
-              <ol style={{ paddingLeft: 22, listStyle: 'decimal' }}>
-                {a.sources.map((s) => (
-                  <li key={s.url} style={{ fontSize: 14, lineHeight: 1.6, color: 'var(--ink-600)', marginBottom: 8 }}>
-                    <a href={s.url} className="ys-link" style={{ fontSize: 14 }} target="_blank" rel="noopener noreferrer">
-                      {s.title}
-                    </a>
-                    {' — '}
-                    {s.publisher}
-                  </li>
-                ))}
-              </ol>
-              <p style={{ marginTop: 16, fontSize: 14, color: 'var(--ink-600)' }}>
-                This article is general information, not legal or regulatory advice. Rules and products change; check the
-                sources for the current position.
-              </p>
-            </section>
-          )}
-
-          {a.related.length > 0 && (
-            <nav aria-label="Related" style={{ marginTop: 32 }}>
-              <h2 className="ys-eyebrow" style={{ marginBottom: 12 }}>
-                Related
-              </h2>
-              <ul style={{ display: 'flex', flexWrap: 'wrap', gap: '8px 24px', listStyle: 'none', padding: 0 }}>
-                {a.related.map((r) => (
-                  <li key={r.href}>
-                    <a href={r.href} className="ys-link">
-                      {r.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-          )}
-        </article>
+              </nav>
+            )}
+          </article>
+        </div>
       </PageSection>
 
       <PageCTA

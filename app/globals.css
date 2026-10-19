@@ -3733,3 +3733,103 @@ textarea.ys-input { resize: vertical; min-height: 110px; line-height: 1.55; }
   .ys-hww-models li, .ys-hww-models li::before, .ys-sj-next svg, .ys-hww-more svg { transition: none; }
   .ys-hww-principles li:hover, .ys-hww-models li:hover, .ys-sj-item.is-active .ys-sj-node { transform: none; }
 }
+
+/* ==========================================================================
+   Insights article layout (2026-10-19). Contents | text | details.
+   The text keeps a readable measure; the side columns use the width
+   that used to sit empty.
+   ========================================================================== */
+.ys-art-layout {
+  display: grid; grid-template-columns: minmax(0, 1fr); gap: 28px;
+  grid-template-areas: "aside" "toc" "article";
+  align-items: start;
+}
+@media (min-width: 1024px) {
+  .ys-art-layout {
+    grid-template-columns: 220px minmax(0, 1fr);
+    grid-template-areas: "toc aside" "toc article";
+    column-gap: clamp(40px, 5vw, 72px); row-gap: 36px;
+  }
+}
+@media (min-width: 1240px) {
+  .ys-art-layout {
+    grid-template-columns: 220px minmax(0, 46rem) 280px;
+    grid-template-areas: "toc article aside";
+    justify-content: space-between;
+  }
+}
+.ys-art-toc { grid-area: toc; min-width: 0; }
+.ys-art { grid-area: article; min-width: 0; max-width: 46rem; }
+.ys-art-aside { grid-area: aside; min-width: 0; display: grid; gap: 20px; }
+@media (min-width: 1024px) { .ys-art-toc, .ys-art-aside { position: sticky; top: 104px; } }
+@media (min-width: 1024px) and (max-width: 1239px) {
+  .ys-art-aside { position: static; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+}
+
+/* Contents */
+.ys-art-toc-desktop { display: none; }
+@media (min-width: 1024px) {
+  .ys-art-toc-mobile { display: none; }
+  .ys-art-toc-desktop { display: block; max-height: calc(100vh - 136px); overflow-y: auto; }
+}
+.ys-art-toc-title { margin-bottom: 12px; font-size: 13px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-600); }
+.ys-art-toc ol { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; border-left: 1px solid var(--grey-200); }
+.ys-art-toc a {
+  display: flex; gap: 10px; margin-left: -1px; padding: 8px 0 8px 14px; border-left: 2px solid transparent;
+  font-size: 14px; line-height: 1.4; color: var(--ink-600); text-decoration: none;
+  transition: color 150ms ease-out, border-color 150ms ease-out;
+}
+.ys-art-toc a span { flex: none; font-variant-numeric: tabular-nums; font-size: 12px; padding-top: 1px; color: var(--ink-600); }
+.ys-art-toc a:hover { color: var(--ink-900); }
+.ys-art-toc a[aria-current] { color: var(--blue-600); font-weight: 600; border-left-color: var(--amber-500); }
+.ys-art-toc a[aria-current] span { color: var(--blue-600); }
+.ys-art-toc a:focus-visible { outline: 2px solid var(--blue-600); outline-offset: -2px; }
+.ys-art-toc-mobile { border: 1px solid var(--grey-200); border-radius: var(--radius-md); background: var(--grey-50); }
+.ys-art-toc-mobile summary { padding: 14px 16px; cursor: pointer; font-size: 14px; font-weight: 600; color: var(--ink-900); }
+.ys-art-toc-mobile ol { margin: 0 16px 14px; }
+
+/* Text */
+.ys-art section { margin-bottom: 36px; scroll-margin-top: 104px; }
+.ys-art h2 { margin-bottom: 14px; font-size: clamp(22px, 2.4vw, 26px); line-height: 1.3; letter-spacing: -0.015em; color: var(--ink-900); }
+.ys-art p, .ys-art li { font-size: 17.5px; line-height: 1.75; color: var(--ink-900); }
+.ys-art p { margin-bottom: 16px; }
+.ys-art section > ul { margin: 0 0 16px; padding-left: 22px; list-style: disc; }
+.ys-art section > ul li { margin-bottom: 8px; }
+.ys-art section > ul li::marker { color: var(--blue-600); }
+.ys-art-sources { margin-top: 44px; padding-top: 24px; border-top: 1px solid var(--grey-200); }
+.ys-art-sources h2 { margin-bottom: 14px; }
+.ys-art-sources ol { padding-left: 22px; list-style: decimal; }
+.ys-art-sources li { margin-bottom: 8px; font-size: 14px; line-height: 1.6; color: var(--ink-600); }
+.ys-art-sources .ys-link { font-size: 14px; }
+.ys-art-sources > p { margin-top: 16px; font-size: 14px; line-height: 1.6; color: var(--ink-600); }
+.ys-art-related { margin-top: 36px; }
+.ys-art-related h2 { margin-bottom: 12px; }
+.ys-art-related ul { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--grey-200); }
+.ys-art-related a {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 0;
+  border-bottom: 1px solid var(--grey-200); font-size: 16px; font-weight: 500; color: var(--ink-900); text-decoration: none;
+}
+.ys-art-related a:hover { color: var(--blue-600); }
+.ys-art-related a svg { color: var(--blue-600); transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1); }
+.ys-art-related a:hover svg { transform: translateX(4px); }
+
+/* Details and CTA */
+.ys-art-meta { margin: 0; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px 20px; padding: 20px; border: 1px solid var(--grey-200); border-radius: var(--radius-md); background: var(--grey-50); }
+.ys-art-meta dt { font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-600); }
+.ys-art-meta dd { margin: 4px 0 0; font-size: 15px; line-height: 1.4; color: var(--ink-900); }
+.ys-art-cta { position: relative; overflow: hidden; padding: 22px; border-radius: var(--radius-md); background: var(--navy-950); color: var(--ink-300); }
+.ys-art-cta::before { content: ''; position: absolute; inset: 0 0 auto 0; height: 3px; background: var(--amber-500); }
+.ys-art-cta-kicker { font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--amber-500); }
+.ys-art-cta-title { margin-top: 8px; font-size: 19px; font-weight: 600; letter-spacing: -0.015em; color: var(--white); }
+.ys-art-cta-body { margin: 6px 0 16px; font-size: 14.5px; line-height: 1.55; color: var(--ink-300); }
+@media (max-width: 1023px) { .ys-art-cta { display: none; } }
+@media (prefers-reduced-motion: reduce) { .ys-art-toc a, .ys-art-related a svg { transition: none; } }
+
+/* Short statement pages (accessibility): text plus a sticky contact card,
+   instead of a narrow column pinned left with the right half empty. */
+.ys-statement-layout { display: grid; grid-template-columns: minmax(0, 1fr); gap: 32px; align-items: start; }
+@media (min-width: 1024px) {
+  .ys-statement-layout { grid-template-columns: minmax(0, 46rem) 300px; justify-content: space-between; }
+  .ys-statement-aside { position: sticky; top: 104px; }
+}
+.ys-statement-layout .ys-statement-aside { display: block; }

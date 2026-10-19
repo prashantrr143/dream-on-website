@@ -63,7 +63,7 @@ interface SharedLayoutProps {
 
 export default function SharedLayout({ children, className = "", hideFooter = false, hideNav = false }: SharedLayoutProps) {
   return (
-    <div className="min-h-screen w-full overflow-x-hidden bg-background">
+    <div className="min-h-screen w-full overflow-x-clip bg-background">
       {/* Navigation */}
       {!hideNav && <SiteHeader />}
 
