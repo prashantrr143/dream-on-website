@@ -93,6 +93,7 @@ export const pages: ContentPage[] = [
           { label: 'Financial services', href: '/what-we-do/industries/financial-services', descriptor: 'Banks, insurers, wealth managers and fintechs' },
           { label: 'Legal & professional services', href: '/what-we-do/industries/legal-professional-services', descriptor: 'Law firms and advisory practices' },
           { label: 'Software & SaaS', href: '/what-we-do/industries/software-saas', descriptor: 'Product companies selling to the enterprise' },
+          { label: 'All industries', href: '/what-we-do/industries', descriptor: 'How we work in each sector' },
         ],
       },
     ],
