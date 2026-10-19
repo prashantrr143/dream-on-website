@@ -3833,3 +3833,100 @@ textarea.ys-input { resize: vertical; min-height: 110px; line-height: 1.55; }
   .ys-statement-aside { position: sticky; top: 104px; }
 }
 .ys-statement-layout .ys-statement-aside { display: block; }
+
+/* ==========================================================================
+   Responsible AI (redesign, 2026-10-19). Reuses the How we work band and
+   icon tiles; everything else on existing tokens.
+   ========================================================================== */
+.ys-rai-commit { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; }
+@media (min-width: 640px) { .ys-rai-commit { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1100px) { .ys-rai-commit { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.ys-rai-commit a {
+  position: relative; overflow: hidden; display: flex; flex-direction: column; height: 100%; padding: 26px;
+  background: var(--white); border: 1px solid var(--grey-200); border-radius: var(--radius-md); text-decoration: none;
+  transition: transform 280ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 280ms ease, border-color 280ms ease;
+}
+.ys-rai-commit a::before { content: ''; position: absolute; inset: 0 0 auto 0; height: 3px; background: var(--amber-500); transform: scaleX(0); transform-origin: left; transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1); }
+.ys-rai-commit a:hover, .ys-rai-commit a:focus-visible { transform: translateY(-4px); box-shadow: 0 18px 40px -18px rgb(10 22 40 / 0.30); border-color: rgb(31 79 191 / 0.35); }
+.ys-rai-commit a:hover::before, .ys-rai-commit a:focus-visible::before { transform: scaleX(1); }
+.ys-rai-commit a:focus-visible { outline: 2px solid var(--blue-600); outline-offset: 3px; }
+.ys-rai-commit-title { margin-top: 20px; font-size: 18px; font-weight: 600; letter-spacing: -0.015em; line-height: 1.3; color: var(--ink-900); }
+.ys-rai-commit-body { flex: 1; margin-top: 8px; font-size: 15.5px; line-height: 1.6; color: var(--ink-600); }
+.ys-rai-commit .ys-card-more { margin-top: 18px; }
+.ys-rai-commit .ys-card-more svg { transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1); }
+.ys-rai-commit a:hover .ys-card-more svg { transform: translateX(4px); }
+.ys-rai-scope { margin-top: 24px; font-size: 14.5px; line-height: 1.6; color: var(--ink-600); max-width: 78ch; }
+
+/* Red lines (navy band) */
+.ys-rai-band-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px 48px; }
+.ys-rai-band-head h2 { margin-top: 12px; color: var(--white); }
+.ys-rai-band-head > p { max-width: 44ch; font-size: 16.5px; line-height: 1.6; color: var(--ink-300); }
+.ys-rai-lines { list-style: none; margin: clamp(28px, 4vw, 44px) 0 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: 1px; background: var(--rule-navy); border: 1px solid var(--rule-navy); border-radius: var(--radius-md); overflow: hidden; }
+@media (min-width: 640px) { .ys-rai-lines { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1100px) { .ys-rai-lines { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.ys-rai-lines li { padding: 26px; background: var(--navy-950); transition: background-color 200ms ease; }
+.ys-rai-lines li:hover { background: var(--navy-900); }
+.ys-rai-x { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; border: 1.5px solid var(--amber-500); color: var(--amber-500); }
+.ys-rai-x svg { width: 16px; height: 16px; }
+.ys-rai-lines h3 { margin: 16px 0 6px; font-size: 17px; font-weight: 600; letter-spacing: -0.015em; color: var(--white); }
+.ys-rai-lines p { font-size: 15px; line-height: 1.6; color: var(--ink-300); }
+.ys-rai-band-note { display: flex; align-items: center; gap: 10px; margin-top: 20px; font-size: 14.5px; color: var(--ink-400); }
+.ys-rai-band-note svg { color: var(--amber-500); }
+
+/* Controls at each stage */
+.ys-rai-controls { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; counter-reset: none; }
+@media (min-width: 720px) { .ys-rai-controls { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1200px) { .ys-rai-controls { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.ys-rai-controls > li { position: relative; display: flex; flex-direction: column; padding: 26px; background: var(--white); border: 1px solid var(--grey-200); border-radius: var(--radius-md); }
+@media (min-width: 1200px) {
+  .ys-rai-controls > li:not(:last-child)::after {
+    content: ''; position: absolute; z-index: 1; top: 42px; right: -15px; width: 10px; height: 10px;
+    transform: rotate(45deg); background: var(--white); border-top: 2px solid var(--blue-600); border-right: 2px solid var(--blue-600);
+  }
+}
+.ys-rai-controls-head { display: flex; align-items: center; gap: 12px; }
+.ys-rai-step { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: var(--blue-600); color: var(--white); font-size: 13px; font-weight: 600; }
+.ys-rai-stage { font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-600); }
+.ys-rai-controls h3 { margin: 16px 0 12px; font-size: 19px; font-weight: 600; letter-spacing: -0.015em; color: var(--ink-900); }
+.ys-rai-controls ul, .ys-rai-panel ul, .ys-rai-list ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.ys-rai-controls ul li, .ys-rai-panel li, .ys-rai-list li { display: flex; gap: 10px; font-size: 15px; line-height: 1.55; color: var(--ink-900); }
+.ys-rai-controls ul li svg, .ys-rai-panel li svg, .ys-rai-list li svg { flex: none; width: 16px; height: 16px; margin-top: 3px; color: var(--blue-600); }
+.ys-rai-controls ul { flex: 1; align-content: start; }
+.ys-rai-evidence { display: flex; gap: 10px; margin-top: 20px; padding: 14px; background: var(--grey-50); border-left: 3px solid var(--amber-500); border-radius: var(--radius-sm); font-size: 14.5px; line-height: 1.45; color: var(--ink-900); }
+.ys-rai-evidence svg { flex: none; width: 18px; height: 18px; color: var(--blue-600); }
+.ys-rai-evidence-label { display: block; margin-bottom: 2px; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-600); }
+
+/* Data and models, accountability */
+.ys-rai-two { display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; }
+@media (min-width: 900px) { .ys-rai-two { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.ys-rai-panel { display: flex; flex-direction: column; gap: 18px; padding: clamp(24px, 3vw, 36px); background: var(--grey-50); border: 1px solid var(--grey-200); border-radius: var(--radius-md); }
+.ys-rai-panel:first-child { background: var(--navy-950); border-color: var(--navy-950); }
+.ys-rai-panel-kicker { font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-600); }
+.ys-rai-panel:first-child .ys-rai-panel-kicker { color: var(--amber-500); }
+.ys-rai-panel-lead { font-size: clamp(18px, 1.7vw, 21px); font-weight: 600; line-height: 1.4; letter-spacing: -0.015em; color: var(--ink-900); }
+.ys-rai-panel:first-child .ys-rai-panel-lead, .ys-rai-panel:first-child li { color: var(--white); }
+.ys-rai-panel:first-child li svg { color: var(--amber-500); }
+.ys-rai-panel:first-child .ys-link { color: var(--blue-300); align-self: flex-start; }
+.ys-rai-list { padding: clamp(24px, 3vw, 32px); border: 1px solid var(--grey-200); border-radius: var(--radius-md); }
+.ys-rai-list h3 { margin-bottom: 16px; font-size: 18px; font-weight: 600; letter-spacing: -0.015em; color: var(--ink-900); }
+
+/* Frameworks */
+.ys-rai-frameworks { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; }
+@media (min-width: 640px) { .ys-rai-frameworks { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1100px) { .ys-rai-frameworks { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
+.ys-rai-frameworks li { padding: 22px; background: var(--white); border: 1px solid var(--grey-200); border-top: 3px solid var(--blue-600); border-radius: var(--radius-md); }
+.ys-rai-frameworks h3 { font-size: 16px; font-weight: 600; color: var(--ink-900); }
+.ys-rai-frameworks p { margin-top: 8px; font-size: 14.5px; line-height: 1.55; color: var(--ink-600); }
+.ys-rai-disclaimer { display: flex; align-items: center; gap: 10px; margin-top: 20px; font-size: 14.5px; color: var(--ink-600); }
+.ys-rai-disclaimer svg { color: var(--blue-600); }
+
+/* Concern */
+.ys-rai-concern { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 16px 20px; align-items: start; margin-top: 24px; padding: clamp(22px, 3vw, 30px); background: var(--grey-50); border: 1px solid var(--grey-200); border-radius: var(--radius-md); }
+.ys-rai-concern h3 { font-size: 18px; font-weight: 600; color: var(--ink-900); }
+.ys-rai-concern p { margin-top: 6px; font-size: 15.5px; line-height: 1.6; color: var(--ink-600); }
+.ys-rai-updated { grid-column: 1 / -1; font-size: 13.5px !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  .ys-rai-commit a, .ys-rai-commit a::before, .ys-rai-commit .ys-card-more svg, .ys-rai-lines li { transition: none; }
+  .ys-rai-commit a:hover, .ys-rai-commit a:focus-visible { transform: none; }
+}
