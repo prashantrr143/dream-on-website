@@ -19,8 +19,8 @@ export default function AboutUs() {
     <SharedLayout>
       <PageHero
         eyebrow="WHO WE ARE / ABOUT"
-        title="Engineers of trusted systems"
-        lede="A senior team of consultants and engineers who have built and run systems for global banks, consultancies and governments."
+        title="A small, senior firm for systems that have to be trusted"
+        lede="Consultants and engineers who have built and run systems for global banks, consultancies and governments, now doing the same for growing companies and regulated enterprises."
         primaryCta={{ label: PRIMARY_CTA.label, href: PRIMARY_CTA.href }}
         visual="network"
       />
@@ -73,7 +73,6 @@ export default function AboutUs() {
         <div className="enterprise-container-wide">
           <div className="ys-about-split">
             <div>
-              <p className="ys-eyebrow">What we stand for</p>
               <h2 id="principles-heading">Four principles we do not trade away</h2>
             </div>
             <ol className="ys-about-principles">
@@ -118,7 +117,6 @@ export default function AboutUs() {
         <div className="enterprise-container-wide">
           <div className="ys-about-split">
             <div>
-              <p className="ys-eyebrow">How we work</p>
               <h2 id="how-heading">A small firm, by design</h2>
               <a href="/who-we-are/how-we-work" className="ys-link ys-about-inline-link">
                 See how an engagement runs <ArrowRight className="w-3.5 h-3.5 inline" strokeWidth={2.5} aria-hidden="true" />
@@ -141,7 +139,6 @@ export default function AboutUs() {
         <div className="enterprise-container-wide">
           <div className="ys-about-section-head">
             <div>
-              <p className="ys-eyebrow">Leadership</p>
               <h2 id="leadership-heading">The people accountable for your work</h2>
             </div>
             <a href="/who-we-are/leadership" className="ys-link">
@@ -177,7 +174,6 @@ export default function AboutUs() {
       {/* 6. Accountability */}
       <section className="ys-section-light" aria-labelledby="accountability-heading">
         <div className="enterprise-container-wide">
-          <p className="ys-eyebrow">Accountability</p>
           <h2 id="accountability-heading" style={{ marginBottom: 'clamp(20px, 3vw, 32px)' }}>
             What you can hold us to
           </h2>

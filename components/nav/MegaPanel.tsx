@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
+import { motion, useIsPresent } from 'framer-motion'
 import { ArrowRight, ChevronRight } from 'lucide-react'
 import { HeroVisual } from '@/components/brand/HeroVisual'
 import type { NavGroup, NavPanel } from '@/lib/nav'
@@ -39,12 +40,25 @@ export function MegaPanel({
   regionId,
   introRef,
   onNavigate,
+  stagger = false,
 }: {
   panel: NavPanel
   regionId: string
   introRef: React.RefObject<HTMLDivElement | null>
   onNavigate: (group: string | null, label: string, href: string) => void
+  /** Columns rise in one after another (first open only, never on switch). */
+  stagger?: boolean
 }) {
+  // While sliding out after a switch, this copy is inert: no focus, no hover.
+  const present = useIsPresent()
+  const col = (i: number) =>
+    stagger
+      ? {
+          initial: { opacity: 0, y: 6 },
+          animate: { opacity: 1, y: 0 },
+          transition: { duration: 0.22, delay: 0.05 + i * 0.035, ease: [0.22, 1, 0.36, 1] as const },
+        }
+      : { initial: false as const }
   const [active, setActive] = useState<number | null>(null)
   const listRef = useRef<HTMLUListElement>(null)
   const cRef = useRef<HTMLDivElement>(null)
@@ -54,6 +68,8 @@ export function MegaPanel({
 
   // Opening another panel resets the group selection.
   useEffect(() => setActive(null), [panel.id])
+  // A copy sliding out must not keep a group switch pending.
+  useEffect(() => { if (!present && timer.current) clearTimeout(timer.current) }, [present])
   useEffect(() => () => { if (timer.current) clearTimeout(timer.current) }, [])
 
   const activate = useCallback(
@@ -116,9 +132,13 @@ export function MegaPanel({
   const featured = panel.featured
 
   return (
-    <div className="ys-hdr-container ys-mega-inner">
+    <div className="ys-hdr-container ys-mega-inner" inert={!present} aria-hidden={present ? undefined : true}>
       {/* A — intro */}
-      <div className="ys-mega-a" ref={introRef}>
+      <motion.div
+        className="ys-mega-a"
+        ref={(el: HTMLDivElement | null) => { if (el && present) introRef.current = el }}
+        {...col(0)}
+      >
         <p className="ys-mega-heading">{panel.intro.heading}</p>
         <p className="ys-mega-body">{panel.intro.body}</p>
         <a
@@ -129,10 +149,11 @@ export function MegaPanel({
           {panel.intro.link.label}
           <ArrowRight className="w-[18px] h-[18px]" strokeWidth={1.75} aria-hidden="true" />
         </a>
-      </div>
+      </motion.div>
 
       {/* B — groups, or a plain link list */}
-      <ul
+      <motion.ul
+        {...col(1)}
         className="ys-mega-b"
         ref={listRef}
         onMouseMove={(e) => {
@@ -171,11 +192,12 @@ export function MegaPanel({
             )}
           </li>
         ))}
-      </ul>
+      </motion.ul>
 
       {/* C — the active group's links. Empty until a group is chosen. */}
       {(hasGroups || featured) && (
-        <div
+        <motion.div
+          {...col(2)}
           id={cId}
           className="ys-mega-c"
           ref={cRef}
@@ -192,7 +214,16 @@ export function MegaPanel({
               onClick={() => onNavigate(null, featured.title, featured.href)}
             >
               <span className="ys-mega-featured-media" aria-hidden={featured.image ? undefined : true}>
-                {featured.image ? (
+                {featured.steps ? (
+                  <span className="ys-mega-steps">
+                    {featured.steps.map((step, i) => (
+                      <span key={step} className="ys-mega-step">
+                        <span className="ys-mega-step-n">Week {i + 1}</span>
+                        <span className="ys-mega-step-name">{step}</span>
+                      </span>
+                    ))}
+                  </span>
+                ) : featured.image ? (
                   <Image src={featured.image} alt={featured.imageAlt ?? ''} fill sizes="520px" style={{ objectFit: 'cover' }} />
                 ) : (
                   <HeroVisual motif="circuit" seed={featured.title} />
@@ -221,7 +252,7 @@ export function MegaPanel({
               ))}
             </ul>
           )}
-        </div>
+        </motion.div>
       )}
     </div>
   )

@@ -51,6 +51,8 @@ export interface NavPanel {
 }
 
 export interface NavFeatured {
+  /** Optional steps drawn as the card's preview (e.g. the Blueprint weeks). */
+  steps?: string[]
   /** Shown UPPERCASE. */
   kicker: string
   title: string
@@ -89,6 +91,7 @@ export const NAV_TREE: NavItem[] = [
       title: 'The Solution Blueprint',
       summary: 'Two to four weeks to agree the problem, the design and the plan before any build.',
       href: '/blueprint',
+      steps: ['Discover', 'Design', 'Plan', 'Readout'],
     },
     intro: {
       heading: 'What we do',
@@ -167,6 +170,7 @@ export const NAV_TREE: NavItem[] = [
       title: 'Start with a Blueprint',
       summary: 'A 2–4 week discovery engagement before any build.',
       href: '/blueprint',
+      steps: ['Discover', 'Design', 'Plan', 'Readout'],
     },
     intro: {
       heading: 'Who we are',

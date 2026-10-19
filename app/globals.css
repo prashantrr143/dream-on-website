@@ -4196,5 +4196,110 @@ a.ys-open-item::before,
   background: linear-gradient(90deg, transparent, rgb(248 184 0 / 0.55), transparent);
 }
 .ys-mega .ys-hdr-container { padding-inline: clamp(24px, 3vw, 40px); }
-.ys-nav-scrim { background: rgb(5 10 20 / 0.55); backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px); }
-@media (prefers-reduced-motion: reduce) { .ys-nav-scrim { backdrop-filter: none; -webkit-backdrop-filter: none; } }
+.ys-nav-scrim { background: rgb(5 10 20 / 0.08); }
+
+/* ---- Nav motion pass (2026-10-20): morphing panel, gliding indicator,
+   hover detail, Blueprint preview. All motion is transform/opacity. ---- */
+.ys-mega-morph { overflow: clip; overflow-clip-margin: 8px; }
+.ys-mega-morph > div { position: relative; }
+
+/* The open indicator is one element that glides between triggers; the
+   per-trigger underline stays for hover and keyboard focus. */
+.ys-hdr .ys-hdr-trigger.is-open::after { opacity: 0; }
+.ys-hdr-ind {
+  position: absolute; left: 8px; right: 8px; bottom: calc(50% - 16px);
+  height: 2px; border-radius: 2px; background: var(--amber-500);
+}
+
+/* Group rows: a faint tint and the chevron nudges toward the links. */
+.ys-mega-row { border-radius: var(--radius-sm); transition: color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease; }
+.ys-mega-row:hover, .ys-mega-row.is-active { background-color: rgb(255 255 255 / 0.04); }
+.ys-mega-row-chev { transition: transform 0.18s cubic-bezier(0.22, 1, 0.36, 1); }
+.ys-mega-row:hover .ys-mega-row-chev, .ys-mega-row.is-active .ys-mega-row-chev { transform: translateX(2px); }
+
+/* Sub-links slide 2px; arrows nudge. */
+.ys-mega-link { display: inline-block; transition: color 0.15s ease, transform 0.18s cubic-bezier(0.22, 1, 0.36, 1); }
+.ys-mega-link:hover, .ys-mega-link:focus-visible { transform: translateX(2px); }
+.ys-mega-arrow svg, .ys-mega-featured-more svg { transition: transform 0.18s cubic-bezier(0.22, 1, 0.36, 1); }
+.ys-mega-arrow:hover svg, .ys-mega-featured:hover .ys-mega-featured-more svg { transform: translateX(3px); }
+
+/* Featured card: the preview lifts a touch. */
+.ys-mega-featured-media { transition: transform 0.24s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.24s ease; }
+.ys-mega-featured:hover .ys-mega-featured-media,
+.ys-mega-featured:focus-visible .ys-mega-featured-media { transform: translateY(-2px); box-shadow: 0 16px 32px -16px rgb(0 0 0 / 0.6); }
+
+/* Blueprint preview: the four weeks as a small timeline. */
+.ys-mega-steps {
+  position: absolute; inset: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px;
+  align-content: center; padding: 0 22px;
+  background: radial-gradient(90% 120% at 0% 100%, rgb(31 79 191 / 0.35), transparent 60%), var(--navy-950);
+}
+.ys-mega-step {
+  position: relative; display: grid; gap: 4px; padding-top: 18px; border-top: 2px solid rgb(255 255 255 / 0.14);
+}
+.ys-mega-step::before {
+  content: ''; position: absolute; top: -6px; left: 0; width: 10px; height: 10px; border-radius: 50%;
+  background: var(--blue-600); box-shadow: 0 0 0 3px var(--navy-950);
+}
+.ys-mega-step:last-child::before { background: var(--amber-500); }
+.ys-mega-step-n { font-family: var(--font-mono), 'IBM Plex Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-400); }
+.ys-mega-step-name { font-size: 15px; font-weight: 500; color: var(--white); }
+.ys-mega-featured:hover .ys-mega-step::before { transform: scale(1.15); }
+.ys-mega-step::before { transition: transform 0.2s ease; }
+
+@media (prefers-reduced-motion: reduce) {
+  .ys-mega-row, .ys-mega-row-chev, .ys-mega-link, .ys-mega-arrow svg, .ys-mega-featured-more svg,
+  .ys-mega-featured-media, .ys-mega-step::before { transition: none; }
+  .ys-mega-link:hover, .ys-mega-link:focus-visible, .ys-mega-row:hover .ys-mega-row-chev,
+  .ys-mega-row.is-active .ys-mega-row-chev, .ys-mega-arrow:hover svg,
+  .ys-mega-featured:hover .ys-mega-featured-more svg, .ys-mega-featured:hover .ys-mega-featured-media,
+  .ys-mega-featured:hover .ys-mega-step::before { transform: none; }
+}
+
+/* ---- Leadership: team experience lede (review 2026-10-20) ---- */
+.ys-ldr-team-lede { margin: -8px 0 28px; font-size: 16.5px; line-height: 1.6; color: var(--ink-300); max-width: 60ch; }
+
+/* ---- Solution Blueprint (review 2026-10-20) ---- */
+.ys-bp-fit { display: grid; gap: 16px; }
+@media (min-width: 860px) { .ys-bp-fit { grid-template-columns: 1.3fr 1fr; gap: 24px; } }
+.ys-bp-fit-col { border: 1px solid var(--grey-200); border-radius: var(--radius-md); padding: clamp(20px, 3vw, 28px); background: #fff; }
+.ys-bp-fit-col.is-yes { border-top: 3px solid var(--blue-600); }
+.ys-bp-fit-col.is-no { background: var(--grey-50); }
+.ys-bp-fit-label { margin: 0 0 14px; font-size: 15.5px; font-weight: 600; color: var(--ink-900); }
+.ys-bp-fit-col ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 12px; }
+.ys-bp-fit-col li { display: grid; grid-template-columns: 18px minmax(0, 1fr); gap: 12px; font-size: 15.5px; line-height: 1.55; color: var(--ink-600); }
+.ys-bp-fit-col li svg { width: 18px; height: 18px; margin-top: 3px; }
+.ys-bp-fit-col.is-yes li svg { color: var(--blue-600); }
+.ys-bp-fit-col.is-no li svg { color: var(--ink-600); }
+
+.ys-bp-weeks { margin: 0; padding: 0; list-style: none; display: grid; gap: 0; counter-reset: none; }
+@media (min-width: 860px) { .ys-bp-weeks { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.ys-bp-weeks li { position: relative; padding: 22px 0 22px 24px; border-left: 2px solid var(--grey-200); }
+.ys-bp-weeks li::before { content: ''; position: absolute; left: -6px; top: 28px; width: 10px; height: 10px; border-radius: 50%; background: var(--blue-600); box-shadow: 0 0 0 4px var(--grey-50); }
+@media (min-width: 860px) {
+  .ys-bp-weeks li { padding: 28px 24px 0 0; border-left: 0; border-top: 2px solid var(--grey-200); }
+  .ys-bp-weeks li::before { left: 0; top: -6px; }
+  .ys-bp-weeks li:last-child::before { background: var(--amber-500); }
+}
+.ys-bp-when { margin: 0 0 6px; font-family: var(--font-mono, ui-monospace, monospace); font-size: 12.5px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-600); }
+.ys-bp-weeks h3 { margin: 0 0 8px; font-size: 19px; font-weight: 600; color: var(--ink-900); }
+.ys-bp-weeks p:last-child { margin: 0; font-size: 15.5px; line-height: 1.6; color: var(--ink-600); }
+
+.ys-bp-keep { display: grid; gap: 28px; align-items: start; }
+@media (min-width: 960px) { .ys-bp-keep { grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); gap: 48px; } }
+.ys-bp-deliverables { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--grey-200); }
+.ys-bp-deliverables li { display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 16px; padding: 20px 0; border-bottom: 1px solid var(--grey-200); }
+.ys-bp-num { font-family: var(--font-mono, ui-monospace, monospace); font-size: 14px; color: var(--blue-600); padding-top: 3px; }
+.ys-bp-deliverables h3 { margin: 0 0 4px; font-size: 18px; font-weight: 600; color: var(--ink-900); }
+.ys-bp-deliverables p { margin: 0; font-size: 15.5px; line-height: 1.6; color: var(--ink-600); }
+.ys-bp-own { background: var(--navy-950); color: #fff; border-radius: var(--radius-md); padding: clamp(22px, 3vw, 32px); display: grid; gap: 14px; }
+@media (min-width: 960px) { .ys-bp-own { position: sticky; top: 104px; } }
+.ys-bp-own .ys-bp-own-title { margin: 0; font-size: 20px; font-weight: 600; line-height: 1.3; color: #fff; }
+.ys-bp-own > p:not(.ys-bp-own-title) { margin: 0; font-size: 15.5px; line-height: 1.6; color: var(--ink-300); }
+.ys-bp-own .ys-link { color: #fff; }
+.ys-bp-own-link { display: inline-flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 600; color: #fff; text-decoration: none; border-bottom: 1px solid var(--amber-500); padding-bottom: 2px; justify-self: start; }
+.ys-bp-own-link svg { transition: transform 160ms ease-out; }
+.ys-bp-own-link:hover svg { transform: translateX(3px); }
+.ys-bp-own-link:focus-visible { outline: 2px solid var(--amber-500); outline-offset: 4px; }
+@media (min-width: 640px) { .ys-bp-needs > div { grid-template-columns: 240px minmax(0, 1fr); } }
+@media (prefers-reduced-motion: reduce) { .ys-bp-own-link svg { transition: none; } }

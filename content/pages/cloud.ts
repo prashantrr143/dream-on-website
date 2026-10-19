@@ -70,7 +70,7 @@ export const pages: ContentPage[] = [
     blocks: [
       {
         type: 'statement',
-        text: 'Most enterprises run on more than one cloud, by choice or by history. We advise on, build and run platforms on AWS, Microsoft Azure and Google Cloud, and we recommend the cloud that fits, not the one we resell. One accountable senior team works from the first review to day-to-day running, and your code, your cloud and your region are yours from day one.',
+        text: 'Most enterprises run on more than one cloud, by choice or by history. We advise on, build and run platforms on AWS and Microsoft Azure, and we recommend the cloud that fits your estate; we resell neither. Senior engineers work from the first review through day-to-day running, and your code, your cloud and your region are yours from day one.',
       },
       {
         type: 'cloudChooser',

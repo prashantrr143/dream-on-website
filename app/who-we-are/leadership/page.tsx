@@ -9,6 +9,7 @@ import { metaFor } from '@/lib/seo'
 import { PRIMARY_CTA, SECONDARY_CTA } from '@/lib/cta'
 import { peopleIn, hasBio } from '@/content/people'
 import type { Leader } from '@/content/types'
+import { experience } from '@/content/about'
 
 export const metadata: Metadata = metaFor('/who-we-are/leadership')
 
@@ -103,6 +104,28 @@ export default function LeadershipPage() {
               </div>
             )
           })}
+        </div>
+      </section>
+
+      {/* The team behind the leaders: confirmed experience only (content/about.ts). */}
+      <section className="ys-about-experience" aria-labelledby="ldr-team-title">
+        <div className="enterprise-container-wide">
+          <h2 id="ldr-team-title">The engineers who do the work</h2>
+          <p className="ys-ldr-team-lede">
+            Every engagement is led by senior engineers. Between them, the team has run systems that could not fail:
+          </p>
+          <ul>
+            {experience.map((e) => (
+              <li key={e.area}>
+                <span className="ys-about-exp-area">{e.area}</span>
+                <p>{e.line}</p>
+              </li>
+            ))}
+          </ul>
+          <p className="ys-about-exp-note">
+            This is our team&rsquo;s experience before and alongside YatiSphere. We never name the organizations involved or
+            their clients.
+          </p>
         </div>
       </section>
 

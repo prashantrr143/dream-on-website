@@ -8,6 +8,9 @@
  * transcript. Ruchika Raturi must read and approve (or rewrite) it before
  * the page is deployed, because it is published as her words.
  *
+ * 2026-10-20: 'Keep one accountable team' replaced (owner dropped the
+ * one-team narrative on 2026-10-19). Ruchika to approve the new line.
+ *
  * Team-experience lines are the ones the owner confirmed on 2026-10-11 as
  * accurate and cleared to publish. Never add a client name, metric or
  * claim here that hasn't been confirmed.
@@ -19,7 +22,7 @@ export const founderLetter = {
     'Regulated businesses do not need more technology. They need systems they can trust, explain and run.',
   paragraphs: [
     'For most of my career I have worked inside enterprise transformation programs in financial services and telecommunications. The pattern repeated itself. The technology rarely failed on its own. Programs failed when the architecture was decided late, by people who would not be there to run the result, and when control was bolted on just before an audit.',
-    'I founded YatiSphere to work the other way round. Decide the structure first, with the people who will live with it. Build governance into the platform from the first sprint. Keep one accountable team from the first conversation to production, and stay to run what we build.',
+    'I founded YatiSphere to work the other way round. Decide the structure first, with the people who will live with it. Build governance into the platform from the first sprint. Put senior engineers on the work from the first conversation to production, and stay to run what we build.',
     'AI raises the stakes. A model is only as trustworthy as the cloud, the data and the controls beneath it, and only as useful as the systems it is allowed to act in. Our work is to make AI something a regulated business can put into production and defend: evaluated before it goes live, approved by a person where it matters, and logged at every step.',
     'We are building the firm we would have wanted to hire: senior, accountable, independent of any vendor, and honest about what is worth building.',
   ],

@@ -103,6 +103,18 @@ const SUBPROCESSORS: SubprocessorRow[] = [
 
 const { certificationsRoadmap, documents } = siteConfig.trust
 
+/** The answers a reviewer looks for first, each linking to its section. */
+const AT_A_GLANCE = [
+  { label: 'Your cloud, your region', body: 'We build in your accounts. Client data never moves into ours.', href: '#practices' },
+  { label: 'No certification yet', body: 'UK Cyber Essentials in progress; ISO/IEC 27001 planned.', href: '#certifications' },
+  {
+    label: `${SUBPROCESSORS.length} subprocessors`,
+    body: siteConfig.trust.subprocessors.length === 0 ? 'All for this website only: hosting, analytics, email.' : 'Website providers plus those listed for client work.',
+    href: '#subprocessors',
+  },
+  { label: 'DPA and security pack', body: 'Available on request, under NDA.', href: '#documents' },
+]
+
 const COMPANY_DETAILS = [
   { label: 'Legal name', value: LEGAL_ENTITY_NAME },
   { label: 'Corporate Identification Number (CIN)', value: siteConfig.company.cin },
@@ -121,6 +133,17 @@ export default function TrustPage() {
       />
 
       <PageSection tone="white">
+        <ul className="ys-legal-glance">
+          {AT_A_GLANCE.map((item) => (
+            <li key={item.href}>
+              <a href={item.href}>
+                <span className="ys-legal-glance-label">{item.label}</span>
+                <span className="ys-legal-glance-body">{item.body}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+
         <div className="ys-legal-layout">
           <nav className="ys-legal-toc" aria-label="Contents">
             <p className="ys-legal-toc-title">Contents</p>
