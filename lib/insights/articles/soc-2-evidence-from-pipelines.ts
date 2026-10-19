@@ -8,7 +8,9 @@ export const article: Article = {
   category: 'Security & Compliance',
   readTime: '6 min read',
   author: 'YatiSphere team',
-  status: 'draft',
+  status: 'published',
+  publishedAt: '2026-10-19',
+  tags: { industries: ['software-saas'], services: ['security-compliance', 'devops-platform-engineering', 'engineering-data'], clouds: [] },
   reviewedAt: '2026-10-11',
   sections: [
     {

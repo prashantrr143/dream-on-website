@@ -8,7 +8,9 @@ export const article: Article = {
   category: 'Cloud',
   readTime: '6 min read',
   author: 'YatiSphere team',
-  status: 'draft',
+  status: 'published',
+  publishedAt: '2026-10-19',
+  tags: { industries: ['financial-services', 'legal-professional-services'], services: ['applied-ai', 'ai-platforms', 'ai-governance', 'cloud', 'security-compliance'], clouds: ['microsoft-azure'] },
   reviewedAt: '2026-10-11',
   sections: [
     {

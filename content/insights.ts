@@ -11,8 +11,8 @@ export const insights: CollectionItem[] = publishedArticles.map((a) => ({
   title: a.title,
   summary: a.summary,
   date: a.publishedAt ?? a.reviewedAt,
-  industries: [],
-  services: [],
-  clouds: [],
+  industries: a.tags?.industries ?? [],
+  services: a.tags?.services ?? [],
+  clouds: a.tags?.clouds ?? [],
   href: `/insights/${a.slug}`,
 }))

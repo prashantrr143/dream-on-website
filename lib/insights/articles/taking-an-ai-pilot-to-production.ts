@@ -8,7 +8,9 @@ export const article: Article = {
   category: 'Applied AI',
   readTime: '6 min read',
   author: 'YatiSphere team',
-  status: 'draft',
+  status: 'published',
+  publishedAt: '2026-10-19',
+  tags: { industries: ['financial-services'], services: ['applied-ai', 'ai-platforms', 'ai-governance', 'consulting'], clouds: [] },
   reviewedAt: '2026-10-11',
   sections: [
     {
