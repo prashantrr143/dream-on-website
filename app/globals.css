@@ -2606,84 +2606,79 @@
 .ys-field label { display: block; margin-bottom: 8px; font-size: 14px; font-weight: 600; color: var(--ink-900); }
 .ys-optional { font-weight: 400; color: var(--ink-600); }
 
-/* Inputs (2026-10-19 refresh): white on the grey form panel, a firmer
-   border on hover and a soft blue ring when active. 48px tall: a
-   comfortable touch target. */
+/* Inputs: core theme (radius-sm, grey-200 hairline, blue-600 focus). */
 .ys-input {
   width: 100%;
   min-height: 48px;
-  padding: 12px 14px;
+  padding: 13px 15px;
   font: inherit;
   font-size: 16px;
   color: var(--ink-900);
   background: var(--white);
-  border: 1px solid #D5DDEA;
-  border-radius: 10px;
-  box-shadow: 0 1px 2px rgb(10 26 51 / 0.04);
-  transition: border-color 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+  border: 1px solid var(--grey-200);
+  border-radius: var(--radius-sm);
 }
-.ys-input::placeholder { color: #8391A8; }
-.ys-input:hover { border-color: #B9C6DB; }
-.ys-input:focus { outline: none; background: var(--white); border-color: var(--blue-600); box-shadow: 0 0 0 4px rgb(31 79 191 / 0.14); }
-.ys-input[aria-invalid='true'] { border-color: var(--error); background: var(--white); }
-.ys-input[aria-invalid='true']:focus { box-shadow: 0 0 0 4px rgb(180 35 24 / 0.14); }
-textarea.ys-input { resize: vertical; min-height: 120px; line-height: 1.55; }
-.ys-field-hint { margin-top: 6px; font-size: 13px; color: var(--ink-600); }
+.ys-input::placeholder { color: var(--ink-600); opacity: 0.8; }
+.ys-input:focus { outline: none; border-color: var(--blue-600); box-shadow: 0 0 0 3px rgb(31 79 191 / 0.18); }
+.ys-input[aria-invalid='true'] { border-color: var(--error); }
+textarea.ys-input { resize: vertical; min-height: 110px; line-height: 1.55; }
+.ys-field-hint { margin-top: 6px; font-size: 14px; color: var(--ink-600); }
 
-/* Step indicator */
-.ys-steps { display: grid; gap: 10px; }
-.ys-steps-bar { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
-.ys-steps-bar span { height: 4px; border-radius: 999px; background: var(--grey-200); transition: background-color 0.3s ease; }
+/* Step indicator: label in the existing kicker style, two hairline segments. */
+.ys-steps { display: grid; gap: var(--space-2); }
+.ys-steps-bar { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-1); }
+.ys-steps-bar span { height: 3px; background: var(--grey-200); }
 .ys-steps-bar span.is-done { background: var(--blue-600); }
 
-/* Country combobox */
+/* Country combobox: an input like any other, list in the overlay style. */
 .ys-combo { position: relative; }
 .ys-combo-control { position: relative; }
-.ys-combo-icon { position: absolute; left: 14px; top: 50%; width: 16px; height: 16px; transform: translateY(-50%); color: #8391A8; pointer-events: none; }
+.ys-combo-icon { position: absolute; left: 15px; top: 50%; width: 16px; height: 16px; transform: translateY(-50%); color: var(--ink-600); pointer-events: none; }
 .ys-combo-input { padding-left: 40px; padding-right: 44px; text-overflow: ellipsis; }
 .ys-combo-toggle {
-  position: absolute; right: 6px; top: 50%; transform: translateY(-50%);
-  display: grid; place-items: center; width: 36px; height: 36px;
-  border: 0; border-radius: 8px; background: transparent; color: var(--ink-600); cursor: pointer;
+  position: absolute; right: 4px; top: 50%; transform: translateY(-50%);
+  display: grid; place-items: center; width: 40px; height: 40px;
+  border: 0; background: transparent; color: var(--ink-600); cursor: pointer;
 }
 .ys-combo-toggle svg { width: 18px; height: 18px; transition: transform 0.2s ease; }
 .ys-combo.is-open .ys-combo-toggle svg { transform: rotate(180deg); }
 .ys-combo-list {
-  position: absolute; z-index: 30; left: 0; right: 0; top: calc(100% + 6px);
+  position: absolute; z-index: 30; left: 0; right: 0; top: calc(100% + var(--space-1));
   max-height: 280px; overflow-y: auto; overscroll-behavior: contain;
-  margin: 0; padding: 6px; list-style: none;
-  background: var(--white); border: 1px solid var(--grey-200); border-radius: 12px;
-  box-shadow: 0 18px 40px -12px rgb(10 26 51 / 0.25), 0 2px 6px rgb(10 26 51 / 0.06);
-  animation: ys-combo-in 0.14s ease-out;
+  margin: 0; padding: var(--space-1) 0; list-style: none;
+  background: var(--white); border: 1px solid var(--grey-200); border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-overlay);
 }
 .ys-combo-list ul { margin: 0; padding: 0; list-style: none; }
-@keyframes ys-combo-in { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
-.ys-combo-group { padding: 10px 10px 4px; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-600); }
-.ys-combo-option {
-  display: flex; align-items: center; justify-content: space-between; gap: 10px;
-  padding: 9px 10px; border-radius: 8px; font-size: 15px; color: var(--ink-900); cursor: pointer;
+.ys-combo-group {
+  padding: var(--space-3) 15px var(--space-1);
+  font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-600);
 }
-.ys-combo-option.is-active { background: #EEF3FC; }
+.ys-combo-option {
+  display: flex; align-items: center; justify-content: space-between; gap: var(--space-3);
+  min-height: 44px; padding: 0 15px; font-size: 16px; color: var(--ink-900); cursor: pointer;
+}
+.ys-combo-option.is-active { background: var(--grey-50); box-shadow: inset 2px 0 0 var(--blue-600); }
 .ys-combo-option.is-selected { font-weight: 600; color: var(--blue-600); }
 .ys-combo-check { width: 16px; height: 16px; flex: none; }
-.ys-combo-empty { padding: 12px 10px; font-size: 14px; color: var(--ink-600); }
+.ys-combo-empty { padding: var(--space-3) 15px; font-size: 14px; color: var(--ink-600); }
 
-/* Choice chips (native radios underneath) */
+/* Choice chips: same shape as the site's chip rows (.ys-chip-row),
+   selected state in the action blue. Native radios underneath. */
 .ys-chips { margin: 0; padding: 0; border: 0; min-width: 0; }
-.ys-chips legend { margin-bottom: 10px; padding: 0; font-size: 14px; font-weight: 600; color: var(--ink-900); }
-.ys-chips-row { display: flex; flex-wrap: wrap; gap: 8px; }
+.ys-chips legend { margin-bottom: var(--space-2); padding: 0; font-size: 14px; font-weight: 600; color: var(--ink-900); }
+.ys-chips-row { display: flex; flex-wrap: wrap; gap: var(--space-2); }
 .ys-chip { position: relative; cursor: pointer; }
 .ys-chip input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
 .ys-chip span {
-  display: inline-flex; align-items: center; min-height: 38px; padding: 8px 14px;
-  font-size: 14px; font-weight: 500; color: var(--ink-900);
-  background: var(--white); border: 1px solid #D5DDEA; border-radius: 999px;
-  transition: border-color 0.15s ease, background-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
+  display: inline-flex; align-items: center; min-height: 36px; padding: 6px 14px;
+  font-size: 14px; color: var(--ink-900);
+  background: var(--white); border: 1px solid var(--grey-200); border-radius: var(--radius-pill);
+  transition: border-color 0.15s ease, background-color 0.15s ease, color 0.15s ease;
 }
-.ys-chip:hover span { border-color: #B9C6DB; }
+.ys-chip:hover span { border-color: var(--blue-600); }
 .ys-chip input:focus-visible + span { outline: 2px solid var(--blue-600); outline-offset: 2px; }
 .ys-chip.is-on span { background: var(--blue-600); border-color: var(--blue-600); color: var(--white); }
-.ys-chip:active span { transform: scale(0.97); }
 
 .ys-form-back {
   justify-self: start; padding: 0; border: 0; background: none; cursor: pointer;
@@ -2692,8 +2687,7 @@ textarea.ys-input { resize: vertical; min-height: 120px; line-height: 1.55; }
 .ys-form-back:hover { text-decoration: underline; text-underline-offset: 3px; }
 
 @media (prefers-reduced-motion: reduce) {
-  .ys-combo-list { animation: none; }
-  .ys-input, .ys-chip span, .ys-steps-bar span, .ys-combo-toggle svg { transition: none; }
+  .ys-chip span, .ys-combo-toggle svg { transition: none; }
 }
 .ys-field-error { margin-top: 6px; font-size: 14px; color: var(--error); }
 .ys-form-error { padding: 12px 14px; border-radius: var(--radius-sm); background: var(--error-50); color: var(--error); font-size: 14px; }

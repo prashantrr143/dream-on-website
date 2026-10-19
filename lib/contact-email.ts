@@ -33,7 +33,8 @@ const MUTED = '#4A5A78'
 const RULE = '#E3E8F0'
 const BLUE = '#1F4FBF'
 const YELLOW = '#F8B800'
-const FONT = "-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif"
+// The site's typeface first; mail apps without it fall back to the system font.
+const FONT = "'IBM Plex Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif"
 
 export const esc = (s: string) =>
   s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c] as string)
@@ -59,7 +60,7 @@ function shell(preheader: string, body: string) {
 <span style="display:none;max-height:0;overflow:hidden;opacity:0;">${esc(preheader)}</span>
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#F4F7FB;padding:24px 12px;">
 <tr><td align="center">
-<table role="presentation" width="600" cellpadding="0" cellspacing="0" style="width:100%;max-width:600px;background:#FFFFFF;border:1px solid ${RULE};border-radius:10px;overflow:hidden;font-family:${FONT};">
+<table role="presentation" width="600" cellpadding="0" cellspacing="0" style="width:100%;max-width:600px;background:#FFFFFF;border:1px solid ${RULE};border-radius:8px;overflow:hidden;font-family:${FONT};">
 <tr><td style="background:${NAVY};padding:20px 28px;border-bottom:3px solid ${YELLOW};">
 <a href="${SITE}" style="text-decoration:none;font-size:18px;font-weight:700;color:#FFFFFF;letter-spacing:-0.01em;">Yati<span style="color:${YELLOW};">Sphere</span></a>
 </td></tr>
@@ -81,7 +82,7 @@ const row = (label: string, value: string) =>
     : ''
 
 const pill = (text: string) =>
-  `<span style="display:inline-block;margin:0 6px 6px 0;padding:4px 10px;border-radius:999px;background:#EEF3FC;color:${BLUE};font-size:12px;font-weight:600;">${esc(text)}</span>`
+  `<span style="display:inline-block;margin:0 6px 6px 0;padding:4px 10px;border-radius:999px;background:#F4F7FB;border:1px solid ${RULE};color:${BLUE};font-size:12px;font-weight:600;">${esc(text)}</span>`
 
 export function notifySubject(q: Inquiry) {
   const parts = [q.company, q.interest || 'General inquiry', q.country].filter(Boolean)
