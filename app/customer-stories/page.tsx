@@ -84,7 +84,7 @@ export default async function CaseStudiesPage({
         <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3" style={{ gap: 20, listStyle: 'none', margin: '28px 0 0', padding: 0 }}>
           {shown.map((cs) => (
             <li key={cs.slug} style={{ minWidth: 0 }}>
-              <a href={`/case-studies/${cs.slug}`} className="ys-card-light" style={{ display: 'block', height: '100%', padding: 26 }}>
+              <a href={`/customer-stories/${cs.slug}`} className="ys-card-light" style={{ display: 'block', height: '100%', padding: 26 }}>
                 {cs.outcomes[0] && (
                   <p style={{ fontFamily: 'var(--font-sans)', fontSize: 28, fontWeight: 600, color: 'var(--ink-900)' }}>
                     {cs.outcomes[0].value}{' '}

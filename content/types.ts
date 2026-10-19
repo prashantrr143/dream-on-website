@@ -78,6 +78,22 @@ export interface Partner {
   badgeSrc?: string
 }
 
+/**
+ * A firm we deliver alongside (not a vendor programme: see Partner).
+ * List one only with the firm's agreement to show its name and logo.
+ */
+export interface Alliance {
+  name: string
+  url: string
+  logo: { src: string; width: number; height: number }
+  /** What they do, in their own terms. One line. */
+  summary: string
+  /** Where they work. */
+  regions: string
+  /** Up to four short capability tags. */
+  focus: string[]
+}
+
 export interface Certification {
   /** e.g. 'AWS Certified Solutions Architect – Professional'. */
   name: string

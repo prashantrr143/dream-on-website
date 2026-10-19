@@ -82,7 +82,7 @@ export interface Office {
   address: PostalAddress
 }
 
-import type { Certification, Partner } from './types'
+import type { Alliance, Certification, Partner } from './types'
 
 export interface SiteConfig {
   company: {
@@ -112,6 +112,8 @@ export interface SiteConfig {
    * allowed only for entries with status 'member' (see content/types.ts).
    */
   partners: Partner[]
+  /** Delivery partners shown on the home page (owner request, 2026-10-19). */
+  alliances: Alliance[]
   /** Team certifications, as held. */
   certifications: Certification[]
   /** Microsoft Bookings or Calendly embed URL. */
@@ -155,6 +157,16 @@ export const siteConfig: SiteConfig = {
   },
   social: {},
   partners: [],
+  alliances: [
+    {
+      name: 'Ovin Technologies',
+      url: 'https://ovintechnologies.com/',
+      logo: { src: '/brand/partners/ovin.png', width: 568, height: 198 },
+      summary: 'Cloud managed services, disaster recovery and SAP migration, run 24x7 against agreed service levels.',
+      regions: 'India, the Middle East and Southeast Asia',
+      focus: ['Managed services', 'Disaster recovery', 'SAP migration', 'Cloud cost optimization'],
+    },
+  ],
   certifications: [],
   bookingUrl: '',
   proof: {

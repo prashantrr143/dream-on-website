@@ -102,3 +102,23 @@ test('production pages carry no blanket X-Robots-Tag; other hosts are noindex', 
   const preview = await request.get('/who-we-are/about', { headers: { host: 'yatisphere-git-branch.vercel.app' } })
   expect(preview.headers()['x-robots-tag']).toContain('noindex')
 })
+
+// No customer stories yet: every stories URL goes to Insights in one
+// temporary hop instead of a 404 (or a 308 into a 404).
+const STORIES_FALLBACK: [string, string][] = [
+  [PROD, '/case-studies'],
+  [PROD, '/case-studies/some-old-story'],
+  [PROD, '/customer-stories'],
+  [PROD, '/customer-stories?industry=Financial%20services'],
+  [`www.${PROD}`, '/case-studies/'],
+]
+
+for (const [host, path] of STORIES_FALLBACK) {
+  test(`${host}${path} goes to /insights in one temporary redirect`, async ({ request }) => {
+    const first = await hop(request, host, path)
+    expect(first.status).toBe(307)
+    expect(toPath(first.location)).toBe('/insights')
+    const second = await hop(request, PROD, '/insights')
+    expect(second.status).toBe(200)
+  })
+}

@@ -11,9 +11,10 @@ export const metadata: Metadata = {
 
 const LINKS = [
   { label: 'Home', href: '/', descriptor: 'Start from the beginning' },
-  { label: 'What we do', href: '/what-we-do', descriptor: 'Consulting, cloud, applied AI, engineering and data' },
-  { label: 'Claude practice', href: '/what-we-do/applied-ai/claude', descriptor: 'Adopt Claude and build with it, governed' },
-  { label: 'Who we are', href: '/who-we-are/about', descriptor: 'Our vision, principles and people' },
+  { label: 'What we do', href: '/what-we-do', descriptor: 'Cloud, software, data, security and applied AI' },
+  { label: 'Solution Blueprint', href: '/blueprint', descriptor: 'Know what it will take before you build' },
+  { label: 'Insights', href: '/insights', descriptor: 'How we think about IT and applied AI' },
+  { label: 'Who we are', href: '/who-we-are/about', descriptor: 'Our principles and people' },
   { label: 'Search', href: '/search', descriptor: 'Find a page by topic' },
   { label: 'Contact us', href: '/contact-us', descriptor: 'Tell us what you were looking for' },
 ]
