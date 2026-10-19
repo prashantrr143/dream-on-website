@@ -8,7 +8,9 @@ export const article: Article = {
   category: 'Cloud',
   readTime: '6 min read',
   author: 'YatiSphere team',
-  status: 'draft',
+  status: 'published',
+  publishedAt: '2026-10-19',
+  tags: { industries: [], services: ['cloud', 'finops', 'managed-operations'], clouds: ['microsoft-azure'] },
   reviewedAt: '2026-10-11',
   sections: [
     {

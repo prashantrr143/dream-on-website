@@ -7,7 +7,14 @@
  * and publishedAt in its file under lib/insights/articles/. A test
  * (tests/content.spec.ts) fails if the two ever disagree.
  */
-export const PUBLISHED_INSIGHT_SLUGS: string[] = []
+export const PUBLISHED_INSIGHT_SLUGS: string[] = [
+  'azure-finops-quick-wins',
+  'azure-openai-uae-north-data-residency',
+  'eu-ai-act-for-financial-services-operations',
+  'kyc-automation-without-black-boxes',
+  'soc-2-evidence-from-pipelines',
+  'taking-an-ai-pilot-to-production',
+]
 
 /** True once at least one article is published (drives nav, footer, sitemap). */
 export const hasArticles = PUBLISHED_INSIGHT_SLUGS.length > 0

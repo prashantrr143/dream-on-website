@@ -3,6 +3,8 @@
  * the same object feeds the page, the index, search and the sitemap.
  */
 
+import type { Cloud, IndustrySlug } from '@/content/types'
+
 export interface ArticleSource {
   title: string
   url: string
@@ -39,6 +41,11 @@ export interface Article {
   sections: ArticleSection[]
   /** Every factual claim about law, regulation or a product traces here. */
   sources: ArticleSource[]
+  /**
+   * Where the article is surfaced in "In focus" blocks on service,
+   * cloud and industry pages. Without tags an article is linked from nowhere.
+   */
+  tags?: { industries?: IndustrySlug[]; services?: string[]; clouds?: Cloud[] }
   /** Up to three internal links shown after the article. */
   related: { label: string; href: string }[]
 }

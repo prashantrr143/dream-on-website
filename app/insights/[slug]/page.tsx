@@ -51,6 +51,9 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
           author: { '@type': 'Organization', name: 'YatiSphere', url: SITE_URL },
           publisher: { '@id': `${SITE_URL}/#organization` },
           mainEntityOfPage: `${SITE_URL}/insights/${a.slug}`,
+          image: `${SITE_URL}/opengraph-image`,
+          articleSection: a.category,
+          inLanguage: 'en-US',
         }
       : null
 
