@@ -362,10 +362,10 @@ export function SiteHeader() {
             role="region"
             aria-label={openPanel.label}
             className="ys-mega"
-            initial={reduce ? false : { opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={reduce ? { opacity: 0, transition: { duration: 0 } } : { opacity: 0, y: -8 }}
-            transition={{ duration: reduce ? 0 : 0.3, ease: [0.23, 1, 0.32, 1] }}
+            initial={reduce ? false : { opacity: 0, y: -10, scale: 0.985 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={reduce ? { opacity: 0, transition: { duration: 0 } } : { opacity: 0, y: -6, scale: 0.99, transition: { duration: 0.16 } }}
+            transition={{ duration: reduce ? 0 : 0.32, ease: [0.23, 1, 0.32, 1] }}
           >
             <MegaPanel key={openSession} panel={openPanel} regionId={regionId} introRef={introRef} onNavigate={onNavigate} />
           </motion.div>

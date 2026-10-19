@@ -4163,3 +4163,38 @@ a.ys-open-item::before,
 .ys-wwu-list dd { margin: 0; font-size: 15.5px; line-height: 1.6; color: var(--ink-600); }
 .ys-wwu-link { display: inline-flex; align-items: center; gap: 6px; margin-left: 8px; font-weight: 600; color: var(--blue-600); text-decoration: none; }
 .ys-wwu-link:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+/* ==========================================================================
+   Mega menu as a floating panel (owner request, 2026-10-20: "popped out").
+   The panel detaches from the header: a gap, inset edges, rounded corners
+   and a deep shadow over a darker, blurred page. The gap is a transparent
+   border on the panel itself, so the pointer never leaves the header's
+   subtree on the way down and a hover-opened panel stays open.
+   ========================================================================== */
+.ys-hdr.is-open { background: var(--navy-950); }
+.ys-mega {
+  top: 100%;
+  left: max(12px, calc((100vw - 1440px) / 2 + 24px));
+  right: max(12px, calc((100vw - 1440px) / 2 + 24px));
+  padding: 36px 0 40px;
+  border: 0;
+  border-top: 12px solid transparent;
+  background-clip: padding-box;
+  background-color: var(--navy-900);
+  background-image: radial-gradient(120% 80% at 100% 0%, rgb(31 79 191 / 0.18), transparent 60%);
+  border-radius: 0 0 16px 16px;
+  box-shadow:
+    0 40px 80px -24px rgb(0 0 0 / 0.65),
+    0 0 0 1px rgb(255 255 255 / 0.08) inset;
+  transform-origin: top center;
+}
+/* The rounded top edge sits inside the transparent border, so draw it on
+   the padding box: round all four corners of the visible card. */
+.ys-mega { border-radius: 16px; }
+.ys-mega::before {
+  content: ''; position: absolute; left: 24px; right: 24px; top: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, rgb(248 184 0 / 0.55), transparent);
+}
+.ys-mega .ys-hdr-container { padding-inline: clamp(24px, 3vw, 40px); }
+.ys-nav-scrim { background: rgb(5 10 20 / 0.55); backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px); }
+@media (prefers-reduced-motion: reduce) { .ys-nav-scrim { backdrop-filter: none; -webkit-backdrop-filter: none; } }

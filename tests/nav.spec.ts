@@ -122,10 +122,19 @@ test('geometry matches the spec at 1440px', async ({ page }) => {
   await page.waitForTimeout(400) // let the 300ms slide-in finish
   const box = async (sel: string) => (await page.locator(sel).first().boundingBox())!
   expect((await box('.ys-hdr-bar')).height).toBe(76)
-  expect((await box('.ys-mega')).y).toBe(76)
-  expect(Math.abs((await box('.ys-mega-a')).x - 73)).toBeLessThanOrEqual(8)
-  expect(Math.abs((await box('.ys-mega-b')).x - 396)).toBeLessThanOrEqual(8)
-  expect(Math.abs((await box('.ys-mega-c')).x - 745)).toBeLessThanOrEqual(8)
+  // Floating panel (2026-10-20): it starts at the header's bottom edge (the
+  // 12px gap is a transparent border, so hover never drops), and is inset
+  // from both sides of the viewport.
+  const mega = await box('.ys-mega')
+  expect(mega.y).toBe(76)
+  expect(mega.x).toBeGreaterThanOrEqual(12)
+  expect(1440 - (mega.x + mega.width)).toBeGreaterThanOrEqual(12)
+  // Columns keep their order and spacing inside the panel.
+  const a = await box('.ys-mega-a'), b = await box('.ys-mega-b'), c = await box('.ys-mega-c')
+  expect(a.x).toBeGreaterThan(mega.x)
+  expect(b.x - a.x).toBeGreaterThanOrEqual(300)
+  expect(c.x - b.x).toBeGreaterThanOrEqual(300)
+  expect(c.x + c.width).toBeLessThanOrEqual(mega.x + mega.width)
 })
 
 test('opening a panel causes no layout shift', async ({ page }) => {
@@ -209,22 +218,19 @@ test('scrim click closes the panel and returns focus to the trigger', async ({ p
   await expect(scrim).toHaveCount(0)
 })
 
-test('open panel has a visible edge and the header switches to the panel colour', async ({ page }) => {
+test('open panel floats: rounded, shadowed, and set apart from the header', async ({ page }) => {
   await trigger(page, 'What we do').click()
   await page.waitForTimeout(400)
   const mega = await panel(page).evaluate((el) => {
     const s = getComputedStyle(el)
-    return { border: s.borderBottomWidth, shadow: s.boxShadow, bg: s.backgroundColor }
+    return { radius: parseFloat(s.borderBottomLeftRadius), gap: s.borderTopWidth, shadow: s.boxShadow, bg: s.backgroundColor }
   })
-  expect(mega.border).toBe('1px')
+  expect(mega.radius).toBeGreaterThan(0)
+  expect(mega.gap).toBe('12px')
   expect(mega.shadow).not.toBe('none')
+  // The header keeps the page navy, so the lighter panel reads as lifted.
   const header = await page.locator('.ys-hdr').evaluate((el) => getComputedStyle(el).backgroundColor)
-  expect(header).toBe(mega.bg)
-  // At rest the header is the page navy, a different colour from the panel.
-  await page.keyboard.press('Escape')
-  await page.waitForTimeout(300)
-  const rest = await page.locator('.ys-hdr').evaluate((el) => getComputedStyle(el).backgroundColor)
-  expect(rest).not.toBe(mega.bg)
+  expect(header).not.toBe(mega.bg)
 })
 
 test('every featured card links to a live route', async ({ request }) => {
