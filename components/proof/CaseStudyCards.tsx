@@ -21,7 +21,7 @@ export function CaseStudyCards({ limit = 3, title = 'Recent work' }: { limit?: n
             const lead = cs.outcomes[0]
             return (
               <li key={cs.slug} style={{ minWidth: 0 }}>
-                <a href={`/case-studies/${cs.slug}`} className="ys-card-light group" style={{ display: 'flex', flexDirection: 'column', height: '100%', padding: 26 }}>
+                <a href={`/customer-stories/${cs.slug}`} className="ys-card-light group" style={{ display: 'flex', flexDirection: 'column', height: '100%', padding: 26 }}>
                   {lead && (
                     <p style={{ fontFamily: 'var(--font-sans)', fontSize: 30, fontWeight: 600, lineHeight: 1.1, color: 'var(--ink-900)' }}>
                       {lead.value}

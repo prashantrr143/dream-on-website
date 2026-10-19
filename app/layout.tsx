@@ -36,9 +36,10 @@ const ibmPlexMono = IBM_Plex_Mono({
   preload: false,
 })
 
-const DEFAULT_TITLE = 'Enterprise AI, consulting and cloud engineering | YatiSphere'
+// Same positioning as the home page (lib/seo.ts '/').
+const DEFAULT_TITLE = 'IT services and applied AI, built properly | YatiSphere'
 const DEFAULT_DESCRIPTION =
-  'We advise, build and run enterprise platforms on AWS, Microsoft Azure and Google Cloud, and bring governed AI into them, with a dedicated Claude practice.'
+  'Cloud, software, data and security for growing companies and regulated enterprises, built and run by senior engineers, with governed AI where it pays.'
 
 /**
  * Site-wide defaults. Every route sets its own title, description,

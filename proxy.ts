@@ -1,4 +1,5 @@
 import { NextResponse, type NextRequest } from 'next/server'
+import { siteConfig } from '@/content/site'
 
 /**
  * URL canonicalization in ONE redirect.
@@ -76,11 +77,30 @@ export function canonicalPath(pathname: string): string {
   return path
 }
 
+/**
+ * Customer stories are not published yet, and /customer-stories 404s
+ * until they are. Old links (/case-studies, /customer-stories and their
+ * sub-pages) go to Insights instead, still in one hop. 307 rather than
+ * 308: temporary, so nothing caches it once the stories exist.
+ */
+const HAS_STORIES = siteConfig.caseStudies.length > 0
+
+export function storiesFallback(canonical: string): string | null {
+  if (HAS_STORIES) return null
+  return canonical === '/customer-stories' || canonical.startsWith('/customer-stories/') ? '/insights' : null
+}
+
 export function proxy(request: NextRequest) {
   const url = request.nextUrl
   const host = (request.headers.get('host') ?? '').toLowerCase()
   const isWww = host === `www.${CANONICAL_HOST}`
   const path = canonicalPath(url.pathname)
+
+  const fallback = storiesFallback(path)
+  if (fallback) {
+    const origin = isWww ? `https://${CANONICAL_HOST}` : url.origin
+    return NextResponse.redirect(new URL(fallback, origin), 307)
+  }
 
   if (!isWww && path === url.pathname) return NextResponse.next()
 

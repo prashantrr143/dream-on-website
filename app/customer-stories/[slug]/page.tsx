@@ -19,7 +19,7 @@ const find = (slug: string) => siteConfig.caseStudies.find((cs) => cs.slug === s
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const cs = find((await params).slug)
   if (!cs) return {}
-  const url = `${SITE_URL}/case-studies/${cs.slug}`
+  const url = `${SITE_URL}/customer-stories/${cs.slug}`
   return {
     title: { absolute: `${cs.title} | YatiSphere` },
     description: cs.summary,
