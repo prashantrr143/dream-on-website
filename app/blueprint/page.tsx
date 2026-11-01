@@ -76,7 +76,7 @@ const FAQ = [
   },
   {
     q: 'Who does the work?',
-    a: 'Senior engineers who have built and run systems like yours: the same people who would lead the build if you go ahead with us.',
+    a: 'The team that would lead the build if you go ahead with us, so the plan is written by the people accountable for delivering it.',
   },
   {
     q: 'Are we committed to building with you afterwards?',
@@ -108,8 +108,8 @@ export default function BlueprintPage() {
 
       <PageHero
         eyebrow="Solution Blueprint · 2–4 weeks · fixed fee"
-        title="Know what it will take before you build."
-        lede="One named problem. A solution design, a delivery plan and a risk register, delivered by the senior engineers who would build it, and yours to keep whatever you decide."
+        title="Know what it will take before you build"
+        lede="One named problem. A solution design, a delivery plan and a risk register, delivered by the team that would build it, and yours to keep whatever you decide."
         primaryCta={{ label: 'Scope a Blueprint', href: `${PRIMARY_CTA.href}?interest=Consulting` }}
         secondaryCta={{ label: 'What you get', href: '#deliverables' }}
         visual="lanes"
@@ -204,7 +204,7 @@ export default function BlueprintPage() {
       </PageSection>
 
       <PageCTA
-        title="Start with one problem."
+        title="Start with one problem"
         body="Tell us what it is. If a Blueprint is the right first step, we will say so, and scope it with you at no cost."
         primaryCta={{ label: 'Scope a Blueprint', href: `${PRIMARY_CTA.href}?interest=Consulting` }}
       />

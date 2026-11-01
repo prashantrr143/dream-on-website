@@ -1,71 +1,57 @@
-"use client"
+import { ArrowRight, CodeXml, Landmark, Scale } from 'lucide-react'
+import type { LucideIcon } from 'lucide-react'
 
-import { motion } from 'framer-motion'
-import { ArrowRight } from 'lucide-react'
-import { ProblemPicker } from '@/components/home/ProblemPicker'
+/**
+ * Home: the three sectors we focus on (2026-11-01). Sectors only, no use
+ * cases: each card names the sector, says what it buys in one line and
+ * links to its page, where the detail lives.
+ */
 
-
-
-
-// Built for: three sectors, each with the outcome it buys (audit H-04).
-const BUILT_FOR: { href: string; name: string; outcome: string }[] = [
+const SECTORS: { href: string; name: string; line: string; Icon: LucideIcon }[] = [
   {
     href: '/what-we-do/industries/financial-services',
     name: 'Financial services',
-    outcome: 'Regulator-ready platforms.',
+    line: 'Banks, insurers, wealth managers and fintechs.',
+    Icon: Landmark,
   },
   {
     href: '/what-we-do/industries/legal-professional-services',
     name: 'Legal & professional services',
-    outcome: 'Intake and conflicts you can defend.',
+    line: 'Law firms, in-house legal teams and advisory firms.',
+    Icon: Scale,
   },
   {
     href: '/what-we-do/industries/software-saas',
     name: 'Software & SaaS',
-    outcome: 'Win security reviews and ship AI customers trust.',
+    line: 'B2B software companies selling to enterprises.',
+    Icon: CodeXml,
   },
 ]
 
-const ITServicesSection = () => {
-  return (
-    <section id="services" className="ys-section-white">
-      <div className="enterprise-container-wide">
-        {/* Section intro */}
-        <motion.div
-          className="ys-cap-intro"
-        >
-          <div style={{ minWidth: 0 }}>
-            <h2 className="ys-cap-headline">
-              Problems clients usually bring us
-            </h2>
-          </div>
-          <div className="ys-cap-intro-aside">
-            <p>Pick the one that sounds like your week.</p>
-          </div>
-        </motion.div>
-
-        <ProblemPicker />
-
-        {/* Built for */}
-        <div className="ys-builtfor">
-          <h3 className="ys-eyebrow ys-builtfor-title">Built for</h3>
-          <ul className="ys-builtfor-grid">
-            {BUILT_FOR.map((sector) => (
-              <li key={sector.href}>
-                <a href={sector.href} className="ys-builtfor-card">
-                  <span className="ys-builtfor-name">
-                    {sector.name}
-                    <ArrowRight className="w-4 h-4 shrink-0" strokeWidth={2} aria-hidden="true" />
-                  </span>
-                  <span className="ys-builtfor-outcome">{sector.outcome}</span>
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
+const ITServicesSection = () => (
+  <section id="services" className="ys-section-white" aria-labelledby="home-industries">
+    <div className="enterprise-container-wide">
+      <div className="ys-sec-intro">
+        <p className="ys-kicker">Industries</p>
+        <h2 id="home-industries">Built for regulated industries</h2>
       </div>
-    </section>
-  )
-}
+      <ul className="ys-sec-grid">
+        {SECTORS.map((s) => (
+          <li key={s.href}>
+            <a href={s.href} className="ys-sec-card">
+              <span className="ys-sec-icon"><s.Icon className="w-6 h-6" strokeWidth={1.7} aria-hidden="true" /></span>
+              <span className="ys-sec-name">{s.name}</span>
+              <span className="ys-sec-line">{s.line}</span>
+              <span className="ys-sec-more">
+                Explore
+                <ArrowRight className="w-4 h-4 shrink-0" strokeWidth={2.5} aria-hidden="true" />
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+)
 
 export default ITServicesSection

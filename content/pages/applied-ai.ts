@@ -12,7 +12,7 @@ const WHAT_WE_DO = { name: 'What we do', path: '/what-we-do' }
 const APPLIED_AI = { name: 'Applied AI', path: '/what-we-do/applied-ai' }
 
 const ALIGNMENT_LINE =
-  'Designs aligned to EU AI Act risk tiers, ISO/IEC 42001 and the NIST AI RMF — alignment, not certification.'
+  'Designs aligned to EU AI Act risk tiers, ISO/IEC 42001 and the NIST AI RMF . Alignment, not certification.'
 
 const NO_TRAINING =
   'We do not use client data to train or fine-tune models, unless a client asks us to in writing for their own dedicated model.'
@@ -32,7 +32,7 @@ const RESPONSIBLE_AI_LINK = {
 const APPLIED_AI_LINK = {
   label: 'Applied AI',
   href: '/what-we-do/applied-ai',
-  descriptor: 'From pilots to governed AI running inside the systems you already use.',
+  descriptor: 'From pilot to production, inside the systems you already use.',
 }
 
 export const pages: ContentPage[] = [
@@ -42,14 +42,14 @@ export const pages: ContentPage[] = [
   {
     path: '/what-we-do/applied-ai',
     meta: {
-      title: 'Applied AI and agentic automation | YatiSphere',
+      title: 'AI pilot to production for regulated firms | YatiSphere',
       description:
-        'Enterprise AI implementation from pilot to production: agentic automation, AI platforms, knowledge assistants and governance. Model- and cloud-neutral.',
+        'Take an AI pilot into production: evaluation, human approval, audit trails and integration with the systems you run. Model- and cloud-neutral.',
     },
     hero: {
       kicker: 'WHAT WE DO / APPLIED AI',
       h1: 'AI that reaches production',
-      subhead: 'We help you move from pilots to governed AI running inside the systems you already use.',
+      subhead: 'We take AI pilots into production inside the systems you already use, with testing, approvals and an audit trail.',
     },
     parents: [WHAT_WE_DO],
     name: 'Applied AI',
@@ -63,7 +63,7 @@ export const pages: ContentPage[] = [
       },
       {
         type: 'cards',
-        title: 'Our capabilities',
+        title: 'Services',
         columns: 3,
         cards: [
           {
@@ -93,24 +93,24 @@ export const pages: ContentPage[] = [
           },
           {
             title: 'AI-assisted engineering',
-            body: 'Coding assistants such as Claude Code, rolled out with guardrails, review practices and honest measurement.',
+            body: 'Coding assistants such as Claude Code, rolled out with guardrails, review practices and agreed measures.',
             href: '/what-we-do/applied-ai/ai-assisted-engineering',
           },
         ],
       },
       {
         type: 'workflow',
-        title: 'Human + AI in control',
+        title: 'Where people stay in control',
         lede: 'AI drafts, checks and routes. People approve where the decision carries liability, and every step is logged.',
       },
       {
         type: 'modelNeutral',
-        title: 'Model-neutral by design',
+        title: 'Your choice of model and cloud',
         lede: 'We work with Claude, OpenAI models and open-weight models, run on Amazon Bedrock, Google Cloud Vertex AI, Microsoft Foundry or direct APIs. We pick the model for the task and the cloud for your estate, and keep the option to switch.',
       },
       {
         type: 'tabs',
-        title: 'Our solutions',
+        title: 'Typical projects',
         tabs: [
           {
             label: 'Document intake',
@@ -158,17 +158,17 @@ export const pages: ContentPage[] = [
       },
       {
         type: 'list',
-        title: 'Outcomes',
+        title: 'What changes',
         items: [
           'Pilots that become production systems with an owner, a run guide and monitoring.',
           'Fewer manual re-keying steps in document-heavy processes.',
           'A clear record of what data each AI system touches and who approved its output.',
           'Accuracy tested on your data against a target you set before go-live.',
-          'Freedom to change model or cloud without rebuilding.',
+          'Less rework if you change model or cloud later.',
           'An honest answer when a simpler fix solves the problem better than AI.',
         ],
       },
-      { type: 'inFocus', title: 'In focus', services: ['applied-ai'] },
+      { type: 'inFocus', title: 'Further reading', services: ['applied-ai'] },
     ],
   },
 
@@ -178,7 +178,7 @@ export const pages: ContentPage[] = [
   {
     path: '/what-we-do/applied-ai/claude',
     meta: {
-      title: 'Claude enterprise implementation | YatiSphere',
+      title: 'Claude enterprise implementation services | YatiSphere',
       description:
         'Claude enterprise adoption, Claude Code rollout, agents and MCP integrations, run on the Anthropic API, Amazon Bedrock, Vertex AI or Microsoft Foundry.',
     },
@@ -186,7 +186,7 @@ export const pages: ContentPage[] = [
       kicker: 'APPLIED AI / CLAUDE',
       h1: 'Claude, put to work safely',
       subhead:
-        'We help enterprises adopt Claude, build agents with it and connect it to their systems — inside the cloud boundary you choose.',
+        'We help enterprises adopt Claude, build agents with it and connect it to their systems, inside the cloud boundary you choose.',
     },
     parents: [WHAT_WE_DO, APPLIED_AI],
     name: 'Claude practice',
@@ -230,7 +230,7 @@ export const pages: ContentPage[] = [
       },
       {
         type: 'cards',
-        title: 'Governed from day one',
+        title: 'Controls from day one',
         columns: 3,
         cards: [
           {
@@ -279,7 +279,7 @@ export const pages: ContentPage[] = [
       },
       {
         type: 'faq',
-        title: 'Questions',
+        title: 'Common questions',
         items: [
           {
             q: 'Which cloud should we run Claude on?',
@@ -306,7 +306,7 @@ export const pages: ContentPage[] = [
       },
       {
         type: 'links',
-        title: 'Related',
+        title: 'Related services',
         links: [
           {
             label: 'AI-assisted engineering',
@@ -326,7 +326,7 @@ export const pages: ContentPage[] = [
           RESPONSIBLE_AI_LINK,
         ],
       },
-      { type: 'inFocus', title: 'In focus', services: ['applied-ai', 'claude'] },
+      { type: 'inFocus', title: 'Further reading', services: ['applied-ai', 'claude'] },
       {
         type: 'note',
         text: 'Claude and Anthropic are trademarks of Anthropic, PBC. AWS, Microsoft Azure and Google Cloud are trademarks of their respective owners. YatiSphere is an independent company and is not affiliated with or endorsed by Anthropic.',
@@ -340,9 +340,9 @@ export const pages: ContentPage[] = [
   {
     path: '/what-we-do/applied-ai/agentic-automation',
     meta: {
-      title: 'Agentic AI automation services | YatiSphere',
+      title: 'AI agents for document-heavy workflows | YatiSphere',
       description:
-        'Agentic AI automation for document-heavy workflows such as intake and claims, with human approval gates, audit logs and evaluation on your own data.',
+        'AI agents for intake, KYC and claims, plus knowledge assistants with citations, with human approval gates, audit logs and evaluation on your own data.',
     },
     hero: {
       kicker: 'APPLIED AI / AGENTIC AUTOMATION',
@@ -382,7 +382,7 @@ export const pages: ContentPage[] = [
       },
       {
         type: 'tabs',
-        title: 'Our solutions',
+        title: 'Typical projects',
         tabs: [
           {
             label: 'Document intake',
@@ -411,11 +411,21 @@ export const pages: ContentPage[] = [
               'Escalation rules you control',
             ],
           },
+          {
+            label: 'Knowledge assistants',
+            description: 'Answers from your own documents, with citations, retrieving only what the person asking can already see.',
+            bullets: ['Answers cite the source passage', 'Retrieval respects existing access rights', 'Evaluated on your own questions before go-live'],
+          },
+          {
+            label: 'AI platform foundation',
+            description: 'One gateway, routing, evaluation and cost control in your own cloud account, so every team runs AI on the same controls.',
+            bullets: ['LLM gateway and model routing', 'Prompt and version control', 'Observability and cost per use case'],
+          },
         ],
       },
       {
         type: 'steps',
-        title: 'How it runs',
+        title: 'How a project runs',
         steps: [
           { title: 'Assess', body: 'We map the process, check the data and risks, and agree where people must approve.' },
           { title: 'Pilot', body: 'A working agent on your own data, measured against an accuracy target you set.' },
@@ -436,7 +446,7 @@ export const pages: ContentPage[] = [
       },
       {
         type: 'faq',
-        title: 'Questions',
+        title: 'Common questions',
         items: [
           {
             q: 'Will an agent make decisions on its own?',
@@ -454,7 +464,7 @@ export const pages: ContentPage[] = [
       },
       {
         type: 'links',
-        title: 'Related',
+        title: 'Related services',
         links: [
           CLAUDE_LINK,
           {
@@ -470,7 +480,7 @@ export const pages: ContentPage[] = [
           RESPONSIBLE_AI_LINK,
         ],
       },
-      { type: 'inFocus', title: 'In focus', services: ['applied-ai', 'agentic-automation'] },
+      { type: 'inFocus', title: 'Further reading', services: ['applied-ai', 'agentic-automation'] },
     ],
   },
 
@@ -495,7 +505,7 @@ export const pages: ContentPage[] = [
     blocks: [
       {
         type: 'statement',
-        text: 'When every team picks its own model, keys and logging, nobody can see costs, risks or what data is leaving. A shared AI platform gives every team the same foundations — gateway, routing, prompt and version control, evaluation, observability and cost management — in your own cloud account, on Amazon Bedrock, Google Cloud Vertex AI, Microsoft Foundry or direct APIs.',
+        text: 'When every team picks its own model, keys and logging, nobody can see costs, risks or what data is leaving. A shared AI platform gives every team the same foundations (gateway, routing, prompt and version control, evaluation, observability and cost management) in your own cloud account, on Amazon Bedrock, Google Cloud Vertex AI, Microsoft Foundry or direct APIs.',
       },
       {
         type: 'cards',
@@ -522,7 +532,7 @@ export const pages: ContentPage[] = [
       },
       {
         type: 'tabs',
-        title: 'Our solutions',
+        title: 'Typical projects',
         tabs: [
           {
             label: 'Platform foundation',
@@ -555,7 +565,7 @@ export const pages: ContentPage[] = [
       },
       {
         type: 'steps',
-        title: 'How it runs',
+        title: 'How a project runs',
         steps: [
           { title: 'Assess', body: 'We review current AI use, data rules and cloud estate, and agree what the platform must enforce.' },
           { title: 'Design', body: 'A target architecture for gateway, routing, evaluation and cost control in your cloud.' },
@@ -576,7 +586,7 @@ export const pages: ContentPage[] = [
       },
       {
         type: 'faq',
-        title: 'Questions',
+        title: 'Common questions',
         items: [
           {
             q: 'Do we need a platform before our first use case?',
@@ -594,7 +604,7 @@ export const pages: ContentPage[] = [
       },
       {
         type: 'links',
-        title: 'Related',
+        title: 'Related services',
         links: [
           CLAUDE_LINK,
           {
@@ -610,7 +620,7 @@ export const pages: ContentPage[] = [
           RESPONSIBLE_AI_LINK,
         ],
       },
-      { type: 'inFocus', title: 'In focus', services: ['applied-ai', 'ai-platforms'] },
+      { type: 'inFocus', title: 'Further reading', services: ['applied-ai', 'ai-platforms'] },
     ],
   },
 
@@ -658,7 +668,7 @@ export const pages: ContentPage[] = [
       },
       {
         type: 'tabs',
-        title: 'Our solutions',
+        title: 'Typical projects',
         tabs: [
           {
             label: 'Internal knowledge search',
@@ -679,7 +689,7 @@ export const pages: ContentPage[] = [
       },
       {
         type: 'steps',
-        title: 'How it runs',
+        title: 'How a project runs',
         steps: [
           { title: 'Assess', body: 'We review content sources, access rules and the questions people actually ask.' },
           { title: 'Pilot', body: 'An assistant on a defined set of your content, measured against an accuracy target you set.' },
@@ -700,7 +710,7 @@ export const pages: ContentPage[] = [
       },
       {
         type: 'faq',
-        title: 'Questions',
+        title: 'Common questions',
         items: [
           {
             q: 'Can users see documents they are not allowed to?',
@@ -718,7 +728,7 @@ export const pages: ContentPage[] = [
       },
       {
         type: 'links',
-        title: 'Related',
+        title: 'Related services',
         links: [
           CLAUDE_LINK,
           {
@@ -734,7 +744,7 @@ export const pages: ContentPage[] = [
           RESPONSIBLE_AI_LINK,
         ],
       },
-      { type: 'inFocus', title: 'In focus', services: ['applied-ai', 'knowledge-assistants'] },
+      { type: 'inFocus', title: 'Further reading', services: ['applied-ai', 'knowledge-assistants'] },
     ],
   },
 
@@ -744,9 +754,9 @@ export const pages: ContentPage[] = [
   {
     path: '/what-we-do/applied-ai/ai-governance',
     meta: {
-      title: 'AI governance and EU AI Act readiness | YatiSphere',
+      title: 'AI governance: NIST AI RMF and EU AI Act | YatiSphere',
       description:
-        'AI governance aligned to EU AI Act risk tiers, ISO/IEC 42001 and the NIST AI RMF: human oversight, logging and evaluation. Alignment, not certification.',
+        'AI governance aligned to the NIST AI RMF, ISO/IEC 42001 and EU AI Act risk tiers: human oversight, logging and evaluation. Alignment, not certification.',
     },
     hero: {
       kicker: 'APPLIED AI / AI GOVERNANCE',
@@ -788,7 +798,7 @@ export const pages: ContentPage[] = [
       },
       {
         type: 'tabs',
-        title: 'Our solutions',
+        title: 'Typical projects',
         tabs: [
           {
             label: 'Governance baseline',
@@ -809,7 +819,7 @@ export const pages: ContentPage[] = [
       },
       {
         type: 'steps',
-        title: 'How it runs',
+        title: 'How a project runs',
         steps: [
           { title: 'Inventory', body: 'We list where AI is used or planned, what data it touches and who owns it.' },
           { title: 'Assess', body: 'Each use case is classified by risk and mapped to the frameworks you need to align with.' },
@@ -830,7 +840,7 @@ export const pages: ContentPage[] = [
       },
       {
         type: 'faq',
-        title: 'Questions',
+        title: 'Common questions',
         items: [
           {
             q: 'Does this give us a certification?',
@@ -848,7 +858,7 @@ export const pages: ContentPage[] = [
       },
       {
         type: 'links',
-        title: 'Related',
+        title: 'Related services',
         links: [
           RESPONSIBLE_AI_LINK,
           CLAUDE_LINK,
@@ -860,7 +870,7 @@ export const pages: ContentPage[] = [
           APPLIED_AI_LINK,
         ],
       },
-      { type: 'inFocus', title: 'In focus', services: ['applied-ai', 'ai-governance'] },
+      { type: 'inFocus', title: 'Further reading', services: ['applied-ai', 'ai-governance'] },
     ],
   },
 
@@ -906,13 +916,13 @@ export const pages: ContentPage[] = [
           },
           {
             title: 'Measurement',
-            body: 'Measures agreed before rollout, a baseline taken first, and reporting on what changes — including where it does not help.',
+            body: 'Measures agreed before rollout, a baseline taken first, and reporting on what changes, including where it does not help.',
           },
         ],
       },
       {
         type: 'tabs',
-        title: 'Our solutions',
+        title: 'Typical projects',
         tabs: [
           {
             label: 'Assistant rollout',
@@ -933,7 +943,7 @@ export const pages: ContentPage[] = [
       },
       {
         type: 'steps',
-        title: 'How it runs',
+        title: 'How a project runs',
         steps: [
           { title: 'Readiness', body: 'We review your repositories, security rules and delivery practices, and agree the measures.' },
           { title: 'Pilot', body: 'A pilot with selected teams, with guardrails in place and a baseline taken first.' },
@@ -954,7 +964,7 @@ export const pages: ContentPage[] = [
       },
       {
         type: 'faq',
-        title: 'Questions',
+        title: 'Common questions',
         items: [
           {
             q: 'Do you only work with Claude Code?',
@@ -972,7 +982,7 @@ export const pages: ContentPage[] = [
       },
       {
         type: 'links',
-        title: 'Related',
+        title: 'Related services',
         links: [
           CLAUDE_LINK,
           {
@@ -988,7 +998,7 @@ export const pages: ContentPage[] = [
           RESPONSIBLE_AI_LINK,
         ],
       },
-      { type: 'inFocus', title: 'In focus', services: ['applied-ai', 'ai-assisted-engineering'] },
+      { type: 'inFocus', title: 'Further reading', services: ['applied-ai', 'ai-assisted-engineering'] },
     ],
   },
 ]

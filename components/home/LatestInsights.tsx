@@ -14,10 +14,11 @@ export function LatestInsights() {
   if (items.length === 0) return null
 
   return (
-    <section className="ys-section-light" aria-labelledby="home-insights">
+    <section className="ys-section-light ys-grid-bg" aria-labelledby="home-insights">
       <div className="enterprise-container-wide">
         <div className="ys-how-intro">
           <div>
+            <p className="ys-kicker">Insights</p>
             <h2 id="home-insights">Recent writing from our engineers</h2>
           </div>
           <a href="/insights" className="ys-link ys-how-link">

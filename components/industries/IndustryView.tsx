@@ -57,7 +57,7 @@ export function IndustryView({ page, d }: { page: ContentPage; d: IndustryDetail
       </PageSection>
 
       {/* What we build, problem first */}
-      <PageSection id="what-we-build" tone="light" eyebrow="What we build" title="The problems we are brought in to fix.">
+      <PageSection id="what-we-build" tone="light" eyebrow="What we build" title="Problems we help with">
         <ul className="ys-ind-build">
           {d.build.map((b) => (
             <li key={b.title}>
@@ -81,7 +81,7 @@ export function IndustryView({ page, d }: { page: ContentPage; d: IndustryDetail
       </PageSection>
 
       {/* Standards, with the disclaimer visible */}
-      <PageSection id="standards" tone="white" eyebrow="Regulation and standards" title="The rules your organization answers to.">
+      <PageSection id="standards" tone="white" eyebrow="Regulation and standards" title="Regulations and standards">
         <p className="ys-ind-disclaimer">
           <Scale strokeWidth={2} aria-hidden="true" />
           <span>{d.standards.lede}</span>
@@ -133,7 +133,7 @@ export function IndustryView({ page, d }: { page: ContentPage; d: IndustryDetail
       </section>
 
       {/* Related reading and services */}
-      <PageSection id="related" tone="light" eyebrow="Go deeper" title={`More on ${page.name}`}>
+      <PageSection id="related" tone="light" eyebrow="Related" title={`More on ${page.name}`}>
         <div className="ys-ind-related">
           {articles.length > 0 && (
             <div>
@@ -222,8 +222,8 @@ export function IndustriesHub({ page }: { page: ContentPage }) {
         </p>
       </PageSection>
       <PageCTA
-        title="What are you working on?"
-        body="A senior engineer replies within one working day."
+        title="Tell us what you want to fix first"
+        body="We reply within one working day."
         primaryCta={{ label: PRIMARY_CTA.label, href: PRIMARY_CTA.href }}
         secondaryCta={{ label: 'Start with a Blueprint', href: '/blueprint' }}
       />

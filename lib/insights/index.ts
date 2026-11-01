@@ -5,6 +5,8 @@ import { article as pilotToProduction } from './articles/taking-an-ai-pilot-to-p
 import { article as soc2Evidence } from './articles/soc-2-evidence-from-pipelines'
 import { article as kycAutomation } from './articles/kyc-automation-without-black-boxes'
 import { article as azureFinops } from './articles/azure-finops-quick-wins'
+import { article as aba512 } from './articles/aba-opinion-512-generative-ai-law-firms'
+import { article as nistRmf } from './articles/nist-ai-rmf-for-mid-market-teams'
 
 export type { Article, ArticleSection, ArticleSource } from './types'
 
@@ -23,6 +25,8 @@ export const ALL_ARTICLES: Article[] = [
   soc2Evidence,
   kycAutomation,
   azureFinops,
+  aba512,
+  nistRmf,
 ]
 
 export const INSIGHTS_PREVIEW =

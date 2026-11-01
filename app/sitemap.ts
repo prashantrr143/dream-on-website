@@ -18,7 +18,7 @@ import { SITE_URL, indexableRoutes } from '@/lib/seo'
 const PRIORITY: Record<string, number> = {
   '/': 1.0,
   '/what-we-do': 0.9,
-  '/what-we-do/consulting': 0.9,
+  '/blueprint': 0.9,
   '/what-we-do/cloud': 0.9,
   '/what-we-do/applied-ai': 0.9,
   '/what-we-do/applied-ai/claude': 0.9,

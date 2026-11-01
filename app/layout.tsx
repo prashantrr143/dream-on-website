@@ -47,9 +47,9 @@ const ibmPlexMono = localFont({
 })
 
 // Same positioning as the home page (lib/seo.ts '/').
-const DEFAULT_TITLE = 'IT services and applied AI, built properly | YatiSphere'
+const DEFAULT_TITLE = 'AI and cloud engineering for regulated firms | YatiSphere'
 const DEFAULT_DESCRIPTION =
-  'Cloud, software, data and security for growing companies and regulated enterprises, built and run by senior engineers, with governed AI where it pays.'
+  'Systems that pass review, from cloud to AI: cloud, software, data and AI for banks, law firms and SaaS teams, starting with a fixed-fee plan.'
 
 /**
  * Site-wide defaults. Every route sets its own title, description,

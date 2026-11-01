@@ -7,6 +7,7 @@ import { visibleArticles, getVisibleArticle } from '@/lib/insights'
 import { PRIMARY_CTA, SECONDARY_CTA } from '@/lib/cta'
 import { ArrowRight } from 'lucide-react'
 import { ArticleToc } from '@/components/insights/ArticleToc'
+import { authorOf, authorSchema } from '@/lib/insights/author'
 
 /** Only visible articles get pages; drafts exist only in preview builds. */
 export const dynamicParams = false
@@ -57,6 +58,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
   const a = getVisibleArticle((await params).slug)
   if (!a) notFound()
 
+  const author = authorOf(a)
   const ids = sectionIds(a.sections.map((x) => x.heading))
   const toc = a.sections
     .map((x, i) => (x.heading ? { id: ids[i]!, label: x.heading } : null))
@@ -72,7 +74,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
           description: a.summary,
           datePublished: a.publishedAt,
           dateModified: a.reviewedAt,
-          author: { '@type': 'Organization', name: 'YatiSphere', url: SITE_URL },
+          author: authorSchema(a),
           publisher: { '@id': `${SITE_URL}/#organization` },
           mainEntityOfPage: `${SITE_URL}/insights/${a.slug}`,
           image: `${SITE_URL}/opengraph-image`,
@@ -99,7 +101,23 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
           {/* Details first in the DOM, so small screens see them before the text. */}
           <aside className="ys-art-aside" aria-label="About this article">
             <dl className="ys-art-meta">
-              <div><dt>Written by</dt><dd>{a.author}</dd></div>
+              <div>
+                <dt>Written by</dt>
+                <dd>
+                  {author ? (
+                    <>
+                      {author.linkedinUrl ? (
+                        <a href={author.linkedinUrl} rel="author noopener noreferrer" target="_blank" className="ys-link">{author.name}</a>
+                      ) : (
+                        <a href="/who-we-are/leadership" rel="author" className="ys-link">{author.name}</a>
+                      )}
+                      <span className="ys-art-role">{author.role}</span>
+                    </>
+                  ) : (
+                    'YatiSphere team'
+                  )}
+                </dd>
+              </div>
               <div><dt>Reading time</dt><dd>{a.readTime}</dd></div>
               {a.publishedAt && <div><dt>Published</dt><dd>{longDate(a.publishedAt)}</dd></div>}
               <div><dt>Facts checked</dt><dd>{longDate(a.reviewedAt)}</dd></div>
@@ -107,7 +125,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
             <div className="ys-art-cta">
               <p className="ys-art-cta-kicker">{a.category}</p>
               <p className="ys-art-cta-title">Working on this now?</p>
-              <p className="ys-art-cta-body">A senior engineer replies within one working day.</p>
+              <p className="ys-art-cta-body">We reply within one working day.</p>
               <a href={PRIMARY_CTA.href} className="ys-cta-primary inline-flex items-center gap-2">
                 {PRIMARY_CTA.label}
                 <ArrowRight className="w-4 h-4 shrink-0" strokeWidth={2.5} aria-hidden="true" />
@@ -176,7 +194,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 
       <PageCTA
         title="Facing this in your own estate?"
-        body="Tell us what you are working on. A senior member of the team replies within one working day."
+        body="Tell us what you are working on. We reply within one working day."
         primaryCta={{ label: PRIMARY_CTA.label, href: PRIMARY_CTA.href }}
         secondaryCta={{ label: SECONDARY_CTA.label, href: SECONDARY_CTA.href }}
       />

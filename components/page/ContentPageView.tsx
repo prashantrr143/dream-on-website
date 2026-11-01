@@ -22,7 +22,7 @@ import { WorkflowDiagram } from './WorkflowDiagram'
 
 const muted: React.CSSProperties = { fontSize: 16, lineHeight: 1.65, color: 'var(--ink-600)' }
 
-function CardGrid({ cards, columns = 3 }: { cards: { title: string; body: string; href?: string; bullets?: string[] }[]; columns?: number | undefined }) {
+function CardGrid({ cards, columns = 3 }: { cards: { title: string; body: string; href?: string; bullets?: string[]; id?: string }[]; columns?: number | undefined }) {
   const cols = columns === 2 ? 'md:grid-cols-2' : columns === 4 ? 'md:grid-cols-2 lg:grid-cols-4' : 'md:grid-cols-2 lg:grid-cols-3'
   return (
     <ul className={`grid grid-cols-1 ${cols}`} style={{ gap: 20, listStyle: 'none', margin: 0, padding: 0 }}>
@@ -46,7 +46,7 @@ function CardGrid({ cards, columns = 3 }: { cards: { title: string; body: string
           </>
         )
         return (
-          <li key={c.title} style={{ minWidth: 0 }}>
+          <li key={c.title} id={c.id} style={{ minWidth: 0, scrollMarginTop: 96 }}>
             {c.href ? (
               <a href={c.href} className="ys-open-item" style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
                 {inner}
@@ -73,7 +73,7 @@ function InFocus({ block }: { block: Extract<Block, { type: 'inFocus' }> }) {
     (!block.services?.length || block.services.some((x) => i.services.includes(x))) &&
     (!block.clouds?.length || block.clouds.some((x) => i.clouds.includes(x)))
   const tabs = [
-    { label: 'Thought leadership', items: insights.filter(match) },
+    { label: 'Articles', items: insights.filter(match) },
     { label: 'Customer stories', items: stories.filter(match) },
     { label: 'News', items: news.filter(match) },
     { label: 'Recognitions', items: recognitions.filter(match) },
@@ -81,15 +81,15 @@ function InFocus({ block }: { block: Extract<Block, { type: 'inFocus' }> }) {
   ].filter((t) => t.items.length > 0)
   if (tabs.length === 0) return null
   return (
-    <PageSection tone="white" eyebrow={block.kicker ?? 'In focus'} title={block.title ?? 'In focus'}>
+    <PageSection tone="white" eyebrow={block.kicker ?? 'Further reading'} title={block.title ?? 'Further reading'}>
       <Tabs tabs={tabs.map((t) => ({ label: t.label, content: <ItemCards items={t.items} /> }))} />
     </PageSection>
   )
 }
 
 const CLOUDS = [
-  { name: 'AWS', href: '/what-we-do/cloud/aws', body: 'Landing zones, migration, data and AI workloads, and cost control on AWS.' },
-  { name: 'Microsoft Azure', href: '/what-we-do/cloud/microsoft-azure', body: 'Governed Azure platforms, from landing zones to data and AI workloads.' },
+  { name: 'AWS', id: 'aws', body: 'Landing zones, migration, data and AI workloads, and cost control on AWS.', bullets: ['Landing zones with AWS Control Tower', 'AI on Amazon Bedrock', 'Migration, FinOps and operations'] },
+  { name: 'Microsoft Azure', id: 'azure', body: 'Azure platforms with policy and cost controls, from landing zones to data and AI workloads.', bullets: ['Azure landing zones and Azure Policy', 'AI on Microsoft Foundry', 'Migration, FinOps and operations'] },
 ]
 
 /**
@@ -264,13 +264,13 @@ function BlockView({ block, tone }: { block: Block; tone: 'white' | 'light' }) {
       )
     case 'workflow':
       return (
-        <PageSection id={id} tone={tone} eyebrow={block.kicker ?? 'How it works'} title={block.title ?? 'Human + AI in control'}>
+        <PageSection id={id} tone={tone} eyebrow={block.kicker ?? 'How it works'} title={block.title ?? 'Where people stay in control'}>
           <WorkflowDiagram />
         </PageSection>
       )
     case 'modelNeutral':
       return (
-        <PageSection id={id} tone={tone} eyebrow={block.kicker ?? 'Model-neutral'} title={block.title ?? 'Model-neutral by design'}>
+        <PageSection id={id} tone={tone} eyebrow={block.kicker ?? 'Model-neutral'} title={block.title ?? 'Your choice of model and cloud'}>
           <div className="grid grid-cols-1 md:grid-cols-2" style={{ gap: 20 }}>
             <div className="ys-open-item">
               <p className="ys-offer-label">Models we build with</p>
@@ -293,7 +293,7 @@ function BlockView({ block, tone }: { block: Block; tone: 'white' | 'light' }) {
     case 'cloudChooser':
       return (
         <PageSection id={id} tone={tone} eyebrow={block.kicker ?? 'Multi-cloud'} title={block.title ?? 'Choose your cloud'}>
-          <CardGrid cards={CLOUDS.map((c) => ({ title: c.name, body: c.body, href: c.href }))} />
+          <CardGrid cards={CLOUDS.map((c) => ({ title: c.name, body: c.body, bullets: c.bullets, id: c.id }))} />
         </PageSection>
       )
     case 'inFocus':
@@ -323,7 +323,7 @@ export function ContentPageView({ page }: { page: ContentPage }) {
         return <BlockView key={`${block.type}-${i}`} block={block} tone={tone} />
       })}
       <PageCTA
-        title={page.contact?.title ?? 'What are you working on?'}
+        title={page.contact?.title ?? 'Tell us what you want to fix first'}
         body={page.contact?.body ? firstSentence(page.contact.body) : 'We reply within one working day.'}
         primaryCta={{ label: PRIMARY_CTA.label, href: contactHref(page.contactInterest) }}
         secondaryCta={{ label: SECONDARY_CTA.label, href: SECONDARY_CTA.href }}

@@ -23,11 +23,11 @@ const PRINCIPLES = [
   },
   {
     title: 'Clear ownership',
-    body: 'Every deliverable has an owner. Every decision has a trail.',
+    body: 'Each deliverable has a named owner, and decisions are written down.',
   },
   {
     title: 'Working software every two weeks',
-    body: 'Incremental delivery, never a big reveal at the end.',
+    body: 'Working software you can review every two weeks, not one reveal at the end.',
   },
 ]
 
@@ -49,7 +49,7 @@ const MODELS = [
     title: 'Dedicated teams',
     fit: 'Embedded · scales with you',
     body: 'Engineers and delivery leads in your team, on your priorities, with our delivery discipline.',
-    best: 'The roadmap is yours and you need senior capacity.',
+    best: 'The roadmap is yours and you need delivery capacity.',
   },
   {
     title: 'Managed services',
@@ -68,8 +68,8 @@ export default function HowWeWorkContent() {
     <SharedLayout>
       <PageHero
         eyebrow="How we work"
-        title="From first conversation to running system."
-        lede="Senior engineers lead every stage. You decide at each step whether to continue with us or take it in-house."
+        title="How a project runs, from first call to live system"
+        lede="The same team at each stage. You decide at each step whether to continue with us or take it in-house."
         visual="lanes"
         primaryCta={{ label: PRIMARY_CTA.label, href: PRIMARY_CTA.href }}
         secondaryCta={{ label: 'Start with a Blueprint', href: '/blueprint' }}
@@ -103,7 +103,7 @@ export default function HowWeWorkContent() {
       {/* The page's one navy feature band. */}
       <section id="principles" className="ys-hww-band" aria-labelledby="hww-principles">
         <div className="enterprise-container-wide">
-          <h2 id="hww-principles">What we do the same way on every engagement</h2>
+          <h2 id="hww-principles">What stays the same on every project</h2>
           <ol className="ys-hww-principles">
             {PRINCIPLES.map((p, i) => (
               <li key={p.title}>
@@ -122,7 +122,7 @@ export default function HowWeWorkContent() {
         id="engagement"
         tone="white"
         eyebrow="Engagement models"
-        title="Work with us the way your organization buys."
+        title="Ways to work with us"
       >
         <ul className="ys-hww-models">
           {MODELS.map((m) => (
@@ -154,8 +154,8 @@ export default function HowWeWorkContent() {
         id="international"
         tone="white"
         eyebrow="Working across regions"
-        title="Based in India, working with clients in five regions"
-        lede="For clients in the UK, Europe, the Middle East, the US and India."
+        title="Where we work"
+        lede="For clients in the US, the UK, Europe and the Middle East, delivered from India."
       >
         <ul className="ys-hww-regions">
           {WORKING_ACROSS_REGIONS.map((item, i) => {
@@ -181,7 +181,7 @@ export default function HowWeWorkContent() {
 
       <PageCTA
         title={'What’s the problem you’d fix first?'}
-        body="Describe it in a few lines. A senior member of the team replies within one working day, with an honest view on whether we can help."
+        body="Describe it in a few lines. We reply within one working day, and tell you plainly whether we can help."
         primaryCta={{ label: PRIMARY_CTA.label, href: PRIMARY_CTA.href }}
       />
     </SharedLayout>

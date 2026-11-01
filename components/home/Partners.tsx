@@ -16,9 +16,10 @@ export function Partners() {
   if (list.length === 0) return null
 
   return (
-    <section className="ys-section-white" aria-labelledby="home-partners">
+    <section className="ys-section-light" aria-labelledby="home-partners">
       <div className="enterprise-container-wide ys-partners">
         <div className="ys-partners-intro">
+          <p className="ys-kicker">Delivery partners</p>
           <h2 id="home-partners">Firms we deliver with</h2>
           <p>When a project needs specialist operations or coverage we don’t have in-house, we bring in a partner we already work with, and we stay accountable for the result.</p>
         </div>

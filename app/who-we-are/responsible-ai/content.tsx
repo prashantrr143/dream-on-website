@@ -145,7 +145,7 @@ export default function ResponsibleAIContent() {
       />
 
       {/* Four commitments */}
-      <PageSection tone="white" title="Four commitments we make on every AI engagement">
+      <PageSection tone="white" title="What we commit to on AI projects">
         <ul className="ys-rai-commit">
           {COMMITMENTS.map((c) => (
             <li key={c.title}>
@@ -172,7 +172,7 @@ export default function ResponsibleAIContent() {
           <div className="ys-rai-band-head">
             <div>
               <p className="ys-eyebrow ys-eyebrow-on-dark">Red lines</p>
-              <h2 id="rai-red-lines">What we will not build.</h2>
+              <h2 id="rai-red-lines">What we will not build</h2>
             </div>
             <p>Some uses of AI cannot be made safe by better engineering. We decline them, and say so early.</p>
           </div>
@@ -197,7 +197,7 @@ export default function ResponsibleAIContent() {
         id="controls"
         tone="light"
         eyebrow="In practice"
-        title="The controls at each stage, and the evidence they leave."
+        title="Controls at each stage, and the records they leave"
         lede="Oversight, logging and evaluation scale with the risk. High-stakes decisions in regulated settings get more conservative designs; lower-risk uses can automate more."
       >
         <ol className="ys-rai-controls">
@@ -249,7 +249,7 @@ export default function ResponsibleAIContent() {
         id="frameworks"
         tone="light"
         eyebrow="Framework alignment"
-        title="Designed to the frameworks your regulators use."
+        title="Frameworks we design against"
       >
         <div className="ys-table-wrap" role="region" aria-label="Framework alignment" tabIndex={0}>
           <table className="ys-table">
@@ -308,7 +308,7 @@ export default function ResponsibleAIContent() {
       </PageSection>
 
       <PageCTA
-        title="Planning an AI system that has to stand up to scrutiny?"
+        title="Planning an AI system that will be reviewed?"
         body="Tell us what it needs to decide, and who has to be able to explain it."
         primaryCta={{ label: PRIMARY_CTA.label, href: PRIMARY_CTA.href }}
       />

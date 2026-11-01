@@ -26,6 +26,10 @@ export interface NavLink {
 
 export interface NavGroup {
   label: string
+  /** One line under the label in region B. */
+  desc?: string
+  /** Icon key, mapped to a Lucide icon in MegaPanel. */
+  icon?: string
   /** A group without children renders as a plain link row in region B. */
   href?: string
   children?: NavLink[]
@@ -46,6 +50,8 @@ export interface NavPanel {
    * there rather than here, so the header doesn't ship page data).
    */
   featured?: NavFeatured
+  /** One quiet link under the columns, e.g. the Blueprint. */
+  footer?: NavLink
   groups: NavGroup[]
   hidden?: Hidden
 }
@@ -53,6 +59,8 @@ export interface NavPanel {
 export interface NavFeatured {
   /** Optional steps drawn as the card's preview (e.g. the Blueprint weeks). */
   steps?: string[]
+  /** What the client keeps, shown as chips under the steps. */
+  deliverables?: string[]
   /** Shown UPPERCASE. */
   kicker: string
   title: string
@@ -80,137 +88,86 @@ const PRODUCTS: NavLink[] = []
 
 const W = '/what-we-do'
 
+/**
+ * Navigation, simplified (2026-11-01, SEO and marketing review: "too much
+ * noise"). Three short panels of plain links, ordered by what buyers look
+ * for, plus Insights as a direct link. No icons, descriptions, featured
+ * cards or assurance lists: the pages carry the detail.
+ */
 export const NAV_TREE: NavItem[] = [
   {
     kind: 'panel',
     id: 'what-we-do',
-    label: 'What we do',
-    overviewHref: '/what-we-do',
-    featured: {
-      kicker: 'Start here',
-      title: 'The Solution Blueprint',
-      summary: 'Two to four weeks to agree the problem, the design and the plan before any build.',
-      href: '/blueprint',
-      steps: ['Discover', 'Design', 'Plan', 'Readout'],
-    },
+    label: 'Services',
+    overviewHref: W,
     intro: {
-      heading: 'What we do',
-      body: 'IT services and applied AI, built and run by senior engineers.',
-      link: { label: 'Explore what we do', href: '/what-we-do' },
+      heading: 'All services',
+      body: 'Cloud, software, data and AI for regulated businesses.',
+      link: { label: 'All services', href: W },
     },
+    footer: { label: 'Start with a Solution Blueprint', href: '/blueprint' },
     groups: [
-      {
-        label: 'Industries',
-        children: [
-          { label: 'Financial services', href: `${W}/industries/financial-services` },
-          { label: 'Legal & professional services', href: `${W}/industries/legal-professional-services` },
-          { label: 'Software & SaaS', href: `${W}/industries/software-saas` },
-        ],
-      },
-      {
-        label: 'Consulting',
-        children: [
-          { label: 'Consulting overview', href: `${W}/consulting` },
-          { label: 'Technology strategy', href: `${W}/consulting/technology-strategy` },
-          { label: 'Enterprise architecture', href: `${W}/consulting/enterprise-architecture` },
-          { label: 'AI strategy & readiness', href: `${W}/consulting/ai-strategy` },
-          { label: 'Cloud strategy & FinOps', href: `${W}/consulting/cloud-strategy-finops` },
-          { label: 'Modernization roadmaps', href: `${W}/consulting/modernization-roadmaps` },
-          { label: 'Architecture due diligence', href: `${W}/consulting/due-diligence` },
-        ],
-      },
-      {
-        label: 'Cloud',
-        children: [
-          { label: 'Cloud overview', href: `${W}/cloud` },
-          { label: 'AWS', href: `${W}/cloud/aws` },
-          { label: 'Microsoft Azure', href: `${W}/cloud/microsoft-azure` },
-          { label: 'Migration', href: `${W}/cloud/migration` },
-          { label: 'Landing zones', href: `${W}/cloud/landing-zones` },
-          { label: 'FinOps', href: `${W}/cloud/finops` },
-          { label: 'Managed operations', href: `${W}/cloud/managed-operations` },
-          { label: 'Resilience & DR', href: `${W}/cloud/resilience` },
-        ],
-      },
       {
         label: 'Applied AI',
         children: [
-          { label: 'Applied AI overview', href: `${W}/applied-ai` },
-          { label: 'Claude practice', href: `${W}/applied-ai/claude` },
+          { label: 'AI pilot to production', href: `${W}/applied-ai` },
           { label: 'Agentic automation', href: `${W}/applied-ai/agentic-automation` },
-          { label: 'Enterprise AI platforms', href: `${W}/applied-ai/ai-platforms` },
-          { label: 'Knowledge assistants', href: `${W}/applied-ai/knowledge-assistants` },
           { label: 'AI governance', href: `${W}/applied-ai/ai-governance` },
+          { label: 'Claude practice', href: `${W}/applied-ai/claude` },
           { label: 'AI-assisted engineering', href: `${W}/applied-ai/ai-assisted-engineering` },
         ],
       },
       {
-        label: 'Engineering & data',
+        label: 'Cloud and engineering',
         children: [
-          { label: 'Software engineering', href: `${W}/services/software-engineering` },
-          { label: 'Data & analytics', href: `${W}/services/data-analytics` },
-          { label: 'DevOps & platform engineering', href: `${W}/services/devops-platform-engineering` },
-          { label: 'Security & compliance', href: `${W}/services/security-compliance` },
-          { label: 'Legacy modernization', href: `${W}/services/modernization` },
+          { label: 'Cloud foundations', href: `${W}/cloud` },
+          { label: 'Cloud migration', href: `${W}/cloud/migration` },
+          { label: 'Software and data', href: `${W}/engineering-data` },
+          { label: 'Security and compliance', href: `${W}/services/security-compliance` },
         ],
       },
-      { label: 'Products & accelerators', children: PRODUCTS },
+      { label: 'Products', children: PRODUCTS },
       { label: 'Alliances', href: '/alliances', hidden: () => !hasMembership(site.partners) },
     ],
   },
   {
     kind: 'panel',
-    id: 'who-we-are',
-    label: 'Who we are',
-    overviewHref: '/who-we-are/about',
-    // The brief's "A fixed price for the first step" is reworded: pricing
-    // language was removed site-wide (owner decision, 2026-10-11).
-    featured: {
-      kicker: 'How we work',
-      title: 'Start with a Blueprint',
-      summary: 'A 2–4 week discovery engagement before any build.',
-      href: '/blueprint',
-      steps: ['Discover', 'Design', 'Plan', 'Readout'],
-    },
+    id: 'industries',
+    label: 'Industries',
+    overviewHref: `${W}/industries`,
     intro: {
-      heading: 'Who we are',
-      body: 'Senior consultants and engineers, and how we work.',
-      link: { label: 'Explore who we are', href: '/who-we-are/about' },
+      heading: 'All industries',
+      body: 'Financial services, legal and SaaS.',
+      link: { label: 'All industries', href: `${W}/industries` },
+    },
+    groups: [
+      { label: 'Financial services', href: `${W}/industries/financial-services` },
+      { label: 'Legal & professional services', href: `${W}/industries/legal-professional-services` },
+      { label: 'Software & SaaS', href: `${W}/industries/software-saas` },
+    ],
+  },
+  {
+    kind: 'panel',
+    id: 'who-we-are',
+    label: 'Company',
+    overviewHref: '/who-we-are/about',
+    intro: {
+      heading: 'About us',
+      body: 'Our vision, principles, people and how we work.',
+      link: { label: 'About us', href: '/who-we-are/about' },
     },
     groups: [
       { label: 'About us', href: '/who-we-are/about' },
       { label: 'Leadership', href: '/who-we-are/leadership' },
       { label: 'How we work', href: '/who-we-are/how-we-work' },
       { label: 'Responsible AI', href: '/who-we-are/responsible-ai' },
-      { label: 'Trust & security', href: '/who-we-are/trust' },
-    ],
-  },
-  {
-    kind: 'panel',
-    id: 'insights',
-    label: 'Insights',
-    overviewHref: '/insights',
-    featured: {
-      kicker: 'Latest insight',
-      title: 'Taking an AI pilot to production',
-      summary: 'What changes between a demo and a system a regulated business can run.',
-      href: '/insights/taking-an-ai-pilot-to-production',
-    },
-    intro: {
-      heading: 'Insights',
-      body: 'Notes on cloud, AI and governance from engineers who build it.',
-      link: { label: 'Explore insights', href: '/insights' },
-    },
-    groups: [
-      { label: 'All insights', href: '/insights', hidden: () => !hasArticles },
-      { label: 'AI pilots to production', href: '/insights/taking-an-ai-pilot-to-production', hidden: () => !hasArticles },
-      { label: 'KYC without black boxes', href: '/insights/kyc-automation-without-black-boxes', hidden: () => !hasArticles },
-      { label: 'SOC 2 evidence from pipelines', href: '/insights/soc-2-evidence-from-pipelines', hidden: () => !hasArticles },
+      { label: 'Trust center', href: '/who-we-are/trust' },
       { label: 'Customer stories', href: '/customer-stories', hidden: () => stories.length === 0 },
       { label: 'News', href: '/news', hidden: () => news.length === 0 },
       { label: 'Events', href: '/events', hidden: () => events.length === 0 },
     ],
   },
+  { kind: 'link', id: 'insights', label: 'Insights', href: '/insights', hidden: () => !hasArticles },
   { kind: 'link', id: 'careers', label: 'Careers', href: '/careers', hidden: !CAREERS_LIVE },
 ]
 

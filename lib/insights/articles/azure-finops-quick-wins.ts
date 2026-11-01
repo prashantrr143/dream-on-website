@@ -172,7 +172,7 @@ export const article: Article = {
   ],
   related: [
     { label: 'Cloud solutions', href: '/what-we-do/cloud' },
-    { label: 'DevOps and platform engineering', href: '/what-we-do/services/devops-platform-engineering' },
+    { label: 'Software, data and DevOps engineering', href: '/what-we-do/engineering-data' },
     { label: 'Blueprint', href: '/blueprint' },
   ],
 }

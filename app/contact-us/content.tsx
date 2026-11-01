@@ -2,48 +2,16 @@
 
 import { useEffect, useState } from 'react'
 import SharedLayout from '@/components/shared-layout'
-import { PageHero, PageSection } from '@/components/enterprise'
-import { RegionsStrip } from '@/components/enterprise/RegionsStrip'
-import { WorkingWithUs } from '@/components/enterprise/WorkingWithUs'
 import { ContactForm } from '@/components/contact/ContactForm'
 import { siteConfig } from '@/lib/site.config'
 import { SITE_CONTACT } from '@/lib/site-contact'
 import { normalizeInterest, SERVICE_INTERESTS } from '@/lib/countries'
 
 /**
- * /contact-us: the no-JavaScript fallback for the contact overlay, and the
- * page people land on from search. Same form as the overlay; ?interest=
- * presets it (e.g. ?interest=Claude, ?interest=security).
+ * /contact-us: the contact page. Every "Talk to us" link routes here (the
+ * slide-in overlay was removed, 2026-11-01). ?interest= presets the form
+ * (e.g. ?interest=Claude, ?interest=security).
  */
-
-const reachOutScenarios = [
-  "You're planning or modernizing a critical software, cloud or AI system",
-  'You want a second opinion on architecture, delivery or risk',
-  "You're operating in a regulated or security-sensitive environment",
-  "You want it built properly, not just built fast",
-]
-
-const contactChannels = [
-  {
-    label: 'Sales and general inquiries',
-    value: 'sales@yatisphere.com',
-    href: 'mailto:sales@yatisphere.com',
-    iconPath: 'M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z',
-  },
-  {
-    label: 'Architecture reviews',
-    value: 'architects@yatisphere.com',
-    href: 'mailto:architects@yatisphere.com',
-    iconPath: 'M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4',
-  },
-  {
-    label: 'LinkedIn',
-    value: 'Follow YatiSphere',
-    href: 'https://www.linkedin.com/company/yatisphere/',
-    external: true,
-    iconPath: 'M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6zM2 9h4v12H2zM4 6a2 2 0 100-4 2 2 0 000 4z',
-  },
-]
 
 export default function ContactPage() {
   const [preset, setPreset] = useState<{ topic: string; interest: string }>({ topic: 'services', interest: '' })
@@ -57,120 +25,59 @@ export default function ContactPage() {
 
   return (
     <SharedLayout>
-      <PageHero
-        eyebrow="CONTACT"
-        title="What are you working on?"
-        lede="A senior member of the team replies within one working day — with an honest view on whether we're the right team."
-        visual="network"
-      />
+      {/* One screen: what to expect on the left, the form on the right
+          (modelled on a two-column contact layout, 2026-11-01). The form
+          posts to /api/contact, which emails the team. */}
+      <section className="ys-contact" aria-labelledby="contact-title">
+        <div className="enterprise-container-wide ys-contact-grid">
+          <div className="ys-contact-copy">
+            <p className="ys-kicker ys-kicker-on-dark">Contact</p>
+            <h1 id="contact-title">Get in touch</h1>
+            <p className="ys-contact-lede">
+              Tell us what you are working on. We reply within one working day and tell you plainly whether we are the right team.
+            </p>
 
-      <PageSection tone="white">
-        <div
-          style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 1fr)', gap: '80px', alignItems: 'start' }}
-          className="max-lg:!grid-cols-1 max-lg:!gap-12"
-        >
-          {/* ── Left column — context ── */}
-          <div style={{ minWidth: 0 }}>
-            <div style={{ marginBottom: '48px' }}>
-              <h2 style={{ fontSize: '22px', fontWeight: 600, letterSpacing: '-0.02em', color: 'var(--ink-900)', marginBottom: '24px' }}>
-                When it makes sense to reach out
-              </h2>
-              <ul style={{ display: 'flex', flexDirection: 'column', gap: '16px', listStyle: 'none', margin: 0, padding: 0 }}>
-                {reachOutScenarios.map((scenario) => (
-                  <li
-                    key={scenario}
-                    className="ys-open-item"
-                    style={{ display: 'flex', alignItems: 'flex-start', gap: '14px', minWidth: 0 }}
-                  >
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ marginTop: '2px', flexShrink: 0 }} aria-hidden="true">
-                      <path d="M13.333 4L6 11.333 2.667 8" stroke="var(--blue-600)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                    <span style={{ fontSize: '16px', color: 'var(--ink-600)', lineHeight: 1.6 }}>{scenario}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div style={{ marginBottom: '48px' }}>
-              <h2 style={{ fontSize: '22px', fontWeight: 600, letterSpacing: '-0.02em', color: 'var(--ink-900)', marginBottom: '24px' }}>
-                Reach us directly
-              </h2>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                {contactChannels.map((channel) => (
-                  <a
-                    key={channel.label}
-                    href={channel.href}
-                    {...('external' in channel && channel.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-                    className="ys-open-item"
-                    style={{ display: 'flex', alignItems: 'center', gap: '16px', minWidth: 0, textDecoration: 'none' }}
-                  >
-                    <span
-                      style={{
-                        width: '44px',
-                        height: '44px',
-                        borderRadius: '8px',
-                        background: 'var(--grey-50)',
-                        border: '1px solid var(--grey-200)',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        flexShrink: 0,
-                      }}
-                    >
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--blue-600)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                        <path d={channel.iconPath} />
-                      </svg>
-                    </span>
-                    <span style={{ minWidth: 0 }}>
-                      <span style={{ display: 'block', fontSize: '13px', fontWeight: 600, color: 'var(--ink-600)', textTransform: 'uppercase', letterSpacing: '0.12em', marginBottom: '2px' }}>
-                        {channel.label}
-                      </span>
-                      <span style={{ display: 'block', fontSize: '16px', fontWeight: 600, color: 'var(--blue-600)', overflowWrap: 'anywhere' }}>
-                        {channel.value}
-                      </span>
-                    </span>
-                  </a>
-                ))}
-                {SITE_CONTACT.phone && (
-                  <a href={`tel:${SITE_CONTACT.phone.replace(/\s+/g, '')}`} className="ys-open-item" style={{ fontWeight: 600, color: 'var(--blue-600)' }}>
-                    {SITE_CONTACT.phone}
-                  </a>
-                )}
-              </div>
-
-              {/* Registered entity (audit CT-04, G-06) */}
-              {(SITE_CONTACT.registeredAddress || siteConfig.company.cin) && (
-                <address style={{ fontStyle: 'normal', marginTop: 20, fontSize: 14, lineHeight: 1.65, color: 'var(--ink-600)' }}>
-                  <strong style={{ color: 'var(--ink-900)' }}>{siteConfig.company.legalName}</strong>
-                  {SITE_CONTACT.registeredAddress && (
-                    <>
-                      <br />
-                      Registered office: {SITE_CONTACT.registeredAddress}
-                    </>
-                  )}
-                  {siteConfig.company.cin && (
-                    <>
-                      <br />
-                      CIN {siteConfig.company.cin}
-                    </>
-                  )}
-                </address>
+            <ul className="ys-contact-list">
+              <li>
+                <span>Email</span>
+                <a href={`mailto:${SITE_CONTACT.email}`}>{SITE_CONTACT.email}</a>
+              </li>
+              {SITE_CONTACT.linkedin && (
+                <li>
+                  <span>LinkedIn</span>
+                  <a href={SITE_CONTACT.linkedin} target="_blank" rel="noopener noreferrer">YatiSphere on LinkedIn</a>
+                </li>
               )}
-            </div>
+              {SITE_CONTACT.phone && (
+                <li>
+                  <span>Phone</span>
+                  <a href={`tel:${SITE_CONTACT.phone.replace(/\s+/g, '')}`}>{SITE_CONTACT.phone}</a>
+                </li>
+              )}
+              <li>
+                <span>Hours</span>
+                <p>Calls in US hours by appointment.</p>
+              </li>
+              {SITE_CONTACT.registeredAddress && (
+                <li>
+                  <span>Registered office</span>
+                  <p>
+                    {siteConfig.company.legalName}
+                    <br />
+                    {SITE_CONTACT.registeredAddress}
+                    {siteConfig.company.cin && <><br />CIN {siteConfig.company.cin}</>}
+                  </p>
+                </li>
+              )}
+            </ul>
 
-            <div style={{ padding: '20px 24px', background: 'var(--grey-50)', borderRadius: '8px', borderLeft: '3px solid var(--blue-600)' }}>
-              <p style={{ fontSize: '14px', lineHeight: 1.7, color: 'var(--ink-600)' }}>
-                All conversations are confidential. Tell us as much or as little as
-                you&apos;re able to share at this stage.
-              </p>
-            </div>
+            <p className="ys-contact-note">All conversations are confidential. Share as much or as little as you can at this stage.</p>
           </div>
 
-          {/* ── Right column — booking and form. #book is kept for old links. ── */}
-          <div id="book" style={{ minWidth: 0, scrollMarginTop: 96 }}>
+          <div id="book" className="ys-contact-card">
             {siteConfig.bookingUrl && (
-              <div style={{ marginBottom: 32 }}>
-                <h2 style={{ fontSize: 22, fontWeight: 600, color: 'var(--ink-900)', marginBottom: 12 }}>Pick a time to talk</h2>
+              <div style={{ marginBottom: 28 }}>
+                <h2 className="ys-contact-card-title">Pick a time to talk</h2>
                 <iframe
                   src={siteConfig.bookingUrl}
                   title="Book a call with YatiSphere"
@@ -179,24 +86,15 @@ export default function ContactPage() {
                 />
               </div>
             )}
-            <div style={{ background: 'var(--grey-50)', borderRadius: 8, padding: 'clamp(24px, 4vw, 40px)', border: '1px solid var(--grey-200)' }}>
-              <h2 style={{ fontSize: 22, fontWeight: 600, letterSpacing: '-0.02em', color: 'var(--ink-900)', marginBottom: 6 }}>
-                {preset.topic === 'services' ? 'Request for services' : preset.topic}
-              </h2>
-              <p style={{ fontSize: 14, color: 'var(--ink-600)', marginBottom: 24 }}>
-                Fields marked <span aria-hidden="true">*</span><span className="sr-only">with an asterisk</span> are required.
-              </p>
-              <ContactForm key={`${preset.topic}:${preset.interest}`} topic={preset.topic} initialInterest={preset.interest} />
-            </div>
+            <h2 className="ys-contact-card-title">{preset.topic === 'services' ? 'Send us a message' : preset.topic}</h2>
+            <p className="ys-contact-card-sub">
+              Fields marked <span aria-hidden="true">*</span><span className="sr-only">with an asterisk</span> are required.
+            </p>
+            <ContactForm key={`${preset.topic}:${preset.interest}`} topic={preset.topic} initialInterest={preset.interest} />
           </div>
         </div>
-      </PageSection>
+      </section>
 
-      {/* Hours, data terms and data residency */}
-      <RegionsStrip title="Working with clients in the UK, Europe, the Middle East, the US and India" />
-
-      {/* Contract, data and security terms in one place */}
-      <WorkingWithUs tone="white" title="Before we start" />
     </SharedLayout>
   )
 }

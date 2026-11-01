@@ -7,13 +7,13 @@ export const pages: ContentPage[] = [
     name: 'What we do',
     parents: [],
     meta: {
-      title: 'IT services and applied AI | YatiSphere',
+      title: 'AI workflows and the systems under them | YatiSphere',
       description:
-        'Cloud, software, data, security and consulting, built and run by senior engineers, with governed AI where it pays.',
+        'Cloud, software, data and AI systems for regulated businesses, starting with a fixed-fee plan.',
     },
     hero: {
       kicker: 'WHAT WE DO',
-      h1: 'Enterprise IT services, with AI where it pays',
+      h1: 'AI workflows, and the systems under them',
       subhead:
         'We advise on, build and run the systems your business depends on, on AWS, Microsoft Azure or Google Cloud. When AI is the right answer, we build it into those systems and govern it from day one.',
     },
@@ -22,7 +22,7 @@ export const pages: ContentPage[] = [
         type: 'statement',
         kicker: 'Our view',
         title: 'AI is only as trustworthy as the platform under it',
-        text: 'Enterprise AI fails less often on the model than on everything around it: the cloud foundations, the data, the controls and the people who run it. We work on all five layers, with senior engineers on the work, so what reaches production is something your auditors, customers and engineers can live with.',
+        text: 'Enterprise AI fails less often on the model than on everything around it: the cloud foundations, the data, the controls and the people who run it. We work on all five layers, with one accountable team, so what reaches production is something your auditors, customers and engineers can live with.',
       },
       {
         type: 'layers',
@@ -31,19 +31,19 @@ export const pages: ContentPage[] = [
         layers: [
           {
             title: 'Cloud foundations',
-            body: 'Landing zones, identity, networking and cost control on AWS, Microsoft Azure and Google Cloud, so every workload starts on governed ground in your own accounts and region.',
+            body: 'Landing zones, identity, networking and cost control on AWS, Microsoft Azure and Google Cloud, so every workload starts with identity, networking and policy already in place, in your own accounts and region.',
             href: '/what-we-do/cloud',
             linkLabel: 'Cloud',
           },
           {
             title: 'Data and knowledge',
-            body: 'Governed data platforms and knowledge stores with lineage and access rules, so AI answers from the same trusted numbers your teams use.',
-            href: '/what-we-do/services/data-analytics',
-            linkLabel: 'Data & analytics',
+            body: 'Data platforms and knowledge stores with lineage and access rules, so AI answers from the same trusted numbers your teams use.',
+            href: '/what-we-do/engineering-data',
+            linkLabel: 'Data engineering',
           },
           {
             title: 'Models and governance',
-            body: 'Claude and the other models you choose, run where your data lives, evaluated before go-live and governed against the frameworks you answer to.',
+            body: 'Claude and the other models you choose, run where your data lives, tested before go-live and controlled against the frameworks you answer to.',
             href: '/what-we-do/applied-ai/ai-governance',
             linkLabel: 'AI governance',
           },
@@ -56,8 +56,8 @@ export const pages: ContentPage[] = [
           {
             title: 'Intelligence in operations',
             body: 'Monitoring, cost control and change management for AI in production, run by us or handed over to your team with runbooks.',
-            href: '/what-we-do/cloud/managed-operations',
-            linkLabel: 'Managed operations',
+            href: '/what-we-do/cloud',
+            linkLabel: 'Cloud operations',
           },
         ],
       },
@@ -67,19 +67,19 @@ export const pages: ContentPage[] = [
         title: 'Four ways we help',
         columns: 4,
         cards: [
-          { title: 'Consulting', body: 'Technology, architecture, cloud and AI decisions, made before anything is built.', href: '/what-we-do/consulting' },
+          { title: 'Solution Blueprint', body: 'Two to four weeks and a fixed fee to agree the design, plan and risks before anything is built.', href: '/blueprint' },
           { title: 'Cloud', body: 'Design, migrate and operate secure platforms on AWS, Microsoft Azure and Google Cloud.', href: '/what-we-do/cloud' },
-          { title: 'Applied AI', body: 'Governed AI in production, with a dedicated Claude practice.', href: '/what-we-do/applied-ai' },
+          { title: 'Applied AI', body: 'AI in production with testing, approvals and an audit trail, including a Claude practice.', href: '/what-we-do/applied-ai' },
           { title: 'Engineering & data', body: 'Core software, data platforms, delivery pipelines and security.', href: '/what-we-do/engineering-data' },
         ],
       },
       {
         type: 'steps',
         kicker: 'Principles',
-        title: 'How we build AI you can stand behind',
+        title: 'How we build AI',
         steps: [
-          { title: 'Evaluated before go-live', body: 'Acceptance tests and thresholds are agreed before build, and nothing ships until it passes them.' },
-          { title: 'A person approves what matters', body: 'Consequential actions wait for a named reviewer; agents never act alone on them.' },
+          { title: 'Evaluated before go-live', body: 'Acceptance tests and thresholds are agreed before build, and a release goes ahead only when it meets them.' },
+          { title: 'A person approves what matters', body: 'Agents prepare consequential actions; a named reviewer makes the decision.' },
           { title: 'Every step logged', body: 'Inputs, model versions, decisions and approvals are recorded in your environment.' },
           { title: 'Your data stays yours', body: 'We do not use client data to train or fine-tune models, unless a client asks us to in writing for their own dedicated model.' },
         ],

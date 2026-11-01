@@ -42,6 +42,22 @@ export const LOGO_ASSETS = {
     width: 1983,
     height: 691,
   },
+  /**
+   * Header lockups (2026-11-01): the same artwork with the two small lines
+   * under the wordmark ("Technologies Private Limited", the tagline)
+   * cleared, because at header size they render as unreadable noise.
+   * Mark and lettering untouched. The full lockup stays everywhere else.
+   */
+  headerDark: {
+    src: '/brand/yatisphere/logo/yatisphere-dark-header.png',
+    width: 1965,
+    height: 686,
+  },
+  headerLight: {
+    src: '/brand/yatisphere/logo/yatisphere-light-header.png',
+    width: 1965,
+    height: 686,
+  },
   /** Icon-only mark. */
   icon: {
     src: '/brand/yatisphere/icon/yatisphere-icon-512.png',

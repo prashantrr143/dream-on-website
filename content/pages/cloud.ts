@@ -19,7 +19,7 @@ const CAPABILITY_LINKS = {
   landingZones: {
     label: 'Landing zones',
     href: '/what-we-do/cloud/landing-zones',
-    descriptor: 'A governed foundation that new teams start on.',
+    descriptor: 'A foundation new teams can start on, with identity, networking and policy already set up.',
   },
   finops: {
     label: 'FinOps',
@@ -57,20 +57,20 @@ export const pages: ContentPage[] = [
     name: 'Cloud',
     parents: [WHAT_WE_DO],
     meta: {
-      title: 'Cloud consulting: AWS, Azure, GCP | YatiSphere',
+      title: 'AWS and Azure foundations your auditors accept | YatiSphere',
       description:
-        'Cloud consulting across AWS, Microsoft Azure and Google Cloud: landing zones, migration, FinOps, managed operations and disaster recovery.',
+        'Landing zones, FinOps, managed operations and disaster recovery on AWS and Microsoft Azure, defined as code in your own accounts so teams start compliant.',
     },
     hero: {
       kicker: 'WHAT WE DO / CLOUD',
-      h1: 'Every cloud, run as one',
+      h1: 'AWS and Azure foundations your auditors accept',
       subhead:
         'We help you design, migrate and operate secure platforms on AWS, Microsoft Azure and Google Cloud, with cost and resilience under control.',
     },
     blocks: [
       {
         type: 'statement',
-        text: 'Most enterprises run on more than one cloud, by choice or by history. We advise on, build and run platforms on AWS and Microsoft Azure, and we recommend the cloud that fits your estate; we resell neither. Senior engineers work from the first review through day-to-day running, and your code, your cloud and your region are yours from day one.',
+        text: 'Most enterprises run on more than one cloud, by choice or by history. We advise on, build and run platforms on AWS and Microsoft Azure, and we recommend the cloud that fits your estate; we resell neither. One team works from the first review through day-to-day running, and your code, your cloud and your region are yours from day one.',
       },
       {
         type: 'cloudChooser',
@@ -81,7 +81,7 @@ export const pages: ContentPage[] = [
       {
         type: 'cards',
         id: 'capabilities',
-        title: 'Our capabilities',
+        title: 'Services',
         columns: 3,
         cards: [
           {
@@ -106,7 +106,7 @@ export const pages: ContentPage[] = [
           },
           {
             title: 'Resilience & DR',
-            body: 'Backups that have never been restored are a hope, not a plan. We design recovery to the targets you set, then test it with your team.',
+            body: 'Backups nobody has test-restored cannot be relied on. We design recovery to the targets you set, then test it with your team.',
             href: '/what-we-do/cloud/resilience',
           },
         ],
@@ -114,7 +114,7 @@ export const pages: ContentPage[] = [
       {
         type: 'tabs',
         id: 'solutions',
-        title: 'Our solutions',
+        title: 'Typical projects',
         tabs: [
           {
             label: 'Exit the data center',
@@ -159,7 +159,7 @@ export const pages: ContentPage[] = [
           {
             label: 'Prepare for AI workloads',
             description:
-              'A governed place to run models and data close to your existing platform, with access, logging and cost visible from the start.',
+              'A controlled place to run models and data close to your existing platform, with access, logging and cost visible from the start.',
             bullets: [
               'Private networking and identity for model access',
               'Data kept in the region you choose',
@@ -171,16 +171,16 @@ export const pages: ContentPage[] = [
       {
         type: 'list',
         id: 'outcomes',
-        title: 'Outcomes',
+        title: 'What changes',
         items: [
           'Every cloud resource has an owner, a budget and a reason to exist.',
-          'New teams start on a governed foundation instead of building their own.',
+          'New teams start on a shared, approved foundation instead of building their own.',
           'Migrations move in planned waves, each with a tested way back.',
           'Recovery targets are agreed, written down and tested.',
           'Your engineers can run the platform without us, and have the run guide to prove it.',
         ],
       },
-      { type: 'inFocus', title: 'In focus', services: ['cloud'] },
+      { type: 'inFocus', title: 'Further reading', services: ['cloud'] },
     ],
     contactInterest: 'Cloud',
   },
@@ -246,7 +246,7 @@ export const pages: ContentPage[] = [
       {
         type: 'links',
         id: 'related',
-        title: 'Related',
+        title: 'Related services',
         links: [
           CLAUDE_LINK,
           CAPABILITY_LINKS.landingZones,
@@ -256,7 +256,7 @@ export const pages: ContentPage[] = [
           CAPABILITY_LINKS.resilience,
         ],
       },
-      { type: 'inFocus', title: 'In focus', clouds: ['aws'] },
+      { type: 'inFocus', title: 'Further reading', clouds: ['aws'] },
     ],
     contactInterest: 'Cloud: AWS',
   },
@@ -323,7 +323,7 @@ export const pages: ContentPage[] = [
       {
         type: 'links',
         id: 'related',
-        title: 'Related',
+        title: 'Related services',
         links: [
           CLAUDE_LINK,
           CAPABILITY_LINKS.landingZones,
@@ -333,7 +333,7 @@ export const pages: ContentPage[] = [
           CAPABILITY_LINKS.resilience,
         ],
       },
-      { type: 'inFocus', title: 'In focus', clouds: ['microsoft-azure'] },
+      { type: 'inFocus', title: 'Further reading', clouds: ['microsoft-azure'] },
     ],
     contactInterest: 'Cloud: Azure',
   },
@@ -400,7 +400,7 @@ export const pages: ContentPage[] = [
       {
         type: 'links',
         id: 'related',
-        title: 'Related',
+        title: 'Related services',
         links: [
           CLAUDE_LINK,
           CAPABILITY_LINKS.landingZones,
@@ -410,7 +410,7 @@ export const pages: ContentPage[] = [
           CAPABILITY_LINKS.resilience,
         ],
       },
-      { type: 'inFocus', title: 'In focus', clouds: ['google-cloud'] },
+      { type: 'inFocus', title: 'Further reading', clouds: ['google-cloud'] },
     ],
     contactInterest: 'Cloud: Google Cloud',
   },
@@ -421,7 +421,7 @@ export const pages: ContentPage[] = [
     name: 'Migration',
     parents: [WHAT_WE_DO, CLOUD],
     meta: {
-      title: 'Cloud migration services | YatiSphere',
+      title: 'Cloud migration with tested rollback | YatiSphere',
       description:
         'Cloud migration services to AWS, Microsoft Azure or Google Cloud: dependency mapping, wave planning, and cutover with tested rollback.',
     },
@@ -463,7 +463,7 @@ export const pages: ContentPage[] = [
       {
         type: 'tabs',
         id: 'solutions',
-        title: 'Our solutions',
+        title: 'Typical projects',
         tabs: [
           {
             label: 'Data center exit',
@@ -500,7 +500,7 @@ export const pages: ContentPage[] = [
       {
         type: 'steps',
         id: 'how-it-runs',
-        title: 'How it runs',
+        title: 'How a project runs',
         steps: [
           {
             title: 'Assess',
@@ -535,7 +535,7 @@ export const pages: ContentPage[] = [
       {
         type: 'faq',
         id: 'faq',
-        title: 'Questions we get asked',
+        title: 'Common questions',
         items: [
           {
             q: 'Which cloud should we migrate to?',
@@ -554,7 +554,7 @@ export const pages: ContentPage[] = [
       {
         type: 'links',
         id: 'related',
-        title: 'Related',
+        title: 'Related services',
         links: [
           CAPABILITY_LINKS.landingZones,
           CAPABILITY_LINKS.resilience,
@@ -562,7 +562,7 @@ export const pages: ContentPage[] = [
           BLUEPRINT_LINK,
         ],
       },
-      { type: 'inFocus', title: 'In focus', services: ['cloud', 'migration'] },
+      { type: 'inFocus', title: 'Further reading', services: ['cloud', 'migration'] },
     ],
     contactInterest: 'Cloud',
   },
@@ -615,7 +615,7 @@ export const pages: ContentPage[] = [
       {
         type: 'tabs',
         id: 'solutions',
-        title: 'Our solutions',
+        title: 'Typical projects',
         tabs: [
           {
             label: 'New landing zone',
@@ -652,7 +652,7 @@ export const pages: ContentPage[] = [
       {
         type: 'steps',
         id: 'how-it-runs',
-        title: 'How it runs',
+        title: 'How a project runs',
         steps: [
           {
             title: 'Agree the rules',
@@ -687,7 +687,7 @@ export const pages: ContentPage[] = [
       {
         type: 'faq',
         id: 'faq',
-        title: 'Questions we get asked',
+        title: 'Common questions',
         items: [
           {
             q: 'Do you use the providers’ own landing zone tooling?',
@@ -706,7 +706,7 @@ export const pages: ContentPage[] = [
       {
         type: 'links',
         id: 'related',
-        title: 'Related',
+        title: 'Related services',
         links: [
           CAPABILITY_LINKS.migration,
           CAPABILITY_LINKS.finops,
@@ -714,7 +714,7 @@ export const pages: ContentPage[] = [
           BLUEPRINT_LINK,
         ],
       },
-      { type: 'inFocus', title: 'In focus', services: ['cloud', 'landing-zones'] },
+      { type: 'inFocus', title: 'Further reading', services: ['cloud', 'landing-zones'] },
     ],
     contactInterest: 'Cloud',
   },
@@ -767,7 +767,7 @@ export const pages: ContentPage[] = [
       {
         type: 'tabs',
         id: 'solutions',
-        title: 'Our solutions',
+        title: 'Typical projects',
         tabs: [
           {
             label: 'Cost review',
@@ -804,7 +804,7 @@ export const pages: ContentPage[] = [
       {
         type: 'steps',
         id: 'how-it-runs',
-        title: 'How it runs',
+        title: 'How a project runs',
         steps: [
           {
             title: 'See',
@@ -839,7 +839,7 @@ export const pages: ContentPage[] = [
       {
         type: 'faq',
         id: 'faq',
-        title: 'Questions we get asked',
+        title: 'Common questions',
         items: [
           {
             q: 'What access do you need for the cost review?',
@@ -858,7 +858,7 @@ export const pages: ContentPage[] = [
       {
         type: 'links',
         id: 'related',
-        title: 'Related',
+        title: 'Related services',
         links: [
           CAPABILITY_LINKS.landingZones,
           CAPABILITY_LINKS.managedOps,
@@ -866,7 +866,7 @@ export const pages: ContentPage[] = [
           BLUEPRINT_LINK,
         ],
       },
-      { type: 'inFocus', title: 'In focus', services: ['cloud', 'finops'] },
+      { type: 'inFocus', title: 'Further reading', services: ['cloud', 'finops'] },
     ],
     contactInterest: 'Cloud',
   },
@@ -919,7 +919,7 @@ export const pages: ContentPage[] = [
       {
         type: 'tabs',
         id: 'solutions',
-        title: 'Our solutions',
+        title: 'Typical projects',
         tabs: [
           {
             label: 'Run alongside your team',
@@ -956,7 +956,7 @@ export const pages: ContentPage[] = [
       {
         type: 'steps',
         id: 'how-it-runs',
-        title: 'How it runs',
+        title: 'How a project runs',
         steps: [
           {
             title: 'Take stock',
@@ -991,7 +991,7 @@ export const pages: ContentPage[] = [
       {
         type: 'faq',
         id: 'faq',
-        title: 'Questions we get asked',
+        title: 'Common questions',
         items: [
           {
             q: 'Do you provide round-the-clock cover?',
@@ -1010,7 +1010,7 @@ export const pages: ContentPage[] = [
       {
         type: 'links',
         id: 'related',
-        title: 'Related',
+        title: 'Related services',
         links: [
           CAPABILITY_LINKS.resilience,
           CAPABILITY_LINKS.finops,
@@ -1018,7 +1018,7 @@ export const pages: ContentPage[] = [
           BLUEPRINT_LINK,
         ],
       },
-      { type: 'inFocus', title: 'In focus', services: ['cloud', 'managed-operations'] },
+      { type: 'inFocus', title: 'Further reading', services: ['cloud', 'managed-operations'] },
     ],
     contactInterest: 'Cloud',
   },
@@ -1071,7 +1071,7 @@ export const pages: ContentPage[] = [
       {
         type: 'tabs',
         id: 'solutions',
-        title: 'Our solutions',
+        title: 'Typical projects',
         tabs: [
           {
             label: 'Resilience review',
@@ -1108,7 +1108,7 @@ export const pages: ContentPage[] = [
       {
         type: 'steps',
         id: 'how-it-runs',
-        title: 'How it runs',
+        title: 'How a project runs',
         steps: [
           {
             title: 'Set targets',
@@ -1143,7 +1143,7 @@ export const pages: ContentPage[] = [
       {
         type: 'faq',
         id: 'faq',
-        title: 'Questions we get asked',
+        title: 'Common questions',
         items: [
           {
             q: 'Does every system need multi-region failover?',
@@ -1162,7 +1162,7 @@ export const pages: ContentPage[] = [
       {
         type: 'links',
         id: 'related',
-        title: 'Related',
+        title: 'Related services',
         links: [
           CAPABILITY_LINKS.managedOps,
           CAPABILITY_LINKS.migration,
@@ -1170,7 +1170,7 @@ export const pages: ContentPage[] = [
           BLUEPRINT_LINK,
         ],
       },
-      { type: 'inFocus', title: 'In focus', services: ['cloud', 'resilience'] },
+      { type: 'inFocus', title: 'Further reading', services: ['cloud', 'resilience'] },
     ],
     contactInterest: 'Cloud',
   },

@@ -5,7 +5,6 @@ import FinalCTASection from '@/components/enterprise/FinalCTASection'
 import { ProofStrip } from '@/components/proof/ProofStrip'
 import { CaseStudyCards } from '@/components/proof/CaseStudyCards'
 import { Practices } from '@/components/home/Practices'
-import { LatestInsights } from '@/components/home/LatestInsights'
 import { Partners } from '@/components/home/Partners'
 
 /**
@@ -14,8 +13,7 @@ import { Partners } from '@/components/home/Partners'
  *
  * Sections are imported directly, not through next/dynamic: the dynamic
  * version rendered skeletons and swapped them after load (CLS ~0.9).
- * This file is a server component so LatestInsights can read article
- * metadata without shipping article text to the browser.
+ * This file is a server component.
  */
 export default function Home() {
   return (
@@ -27,13 +25,11 @@ export default function Home() {
 
       <Practices />
 
-      {/* Problems we solve, and the sectors we build for */}
+      {/* The sectors we build for */}
       <ITServicesSection />
 
       {/* Renders nothing until siteConfig.caseStudies is filled */}
       <CaseStudyCards />
-
-      <LatestInsights />
 
       {/* Renders nothing until siteConfig.alliances is filled */}
       <Partners />
