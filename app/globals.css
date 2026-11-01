@@ -4967,3 +4967,9 @@ a.ys-open-item::before,
 /* Concise contact form: pairs side by side on wider screens */
 .ys-form-compact { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0 16px; }
 @media (min-width: 640px) { .ys-form-compact { grid-template-columns: repeat(2, minmax(0, 1fr)); } .ys-form-compact > :not(.ys-field), .ys-form-compact > .ys-field:has(textarea) { grid-column: 1 / -1; } }
+
+/* Home FAQ (2026-11-01) */
+.ys-hfaq { display: grid; gap: clamp(20px, 4vw, 64px); grid-template-columns: 1fr; }
+@media (min-width: 900px) { .ys-hfaq { grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); align-items: start; } }
+.ys-hfaq-intro h2 { margin: 8px 0 0; }
+.ys-hfaq-list .ys-faq:first-child { padding-top: 0; }
