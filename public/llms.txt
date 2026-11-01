@@ -1,0 +1,47 @@
+# YatiSphere
+
+> YatiSphere designs, builds and runs cloud, software, data and AI systems for banks, insurers, law firms and B2B SaaS companies. Work is done in the client's own AWS or Microsoft Azure accounts, with the controls auditors and security reviewers ask for. Engagements start with a fixed-fee Solution Blueprint (two to four weeks).
+
+YatiSphere Technologies Private Limited is registered in Noida, India (CIN U62013UP2025PTC239315) and works with clients in the United States, United Kingdom, Europe, the Middle East and India. Contact: sales@yatisphere.com or https://yatisphere.com/contact-us.
+
+## Services
+
+- [Applied AI](https://yatisphere.com/what-we-do/applied-ai): take an AI pilot into production with evaluation, human approval, audit trails and integration. Model- and cloud-neutral.
+- [Claude implementation](https://yatisphere.com/what-we-do/applied-ai/claude): Claude enterprise adoption, Claude Code rollout, agents and MCP integrations on the Anthropic API, Amazon Bedrock, Vertex AI or Microsoft Foundry.
+- [AI agents for document-heavy workflows](https://yatisphere.com/what-we-do/applied-ai/agentic-automation): intake, KYC and claims agents and knowledge assistants with citations.
+- [AI governance](https://yatisphere.com/what-we-do/applied-ai/ai-governance): alignment to the NIST AI RMF, ISO/IEC 42001 and EU AI Act risk tiers.
+- [AI-assisted engineering](https://yatisphere.com/what-we-do/applied-ai/ai-assisted-engineering): coding-assistant rollout with guardrails and measurement.
+- [Cloud foundations](https://yatisphere.com/what-we-do/cloud): landing zones, FinOps, managed operations and disaster recovery on AWS and Azure, defined as code.
+- [Cloud migration](https://yatisphere.com/what-we-do/cloud/migration): dependency mapping, wave planning and cutover with tested rollback.
+- [Software, data and modernization](https://yatisphere.com/what-we-do/engineering-data): core software, data platforms, DevOps and legacy modernization.
+- [Security and compliance](https://yatisphere.com/what-we-do/services/security-compliance): identity, data protection, detection and audit evidence for SOC 2, ISO 27001, HIPAA and DORA.
+- [Solution Blueprint](https://yatisphere.com/blueprint): fixed-fee assessment that produces a solution design, delivery plan and risk register before any build.
+
+## Industries
+
+- [Financial services](https://yatisphere.com/what-we-do/industries/financial-services): KYC and onboarding automation, AML monitoring, post-trade and core modernization.
+- [Legal and professional services](https://yatisphere.com/what-we-do/industries/legal-professional-services): client intake, conflict checks and practice-system integration.
+- [Software and SaaS](https://yatisphere.com/what-we-do/industries/software-saas): enterprise security reviews, SOC 2 readiness and multi-tenant platforms.
+
+## Company
+
+- [About](https://yatisphere.com/who-we-are/about)
+- [Leadership](https://yatisphere.com/who-we-are/leadership)
+- [How we work](https://yatisphere.com/who-we-are/how-we-work): five stages with a decision point after each.
+- [Responsible AI](https://yatisphere.com/who-we-are/responsible-ai): commitments, and what we will not build.
+- [Trust center](https://yatisphere.com/who-we-are/trust): security, data handling, subprocessors and NDAs.
+
+## Insights
+
+- [Taking an AI pilot to production in a regulated business](https://yatisphere.com/insights/taking-an-ai-pilot-to-production)
+- [The EU AI Act for bank and insurance operations teams](https://yatisphere.com/insights/eu-ai-act-for-financial-services-operations)
+- [KYC automation without black boxes](https://yatisphere.com/insights/kyc-automation-without-black-boxes)
+- [SOC 2 evidence your delivery pipeline can produce](https://yatisphere.com/insights/soc-2-evidence-from-pipelines)
+- [Azure OpenAI in UAE North: what data residency covers](https://yatisphere.com/insights/azure-openai-uae-north-data-residency)
+- [Azure FinOps quick wins, ordered by effort](https://yatisphere.com/insights/azure-finops-quick-wins)
+
+## Optional
+
+- [Contact](https://yatisphere.com/contact-us)
+- [Privacy notice](https://yatisphere.com/privacy)
+- [Accessibility statement](https://yatisphere.com/accessibility)

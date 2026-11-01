@@ -73,7 +73,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
           headline: a.title,
           description: a.summary,
           datePublished: a.publishedAt,
-          dateModified: a.reviewedAt,
+          dateModified: a.reviewedAt && a.publishedAt && a.reviewedAt > a.publishedAt ? a.reviewedAt : (a.publishedAt ?? a.reviewedAt),
           author: authorSchema(a),
           publisher: { '@id': `${SITE_URL}/#organization` },
           mainEntityOfPage: `${SITE_URL}/insights/${a.slug}`,

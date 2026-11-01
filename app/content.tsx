@@ -6,6 +6,7 @@ import { ProofStrip } from '@/components/proof/ProofStrip'
 import { CaseStudyCards } from '@/components/proof/CaseStudyCards'
 import { Practices } from '@/components/home/Practices'
 import { Partners } from '@/components/home/Partners'
+import { HomeFAQ } from '@/components/home/HomeFAQ'
 
 /**
  * Home (positioning refresh, 2026-10-19): IT services first, applied AI
@@ -33,6 +34,9 @@ export default function Home() {
 
       {/* Renders nothing until siteConfig.alliances is filled */}
       <Partners />
+
+      {/* Answer-first FAQ: buyer questions, FAQPage schema */}
+      <HomeFAQ />
 
       <FinalCTASection />
     </SharedLayout>
