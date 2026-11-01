@@ -460,13 +460,12 @@ export default function PrivacyPage() {
                 </li>
                 <li>raise a grievance with us and receive a response</li>
               </ul>
-              {/*
-                TODO — CONFIRM BEFORE PUBLISHING.
-                The DPDP Act requires a named Data Protection Officer or designated
-                grievance contact. Confirm who that is and name them here.
-              */}
               <p>
-                To exercise these rights or raise a grievance, write to{' '}
+                Our Grievance Officer is Ruchika Raturi, Founder and Chief Executive
+                Officer, YatiSphere Technologies Private Limited.
+              </p>
+              <p>
+                To exercise these rights or raise a grievance, write to her at{' '}
                 <a href="mailto:privacy@yatisphere.com">privacy@yatisphere.com</a>. We
                 aim to respond within 7 working days. If you are not satisfied with our
                 response, you may complain to the Data Protection Board of India.

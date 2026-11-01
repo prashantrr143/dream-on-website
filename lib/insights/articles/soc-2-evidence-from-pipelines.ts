@@ -162,7 +162,7 @@ export const article: Article = {
   ],
   related: [
     { label: 'Security and compliance engineering', href: '/what-we-do/services/security-compliance' },
-    { label: 'DevOps and platform engineering', href: '/what-we-do/services/devops-platform-engineering' },
+    { label: 'Software, data and DevOps engineering', href: '/what-we-do/engineering-data' },
     { label: 'Software and SaaS', href: '/what-we-do/industries/software-saas' },
   ],
 }

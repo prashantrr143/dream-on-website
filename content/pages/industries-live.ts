@@ -28,9 +28,9 @@ export const pages: ContentPage[] = [
     parents: [{ name: 'What we do', path: '/what-we-do' }],
     hub: 'industries',
     meta: {
-      title: 'Industries we serve | YatiSphere',
+      title: 'Industries: legal, financial services, SaaS | YatiSphere',
       description:
-        'IT services and governed AI for financial services, legal and professional services, and software and SaaS companies, where systems face scrutiny.',
+        'IT services and AI for financial services, legal and professional services, and software and SaaS companies, where systems face scrutiny.',
     },
     hero: {
       kicker: 'Industries',
@@ -50,7 +50,7 @@ export const pages: ContentPage[] = [
     parents,
     contactInterest: 'Financial services',
     meta: {
-      title: 'Financial services IT and governed AI | YatiSphere',
+      title: 'KYC and onboarding automation for banks | YatiSphere',
       description:
         'KYC and onboarding automation, post-trade systems, AML monitoring and core modernization for banks, insurers and fintechs, built for regulators.',
     },
@@ -58,7 +58,7 @@ export const pages: ContentPage[] = [
       kicker: 'Industries · Financial services',
       h1: 'Regulator-ready platforms for financial services.',
       subhead:
-        'We modernize core systems, automate onboarding and KYC, and run governed AI for banks, insurers, wealth managers and fintechs, so every decision can be explained.',
+        'We modernize core systems, automate onboarding and KYC, and put AI into production for banks, insurers, wealth managers and fintechs, so every decision can be explained.',
     },
     blocks: [],
     industry: {
@@ -128,10 +128,10 @@ export const pages: ContentPage[] = [
       standards: {
         lede: 'These are the rules your organization answers to. We are not approved or authorized by any regulator, and we do not hold certifications on your behalf. We design and document controls so you can evidence them.',
         regions: [
+          { region: 'United States', bodies: 'SEC, FINRA, state regulators' },
           { region: 'United Kingdom', bodies: 'FCA, PRA' },
           { region: 'European Union', bodies: 'DORA, EBA guidelines, EU AI Act' },
           { region: 'UAE', bodies: 'CBUAE, DFSA, ADGM FSRA' },
-          { region: 'United States', bodies: 'SEC, FINRA, state regulators' },
           { region: 'India', bodies: 'RBI, SEBI, DPDP Act' },
         ],
         items: [
@@ -173,7 +173,7 @@ export const pages: ContentPage[] = [
       ],
       cta: {
         title: 'Facing a regulator, an audit or a backlog?',
-        body: 'Tell us the process and the deadline. A senior engineer replies within one working day.',
+        body: 'Tell us the process and the deadline. We reply within one working day.',
       },
     },
   },
@@ -187,7 +187,7 @@ export const pages: ContentPage[] = [
     parents,
     contactInterest: 'Legal & professional services',
     meta: {
-      title: 'Legal and professional services IT | YatiSphere',
+      title: 'Law firm intake and conflict check automation | YatiSphere',
       description:
         'Client intake, conflict checks, practice-system integration and AI with confidentiality built in, for law firms and professional services firms.',
     },
@@ -265,9 +265,9 @@ export const pages: ContentPage[] = [
       standards: {
         lede: 'These are duties your firm carries. We are not regulated by any of these bodies. Our part is to design and document controls so your systems can evidence them.',
         regions: [
+          { region: 'United States', bodies: 'ABA Model Rules, state bar rules' },
           { region: 'England and Wales', bodies: 'SRA Standards and Regulations' },
           { region: 'UAE', bodies: 'DIFC and ADGM rules, UAE PDPL' },
-          { region: 'United States', bodies: 'ABA Model Rules, state bar rules' },
           { region: 'India', bodies: 'Bar Council of India rules, DPDP Act' },
         ],
         items: [
@@ -309,7 +309,7 @@ export const pages: ContentPage[] = [
       ],
       cta: {
         title: 'Intake, conflicts or AI on your agenda?',
-        body: 'Tell us how matters open today. A senior engineer replies within one working day.',
+        body: 'Tell us how matters open today. We reply within one working day.',
       },
     },
   },
@@ -323,7 +323,7 @@ export const pages: ContentPage[] = [
     parents,
     contactInterest: 'Software & SaaS',
     meta: {
-      title: 'SaaS platforms, SOC 2 readiness and AI | YatiSphere',
+      title: 'Pass SaaS security reviews and get SOC 2 ready | YatiSphere',
       description:
         'Pass enterprise security reviews, get SOC 2 ready, scale multi-tenant platforms and ship AI features safely. For SaaS and software companies.',
     },
@@ -437,13 +437,13 @@ export const pages: ContentPage[] = [
       },
       related: [
         { label: 'Security and compliance', href: '/what-we-do/services/security-compliance', descriptor: 'Control design and audit evidence' },
-        { label: 'DevOps and platform engineering', href: '/what-we-do/services/devops-platform-engineering', descriptor: 'Governed pipelines and supply-chain hygiene' },
+        { label: 'DevOps and platform engineering', href: '/what-we-do/services/devops-platform-engineering', descriptor: 'Reviewed pipelines and supply-chain hygiene' },
         { label: 'AI governance', href: '/what-we-do/applied-ai/ai-governance', descriptor: 'Evaluation, boundaries and review' },
         BLUEPRINT,
       ],
       cta: {
         title: 'A deal stuck in security review?',
-        body: 'Send us the questionnaire or the audit scope. A senior engineer replies within one working day.',
+        body: 'Send us the questionnaire or the audit scope. We reply within one working day.',
       },
     },
   },

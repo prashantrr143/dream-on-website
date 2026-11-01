@@ -6,7 +6,7 @@ import { WORKING_ACROSS_REGIONS } from '@/lib/regions'
  */
 export function RegionsStrip({
   eyebrow: _eyebrow = 'Working across regions',
-  title = 'Built for clients across the UK, Europe, the Middle East, the US and India.',
+  title = 'For clients in the US, the UK, Europe and the Middle East.',
   children,
 }: {
   eyebrow?: string

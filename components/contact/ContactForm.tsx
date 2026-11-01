@@ -2,20 +2,18 @@
 
 import { useEffect, useId, useRef, useState } from 'react'
 import { usePathname } from 'next/navigation'
-import { trackContactFormSubmit, trackFormStep } from '@/lib/analytics'
+import { trackContactFormSubmit } from '@/lib/analytics'
 import { siteConfig } from '@/lib/site.config'
 import { readRegion } from '@/lib/region'
-import { SERVICE_INTERESTS, CONTACT_TIMELINES } from '@/lib/countries'
 import { CountryCombobox } from './CountryCombobox'
+import { playSound } from '@/lib/sound'
 
 /**
  * The contact form, shared by /contact-us and the contact overlay.
  *
- * topic 'services' is the two-step "Request for services":
- *   1. name, work email, company, country
- *   2. area of interest, timeline, message
- * Any other topic (Partnership, Careers, Media, Website feedback, Security
- * pack) is a single step. Submits to /api/contact; never claims success
+ * One step: name, work email, company, country and a short message
+ * (made concise 2026-11-01; the two-step version with interest and
+ * timeline chips was removed). Submits to /api/contact; never claims success
  * unless the server confirms it.
  */
 
@@ -37,7 +35,6 @@ export function ContactForm({
 }) {
   const isServices = topic === 'services'
   const [form, setForm] = useState({ ...EMPTY, interest: isServices ? initialInterest : topic })
-  const [step, setStep] = useState(1)
   const [errors, setErrors] = useState<Partial<Record<Field, string | undefined>>>({})
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'failed'>('idle')
   const pathname = usePathname()
@@ -73,14 +70,6 @@ export function ContactForm({
     return !first
   }
 
-  const next = (e: React.FormEvent) => {
-    e.preventDefault()
-    if (!validateStep1()) return
-    setStep(2)
-    trackFormStep(2)
-    requestAnimationFrame(() => document.getElementById(id('interest'))?.focus())
-  }
-
   const validateProblem = () => {
     if (form.problem.trim().length >= MIN_PROBLEM) return true
     setErrors((prev) => ({
@@ -95,7 +84,7 @@ export function ContactForm({
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (!isServices && !validateStep1()) return
+    if (!validateStep1()) return
     if (!validateProblem()) return
     setStatus('sending')
     try {
@@ -106,6 +95,7 @@ export function ContactForm({
       })
       if (!res.ok) throw new Error(String(res.status))
       setStatus('sent')
+      playSound('success')
       trackContactFormSubmit(pathname ?? '/contact-us')
     } catch {
       setStatus('failed')
@@ -189,7 +179,7 @@ export function ContactForm({
   const message = (
     <div className="ys-field">
       <label htmlFor={id('problem')}>
-        {isServices ? 'What are you working on?' : 'Your message'} <span aria-hidden="true">*</span>
+        {isServices ? 'What do you need help with?' : 'Your message'} <span aria-hidden="true">*</span>
       </label>
       <textarea
         id={id('problem')}
@@ -233,109 +223,15 @@ export function ContactForm({
     </>
   )
 
-  if (!isServices) {
-    return (
-      <form onSubmit={submit} noValidate className="ys-form">
-        {step1}
-        {message}
-        {honeypot}
-        {footer}
-      </form>
-    )
-  }
-
-  return step === 1 ? (
-    <form onSubmit={next} noValidate className="ys-form" aria-label="Request for services, step 1 of 2">
-      <Steps current={1} />
+  // One short step for everyone (2026-11-01): name and email, company and
+  // country side by side, then the message. Area of interest still travels
+  // with the form when a page presets it.
+  return (
+    <form onSubmit={submit} noValidate className="ys-form ys-form-compact" aria-label="Contact form">
       {step1}
-      <button type="submit" className="ys-cta-primary-light" style={{ width: '100%' }}>
-        Continue
-      </button>
-    </form>
-  ) : (
-    <form onSubmit={submit} noValidate className="ys-form" aria-label="Request for services, step 2 of 2">
-      <Steps current={2} />
-      <Chips
-        name="interest"
-        legend="Area of interest"
-        options={SERVICE_INTERESTS}
-        value={form.interest}
-        onChange={(interest) => setForm((prev) => ({ ...prev, interest }))}
-        firstId={id('interest')}
-      />
-      <Chips
-        name="timeline"
-        legend="Timeline"
-        options={CONTACT_TIMELINES}
-        value={form.timeline}
-        onChange={(timeline) => setForm((prev) => ({ ...prev, timeline }))}
-      />
       {message}
       {honeypot}
-      <button type="button" className="ys-form-back" onClick={() => setStep(1)}>
-        ← Back to your details
-      </button>
       {footer}
     </form>
-  )
-}
-
-/** Two-segment progress bar; the label stays readable for screen readers. */
-function Steps({ current }: { current: 1 | 2 }) {
-  return (
-    <div className="ys-steps">
-      <p className="ys-form-step">
-        Step {current} of 2 · {current === 1 ? 'About you' : 'What you need'}
-      </p>
-      <div className="ys-steps-bar" aria-hidden="true">
-        <span className="is-done" />
-        <span className={current === 2 ? 'is-done' : ''} />
-      </div>
-    </div>
-  )
-}
-
-/**
- * Single-choice pills built on native radios, so keyboard, focus and
- * screen-reader behavior come from the browser. Clicking the chosen
- * pill again clears it: both groups are optional.
- */
-function Chips({
-  name,
-  legend,
-  options,
-  value,
-  onChange,
-  firstId,
-}: {
-  name: string
-  legend: string
-  options: readonly string[]
-  value: string
-  onChange: (v: string) => void
-  firstId?: string
-}) {
-  return (
-    <fieldset className="ys-chips">
-      <legend>
-        {legend} <span className="ys-optional">(optional)</span>
-      </legend>
-      <div className="ys-chips-row">
-        {options.map((o, i) => (
-          <label key={o} className={`ys-chip${value === o ? ' is-on' : ''}`}>
-            <input
-              type="radio"
-              name={name}
-              value={o}
-              id={i === 0 ? firstId : undefined}
-              checked={value === o}
-              onChange={() => onChange(o)}
-              onClick={() => value === o && onChange('')}
-            />
-            <span>{o}</span>
-          </label>
-        ))}
-      </div>
-    </fieldset>
   )
 }

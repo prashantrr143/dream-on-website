@@ -36,7 +36,7 @@ test('Enter goes to the results page', async ({ page }) => {
   await input.fill('landing zones')
   await page.keyboard.press('Enter')
   await expect(page).toHaveURL(/\/search\?q=landing%20zones/)
-  await expect(page.getByRole('link', { name: 'Landing zones', exact: true })).toBeVisible()
+  await expect(page.locator('main').getByRole('link', { name: 'Cloud', exact: true })).toBeVisible()
 })
 
 test('Enter on a highlighted suggestion opens it', async ({ page }) => {

@@ -16,8 +16,8 @@ export interface RegionPoint {
 
 export const WORKING_ACROSS_REGIONS: RegionPoint[] = [
   {
-    title: 'Overlapping working hours',
-    body: 'Our day overlaps UK, European and Gulf business hours in full, and US East Coast mornings by arrangement.',
+    title: 'Working hours',
+    body: 'Calls in US hours are booked by appointment. Our working day overlaps UK, European and Gulf business hours.',
   },
   {
     title: 'Your cloud, your region',

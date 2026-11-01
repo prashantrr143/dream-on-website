@@ -22,9 +22,9 @@ export const pages: ContentPage[] = [
   {
     path: PILLAR,
     meta: {
-      title: 'Software, data & DevOps engineering | YatiSphere',
+      title: 'Software, data and legacy modernization | YatiSphere',
       description:
-        'Software engineering, data platforms, DevOps, security and legacy modernization on AWS or Microsoft Azure, built by senior engineers.',
+        'Core software, data platforms, DevOps and legacy modernization on AWS or Microsoft Azure, delivered in reversible steps, from a fixed-fee plan. Code you own.',
     },
     hero: {
       kicker: 'WHAT WE DO / ENGINEERING & DATA',
@@ -37,12 +37,12 @@ export const pages: ContentPage[] = [
     blocks: [
       {
         type: 'statement',
-        text: 'The systems your business runs on have to keep running while they change. Senior engineers design, build and modernize them on AWS or Microsoft Azure. We recommend what fits, not what we resell, and the code, the cloud accounts and the region are yours from day one.',
+        text: 'The systems your business runs on have to keep running while they change. We design, build and modernize them on AWS or Microsoft Azure. We recommend what fits, not what we resell, and the code, the cloud accounts and the region are yours from day one.',
       },
       {
         type: 'cards',
         id: 'capabilities',
-        title: 'Our capabilities',
+        title: 'Services',
         columns: 3,
         cards: [
           {
@@ -52,7 +52,7 @@ export const pages: ContentPage[] = [
           },
           {
             title: 'Data & analytics',
-            body: 'Governed data platforms that give every team the same numbers, on the stack that fits your estate.',
+            body: 'Data platforms that give teams the same numbers, on the stack that fits your estate.',
             href: `${S}/data-analytics`,
           },
           {
@@ -75,7 +75,7 @@ export const pages: ContentPage[] = [
       {
         type: 'tabs',
         id: 'solutions',
-        title: 'Our solutions',
+        title: 'Typical projects',
         tabs: [
           {
             label: 'New core platforms',
@@ -90,7 +90,7 @@ export const pages: ContentPage[] = [
           {
             label: 'A single version of the numbers',
             description:
-              'One governed data platform in place of competing spreadsheets and reports, with definitions agreed once and reused everywhere.',
+              'One data platform, with clear owners and access rules, in place of competing spreadsheets and reports, with definitions agreed once and reused everywhere.',
             bullets: [
               'Shared metric definitions and a data catalog',
               'Access controls applied at the data layer',
@@ -132,10 +132,10 @@ export const pages: ContentPage[] = [
       {
         type: 'list',
         id: 'outcomes',
-        title: 'Outcomes',
+        title: 'What changes',
         items: [
           'Systems your team can change without fear of breaking them.',
-          'Reports that agree with each other, because they draw on the same governed data.',
+          'Reports that agree with each other, because they draw on the same data.',
           'Releases that are reviewed, tested, traceable and reversible.',
           'Evidence ready when an auditor or a client security review asks for it.',
           'A modernization path funded and delivered in steps, not one large bet.',
@@ -144,7 +144,7 @@ export const pages: ContentPage[] = [
       },
       {
         type: 'inFocus',
-        title: 'In focus',
+        title: 'Further reading',
         services: ['engineering-data'],
       },
     ],
@@ -221,7 +221,7 @@ export const pages: ContentPage[] = [
       {
         type: 'tabs',
         id: 'solutions',
-        title: 'Our solutions',
+        title: 'Typical projects',
         tabs: [
           {
             label: 'Connect what you run',
@@ -258,7 +258,7 @@ export const pages: ContentPage[] = [
       {
         type: 'steps',
         id: 'how-it-runs',
-        title: 'How it runs',
+        title: 'How a project runs',
         steps: [
           {
             title: 'Blueprint',
@@ -293,7 +293,7 @@ export const pages: ContentPage[] = [
       {
         type: 'faq',
         id: 'faq',
-        title: 'Questions we get asked',
+        title: 'Common questions',
         items: [
           {
             q: 'Which languages and clouds do you build on?',
@@ -312,7 +312,7 @@ export const pages: ContentPage[] = [
       {
         type: 'links',
         id: 'related',
-        title: 'Related',
+        title: 'Related services',
         links: [
           { label: 'Legacy modernization', href: `${S}/modernization`, descriptor: 'Move off aging platforms in reversible steps' },
           { label: 'DevOps & platform engineering', href: `${S}/devops-platform-engineering`, descriptor: 'Pipelines and infrastructure as code' },
@@ -320,7 +320,7 @@ export const pages: ContentPage[] = [
           { label: 'Blueprint', href: '/blueprint', descriptor: 'A short first engagement' },
         ],
       },
-      { type: 'inFocus', title: 'In focus', services: ['software-engineering', 'engineering-data'] },
+      { type: 'inFocus', title: 'Further reading', services: ['software-engineering', 'engineering-data'] },
     ],
     contactInterest: 'Software engineering',
   },
@@ -378,7 +378,7 @@ export const pages: ContentPage[] = [
       {
         type: 'tabs',
         id: 'solutions',
-        title: 'Our solutions',
+        title: 'Typical projects',
         tabs: [
           {
             label: 'Consolidate reporting',
@@ -400,7 +400,7 @@ export const pages: ContentPage[] = [
       {
         type: 'steps',
         id: 'how-it-runs',
-        title: 'How it runs',
+        title: 'How a project runs',
         steps: [
           { title: 'Blueprint', body: 'A short first engagement: current sources, reports and pain points mapped, with a recommended platform and the reasons for it.' },
           { title: 'Foundation', body: 'Platform, security, governance and pipelines-as-code set up in your cloud account and region.' },
@@ -423,7 +423,7 @@ export const pages: ContentPage[] = [
       {
         type: 'faq',
         id: 'faq',
-        title: 'Questions we get asked',
+        title: 'Common questions',
         items: [
           {
             q: 'Which data platform do you recommend?',
@@ -442,7 +442,7 @@ export const pages: ContentPage[] = [
       {
         type: 'links',
         id: 'related',
-        title: 'Related',
+        title: 'Related services',
         links: [
           { label: 'Enterprise AI platforms', href: `${W}/applied-ai/ai-platforms`, descriptor: 'Put governed data to work with AI' },
           { label: 'Security & compliance', href: `${S}/security-compliance`, descriptor: 'Controls and audit evidence' },
@@ -450,7 +450,7 @@ export const pages: ContentPage[] = [
           { label: 'Blueprint', href: '/blueprint', descriptor: 'A short first engagement' },
         ],
       },
-      { type: 'inFocus', title: 'In focus', services: ['data-analytics', 'engineering-data'] },
+      { type: 'inFocus', title: 'Further reading', services: ['data-analytics', 'engineering-data'] },
     ],
     contactInterest: 'Data & analytics',
   },
@@ -508,7 +508,7 @@ export const pages: ContentPage[] = [
       {
         type: 'tabs',
         id: 'solutions',
-        title: 'Our solutions',
+        title: 'Typical projects',
         tabs: [
           {
             label: 'Pipeline modernization',
@@ -530,7 +530,7 @@ export const pages: ContentPage[] = [
       {
         type: 'steps',
         id: 'how-it-runs',
-        title: 'How it runs',
+        title: 'How a project runs',
         steps: [
           { title: 'Blueprint', body: 'A short first engagement: we trace how a change reaches production today and agree what good looks like.' },
           { title: 'Baseline', body: 'Pipelines, infrastructure as code and observability set up for one service end to end.' },
@@ -553,7 +553,7 @@ export const pages: ContentPage[] = [
       {
         type: 'faq',
         id: 'faq',
-        title: 'Questions we get asked',
+        title: 'Common questions',
         items: [
           {
             q: 'Which CI/CD tools do you use?',
@@ -572,7 +572,7 @@ export const pages: ContentPage[] = [
       {
         type: 'links',
         id: 'related',
-        title: 'Related',
+        title: 'Related services',
         links: [
           { label: 'Landing zones', href: `${W}/cloud/landing-zones`, descriptor: 'A governed foundation for your cloud' },
           { label: 'Software engineering', href: `${S}/software-engineering`, descriptor: 'Core platforms and integration' },
@@ -580,7 +580,7 @@ export const pages: ContentPage[] = [
           { label: 'Blueprint', href: '/blueprint', descriptor: 'A short first engagement' },
         ],
       },
-      { type: 'inFocus', title: 'In focus', services: ['devops-platform-engineering', 'engineering-data'] },
+      { type: 'inFocus', title: 'Further reading', services: ['devops-platform-engineering', 'engineering-data'] },
     ],
     contactInterest: 'DevOps & platform engineering',
   },
@@ -591,7 +591,7 @@ export const pages: ContentPage[] = [
   {
     path: `${S}/security-compliance`,
     meta: {
-      title: 'Security architecture & compliance | YatiSphere',
+      title: 'Security controls and SOC 2 audit evidence | YatiSphere',
       description:
         'Identity, data protection, detection design and audit evidence for SOC 2, ISO 27001, HIPAA, DORA and more, on AWS, Microsoft Azure or Google Cloud.',
     },
@@ -679,7 +679,7 @@ export const pages: ContentPage[] = [
       {
         type: 'tabs',
         id: 'solutions',
-        title: 'Our solutions',
+        title: 'Typical projects',
         tabs: [
           {
             label: 'Audit preparation',
@@ -726,7 +726,7 @@ export const pages: ContentPage[] = [
       {
         type: 'steps',
         id: 'how-it-runs',
-        title: 'How it runs',
+        title: 'How a project runs',
         steps: [
           { title: 'Review', body: 'A security architecture review of your current estate against your target framework.' },
           { title: 'Prioritize', body: 'Gaps ranked by risk and by what your auditor or customers will ask about first.' },
@@ -749,7 +749,7 @@ export const pages: ContentPage[] = [
       {
         type: 'faq',
         id: 'faq',
-        title: 'Questions we get asked',
+        title: 'Common questions',
         items: [
           {
             q: 'Do you run a security operations center?',
@@ -768,15 +768,15 @@ export const pages: ContentPage[] = [
       {
         type: 'links',
         id: 'related',
-        title: 'Related',
+        title: 'Related services',
         links: [
           { label: 'AI governance', href: `${W}/applied-ai/ai-governance`, descriptor: 'Policies and controls for AI use' },
           { label: 'DevOps & platform engineering', href: `${S}/devops-platform-engineering`, descriptor: 'Audit-ready change control' },
-          { label: 'Landing zones', href: `${W}/cloud/landing-zones`, descriptor: 'A governed foundation for your cloud' },
+          { label: 'Landing zones', href: `${W}/cloud/landing-zones`, descriptor: 'Identity, networking and policy set up before teams build' },
           { label: 'Trust center', href: '/who-we-are/trust', descriptor: 'How we handle your data' },
         ],
       },
-      { type: 'inFocus', title: 'In focus', services: ['security-compliance', 'engineering-data'] },
+      { type: 'inFocus', title: 'Further reading', services: ['security-compliance', 'engineering-data'] },
     ],
     contactInterest: 'Security & compliance',
   },
@@ -834,7 +834,7 @@ export const pages: ContentPage[] = [
       {
         type: 'tabs',
         id: 'solutions',
-        title: 'Our solutions',
+        title: 'Typical projects',
         tabs: [
           {
             label: 'Strangle the aging core',
@@ -856,7 +856,7 @@ export const pages: ContentPage[] = [
       {
         type: 'steps',
         id: 'how-it-runs',
-        title: 'How it runs',
+        title: 'How a project runs',
         steps: [
           { title: 'Assess', body: 'Architecture and estate review, stakeholder interviews and a prioritized list of findings.' },
           { title: 'Define', body: 'A target architecture on the platform that fits, a sequenced roadmap and the business case to fund it.' },
@@ -879,7 +879,7 @@ export const pages: ContentPage[] = [
       {
         type: 'faq',
         id: 'faq',
-        title: 'Questions we get asked',
+        title: 'Common questions',
         items: [
           {
             q: 'Do we have to rebuild everything?',
@@ -891,14 +891,14 @@ export const pages: ContentPage[] = [
           },
           {
             q: 'Our last transformation program stalled. What is different?',
-            a: 'Smaller steps that are each useful on their own, a roadmap you can fund in stages, and the same senior team from assessment through delivery.',
+            a: 'Smaller steps that are each useful on their own, a roadmap you can fund in stages, and the same team from assessment through delivery.',
           },
         ],
       },
       {
         type: 'links',
         id: 'related',
-        title: 'Related',
+        title: 'Related services',
         links: [
           { label: 'Modernization roadmaps', href: `${W}/consulting/modernization-roadmaps`, descriptor: 'Advisory before you commit' },
           { label: 'Cloud migration', href: `${W}/cloud/migration`, descriptor: 'Move workloads to AWS, Microsoft Azure or Google Cloud' },
@@ -906,7 +906,7 @@ export const pages: ContentPage[] = [
           { label: 'Blueprint', href: '/blueprint', descriptor: 'A short first engagement' },
         ],
       },
-      { type: 'inFocus', title: 'In focus', services: ['modernization', 'engineering-data'] },
+      { type: 'inFocus', title: 'Further reading', services: ['modernization', 'engineering-data'] },
     ],
     contactInterest: 'Legacy modernization',
   },

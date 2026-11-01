@@ -29,7 +29,13 @@ export interface Article {
   summary: string
   category: 'Applied AI' | 'Regulation' | 'Security & Compliance' | 'Cloud' | 'Financial services'
   readTime: string
-  author: 'YatiSphere team'
+  /**
+   * Byline. A named author is a person in content/people.ts, by slug:
+   * the article then shows their name, role and LinkedIn, and its Article
+   * schema carries a Person author. Only credit someone who wrote or
+   * reviewed the piece and has approved the byline.
+   */
+  author: 'YatiSphere team' | { person: string }
   /**
    * Drafts are visible only in development (or with INSIGHTS_PREVIEW=1)
    * and never appear in the nav, sitemap or search. Set to 'published'

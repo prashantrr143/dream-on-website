@@ -22,6 +22,12 @@ const TARGETS = [
   'main section h2',
   // Cards and tiles
   '.ys-practice',
+  '.ys-arch2-copy',
+  '.ys-arch2-visual',
+  '.ys-stack-entry',
+  '.ys-sec-grid > li',
+  '.ys-final2-copy',
+  '.ys-final2-picker',
   '.ys-insight-card',
   '.ys-partner-card',
   '.ys-pp',
@@ -84,7 +90,15 @@ export function ScrollReveal() {
     }
     document.documentElement.classList.add('ys-r-on')
 
-    return () => io.disconnect()
+    return () => {
+      io.disconnect()
+      // Release elements that never revealed so the next run (React Strict
+      // Mode re-runs effects in development; route changes in production)
+      // observes them again instead of leaving them shifted.
+      for (const el of els) {
+        if (!el.classList.contains('is-in')) delete el.dataset['ysR']
+      }
+    }
   }, [pathname])
 
   return null

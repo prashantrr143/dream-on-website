@@ -8,6 +8,7 @@ import { NAV, type NavPanel } from '@/lib/nav'
 import { useRegion, REGION_SELECTOR_ENABLED } from '@/lib/region'
 import { trackMobileNavOpen, trackNavClick, trackNavOpen, trackSearchOpen } from '@/lib/analytics'
 import { MegaPanel, focusables } from './MegaPanel'
+import { preloadGsap } from '@/lib/gsap'
 import { SearchOverlay } from './SearchOverlay'
 import { RegionSelector } from './RegionSelector'
 import { MobileNav } from './MobileNav'
@@ -77,6 +78,8 @@ export function SiteHeader() {
   const headerRef = useRef<HTMLElement>(null)
   const introRef = useRef<HTMLDivElement>(null)
   const triggerRefs = useRef<Record<string, HTMLButtonElement | null>>({})
+  // The dropdown sits under its own trigger (compact menu, 2026-11-01).
+  const [megaLeft, setMegaLeft] = useState<number | null>(null)
   const regionTriggerRef = useRef<HTMLButtonElement>(null)
   const burgerRef = useRef<HTMLButtonElement>(null)
   const searchOpenerRef = useRef<HTMLButtonElement | null>(null)
@@ -89,12 +92,27 @@ export function SiteHeader() {
   const mobileId = `${uid}-mobile`
 
   const openPanel = NAV.find((n): n is NavPanel => n.kind === 'panel' && n.id === openId) ?? null
+  useLayoutEffect(() => {
+    if (!openId) return
+    const place = () => {
+      const t = triggerRefs.current[openId]?.getBoundingClientRect()
+      const h = headerRef.current?.getBoundingClientRect()
+      if (!t || !h) return
+      // Align the panel's text with the trigger's text (panel has 28px inner padding).
+      setMegaLeft(Math.max(12, t.left - h.left - 28))
+    }
+    place()
+    window.addEventListener('resize', place)
+    return () => window.removeEventListener('resize', place)
+  }, [openId])
 
   const clearHover = () => {
     if (hoverTimer.current) clearTimeout(hoverTimer.current)
     hoverTimer.current = null
   }
   useEffect(() => clearHover, [])
+  // Menu animations use GSAP; fetch it in the background after first paint.
+  useEffect(() => { preloadGsap() }, [])
 
   const showPanel = useCallback((id: string, how: Opened) => {
     setSearchOpen(false)
@@ -303,7 +321,7 @@ export function SiteHeader() {
         </button>
 
         <a href="/" className="ys-nav-logo ys-hdr-logo" aria-label="YatiSphere home" onPointerEnter={onPlainEnter}>
-          <Wordmark tone="dark" height={56} priority />
+          <Wordmark tone="dark" height={52} priority compact />
         </a>
 
         <nav aria-label="Main" className="ys-hdr-nav">
@@ -415,6 +433,7 @@ export function SiteHeader() {
             role="region"
             aria-label={openPanel.label}
             className="ys-mega"
+            style={megaLeft !== null ? { left: megaLeft } : {}}
             initial={reduce ? { opacity: 0 } : { opacity: 0, y: -8, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={reduce ? { opacity: 0, transition: { duration: 0.08 } } : { opacity: 0, y: -4, scale: 0.99, transition: { duration: 0.12, ease: 'easeIn' } }}

@@ -1,5 +1,6 @@
 import { NextResponse, type NextRequest } from 'next/server'
 import { siteConfig } from '@/content/site'
+import { RETIRED, liveHref } from '@/content/pages/retired'
 
 /**
  * URL canonicalization in ONE redirect.
@@ -22,7 +23,7 @@ const CANONICAL_HOST = 'yatisphere.com'
  * Old URL -> current URL (revamp IA). Every entry points at a final URL,
  * never at another legacy one, so each resolves in a single hop.
  */
-export const LEGACY: Record<string, string> = {
+const LEGACY_RAW: Record<string, string> = {
   // Services and pillars
   '/services': '/what-we-do',
   '/solutions': '/what-we-do',
@@ -41,10 +42,6 @@ export const LEGACY: Record<string, string> = {
   '/industries/legal-professional-services': '/what-we-do/industries/legal-professional-services',
   '/industries/healthcare': '/what-we-do',
   '/industries/government-public-sector': '/what-we-do',
-  // Retired in the positioning refresh (content/pages RETIRED_PATHS)
-  '/what-we-do/cloud/google-cloud': '/what-we-do/cloud',
-  '/what-we-do/industries/healthcare': '/what-we-do',
-  '/what-we-do/industries/public-sector': '/what-we-do',
   '/industries/enterprise-technology': '/what-we-do/industries/software-saas',
   '/industries/software-saas': '/what-we-do/industries/software-saas',
   // Who we are
@@ -60,6 +57,15 @@ export const LEGACY: Record<string, string> = {
   '/policy': '/privacy#cookies',
   '/terms': '/privacy',
 }
+
+/**
+ * Legacy URLs plus every retired /what-we-do page (content/pages/retired.ts),
+ * with each target resolved through the retired map so an old URL that
+ * pointed at a now-retired page still lands in one hop.
+ */
+export const LEGACY: Record<string, string> = Object.fromEntries(
+  Object.entries({ ...LEGACY_RAW, ...RETIRED }).map(([from, to]) => [from, liveHref(to)]),
+)
 
 const LEGACY_PREFIXES: [string, string][] = [
   ['/perspectives/', '/insights/'],

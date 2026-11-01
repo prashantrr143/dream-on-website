@@ -29,27 +29,27 @@ test('opens full-height, locks scroll, one section at a time', async ({ page }) 
   await expect(nav).toBeVisible()
   await expect(page.locator('html')).toHaveCSS('overflow', 'hidden')
 
-  const services = nav.getByRole('button', { name: 'What we do' })
+  const services = nav.getByRole('button', { name: 'Services' })
   await services.click()
   await expect(services).toHaveAttribute('aria-expanded', 'true')
   await expect(nav).toHaveClass(/has-open/)
   // First level-2 row is the section overview.
   await expect(nav.locator('.ys-mnav-l2 > li').first().locator('a')).toHaveAttribute('href', '/what-we-do')
 
-  const industries = nav.getByRole('button', { name: 'Who we are' })
-  await industries.click()
-  await expect(industries).toHaveAttribute('aria-expanded', 'true')
+  const company = nav.getByRole('button', { name: 'Company' })
+  await company.click()
+  await expect(company).toHaveAttribute('aria-expanded', 'true')
   await expect(services).toHaveAttribute('aria-expanded', 'false')
 })
 
 test('level 3 expands under its group with +/-', async ({ page }) => {
   await burger(page).click()
   const nav = page.locator('.ys-mnav')
-  await nav.getByRole('button', { name: 'What we do' }).click()
-  const cloud = nav.getByRole('button', { name: 'Cloud', exact: true })
+  await nav.getByRole('button', { name: 'Services' }).click()
+  const cloud = nav.getByRole('button', { name: 'Cloud and engineering', exact: true })
   await cloud.click()
   await expect(cloud).toHaveAttribute('aria-expanded', 'true')
-  await expect(nav.getByRole('link', { name: 'AWS', exact: true })).toBeVisible()
+  await expect(nav.getByRole('link', { name: 'Cloud migration', exact: true })).toBeVisible()
 })
 
 test('Contact us is pinned at the bottom; no region control while India is the only region', async ({ page }) => {
@@ -73,7 +73,7 @@ test('mobile search opens from the left icon', async ({ page }) => {
 
 test('no serious or critical axe issues with the menu open', async ({ page }) => {
   await burger(page).click()
-  await page.locator('.ys-mnav').getByRole('button', { name: 'What we do' }).click()
+  await page.locator('.ys-mnav').getByRole('button', { name: 'Services' }).click()
   const { violations } = await new AxeBuilder({ page }).include('.ys-hdr').analyze()
   expect(violations.filter((v) => v.impact === 'serious' || v.impact === 'critical').map((v) => v.id)).toEqual([])
 })

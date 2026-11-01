@@ -26,7 +26,7 @@ export const OG_IMAGE = {
   url: '/opengraph-image',
   width: 1200,
   height: 630,
-  alt: 'YatiSphere: Enterprise IT, built properly. AI where it pays.',
+  alt: 'YatiSphere: Systems that pass review. From cloud to AI.',
 }
 
 /** openGraph + twitter for one page, with the shared image and locale. */
@@ -67,28 +67,28 @@ interface RouteMeta {
 
 export const ROUTE_META: Record<string, RouteMeta> = {
   '/': {
-    title: 'IT services and applied AI, built properly | YatiSphere',
+    title: 'AI and cloud engineering for regulated firms | YatiSphere',
     description:
-      'Cloud, software, data and security for growing companies and regulated enterprises, built and run by senior engineers, with governed AI where it pays.',
+      'Systems that pass review, from cloud to AI: cloud, software, data and AI for banks, law firms and SaaS teams, starting with a fixed-fee plan.',
   },
 
   '/who-we-are/how-we-work': {
-    title: 'How we work | YatiSphere',
+    title: 'How we take AI from pilot to production | YatiSphere',
     description:
-      'Discover, design, build, launch and run. Five stages, senior engineers, and an agreed plan before any build begins.',
+      'Discover, design, build, launch and run. Five stages, a decision point after each, and an agreed plan before any build begins.',
   },
   '/who-we-are/about': {
     title: 'About YatiSphere: our vision, principles and people',
     description:
-      'Senior consultants and engineers who have built and run systems for global banks, consultancies and governments. Our vision, principles and people.',
+      'A focused firm for systems that have to be trusted in regulated businesses: our vision, the principles we work to, and the people accountable for it.',
   },
   '/contact-us': {
     title: 'Contact us | YatiSphere',
     description:
-      'Tell us the problem. A senior member of the team replies within one working day with an honest view on whether we are the right team.',
+      'Tell us the problem. We reply within one working day with an honest view on whether we are the right team.',
   },
   '/blueprint': {
-    title: 'Solution Blueprint | YatiSphere',
+    title: 'Fixed-fee AI readiness assessment: Blueprint | YatiSphere',
     description:
       'A solution blueprint, a delivery plan and a risk register in two to four weeks, before you commit to any build.',
   },
@@ -104,12 +104,12 @@ export const ROUTE_META: Record<string, RouteMeta> = {
   },
 
   '/who-we-are/responsible-ai': {
-    title: 'Responsible AI | YatiSphere',
+    title: 'Responsible AI: human approval, audit trails | YatiSphere',
     description:
       'What we commit to when building AI, what we refuse to build, and how we can be held to it.',
   },
   '/who-we-are/trust': {
-    title: 'Trust center | YatiSphere',
+    title: 'Trust center: security, data and NDAs | YatiSphere',
     description:
       'How we protect client systems and data, who processes data for us, our certification status, and how to request an NDA and security pack.',
   },
@@ -117,7 +117,7 @@ export const ROUTE_META: Record<string, RouteMeta> = {
   '/who-we-are/leadership': {
     title: 'Leadership | YatiSphere',
     description:
-      'The people who lead YatiSphere: senior consultants and engineers who design, build and run systems for regulated businesses.',
+      'The people who lead YatiSphere and are accountable for the systems we design, build and run for regulated businesses.',
   },
   '/accessibility': {
     title: 'Accessibility statement | YatiSphere',

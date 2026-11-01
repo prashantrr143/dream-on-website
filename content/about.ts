@@ -1,15 +1,10 @@
 /**
  * About page content (/who-we-are/about).
  *
- * FOUNDER'S LETTER — DRAFT FOR APPROVAL. The letter below is written in
- * the founder's voice from facts she has already published (14+ years in
- * enterprise transformation across financial services and
- * telecommunications) and the company's stated positions. It is not a
- * transcript. Ruchika Raturi must read and approve (or rewrite) it before
- * the page is deployed, because it is published as her words.
- *
- * 2026-10-20: 'Keep one accountable team' replaced (owner dropped the
- * one-team narrative on 2026-10-19). Ruchika to approve the new line.
+ * "Why we started YatiSphere" (2026-11-01): written in the company's voice,
+ * not as a signed letter, so it needs no personal sign-off. It uses only
+ * facts already published (the founder's 14+ years in financial services
+ * and telecommunications) and the company's stated positions.
  *
  * Team-experience lines are the ones the owner confirmed on 2026-10-11 as
  * accurate and cleared to publish. Never add a client name, metric or
@@ -17,14 +12,13 @@
  */
 
 export const founderLetter = {
-  kicker: "Founder's vision",
+  kicker: 'Why we started YatiSphere',
   pullQuote:
-    'Regulated businesses do not need more technology. They need systems they can trust, explain and run.',
+    'Regulated businesses do not need more technology. They need systems they can explain, control and run.',
   paragraphs: [
-    'For most of my career I have worked inside enterprise transformation programs in financial services and telecommunications. The pattern repeated itself. The technology rarely failed on its own. Programs failed when the architecture was decided late, by people who would not be there to run the result, and when control was bolted on just before an audit.',
-    'I founded YatiSphere to work the other way round. Decide the structure first, with the people who will live with it. Build governance into the platform from the first sprint. Put senior engineers on the work from the first conversation to production, and stay to run what we build.',
-    'AI raises the stakes. A model is only as trustworthy as the cloud, the data and the controls beneath it, and only as useful as the systems it is allowed to act in. Our work is to make AI something a regulated business can put into production and defend: evaluated before it goes live, approved by a person where it matters, and logged at every step.',
-    'We are building the firm we would have wanted to hire: senior, accountable, independent of any vendor, and honest about what is worth building.',
+    'Most enterprise programs our team has worked on in financial services and telecommunications did not fail on technology. They failed when the architecture was decided late, by people who would not be there to run the result, and when controls were added just before an audit.',
+    'YatiSphere was founded to work the other way round: agree the structure first with the people who will run it, build controls into the platform from the first sprint, and stay to run what we build.',
+    'AI raises the stakes. A model is only as reliable as the cloud, data and controls under it. Our job is to get AI into production in a way a regulated business can defend: tested before it goes live, approved by a person where it matters, and logged.',
   ],
   signatory: 'Ruchika Raturi',
   role: 'Founder & Chief Executive Officer',
@@ -37,11 +31,11 @@ export const principles = [
     body: 'The decisions that are expensive to reverse are made deliberately, early, and with the people who will operate the result.',
   },
   {
-    title: 'Senior people on the work',
-    body: 'Senior engineers lead and do the work, from design to production.',
+    title: 'One team, accountable end to end',
+    body: 'The team that designs the system builds it and stays to run it, so less is lost at handover.',
   },
   {
-    title: 'Governed AI, or no AI',
+    title: 'AI with controls, or no AI',
     body: 'Evaluation before go-live, a person approving what matters, and an audit trail your regulator can follow.',
   },
   {
@@ -72,15 +66,15 @@ export const experience = [
 
 export const howWeWork = [
   {
-    title: 'Senior-led',
-    body: 'Every engagement is led by senior engineers.',
+    title: 'Fixed-fee first step',
+    body: 'Every engagement starts with a Solution Blueprint: a design, plan and risk register, priced before we start.',
   },
   {
     title: 'Built in your accounts',
     body: 'Repositories, infrastructure and data stay in your cloud and your chosen region from day one.',
   },
   {
-    title: 'Built for five regions',
-    body: 'Delivered from India for clients in the US, UK, Europe, the Middle East and India.',
+    title: 'Where we work',
+    body: 'Delivered from India for clients in the US, the UK, Europe and the Middle East. Calls in US hours by appointment.',
   },
 ]

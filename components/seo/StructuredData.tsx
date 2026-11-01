@@ -39,8 +39,8 @@ export function OrganizationSchema() {
     logo: `${SITE_URL}/brand/yatisphere/icon/yatisphere-icon-512.png`,
     image: `${SITE_URL}/brand/yatisphere/social/og-image.jpg`,
     description:
-      'IT services and applied AI for growing companies and regulated enterprises worldwide: cloud, software, data, security and consulting from senior engineers, with governed AI built in where it pays.',
-    slogan: 'Enterprise IT, built properly. AI where it pays.',
+      'IT services and applied AI for regulated businesses: cloud, software, data and AI systems, starting with a fixed-fee Solution Blueprint and built in the client’s own accounts, with governed AI where it pays.',
+    slogan: 'Systems that pass review. From cloud to AI.',
     email: SITE_CONTACT.email,
     foundingDate: '2025-12-22',
     ...(siteConfig.company.cin ? { identifier: { '@type': 'PropertyValue', propertyID: 'CIN', value: siteConfig.company.cin } } : {}),

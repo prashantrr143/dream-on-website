@@ -35,7 +35,7 @@ export const PROBLEMS: Problem[] = [
     answer: 'Modernized in steps, with no big-bang cutover.',
     area: 'Application modernization',
     cta: 'Explore modernization',
-    href: '/what-we-do/services/modernization',
+    href: '/what-we-do/engineering-data',
     visual: 'modernization',
   },
   {
@@ -43,7 +43,7 @@ export const PROBLEMS: Problem[] = [
     answer: 'Find the waste, cut it, keep it down.',
     area: 'Cloud and FinOps',
     cta: 'Explore FinOps',
-    href: '/what-we-do/cloud/finops',
+    href: '/what-we-do/cloud',
     visual: 'cloud',
   },
   {
@@ -51,7 +51,7 @@ export const PROBLEMS: Problem[] = [
     answer: 'One trusted platform, live dashboards.',
     area: 'Data and analytics',
     cta: 'Explore data and analytics',
-    href: '/what-we-do/services/data-analytics',
+    href: '/what-we-do/engineering-data',
     visual: 'data',
   },
   {

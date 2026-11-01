@@ -1,4 +1,4 @@
-import { Linkedin, Mail } from 'lucide-react'
+import { ArrowUpRight, Linkedin, Mail } from 'lucide-react'
 import { Wordmark } from '@/components/brand/Wordmark'
 import { LEGAL_ENTITY_NAME } from '@/lib/legal'
 import { CAREERS_URL } from '@/lib/nav'
@@ -8,25 +8,28 @@ import { SITE_CONTACT } from '@/lib/site-contact'
 import { CookieSettingsLink } from '@/components/analytics/CookieSettingsLink'
 
 /**
- * Site footer: dark, restrained, enterprise register.
+ * Site footer (modernized 2026-11-01).
  *
- * No call to action and no repeated tagline (owner feedback, 2026-10-19):
- * every page already ends with a CTA band, and a second "Talk to us"
- * right under it read as clutter. Brand column (logo, one line,
- * LinkedIn), three link columns, a company-details column. Desktop mega-panels render their
- * links only when opened, so these columns are also how crawlers reach
- * every pillar, industry and Who-we-are page; regional pages are linked
- * from the "Working across regions" strip instead.
+ * Light (grey-50) under the navy CTA band, so the footer reads as its own
+ * section at a glance; navy text, brand-blue links, amber accents, and the
+ * clean header lockup in its light-surface version (2026-11-01).
+ * Order: brand + positioning + the mission (Ideas, Intelligence, Impact in
+ * the brand-mark colours), then link columns led by Applied AI, then
+ * company details. Still no call to action (owner feedback, 2026-10-19):
+ * every page already ends with one. The columns double as the crawl path
+ * to every service, industry and Who-we-are page.
  */
 const columns = [
   {
     title: 'What we do',
     links: [
-      { name: 'IT services', href: '/what-we-do/engineering-data' },
-      { name: 'Cloud', href: '/what-we-do/cloud' },
-      { name: 'Consulting', href: '/what-we-do/consulting' },
-      { name: 'Applied AI', href: '/what-we-do/applied-ai' },
-      { name: 'Solution Blueprint', href: '/blueprint' },
+      { name: 'AI pilot to production', href: '/what-we-do/applied-ai' },
+      { name: 'Agentic automation', href: '/what-we-do/applied-ai/agentic-automation' },
+      { name: 'AI governance', href: '/what-we-do/applied-ai/ai-governance' },
+      { name: 'Claude practice', href: '/what-we-do/applied-ai/claude' },
+      { name: 'Cloud foundations', href: '/what-we-do/cloud' },
+      { name: 'Software and data', href: '/what-we-do/engineering-data' },
+      { name: 'Security and compliance', href: '/what-we-do/services/security-compliance' },
     ],
   },
   {
@@ -38,101 +41,97 @@ const columns = [
     ],
   },
   {
-    title: 'Who we are',
+    title: 'Company',
     links: [
       { name: 'About us', href: '/who-we-are/about' },
       { name: 'Leadership', href: '/who-we-are/leadership' },
       { name: 'How we work', href: '/who-we-are/how-we-work' },
+      { name: 'Solution Blueprint', href: '/blueprint' },
       { name: 'Responsible AI', href: '/who-we-are/responsible-ai' },
-      { name: 'Trust & security', href: '/who-we-are/trust' },
+      { name: 'Trust center', href: '/who-we-are/trust' },
       ...(hasArticles ? [{ name: 'Insights', href: '/insights' }] : []),
       ...(siteConfig.caseStudies.length > 0 ? [{ name: 'Customer stories', href: '/customer-stories' }] : []),
       ...(CAREERS_URL ? [{ name: 'Careers', href: CAREERS_URL }] : []),
+      { name: 'Contact', href: '/contact-us' },
     ],
   },
+]
+
+const MISSION = [
+  { word: 'Ideas', c: '#0B7FA6' },
+  { word: 'Intelligence', c: '#1F4FBF' },
+  { word: 'Impact', c: '#B7791F' },
 ]
 
 const FooterMinimal = () => {
   const year = new Date().getFullYear()
 
   return (
-    <footer id="footer" className="ys-ftr">
+    <footer id="footer" className="ys-ft2">
+      <div className="ys-ft2-rule" aria-hidden="true" />
       <div className="enterprise-container-wide">
-
-        <div className="ys-ftr-main">
-          <div className="ys-ftr-brandcol">
-            <a href="/" className="ys-ftr-logo" aria-label="YatiSphere home">
-              <Wordmark tone="dark" height={44} />
+        <div className="ys-ft2-main">
+          <div className="ys-ft2-brand">
+            <a href="/" className="ys-ft2-logo" aria-label="YatiSphere home">
+              <Wordmark tone="light" height={46} compact />
             </a>
-            <p className="ys-ftr-line">IT services and applied AI for clients worldwide.</p>
-            {SITE_CONTACT.linkedin && (
-              <a
-                href={SITE_CONTACT.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="ys-ftr-social"
-              >
-                <Linkedin className="w-4 h-4" strokeWidth={1.75} aria-hidden="true" />
-                Follow us on LinkedIn
-              </a>
-            )}
+            <p className="ys-ft2-line">AI that reaches production, on systems built to carry it. For regulated businesses.</p>
+            <p className="ys-ft2-mission" aria-label="Our mission: ideas, intelligence, impact">
+              {MISSION.map((m, i) => (
+                <span key={m.word} style={{ ['--c' as string]: m.c }}>
+                  {i > 0 && <i aria-hidden="true" />}
+                  {m.word}
+                </span>
+              ))}
+            </p>
+            <div className="ys-ft2-social">
+              {SITE_CONTACT.linkedin && (
+                <a href={SITE_CONTACT.linkedin} target="_blank" rel="noopener noreferrer" aria-label="YatiSphere on LinkedIn (opens in a new tab)">
+                  <Linkedin className="w-[18px] h-[18px]" strokeWidth={1.8} aria-hidden="true" />
+                </a>
+              )}
+              {SITE_CONTACT.email && (
+                <a href={`mailto:${SITE_CONTACT.email}`} aria-label={`Email ${SITE_CONTACT.email}`}>
+                  <Mail className="w-[18px] h-[18px]" strokeWidth={1.8} aria-hidden="true" />
+                </a>
+              )}
+              {SITE_CONTACT.email && <a href={`mailto:${SITE_CONTACT.email}`} className="ys-ft2-email">{SITE_CONTACT.email}</a>}
+            </div>
           </div>
 
-          <nav className="ys-ftr-cols" aria-label="Footer">
+          <nav className="ys-ft2-cols" aria-label="Footer">
             {columns.map((col) => (
               <div key={col.title}>
-                <h2 className="ys-ftr-heading">{col.title}</h2>
+                <h2 className="ys-ft2-heading">{col.title}</h2>
                 <ul>
                   {col.links.map((l) => (
                     <li key={l.href}>
-                      <a href={l.href}>{l.name}</a>
+                      <a href={l.href}>
+                        <span>{l.name}</span>
+                        <ArrowUpRight className="w-3.5 h-3.5 shrink-0" strokeWidth={2.2} aria-hidden="true" />
+                      </a>
                     </li>
                   ))}
                 </ul>
               </div>
             ))}
           </nav>
-
-          <div className="ys-ftr-company">
-            <h2 className="ys-ftr-heading">Company</h2>
-            <dl>
-              <div>
-                <dt>Legal name</dt>
-                <dd>{LEGAL_ENTITY_NAME}</dd>
-              </div>
-              {SITE_CONTACT.cin && (
-                <div>
-                  <dt>CIN</dt>
-                  <dd className="ys-ftr-mono">{SITE_CONTACT.cin}</dd>
-                </div>
-              )}
-              {SITE_CONTACT.registeredAddress && (
-                <div>
-                  <dt>Registered office</dt>
-                  <dd>{SITE_CONTACT.registeredAddress}</dd>
-                </div>
-              )}
-              {SITE_CONTACT.offices.map((o) => (
-                <div key={o.label}>
-                  <dt>{o.label}</dt>
-                  <dd>{o.address}</dd>
-                </div>
-              ))}
-            </dl>
-            {SITE_CONTACT.email && (
-              <a href={`mailto:${SITE_CONTACT.email}`} className="ys-ftr-email">
-                <Mail className="w-4 h-4" strokeWidth={1.75} aria-hidden="true" />
-                {SITE_CONTACT.email}
-              </a>
-            )}
-          </div>
         </div>
 
-        <div className="ys-ftr-bottom">
-          <p className="ys-ftr-copy">
-            &copy; {year} {LEGAL_ENTITY_NAME}. All rights reserved.
-          </p>
-          <div className="ys-ftr-links">
+        <div className="ys-ft2-company">
+          <dl>
+            <div><dt>Legal name</dt><dd>{LEGAL_ENTITY_NAME}</dd></div>
+            {SITE_CONTACT.cin && <div><dt>CIN</dt><dd className="ys-ft2-mono">{SITE_CONTACT.cin}</dd></div>}
+            {SITE_CONTACT.registeredAddress && <div><dt>Registered office</dt><dd>{SITE_CONTACT.registeredAddress}</dd></div>}
+            {SITE_CONTACT.offices.map((o) => (
+              <div key={o.label}><dt>{o.label}</dt><dd>{o.address}</dd></div>
+            ))}
+          </dl>
+        </div>
+
+        <div className="ys-ft2-bottom">
+          <p>&copy; {year} {LEGAL_ENTITY_NAME}. All rights reserved.</p>
+          <div className="ys-ft2-legal">
             <a href="/privacy">Privacy</a>
             <a href="/privacy#cookies">Cookies</a>
             <a href="/accessibility">Accessibility</a>
@@ -141,6 +140,8 @@ const FooterMinimal = () => {
           </div>
         </div>
       </div>
+
+      <p className="ys-ft2-giant" aria-hidden="true">YatiSphere</p>
     </footer>
   )
 }

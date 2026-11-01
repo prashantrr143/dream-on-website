@@ -110,9 +110,9 @@ export default function LeadershipPage() {
       {/* The team behind the leaders: confirmed experience only (content/about.ts). */}
       <section className="ys-about-experience" aria-labelledby="ldr-team-title">
         <div className="enterprise-container-wide">
-          <h2 id="ldr-team-title">The engineers who do the work</h2>
+          <h2 id="ldr-team-title">Our team</h2>
           <p className="ys-ldr-team-lede">
-            Every engagement is led by senior engineers. Between them, the team has run systems that could not fail:
+            The team that plans your work delivers it. Between them, the team has worked on:
           </p>
           <ul>
             {experience.map((e) => (
@@ -154,8 +154,8 @@ export default function LeadershipPage() {
       </section>
 
       <PageCTA
-        title="Talk to the people who will do the work"
-        body="Tell us what you are working on. A senior member of the team replies within one working day."
+        title="Talk to us"
+        body="Tell us what you are working on. We reply within one working day."
         primaryCta={{ label: PRIMARY_CTA.label, href: PRIMARY_CTA.href }}
         secondaryCta={{ label: SECONDARY_CTA.label, href: SECONDARY_CTA.href }}
       />

@@ -19,13 +19,13 @@ export default function AboutUs() {
     <SharedLayout>
       <PageHero
         eyebrow="WHO WE ARE / ABOUT"
-        title="A small, senior firm for systems that have to be trusted"
+        title="A focused firm for systems that have to be trusted"
         lede="Consultants and engineers who have built and run systems for global banks, consultancies and governments, now doing the same for growing companies and regulated enterprises."
         primaryCta={{ label: PRIMARY_CTA.label, href: PRIMARY_CTA.href }}
         visual="network"
       />
 
-      {/* 1. Founder's letter: the vision, in her voice, first. */}
+      {/* 1. Why we started YatiSphere, in the company's voice. */}
       <section className="ys-about-letter" aria-labelledby="founder-vision">
         <div className="enterprise-container-wide ys-about-letter-grid">
           <figure className="ys-about-letter-portrait">
@@ -49,21 +49,14 @@ export default function AboutUs() {
             <p className="ys-eyebrow" id="founder-vision">
               {founderLetter.kicker}
             </p>
-            <blockquote className="ys-about-pullquote">
+            <div className="ys-about-pullquote">
               <p>{founderLetter.pullQuote}</p>
-            </blockquote>
+            </div>
             <div className="ys-about-letter-text">
               {founderLetter.paragraphs.map((p) => (
                 <p key={p.slice(0, 24)}>{p}</p>
               ))}
             </div>
-            <p className="ys-about-signoff">
-              <span className="ys-about-signoff-rule" aria-hidden="true" />
-              <span>
-                <strong>{founderLetter.signatory}</strong>
-                <span>{founderLetter.role}, YatiSphere</span>
-              </span>
-            </p>
           </div>
         </div>
       </section>
@@ -73,7 +66,7 @@ export default function AboutUs() {
         <div className="enterprise-container-wide">
           <div className="ys-about-split">
             <div>
-              <h2 id="principles-heading">Four principles we do not trade away</h2>
+              <h2 id="principles-heading">How we work</h2>
             </div>
             <ol className="ys-about-principles">
               {principles.map((p, i) => (
@@ -96,7 +89,7 @@ export default function AboutUs() {
       <section className="ys-about-experience" aria-labelledby="experience-heading">
         <div className="enterprise-container-wide">
           <p className="ys-eyebrow ys-eyebrow-on-dark">Our experience</p>
-          <h2 id="experience-heading">Built by people who have run systems that could not fail</h2>
+          <h2 id="experience-heading">Where our team has worked</h2>
           <ul>
             {experience.map((e) => (
               <li key={e.area}>
@@ -139,7 +132,7 @@ export default function AboutUs() {
         <div className="enterprise-container-wide">
           <div className="ys-about-section-head">
             <div>
-              <h2 id="leadership-heading">The people accountable for your work</h2>
+              <h2 id="leadership-heading">Leadership</h2>
             </div>
             <a href="/who-we-are/leadership" className="ys-link">
               Meet the leadership team <ArrowRight className="w-3.5 h-3.5 inline" strokeWidth={2.5} aria-hidden="true" />
@@ -201,8 +194,8 @@ export default function AboutUs() {
       <CompanyDetails />
 
       <PageCTA
-        title="What would you fix first?"
-        body="Tell us what you are working on. A senior member of the team will give you an honest view on whether we are the right fit."
+        title="Tell us what you want to fix first"
+        body="Tell us what you are working on. We will tell you plainly whether we are the right fit."
         primaryCta={{ label: PRIMARY_CTA.label, href: PRIMARY_CTA.href }}
         secondaryCta={{ label: SECONDARY_CTA.label, href: SECONDARY_CTA.href }}
       />
