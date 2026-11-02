@@ -36,42 +36,6 @@ export default function ContactPage() {
             <p className="ys-contact-lede">
               Tell us what you are working on. We reply within one working day and tell you plainly whether we are the right team.
             </p>
-
-            <ul className="ys-contact-list">
-              <li>
-                <span>Email</span>
-                <a href={`mailto:${SITE_CONTACT.email}`}>{SITE_CONTACT.email}</a>
-              </li>
-              {SITE_CONTACT.linkedin && (
-                <li>
-                  <span>LinkedIn</span>
-                  <a href={SITE_CONTACT.linkedin} target="_blank" rel="noopener noreferrer">YatiSphere on LinkedIn</a>
-                </li>
-              )}
-              {SITE_CONTACT.phone && (
-                <li>
-                  <span>Phone</span>
-                  <a href={`tel:${SITE_CONTACT.phone.replace(/\s+/g, '')}`}>{SITE_CONTACT.phone}</a>
-                </li>
-              )}
-              <li>
-                <span>Hours</span>
-                <p>Calls in US hours by appointment.</p>
-              </li>
-              {SITE_CONTACT.registeredAddress && (
-                <li>
-                  <span>Registered office</span>
-                  <p>
-                    {siteConfig.company.legalName}
-                    <br />
-                    {SITE_CONTACT.registeredAddress}
-                    {siteConfig.company.cin && <><br />CIN {siteConfig.company.cin}</>}
-                  </p>
-                </li>
-              )}
-            </ul>
-
-            <p className="ys-contact-note">All conversations are confidential. Share as much or as little as you can at this stage.</p>
           </div>
 
           <div id="book" className="ys-contact-card">
@@ -92,6 +56,44 @@ export default function ContactPage() {
             </p>
             <ContactForm key={`${preset.topic}:${preset.interest}`} topic={preset.topic} initialInterest={preset.interest} />
           </div>
+          <div className="ys-contact-details">
+            <ul className="ys-contact-list">
+              <li>
+                <span>Email</span>
+                <a href={`mailto:${SITE_CONTACT.email}`}>{SITE_CONTACT.email}</a>
+              </li>
+              {SITE_CONTACT.linkedin && (
+                <li>
+                  <span>LinkedIn</span>
+                  <a href={SITE_CONTACT.linkedin} target="_blank" rel="noopener noreferrer">YatiSphere on LinkedIn</a>
+                </li>
+              )}
+              {SITE_CONTACT.phone && (
+                <li>
+                  <span>Phone</span>
+                  <a href={`tel:${SITE_CONTACT.phone.replace(/\s+/g, '')}`}>{SITE_CONTACT.phone}</a>
+                </li>
+              )}
+              <li>
+                <span>Hours</span>
+                <p>Monday to Friday, across UK, European and Gulf business hours. Calls in US hours by appointment.</p>
+              </li>
+              {SITE_CONTACT.registeredAddress && (
+                <li>
+                  <span>Registered office</span>
+                  <p>
+                    {siteConfig.company.legalName}
+                    <br />
+                    {SITE_CONTACT.registeredAddress}
+                    {siteConfig.company.cin && <><br />CIN {siteConfig.company.cin}</>}
+                  </p>
+                </li>
+              )}
+            </ul>
+
+            <p className="ys-contact-note">All conversations are confidential. Share as much or as little as you can at this stage.</p>
+          </div>
+
         </div>
       </section>
 

@@ -9,7 +9,7 @@ export const pages: ContentPage[] = [
     meta: {
       title: 'AI workflows and the systems under them | YatiSphere',
       description:
-        'Cloud, software, data and AI systems for regulated businesses, starting with a fixed-fee plan.',
+        'Cloud foundations, software, data and applied AI for banks, law firms and SaaS companies, built in your own accounts and starting with a fixed-fee plan.',
     },
     hero: {
       kicker: 'WHAT WE DO',

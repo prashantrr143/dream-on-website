@@ -132,7 +132,7 @@ export default function BlueprintPage() {
       {/* Week by week */}
       <PageSection
         tone="light"
-        title="How the four weeks run"
+        title="How a Blueprint runs"
         lede="A smaller problem compresses into two weeks. The order stays the same."
       >
         <ol className="ys-bp-weeks">

@@ -85,12 +85,12 @@ export const ROUTE_META: Record<string, RouteMeta> = {
   '/contact-us': {
     title: 'Contact us | YatiSphere',
     description:
-      'Tell us the problem. We reply within one working day with an honest view on whether we are the right team.',
+      'Contact YatiSphere about cloud, software, data or AI work. We reply within one working day and tell you plainly whether we are the right team.',
   },
   '/blueprint': {
     title: 'Fixed-fee AI readiness assessment: Blueprint | YatiSphere',
     description:
-      'A solution blueprint, a delivery plan and a risk register in two to four weeks, before you commit to any build.',
+      'A fixed-fee Solution Blueprint: a solution design, delivery plan and risk register in two to four weeks, before you commit to any build.',
   },
   '/customer-stories': {
     title: 'Customer stories | YatiSphere',
@@ -106,7 +106,7 @@ export const ROUTE_META: Record<string, RouteMeta> = {
   '/who-we-are/responsible-ai': {
     title: 'Responsible AI: human approval, audit trails | YatiSphere',
     description:
-      'What we commit to when building AI, what we refuse to build, and how we can be held to it.',
+      'How YatiSphere builds AI: human review steps, evaluation on your data, audit trails, what we refuse to build, and how to hold us to it.',
   },
   '/who-we-are/trust': {
     title: 'Trust center: security, data and NDAs | YatiSphere',
@@ -117,7 +117,7 @@ export const ROUTE_META: Record<string, RouteMeta> = {
   '/who-we-are/leadership': {
     title: 'Leadership | YatiSphere',
     description:
-      'The people who lead YatiSphere and are accountable for the systems we design, build and run for regulated businesses.',
+      'Meet the people who lead YatiSphere and are accountable for the cloud, software, data and AI systems we design, build and run for regulated businesses.',
   },
   '/accessibility': {
     title: 'Accessibility statement | YatiSphere',
@@ -134,7 +134,7 @@ export const ROUTE_META: Record<string, RouteMeta> = {
   '/privacy': {
     title: 'Privacy Policy | YatiSphere',
     description:
-      'How we collect, use and protect personal information, the rights you have over it, and how to exercise them.',
+      'How YatiSphere collects, uses and protects personal information, who we share it with, the rights you have over it, and how to exercise them.',
     noindex: true,
   },
 }

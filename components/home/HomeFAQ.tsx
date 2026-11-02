@@ -44,7 +44,7 @@ export function HomeFAQ() {
       <div className="enterprise-container-wide">
         <div className="ys-hfaq">
           <div className="ys-hfaq-intro">
-            <p className="ys-kicker">Questions</p>
+            <p className="ys-kicker">FAQ</p>
             <h2 id="home-faq">Common questions</h2>
           </div>
           <div className="ys-hfaq-list">
