@@ -4860,7 +4860,7 @@ a.ys-open-item::before,
 .ys-hero-center { display: flex; flex-direction: column; align-items: center; text-align: center; max-width: 1040px; margin: 0 auto;
   padding-top: clamp(120px, 12vw, 160px); padding-bottom: clamp(88px, 9vw, 120px); }
 .ys-hero-title { margin: 0; color: var(--white); font-size: clamp(2.6rem, 6.4vw, 5.6rem); font-weight: 600; letter-spacing: -0.035em; line-height: 1.02; text-wrap: balance; }
-.ys-hero-word { display: inline-block; margin-right: 0.24em; animation: ys-hero-word 900ms cubic-bezier(.2,.8,.2,1) both; animation-delay: calc(120ms + var(--i) * 75ms); }
+.ys-hero-word { display: inline-block; margin-right: 0; animation: ys-hero-word 900ms cubic-bezier(.2,.8,.2,1) both; animation-delay: calc(120ms + var(--i) * 75ms); }
 .ys-hero-word:last-child { margin-right: 0; }
 @keyframes ys-hero-word { from { opacity: 0; transform: translateY(0.45em) rotateX(40deg); filter: blur(10px); } to { opacity: 1; transform: none; filter: none; } }
 .ys-hero-word-accent { background: linear-gradient(100deg, var(--amber-500) 0%, #FFD866 40%, var(--amber-500) 60%, #FF8A1F 100%); background-size: 220% 100%;
@@ -4973,3 +4973,23 @@ a.ys-open-item::before,
 @media (min-width: 900px) { .ys-hfaq { grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); align-items: start; } }
 .ys-hfaq-intro h2 { margin: 8px 0 0; }
 .ys-hfaq-list .ys-faq:first-child { padding-top: 0; }
+
+/* 2026-11-02 re-audit fixes */
+/* Contact: intro, then form, then details on small screens; form in its own column on desktop */
+@media (min-width: 1024px) {
+  .ys-contact-grid { grid-template-areas: "intro card" "details card"; }
+  .ys-contact-copy { grid-area: intro; }
+  .ys-contact-details { grid-area: details; }
+  .ys-contact-card { grid-area: card; }
+}
+.ys-contact-details .ys-contact-list { margin-top: 0; }
+@media (min-width: 1024px) { .ys-contact-grid { row-gap: 0; } .ys-contact-details { margin-top: 32px; } }
+/* Hero pill stays on one line on phones */
+.ys-hero-badge, .ys-hero-badge-tag { white-space: nowrap; }
+@media (max-width: 479px) { .ys-hero-badge-long { display: none; } .ys-hero-badge { font-size: 13px; } }
+/* Hero headline: faster, lighter reveal on phones so the first screen is not empty */
+@media (max-width: 767px) {
+  .ys-hero-word { animation-duration: 520ms; animation-delay: calc(30ms + var(--i) * 35ms); }
+  .ys-hero-word-accent { animation-duration: 520ms, 5s; animation-delay: calc(30ms + var(--i) * 35ms), 1.2s; }
+  @keyframes ys-hero-word { from { opacity: 0; transform: translateY(0.3em); } to { opacity: 1; transform: none; } }
+}

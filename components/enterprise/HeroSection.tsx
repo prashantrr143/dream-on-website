@@ -1,6 +1,6 @@
 "use client"
 
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { Fragment, useCallback, useEffect, useRef, useState } from 'react'
 import { ArrowRight, Cloud, Cpu } from 'lucide-react'
 import { SECONDARY_CTA } from '@/lib/cta'
 import { HeroField } from '@/components/home/HeroField'
@@ -69,20 +69,24 @@ const HeroSection = () => {
         <div className="ys-hero-center" ref={copy}>
           <a href={SECONDARY_CTA.href} className="ys-hero-badge ys-hero-rise" style={{ ['--d' as string]: '0ms' }}>
             <span className="ys-hero-badge-tag">Start here</span>
-            Solution Blueprint · 2–4 weeks, fixed fee
+            Solution Blueprint<span className="ys-hero-badge-long"> · 2–4 weeks</span>, fixed fee
             <ArrowRight className="w-3.5 h-3.5 shrink-0" strokeWidth={2.5} aria-hidden="true" />
           </a>
 
-          <h1 className="ys-hero-title" aria-label={TITLE.filter((w) => w !== '\n').join(' ')}>
+          <h1 className="ys-hero-title">
+            {/* Real spaces between the animated words, so the indexed and
+                copied text reads "Systems that pass review." and not
+                "Systemsthatpassreview." */}
             {TITLE.map((w, i) => w === '\n' ? <br key="br" /> : (
-              <span
-                key={`${w}-${i}`}
-                aria-hidden="true"
-                className={`ys-hero-word${w.startsWith('review') ? ' ys-hero-word-accent' : ''}`}
-                style={{ ['--i' as string]: i }}
-              >
-                {w}
-              </span>
+              <Fragment key={`${w}-${i}`}>
+                <span
+                  className={`ys-hero-word${w.startsWith('review') ? ' ys-hero-word-accent' : ''}`}
+                  style={{ ['--i' as string]: i }}
+                >
+                  {w}
+                </span>
+                {TITLE[i + 1] && TITLE[i + 1] !== '\n' ? ' ' : null}
+              </Fragment>
             ))}
           </h1>
 
