@@ -5,15 +5,16 @@ export const pages: ContentPage[] = [
   {
     path: '/what-we-do',
     name: 'What we do',
+    contact: { title: 'Not sure which service fits?', body: 'Describe the problem in a few lines and we will point you to the right starting point. We reply within one working day.' },
     parents: [],
     meta: {
-      title: 'AI workflows and the systems under them | YatiSphere',
+      title: 'Cloud, software, data and AI services | YatiSphere',
       description:
         'Cloud foundations, software, data and applied AI for banks, law firms and SaaS companies, built in your own accounts and starting with a fixed-fee plan.',
     },
     hero: {
       kicker: 'WHAT WE DO',
-      h1: 'AI workflows, and the systems under them',
+      h1: 'Cloud, software, data and AI services',
       subhead:
         'We advise on, build and run the systems your business depends on, on AWS, Microsoft Azure or Google Cloud. When AI is the right answer, we build it into those systems and govern it from day one.',
     },
@@ -21,7 +22,7 @@ export const pages: ContentPage[] = [
       {
         type: 'statement',
         kicker: 'Our view',
-        title: 'AI is only as trustworthy as the platform under it',
+        title: 'Why AI work starts with the platform',
         text: 'Enterprise AI fails less often on the model than on everything around it: the cloud foundations, the data, the controls and the people who run it. We work on all five layers, with one accountable team, so what reaches production is something your auditors, customers and engineers can live with.',
       },
       {
@@ -88,7 +89,7 @@ export const pages: ContentPage[] = [
         type: 'links',
         id: 'industries',
         kicker: 'Industries',
-        title: 'Built for sectors where a wrong answer has consequences',
+        title: 'Industries we work in',
         links: [
           { label: 'Financial services', href: '/what-we-do/industries/financial-services', descriptor: 'Banks, insurers, wealth managers and fintechs' },
           { label: 'Legal & professional services', href: '/what-we-do/industries/legal-professional-services', descriptor: 'Law firms and advisory practices' },

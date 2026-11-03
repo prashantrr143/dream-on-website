@@ -32,7 +32,7 @@ export default function ContactPage() {
         <div className="enterprise-container-wide ys-contact-grid">
           <div className="ys-contact-copy">
             <p className="ys-kicker ys-kicker-on-dark">Contact</p>
-            <h1 id="contact-title">Get in touch</h1>
+            <h1 id="contact-title">Contact YatiSphere</h1>
             <p className="ys-contact-lede">
               Tell us what you are working on. We reply within one working day and tell you plainly whether we are the right team.
             </p>
@@ -74,10 +74,6 @@ export default function ContactPage() {
                   <a href={`tel:${SITE_CONTACT.phone.replace(/\s+/g, '')}`}>{SITE_CONTACT.phone}</a>
                 </li>
               )}
-              <li>
-                <span>Hours</span>
-                <p>Monday to Friday, across UK, European and Gulf business hours. Calls in US hours by appointment.</p>
-              </li>
               {SITE_CONTACT.registeredAddress && (
                 <li>
                   <span>Registered office</span>

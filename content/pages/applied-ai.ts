@@ -48,12 +48,13 @@ export const pages: ContentPage[] = [
     },
     hero: {
       kicker: 'WHAT WE DO / APPLIED AI',
-      h1: 'AI that reaches production',
+      h1: 'AI implementation, from pilot to production',
       subhead: 'We take AI pilots into production inside the systems you already use, with testing, approvals and an audit trail.',
     },
     parents: [WHAT_WE_DO],
     name: 'Applied AI',
     contactInterest: 'Applied AI',
+    contact: { title: 'Have an AI pilot that stalled?', body: 'Tell us what it does and where it got stuck. We reply within one working day.' },
     blocks: [
       {
         type: 'statement',
@@ -63,7 +64,7 @@ export const pages: ContentPage[] = [
       },
       {
         type: 'cards',
-        title: 'Services',
+        title: 'Applied AI services',
         columns: 3,
         cards: [
           {
@@ -100,17 +101,17 @@ export const pages: ContentPage[] = [
       },
       {
         type: 'workflow',
-        title: 'Where people stay in control',
+        title: 'Where a person reviews or approves',
         lede: 'AI drafts, checks and routes. People approve where the decision carries liability, and every step is logged.',
       },
       {
         type: 'modelNeutral',
-        title: 'Your choice of model and cloud',
+        title: 'Models and clouds we work with',
         lede: 'We work with Claude, OpenAI models and open-weight models, run on Amazon Bedrock, Google Cloud Vertex AI, Microsoft Foundry or direct APIs. We pick the model for the task and the cloud for your estate, and keep the option to switch.',
       },
       {
         type: 'tabs',
-        title: 'Typical projects',
+        title: 'Typical AI projects',
         tabs: [
           {
             label: 'Document intake',
@@ -158,7 +159,7 @@ export const pages: ContentPage[] = [
       },
       {
         type: 'list',
-        title: 'What changes',
+        title: 'What changes once AI is in production',
         items: [
           'Pilots that become production systems with an owner, a run guide and monitoring.',
           'Fewer manual re-keying steps in document-heavy processes.',
@@ -184,17 +185,18 @@ export const pages: ContentPage[] = [
     },
     hero: {
       kicker: 'APPLIED AI / CLAUDE',
-      h1: 'Claude, put to work safely',
+      h1: 'Claude implementation and Claude Code rollout',
       subhead:
         'We help enterprises adopt Claude, build agents with it and connect it to their systems, inside the cloud boundary you choose.',
     },
     parents: [WHAT_WE_DO, APPLIED_AI],
     name: 'Claude practice',
     contactInterest: 'Claude',
+    contact: { title: 'Rolling out Claude or Claude Code?', body: 'Tell us how many people and which systems. We reply within one working day.' },
     blocks: [
       {
         type: 'cards',
-        title: 'Where we help',
+        title: 'Claude services',
         columns: 3,
         cards: [
           {
@@ -221,7 +223,7 @@ export const pages: ContentPage[] = [
       },
       {
         type: 'statement',
-        title: 'Run Claude where your data lives',
+        title: 'Where Claude can run',
         text: "Claude is available through Anthropic's API and through Amazon Bedrock, Google Cloud Vertex AI and Microsoft Foundry, so we can run it inside the cloud boundary you choose.",
       },
       {
@@ -230,7 +232,7 @@ export const pages: ContentPage[] = [
       },
       {
         type: 'cards',
-        title: 'Controls from day one',
+        title: 'Security and governance controls',
         columns: 3,
         cards: [
           {
@@ -257,7 +259,7 @@ export const pages: ContentPage[] = [
       },
       {
         type: 'steps',
-        title: 'How an engagement runs',
+        title: 'How a Claude rollout runs',
         steps: [
           {
             title: 'Readiness',
@@ -346,12 +348,13 @@ export const pages: ContentPage[] = [
     },
     hero: {
       kicker: 'APPLIED AI / AGENTIC AUTOMATION',
-      h1: 'Agents that do the work',
+      h1: 'AI agents for intake, KYC and claims workflows',
       subhead: 'We build AI agents that handle document-heavy processes and hand decisions to people where liability sits.',
     },
     parents: [WHAT_WE_DO, APPLIED_AI],
     name: 'Agentic automation',
     contactInterest: 'Applied AI',
+    contact: { title: 'Have a document-heavy process that eats hours?', body: 'Tell us what the documents are and who decides. We reply within one working day.' },
     blocks: [
       {
         type: 'statement',
@@ -359,7 +362,7 @@ export const pages: ContentPage[] = [
       },
       {
         type: 'cards',
-        title: 'What we do',
+        title: 'AI agent services',
         columns: 2,
         cards: [
           {
@@ -382,7 +385,7 @@ export const pages: ContentPage[] = [
       },
       {
         type: 'tabs',
-        title: 'Typical projects',
+        title: 'Typical agent workflows',
         tabs: [
           {
             label: 'Document intake',
@@ -425,7 +428,7 @@ export const pages: ContentPage[] = [
       },
       {
         type: 'steps',
-        title: 'How a project runs',
+        title: 'How an agent project runs',
         steps: [
           { title: 'Assess', body: 'We map the process, check the data and risks, and agree where people must approve.' },
           { title: 'Pilot', body: 'A working agent on your own data, measured against an accuracy target you set.' },
@@ -435,7 +438,7 @@ export const pages: ContentPage[] = [
       },
       {
         type: 'list',
-        title: 'What you get',
+        title: 'What you get at go-live',
         items: [
           'A process map showing where the agent acts and where people approve.',
           'A working agent integrated with your systems.',
@@ -760,12 +763,13 @@ export const pages: ContentPage[] = [
     },
     hero: {
       kicker: 'APPLIED AI / AI GOVERNANCE',
-      h1: 'AI your compliance team approves',
+      h1: 'AI governance aligned to the NIST AI RMF and ISO/IEC 42001',
       subhead: 'We design the controls that let AI reach production: clear data boundaries, human oversight and a record of every decision.',
     },
     parents: [WHAT_WE_DO, APPLIED_AI],
     name: 'AI governance',
     contactInterest: 'Applied AI',
+    contact: { title: 'Need AI through a model risk or compliance review?', body: 'Tell us the use case and who has to approve it. We reply within one working day.' },
     blocks: [
       {
         type: 'statement',
@@ -775,7 +779,7 @@ export const pages: ContentPage[] = [
       },
       {
         type: 'cards',
-        title: 'What we do',
+        title: 'AI governance services',
         columns: 2,
         cards: [
           {
@@ -798,7 +802,7 @@ export const pages: ContentPage[] = [
       },
       {
         type: 'tabs',
-        title: 'Typical projects',
+        title: 'Typical governance projects',
         tabs: [
           {
             label: 'Governance baseline',
@@ -819,7 +823,7 @@ export const pages: ContentPage[] = [
       },
       {
         type: 'steps',
-        title: 'How a project runs',
+        title: 'How a governance project runs',
         steps: [
           { title: 'Inventory', body: 'We list where AI is used or planned, what data it touches and who owns it.' },
           { title: 'Assess', body: 'Each use case is classified by risk and mapped to the frameworks you need to align with.' },
@@ -829,7 +833,7 @@ export const pages: ContentPage[] = [
       },
       {
         type: 'list',
-        title: 'What you get',
+        title: 'What you can show a reviewer',
         items: [
           'An AI use-case inventory with risk classifications.',
           'A control map against EU AI Act risk tiers, ISO/IEC 42001 and the NIST AI RMF.',
@@ -886,12 +890,13 @@ export const pages: ContentPage[] = [
     },
     hero: {
       kicker: 'APPLIED AI / AI-ASSISTED ENGINEERING',
-      h1: 'Faster engineering, same standards',
+      h1: 'AI coding assistant rollout for engineering teams',
       subhead: 'We help engineering teams adopt coding assistants such as Claude Code with guardrails, review practices and honest measurement.',
     },
     parents: [WHAT_WE_DO, APPLIED_AI],
     name: 'AI-assisted engineering',
     contactInterest: 'Claude',
+    contact: { title: 'Rolling out a coding assistant?', body: 'Tell us the team size and the tools you use today. We reply within one working day.' },
     blocks: [
       {
         type: 'statement',
@@ -899,7 +904,7 @@ export const pages: ContentPage[] = [
       },
       {
         type: 'cards',
-        title: 'What we do',
+        title: 'Rollout services',
         columns: 2,
         cards: [
           {
@@ -922,7 +927,7 @@ export const pages: ContentPage[] = [
       },
       {
         type: 'tabs',
-        title: 'Typical projects',
+        title: 'Typical rollouts',
         tabs: [
           {
             label: 'Assistant rollout',
@@ -943,7 +948,7 @@ export const pages: ContentPage[] = [
       },
       {
         type: 'steps',
-        title: 'How a project runs',
+        title: 'How a rollout runs',
         steps: [
           { title: 'Readiness', body: 'We review your repositories, security rules and delivery practices, and agree the measures.' },
           { title: 'Pilot', body: 'A pilot with selected teams, with guardrails in place and a baseline taken first.' },
@@ -953,7 +958,7 @@ export const pages: ContentPage[] = [
       },
       {
         type: 'list',
-        title: 'What you get',
+        title: 'What you get after the pilot',
         items: [
           'A rollout plan and usage policies agreed with security.',
           'Configured coding assistants with guardrails in place.',

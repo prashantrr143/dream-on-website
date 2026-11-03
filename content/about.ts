@@ -75,6 +75,6 @@ export const howWeWork = [
   },
   {
     title: 'Where we work',
-    body: 'Delivered from India for clients in the US, the UK, Europe and the Middle East. Calls in US hours by appointment.',
+    body: 'Delivered by our team in India for clients in the United States.',
   },
 ]

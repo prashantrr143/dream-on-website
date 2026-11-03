@@ -137,7 +137,7 @@ export default function ResponsibleAIContent() {
     <SharedLayout>
       <PageHero
         eyebrow="Responsible AI"
-        title="AI you can explain, control and switch off."
+        title="Responsible AI: our commitments and controls"
         lede="What we commit to, what we refuse to build, and the evidence you get at each stage, so you can hold us to it."
         visual="layers"
         primaryCta={{ label: PRIMARY_CTA.label, href: PRIMARY_CTA.href }}

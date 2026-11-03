@@ -28,7 +28,7 @@ export const pages: ContentPage[] = [
     },
     hero: {
       kicker: 'WHAT WE DO / ENGINEERING & DATA',
-      h1: 'Platforms built to last',
+      h1: 'Software engineering, data platforms and legacy modernization',
       subhead:
         'We help you build the core systems, data platforms and delivery pipelines your operations depend on.',
     },
@@ -42,7 +42,7 @@ export const pages: ContentPage[] = [
       {
         type: 'cards',
         id: 'capabilities',
-        title: 'Services',
+        title: 'Software and data services',
         columns: 3,
         cards: [
           {
@@ -75,7 +75,7 @@ export const pages: ContentPage[] = [
       {
         type: 'tabs',
         id: 'solutions',
-        title: 'Typical projects',
+        title: 'Typical engineering and data projects',
         tabs: [
           {
             label: 'New core platforms',
@@ -132,7 +132,7 @@ export const pages: ContentPage[] = [
       {
         type: 'list',
         id: 'outcomes',
-        title: 'What changes',
+        title: 'What changes for your teams',
         items: [
           'Systems your team can change without fear of breaking them.',
           'Reports that agree with each other, because they draw on the same data.',
@@ -149,6 +149,7 @@ export const pages: ContentPage[] = [
       },
     ],
     contactInterest: 'Engineering & data',
+    contact: { title: 'Is one system slowing every release?', body: 'Tell us which one and why. We reply within one working day.' },
   },
 
   // ---------------------------------------------------------------------------
@@ -597,7 +598,7 @@ export const pages: ContentPage[] = [
     },
     hero: {
       kicker: 'SERVICES / SECURITY',
-      h1: 'Security that stands up to audit',
+      h1: 'Security controls and SOC 2 audit readiness',
       subhead: 'We help you design controls and produce the evidence auditors and customers ask for.',
     },
     parents: [WHAT_WE_DO, PILLAR_PARENT],
@@ -610,7 +611,7 @@ export const pages: ContentPage[] = [
       {
         type: 'cards',
         id: 'what-we-do',
-        title: 'What we do',
+        title: 'Security and compliance services',
         columns: 2,
         cards: [
           {
@@ -679,7 +680,7 @@ export const pages: ContentPage[] = [
       {
         type: 'tabs',
         id: 'solutions',
-        title: 'Typical projects',
+        title: 'Typical security projects',
         tabs: [
           {
             label: 'Audit preparation',
@@ -726,7 +727,7 @@ export const pages: ContentPage[] = [
       {
         type: 'steps',
         id: 'how-it-runs',
-        title: 'How a project runs',
+        title: 'How a readiness project runs',
         steps: [
           { title: 'Review', body: 'A security architecture review of your current estate against your target framework.' },
           { title: 'Prioritize', body: 'Gaps ranked by risk and by what your auditor or customers will ask about first.' },
@@ -737,7 +738,7 @@ export const pages: ContentPage[] = [
       {
         type: 'list',
         id: 'what-you-get',
-        title: 'What you get',
+        title: 'What you hand the auditor',
         items: [
           'Controls mapped to your target framework',
           'Evidence collected as your systems run',
@@ -779,6 +780,7 @@ export const pages: ContentPage[] = [
       { type: 'inFocus', title: 'Further reading', services: ['security-compliance', 'engineering-data'] },
     ],
     contactInterest: 'Security & compliance',
+    contact: { title: 'Is an audit or a security questionnaire coming up?', body: 'Tell us the framework and the date. We reply within one working day.' },
   },
 
   // ---------------------------------------------------------------------------

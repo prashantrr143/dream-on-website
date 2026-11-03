@@ -57,13 +57,13 @@ export const pages: ContentPage[] = [
     name: 'Cloud',
     parents: [WHAT_WE_DO],
     meta: {
-      title: 'AWS and Azure foundations your auditors accept | YatiSphere',
+      title: 'AWS and Azure landing zones and operations | YatiSphere',
       description:
         'Landing zones, FinOps, managed operations and disaster recovery on AWS and Microsoft Azure, defined as code in your own accounts so teams start compliant.',
     },
     hero: {
       kicker: 'WHAT WE DO / CLOUD',
-      h1: 'AWS and Azure foundations your auditors accept',
+      h1: 'AWS and Azure landing zones, FinOps and cloud operations',
       subhead:
         'We help you design, migrate and operate secure platforms on AWS, Microsoft Azure and Google Cloud, with cost and resilience under control.',
     },
@@ -81,7 +81,7 @@ export const pages: ContentPage[] = [
       {
         type: 'cards',
         id: 'capabilities',
-        title: 'Services',
+        title: 'Cloud services',
         columns: 3,
         cards: [
           {
@@ -114,7 +114,7 @@ export const pages: ContentPage[] = [
       {
         type: 'tabs',
         id: 'solutions',
-        title: 'Typical projects',
+        title: 'Typical cloud projects',
         tabs: [
           {
             label: 'Exit the data center',
@@ -171,7 +171,7 @@ export const pages: ContentPage[] = [
       {
         type: 'list',
         id: 'outcomes',
-        title: 'What changes',
+        title: 'What changes for your teams',
         items: [
           'Every cloud resource has an owner, a budget and a reason to exist.',
           'New teams start on a shared, approved foundation instead of building their own.',
@@ -183,6 +183,7 @@ export const pages: ContentPage[] = [
       { type: 'inFocus', title: 'Further reading', services: ['cloud'] },
     ],
     contactInterest: 'Cloud',
+    contact: { title: 'Planning a landing zone, a migration or a cost review?', body: 'Tell us where the estate is today. We reply within one working day.' },
   },
 
   // ───────────────────────────── AWS ─────────────────────────────
@@ -427,7 +428,7 @@ export const pages: ContentPage[] = [
     },
     hero: {
       kicker: 'CLOUD / MIGRATION',
-      h1: 'Migrations that stay on plan',
+      h1: 'Cloud migration to AWS, Azure and Google Cloud',
       subhead:
         'We move workloads to AWS, Microsoft Azure or Google Cloud in planned waves, with dependencies mapped first and a tested way back.',
     },
@@ -439,7 +440,7 @@ export const pages: ContentPage[] = [
       {
         type: 'cards',
         id: 'what-we-do',
-        title: 'What we do',
+        title: 'Migration services',
         columns: 2,
         cards: [
           {
@@ -463,7 +464,7 @@ export const pages: ContentPage[] = [
       {
         type: 'tabs',
         id: 'solutions',
-        title: 'Typical projects',
+        title: 'Typical migrations',
         tabs: [
           {
             label: 'Data center exit',
@@ -500,7 +501,7 @@ export const pages: ContentPage[] = [
       {
         type: 'steps',
         id: 'how-it-runs',
-        title: 'How a project runs',
+        title: 'How a migration runs',
         steps: [
           {
             title: 'Assess',
@@ -523,7 +524,7 @@ export const pages: ContentPage[] = [
       {
         type: 'list',
         id: 'what-you-get',
-        title: 'What you get',
+        title: 'What you get from a migration',
         items: [
           'A dependency map and inventory with an owner for each system',
           'A wave plan, and a runbook for each workload',
@@ -565,6 +566,7 @@ export const pages: ContentPage[] = [
       { type: 'inFocus', title: 'Further reading', services: ['cloud', 'migration'] },
     ],
     contactInterest: 'Cloud',
+    contact: { title: 'Planning a move to AWS or Azure?', body: 'Tell us what is moving and when. We reply within one working day.' },
   },
 
   // ───────────────────────────── Landing zones ─────────────────────────────

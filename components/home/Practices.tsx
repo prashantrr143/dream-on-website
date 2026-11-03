@@ -146,7 +146,7 @@ export function Practices() {
           {/* Left: the argument, then the layer in focus */}
           <div className="ys-arch2-copy">
             <p className="ys-kicker">What we do</p>
-            <h2 id="home-practices">AI that reaches production, on systems built to carry it</h2>
+            <h2 id="home-practices">What we build, from cloud foundations to AI workflows</h2>
             <p className="ys-arch2-lede">
               We design, build and run every layer, so the AI your customers and regulators see runs on cloud, data and controls made for it.
             </p>
