@@ -12,7 +12,7 @@ const FAQ: { q: string; a: string }[] = [
   },
   {
     q: 'Who do you work with?',
-    a: 'Banks, insurers, wealth managers and fintechs; law firms and professional services firms; and B2B software companies that sell to enterprises. Clients are in the United States, the United Kingdom, Europe, the Middle East and India.',
+    a: 'Banks, insurers, wealth managers and fintechs; law firms and professional services firms; and B2B software companies that sell to enterprises. Our focus is the United States.',
   },
   {
     q: 'How does an engagement start?',
@@ -28,7 +28,7 @@ const FAQ: { q: string; a: string }[] = [
   },
   {
     q: 'Where is YatiSphere based?',
-    a: 'YatiSphere Technologies Private Limited is registered in Noida, India. Our working day overlaps UK, European and Gulf business hours; calls in US hours are booked by appointment.',
+    a: 'YatiSphere Technologies Private Limited is registered in Noida, India, and works with clients in the United States. We reply to every enquiry within one working day and schedule calls at a time that suits your team.',
   },
 ]
 
