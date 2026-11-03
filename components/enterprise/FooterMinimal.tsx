@@ -75,7 +75,7 @@ const FooterMinimal = () => {
             <a href="/" className="ys-ft2-logo" aria-label="YatiSphere home">
               <Wordmark tone="light" height={46} compact />
             </a>
-            <p className="ys-ft2-line">AI that reaches production, on systems built to carry it. For regulated businesses.</p>
+            <p className="ys-ft2-line">Cloud, software, data and AI for regulated businesses.</p>
             <p className="ys-ft2-mission" aria-label="Our mission: ideas, intelligence, impact">
               {MISSION.map((m, i) => (
                 <span key={m.word} style={{ ['--c' as string]: m.c }}>

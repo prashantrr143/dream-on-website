@@ -68,7 +68,7 @@ export default function HowWeWorkContent() {
     <SharedLayout>
       <PageHero
         eyebrow="How we work"
-        title="How a project runs, from first call to live system"
+        title="How we work, from first call to live system"
         lede="The same team at each stage. You decide at each step whether to continue with us or take it in-house."
         visual="lanes"
         primaryCta={{ label: PRIMARY_CTA.label, href: PRIMARY_CTA.href }}

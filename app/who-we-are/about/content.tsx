@@ -19,7 +19,7 @@ export default function AboutUs() {
     <SharedLayout>
       <PageHero
         eyebrow="WHO WE ARE / ABOUT"
-        title="A focused firm for systems that have to be trusted"
+        title="About YatiSphere"
         lede="Consultants and engineers who have built and run systems for global banks, consultancies and governments, now doing the same for growing companies and regulated enterprises."
         primaryCta={{ label: PRIMARY_CTA.label, href: PRIMARY_CTA.href }}
         visual="network"
@@ -110,7 +110,7 @@ export default function AboutUs() {
         <div className="enterprise-container-wide">
           <div className="ys-about-split">
             <div>
-              <h2 id="how-heading">A small firm, by design</h2>
+              <h2 id="how-heading">How we are set up</h2>
               <a href="/who-we-are/how-we-work" className="ys-link ys-about-inline-link">
                 See how an engagement runs <ArrowRight className="w-3.5 h-3.5 inline" strokeWidth={2.5} aria-hidden="true" />
               </a>
@@ -168,7 +168,7 @@ export default function AboutUs() {
       <section className="ys-section-light" aria-labelledby="accountability-heading">
         <div className="enterprise-container-wide">
           <h2 id="accountability-heading" style={{ marginBottom: 'clamp(20px, 3vw, 32px)' }}>
-            What you can hold us to
+            Our commitments to clients
           </h2>
           <ul className="ys-about-accountability">
             {[

@@ -34,7 +34,7 @@ export const pages: ContentPage[] = [
     },
     hero: {
       kicker: 'Industries',
-      h1: 'Industries we know well',
+      h1: 'Industries: financial services, legal and SaaS',
       subhead:
         'We focus on three sectors where a system has to answer to a regulator, a client or an enterprise buyer, as well as to its users.',
     },
@@ -56,7 +56,7 @@ export const pages: ContentPage[] = [
     },
     hero: {
       kicker: 'Industries · Financial services',
-      h1: 'Regulator-ready platforms for financial services.',
+      h1: 'KYC, onboarding and platform modernization for financial services',
       subhead:
         'We modernize core systems, automate onboarding and KYC, and put AI into production for banks, insurers, wealth managers and fintechs, so every decision can be explained.',
     },
@@ -337,7 +337,7 @@ export const pages: ContentPage[] = [
     },
     hero: {
       kicker: 'Industries · Software & SaaS',
-      h1: 'Win enterprise security reviews and ship AI features customers trust',
+      h1: 'SOC 2 readiness, security reviews and AI features for SaaS companies',
       subhead:
         'We help software companies win enterprise deals: platforms that scale, security evidence that answers the questionnaire, and AI features customers trust.',
     },
