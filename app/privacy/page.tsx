@@ -258,7 +258,7 @@ export default function PrivacyPage() {
               {/*
                 Processors named here must match the Trust center subprocessor
                 table (app/who-we-are/trust/page.tsx). Vercel hosts the site,
-                Google Analytics runs after consent, and Resend delivers contact
+                Google Analytics and Microsoft Clarity run after consent, and Resend delivers contact
                 form messages (app/api/contact/route.ts). Add any new processor
                 to both places.
               */}
@@ -266,8 +266,10 @@ export default function PrivacyPage() {
                 Our website is hosted by <strong>Vercel Inc.</strong>, which
                 processes request data (including IP address) in order to serve the
                 site. Website analytics is provided by <strong>Google LLC</strong>{' '}
-                (Google Analytics 4), and runs only if you have accepted analytics
-                cookies &mdash; see <a href="#cookies">Cookies</a> for what is set
+                (Google Analytics 4), and session analytics (heatmaps and
+                anonymized session recordings) by <strong>Microsoft Corporation</strong>{' '}
+                (Microsoft Clarity). Both run only if you have accepted analytics
+                cookies, and Clarity masks what you type into forms &mdash; see <a href="#cookies">Cookies</a> for what is set
                 and for how long. Messages you send through our contact form are
                 delivered to us by email through <strong>Resend, Inc.</strong>{' '}
                 (email delivery). Where we engage other processors, we require them
@@ -363,6 +365,20 @@ export default function PrivacyPage() {
                       <td>Maintains session state for the analytics property.</td>
                       <td>Google</td>
                       <td>Up to 14 months</td>
+                      <td>Analytics</td>
+                    </tr>
+                    <tr>
+                      <td><code>_clck</code></td>
+                      <td>Keeps the same anonymous Clarity ID across visits.</td>
+                      <td>Microsoft</td>
+                      <td>1 year</td>
+                      <td>Analytics</td>
+                    </tr>
+                    <tr>
+                      <td><code>_clsk</code></td>
+                      <td>Connects page views within one visit into a single session recording.</td>
+                      <td>Microsoft</td>
+                      <td>1 day</td>
                       <td>Analytics</td>
                     </tr>
                   </tbody>

@@ -90,6 +90,12 @@ const WEBSITE_SUBPROCESSORS: SubprocessorRow[] = [
     location: <a href="/privacy#transfers">See international transfers</a>,
   },
   {
+    name: 'Microsoft Corporation (Microsoft Clarity)',
+    purpose:
+      'Heatmaps and session recordings of how the website is used, with form input masked. Runs only after you accept analytics cookies.',
+    location: <a href="/privacy#transfers">See international transfers</a>,
+  },
+  {
     name: 'Resend, Inc.',
     purpose: 'Email delivery. Delivers messages sent through our contact form to our inbox.',
     location: <a href="/privacy#transfers">See international transfers</a>,

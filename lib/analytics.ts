@@ -9,6 +9,52 @@
 /** The production hostname. Analytics loads nowhere else. */
 export const PRODUCTION_HOST = 'yatisphere.com'
 
+/**
+ * Microsoft Clarity project id (heatmaps and session recordings). Set in
+ * .env.production. Clarity loads only in the same environments as GTM,
+ * and only after the visitor accepts analytics cookies (ConsentBanner).
+ */
+export const CLARITY_ID = process.env['NEXT_PUBLIC_CLARITY_ID'] ?? ''
+
+type ClarityFn = ((...args: unknown[]) => void) & { q?: unknown[][] }
+
+/**
+ * Inject the Clarity tag once, then tell it consent was granted. Inputs
+ * are masked by Clarity's default masking; the contact form is also
+ * marked data-clarity-mask so nothing typed there is ever recorded.
+ */
+export function loadClarity(): void {
+  if (typeof window === 'undefined' || !CLARITY_ID) return
+  const w = window as unknown as { clarity?: ClarityFn }
+  if (!w.clarity) {
+    const fn: ClarityFn = (...args: unknown[]) => { (fn.q = fn.q || []).push(args) }
+    w.clarity = fn
+    const s = document.createElement('script')
+    s.async = true
+    s.src = `https://www.clarity.ms/tag/${CLARITY_ID}`
+    document.head.appendChild(s)
+  }
+  w.clarity('consentv2', { ad_Storage: 'denied', analytics_Storage: 'granted' })
+}
+
+/**
+ * Mirror a conversion event into Clarity so recordings can be filtered
+ * to the sessions that converted. No-op until Clarity has loaded, i.e.
+ * until the visitor has accepted analytics cookies.
+ */
+function clarityEvent(name: string): void {
+  if (typeof window === 'undefined') return
+  const w = window as unknown as { clarity?: ClarityFn }
+  w.clarity?.('event', name)
+}
+
+/** Withdraw Clarity consent if the visitor changes their mind. */
+export function revokeClarity(): void {
+  if (typeof window === 'undefined') return
+  const w = window as unknown as { clarity?: ClarityFn }
+  w.clarity?.('consentv2', { ad_Storage: 'denied', analytics_Storage: 'denied' })
+}
+
 /** GTM container id, set only in .env.production. */
 export const GTM_ID = process.env['NEXT_PUBLIC_GTM_ID'] ?? ''
 
@@ -65,16 +111,19 @@ function push(event: DataLayerEvent): void {
 /** A contact inquiry was submitted successfully. Carries no form values. */
 export function trackContactFormSubmit(pathname: string): void {
   push({ event: 'contact_form_submit', form: 'contact', page: pathname })
+  clarityEvent('contact_form_submit')
 }
 
 export type CtaName = 'talk_to_experts' | 'get_blueprint'
 
 export function trackCtaClick(cta: CtaName, pathname: string): void {
   push({ event: 'cta_click', cta, page: pathname })
+  clarityEvent(`cta_${cta}`)
 }
 
 export function trackContactLinkClick(type: 'email' | 'phone'): void {
   push({ event: 'contact_link_click', type })
+  clarityEvent(`contact_link_${type}`)
 }
 
 export function trackFileDownload(file: string): void {
