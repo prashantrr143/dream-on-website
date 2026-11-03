@@ -124,6 +124,7 @@ export const NAV_TREE: NavItem[] = [
           { label: 'Cloud migration', href: `${W}/cloud/migration` },
           { label: 'Software and data', href: `${W}/engineering-data` },
           { label: 'Security and compliance', href: `${W}/services/security-compliance` },
+          { label: 'Architecture review', href: `${W}/consulting/enterprise-architecture` },
         ],
       },
       { label: 'Products', children: PRODUCTS },

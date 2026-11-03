@@ -82,6 +82,28 @@ export const article: Article = {
       ],
     },
   ],
+  faq: [
+    {
+      q: "Does an Azure OpenAI resource in UAE North keep prompts in the UAE?",
+      a: "Not automatically. Where a prompt is processed depends on the deployment type of each model. Global deployment types may process prompts in any Azure region where the model is deployed, even when the resource sits in UAE North.",
+    },
+    {
+      q: "Which deployment type keeps chat model processing in the UAE?",
+      a: "As of October 2026, Regional Provisioned is the documented route for chat and reasoning models in UAE North. Regional Standard (pay per token) covers only embedding models and whisper there, and there is no Middle East data zone.",
+    },
+    {
+      q: "Where is stored data kept, such as uploaded files and stored completions?",
+      a: "Microsoft states that data at rest stays in the customer-designated geography for every deployment type, Global included. It sits in the Foundry resource in your own Azure tenant, encrypted with AES-256 by default, and you can add a customer-managed key.",
+    },
+    {
+      q: "Can Microsoft staff see our prompts?",
+      a: "Possibly. Abuse monitoring may send flagged content to authorized Microsoft reviewers when automated review is not confident. Eligible customers can apply for modified abuse monitoring so prompts and completions are not stored for human review.",
+    },
+    {
+      q: "Does UAE North settle data transfer questions for DIFC or ADGM firms?",
+      a: "No. Both regimes treat onshore UAE as outside their boundary, so a DIFC or ADGM firm should ask counsel whether using the service is a transfer and, if so, which mechanism covers it.",
+    },
+  ],
   sources: [
     {
       title: 'Region availability for Foundry Models sold by Azure',

@@ -65,7 +65,25 @@ const FROM_YOU = [
   { name: 'Access to what exists', body: 'Read access to the relevant documentation, architecture and, where needed, systems, inside the boundaries you set.' },
 ]
 
+/**
+ * The Blueprint run as an AI readiness assessment (2026-11-03). Searchers
+ * ask for "AI readiness assessment / consulting"; this is the honest
+ * version of that offer: one use case, assessed against real data.
+ */
+const AI_READINESS = [
+  { name: 'Is it worth doing?', body: 'How long the task takes today, how often it goes wrong and what that costs, measured on real cases before anyone builds a model.' },
+  { name: 'Can the model reach the data?', body: 'Where the documents and records live, who is allowed to see them, and whether they can be processed in the region you need.' },
+  { name: 'How will you know it works?', body: 'A test set of real cases with known answers, built with your team, so accuracy is measured rather than demonstrated.' },
+  { name: 'Where does a person decide?', body: 'The step where a named role reviews or approves the output, and what happens when they disagree with it.' },
+  { name: 'What will it cost to run?', body: 'An estimate of model and platform cost per case at your volumes, next to the cost of doing it by hand.' },
+  { name: 'What will a reviewer ask?', body: 'Where the use case sits under the EU AI Act, if it applies to you, and the controls a model risk, security or audit team will expect.' },
+]
+
 const FAQ = [
+  {
+    q: 'Can a Blueprint be used as an AI readiness assessment?',
+    a: 'Yes, for one use case at a time. We check whether it is worth doing, whether the data can be used, how accuracy will be measured, where a person approves the output and what it will cost to run, and finish with a go or no-go recommendation.',
+  },
   {
     q: 'How long does it take?',
     a: 'Two to four weeks. A tightly scoped problem with the right people available can finish in two; one that spans several systems or teams takes four.',
@@ -129,9 +147,34 @@ export default function BlueprintPage() {
         </div>
       </PageSection>
 
+      {/* As an AI readiness assessment */}
+      <PageSection id="ai-readiness" tone="light" title="Using a Blueprint as an AI readiness assessment">
+        <div className="ys-bp-ai">
+          <div className="ys-bp-ai-intro">
+            <p>
+              Most AI readiness assessments score the whole organization against a maturity model. The score tells you
+              where you stand on a chart. It does not tell you whether the invoice-matching or document-review tool your
+              operations team wants will work on your invoices and your documents.
+            </p>
+            <p>
+              So we assess one use case, against your own data, and finish with a go or no-go recommendation. These are
+              the questions it answers:
+            </p>
+          </div>
+          <dl className="ys-wwu-list">
+            {AI_READINESS.map((q) => (
+              <div key={q.name}>
+                <dt>{q.name}</dt>
+                <dd>{q.body}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </PageSection>
+
       {/* Week by week */}
       <PageSection
-        tone="light"
+        tone="white"
         title="How a Blueprint runs"
         lede="A smaller problem compresses into two weeks. The order stays the same."
       >
@@ -147,7 +190,7 @@ export default function BlueprintPage() {
       </PageSection>
 
       {/* What you keep */}
-      <PageSection id="deliverables" tone="white" title="What you keep at the end">
+      <PageSection id="deliverables" tone="light" title="What you keep at the end">
         <div className="ys-bp-keep">
           <ul className="ys-bp-deliverables">
             {DELIVERABLES.map((d, i) => (
@@ -180,7 +223,7 @@ export default function BlueprintPage() {
       </PageSection>
 
       {/* What we need from you */}
-      <PageSection tone="light" title="What we need from you">
+      <PageSection tone="white" title="What we need from you">
         <dl className="ys-wwu-list ys-bp-needs">
           {FROM_YOU.map((n) => (
             <div key={n.name}>
@@ -192,7 +235,7 @@ export default function BlueprintPage() {
       </PageSection>
 
       {/* Questions */}
-      <PageSection tone="white" title="Common questions">
+      <PageSection tone="light" title="Common questions">
         <div style={{ maxWidth: '52rem' }}>
           {FAQ.map((f) => (
             <details key={f.q} className="ys-faq">

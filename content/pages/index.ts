@@ -49,7 +49,7 @@ function relink(page: ContentPage): ContentPage {
   })
   const industry = page.industry && {
     ...page.industry,
-    build: page.industry.build.map((x) => ({ ...x, href: liveHref(x.href) })),
+    ...(page.industry.build ? { build: page.industry.build.map((x) => ({ ...x, href: liveHref(x.href) })) } : {}),
     related: fix(page.industry.related),
   }
   return { ...page, blocks, ...(industry ? { industry } : {}) }

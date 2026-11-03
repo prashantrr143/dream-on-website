@@ -80,6 +80,28 @@ export const article: Article = {
       ],
     },
   ],
+  faq: [
+    {
+      q: "Which financial services uses does the EU AI Act treat as high-risk?",
+      a: "Annex III lists creditworthiness assessment and credit scoring of natural persons, except fraud detection, and risk assessment and pricing for natural persons in life and health insurance.",
+    },
+    {
+      q: "When do the high-risk rules apply to credit scoring?",
+      a: "From 2 December 2027. The Digital Omnibus on AI, Regulation (EU) 2026/1744, moved the date for Annex III high-risk systems; it entered into force on 27 July 2026.",
+    },
+    {
+      q: "Is a bank that buys an AI system a provider or a deployer?",
+      a: "Usually a deployer. A bank that builds a system in-house is typically both. A deployer becomes the provider if it puts its name on the system, substantially modifies it, or changes its intended purpose so it becomes high-risk.",
+    },
+    {
+      q: "What does a deployer of a high-risk system have to do?",
+      a: "Use the system within the provider's instructions, assign competent human oversight, keep logs for at least six months, monitor operation and report serious incidents, tell people they are subject to the system, and run a fundamental rights impact assessment before first use of credit or insurance pricing systems.",
+    },
+    {
+      q: "Does the AI Act conflict with DORA or model risk management?",
+      a: "The EBA reported in November 2025 that it found no significant contradictions with banking law. DORA continues to govern ICT risk and third parties, and model risk management stays the home for validation and change control.",
+    },
+  ],
   sources: [
     {
       title: 'Regulation (EU) 2024/1689 (Artificial Intelligence Act), Official Journal text',

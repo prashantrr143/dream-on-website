@@ -78,6 +78,28 @@ export const article: Article = {
       ],
     },
   ],
+  faq: [
+    {
+      q: "What is the difference between SOC 2 Type I and Type II?",
+      a: "A Type I report covers control design on a single date. A Type II report adds an opinion on whether controls operated effectively throughout a period, with the auditor's tests and results. Enterprise buyers usually ask for Type II.",
+    },
+    {
+      q: "Which SOC 2 criteria can a delivery pipeline provide evidence for?",
+      a: "Mainly change management (CC8.1), access (CC6.1 to CC6.3) and system operations (CC7): reviewed and approved pull requests, deployment approvals, access reviews, privileged elevation records, vulnerability alerts and drift checks.",
+    },
+    {
+      q: "How long does Azure keep activity logs?",
+      a: "90 days by default. A Type II period is usually longer, so send activity logs to a Log Analytics workspace or a storage account with a diagnostic setting before the audit period starts.",
+    },
+    {
+      q: "How do we make audit evidence easy to export?",
+      a: "Export on a schedule rather than on request, store evidence in immutable storage with a locked retention policy, and join records on identifiers such as the pull request number, commit SHA, pipeline run ID and deployment correlation ID.",
+    },
+    {
+      q: "Can YatiSphere issue a SOC 2 report?",
+      a: "No. YatiSphere is not an audit firm; the SOC 2 opinion comes from an independent CPA firm. We help with questionnaire answers, an evidence pack and a gap list, with code and configuration kept in your own accounts.",
+    },
+  ],
   sources: [
     {
       title: '2017 Trust Services Criteria (with revised points of focus, 2022)',

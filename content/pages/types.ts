@@ -91,8 +91,27 @@ export interface IndustryDetail {
   forWho: string[]
   /** What makes IT in this sector different. */
   context: { title: string; paragraphs: string[] }
+  /**
+   * Optional page-specific sections (2026-11-03). An industry page may use
+   * these instead of `build`, so the sector pages stop sharing one shape.
+   */
+  /** A worked example: one real-world flow, step by step, today vs. after. */
+  example?: {
+    /** Short name for hub listings, e.g. "Intake and conflict checks". */
+    name: string
+    title: string
+    lede: string
+    rows: { step: string; today: string; after: string }[]
+    note?: string
+    href?: string
+    linkLabel?: string
+  }
+  /** Further work, as short paragraphs of uneven length. No bullets. */
+  more?: { title: string; items: { title: string; body: string; href?: string; linkLabel?: string }[] }
+  /** A longer passage with a point of view. */
+  opinion?: { name: string; title: string; paragraphs: string[]; href?: string; linkLabel?: string }
   /** Problem-led capabilities. */
-  build: {
+  build?: {
     title: string
     /** In the client's words. */
     problem: string
