@@ -47,6 +47,11 @@ export interface Article {
   /** ISO date the facts were last checked against the sources. */
   reviewedAt: string
   sections: ArticleSection[]
+  /**
+   * Short questions and answers shown after the article, with FAQPage
+   * structured data. Every answer restates something the article says.
+   */
+  faq?: { q: string; a: string }[]
   /** Every factual claim about law, regulation or a product traces here. */
   sources: ArticleSource[]
   /**

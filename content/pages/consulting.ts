@@ -282,102 +282,115 @@ export const pages: ContentPage[] = [
   },
 
   // ------------------------------------------------ Enterprise architecture
+  // Back in service (2026-11-03): this URL held most of the site's search
+  // impressions ("enterprise architecture consulting / review") before the
+  // consulting section was retired. The rest of /consulting stays retired;
+  // this page sits directly under What we do and runs as a Blueprint.
   {
     path: `${C}/enterprise-architecture`,
-    name: 'Enterprise architecture',
-    parents: SUB_PARENTS,
+    name: 'Enterprise architecture review',
+    parents: PARENTS,
     contactInterest: 'Consulting',
     meta: {
-      title: 'Enterprise architecture consulting | YatiSphere',
+      title: 'Enterprise architecture review and consulting | YatiSphere',
       description:
-        'Enterprise architecture consulting: target architectures, integration design and architecture reviews for regulated organizations on any major cloud.',
+        'An independent review of your enterprise architecture: what is load-bearing, what is at risk and what to change first, run as a fixed-fee Blueprint.',
     },
     hero: {
-      kicker: 'CONSULTING / ENTERPRISE ARCHITECTURE',
-      h1: 'Architecture that fits your estate',
-      subhead: 'We design target architectures that work with the systems you already run and the rules you answer to.',
+      kicker: 'ENTERPRISE ARCHITECTURE',
+      h1: 'An architecture review you can act on',
+      subhead: 'We review the systems you run and the design you plan, and tell you what is load-bearing, what is at risk and what to change first.',
     },
     blocks: [
       {
         type: 'statement',
-        text: 'An architecture diagram is only useful if the organization can build it, run it and pass an audit on it. We design against your real estate, your integration points and your regulatory obligations, and we make the decisions that are expensive to reverse explicit. Our architects have led modernization programs at global investment banks, Big Four consultancies and national e-government platforms.',
+        text: 'Most architecture reviews end with a diagram and a long list of findings that nobody has time to work through. Ours end with the few decisions that matter, ranked by risk, and a plan for each. We read the estate as it actually runs: the integration that depends on a nightly file drop, the service nobody owns, the database three teams write to.',
       },
       {
         type: 'cards',
-        id: 'questions',
-        title: 'Questions we help leaders answer',
-        columns: 3,
+        id: 'when',
+        title: 'When teams ask for one',
+        columns: 2,
         cards: [
           {
-            title: 'What should our target architecture look like?',
-            body: 'We design it against your systems, cloud and constraints, with the trade-offs written down.',
+            title: 'Before a large platform decision',
+            body: 'A new core system, a cloud move or a vendor contract that will be expensive to reverse.',
           },
           {
-            title: 'How do our systems fit together today?',
-            body: 'We map applications, data flows and dependencies so you can see what is load-bearing.',
+            title: 'After a review raised questions',
+            body: 'An auditor, a regulator or a client security team flagged the design, and you need an answer you can defend.',
           },
           {
-            title: 'Is this design sound?',
-            body: 'We review an existing or proposed architecture and tell you what is at risk and what to change first.',
+            title: 'When two estates become one',
+            body: 'After an acquisition or a reorganization, with overlapping systems and no clear owner for the shared data.',
           },
           {
-            title: 'How do we integrate without creating new tangles?',
-            body: 'We set integration patterns and ownership so new systems do not add hidden coupling.',
-          },
-          {
-            title: 'Will this pass a regulator or auditor?',
-            body: 'We build security, data residency and auditability into the design from the start, not before a review.',
-          },
-          {
-            title: 'How do we keep architecture decisions consistent?',
-            body: 'We set up lightweight principles, decision records and review steps your teams can actually follow.',
+            title: 'When delivery has slowed and nobody can say why',
+            body: 'Releases need several teams to coordinate, and small changes keep breaking things elsewhere.',
           },
         ],
       },
-      ENGAGE(),
+      {
+        type: 'steps',
+        id: 'how',
+        title: 'How a review runs',
+        steps: [
+          {
+            title: 'Read',
+            body: 'Architecture documents, repositories, cloud accounts and the people who run the systems, with read-only access and within the boundaries you set.',
+          },
+          {
+            title: 'Map',
+            body: 'Applications, data flows, integrations and owners as they are today, including the parts nobody drew.',
+          },
+          {
+            title: 'Decide',
+            body: 'Findings ranked by risk, target-state options with the trade-offs written down, and the order to tackle them in.',
+          },
+        ],
+      },
       {
         type: 'list',
         id: 'deliverables',
         title: 'What you get',
         items: [
-          'Current-state map of applications, data flows and dependencies',
-          'Target architecture with the reasoning behind each major decision',
-          'Integration and data patterns your teams can reuse',
-          'Architecture decision records and principles',
-          'A transition plan from current to target state',
+          'A current-state map of applications, data flows, dependencies and owners',
+          'A risk register, ranked, with the evidence behind each item',
+          'Target architecture options and the reasoning for the one we recommend',
+          'Architecture decision records your teams can keep using',
+          'A transition plan, sequenced so each step can be reversed',
         ],
       },
       {
         type: 'faq',
         id: 'faq',
-        title: 'Questions',
+        title: 'Common questions',
         items: [
           {
-            q: 'Do you only design, or do you build too?',
-            a: 'Both. We can build what we design, or hand it to your team with everything they need.',
+            q: 'How long does an enterprise architecture review take?',
+            a: 'Two to four weeks. It runs as a Solution Blueprint, so the fee is fixed before we start and the outputs are yours whatever you decide next.',
           },
           {
-            q: 'Which clouds do you design for?',
-            a: 'AWS, Microsoft Azure and Google Cloud, as well as hybrid and on-premises estates. We recommend what fits, not what we resell.',
+            q: 'Do you only review, or do you build too?',
+            a: 'Both. The team that reviews can lead the build, or you can hand the plan to your own team or another firm.',
           },
           {
-            q: 'Who owns the architecture artifacts?',
-            a: 'You do. Your code, your cloud and your documentation, in your region, from day one.',
+            q: 'Which clouds and estates do you review?',
+            a: 'AWS, Microsoft Azure and Google Cloud, plus hybrid and on-premises systems. We recommend what fits your estate, not what we resell.',
           },
         ],
       },
       {
         type: 'links',
         id: 'related',
-        title: 'Related',
+        title: 'Related services',
         links: [
-          { label: 'Architecture due diligence', href: `${C}/due-diligence`, descriptor: 'An independent read before you commit.' },
-          { label: 'Modernization roadmaps', href: `${C}/modernization-roadmaps`, descriptor: 'Sequence the move to the target state.' },
-          { label: 'Cloud overview', href: `${W}/cloud`, descriptor: 'Platforms we build and run on AWS, Azure and Google Cloud.' },
-          { label: 'Trust & security', href: '/who-we-are/trust', descriptor: 'How we handle your systems and data.' },
+          { label: 'Solution Blueprint', href: '/blueprint', descriptor: 'How the fixed-fee review is scoped and priced.' },
+          { label: 'Cloud foundations', href: `${W}/cloud`, descriptor: 'Landing zones and operations on AWS and Azure.' },
+          { label: 'Software, data and modernization', href: `${W}/engineering-data`, descriptor: 'Building the target state in reversible steps.' },
+          { label: 'Security and compliance', href: `${W}/services/security-compliance`, descriptor: 'Controls and audit evidence.' },
         ],
       },
-      IN_FOCUS,
     ],
   },
 

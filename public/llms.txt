@@ -15,6 +15,7 @@ YatiSphere Technologies Private Limited is registered in Noida, India (CIN U6201
 - [Cloud migration](https://yatisphere.com/what-we-do/cloud/migration): dependency mapping, wave planning and cutover with tested rollback.
 - [Software, data and modernization](https://yatisphere.com/what-we-do/engineering-data): core software, data platforms, DevOps and legacy modernization.
 - [Security and compliance](https://yatisphere.com/what-we-do/services/security-compliance): identity, data protection, detection and audit evidence for SOC 2, ISO 27001, HIPAA and DORA.
+- [Enterprise architecture review](https://yatisphere.com/what-we-do/consulting/enterprise-architecture): an independent review of the current estate and planned design, with ranked risks and a transition plan.
 - [Solution Blueprint](https://yatisphere.com/blueprint): fixed-fee assessment that produces a solution design, delivery plan and risk register before any build.
 
 ## Industries

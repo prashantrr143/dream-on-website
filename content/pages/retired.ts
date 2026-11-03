@@ -22,7 +22,7 @@ export const RETIRED: Record<string, string> = {
   // Consulting folds into the fixed-fee Solution Blueprint
   [`${W}/consulting`]: '/blueprint',
   [`${W}/consulting/technology-strategy`]: '/blueprint',
-  [`${W}/consulting/enterprise-architecture`]: '/blueprint',
+  // /consulting/enterprise-architecture is live again (2026-11-03).
   [`${W}/consulting/modernization-roadmaps`]: '/blueprint',
   [`${W}/consulting/due-diligence`]: '/blueprint',
   [`${W}/consulting/ai-strategy`]: `${W}/applied-ai`,

@@ -63,6 +63,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
   const toc = a.sections
     .map((x, i) => (x.heading ? { id: ids[i]!, label: x.heading } : null))
     .filter((x): x is { id: string; label: string } => x !== null)
+  if (a.faq && a.faq.length > 0) toc.push({ id: 'faq', label: 'Common questions' })
   if (a.sources.length > 0) toc.push({ id: 'sources', label: 'Sources' })
 
   const schema =
@@ -152,6 +153,30 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
               </section>
             ))}
 
+            {a.faq && a.faq.length > 0 && (
+              <section id="faq" aria-labelledby="faq-heading">
+                {a.status === 'published' && (
+                  <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{
+                      __html: JSON.stringify({
+                        '@context': 'https://schema.org',
+                        '@type': 'FAQPage',
+                        mainEntity: a.faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+                      }),
+                    }}
+                  />
+                )}
+                <h2 id="faq-heading">Common questions</h2>
+                {a.faq.map((f) => (
+                  <details key={f.q} className="ys-faq">
+                    <summary>{f.q}</summary>
+                    <p>{f.a}</p>
+                  </details>
+                ))}
+              </section>
+            )}
+
             {a.sources.length > 0 && (
               <section id="sources" aria-labelledby="sources-heading" className="ys-art-sources">
                 <h2 id="sources-heading" className="ys-eyebrow">Sources</h2>
@@ -161,7 +186,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
                       <a href={s.url} className="ys-link" target="_blank" rel="noopener noreferrer">
                         {s.title}
                       </a>
-                      {' — '}
+                      {' · '}
                       {s.publisher}
                     </li>
                   ))}

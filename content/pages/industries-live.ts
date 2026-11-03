@@ -193,77 +193,87 @@ export const pages: ContentPage[] = [
     },
     hero: {
       kicker: 'Industries · Legal & professional services',
-      h1: 'Intake, conflicts and AI your firm can defend.',
+      h1: 'Matter opening, conflict checks and AI for law firms',
       subhead:
-        'We help law firms and professional services firms open matters faster, connect their practice systems and use AI without putting client confidence at risk.',
+        'We build the intake and conflict-search systems behind new matters, connect them to the practice and document systems your firm already runs, and set up AI on client documents once your risk team has agreed what it may see.',
     },
     blocks: [],
+    // Pilot of the less-templated industry page (2026-11-03): a worked
+    // example, uneven further work and a point of view on AI, in place of
+    // four identical problem/solution/bullets/outcome cards.
     industry: {
       slug: 'legal-professional-services',
       forWho: ['Law firms', 'In-house legal teams', 'Accounting and tax firms', 'Advisory and consulting firms', 'Corporate services providers'],
       context: {
-        title: 'Why professional services IT is different',
+        title: 'Where the time goes',
         paragraphs: [
-          'A professional firm runs on client confidence. Intake has to clear before work can start, the same client often lives in several systems, and AI raises a direct question about what a model is allowed to see.',
-          'So we build confidentiality into the system itself. Who can see a matter is enforced in software, every clearance decision is recorded, and AI works only inside the boundaries your firm sets.',
+          'In most firms a new instruction still starts as an email or a Word form. Someone in business acceptance re-keys the parties into the practice management system, runs a name search, exports the hits to a spreadsheet and chases partners for sign-off. Each step makes sense on its own. Together they turn a same-day request into several days, and leave the reasoning behind each clearance spread across inboxes.',
+          'The fix is rarely another conflicts product; most firms already own one. The work is in the data that feeds it: parties captured once and properly structured, corporate groups and former names resolved, and every decision recorded where a partner, an auditor or a client can find it later.',
         ],
       },
-      build: [
-        {
-          title: 'Client intake and conflict checks',
-          problem: 'Opening a matter takes days, and conflict results live in email.',
-          body: 'Structured intake that records every party as structured data, runs conflict searches against them, routes approvals to named people and keeps a record of why each engagement was cleared.',
-          bullets: [
-            'Party and related-entity data modeling',
-            'Conflict search with a retained result record',
-            'Approval routing with named accountability',
-          ],
-          outcome: 'Matters open faster, and every clearance can be reconstructed later.',
-          href: '/what-we-do/applied-ai/agentic-automation',
-          linkLabel: 'Agentic automation',
-        },
-        {
-          title: 'Practice-system integration',
-          problem: 'The same client exists in five systems, and none of them agree.',
-          body: 'Integration between practice management, document management, finance and CRM, so each client and matter has one record and one owner.',
-          bullets: [
-            'API-led integration between practice systems',
-            'Master client and matter records',
-            'Changes sync as they happen, with no nightly exports',
-          ],
-          outcome: 'One trusted record per client and matter, across every system.',
-          href: '/what-we-do/services/software-engineering',
-          linkLabel: 'Software engineering',
-        },
-        {
-          title: 'Matter and fee reporting',
-          problem: 'We find out a matter is over budget after it closes.',
-          body: 'Reporting built on the matter lifecycle, so budget, time recorded, write-offs and realization are visible while the matter is still running, for partners and finance alike.',
-          bullets: [
-            'Budget versus actual by matter and phase',
-            'Realization and write-off tracking',
-            'Early warnings when a matter drifts',
-          ],
-          outcome: 'Partners act on budget overruns while there is still time to fix them.',
-          href: '/what-we-do/services/data-analytics',
-          linkLabel: 'Data and analytics',
-        },
-        {
-          title: 'Knowledge assistants with hard boundaries',
-          problem: 'Our lawyers want AI, but nobody will sign off on what it can see.',
-          body: 'Search, summarization and clause extraction, scoped so privileged material stays inside defined boundaries and a professional reviews anything that leaves the system.',
-          bullets: [
-            'Retrieval limited to matters the user may access',
-            'Human review before any client-facing output',
-            'Every prompt and output logged',
-          ],
-          outcome: 'AI your risk and general counsel teams can approve.',
-          href: '/what-we-do/applied-ai/knowledge-assistants',
-          linkLabel: 'Knowledge assistants',
-        },
-      ],
+      example: {
+        name: 'Intake and conflict checks',
+        title: 'One new matter, step by step',
+        lede: 'An illustrative instruction: a partner is asked to act for Acme Holdings on a share purchase, with Bluewater Shipping on the other side. The names are invented. The problems are common.',
+        rows: [
+          {
+            step: 'The request',
+            today: 'An email to business acceptance. The client name is in the subject line and the other side is mentioned halfway down the body.',
+            after: 'An intake form that records the client, related entities, the counterparty and key individuals as separate parties, each with its source.',
+          },
+          {
+            step: 'The search',
+            today: 'A search for "Acme Holdings" misses "ACME Holdings Ltd" in the time-recording system, and Acme Marine FZE, a subsidiary the firm acted against last year.',
+            after: 'Name matching that handles spelling, legal suffixes and former names, and extends the search to the corporate group using company registry data.',
+          },
+          {
+            step: 'The review',
+            today: 'The hit list goes into a spreadsheet, is emailed to three partners and waits for replies.',
+            after: 'Each hit goes to the partner who owns the related matter, inside the system, with the reason it matched. The decision and the note are stored with the search.',
+          },
+          {
+            step: 'Opening the matter',
+            today: 'The matter is set up in the practice management system. A day later someone creates the document workspace by hand.',
+            after: 'Approval opens the matter and its workspace together, with any ethical wall in place from the first document.',
+          },
+          {
+            step: 'Six months later',
+            today: 'A client asks how a conflict was cleared, and someone goes looking through old email.',
+            after: 'The record shows who searched, what matched, who decided and why.',
+          },
+        ],
+        note: 'We connect to what the firm already runs, such as Intapp, Aderant, Elite 3E, iManage or NetDocuments, through their APIs where they exist. We do not resell any of them.',
+        href: '/what-we-do/applied-ai/agentic-automation',
+        linkLabel: 'How we automate document-heavy workflows',
+      },
+      more: {
+        title: 'Other work we take on for firms',
+        items: [
+          {
+            title: 'Getting practice systems to agree',
+            body: 'Client and matter data that matches across practice management, documents, billing and CRM, with one system named as the owner of each field. Unglamorous, and usually the reason the more visible projects stall.',
+            href: '/what-we-do/engineering-data',
+            linkLabel: 'Software and data',
+          },
+          {
+            title: 'Matter budgets partners actually see',
+            body: 'Budget against time recorded, by matter and phase, refreshed daily. The responsible partner hears about it when a matter passes an agreed threshold. In most firms that only becomes visible once the bill is written down.',
+          },
+        ],
+      },
+      opinion: {
+        name: 'AI on client documents',
+        title: 'AI on client documents',
+        paragraphs: [
+          'The first question a risk partner asks about AI is rarely which model to use. It is whether the tool can see a matter the user is walled off from, and whether anything typed into it leaves the firm. We settle those two in the design, before anyone writes a prompt.',
+          'In practice that means retrieval limited to the matters a user can already open, logs of every prompt and answer kept under the firm’s retention policy, and a lawyer reviewing anything that goes to a client. We do not use client data to train or fine-tune models. ABA Formal Opinion 512 (July 2024) places the competence and confidentiality duties for generative AI on the lawyer, so the controls have to be ones a partner can explain to a client.',
+          'Good first uses are narrow: a summary of a long disclosure bundle with page references, key clauses pulled from a set of leases, or a first-draft conflict memo built from the search results. Each one ends with a lawyer, and each is measured against a set of real examples before it goes live.',
+        ],
+        href: '/what-we-do/applied-ai/ai-governance',
+        linkLabel: 'How we set AI boundaries',
+      },
       standards: {
-        lede: 'These are duties your firm carries. We are not regulated by any of these bodies. Our part is to design and document controls so your systems can evidence them.',
+        lede: 'These are your firm’s duties. We are not regulated by these bodies; our job is to make sure the systems we build let you evidence them.',
         regions: [
           { region: 'United States', bodies: 'ABA Model Rules, state bar rules' },
           { region: 'England and Wales', bodies: 'SRA Standards and Regulations' },
@@ -273,43 +283,39 @@ export const pages: ContentPage[] = [
         items: [
           {
             title: 'Confidentiality and privilege',
-            body: 'The duty of confidence and legal professional privilege are your firm’s obligations. We turn them into access models, storage boundaries and logging that a partner can explain to a client.',
+            body: 'Access to a matter follows its team and any ethical walls, and the same rule applies everywhere the data goes, including search and AI tools.',
           },
           {
-            title: 'Conflicts of interest',
-            body: 'Professional rules require conflict checks you can evidence. We design the data and audit records that let you reconstruct any clearance decision after the fact.',
+            title: 'Conflicts',
+            body: 'Professional rules expect a firm to show how a conflict was identified and resolved. The clearance record in the example above exists for exactly that question.',
           },
           {
             title: 'Retention and disposal',
-            body: 'Matter files carry retention periods set by regulation, limitation and engagement terms. We build those schedules into the platform, so files are kept and disposed of on time without anyone having to remember.',
+            body: 'Periods come from regulation, limitation and engagement terms. Attached to the matter, they let files be kept and disposed of on schedule.',
           },
           {
             title: 'Privacy law',
-            body: 'The GDPR and UK GDPR, India’s DPDP Act and the Gulf data protection laws set rules on lawful basis, data-subject rights and cross-border transfer. We build the consent, access and deletion mechanics you need to answer a request.',
-          },
-          {
-            title: 'What AI may touch',
-            body: 'Whether a model may see privileged or confidential material is your firm’s policy decision. We enforce it as scope, retention settings and logging on every AI-assisted workflow. We do not use client data to train or fine-tune models, unless you ask us to in writing for your own dedicated model.',
+            body: 'GDPR and UK GDPR, India’s DPDP Act and the UAE, DIFC and ADGM regimes each have rules on cross-border transfer and on requests from individuals. We build the access, export and deletion steps a request needs.',
           },
         ],
       },
       start: {
-        lede: 'Most firms start with a Solution Blueprint: two to four weeks on one named problem, such as intake or conflicts.',
+        lede: 'Most firms start with a Blueprint on intake and conflicts: two to four weeks, a fixed fee, and a design your risk committee can review.',
         steps: [
-          { title: 'Map the journey', body: 'We follow a matter from first enquiry to engagement letter, and find where time is lost and where risk sits.' },
-          { title: 'Map the duties', body: 'We record the confidentiality, conflict and retention rules that apply, and how each will be enforced and evidenced.' },
-          { title: 'Agree the plan', body: 'You get the target design, a phased plan and the risks, ready for your risk committee, before any build begins.' },
+          { title: 'Follow one matter', body: 'We trace a recent matter from first email to open workspace, with the people who handled it.' },
+          { title: 'List the duties', body: 'The confidentiality, conflict and retention rules that apply, and where the evidence for each will come from.' },
+          { title: 'Agree the plan', body: 'Target design, phased plan and risks, before anything is built.' },
         ],
       },
       related: [
-        { label: 'AI governance', href: '/what-we-do/applied-ai/ai-governance', descriptor: 'Policy turned into enforced scope and logging' },
-        { label: 'Security and compliance', href: '/what-we-do/services/security-compliance', descriptor: 'Access models built around the duty of confidence' },
-        { label: 'Trust and security', href: '/who-we-are/trust', descriptor: 'How we handle your data' },
+        { label: 'AI governance', href: '/what-we-do/applied-ai/ai-governance', descriptor: 'Scope, logging and review for AI tools' },
+        { label: 'Security and compliance', href: '/what-we-do/services/security-compliance', descriptor: 'Access models and audit evidence' },
+        { label: 'Trust center', href: '/who-we-are/trust', descriptor: 'How we handle your data' },
         BLUEPRINT,
       ],
       cta: {
-        title: 'Intake, conflicts or AI on your agenda?',
-        body: 'Tell us how matters open today. We reply within one working day.',
+        title: 'How long does a new matter take to open at your firm?',
+        body: 'Tell us roughly, and where it stalls. We reply within one working day.',
       },
     },
   },

@@ -56,7 +56,71 @@ export function IndustryView({ page, d }: { page: ContentPage; d: IndustryDetail
         </div>
       </PageSection>
 
+      {/* Worked example: one flow, step by step */}
+      {d.example && (
+        <PageSection id="example" tone="light" title={d.example.title} lede={d.example.lede}>
+          <div className="ys-ind-ex" role="table" aria-label={d.example.title}>
+            <div className="ys-ind-ex-head" role="row">
+              <span role="columnheader">Step</span>
+              <span role="columnheader">How it usually goes today</span>
+              <span role="columnheader">What we build</span>
+            </div>
+            {d.example.rows.map((r, i) => (
+              <div key={r.step} className="ys-ind-ex-row" role="row">
+                <span role="rowheader" className="ys-ind-ex-step"><b aria-hidden="true">{i + 1}</b>{r.step}</span>
+                <p role="cell" className="ys-ind-ex-today"><span className="ys-ind-ex-label">Today</span>{r.today}</p>
+                <p role="cell" className="ys-ind-ex-after"><span className="ys-ind-ex-label">What we build</span>{r.after}</p>
+              </div>
+            ))}
+          </div>
+          {d.example.note && <p className="ys-ind-ex-note">{d.example.note}</p>}
+          {d.example.href && (
+            <a href={d.example.href} className="ys-ind-more">
+              {d.example.linkLabel}
+              <ArrowRight className="w-4 h-4" strokeWidth={2.25} aria-hidden="true" />
+            </a>
+          )}
+        </PageSection>
+      )}
+
+      {d.more && (
+        <PageSection id="more" tone="white" title={d.more.title}>
+          <div className="ys-ind-more-list">
+            {d.more.items.map((m) => (
+              <div key={m.title}>
+                <h3>{m.title}</h3>
+                <p>{m.body}</p>
+                {m.href && (
+                  <a href={m.href} className="ys-ind-more">
+                    {m.linkLabel}
+                    <ArrowRight className="w-4 h-4" strokeWidth={2.25} aria-hidden="true" />
+                  </a>
+                )}
+              </div>
+            ))}
+          </div>
+        </PageSection>
+      )}
+
+      {d.opinion && (
+        <PageSection id="ai" tone="light">
+          <div className="ys-ind-op">
+            <h2>{d.opinion.title}</h2>
+            <div>
+              {d.opinion.paragraphs.map((p) => <p key={p}>{p}</p>)}
+              {d.opinion.href && (
+                <a href={d.opinion.href} className="ys-ind-more">
+                  {d.opinion.linkLabel}
+                  <ArrowRight className="w-4 h-4" strokeWidth={2.25} aria-hidden="true" />
+                </a>
+              )}
+            </div>
+          </div>
+        </PageSection>
+      )}
+
       {/* What we build, problem first */}
+      {d.build && (
       <PageSection id="what-we-build" tone="light" eyebrow="What we build" title="Problems we help with">
         <ul className="ys-ind-build">
           {d.build.map((b) => (
@@ -79,6 +143,7 @@ export function IndustryView({ page, d }: { page: ContentPage; d: IndustryDetail
           ))}
         </ul>
       </PageSection>
+      )}
 
       {/* Standards, with the disclaimer visible */}
       <PageSection id="standards" tone="white" eyebrow="Regulation and standards" title="Regulations and standards">
@@ -182,6 +247,16 @@ export function IndustryView({ page, d }: { page: ContentPage; d: IndustryDetail
   )
 }
 
+/** What a sector page covers, for the hub list. */
+function hubItems(d: IndustryDetail): string[] {
+  if (d.build) return d.build.map((b) => b.title)
+  return [
+    ...(d.example ? [d.example.name] : []),
+    ...(d.more ? d.more.items.map((m) => m.title) : []),
+    ...(d.opinion ? [d.opinion.name] : []),
+  ]
+}
+
 /** /what-we-do/industries: the three sectors, with what we do in each. */
 export function IndustriesHub({ page }: { page: ContentPage }) {
   const industries = CONTENT_PAGES.filter((p) => p.industry)
@@ -205,8 +280,8 @@ export function IndustriesHub({ page }: { page: ContentPage }) {
                 <span className="ys-ind-hub-h1">{p.hero.h1}</span>
                 <span className="ys-ind-hub-for">{p.industry!.forWho.slice(0, 3).join(' · ')}</span>
                 <span className="ys-ind-hub-list">
-                  {p.industry!.build.map((b) => (
-                    <span key={b.title}><Check strokeWidth={2.5} aria-hidden="true" />{b.title}</span>
+                  {hubItems(p.industry!).map((t) => (
+                    <span key={t}><Check strokeWidth={2.5} aria-hidden="true" />{t}</span>
                   ))}
                 </span>
                 <span className="ys-card-more" aria-hidden="true">

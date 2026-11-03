@@ -69,7 +69,11 @@ const HeroSection = () => {
         <div className="ys-hero-center" ref={copy}>
           <a href={SECONDARY_CTA.href} className="ys-hero-badge ys-hero-rise" style={{ ['--d' as string]: '0ms' }}>
             <span className="ys-hero-badge-tag">Start here</span>
-            Solution Blueprint<span className="ys-hero-badge-long"> · 2–4 weeks</span>, fixed fee
+            {/* One text span: the badge's flex gap was splitting the line into
+                "Blueprint  · 2–4 weeks  , fixed fee". */}
+            <span>
+              Fixed-fee Blueprint<span className="ys-hero-badge-long">: your build plan in 2–4 weeks</span>
+            </span>
             <ArrowRight className="w-3.5 h-3.5 shrink-0" strokeWidth={2.5} aria-hidden="true" />
           </a>
 
@@ -91,8 +95,8 @@ const HeroSection = () => {
           </h1>
 
           <p className="ys-hero-lede ys-hero-rise" style={{ ['--d' as string]: '780ms' }}>
-            For banks, law firms and SaaS teams: cloud, software, data and AI, built in your own accounts
-            with the controls your reviewers ask for, starting with a fixed-fee plan.
+            We design, build and run cloud, software, data and AI systems for banks, law firms and SaaS
+            companies. In your own accounts, with the evidence auditors, regulators and security teams ask for.
           </p>
 
           <div className="ys-hero-ctas ys-hero-rise" style={{ ['--d' as string]: '920ms' }}>
