@@ -4,7 +4,7 @@ import { useEffect } from 'react'
 import { usePathname } from 'next/navigation'
 import * as CookieConsent from 'vanilla-cookieconsent'
 import 'vanilla-cookieconsent/dist/cookieconsent.css'
-import { pushConsentUpdate, shouldLoadGtm } from '@/lib/analytics'
+import { loadClarity, pushConsentUpdate, revokeClarity, shouldLoadGtm } from '@/lib/analytics'
 
 /**
  * Pages that explain the cookies, where a banner over the text is noise.
@@ -28,7 +28,12 @@ function setConsent(granted: boolean) {
   window.gtag?.('consent', 'update', {
     analytics_storage: granted ? 'granted' : 'denied',
   })
-  if (granted) pushConsentUpdate()
+  if (granted) {
+    pushConsentUpdate()
+    loadClarity()
+  } else {
+    revokeClarity()
+  }
 }
 
 export function ConsentBanner() {
@@ -40,6 +45,9 @@ export function ConsentBanner() {
     if (!shouldLoadGtm(window.location.hostname)) return
 
     void CookieConsent.run({
+      // Bumped when a new analytics processor is added (1: Microsoft
+      // Clarity, 2026-11-03), so visitors who accepted earlier are asked again.
+      revision: 1,
       // Strictly necessary: records the choice itself. 6 months.
       cookie: {
         name: 'ys_consent',
@@ -89,7 +97,7 @@ export function ConsentBanner() {
             consentModal: {
               title: 'Cookies',
               description:
-                'We use one analytics cookie to see which pages help visitors. No advertising, no tracking across other sites. Details in our <a href="/privacy#cookies">Privacy Policy</a>.',
+                'We use analytics cookies to see which pages help visitors and where they get stuck. No advertising, no tracking across other sites. Details in our <a href="/privacy#cookies">Privacy Policy</a>.',
               acceptAllBtn: 'Accept analytics',
               acceptNecessaryBtn: 'Reject',
               showPreferencesBtn: 'Manage',
@@ -110,7 +118,7 @@ export function ConsentBanner() {
                 {
                   title: 'Analytics',
                   description:
-                    'Google Analytics, to count visits and see which pages are useful. Set only if you accept.',
+                    'Google Analytics, to count visits, and Microsoft Clarity, for heatmaps and session recordings with form input masked. Set only if you accept.',
                   linkedCategory: 'analytics',
                 },
               ],

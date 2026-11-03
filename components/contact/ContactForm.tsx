@@ -227,7 +227,7 @@ export function ContactForm({
   // country side by side, then the message. Area of interest still travels
   // with the form when a page presets it.
   return (
-    <form onSubmit={submit} noValidate className="ys-form ys-form-compact" aria-label="Contact form">
+    <form onSubmit={submit} noValidate className="ys-form ys-form-compact" aria-label="Contact form" data-clarity-mask="true">
       {step1}
       {message}
       {honeypot}
