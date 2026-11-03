@@ -12,7 +12,8 @@
     "type-check:watch": "tsc --noEmit --watch",
     "perf": "next build && next start",
     "check-all": "pnpm type-check && pnpm lint",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "indexnow": "node scripts/indexnow.mjs"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.15",
