@@ -65,13 +65,15 @@ export const pages: ContentPage[] = [
       {
         type: 'cards',
         kicker: 'Pillars',
-        title: 'Four ways we help',
-        columns: 4,
+        title: 'Six ways we help',
+        columns: 3,
         cards: [
           { title: 'Solution Blueprint', body: 'Two to four weeks and a fixed fee to agree the design, plan and risks before anything is built.', href: '/blueprint' },
           { title: 'Cloud', body: 'Design, migrate and operate secure platforms on AWS, Microsoft Azure and Google Cloud.', href: '/what-we-do/cloud' },
           { title: 'Applied AI', body: 'AI in production with testing, approvals and an audit trail, including a Claude practice.', href: '/what-we-do/applied-ai' },
           { title: 'Engineering & data', body: 'Core software, data platforms, delivery pipelines and security.', href: '/what-we-do/engineering-data' },
+          { title: 'Enterprise architecture review', body: 'An independent review of the systems you run or the design you plan: what is load-bearing, what is at risk, what to change first.', href: '/what-we-do/consulting/enterprise-architecture' },
+          { title: 'Security & compliance', body: 'Controls and SOC 2 evidence built into delivery, so security reviews and audits go faster.', href: '/what-we-do/services/security-compliance' },
         ],
       },
       {

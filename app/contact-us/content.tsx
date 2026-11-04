@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import SharedLayout from '@/components/shared-layout'
+import { PageSection } from '@/components/enterprise'
 import { ContactForm } from '@/components/contact/ContactForm'
 import { siteConfig } from '@/lib/site.config'
 import { SITE_CONTACT } from '@/lib/site-contact'
@@ -12,6 +13,12 @@ import { normalizeInterest, SERVICE_INTERESTS } from '@/lib/countries'
  * slide-in overlay was removed, 2026-11-01). ?interest= presets the form
  * (e.g. ?interest=Claude, ?interest=security).
  */
+
+const NEXT_STEPS = [
+  { name: 'We reply within one working day', body: 'We read what you send and reply with how we would approach it and a suggested first step.' },
+  { name: 'A first call, if it helps', body: 'The first call is free and carries no obligation. If you need to share details first, we sign a mutual NDA before you do.' },
+  { name: 'A scoped first step', body: 'If a Solution Blueprint is the right start, we scope it with you at no cost: the questions it answers, the fixed fee and the 2–4 week timeline.' },
+]
 
 export default function ContactPage() {
   const [preset, setPreset] = useState<{ topic: string; interest: string }>({ topic: 'services', interest: '' })
@@ -93,6 +100,18 @@ export default function ContactPage() {
         </div>
       </section>
 
+      {/* What happens next: only commitments made elsewhere on the site
+          (reply time, NDA, free first call, Blueprint scoped at no cost). */}
+      <PageSection tone="light" title="What happens after you write">
+        <dl className="ys-wwu-list">
+          {NEXT_STEPS.map((n) => (
+            <div key={n.name}>
+              <dt>{n.name}</dt>
+              <dd>{n.body}</dd>
+            </div>
+          ))}
+        </dl>
+      </PageSection>
     </SharedLayout>
   )
 }

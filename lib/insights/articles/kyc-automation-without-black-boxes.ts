@@ -76,6 +76,28 @@ export const article: Article = {
       ],
     },
   ],
+  faq: [
+    {
+      q: "Can KYC decisions be automated and still be explainable?",
+      a: "Yes, if each decision is named separately (identity, screening, adverse media, risk rating, relationship), deterministic checks are written as versioned rules, every model output carries reasons a reviewer can check, and the case file records which checks ran, what they returned and who decided what.",
+    },
+    {
+      q: "Should a person review every sanctions or PEP potential match?",
+      a: "Yes. Automated screening produces potential matches, not conclusions. Route each one to a reviewer with matching and non-matching attributes side by side, and record a reason code and rationale for every discount or escalation.",
+    },
+    {
+      q: "Is SR 11-7 still the US model risk guidance?",
+      a: "No. On April 17, 2026 the Federal Reserve, OCC and FDIC issued SR 26-2, which replaces SR 11-7 and SR 21-8. It is risk-based, most relevant to banks with over $30 billion in assets, and excludes generative and agentic AI models from its scope.",
+    },
+    {
+      q: "What does the EU AML Regulation say about automated onboarding decisions?",
+      a: "Regulation (EU) 2024/1624, which applies from 10 July 2027 for most obliged entities, allows automated decisions if decisions to enter, maintain or refuse a relationship, or change due diligence, have meaningful human intervention, and the customer can get an explanation and challenge it.",
+    },
+    {
+      q: "Where should a KYC automation project start?",
+      a: "With one decision, usually sanctions and PEP potential-match review. Map it end to end: inputs, rules, model calls, reviewer screens, reason codes and the record left behind. The gaps in that map become the backlog.",
+    },
+  ],
   sources: [
     {
       title: 'SR 26-2: Revised Guidance on Model Risk Management',
@@ -114,6 +136,7 @@ export const article: Article = {
     },
   ],
   related: [
+    { label: 'Enterprise architecture review', href: '/what-we-do/consulting/enterprise-architecture' },
     { label: 'Financial services', href: '/what-we-do/industries/financial-services' },
     { label: 'Responsible AI', href: '/who-we-are/responsible-ai' },
     { label: 'Solution Blueprint', href: '/blueprint' },

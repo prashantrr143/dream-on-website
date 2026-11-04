@@ -26,7 +26,7 @@ export const OG_IMAGE = {
   url: '/opengraph-image',
   width: 1200,
   height: 630,
-  alt: 'YatiSphere: Systems that pass review. From cloud to AI.',
+  alt: 'YatiSphere: Cloud and AI that make it into production.',
 }
 
 /** openGraph + twitter for one page, with the shared image and locale. */
@@ -36,7 +36,12 @@ export function socialMeta(opts: {
   url: string
   type?: 'website' | 'article'
   publishedTime?: string
+  /** Per-page card: drawn by app/og/route.tsx. Omit for the default card. */
+  card?: { title: string; kicker: string }
 }): Pick<Metadata, 'openGraph' | 'twitter'> {
+  const image = opts.card
+    ? { url: `/og?${new URLSearchParams({ t: opts.card.title, k: opts.card.kicker }).toString()}`, width: 1200, height: 630, alt: opts.card.title }
+    : OG_IMAGE
   return {
     openGraph: {
       type: opts.type ?? 'website',
@@ -45,14 +50,14 @@ export function socialMeta(opts: {
       title: opts.title,
       description: opts.description,
       url: opts.url,
-      images: [OG_IMAGE],
+      images: [image],
       ...(opts.publishedTime ? { publishedTime: opts.publishedTime } : {}),
     },
     twitter: {
       card: 'summary_large_image',
       title: opts.title,
       description: opts.description,
-      images: [OG_IMAGE.url],
+      images: [image.url],
     },
   }
 }
@@ -139,6 +144,24 @@ export const ROUTE_META: Record<string, RouteMeta> = {
   },
 }
 
+/** Section label for a page's share card, from its path. */
+export function cardKicker(path: string): string {
+  if (path.startsWith('/insights/')) return 'Insights'
+  if (path.startsWith('/insights')) return 'Insights'
+  if (path.startsWith('/what-we-do/industries')) return 'Industries'
+  if (path.startsWith('/what-we-do/applied-ai')) return 'Applied AI'
+  if (path.startsWith('/what-we-do/cloud')) return 'Cloud'
+  if (path.startsWith('/what-we-do/consulting')) return 'Consulting'
+  if (path.startsWith('/what-we-do')) return 'Services'
+  if (path.startsWith('/blueprint')) return 'Solution Blueprint'
+  if (path.startsWith('/contact-us')) return 'Contact'
+  if (path.startsWith('/who-we-are')) return 'Company'
+  return 'YatiSphere'
+}
+
+/** A page title without the brand suffix, for the share card. */
+export const cardTitle = (title: string) => title.replace(/\s*\|\s*YatiSphere\s*$/, '')
+
 /** Builds the Metadata object for a route, including canonical and robots. */
 export function metaFor(route: string): Metadata {
   const meta = ROUTE_META[route]
@@ -155,7 +178,12 @@ export function metaFor(route: string): Metadata {
     ...(meta.noindex
       ? { robots: { index: false, follow: true } }
       : {}),
-    ...socialMeta({ title: meta.title, description: meta.description, url }),
+    ...socialMeta({
+      title: meta.title,
+      description: meta.description,
+      url,
+      ...(route === '/' ? {} : { card: { title: cardTitle(meta.title), kicker: cardKicker(route) } }),
+    }),
   }
 }
 

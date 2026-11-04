@@ -182,6 +182,7 @@ export const article: Article = {
     },
   ],
   related: [
+    { label: 'Enterprise architecture review', href: '/what-we-do/consulting/enterprise-architecture' },
     { label: 'Cloud engineering on Azure', href: '/what-we-do/cloud' },
     { label: 'Security and compliance', href: '/what-we-do/services/security-compliance' },
     { label: 'Responsible AI', href: '/who-we-are/responsible-ai' },

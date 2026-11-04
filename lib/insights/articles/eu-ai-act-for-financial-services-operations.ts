@@ -145,6 +145,7 @@ export const article: Article = {
     },
   ],
   related: [
+    { label: 'Enterprise architecture review', href: '/what-we-do/consulting/enterprise-architecture' },
     { label: 'Responsible AI', href: '/who-we-are/responsible-ai' },
     { label: 'Financial services', href: '/what-we-do/industries/financial-services' },
     { label: 'Solution Blueprint', href: '/blueprint' },

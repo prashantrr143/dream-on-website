@@ -5,6 +5,7 @@ import { PageHero, PageSection, PageCTA } from '@/components/enterprise'
 import { metaFor, SITE_URL } from '@/lib/seo'
 import { siteConfig } from '@/lib/site.config'
 import { PRIMARY_CTA } from '@/lib/cta'
+import { BreadcrumbSchema } from '@/components/seo/StructuredData'
 
 export const metadata: Metadata = metaFor('/blueprint')
 
@@ -122,6 +123,7 @@ export default function BlueprintPage() {
 
   return (
     <SharedLayout>
+      <BreadcrumbSchema trail={[{ name: 'Solution Blueprint', path: '/blueprint' }]} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
       <PageHero
@@ -145,6 +147,10 @@ export default function BlueprintPage() {
             <ul>{NOT_A_FIT.map((x) => <li key={x}><X strokeWidth={2.5} aria-hidden="true" />{x}</li>)}</ul>
           </div>
         </div>
+        <p className="ys-bp-fit-note">
+          Reviewing a platform you already run, rather than planning a new build? An{' '}
+          <a href="/what-we-do/consulting/enterprise-architecture" className="ys-link">enterprise architecture review</a> is usually the better first step.
+        </p>
       </PageSection>
 
       {/* As an AI readiness assessment */}
