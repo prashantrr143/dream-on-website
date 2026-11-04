@@ -12,21 +12,17 @@ test('/perspectives redirects permanently to /insights', async ({ request }) => 
   expect(res.headers()['location']).toMatch(/\/insights$/)
 })
 
-test('drafts never reach a production build, the sitemap or search', async ({ page, request }) => {
+test('drafts never reach a production build or the sitemap', async ({ page, request }) => {
   const sitemap = await (await request.get('/sitemap.xml')).text()
-  const index = await (await request.get('/search-index.json')).json()
-  const indexed = (index as { href: string }[]).map((e) => e.href)
 
   if (publishedArticles.length === 0) {
     expect((await request.get('/insights')).status()).toBe(404)
     expect(sitemap).not.toContain('/insights')
-    expect(indexed.some((h) => h.startsWith('/insights'))).toBe(false)
     await page.goto('/')
     await expect(page.locator('.ys-hdr-nav').getByRole('link', { name: 'Insights' })).toHaveCount(0)
   } else {
     for (const a of publishedArticles) {
       expect(sitemap).toContain(`/insights/${a.slug}`)
-      expect(indexed).toContain(`/insights/${a.slug}`)
     }
   }
 })

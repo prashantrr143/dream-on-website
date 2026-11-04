@@ -6,8 +6,5 @@
 export { NAV, NAV_TREE, cleanNav } from '@/content/nav'
 export type { NavItem, NavPanel, NavGroup, NavLink, NavDirect } from '@/content/nav'
 
-/** Header search shows type-ahead suggestions. false = plain search box. */
-export const SEARCH_TYPEAHEAD = true
-
 /** Set once a careers page has content; it then appears in nav and footer. */
 export const CAREERS_URL = ''

@@ -27,7 +27,7 @@ export default function AccessibilityPage() {
           </p>
           <h2 style={{ fontSize: 22 }}>How we check</h2>
           <p>
-            Every release runs automated accessibility tests (axe) on the navigation, search, menus and forms, and we test
+            Every release runs automated accessibility tests (axe) on the navigation, menus and forms, and we test
             keyboard operation of every interactive component. This website has not yet had an independent accessibility audit.
           </p>
           <h2 style={{ fontSize: 22 }}>Tell us about a barrier</h2>

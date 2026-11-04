@@ -133,10 +133,9 @@ test('no serious or critical axe issues with each panel open', async ({ page }) 
   }
 })
 
-test('only one search button shows on desktop', async ({ page }) => {
-  await expect(page.locator('.ys-hdr-search-m')).toBeHidden()
+test('desktop shows no burger and no search button', async ({ page }) => {
   await expect(page.locator('.ys-hdr-burger')).toBeHidden()
-  await expect(page.locator('.ys-hdr-right').getByRole('button', { name: 'Search' })).toBeVisible()
+  await expect(page.locator('.ys-hdr').getByRole('button', { name: 'Search' })).toHaveCount(0)
 })
 
 /* ---- Mega-menu separation from the page (nav-fix) ---- */

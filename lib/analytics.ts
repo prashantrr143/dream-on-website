@@ -150,15 +150,6 @@ export function trackNavClick(menu: string, group: string | null, label: string,
   push({ event: 'nav_click', menu, group: group ?? '', label, href })
 }
 
-export function trackSearchOpen(): void {
-  push({ event: 'search_open' })
-}
-
-/** Length only: the query text itself is visitor input and is never sent. */
-export function trackSearchSubmit(queryLength: number): void {
-  push({ event: 'search_submit', query_length: queryLength })
-}
-
 export function trackRegionSelect(region: string): void {
   push({ event: 'region_select', region })
 }
