@@ -28,10 +28,15 @@ export async function GET(req: Request) {
 
   const logo = await readFile(join(process.cwd(), 'public/brand/yatisphere/logo/yatisphere-dark-tagline.png'))
   const logoSrc = `data:image/png;base64,${logo.toString('base64')}`
+  // Brand face. Satori reads woff/ttf, not the woff2 the site serves.
+  const [plex400, plex600] = await Promise.all([
+    readFile(join(process.cwd(), 'app/fonts/ibm-plex-sans-latin-400-normal.woff')),
+    readFile(join(process.cwd(), 'app/fonts/ibm-plex-sans-latin-600-normal.woff')),
+  ])
 
   return new ImageResponse(
     (
-      <div style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', background: NAVY, padding: '60px 72px' }}>
+      <div style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', background: NAVY, padding: '60px 72px', fontFamily: 'IBM Plex Sans' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           {/* eslint-disable-next-line @next/next/no-img-element -- next/og renders plain img */}
           <img src={logoSrc} width={230} height={80} alt="" />
@@ -44,6 +49,14 @@ export async function GET(req: Request) {
         </div>
       </div>
     ),
-    { width: 1200, height: 630, headers: { 'Cache-Control': 'public, max-age=86400, s-maxage=31536000, stale-while-revalidate=86400' } },
+    {
+      width: 1200,
+      height: 630,
+      fonts: [
+        { name: 'IBM Plex Sans', data: plex400, weight: 400, style: 'normal' },
+        { name: 'IBM Plex Sans', data: plex600, weight: 600, style: 'normal' },
+      ],
+      headers: { 'Cache-Control': 'public, max-age=86400, s-maxage=31536000, stale-while-revalidate=86400' },
+    },
   )
 }
