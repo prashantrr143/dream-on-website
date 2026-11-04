@@ -18,7 +18,7 @@ const STARTS: { label: string; line: string; href: string; Icon: LucideIcon }[] 
   { label: 'An AI pilot that stalled', line: 'Take it through review and into production.', href: contactHref('Applied AI'), Icon: Cpu },
   { label: 'A plan before a build', line: 'Design, plan and risks in 2–4 weeks, fixed fee.', href: '/blueprint', Icon: ClipboardList },
   { label: 'A security review or audit', line: 'Controls and evidence your reviewers accept.', href: contactHref('Engineering & data'), Icon: FileCheck2 },
-  { label: 'Cloud costs or an ageing platform', line: 'Lower the bill, or move off the legacy system.', href: contactHref('Cloud: multi-cloud'), Icon: ServerCog },
+  { label: 'Cloud costs or an aging platform', line: 'Lower the bill, or move off the legacy system.', href: contactHref('Cloud: multi-cloud'), Icon: ServerCog },
 ]
 
 const ASSURE = ['Reply within one working day', 'Mutual NDA before details', 'Your code, your accounts']
