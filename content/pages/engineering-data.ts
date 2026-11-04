@@ -80,7 +80,7 @@ export const pages: ContentPage[] = [
           {
             label: 'New core platforms',
             description:
-              'A new business platform designed for regulated work, with tests, pipelines and audit logging in place before the first feature ships.',
+              'A new business platform built to pass security review, with tests, pipelines and audit logging in place before the first feature ships.',
             bullets: [
               'Architecture and code you own',
               'Automated tests and CI/CD from the first sprint',
@@ -192,7 +192,7 @@ export const pages: ContentPage[] = [
           },
           {
             title: 'Core platform builds',
-            body: 'New business platforms built for regulated work: secure by default, tested, and ready to run from the first release.',
+            body: 'New business platforms built to pass security review: secure by default, tested, and ready to run from the first release.',
             bullets: [
               'Architecture and code you own',
               'Automated tests and CI/CD from the first sprint',

@@ -22,7 +22,7 @@ export default function InsightsPage() {
       <PageHero
         eyebrow="Insights"
         title="Insights on cloud, AI, security and regulation"
-        lede="Practical writing on Azure, applied AI, security and regulation for teams in regulated businesses."
+        lede="Practical writing on cloud, applied AI, security and regulation for banks, law firms and SaaS teams."
         visual="lanes"
       />
 

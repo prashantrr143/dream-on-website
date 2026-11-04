@@ -18,7 +18,7 @@ export const founderLetter = {
   paragraphs: [
     'Most enterprise programs our team has worked on in financial services and telecommunications did not fail on technology. They failed when the architecture was decided late, by people who would not be there to run the result, and when controls were added just before an audit.',
     'YatiSphere was founded to work the other way round: agree the structure first with the people who will run it, build controls into the platform from the first sprint, and stay to run what we build.',
-    'AI raises the stakes. A model is only as reliable as the cloud, data and controls under it. Our job is to get AI into production in a way a regulated business can defend: tested before it goes live, approved by a person where it matters, and logged.',
+    'AI raises the stakes. A model is only as reliable as the cloud, data and controls under it. Our job is to get AI into production in a way your business can defend: tested before it goes live, approved by a person where it matters, and logged.',
   ],
   signatory: 'Ruchika Raturi',
   role: 'Founder & Chief Executive Officer',

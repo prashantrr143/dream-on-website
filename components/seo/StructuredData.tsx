@@ -112,12 +112,12 @@ export function ServiceSchema({ services }: { services: ServiceDef[] }) {
           url: service.url,
           provider: { '@id': ORG_ID },
           areaServed: [
-            { '@type': 'Country', name: 'United Kingdom' },
             { '@type': 'Country', name: 'United States' },
-            { '@type': 'Country', name: 'India' },
+            { '@type': 'Country', name: 'United Kingdom' },
+            { '@type': 'Place', name: 'Europe' },
             { '@type': 'Country', name: 'United Arab Emirates' },
             { '@type': 'Country', name: 'Saudi Arabia' },
-            { '@type': 'Place', name: 'Europe' },
+            { '@type': 'Country', name: 'India' },
           ],
           })}
         </Fragment>

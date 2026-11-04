@@ -404,7 +404,7 @@ export const pages: ContentPage[] = [
     meta: {
       title: 'AI strategy & readiness consulting | YatiSphere',
       description:
-        'AI strategy consulting for regulated businesses: pick use cases worth doing, check data and governance readiness, and plan a governed path to production.',
+        'AI strategy consulting: pick use cases worth doing, check data and governance readiness, and plan a governed path to production.',
     },
     hero: {
       kicker: 'CONSULTING / AI STRATEGY & READINESS',
