@@ -129,11 +129,6 @@ export const ROUTE_META: Record<string, RouteMeta> = {
     description:
       'How we build this website to WCAG 2.2 AA, what we know does not yet meet it, and how to tell us about a barrier you hit.',
   },
-  '/search': {
-    title: 'Search | YatiSphere',
-    description: 'Search the YatiSphere site.',
-    noindex: true,
-  },
 
   // Legal pages carry no search value and are kept out of the index.
   '/privacy': {

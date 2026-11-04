@@ -2,14 +2,13 @@
 
 import { useCallback, useEffect, useId, useLayoutEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
-import { ChevronDown, Search } from 'lucide-react'
+import { ChevronDown } from 'lucide-react'
 import { Wordmark } from '@/components/brand/Wordmark'
 import { NAV, type NavPanel } from '@/lib/nav'
 import { useRegion, REGION_SELECTOR_ENABLED } from '@/lib/region'
-import { trackMobileNavOpen, trackNavClick, trackNavOpen, trackSearchOpen } from '@/lib/analytics'
+import { trackMobileNavOpen, trackNavClick, trackNavOpen } from '@/lib/analytics'
 import { MegaPanel, focusables } from './MegaPanel'
 import { preloadGsap } from '@/lib/gsap'
-import { SearchOverlay } from './SearchOverlay'
 import { RegionSelector } from './RegionSelector'
 import { MobileNav } from './MobileNav'
 
@@ -191,14 +190,6 @@ export function SiteHeader() {
     if (viaKeyboard) requestAnimationFrame(() => requestAnimationFrame(() => focusables(introRef.current)[0]?.focus()))
   }
 
-  const openSearch = (opener: HTMLButtonElement) => {
-    searchOpenerRef.current = opener
-    closePanel()
-    setRegionOpen(false)
-    setMobileOpen(false)
-    setSearchOpen(true)
-    trackSearchOpen()
-  }
   const closeSearch = useCallback(() => {
     setSearchOpen(false)
     searchOpenerRef.current?.focus()
@@ -310,16 +301,6 @@ export function SiteHeader() {
       }}
     >
       <div className="ys-hdr-container ys-hdr-bar">
-        {/* Mobile: search at the far left */}
-        <button
-          type="button"
-          className="ys-hdr-icon ys-hdr-search-m"
-          aria-label="Search"
-          onClick={(e) => openSearch(e.currentTarget)}
-        >
-          <Search className="w-[22px] h-[22px]" strokeWidth={1.75} aria-hidden="true" />
-        </button>
-
         <a href="/" className="ys-nav-logo ys-hdr-logo" aria-label="YatiSphere home" onPointerEnter={onPlainEnter}>
           <Wordmark tone="dark" height={52} priority compact />
         </a>
@@ -362,14 +343,6 @@ export function SiteHeader() {
         </nav>
 
         <div className="ys-hdr-right" onPointerEnter={onPlainEnter}>
-          <button
-            type="button"
-            className="ys-hdr-icon"
-            aria-label="Search"
-            onClick={(e) => openSearch(e.currentTarget)}
-          >
-            <Search className="w-[22px] h-[22px]" strokeWidth={1.75} aria-hidden="true" />
-          </button>
           {REGION_SELECTOR_ENABLED && (
           <RegionSelector
             region={region}
@@ -469,7 +442,6 @@ export function SiteHeader() {
         )}
       </AnimatePresence>
 
-      {searchOpen && <SearchOverlay onClose={closeSearch} />}
 
       {mobileOpen && (
         <MobileNav

@@ -24,6 +24,8 @@ const CANONICAL_HOST = 'yatisphere.com'
  * never at another legacy one, so each resolves in a single hop.
  */
 const LEGACY_RAW: Record<string, string> = {
+  // Site search was removed (2026-11-04)
+  '/search': '/',
   // Services and pillars
   '/services': '/what-we-do',
   '/solutions': '/what-we-do',

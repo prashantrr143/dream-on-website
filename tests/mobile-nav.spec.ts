@@ -11,14 +11,11 @@ test.beforeEach(async ({ page }) => {
   await page.goto('/')
 })
 
-test('header is 72px with search left and menu right; desktop nav hidden', async ({ page }) => {
+test('header is 72px with logo left and menu right; desktop nav hidden', async ({ page }) => {
   expect((await page.locator('.ys-hdr-bar').boundingBox())!.height).toBe(72)
   await expect(page.locator('.ys-hdr-nav')).toBeHidden()
-  await expect(page.locator('.ys-hdr-search-m')).toBeVisible()
-  const search = (await page.locator('.ys-hdr-search-m').boundingBox())!
   const logo = (await page.locator('.ys-hdr-logo').boundingBox())!
   const menu = (await burger(page).boundingBox())!
-  expect(search.x).toBeLessThan(logo.x)
   expect(menu.x).toBeGreaterThan(logo.x)
 })
 
@@ -64,11 +61,6 @@ test('Esc closes and returns focus to the menu button', async ({ page }) => {
   await page.keyboard.press('Escape')
   await expect(page.locator('.ys-mnav')).toHaveCount(0)
   await expect(burger(page)).toBeFocused()
-})
-
-test('mobile search opens from the left icon', async ({ page }) => {
-  await page.locator('.ys-hdr-search-m').click()
-  await expect(page.getByRole('combobox', { name: 'Search the site' })).toBeFocused()
 })
 
 test('no serious or critical axe issues with the menu open', async ({ page }) => {

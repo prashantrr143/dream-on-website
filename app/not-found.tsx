@@ -15,7 +15,6 @@ const LINKS = [
   { label: 'Solution Blueprint', href: '/blueprint', descriptor: 'Know what it will take before you build' },
   { label: 'Insights', href: '/insights', descriptor: 'How we think about IT and applied AI' },
   { label: 'Who we are', href: '/who-we-are/about', descriptor: 'Our principles and people' },
-  { label: 'Search', href: '/search', descriptor: 'Find a page by topic' },
   { label: 'Contact us', href: '/contact-us', descriptor: 'Tell us what you were looking for' },
 ]
 

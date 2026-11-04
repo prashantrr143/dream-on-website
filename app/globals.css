@@ -1805,7 +1805,7 @@
 .ys-hdr-burger { margin-left: auto; }
 @media (min-width: 1200px) {
   .ys-hdr-nav, .ys-hdr-right { display: flex; }
-  .ys-hdr-burger, .ys-hdr-search-m { display: none; }
+  .ys-hdr-burger { display: none; }
 }
 
 .ys-hdr-nav > ul {
@@ -2002,11 +2002,6 @@
   border: 0;
   border-radius: var(--radius-sm);
   cursor: pointer;
-}
-.ys-hdr-search-m { margin-left: -12px; margin-right: 4px; }
-@media (min-width: 1200px) {
-  /* Restated after .ys-hdr-icon, which would otherwise win. */
-  .ys-hdr-search-m { display: none; }
 }
 
 /* ---- Hamburger: three lines that become an X ---- */
