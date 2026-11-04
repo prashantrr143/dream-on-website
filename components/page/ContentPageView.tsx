@@ -318,7 +318,7 @@ export function ContentPageView({ page }: { page: ContentPage }) {
         visual={page.path.includes('/cloud') ? 'layers' : page.path.includes('/applied-ai') ? 'circuit' : page.path.includes('/industries') ? 'network' : 'lanes'}
         breadcrumbs={page.parents}
       />
-      {page.blocks.map((block, i) => {
+      {page.blocks.filter((b) => b.type !== 'faq').map((block, i) => {
         tone = tone === 'light' ? 'white' : 'light'
         return <BlockView key={`${block.type}-${i}`} block={block} tone={tone} />
       })}
@@ -328,6 +328,11 @@ export function ContentPageView({ page }: { page: ContentPage }) {
         primaryCta={{ label: PRIMARY_CTA.label, href: contactHref(page.contactInterest) }}
         secondaryCta={{ label: SECONDARY_CTA.label, href: SECONDARY_CTA.href }}
       />
+      {/* FAQs sit after the closing CTA (marketing review, 2026-11-04): the
+          ask comes first, answers for the undecided follow. */}
+      {page.blocks.filter((b) => b.type === 'faq').map((block, i) => (
+        <BlockView key={`faq-${i}`} block={block} tone={i % 2 === 0 ? 'white' : 'light'} />
+      ))}
     </SharedLayout>
   )
 }

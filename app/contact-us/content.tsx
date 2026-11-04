@@ -34,7 +34,7 @@ export default function ContactPage() {
             <p className="ys-kicker ys-kicker-on-dark">Contact</p>
             <h1 id="contact-title">Contact YatiSphere</h1>
             <p className="ys-contact-lede">
-              Tell us what you are working on. We reply within one working day and tell you plainly whether we are the right team.
+              Tell us what you are working on. We reply within one working day with our view on how we can help and a suggested first step.
             </p>
           </div>
 

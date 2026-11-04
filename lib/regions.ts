@@ -17,7 +17,7 @@ export interface RegionPoint {
 export const WORKING_ACROSS_REGIONS: RegionPoint[] = [
   {
     title: 'Response time',
-    body: 'We reply to every enquiry within one working day and schedule calls at a time that suits your team.',
+    body: 'We reply to every inquiry within one working day and schedule calls at a time that suits your team.',
   },
   {
     title: 'Your cloud, your region',

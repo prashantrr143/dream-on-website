@@ -195,7 +195,7 @@ export default function AboutUs() {
 
       <PageCTA
         title="Tell us what you want to fix first"
-        body="Tell us what you are working on. We will tell you plainly whether we are the right fit."
+        body="Tell us what you are working on. We'll share how we would approach it and a suggested first step."
         primaryCta={{ label: PRIMARY_CTA.label, href: PRIMARY_CTA.href }}
         secondaryCta={{ label: SECONDARY_CTA.label, href: SECONDARY_CTA.href }}
       />

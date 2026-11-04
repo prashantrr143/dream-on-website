@@ -18,7 +18,7 @@ const STARTS: { label: string; line: string; href: string; Icon: LucideIcon }[] 
   { label: 'An AI pilot that stalled', line: 'Take it through review and into production.', href: contactHref('Applied AI'), Icon: Cpu },
   { label: 'A plan before a build', line: 'Design, plan and risks in 2–4 weeks, fixed fee.', href: '/blueprint', Icon: ClipboardList },
   { label: 'A security review or audit', line: 'Controls and evidence your reviewers accept.', href: contactHref('Engineering & data'), Icon: FileCheck2 },
-  { label: 'Cloud, software or data work', line: 'Foundations, platforms and modernization.', href: contactHref('Cloud: multi-cloud'), Icon: ServerCog },
+  { label: 'Cloud costs or an aging platform', line: 'Lower the bill, or move off the legacy system.', href: contactHref('Cloud: multi-cloud'), Icon: ServerCog },
 ]
 
 const ASSURE = ['Reply within one working day', 'Mutual NDA before details', 'Your code, your accounts']
@@ -32,9 +32,9 @@ const FinalCTASection = () => {
       <div className="enterprise-container-wide ys-final2">
         <div className="ys-final2-copy">
           <p className="ys-kicker ys-kicker-on-dark">Start a conversation</p>
-          <h2 id="home-final" className="ys-final2-title">Tell us the one problem you would fix first.</h2>
+          <h2 id="home-final" className="ys-final2-title">Which of these sounds like your team?</h2>
           <p className="ys-final2-sub">
-            We reply within one working day, tell you plainly whether we're the right fit, and suggest a first step.
+            Pick the closest match and tell us a little about it. Within one working day, we'll share how we would approach it and a sensible first step.
           </p>
           <div className="ys-final2-ctas">
             <Link href={PRIMARY_CTA.href} className="ys-cta-primary group inline-flex items-center gap-2">

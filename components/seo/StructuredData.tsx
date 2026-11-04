@@ -40,7 +40,7 @@ export function OrganizationSchema() {
     image: `${SITE_URL}/brand/yatisphere/social/og-image.jpg`,
     description:
       'YatiSphere designs, builds and runs cloud, software, data and AI systems for banks, law firms and SaaS companies, in the client’s own AWS or Azure accounts, starting with a fixed-fee Solution Blueprint.',
-    slogan: 'Systems that pass review. From cloud to AI.',
+    slogan: 'Cloud and AI that make it into production.',
     email: SITE_CONTACT.email,
     foundingDate: '2025-12-22',
     founder: { '@type': 'Person', name: 'Ruchika Raturi', jobTitle: 'Founder & Chief Executive Officer', url: `${SITE_URL}/who-we-are/leadership` },

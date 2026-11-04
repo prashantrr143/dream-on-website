@@ -102,7 +102,7 @@ export const NAV_TREE: NavItem[] = [
     overviewHref: W,
     intro: {
       heading: 'All services',
-      body: 'Cloud, software, data and AI for regulated businesses.',
+      body: 'Cloud, software, data and AI that make it into production.',
       link: { label: 'All services', href: W },
     },
     footer: { label: 'Start with a Solution Blueprint', href: '/blueprint' },

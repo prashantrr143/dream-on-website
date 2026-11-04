@@ -21,7 +21,7 @@ export function Partners() {
         <div className="ys-partners-intro">
           <p className="ys-kicker">Delivery partners</p>
           <h2 id="home-partners">Firms we deliver with</h2>
-          <p>When a project needs specialist operations or coverage we don’t have in-house, we bring in a partner we already work with, and we stay accountable for the result.</p>
+          <p>For managed services and round-the-clock operations, we work with partners we know well. You keep one point of contact, and we stay accountable for the result.</p>
         </div>
 
         <ul className="ys-partners-list">
