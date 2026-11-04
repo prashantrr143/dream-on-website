@@ -20,7 +20,7 @@ export default function AboutUs() {
       <PageHero
         eyebrow="WHO WE ARE / ABOUT"
         title="About YatiSphere"
-        lede="Consultants and engineers who have built and run systems for global banks, consultancies and governments, now doing the same for growing companies and regulated enterprises."
+        lede="Consultants and engineers who have built and run systems for global banks, consultancies and governments, now doing the same for banks, law firms and SaaS companies."
         primaryCta={{ label: PRIMARY_CTA.label, href: PRIMARY_CTA.href }}
         visual="network"
       />

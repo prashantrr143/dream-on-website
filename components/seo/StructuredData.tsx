@@ -44,7 +44,7 @@ export function OrganizationSchema() {
     email: SITE_CONTACT.email,
     foundingDate: '2025-12-22',
     founder: { '@type': 'Person', name: 'Ruchika Raturi', jobTitle: 'Founder & Chief Executive Officer', url: `${SITE_URL}/who-we-are/leadership` },
-    areaServed: ['United States', 'United Kingdom', 'Europe', 'Middle East', 'India'],
+    areaServed: { '@type': 'Country', name: 'United States' },
     contactPoint: { '@type': 'ContactPoint', contactType: 'sales', email: SITE_CONTACT.email, url: `${SITE_URL}/contact-us`, availableLanguage: ['English'] },
     ...(siteConfig.company.cin ? { identifier: { '@type': 'PropertyValue', propertyID: 'CIN', value: siteConfig.company.cin } } : {}),
     ...(phone ? { telephone: phone } : {}),
@@ -111,14 +111,7 @@ export function ServiceSchema({ services }: { services: ServiceDef[] }) {
           description: service.description,
           url: service.url,
           provider: { '@id': ORG_ID },
-          areaServed: [
-            { '@type': 'Country', name: 'United Kingdom' },
-            { '@type': 'Country', name: 'United States' },
-            { '@type': 'Country', name: 'India' },
-            { '@type': 'Country', name: 'United Arab Emirates' },
-            { '@type': 'Country', name: 'Saudi Arabia' },
-            { '@type': 'Place', name: 'Europe' },
-          ],
+          areaServed: { '@type': 'Country', name: 'United States' },
           })}
         </Fragment>
       ))}

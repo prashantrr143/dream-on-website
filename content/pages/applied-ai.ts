@@ -42,7 +42,7 @@ export const pages: ContentPage[] = [
   {
     path: '/what-we-do/applied-ai',
     meta: {
-      title: 'AI pilot to production for regulated firms | YatiSphere',
+      title: 'AI pilot to production for banks, law firms and SaaS | YatiSphere',
       description:
         'Take an AI pilot into production: evaluation, human approval, audit trails and integration with the systems you run. Model- and cloud-neutral.',
     },
