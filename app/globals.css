@@ -4886,13 +4886,13 @@ a.ys-open-item::before,
 .ys-hero-cue span { position: absolute; left: 50%; top: 8px; width: 4px; height: 8px; margin-left: -2px; border-radius: 2px; background: var(--amber-500); animation: ys-hero-cue 1.8s ease-in-out infinite; }
 @keyframes ys-hero-cue { 0% { opacity: 0; transform: translateY(0); } 30% { opacity: 1; } 80% { opacity: 0; transform: translateY(14px); } 100% { opacity: 0; } }
 .ys-hero-cue:hover { border-color: var(--amber-500); }
-@media (max-width: 639px) { .ys-hero-cue { display: none; } .ys-hero-word { margin-right: 0.2em; } }
+@media (max-width: 639px) { .ys-hero-cue { display: none; } }
 @media (prefers-reduced-motion: reduce) { .ys-hero-word, .ys-hero-word-accent, .ys-hero-rise, .ys-hero-cue span { animation: none; } }
 .ys-hero .ys-hero-shade, .ys-hero:not(.has-field) .ys-hero-shade { background:
   radial-gradient(ellipse 58% 62% at 50% 50%, rgb(var(--navy-950-rgb) / 0.93), rgb(var(--navy-950-rgb) / 0.78) 50%, rgb(var(--navy-950-rgb) / 0.2) 80%, rgb(var(--navy-950-rgb) / 0) 100%),
   linear-gradient(to bottom, rgb(var(--navy-950-rgb) / 0.9) 0%, rgb(var(--navy-950-rgb) / 0) 18%, rgb(var(--navy-950-rgb) / 0) 78%, rgb(var(--navy-950-rgb) / 0.9) 100%); }
 .ys-hero-center { will-change: transform, opacity; }
-.ys-hero-title br + .ys-hero-word, .ys-hero-title br ~ .ys-hero-word { color: var(--ink-300); }
+.ys-hero-title br ~ .ys-hero-word:not(.ys-hero-word-accent) { color: var(--ink-300); }
 /* Official platform logos, shown in one light tone so no brand shouts over the others */
 .ys-hero-buildon-logo { height: 22px; width: auto; opacity: 0.72; filter: brightness(0) invert(1); transition: opacity 200ms; }
 .ys-hero-buildon-logo:hover { opacity: 1; }
