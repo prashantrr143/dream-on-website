@@ -142,7 +142,7 @@ export function ackHtml(name: string) {
   const body = `
 <tr><td style="padding:30px 28px 10px;">
 <h1 style="margin:0 0 14px;font-size:22px;line-height:1.3;color:${INK};">Thanks, ${hi}. We have your message.</h1>
-<p style="margin:0 0 14px;font-size:15px;line-height:1.65;color:${INK};">We will read it and reply within one working day, and tell you plainly whether we're the right people for it.</p>
+<p style="margin:0 0 14px;font-size:15px;line-height:1.65;color:${INK};">We will read it and reply within one working day, with how we would approach it and a suggested first step.</p>
 <p style="margin:0 0 22px;font-size:15px;line-height:1.65;color:${INK};">If something is urgent, or you'd like to add detail, reply to this email. It goes straight to our team.</p>
 </td></tr>
 <tr><td style="padding:0 28px 28px;">

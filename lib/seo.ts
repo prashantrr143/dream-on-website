@@ -67,9 +67,9 @@ interface RouteMeta {
 
 export const ROUTE_META: Record<string, RouteMeta> = {
   '/': {
-    title: 'AI and cloud engineering for regulated firms | YatiSphere',
+    title: 'Cloud and AI engineering for banks, law firms and SaaS | YatiSphere',
     description:
-      'Systems that pass review, from cloud to AI: cloud, software, data and AI for banks, law firms and SaaS teams, starting with a fixed-fee plan.',
+      'Cloud and AI that make it into production: we design, build and run cloud, software, data and AI for banks, law firms and SaaS companies, starting with a fixed-fee plan.',
   },
 
   '/who-we-are/how-we-work': {

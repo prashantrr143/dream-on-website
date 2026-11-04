@@ -12,7 +12,7 @@ import { ImageResponse } from 'next/og'
  */
 
 export const runtime = 'nodejs'
-export const alt = 'YatiSphere: Systems that pass review. From cloud to AI.'
+export const alt = 'YatiSphere: Cloud and AI that make it into production.'
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
@@ -47,9 +47,11 @@ export default async function OpengraphImage() {
               items, so a single wrapped sentence breaks unpredictably. */}
           <div style={{ display: 'flex', flexDirection: 'column', fontSize: 76, lineHeight: 1.08, fontWeight: 600, letterSpacing: -2 }}>
             <div style={{ display: 'flex', color: PAPER }}>
-              Systems that pass&nbsp;<span style={{ color: AMBER }}>review</span>.
+              Cloud and AI that make it
             </div>
-            <div style={{ display: 'flex', color: PAPER }}>From cloud to AI.</div>
+            <div style={{ display: 'flex', color: PAPER }}>
+              into&nbsp;<span style={{ color: AMBER }}>production</span>.
+            </div>
           </div>
           <div style={{ display: 'flex', marginTop: 24, fontSize: 28, lineHeight: 1.4, color: MUTED, maxWidth: 980 }}>
             For banks, law firms and SaaS teams, starting with a fixed-fee plan.

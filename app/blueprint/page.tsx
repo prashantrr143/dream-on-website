@@ -234,8 +234,14 @@ export default function BlueprintPage() {
         </dl>
       </PageSection>
 
+      <PageCTA
+        title="Start with one problem"
+        body="Tell us what it is. If a Blueprint is the right first step, we will say so, and scope it with you at no cost."
+        primaryCta={{ label: 'Scope a Blueprint', href: `${PRIMARY_CTA.href}?interest=Consulting` }}
+      />
+
       {/* Questions */}
-      <PageSection tone="light" title="Common questions">
+      <PageSection tone="white" title="Common questions">
         <div style={{ maxWidth: '52rem' }}>
           {FAQ.map((f) => (
             <details key={f.q} className="ys-faq">
@@ -245,12 +251,6 @@ export default function BlueprintPage() {
           ))}
         </div>
       </PageSection>
-
-      <PageCTA
-        title="Start with one problem"
-        body="Tell us what it is. If a Blueprint is the right first step, we will say so, and scope it with you at no cost."
-        primaryCta={{ label: 'Scope a Blueprint', href: `${PRIMARY_CTA.href}?interest=Consulting` }}
-      />
     </SharedLayout>
   )
 }

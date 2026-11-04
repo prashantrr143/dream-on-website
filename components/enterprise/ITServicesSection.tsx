@@ -33,7 +33,7 @@ const ITServicesSection = () => (
     <div className="enterprise-container-wide">
       <div className="ys-sec-intro">
         <p className="ys-kicker">Industries</p>
-        <h2 id="home-industries">Built for regulated industries</h2>
+        <h2 id="home-industries">Built for banks, law firms and SaaS companies</h2>
       </div>
       <ul className="ys-sec-grid">
         {SECTORS.map((s) => (
