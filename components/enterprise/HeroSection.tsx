@@ -85,7 +85,7 @@ const HeroSection = () => {
           </h1>
 
           <p className="ys-hero-lede ys-hero-rise" style={{ ['--d' as string]: '780ms' }}>
-            We design, build and run cloud, software, data and AI systems for banks, law firms and SaaS
+            YatiSphere designs, builds and runs cloud, software, data and AI systems for banks, law firms and SaaS
             companies, in your own accounts and with the evidence your auditors, regulators and security teams ask for.
           </p>
 

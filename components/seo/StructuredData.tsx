@@ -82,6 +82,7 @@ export function WebSiteSchema() {
     '@id': `${SITE_URL}/#website`,
     url: SITE_URL,
     name: SITE_NAME,
+    alternateName: ['Yati Sphere', 'YatiSphere Technologies', 'yatisphere.com'],
     inLanguage: 'en-US',
     publisher: { '@id': ORG_ID },
     potentialAction: {
