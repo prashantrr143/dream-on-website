@@ -6,6 +6,7 @@ import { PageHero, PageSection, PageCTA } from '@/components/enterprise'
 import { PRIMARY_CTA } from '@/lib/cta'
 import { SITE_CONTACT } from '@/lib/site-contact'
 import { LEGAL_LAST_UPDATED } from '@/lib/legal'
+import { BreadcrumbSchema } from '@/components/seo/StructuredData'
 
 /**
  * Responsible AI (redesign, 2026-10-19: "tighten the UX and content, make
@@ -135,6 +136,7 @@ const YOU_DO = [
 export default function ResponsibleAIContent() {
   return (
     <SharedLayout>
+      <BreadcrumbSchema trail={[{ name: 'About', path: '/who-we-are/about' }, { name: 'Responsible AI', path: '/who-we-are/responsible-ai' }]} />
       <PageHero
         eyebrow="Responsible AI"
         title="Responsible AI: our commitments and controls"

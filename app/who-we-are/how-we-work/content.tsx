@@ -5,6 +5,7 @@ import { StageJourney } from '@/components/how-we-work/StageJourney'
 import { WorkingWithUs } from '@/components/enterprise/WorkingWithUs'
 import { PRIMARY_CTA } from '@/lib/cta'
 import { WORKING_ACROSS_REGIONS } from '@/lib/regions'
+import { BreadcrumbSchema } from '@/components/seo/StructuredData'
 
 /**
  * How we work (redesign, 2026-10-19). Order: the path and its decisions,
@@ -66,6 +67,7 @@ const FRAMEWORKS = ['GDPR', 'SOC 2', 'ISO/IEC 27001', 'HIPAA', 'PCI DSS', 'DPDP 
 export default function HowWeWorkContent() {
   return (
     <SharedLayout>
+      <BreadcrumbSchema trail={[{ name: 'About', path: '/who-we-are/about' }, { name: 'How we work', path: '/who-we-are/how-we-work' }]} />
       <PageHero
         eyebrow="How we work"
         title="How we work, from first call to live system"

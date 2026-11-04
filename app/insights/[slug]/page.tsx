@@ -8,6 +8,7 @@ import { PRIMARY_CTA, SECONDARY_CTA } from '@/lib/cta'
 import { ArrowRight } from 'lucide-react'
 import { ArticleToc } from '@/components/insights/ArticleToc'
 import { authorOf, authorSchema } from '@/lib/insights/author'
+import { BreadcrumbSchema } from '@/components/seo/StructuredData'
 
 /** Only visible articles get pages; drafts exist only in preview builds. */
 export const dynamicParams = false
@@ -49,6 +50,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       description: a.summary,
       url,
       type: 'article',
+      card: { title: a.title, kicker: `Insights · ${a.category}` },
       ...(a.publishedAt ? { publishedTime: a.publishedAt } : {}),
     }),
   }
@@ -86,6 +88,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 
   return (
     <SharedLayout>
+      <BreadcrumbSchema trail={[{ name: 'Insights', path: '/insights' }, { name: a.title, path: `/insights/${a.slug}` }]} />
       {schema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />}
 
       <PageHero eyebrow={`Insights · ${a.category}`} title={a.title} lede={a.summary} visual="lanes">

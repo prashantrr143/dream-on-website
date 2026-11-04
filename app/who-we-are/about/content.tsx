@@ -6,6 +6,7 @@ import { CompanyDetails } from '@/components/enterprise/CompanyDetails'
 import { PRIMARY_CTA, SECONDARY_CTA } from '@/lib/cta'
 import { peopleIn } from '@/content/people'
 import { founderLetter, principles, experience, howWeWork } from '@/content/about'
+import { BreadcrumbSchema } from '@/components/seo/StructuredData'
 
 /**
  * About (/who-we-are/about). Editorial, in the register of a serious
@@ -17,6 +18,7 @@ import { founderLetter, principles, experience, howWeWork } from '@/content/abou
 export default function AboutUs() {
   return (
     <SharedLayout>
+      <BreadcrumbSchema trail={[{ name: 'About', path: '/who-we-are/about' }]} />
       <PageHero
         eyebrow="WHO WE ARE / ABOUT"
         title="About YatiSphere"

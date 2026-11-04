@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     title: { absolute: title },
     description: p.summary,
     alternates: { canonical: url },
-    ...socialMeta({ title, description: p.summary, url }),
+    ...socialMeta({ title, description: p.summary, url, card: { title: `${p.name}, ${sentenceCase(p.role)}`, kicker: 'Leadership' } }),
   }
 }
 

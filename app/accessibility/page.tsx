@@ -4,6 +4,7 @@ import { PageHero, PageSection } from '@/components/enterprise'
 import { metaFor } from '@/lib/seo'
 import { SITE_CONTACT } from '@/lib/site-contact'
 import { LEGAL_LAST_UPDATED } from '@/lib/legal'
+import { BreadcrumbSchema } from '@/components/seo/StructuredData'
 
 export const metadata: Metadata = metaFor('/accessibility')
 
@@ -14,6 +15,7 @@ export const metadata: Metadata = metaFor('/accessibility')
 export default function AccessibilityPage() {
   return (
     <SharedLayout>
+      <BreadcrumbSchema trail={[{ name: 'Accessibility', path: '/accessibility' }]} />
       <PageHero eyebrow="ACCESSIBILITY" title="Accessibility statement" lede="We want everyone to be able to use this website, including people who use assistive technology." visual="network" />
       <PageSection tone="white">
         <div className="ys-statement-layout">

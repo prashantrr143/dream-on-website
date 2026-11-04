@@ -82,6 +82,28 @@ export const article: Article = {
       ],
     },
   ],
+  faq: [
+    {
+      q: "Why do AI pilots stall before production?",
+      a: "A pilot proves a model can do the task on a good day. Production has to answer what happens on a bad day: who notices, who is accountable, and whether you can show an auditor what the system did and why. The gap is mostly evaluation, guardrails, identity, monitoring and ownership, not model capability.",
+    },
+    {
+      q: "What should be agreed before an AI system is built?",
+      a: "An evaluation set of real, representative cases with expected outcomes, and pass thresholds per failure type, signed off by the business owner, the risk function and the engineering team. Thresholds set after the results come in tend to match the results.",
+    },
+    {
+      q: "How do you handle Azure OpenAI content filtering in production code?",
+      a: "Check for both signals Microsoft documents: a filtered prompt returns an HTTP 400 error, and a filtered completion returns a finish_reason of content_filter. If the filtering system is unavailable, a request can complete unfiltered with an error in content_filter_results, so treat that as a failure to handle.",
+    },
+    {
+      q: "Which AI actions need human approval?",
+      a: "Drafting, summarizing and classifying are low-stakes when a person reviews the output. Paying, approving, rejecting, sending or changing a record of fact should be prepared by the system and approved by a person, with the approver and the evidence written to an audit log.",
+    },
+    {
+      q: "How do model retirements affect a production AI system?",
+      a: "Microsoft gives generally available Foundry models a standard 18-month lifecycle, with some publishers on 12 months, after which requests return 410 Gone, and notices go out at least 60 days ahead. Pin model versions, track retirement dates and run your evaluation set against the replacement well before the date.",
+    },
+  ],
   sources: [
     {
       title: 'AI Risk Management Framework',
@@ -120,6 +142,7 @@ export const article: Article = {
     },
   ],
   related: [
+    { label: 'Enterprise architecture review', href: '/what-we-do/consulting/enterprise-architecture' },
     { label: 'Applied AI', href: '/what-we-do/applied-ai' },
     { label: 'Responsible AI', href: '/who-we-are/responsible-ai' },
     { label: 'Solution Blueprint', href: '/blueprint' },

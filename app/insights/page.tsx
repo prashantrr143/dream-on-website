@@ -6,6 +6,7 @@ import { PageHero, PageSection, PageCTA } from '@/components/enterprise'
 import { metaFor } from '@/lib/seo'
 import { visibleArticles, hasArticles } from '@/lib/insights'
 import { PRIMARY_CTA, SECONDARY_CTA } from '@/lib/cta'
+import { BreadcrumbSchema } from '@/components/seo/StructuredData'
 
 export const metadata: Metadata = {
   ...metaFor('/insights'),
@@ -19,6 +20,7 @@ export default function InsightsPage() {
 
   return (
     <SharedLayout>
+      <BreadcrumbSchema trail={[{ name: 'Insights', path: '/insights' }]} />
       <PageHero
         eyebrow="Insights"
         title="Insights on cloud, AI, security and regulation"

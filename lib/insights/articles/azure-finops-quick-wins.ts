@@ -73,6 +73,28 @@ export const article: Article = {
       ],
     },
   ],
+  faq: [
+    {
+      q: "What are the fastest Azure cost savings?",
+      a: "Enforce owner and cost center tags, turn on anomaly alerts for production subscriptions, and remove unattached managed disks and unused public IP addresses. Then rightsize from Azure Advisor, schedule non-production VMs, and only then buy commitments.",
+    },
+    {
+      q: "Do Azure budgets stop resources when the limit is reached?",
+      a: "No. Microsoft notes that budgets notify but do not stop resources, and costs are evaluated every 24 hours, so a budget is an early warning, not a spending cap. Budgets at subscription and resource group scope can trigger an action group for automation.",
+    },
+    {
+      q: "Does a stopped Azure VM still cost money?",
+      a: "A VM shut down from inside the operating system stays Stopped (allocated) and is still billed for compute. Only a deallocated VM stops compute charges, and its disks and some networking resources keep billing either way.",
+    },
+    {
+      q: "Should we buy Azure reservations or savings plans?",
+      a: "Reservations suit stable workloads in a fixed region and instance family; savings plans suit estates that are still changing. Microsoft cites up to 72% and 65% off pay-as-you-go respectively as best cases. Rightsize first, because commitments reduce rates, not waste.",
+    },
+    {
+      q: "Is Azure Advisor's savings estimate accurate?",
+      a: "Treat it as an upper bound. Microsoft says Advisor estimates savings at retail rates and does not account for existing reservations or savings plans, so the real figure can be lower.",
+    },
+  ],
   sources: [
     {
       title: 'FinOps Framework Phases',

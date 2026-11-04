@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation'
 import { CONTENT_PAGES, getContentPage } from '@/content/pages'
 import { ContentPageView } from '@/components/page/ContentPageView'
 import { IndustriesHub, IndustryView } from '@/components/industries/IndustryView'
-import { SITE_URL, socialMeta } from '@/lib/seo'
+import { SITE_URL, socialMeta, cardKicker } from '@/lib/seo'
 
 /** Every /what-we-do page is data in content/pages/; unknown paths 404. */
 export const dynamicParams = false
@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug?: st
     title: { absolute: page.meta.title },
     description: page.meta.description,
     alternates: { canonical: url },
-    ...socialMeta({ title: page.meta.title, description: page.meta.description, url }),
+    ...socialMeta({ title: page.meta.title, description: page.meta.description, url, card: { title: page.hero.h1, kicker: cardKicker(page.path) } }),
   }
 }
 

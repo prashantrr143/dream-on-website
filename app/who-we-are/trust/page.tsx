@@ -7,6 +7,7 @@ import { PRIMARY_CTA } from '@/lib/cta'
 import { LEGAL_LAST_UPDATED, LEGAL_ENTITY_NAME } from '@/lib/legal'
 import { SITE_CONTACT } from '@/lib/site-contact'
 import { siteConfig } from '@/lib/site.config'
+import { BreadcrumbSchema } from '@/components/seo/StructuredData'
 
 export const metadata: Metadata = metaFor('/who-we-are/trust')
 
@@ -130,6 +131,7 @@ const COMPANY_DETAILS = [
 export default function TrustPage() {
   return (
     <SharedLayout>
+      <BreadcrumbSchema trail={[{ name: 'About', path: '/who-we-are/about' }, { name: 'Trust center', path: '/who-we-are/trust' }]} />
       <PageHero
         eyebrow="Trust"
         title="Trust center"

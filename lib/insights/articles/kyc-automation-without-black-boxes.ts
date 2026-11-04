@@ -57,7 +57,7 @@ export const article: Article = {
       heading: 'The case file is the product',
       paragraphs: [
         'Explainability in KYC is less about model internals and more about whether a complete, time-stamped record exists for each customer: what was collected, which checks ran, which rule and model versions were used, what each returned, who reviewed what, and what they decided and why. If a case management system cannot reproduce that chain months later, the automation upstream does not matter.',
-        'In the EU, this is becoming explicit. The Anti-Money Laundering Regulation, (EU) 2024/1624, applies from 10 July 2027 for most obliged entities (as of October 2026). Article 76(5) allows decisions resulting from automated processes, including AI systems, provided that decisions to enter into, maintain or refuse a business relationship, or to change the extent of due diligence, are subject to meaningful human intervention, and that the customer can obtain an explanation of the decision and challenge it. Article 77 requires firms to retain the due diligence documents and information they obtain, including information obtained through electronic identification means.',
+        'In the EU, this is becoming explicit. The Anti-Money Laundering Regulation, (EU) 2024/1624, applies from July 10, 2027 for most obliged entities (as of October 2026). Article 76(5) allows decisions resulting from automated processes, including AI systems, provided that decisions to enter into, maintain or refuse a business relationship, or to change the extent of due diligence, are subject to meaningful human intervention, and that the customer can obtain an explanation of the decision and challenge it. Article 77 requires firms to retain the due diligence documents and information they obtain, including information obtained through electronic identification means.',
         'FATF\'s 2020 guidance on digital identity points the same way. It is non-binding, but it says that non-face-to-face identification relying on reliable, independent digital ID systems with appropriate risk mitigation may be standard risk, and may even be lower risk. That conclusion depends on the firm understanding the assurance levels of the digital ID system it relies on and recording that assessment, and the guidance notes that record-keeping requirements apply equally to digital and documentary evidence.',
       ],
     },
@@ -74,6 +74,28 @@ export const article: Article = {
       paragraphs: [
         'Pick one decision, usually sanctions and PEP potential-match review, and map it end to end: inputs, rules, model calls, reviewer screens, reason codes and the record left behind. Gaps in that map are the backlog. At YatiSphere this kind of mapping is what a Solution Blueprint covers before any build. We are cloud-neutral and model-agnostic, and code and infrastructure live in the client\'s own accounts. A person approves consequential actions, which in KYC means every decision to onboard, decline or escalate.',
       ],
+    },
+  ],
+  faq: [
+    {
+      q: "Can KYC decisions be automated and still be explainable?",
+      a: "Yes, if each decision is named separately (identity, screening, adverse media, risk rating, relationship), deterministic checks are written as versioned rules, every model output carries reasons a reviewer can check, and the case file records which checks ran, what they returned and who decided what.",
+    },
+    {
+      q: "Should a person review every sanctions or PEP potential match?",
+      a: "Yes. Automated screening produces potential matches, not conclusions. Route each one to a reviewer with matching and non-matching attributes side by side, and record a reason code and rationale for every discount or escalation.",
+    },
+    {
+      q: "Is SR 11-7 still the US model risk guidance?",
+      a: "No. On April 17, 2026 the Federal Reserve, OCC and FDIC issued SR 26-2, which replaces SR 11-7 and SR 21-8. It is risk-based, most relevant to banks with over $30 billion in assets, and excludes generative and agentic AI models from its scope.",
+    },
+    {
+      q: "What does the EU AML Regulation say about automated onboarding decisions?",
+      a: "Regulation (EU) 2024/1624, which applies from July 10, 2027 for most obliged entities, allows automated decisions if decisions to enter, maintain or refuse a relationship, or change due diligence, have meaningful human intervention, and the customer can get an explanation and challenge it.",
+    },
+    {
+      q: "Where should a KYC automation project start?",
+      a: "With one decision, usually sanctions and PEP potential-match review. Map it end to end: inputs, rules, model calls, reviewer screens, reason codes and the record left behind. The gaps in that map become the backlog.",
     },
   ],
   sources: [
@@ -114,6 +136,7 @@ export const article: Article = {
     },
   ],
   related: [
+    { label: 'Enterprise architecture review', href: '/what-we-do/consulting/enterprise-architecture' },
     { label: 'Financial services', href: '/what-we-do/industries/financial-services' },
     { label: 'Responsible AI', href: '/who-we-are/responsible-ai' },
     { label: 'Solution Blueprint', href: '/blueprint' },
