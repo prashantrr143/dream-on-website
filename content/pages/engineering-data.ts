@@ -149,7 +149,7 @@ export const pages: ContentPage[] = [
       },
     ],
     contactInterest: 'Engineering & data',
-    contact: { title: 'Is one system slowing every release?', body: 'Tell us which one and why. We reply within one working day.' },
+    contact: { title: 'Is one system slowing every release?', body: 'Tell us which one and why.' },
   },
 
   // ---------------------------------------------------------------------------
@@ -780,7 +780,7 @@ export const pages: ContentPage[] = [
       { type: 'inFocus', title: 'Further reading', services: ['security-compliance', 'engineering-data'] },
     ],
     contactInterest: 'Security & compliance',
-    contact: { title: 'Is an audit or a security questionnaire coming up?', body: 'Tell us the framework and the date. We reply within one working day.' },
+    contact: { title: 'Is an audit or a security questionnaire coming up?', body: 'Tell us the framework and the date.' },
   },
 
   // ---------------------------------------------------------------------------

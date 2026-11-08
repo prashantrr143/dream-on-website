@@ -101,7 +101,7 @@ export default async function RegionPage({ params }: { params: Promise<{ slug: s
 
       <PageCTA
         title={`Planning work in the ${r.slug === 'uk' ? 'UK' : 'Gulf'}?`}
-        body="Tell us what you are working on. We reply within one working day."
+        body="Tell us what you are working on."
         primaryCta={{ label: PRIMARY_CTA.label, href: PRIMARY_CTA.href }}
         secondaryCta={{ label: SECONDARY_CTA.label, href: SECONDARY_CTA.href }}
       />

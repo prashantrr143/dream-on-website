@@ -324,7 +324,7 @@ export function ContentPageView({ page }: { page: ContentPage }) {
       })}
       <PageCTA
         title={page.contact?.title ?? 'Tell us what you want to fix first'}
-        body={page.contact?.body ? firstSentence(page.contact.body) : 'We reply within one working day.'}
+        body={page.contact?.body ? firstSentence(page.contact.body) : 'Tell us what you are working on.'}
         primaryCta={{ label: PRIMARY_CTA.label, href: contactHref(page.contactInterest) }}
         secondaryCta={{ label: SECONDARY_CTA.label, href: SECONDARY_CTA.href }}
       />

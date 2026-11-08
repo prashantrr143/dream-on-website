@@ -1,7 +1,7 @@
 "use client"
 
 import Link from 'next/link'
-import { ArrowRight, Check, ClipboardList, Cpu, FileCheck2, ServerCog } from 'lucide-react'
+import { ArrowRight, Check, ClipboardList, Cpu, FileCheck2, Workflow } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import { PRIMARY_CTA, contactHref } from '@/lib/cta'
 import { SITE_CONTACT } from '@/lib/site-contact'
@@ -18,10 +18,10 @@ const STARTS: { label: string; line: string; href: string; Icon: LucideIcon }[] 
   { label: 'An AI pilot that stalled', line: 'Take it through review and into production.', href: contactHref('Applied AI'), Icon: Cpu },
   { label: 'A plan before a build', line: 'Design, plan and risks in 2–4 weeks, fixed fee.', href: '/blueprint', Icon: ClipboardList },
   { label: 'A security review or audit', line: 'Controls and evidence your reviewers accept.', href: contactHref('Engineering & data'), Icon: FileCheck2 },
-  { label: 'Cloud costs or an aging platform', line: 'Lower the bill, or move off the legacy system.', href: contactHref('Cloud: multi-cloud'), Icon: ServerCog },
+  { label: 'A process that eats hours', line: 'Hand the repetitive work to an agent. Keep the decisions.', href: contactHref('Applied AI'), Icon: Workflow },
 ]
 
-const ASSURE = ['Reply within one working day', 'Mutual NDA before details', 'Your code, your accounts']
+const ASSURE = ['A founder reads every message', 'Mutual NDA before details', 'Your code, your accounts']
 
 const FinalCTASection = () => {
   return (
@@ -34,7 +34,7 @@ const FinalCTASection = () => {
           <p className="ys-kicker ys-kicker-on-dark">Start a conversation</p>
           <h2 id="home-final" className="ys-final2-title">Which of these sounds like your team?</h2>
           <p className="ys-final2-sub">
-            Pick the closest match and tell us a little about it. Within one working day, we'll share how we would approach it and a sensible first step.
+            Pick the closest match and tell us a little about it. We'll share how we would approach it and a sensible first step.
           </p>
           <div className="ys-final2-ctas">
             <Link href={PRIMARY_CTA.href} className="ys-cta-primary group inline-flex items-center gap-2">

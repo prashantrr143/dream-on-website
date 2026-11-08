@@ -112,7 +112,7 @@ export default async function LeaderPage({ params }: { params: Promise<{ slug: s
 
       <PageCTA
         title="Talk to us"
-        body="Tell us what you are working on. We reply within one working day."
+        body="Tell us what you are working on."
         primaryCta={{ label: PRIMARY_CTA.label, href: PRIMARY_CTA.href }}
         secondaryCta={{ label: SECONDARY_CTA.label, href: SECONDARY_CTA.href }}
       />

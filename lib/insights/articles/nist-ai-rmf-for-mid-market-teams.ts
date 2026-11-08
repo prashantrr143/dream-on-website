@@ -1,11 +1,11 @@
 import type { Article } from '../types'
 
 /**
- * DRAFT (2026-11-01). US-led article on the NIST AI RMF for firms without a
- * large compliance function. Facts are taken only from the sources listed;
- * confirm the current revision status on nist.gov before publishing. To
- * publish: add the slug to lib/insights/published.ts, set status
- * 'published' and publishedAt.
+ * Published 2026-11-08. US-led article on the NIST AI RMF for firms without
+ * a large compliance function. Facts are taken only from the sources listed.
+ * Revision status re-checked 2026-11-08: AI RMF 1.0 is still the current
+ * version; NIST says it is being revised under the July 2025 AI Action Plan.
+ * Re-check that sentence when NIST publishes a new version.
  */
 export const article: Article = {
   slug: 'nist-ai-rmf-for-mid-market-teams',
@@ -16,14 +16,15 @@ export const article: Article = {
   category: 'Applied AI',
   readTime: '5 min read',
   author: 'YatiSphere team',
-  status: 'draft',
+  status: 'published',
+  publishedAt: '2026-11-08',
   tags: { industries: ['financial-services', 'software-saas'], services: ['applied-ai', 'ai-governance'], clouds: [] },
-  reviewedAt: '2026-11-01',
+  reviewedAt: '2026-11-08',
   sections: [
     {
       paragraphs: [
-        'NIST published the AI Risk Management Framework (AI RMF 1.0, NIST AI 100-1) in January 2023. It is voluntary guidance, not law. In July 2024 NIST added a Generative AI Profile (NIST AI 600-1) that applies the framework to generative AI and lists twelve risks specific to it, from confabulation to information security and value-chain integration.',
-        'For a mid-sized company the framework can look like a program for a bank. It does not have to be. Applied to one AI system at a time, its four functions turn into a short set of documents and checks that a security reviewer or a customer will recognise.',
+        'NIST published the AI Risk Management Framework (AI RMF 1.0, NIST AI 100-1) on January 26, 2023. It is voluntary guidance, not law, and there is no NIST certification attached to it. On July 26, 2024 NIST added a Generative AI Profile (NIST AI 600-1) that applies the framework to generative AI and lists twelve risks specific to it, from confabulation to information security and value-chain integration.',
+        'For a mid-sized company the framework can look like a program for a bank. It does not have to be. Applied to one AI system at a time, its four functions turn into a short set of documents and checks that a security reviewer or a customer will recognize.',
       ],
     },
     {
@@ -59,11 +60,45 @@ export const article: Article = {
     {
       heading: 'Where to start',
       paragraphs: [
-        'Pick the AI system closest to production and produce the four items above for it. That gives a reviewer something concrete to read, and gives the team a template for the next system. NIST has said the framework is being revised, so check the current version on nist.gov when you write your policy.',
+        'Pick the AI system closest to production and produce the four items above for it. That gives a reviewer something concrete to read, and gives the team a template for the next system.',
+      ],
+    },
+    {
+      heading: 'Which version to cite',
+      paragraphs: [
+        'As of November 2026, AI RMF 1.0 is still the current version. NIST says it is being revised as part of the White House AI Action Plan of July 2025 and has not published a successor or a date. In policies and customer answers, name the version you align to, for example “aligned with NIST AI RMF 1.0 (NIST AI 100-1) and the Generative AI Profile (NIST AI 600-1)”, and check nist.gov when you review the policy.',
       ],
     },
   ],
+  faq: [
+    {
+      q: 'Is the NIST AI RMF mandatory?',
+      a: 'No. NIST describes it as voluntary guidance, and there is no NIST certification for it. Customers, regulators and auditors often use it as a reference for what good AI risk management looks like.',
+    },
+    {
+      q: 'What is the NIST Generative AI Profile?',
+      a: 'NIST AI 600-1, published on July 26, 2024. It applies the AI RMF to generative AI, lists twelve risks specific to it, such as confabulation, data privacy and information security, and suggests actions for each.',
+    },
+    {
+      q: 'Is there a NIST AI RMF 2.0?',
+      a: 'Not as of November 2026. AI RMF 1.0 is the current version. NIST says it is being revised under the July 2025 AI Action Plan but has not published a new version or a date.',
+    },
+    {
+      q: 'What is the minimum a small team can do?',
+      a: 'For one AI system: a named owner and a one-page policy (Govern), a note on context and applicable risks (Map), a test set with agreed thresholds and results (Measure), and monitoring, a rollback trigger and a supplier review (Manage).',
+    },
+  ],
   sources: [
+    {
+      title: 'Artificial Intelligence Risk Management Framework (AI RMF 1.0), NIST AI 100-1',
+      url: 'https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf',
+      publisher: 'NIST',
+    },
+    {
+      title: 'Generative Artificial Intelligence Profile, NIST AI 600-1',
+      url: 'https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf',
+      publisher: 'NIST',
+    },
     {
       title: 'NIST AI Risk Management Framework and Generative AI Profile (summary)',
       url: 'https://docs.modulos.ai/frameworks/nist-ai-rmf/generative-ai-profile',

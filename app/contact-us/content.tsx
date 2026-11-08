@@ -15,7 +15,7 @@ import { normalizeInterest, SERVICE_INTERESTS } from '@/lib/countries'
  */
 
 const NEXT_STEPS = [
-  { name: 'We reply within one working day', body: 'We read what you send and reply with how we would approach it and a suggested first step.' },
+  { name: 'A founder reads every message', body: 'We read what you send and reply with how we would approach it and a suggested first step.' },
   { name: 'A first call, if it helps', body: 'The first call is free and carries no obligation. If you need to share details first, we sign a mutual NDA before you do.' },
   { name: 'A scoped first step', body: 'If a Solution Blueprint is the right start, we scope it with you at no cost: the questions it answers, the fixed fee and the 2–4 week timeline.' },
 ]
@@ -41,7 +41,7 @@ export default function ContactPage() {
             <p className="ys-kicker ys-kicker-on-dark">Contact</p>
             <h1 id="contact-title">Contact YatiSphere</h1>
             <p className="ys-contact-lede">
-              Tell us what you are working on. We reply within one working day with our view on how we can help and a suggested first step.
+              Tell us what you are working on. We reply with our view on how we can help and a suggested first step.
             </p>
           </div>
 

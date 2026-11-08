@@ -3,6 +3,7 @@ import { ArrowRight } from 'lucide-react'
 import SharedLayout from '@/components/shared-layout'
 import { PageHero, PageCTA } from '@/components/enterprise'
 import { CompanyDetails } from '@/components/enterprise/CompanyDetails'
+import { Partners } from '@/components/home/Partners'
 import { PRIMARY_CTA, SECONDARY_CTA } from '@/lib/cta'
 import { peopleIn } from '@/content/people'
 import { founderLetter, principles, experience, howWeWork } from '@/content/about'
@@ -193,6 +194,8 @@ export default function AboutUs() {
       </section>
 
       {/* 7. Registration facts, small and at the foot */}
+      <Partners />
+
       <CompanyDetails />
 
       <PageCTA

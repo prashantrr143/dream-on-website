@@ -54,7 +54,7 @@ export const pages: ContentPage[] = [
     parents: [WHAT_WE_DO],
     name: 'Applied AI',
     contactInterest: 'Applied AI',
-    contact: { title: 'Have an AI pilot that stalled?', body: 'Tell us what it does and where it got stuck. We reply within one working day.' },
+    contact: { title: 'Have an AI pilot that stalled?', body: 'Tell us what it does and where it got stuck.' },
     blocks: [
       {
         type: 'statement',
@@ -192,7 +192,7 @@ export const pages: ContentPage[] = [
     parents: [WHAT_WE_DO, APPLIED_AI],
     name: 'Claude practice',
     contactInterest: 'Claude',
-    contact: { title: 'Rolling out Claude or Claude Code?', body: 'Tell us how many people and which systems. We reply within one working day.' },
+    contact: { title: 'Rolling out Claude or Claude Code?', body: 'Tell us how many people and which systems.' },
     blocks: [
       {
         type: 'cards',
@@ -354,7 +354,7 @@ export const pages: ContentPage[] = [
     parents: [WHAT_WE_DO, APPLIED_AI],
     name: 'Agentic automation',
     contactInterest: 'Applied AI',
-    contact: { title: 'Have a document-heavy process that eats hours?', body: 'Tell us what the documents are and who decides. We reply within one working day.' },
+    contact: { title: 'Have a document-heavy process that eats hours?', body: 'Tell us what the documents are and who decides.' },
     blocks: [
       {
         type: 'statement',
@@ -769,7 +769,7 @@ export const pages: ContentPage[] = [
     parents: [WHAT_WE_DO, APPLIED_AI],
     name: 'AI governance',
     contactInterest: 'Applied AI',
-    contact: { title: 'Need AI through a model risk or compliance review?', body: 'Tell us the use case and who has to approve it. We reply within one working day.' },
+    contact: { title: 'Need AI through a model risk or compliance review?', body: 'Tell us the use case and who has to approve it.' },
     blocks: [
       {
         type: 'statement',
@@ -896,7 +896,7 @@ export const pages: ContentPage[] = [
     parents: [WHAT_WE_DO, APPLIED_AI],
     name: 'AI-assisted engineering',
     contactInterest: 'Claude',
-    contact: { title: 'Rolling out a coding assistant?', body: 'Tell us the team size and the tools you use today. We reply within one working day.' },
+    contact: { title: 'Rolling out a coding assistant?', body: 'Tell us the team size and the tools you use today.' },
     blocks: [
       {
         type: 'statement',

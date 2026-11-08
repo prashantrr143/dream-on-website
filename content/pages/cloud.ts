@@ -183,7 +183,7 @@ export const pages: ContentPage[] = [
       { type: 'inFocus', title: 'Further reading', services: ['cloud'] },
     ],
     contactInterest: 'Cloud',
-    contact: { title: 'Planning a landing zone, a migration or a cost review?', body: 'Tell us where the estate is today. We reply within one working day.' },
+    contact: { title: 'Planning a landing zone, a migration or a cost review?', body: 'Tell us where the estate is today.' },
   },
 
   // ───────────────────────────── AWS ─────────────────────────────
@@ -566,7 +566,7 @@ export const pages: ContentPage[] = [
       { type: 'inFocus', title: 'Further reading', services: ['cloud', 'migration'] },
     ],
     contactInterest: 'Cloud',
-    contact: { title: 'Planning a move to AWS or Azure?', body: 'Tell us what is moving and when. We reply within one working day.' },
+    contact: { title: 'Planning a move to AWS or Azure?', body: 'Tell us what is moving and when.' },
   },
 
   // ───────────────────────────── Landing zones ─────────────────────────────
