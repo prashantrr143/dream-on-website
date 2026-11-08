@@ -105,7 +105,7 @@ export function ContactForm({
   if (status === 'sent') {
     return (
       <div role="status" className="ys-form-done">
-        <h3 ref={headingRef} tabIndex={-1}>Thanks — a member of the team will reply within one working day.</h3>
+        <h3 ref={headingRef} tabIndex={-1}>Thanks. A member of the team will be in touch.</h3>
         {siteConfig.bookingUrl && isServices && (
           <p>
             Want to talk sooner?{' '}

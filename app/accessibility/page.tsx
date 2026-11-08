@@ -34,14 +34,14 @@ export default function AccessibilityPage() {
           <p>
             If something on this website is hard to use, email{' '}
             <a href={`mailto:${SITE_CONTACT.email}`} className="ys-link">{SITE_CONTACT.email}</a> with the page address and what
-            happened. We will reply within one working day and tell you what we will do about it.
+            happened. We will reply and tell you what we will do about it.
           </p>
           <p style={{ fontSize: 14, color: 'var(--ink-600)' }}>Last updated {LEGAL_LAST_UPDATED}.</p>
         </div>
         <aside className="ys-art-cta ys-statement-aside" aria-label="Report a barrier">
           <p className="ys-art-cta-kicker">Found a barrier?</p>
           <p className="ys-art-cta-title">Tell us and we will fix it.</p>
-          <p className="ys-art-cta-body">Send the page address and what happened. We reply within one working day.</p>
+          <p className="ys-art-cta-body">Send the page address and what happened.</p>
           <a href={`mailto:${SITE_CONTACT.email}`} className="ys-cta-primary inline-flex items-center">Email {SITE_CONTACT.email}</a>
         </aside>
         </div>

@@ -121,7 +121,7 @@ ${row('Received', stamp(now))}
 </td></tr>
 <tr><td style="padding:20px 28px 28px;">
 <a href="${replyHref}" style="display:inline-block;padding:12px 22px;border-radius:999px;background:${BLUE};color:#FFFFFF;font-size:15px;font-weight:600;text-decoration:none;">Reply to ${esc(firstName(q.name))}</a>
-<p style="margin:12px 0 0;font-size:13px;color:${MUTED};">Pressing Reply in your mail app also goes straight to them. We promise a reply within one working day.</p>
+<p style="margin:12px 0 0;font-size:13px;color:${MUTED};">Pressing Reply in your mail app also goes straight to them.</p>
 </td></tr>`
   return shell(`${q.name} at ${q.company}: ${q.problem.slice(0, 90)}`, body)
 }
@@ -142,7 +142,7 @@ export function ackHtml(name: string) {
   const body = `
 <tr><td style="padding:30px 28px 10px;">
 <h1 style="margin:0 0 14px;font-size:22px;line-height:1.3;color:${INK};">Thanks, ${hi}. We have your message.</h1>
-<p style="margin:0 0 14px;font-size:15px;line-height:1.65;color:${INK};">We will read it and reply within one working day, with how we would approach it and a suggested first step.</p>
+<p style="margin:0 0 14px;font-size:15px;line-height:1.65;color:${INK};">We will read it and reply with how we would approach it and a suggested first step.</p>
 <p style="margin:0 0 22px;font-size:15px;line-height:1.65;color:${INK};">If something is urgent, or you'd like to add detail, reply to this email. It goes straight to our team.</p>
 </td></tr>
 <tr><td style="padding:0 28px 28px;">
@@ -153,13 +153,13 @@ export function ackHtml(name: string) {
 </td></tr>
 </table>
 </td></tr>`
-  return shell('We will reply within one working day.', body)
+  return shell('Thanks, we have your message.', body)
 }
 
 export function ackText(name: string) {
   return `Thanks, ${firstName(name)}. We have your message.
 
-We will read it and reply within one working day, and tell you plainly whether we're the right people for it.
+We will read it and tell you plainly whether we're the right people for it.
 
 If something is urgent, or you'd like to add detail, reply to this email. It goes straight to our team.
 

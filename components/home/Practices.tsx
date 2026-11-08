@@ -5,7 +5,8 @@ import { ArrowRight, BrainCircuit, Check, Cloud, Database, Lock, ShieldCheck } f
 import type { LucideIcon } from 'lucide-react'
 
 /**
- * Home: what we do, drawn as a reference architecture (2026-11-01).
+ * Home: what we do, drawn as a reference architecture (2026-11-01; AI
+ * workflows on top, cloud at the base since 2026-11-08).
  *
  * One business, four layers, with security and compliance running through
  * all of them. Every capability we sell is visible on its layer, so nothing
@@ -33,30 +34,17 @@ interface Layer {
 
 const LAYERS: Layer[] = [
   {
-    id: 'cloud',
-    tag: 'L1',
-    name: 'Cloud foundations',
-    Icon: Cloud,
-    outcome: 'Controlled ground, in your own accounts.',
-    body: 'Landing zones, migration, cost control, operations and recovery on AWS and Microsoft Azure.',
-    caps: ['Landing zones', 'Migration', 'FinOps', 'Operations and DR'],
-    evidence: ['Landing zone defined as code', 'Budgets and tagging policy', 'A recovery plan you have tested'],
-    standards: ['SOC 2', 'ISO/IEC 27001'],
-    href: '/what-we-do/cloud',
-    linkLabel: 'Explore cloud foundations',
-  },
-  {
-    id: 'software',
-    tag: 'L2',
-    name: 'Software and data',
-    Icon: Database,
-    outcome: 'Systems of record that AI can safely act in.',
-    body: 'Core platforms, integration and data pipelines, and legacy modernization in reversible steps.',
-    caps: ['Core platforms', 'APIs and integration', 'Data platforms', 'Modernization'],
-    evidence: ['Architecture decision records', 'API contracts and integration tests', 'Data lineage and access rules'],
-    standards: ['SOC 2'],
-    href: '/what-we-do/engineering-data',
-    linkLabel: 'Explore software and data',
+    id: 'workflows',
+    tag: 'L4',
+    name: 'AI workflows',
+    Icon: BrainCircuit,
+    outcome: 'Work done by agents, approved by people.',
+    body: 'Agents and assistants inside intake, onboarding, KYC and claims, built on your data and your systems.',
+    caps: ['Agentic automation', 'Knowledge assistants', 'Claude practice', 'AI-assisted engineering'],
+    evidence: ['Workflow spec with approval points', 'Evaluation results on your own cases', 'Runbook and a named owner'],
+    standards: ['NIST AI RMF'],
+    href: '/what-we-do/applied-ai',
+    linkLabel: 'Take AI from pilot to production',
   },
   {
     id: 'governance',
@@ -72,17 +60,30 @@ const LAYERS: Layer[] = [
     linkLabel: 'Explore AI governance',
   },
   {
-    id: 'workflows',
-    tag: 'L4',
-    name: 'AI workflows',
-    Icon: BrainCircuit,
-    outcome: 'Work done by agents, approved by people.',
-    body: 'Agents and assistants inside intake, onboarding, KYC and claims, built on your data and your systems.',
-    caps: ['Agentic automation', 'Knowledge assistants', 'Claude practice', 'AI-assisted engineering'],
-    evidence: ['Workflow spec with approval points', 'Evaluation results on your own cases', 'Runbook and a named owner'],
-    standards: ['NIST AI RMF'],
-    href: '/what-we-do/applied-ai',
-    linkLabel: 'Take AI from pilot to production',
+    id: 'software',
+    tag: 'L2',
+    name: 'Software and data',
+    Icon: Database,
+    outcome: 'Systems of record that AI can safely act in.',
+    body: 'Core platforms, integration and data pipelines, and legacy modernization in reversible steps.',
+    caps: ['Core platforms', 'APIs and integration', 'Data platforms', 'Modernization'],
+    evidence: ['Architecture decision records', 'API contracts and integration tests', 'Data lineage and access rules'],
+    standards: ['SOC 2'],
+    href: '/what-we-do/engineering-data',
+    linkLabel: 'Explore software and data',
+  },
+  {
+    id: 'cloud',
+    tag: 'L1',
+    name: 'Cloud foundations',
+    Icon: Cloud,
+    outcome: 'Controlled ground, in your own accounts.',
+    body: 'Landing zones, migration, cost control, operations and recovery on AWS, Microsoft Azure and Google Cloud.',
+    caps: ['Landing zones', 'Migration', 'FinOps', 'Operations and DR'],
+    evidence: ['Landing zone defined as code', 'Budgets and tagging policy', 'A recovery plan you have tested'],
+    standards: ['SOC 2', 'ISO/IEC 27001'],
+    href: '/what-we-do/cloud',
+    linkLabel: 'Explore cloud foundations',
   },
 ]
 
@@ -146,9 +147,9 @@ export function Practices() {
           {/* Left: the argument, then the layer in focus */}
           <div className="ys-arch2-copy">
             <p className="ys-kicker">What we do</p>
-            <h2 id="home-practices">What we build, from cloud foundations to AI workflows</h2>
+            <h2 id="home-practices">What we build, from AI workflows down to the ground they run on</h2>
             <p className="ys-arch2-lede">
-              We design, build and run every layer, so the AI your customers and regulators see runs on cloud, data and controls made for it.
+              An agent is only as trustworthy as what sits under it. We build every layer, so the AI your people approve runs on data, controls and cloud made for it.
             </p>
 
             <div className="ys-arch2-detail" id="ys-arch2-panel" role="region" aria-live="polite" aria-label={cur.name}>
@@ -183,7 +184,7 @@ export function Practices() {
             <div className="ys-arch2-frame">
               <p className="ys-arch2-frame-title">
                 <span>Your platform, layer by layer</span>
-                <span className="ys-arch2-frame-clouds">AWS · Microsoft Azure</span>
+                <span className="ys-arch2-frame-clouds">AWS · Azure · Google Cloud</span>
               </p>
               <div className="ys-arch2-grid">
                 <ul
@@ -232,7 +233,7 @@ export function Practices() {
                 </button>
               </div>
               <div className="ys-arch2-base" aria-label="Where it runs">
-                <span>Runs in your AWS or Azure account</span>
+                <span>Runs in your own infrastructure</span>
                 <span>Your region</span>
                 <span>Your code and data</span>
               </div>
@@ -247,7 +248,7 @@ export function Practices() {
         <a href="/blueprint" className="ys-stack-entry">
           <span className="ys-stack-entry-tag">Start here</span>
           <span className="ys-stack-entry-text">
-            <b>Not sure which layer you need?</b> A Solution Blueprint gives you the design, plan and risks in 2–4 weeks, for a fixed fee.
+            <b>Not sure where to start?</b> A Solution Blueprint gives you the design, plan and risks in 2–4 weeks, for a fixed fee.
           </span>
           <span className="ys-stack-cta">
             Scope a Blueprint

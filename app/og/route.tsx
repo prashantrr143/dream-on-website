@@ -22,7 +22,7 @@ const clip = (s: string, n: number) => (s.length > n ? `${s.slice(0, n - 1).trim
 
 export async function GET(req: Request) {
   const q = new URL(req.url).searchParams
-  const title = clip(q.get('t') ?? 'Cloud and AI that make it into production', 96)
+  const title = clip(q.get('t') ?? 'Hand off the work. Keep the judgment.', 96)
   const kicker = clip(q.get('k') ?? 'YatiSphere', 48)
   const size = title.length > 64 ? 56 : title.length > 40 ? 64 : 72
 

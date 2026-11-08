@@ -183,7 +183,7 @@ export default function HowWeWorkContent() {
 
       <PageCTA
         title={'What’s the problem you’d fix first?'}
-        body="Describe it in a few lines. We reply within one working day with how we'd approach it."
+        body="Describe it in a few lines. We reply with how we'd approach it."
         primaryCta={{ label: PRIMARY_CTA.label, href: PRIMARY_CTA.href }}
       />
     </SharedLayout>

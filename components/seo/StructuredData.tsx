@@ -39,8 +39,8 @@ export function OrganizationSchema() {
     logo: `${SITE_URL}/brand/yatisphere/icon/yatisphere-icon-512.png`,
     image: `${SITE_URL}/brand/yatisphere/social/og-image.jpg`,
     description:
-      'YatiSphere designs, builds and runs cloud, software, data and AI systems for banks, law firms and SaaS companies, in the client’s own AWS or Azure accounts, starting with a fixed-fee Solution Blueprint.',
-    slogan: 'Cloud and AI that make it into production.',
+      'YatiSphere builds AI agents and workflows for law firms, banks and SaaS companies, in the client’s own infrastructure, on the cloud, data and controls they need to run safely, starting with a fixed-fee Solution Blueprint.',
+    slogan: 'Hand off the work. Keep the judgment.',
     email: SITE_CONTACT.email,
     foundingDate: '2025-12-22',
     founder: { '@type': 'Person', name: 'Ruchika Raturi', jobTitle: 'Founder & Chief Executive Officer', url: `${SITE_URL}/who-we-are/leadership` },
@@ -48,7 +48,7 @@ export function OrganizationSchema() {
     contactPoint: { '@type': 'ContactPoint', contactType: 'sales', email: SITE_CONTACT.email, url: `${SITE_URL}/contact-us`, availableLanguage: ['English'] },
     ...(siteConfig.company.cin ? { identifier: { '@type': 'PropertyValue', propertyID: 'CIN', value: siteConfig.company.cin } } : {}),
     ...(phone ? { telephone: phone } : {}),
-    ...(linkedin ? { sameAs: [linkedin] } : {}),
+    sameAs: [linkedin, 'https://www.goodfirms.co/company/yatisphere'].filter(Boolean),
     address: {
       '@type': 'PostalAddress',
       addressCountry: office.country,

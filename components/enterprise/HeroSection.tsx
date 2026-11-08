@@ -27,7 +27,7 @@ const BUILD_ON: { label: string; Icon: typeof Cloud; logo?: string; logoWidth?: 
 ]
 
 /** Headline, split into words for the staged reveal. */
-const TITLE = ['Cloud', 'and', 'AI', 'that', 'make', 'it', '\n', 'into', 'production.']
+const TITLE = ['Hand', 'off', 'the', 'work.', '\n', 'Keep', 'the', 'judgment.']
 
 const HeroSection = () => {
   // The 3D field replaces the static motif once it has drawn a frame.
@@ -69,12 +69,12 @@ const HeroSection = () => {
         <div className="ys-hero-center" ref={copy}>
           <h1 className="ys-hero-title">
             {/* Real spaces between the animated words, so the indexed and
-                copied text reads "Cloud and AI that make it into production." and
+                copied text reads "Hand off the work. Keep the judgment." and
                 not "CloudandAIthatmakeit..." */}
             {TITLE.map((w, i) => w === '\n' ? <br key="br" /> : (
               <Fragment key={`${w}-${i}`}>
                 <span
-                  className={`ys-hero-word${w.startsWith('production') ? ' ys-hero-word-accent' : ''}`}
+                  className={`ys-hero-word${w.startsWith('judgment') ? ' ys-hero-word-accent' : ''}`}
                   style={{ ['--i' as string]: i }}
                 >
                   {w}
@@ -85,8 +85,9 @@ const HeroSection = () => {
           </h1>
 
           <p className="ys-hero-lede ys-hero-rise" style={{ ['--d' as string]: '780ms' }}>
-            YatiSphere designs, builds and runs cloud, software, data and AI systems for banks, law firms and SaaS
-            companies, in your own accounts and with the evidence your auditors, regulators and security teams ask for.
+            YatiSphere is your partner for building AI agents and generative AI workflows for law firms, banks and
+            SaaS companies, in your own infrastructure. Agents do the repetitive work, your people approve what
+            matters, and every step is logged.
           </p>
 
           <div className="ys-hero-ctas ys-hero-rise" style={{ ['--d' as string]: '920ms' }}>

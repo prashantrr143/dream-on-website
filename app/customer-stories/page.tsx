@@ -104,7 +104,7 @@ export default async function CaseStudiesPage({
 
       <PageCTA
         title="Have a problem like these?"
-        body="Describe it in a few lines. A founder replies within one working day."
+        body="Describe it in a few lines. A founder reads every message."
         primaryCta={{ label: PRIMARY_CTA.label, href: PRIMARY_CTA.href }}
         secondaryCta={{ label: SECONDARY_CTA.label, href: SECONDARY_CTA.href }}
       />

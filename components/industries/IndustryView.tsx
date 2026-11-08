@@ -298,7 +298,7 @@ export function IndustriesHub({ page }: { page: ContentPage }) {
       </PageSection>
       <PageCTA
         title="Tell us what you want to fix first"
-        body="We reply within one working day."
+        body="Tell us what you are working on."
         primaryCta={{ label: PRIMARY_CTA.label, href: PRIMARY_CTA.href }}
         secondaryCta={{ label: 'Start with a Blueprint', href: '/blueprint' }}
       />

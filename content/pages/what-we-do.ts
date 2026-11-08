@@ -5,7 +5,7 @@ export const pages: ContentPage[] = [
   {
     path: '/what-we-do',
     name: 'What we do',
-    contact: { title: 'Not sure which service fits?', body: 'Describe the problem in a few lines and we will point you to the right starting point. We reply within one working day.' },
+    contact: { title: 'Not sure which service fits?', body: 'Describe the problem in a few lines and we will point you to the right starting point.' },
     parents: [],
     meta: {
       title: 'Cloud, software, data and AI services | YatiSphere',

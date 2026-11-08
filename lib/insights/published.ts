@@ -8,10 +8,12 @@
  * (tests/content.spec.ts) fails if the two ever disagree.
  */
 export const PUBLISHED_INSIGHT_SLUGS: string[] = [
+  'aba-opinion-512-generative-ai-law-firms',
   'azure-finops-quick-wins',
   'azure-openai-uae-north-data-residency',
   'eu-ai-act-for-financial-services-operations',
   'kyc-automation-without-black-boxes',
+  'nist-ai-rmf-for-mid-market-teams',
   'soc-2-evidence-from-pipelines',
   'taking-an-ai-pilot-to-production',
 ]

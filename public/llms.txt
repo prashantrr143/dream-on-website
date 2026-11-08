@@ -1,6 +1,6 @@
 # YatiSphere
 
-> YatiSphere designs, builds and runs cloud, software, data and AI systems for banks, insurers, law firms and B2B SaaS companies. Work is done in the client's own AWS or Microsoft Azure accounts, with the controls auditors and security reviewers ask for. Engagements start with a fixed-fee Solution Blueprint (two to four weeks).
+> YatiSphere builds AI agents and workflows for law firms, banks, insurers and B2B SaaS companies: agents do the repetitive work, people approve what matters, and every step is logged. Work is done in the client's own infrastructure on AWS, Microsoft Azure or Google Cloud, together with the cloud, data and controls the agents need. Engagements start with a fixed-fee Solution Blueprint (two to four weeks).
 
 YatiSphere Technologies Private Limited is registered in Noida, India (CIN U62013UP2025PTC239315) and works with clients worldwide, with a focus on the United States, the United Kingdom, Europe, the Middle East and India. Contact: sales@yatisphere.com or https://yatisphere.com/contact-us.
 

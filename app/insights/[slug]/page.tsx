@@ -129,7 +129,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
             <div className="ys-art-cta">
               <p className="ys-art-cta-kicker">{a.category}</p>
               <p className="ys-art-cta-title">Working on this now?</p>
-              <p className="ys-art-cta-body">We reply within one working day.</p>
+              <p className="ys-art-cta-body">Tell us what you are working on.</p>
               <a href={PRIMARY_CTA.href} className="ys-cta-primary inline-flex items-center gap-2">
                 {PRIMARY_CTA.label}
                 <ArrowRight className="w-4 h-4 shrink-0" strokeWidth={2.5} aria-hidden="true" />
@@ -222,7 +222,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 
       <PageCTA
         title="Facing this in your own estate?"
-        body="Tell us what you are working on. We reply within one working day."
+        body="Tell us what you are working on."
         primaryCta={{ label: PRIMARY_CTA.label, href: PRIMARY_CTA.href }}
         secondaryCta={{ label: SECONDARY_CTA.label, href: SECONDARY_CTA.href }}
       />

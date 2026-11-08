@@ -291,7 +291,7 @@ export const pages: ContentPage[] = [
     name: 'Enterprise architecture review',
     parents: PARENTS,
     contactInterest: 'Consulting',
-    contact: { title: 'Facing a decision that is hard to reverse?', body: 'Tell us what is being decided and by when. We reply within one working day.' },
+    contact: { title: 'Facing a decision that is hard to reverse?', body: 'Tell us what is being decided and by when.' },
     meta: {
       title: 'Enterprise architecture review and consulting | YatiSphere',
       description:

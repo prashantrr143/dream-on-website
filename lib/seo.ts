@@ -26,7 +26,7 @@ export const OG_IMAGE = {
   url: '/opengraph-image',
   width: 1200,
   height: 630,
-  alt: 'YatiSphere: Cloud and AI that make it into production.',
+  alt: 'YatiSphere: Hand off the work. Keep the judgment.',
 }
 
 /** openGraph + twitter for one page, with the shared image and locale. */
@@ -72,9 +72,9 @@ interface RouteMeta {
 
 export const ROUTE_META: Record<string, RouteMeta> = {
   '/': {
-    title: 'YatiSphere | Cloud and AI for banks, law firms and SaaS',
+    title: 'YatiSphere | AI agents for law firms, banks and SaaS',
     description:
-      'YatiSphere designs, builds and runs cloud, software, data and AI for banks, law firms and SaaS companies, starting with a fixed-fee plan.',
+      'YatiSphere is your partner for building AI agents and generative AI workflows for law firms, banks and SaaS, in your own infrastructure.',
   },
 
   '/who-we-are/how-we-work': {
@@ -90,7 +90,7 @@ export const ROUTE_META: Record<string, RouteMeta> = {
   '/contact-us': {
     title: 'Contact us | YatiSphere',
     description:
-      'Contact YatiSphere about cloud, software, data or AI work. We reply within one working day and tell you plainly whether we are the right team.',
+      'Contact YatiSphere about cloud, software, data or AI work. We tell you plainly whether we are the right team.',
   },
   '/blueprint': {
     title: 'Fixed-fee AI readiness assessment: Blueprint | YatiSphere',

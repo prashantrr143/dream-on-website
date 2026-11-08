@@ -12,7 +12,7 @@ import { ArrowRight } from 'lucide-react'
 const ROWS: { label: string; body: string; link?: { label: string; href: string } }[] = [
   {
     label: 'First conversation',
-    body: 'We reply within one working day. The first call is free and carries no obligation; if we’re not the best fit, we’ll say so and point you in a better direction.',
+    body: 'The first call is free and carries no obligation; if we’re not the best fit, we’ll say so and point you in a better direction.',
   },
   {
     label: 'Paperwork',

@@ -84,7 +84,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
 
       <PageCTA
         title="Facing something similar?"
-        body="Describe it in a few lines. A founder replies within one working day."
+        body="Describe it in a few lines. A founder reads every message."
         primaryCta={{ label: PRIMARY_CTA.label, href: PRIMARY_CTA.href }}
         secondaryCta={{ label: SECONDARY_CTA.label, href: SECONDARY_CTA.href }}
       />

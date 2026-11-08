@@ -12,7 +12,7 @@ import { ImageResponse } from 'next/og'
  */
 
 export const runtime = 'nodejs'
-export const alt = 'YatiSphere: Cloud and AI that make it into production.'
+export const alt = 'YatiSphere: Hand off the work. Keep the judgment.'
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 

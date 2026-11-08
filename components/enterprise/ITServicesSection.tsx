@@ -9,21 +9,21 @@ import type { LucideIcon } from 'lucide-react'
 
 const SECTORS: { href: string; name: string; line: string; Icon: LucideIcon }[] = [
   {
-    href: '/what-we-do/industries/financial-services',
-    name: 'Financial services',
-    line: 'Banks, insurers, wealth managers and fintechs.',
-    Icon: Landmark,
-  },
-  {
     href: '/what-we-do/industries/legal-professional-services',
     name: 'Legal & professional services',
-    line: 'Law firms, in-house legal teams and advisory firms.',
+    line: 'Agents for intake and conflict checks, with a partner approving every clearance.',
     Icon: Scale,
+  },
+  {
+    href: '/what-we-do/industries/financial-services',
+    name: 'Financial services',
+    line: 'Agents for onboarding, KYC and claims, with an examiner-ready trail.',
+    Icon: Landmark,
   },
   {
     href: '/what-we-do/industries/software-saas',
     name: 'Software & SaaS',
-    line: 'B2B software companies selling to enterprises.',
+    line: 'AI features and delivery evidence that pass your customers’ security reviews.',
     Icon: CodeXml,
   },
 ]
@@ -33,7 +33,7 @@ const ITServicesSection = () => (
     <div className="enterprise-container-wide">
       <div className="ys-sec-intro">
         <p className="ys-kicker">Industries</p>
-        <h2 id="home-industries">Built for banks, law firms and SaaS companies</h2>
+        <h2 id="home-industries">Built for law firms, banks and SaaS companies</h2>
       </div>
       <ul className="ys-sec-grid">
         {SECTORS.map((s) => (
