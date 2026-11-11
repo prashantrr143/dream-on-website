@@ -47,14 +47,14 @@ export default async function OpengraphImage() {
               items, so a single wrapped sentence breaks unpredictably. */}
           <div style={{ display: 'flex', flexDirection: 'column', fontSize: 76, lineHeight: 1.08, fontWeight: 600, letterSpacing: -2 }}>
             <div style={{ display: 'flex', color: PAPER }}>
-              Cloud and AI that make it
+              Hand off the work.
             </div>
             <div style={{ display: 'flex', color: PAPER }}>
-              into&nbsp;<span style={{ color: AMBER }}>production</span>.
+              Keep the&nbsp;<span style={{ color: AMBER }}>judgment</span>.
             </div>
           </div>
           <div style={{ display: 'flex', marginTop: 24, fontSize: 28, lineHeight: 1.4, color: MUTED, maxWidth: 980 }}>
-            For banks, law firms and SaaS teams, starting with a fixed-fee plan.
+            AI agents and workflows for law firms, banks and SaaS, built in your own infrastructure.
           </div>
         </div>
 
@@ -69,7 +69,7 @@ export default async function OpengraphImage() {
             color: MUTED,
           }}
         >
-          <div style={{ display: 'flex' }}>Consulting · Cloud · Applied AI · Engineering &amp; data</div>
+          <div style={{ display: 'flex' }}>Law firms · Banks · SaaS</div>
           <div style={{ display: 'flex', color: PAPER }}>yatisphere.com</div>
         </div>
       </div>

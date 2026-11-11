@@ -22,6 +22,7 @@ const PRIORITY: Record<string, number> = {
   '/what-we-do/cloud': 0.9,
   '/what-we-do/applied-ai': 0.9,
   '/what-we-do/applied-ai/claude': 0.9,
+  '/what-we-do/applied-ai/local-ai': 0.9,
   '/what-we-do/engineering-data': 0.9,
   '/who-we-are/how-we-work': 0.8,
   '/who-we-are/about': 0.8,
@@ -35,14 +36,22 @@ function priorityFor(route: string): number {
   return depth >= 3 ? 0.7 : depth === 2 ? 0.8 : 0.6
 }
 
+function articleDate(a: (typeof publishedArticles)[number]): string {
+  return a.reviewedAt > (a.publishedAt ?? '') ? a.reviewedAt : a.publishedAt!
+}
+
 /**
  * lastmod only where we know a real date. Stamping every URL with the
  * build time tells Google every page changed on every deploy, and Google
  * then ignores lastmod for the whole site.
  */
 function lastModifiedFor(route: string): Date | undefined {
+  // The hub changes whenever an article is published or re-checked.
+  if (route === '/insights' && publishedArticles.length > 0) {
+    return new Date(publishedArticles.map(articleDate).sort().at(-1)!)
+  }
   const article = publishedArticles.find((a) => `/insights/${a.slug}` === route)
-  if (article) return new Date(article.reviewedAt > (article.publishedAt ?? '') ? article.reviewedAt : article.publishedAt!)
+  if (article) return new Date(articleDate(article))
   const region = REGION_PAGES.find((r) => `/regions/${r.slug}` === route)
   if (region) return new Date(region.reviewedAt)
   return undefined

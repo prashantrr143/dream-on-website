@@ -44,7 +44,7 @@ export async function GET(req: Request) {
         </div>
         <div style={{ display: 'flex', fontSize: size, lineHeight: 1.12, fontWeight: 600, letterSpacing: -1.5, color: PAPER, maxWidth: 1040 }}>{title}</div>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderTop: `1px solid ${LINE}`, paddingTop: 22, fontSize: 24, color: MUTED }}>
-          <div style={{ display: 'flex' }}>Cloud · Software · Data · Applied AI</div>
+          <div style={{ display: 'flex' }}>AI agents and workflows, in your own infrastructure</div>
           <div style={{ display: 'flex', color: PAPER }}>yatisphere.com</div>
         </div>
       </div>

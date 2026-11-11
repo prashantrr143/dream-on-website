@@ -18,6 +18,14 @@ export interface ArticleSection {
   paragraphs: string[]
   /** Optional bullet list, rendered after the paragraphs. */
   bullets?: string[]
+  /**
+   * Optional code or config sample, rendered after the bullets (2026-11-11,
+   * for technical articles). Text inside `backticks` in paragraphs and
+   * bullets renders as inline code.
+   */
+  code?: { lang: string; caption?: string; text: string }
+  /** Optional drawing from components/insights, by key, rendered before the code sample. */
+  figure?: { key: 'mcp-anatomy'; caption?: string }
 }
 
 export interface Article {
