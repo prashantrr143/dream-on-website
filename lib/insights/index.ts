@@ -7,6 +7,8 @@ import { article as kycAutomation } from './articles/kyc-automation-without-blac
 import { article as azureFinops } from './articles/azure-finops-quick-wins'
 import { article as aba512 } from './articles/aba-opinion-512-generative-ai-law-firms'
 import { article as nistRmf } from './articles/nist-ai-rmf-for-mid-market-teams'
+import { article as mcpGovernance } from './articles/mcp-governance-for-regulated-firms'
+import { article as mcpAnatomy } from './articles/anatomy-of-mcp'
 
 export type { Article, ArticleSection, ArticleSource } from './types'
 
@@ -27,6 +29,8 @@ export const ALL_ARTICLES: Article[] = [
   azureFinops,
   aba512,
   nistRmf,
+  mcpGovernance,
+  mcpAnatomy,
 ]
 
 export const INSIGHTS_PREVIEW =

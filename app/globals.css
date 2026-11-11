@@ -5090,3 +5090,29 @@ a.ys-open-item::before,
 .ys-route-cls.is-local { color: var(--amber-500); border-color: rgb(248 184 0 / 0.55); }
 .ys-route-to { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: var(--white); white-space: nowrap; }
 @media (max-width: 560px) { .ys-route-list li { flex-direction: column; align-items: flex-start; } .ys-route-dest { align-items: flex-start; } }
+
+/* Insights: inline code and code samples (2026-11-11, technical articles). */
+.ys-art p code, .ys-art li code { padding: 1px 6px; border-radius: 5px; background: var(--grey-50); border: 1px solid var(--grey-200); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.86em; color: var(--ink-900); overflow-wrap: anywhere; }
+.ys-art-code { margin: 4px 0 24px; }
+.ys-art-code pre { margin: 0; padding: 18px 20px; border-radius: 12px; background: var(--navy-950); border: 1px solid var(--rule-navy); overflow-x: auto; }
+.ys-art-code pre:focus-visible { outline: 2px solid var(--blue-600); outline-offset: 2px; }
+.ys-art-code code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 13.5px; line-height: 1.65; color: #e6edf6; white-space: pre; }
+.ys-art-code figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--ink-600); }
+.ys-art-figure { margin: 8px 0 28px; padding: clamp(12px, 2vw, 20px); border-radius: 14px; border: 1px solid var(--grey-200); background: var(--white); }
+.ys-art-figure-scroll { overflow-x: auto; }
+.ys-art-figure-scroll:focus-visible { outline: 2px solid var(--blue-600); outline-offset: 2px; }
+@media (max-width: 639px) { .ys-art-figure-scroll svg { min-width: 620px; } }
+.ys-art-figure figcaption { margin-top: 10px; font-size: 14px; line-height: 1.5; color: var(--ink-600); }
+
+/* Insights layout without the side column (2026-11-11): contents | text.
+   The sticky details card overlapped wide content; details now sit in
+   one line above the article (.ys-art-byline). */
+.ys-art-layout { grid-template-areas: "toc" "article"; }
+@media (min-width: 1024px) {
+  .ys-art-layout { grid-template-columns: 220px minmax(0, 46rem); grid-template-areas: "toc article"; justify-content: start; }
+}
+@media (min-width: 1240px) {
+  .ys-art-layout { grid-template-columns: 240px minmax(0, 48rem); column-gap: 80px; }
+}
+.ys-art-byline { display: flex; flex-wrap: wrap; gap: 4px 0; margin: 0 0 28px; padding-bottom: 16px; border-bottom: 1px solid var(--grey-200); font-size: 14.5px !important; line-height: 1.5 !important; color: var(--ink-600) !important; }
+.ys-art-byline span + span::before { content: '·'; margin: 0 10px; color: var(--grey-200); }

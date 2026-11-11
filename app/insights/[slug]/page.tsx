@@ -7,6 +7,7 @@ import { visibleArticles, getVisibleArticle } from '@/lib/insights'
 import { PRIMARY_CTA, SECONDARY_CTA } from '@/lib/cta'
 import { ArrowRight } from 'lucide-react'
 import { ArticleToc } from '@/components/insights/ArticleToc'
+import { McpAnatomyDiagram } from '@/components/insights/McpAnatomyDiagram'
 import { authorOf, authorSchema } from '@/lib/insights/author'
 import { BreadcrumbSchema } from '@/components/seo/StructuredData'
 
@@ -15,6 +16,17 @@ export const dynamicParams = false
 
 export function generateStaticParams() {
   return visibleArticles.map((a) => ({ slug: a.slug }))
+}
+
+/** Drawings an article section can include by key. */
+const FIGURES = { 'mcp-anatomy': McpAnatomyDiagram } as const
+
+/** `backtick` spans in article text render as inline code. */
+function withCode(text: string) {
+  if (!text.includes('`')) return text
+  return text.split(/(`[^`]+`)/g).map((part, i) =>
+    part.startsWith('`') && part.endsWith('`') && part.length > 2 ? <code key={i}>{part.slice(1, -1)}</code> : part,
+  )
 }
 
 /** Stable, unique anchors from section headings. */
@@ -102,56 +114,60 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 
       <PageSection tone="white">
         <div className="ys-art-layout">
-          {/* Details first in the DOM, so small screens see them before the text. */}
-          <aside className="ys-art-aside" aria-label="About this article">
-            <dl className="ys-art-meta">
-              <div>
-                <dt>Written by</dt>
-                <dd>
-                  {author ? (
-                    <>
-                      {author.linkedinUrl ? (
-                        <a href={author.linkedinUrl} rel="author noopener noreferrer" target="_blank" className="ys-link">{author.name}</a>
-                      ) : (
-                        <a href="/who-we-are/leadership" rel="author" className="ys-link">{author.name}</a>
-                      )}
-                      <span className="ys-art-role">{author.role}</span>
-                    </>
-                  ) : (
-                    'YatiSphere team'
-                  )}
-                </dd>
-              </div>
-              <div><dt>Reading time</dt><dd>{a.readTime}</dd></div>
-              {a.publishedAt && <div><dt>Published</dt><dd>{longDate(a.publishedAt)}</dd></div>}
-              <div><dt>Facts checked</dt><dd>{longDate(a.reviewedAt)}</dd></div>
-            </dl>
-            <div className="ys-art-cta">
-              <p className="ys-art-cta-kicker">{a.category}</p>
-              <p className="ys-art-cta-title">Working on this now?</p>
-              <p className="ys-art-cta-body">Tell us what you are working on.</p>
-              <a href={PRIMARY_CTA.href} className="ys-cta-primary inline-flex items-center gap-2">
-                {PRIMARY_CTA.label}
-                <ArrowRight className="w-4 h-4 shrink-0" strokeWidth={2.5} aria-hidden="true" />
-              </a>
-            </div>
-          </aside>
 
           <ArticleToc items={toc} />
 
           <article className="ys-art">
+            {/* Article details as one line above the text (2026-11-11): the old
+                sticky side column overlapped wide content such as code and diagrams. */}
+            <p className="ys-art-byline">
+              <span>
+                {author ? (
+                  author.linkedinUrl ? (
+                    <a href={author.linkedinUrl} rel="author noopener noreferrer" target="_blank" className="ys-link">{author.name}</a>
+                  ) : (
+                    <a href="/who-we-are/leadership" rel="author" className="ys-link">{author.name}</a>
+                  )
+                ) : (
+                  'YatiSphere team'
+                )}
+              </span>
+              <span>{a.readTime}</span>
+              {a.publishedAt && <span>Published {longDate(a.publishedAt)}</span>}
+              <span>Facts checked {longDate(a.reviewedAt)}</span>
+            </p>
             {a.sections.map((section, i) => (
               <section key={i} id={section.heading ? ids[i] : undefined}>
                 {section.heading && <h2>{section.heading}</h2>}
                 {section.paragraphs.map((p, j) => (
-                  <p key={j}>{p}</p>
+                  <p key={j}>{withCode(p)}</p>
                 ))}
                 {section.bullets && (
                   <ul>
                     {section.bullets.map((b, j) => (
-                      <li key={j}>{b}</li>
+                      <li key={j}>{withCode(b)}</li>
                     ))}
                   </ul>
+                )}
+                {section.figure && (() => {
+                  const Figure = FIGURES[section.figure.key]
+                  return (
+                    <figure className="ys-art-figure">
+                      {/* Scrolls sideways on phones so the labels stay readable. */}
+                      <div className="ys-art-figure-scroll" tabIndex={0} role="group" aria-label="Diagram, scroll sideways on small screens">
+                        <Figure />
+                      </div>
+                      {section.figure.caption && <figcaption>{section.figure.caption}</figcaption>}
+                    </figure>
+                  )
+                })()}
+                {section.code && (
+                  <figure className="ys-art-code">
+                    <pre tabIndex={0} aria-label={section.code.caption ?? `${section.code.lang} example`}>
+                      <code data-lang={section.code.lang}>{section.code.text}</code>
+                    </pre>
+                    {section.code.caption && <figcaption>{section.code.caption}</figcaption>}
+                  </figure>
                 )}
               </section>
             ))}
