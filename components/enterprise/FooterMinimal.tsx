@@ -25,6 +25,7 @@ const columns = [
     links: [
       { name: 'AI pilot to production', href: '/what-we-do/applied-ai' },
       { name: 'Agentic automation', href: '/what-we-do/applied-ai/agentic-automation' },
+      { name: 'Local AI', href: '/what-we-do/applied-ai/local-ai' },
       { name: 'AI governance', href: '/what-we-do/applied-ai/ai-governance' },
       { name: 'Claude practice', href: '/what-we-do/applied-ai/claude' },
       { name: 'Cloud foundations', href: '/what-we-do/cloud' },

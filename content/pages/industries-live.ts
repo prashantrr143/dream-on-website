@@ -50,15 +50,15 @@ export const pages: ContentPage[] = [
     parents,
     contactInterest: 'Financial services',
     meta: {
-      title: 'KYC and onboarding automation for banks | YatiSphere',
+      title: 'AI agents for KYC and onboarding at banks | YatiSphere',
       description:
-        'KYC and onboarding automation, post-trade systems, AML monitoring and core modernization for banks, insurers and fintechs, built for regulators.',
+        'AI agents for KYC, onboarding and claims at banks, insurers and fintechs: the agent does the checks, your team approves, and every step is examiner-ready.',
     },
     hero: {
       kicker: 'Industries · Financial services',
-      h1: 'KYC, onboarding and platform modernization for financial services',
+      h1: 'AI agents for KYC, onboarding and claims, with an examiner-ready trail',
       subhead:
-        'We modernize core systems, automate onboarding and KYC, and put AI into production for banks, insurers, wealth managers and fintechs, so every decision can be explained.',
+        'Agents gather documents, screen against sanctions and PEP lists and draft the case. Your analysts approve. Every check is logged for the examiner, on core systems we modernize where they hold the work back.',
     },
     blocks: [],
     industry: {
@@ -189,11 +189,11 @@ export const pages: ContentPage[] = [
     meta: {
       title: 'Law firm intake and conflict check automation | YatiSphere',
       description:
-        'Client intake, conflict checks, lateral hire screening and AI with confidentiality controls for US law firms, connected to the practice systems you already run.',
+        'AI agents for client intake, conflict checks and lateral hire screening at US law firms, with a partner approving every clearance and a full audit trail.',
     },
     hero: {
       kicker: 'Industries · Legal & professional services',
-      h1: 'Matter opening, conflict checks and AI for law firms',
+      h1: 'AI agents for law firm intake and conflict checks',
       subhead:
         'Intake, conflict search and the practice-system plumbing behind new matters for US law firms, plus AI on client documents once your general counsel has agreed what it may see.',
     },

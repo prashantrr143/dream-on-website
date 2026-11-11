@@ -13,6 +13,8 @@ import { events } from '@/content/events'
 import { recognitions } from '@/content/recognitions'
 import { Tabs } from './Tabs'
 import { WorkflowDiagram } from './WorkflowDiagram'
+import { UseCases } from './UseCases'
+import { LocalRouting } from './LocalRouting'
 
 /**
  * Renders a data-driven page (content/pages/*.ts): hero, then each block
@@ -294,6 +296,39 @@ function BlockView({ block, tone }: { block: Block; tone: 'white' | 'light' }) {
       return (
         <PageSection id={id} tone={tone} eyebrow={block.kicker ?? 'Multi-cloud'} title={block.title ?? 'Choose your cloud'}>
           <CardGrid cards={CLOUDS.map((c) => ({ title: c.name, body: c.body, bullets: c.bullets, id: c.id }))} />
+        </PageSection>
+      )
+    case 'useCases':
+      if (block.items.length === 0) return null
+      return (
+        <PageSection id={id} tone={tone} eyebrow={block.kicker} title={block.title} lede={block.lede}>
+          <UseCases items={block.items} />
+        </PageSection>
+      )
+    case 'example':
+      return (
+        <PageSection id={id} tone={tone} eyebrow={block.kicker} title={block.title} lede={block.lede}>
+          <div className="ys-ind-ex" role="table" aria-label={block.title}>
+            <div className="ys-ind-ex-head" role="row">
+              <span role="columnheader">Step</span>
+              <span role="columnheader">How it usually goes today</span>
+              <span role="columnheader">{block.afterLabel ?? 'What we build'}</span>
+            </div>
+            {block.rows.map((r, i) => (
+              <div key={r.step} className="ys-ind-ex-row" role="row">
+                <span role="rowheader" className="ys-ind-ex-step"><b aria-hidden="true">{i + 1}</b>{r.step}</span>
+                <p role="cell" className="ys-ind-ex-today"><span className="ys-ind-ex-label">Today</span>{r.today}</p>
+                <p role="cell" className="ys-ind-ex-after"><span className="ys-ind-ex-label">{block.afterLabel ?? 'What we build'}</span>{r.after}</p>
+              </div>
+            ))}
+          </div>
+          {block.note && <p className="ys-ind-ex-note">{block.note}</p>}
+        </PageSection>
+      )
+    case 'localRouting':
+      return (
+        <PageSection id={id} tone={tone}>
+          <LocalRouting title={block.title ?? 'Sensitive work stays in. The rest can go out.'} lede={block.lede} />
         </PageSection>
       )
     case 'inFocus':

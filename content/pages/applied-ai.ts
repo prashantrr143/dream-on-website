@@ -78,6 +78,11 @@ export const pages: ContentPage[] = [
             href: '/what-we-do/applied-ai/agentic-automation',
           },
           {
+            title: 'Local AI',
+            body: 'Open-weight models and agents on your own servers or private cloud, for data that cannot go to a third-party AI service.',
+            href: '/what-we-do/applied-ai/local-ai',
+          },
+          {
             title: 'Enterprise AI platforms',
             body: 'A shared foundation for every team: model gateway, routing, prompt and version control, evaluation, observability and cost control.',
             href: '/what-we-do/applied-ai/ai-platforms',
