@@ -48,6 +48,25 @@ interface BlockBase {
   lede?: string
 }
 
+export type UseCaseSector = 'law' | 'banking' | 'saas'
+
+export interface UseCase {
+  sector: UseCaseSector
+  title: string
+  /** The problem in the client's words. */
+  problem: string
+  /** What the local model or agent does. */
+  local: string
+  /** Why this data cannot go to a third-party AI service. */
+  why: string
+  /** Where a person stays in control. */
+  decides: string
+  /** The value, stated plainly. No invented numbers. */
+  value: string
+  href?: string
+  linkLabel?: string
+}
+
 export type Block =
   /** Large statement paragraph under the hero. */
   | (BlockBase & { type: 'statement'; text: string })
@@ -77,6 +96,18 @@ export type Block =
   | (BlockBase & { type: 'modelNeutral' })
   /** Cloud pillar: "Choose your cloud" cards. */
   | (BlockBase & { type: 'cloudChooser' })
+  /** Use cases with full detail and a sector filter (Local AI, 2026-11-11). Shown in full, not cut to one sentence. */
+  | (BlockBase & { type: 'useCases'; items: UseCase[] })
+  /** Worked example, step by step: today vs. what we build. Same layout as the industry pages. */
+  | (BlockBase & {
+      type: 'example'
+      rows: { step: string; today: string; after: string }[]
+      note?: string
+      /** Heading for the "after" column. Default: "What we build". */
+      afterLabel?: string
+    })
+  /** Local AI: hybrid routing illustration (sensitive work local, the rest to a cloud model). */
+  | (BlockBase & { type: 'localRouting' })
   /** In focus: tabs from stories/insights/news/events filtered by these tags; hidden when empty. */
   | (BlockBase & { type: 'inFocus'; industries?: IndustrySlug[]; services?: string[]; clouds?: Cloud[] })
 

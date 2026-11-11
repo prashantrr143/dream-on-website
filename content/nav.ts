@@ -112,6 +112,7 @@ export const NAV_TREE: NavItem[] = [
         children: [
           { label: 'AI pilot to production', href: `${W}/applied-ai` },
           { label: 'Agentic automation', href: `${W}/applied-ai/agentic-automation` },
+          { label: 'Local AI', href: `${W}/applied-ai/local-ai` },
           { label: 'AI governance', href: `${W}/applied-ai/ai-governance` },
           { label: 'Claude practice', href: `${W}/applied-ai/claude` },
           { label: 'AI-assisted engineering', href: `${W}/applied-ai/ai-assisted-engineering` },
