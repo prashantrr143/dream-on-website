@@ -27,6 +27,8 @@ const PRIORITY: Record<string, number> = {
   '/who-we-are/how-we-work': 0.8,
   '/who-we-are/about': 0.8,
   '/contact-us': 0.8,
+  // The Insights hub changes every time an article is published.
+  '/insights': 0.8,
 }
 
 function priorityFor(route: string): number {

@@ -10,6 +10,7 @@
 export const PUBLISHED_INSIGHT_SLUGS: string[] = [
   'aba-opinion-512-generative-ai-law-firms',
   'anatomy-of-mcp',
+  'mcp-anti-patterns',
   'azure-finops-quick-wins',
   'azure-openai-uae-north-data-residency',
   'eu-ai-act-for-financial-services-operations',

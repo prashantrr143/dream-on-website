@@ -9,6 +9,7 @@ import { article as aba512 } from './articles/aba-opinion-512-generative-ai-law-
 import { article as nistRmf } from './articles/nist-ai-rmf-for-mid-market-teams'
 import { article as mcpGovernance } from './articles/mcp-governance-for-regulated-firms'
 import { article as mcpAnatomy } from './articles/anatomy-of-mcp'
+import { article as mcpAntiPatterns } from './articles/mcp-anti-patterns'
 
 export type { Article, ArticleSection, ArticleSource } from './types'
 
@@ -31,6 +32,7 @@ export const ALL_ARTICLES: Article[] = [
   nistRmf,
   mcpGovernance,
   mcpAnatomy,
+  mcpAntiPatterns,
 ]
 
 export const INSIGHTS_PREVIEW =

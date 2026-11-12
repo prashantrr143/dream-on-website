@@ -1,12 +1,13 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import SharedLayout from '@/components/shared-layout'
-import { PageHero, PageSection, PageCTA } from '@/components/enterprise'
+import { PageSection, PageCTA } from '@/components/enterprise'
 import { SITE_URL, SITE_NAME, socialMeta } from '@/lib/seo'
 import { visibleArticles, getVisibleArticle } from '@/lib/insights'
 import { PRIMARY_CTA, SECONDARY_CTA } from '@/lib/cta'
 import { ArrowRight } from 'lucide-react'
 import { ArticleToc } from '@/components/insights/ArticleToc'
+import { ReadingProgress, ShareActions } from '@/components/insights/ArticleChrome'
 import { McpAnatomyDiagram } from '@/components/insights/McpAnatomyDiagram'
 import { authorOf, authorSchema } from '@/lib/insights/author'
 import { BreadcrumbSchema } from '@/components/seo/StructuredData'
@@ -76,9 +77,9 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
   const ids = sectionIds(a.sections.map((x) => x.heading))
   const toc = a.sections
     .map((x, i) => (x.heading ? { id: ids[i]!, label: x.heading } : null))
-    .filter((x): x is { id: string; label: string } => x !== null)
-  if (a.faq && a.faq.length > 0) toc.push({ id: 'faq', label: 'Common questions' })
-  if (a.sources.length > 0) toc.push({ id: 'sources', label: 'Sources' })
+    .filter((x): x is { id: string; label: string; back?: 'faq' | 'sources' } => x !== null)
+  if (a.faq && a.faq.length > 0) toc.push({ id: 'faq', label: 'Common questions', back: 'faq' })
+  if (a.sources.length > 0) toc.push({ id: 'sources', label: 'Sources', back: 'sources' })
 
   const schema =
     a.status === 'published'
@@ -103,30 +104,27 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
       <BreadcrumbSchema trail={[{ name: 'Insights', path: '/insights' }, { name: a.title, path: `/insights/${a.slug}` }]} />
       {schema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />}
 
-      <PageHero eyebrow={`Insights · ${a.category}`} title={a.title} lede={a.summary} visual="lanes">
-        {a.status === 'draft' && (
-          <p role="note" style={{ display: 'inline-block', padding: '10px 14px', borderRadius: 8, background: '#FEF3C7', color: '#92400E', fontSize: 14, lineHeight: 1.5 }}>
-            Draft, not published. Visible only in development or preview builds. To publish: add &lsquo;{a.slug}&rsquo; to
-            lib/insights/published.ts, and set status to &lsquo;published&rsquo; and publishedAt in lib/insights/articles/{a.slug}.ts.
-          </p>
-        )}
-      </PageHero>
+      <ReadingProgress targetId="article-body" />
 
-      <PageSection tone="white">
-        <div className="ys-art-layout">
-
-          <ArticleToc items={toc} />
-
-          <article className="ys-art">
-            {/* Article details as one line above the text (2026-11-11): the old
-                sticky side column overlapped wide content such as code and diagrams. */}
-            <p className="ys-art-byline">
+      {/* Article header (2026-11-12): compact, with the details and share
+          actions next to the title so the text starts above the fold. */}
+      <header className="ys-art-hero">
+        <div className="enterprise-container-wide ys-art-hero-inner">
+          <nav aria-label="Breadcrumb" className="ys-art-crumbs">
+            <a href="/insights">Insights</a>
+            <span aria-hidden="true">/</span>
+            <span>{a.category}</span>
+          </nav>
+          <h1>{a.title}</h1>
+          <p className="ys-art-hero-lede">{a.summary}</p>
+          <div className="ys-art-hero-foot">
+            <p className="ys-art-hero-meta">
               <span>
                 {author ? (
                   author.linkedinUrl ? (
-                    <a href={author.linkedinUrl} rel="author noopener noreferrer" target="_blank" className="ys-link">{author.name}</a>
+                    <a href={author.linkedinUrl} rel="author noopener noreferrer" target="_blank">{author.name}</a>
                   ) : (
-                    <a href="/who-we-are/leadership" rel="author" className="ys-link">{author.name}</a>
+                    <a href="/who-we-are/leadership" rel="author">{author.name}</a>
                   )
                 ) : (
                   'YatiSphere team'
@@ -136,6 +134,23 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
               {a.publishedAt && <span>Published {longDate(a.publishedAt)}</span>}
               <span>Facts checked {longDate(a.reviewedAt)}</span>
             </p>
+            <ShareActions url={`${SITE_URL}/insights/${a.slug}`} title={a.title} tone="dark" />
+          </div>
+          {a.status === 'draft' && (
+            <p role="note" className="ys-art-draft">
+              Draft, not published. Visible only in development or preview builds. To publish: add &lsquo;{a.slug}&rsquo; to
+              lib/insights/published.ts, and set status to &lsquo;published&rsquo; and publishedAt in lib/insights/articles/{a.slug}.ts.
+            </p>
+          )}
+        </div>
+      </header>
+
+      <PageSection tone="white">
+        <div className="ys-art-layout">
+
+          <ArticleToc items={toc} />
+
+          <article className="ys-art" id="article-body">
             {a.sections.map((section, i) => (
               <section key={i} id={section.heading ? ids[i] : undefined}>
                 {section.heading && <h2>{section.heading}</h2>}
@@ -233,6 +248,38 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
               </nav>
             )}
           </article>
+
+          {/* Right column (2026-11-12): its own grid track, so it can never sit
+              on top of the text. Hidden below 1200px, where the related list
+              at the end of the article takes over. */}
+          <aside className="ys-art-rail" aria-label="More on this topic">
+            {a.related.length > 0 && (
+              <div className="ys-art-rail-block">
+                <p className="ys-art-rail-title">Read next</p>
+                <ul>
+                  {a.related.map((r) => (
+                    <li key={r.href}>
+                      <a href={r.href}>
+                        <span>{r.label}</span>
+                        <ArrowRight className="w-4 h-4 shrink-0" strokeWidth={2.25} aria-hidden="true" />
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            <div className="ys-art-rail-block">
+              <p className="ys-art-rail-title">Share</p>
+              <ShareActions url={`${SITE_URL}/insights/${a.slug}`} title={a.title} />
+            </div>
+            <div className="ys-art-rail-block ys-art-rail-talk">
+              <p className="ys-art-rail-title">Working on this?</p>
+              <p>We build AI agents and the controls around them, in your own infrastructure.</p>
+              <a href={PRIMARY_CTA.href} className="ys-link">
+                Talk to us <ArrowRight className="w-3.5 h-3.5 inline" strokeWidth={2.5} aria-hidden="true" />
+              </a>
+            </div>
+          </aside>
         </div>
       </PageSection>
 

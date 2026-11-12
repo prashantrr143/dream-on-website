@@ -5116,3 +5116,155 @@ a.ys-open-item::before,
 }
 .ys-art-byline { display: flex; flex-wrap: wrap; gap: 4px 0; margin: 0 0 28px; padding-bottom: 16px; border-bottom: 1px solid var(--grey-200); font-size: 14.5px !important; line-height: 1.5 !important; color: var(--ink-600) !important; }
 .ys-art-byline span + span::before { content: '·'; margin: 0 10px; color: var(--grey-200); }
+
+/* ============================================================
+   Insights article layout v3 (2026-11-12)
+   Compact header with details and share; three tracks on wide
+   screens (contents | text | rail), each its own grid column so
+   nothing overlaps; reading progress bar. Overrides earlier
+   .ys-art-* layout rules above.
+   ============================================================ */
+
+/* Progress bar, pinned under the fixed site header */
+.ys-art-progress { position: fixed; inset: 0 0 auto 0; height: 3px; z-index: 60; pointer-events: none; }
+.ys-art-progress span { display: block; height: 100%; background: var(--amber-500); transform-origin: 0 50%; transition: transform 80ms linear; }
+
+/* Header */
+.ys-art-hero { background: var(--navy-950); color: var(--white); }
+.ys-art-hero-inner { padding-top: clamp(112px, 9vw, 128px); padding-bottom: clamp(28px, 3vw, 40px); }
+.ys-art-crumbs { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 14px; font-size: 13px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--amber-500); }
+.ys-art-crumbs a { color: var(--ink-300); text-decoration: none; }
+.ys-art-crumbs a:hover { color: var(--white); text-decoration: underline; text-underline-offset: 3px; }
+.ys-art-crumbs span[aria-hidden] { color: var(--ink-600); }
+.ys-art-hero h1 { max-width: 30ch; margin: 0; font-size: clamp(30px, 3.6vw, 46px); line-height: 1.12; letter-spacing: -0.022em; font-weight: 600; color: var(--white); text-wrap: balance; }
+.ys-art-hero-lede { max-width: 68ch; margin: 14px 0 0; font-size: clamp(16.5px, 1.4vw, 19px); line-height: 1.55; color: var(--ink-300); text-wrap: pretty; }
+.ys-art-hero-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px 24px; margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--rule-navy); }
+.ys-art-hero-meta { display: flex; flex-wrap: wrap; gap: 4px 0; margin: 0; font-size: 14px; line-height: 1.5; color: var(--ink-300); }
+.ys-art-hero-meta span + span::before { content: '·'; margin: 0 10px; color: var(--ink-600); }
+.ys-art-hero-meta a { color: var(--white); text-decoration: underline; text-decoration-color: var(--rule-navy); text-underline-offset: 3px; }
+.ys-art-draft { display: inline-block; margin: 16px 0 0; padding: 10px 14px; border-radius: 8px; background: #FEF3C7; color: #92400E; font-size: 14px; line-height: 1.5; }
+
+/* Share actions */
+.ys-art-share { display: flex; flex-wrap: wrap; gap: 8px; }
+.ys-art-share button, .ys-art-share a { display: inline-flex; align-items: center; gap: 8px; padding: 7px 12px; border-radius: 999px; border: 1px solid var(--grey-200); background: var(--white); color: var(--ink-900); font-size: 13.5px; font-weight: 600; line-height: 1.2; text-decoration: none; cursor: pointer; transition: border-color 0.15s, background 0.15s; }
+.ys-art-share button:hover, .ys-art-share a:hover { border-color: var(--blue-600); }
+.ys-art-share.is-dark button, .ys-art-share.is-dark a { background: transparent; border-color: var(--rule-navy); color: var(--white); }
+.ys-art-share.is-dark button:hover, .ys-art-share.is-dark a:hover { border-color: var(--ink-300); background: var(--navy-900); }
+.ys-art-share button:focus-visible, .ys-art-share a:focus-visible { outline: 2px solid var(--blue-600); outline-offset: 2px; }
+
+/* Body section: less dead space above the text */
+.ys-section-white:has(> .enterprise-container-wide > .ys-art-layout),
+.ys-section-white:has(.ys-art-layout) { padding-top: clamp(28px, 3.5vw, 44px) !important; }
+
+/* Grid: one column, then contents | text, then contents | text | rail */
+.ys-art-layout { display: grid; grid-template-columns: minmax(0, 1fr); grid-template-areas: "toc" "article"; column-gap: 0; row-gap: 20px; justify-content: stretch; }
+.ys-art { grid-area: article; min-width: 0; max-width: none; }
+.ys-art-rail { display: none; }
+@media (min-width: 1024px) {
+  .ys-art-layout { grid-template-columns: 200px minmax(0, 720px); grid-template-areas: "toc article"; column-gap: 48px; justify-content: center; }
+}
+@media (min-width: 1200px) {
+  .ys-art-layout { grid-template-columns: 210px minmax(0, 720px) 250px; grid-template-areas: "toc article rail"; column-gap: 48px; }
+  .ys-art-rail { grid-area: rail; display: flex; flex-direction: column; gap: 24px; min-width: 0; position: sticky; top: 104px; align-self: start; max-height: calc(100vh - 128px); overflow-y: auto; }
+  .ys-art-related { display: none; }
+}
+@media (min-width: 1440px) {
+  .ys-art-layout { grid-template-columns: 230px minmax(0, 740px) 270px; column-gap: 64px; }
+}
+
+/* Contents list: quieter, tighter */
+.ys-art-toc a { font-size: 13.5px; line-height: 1.4; }
+
+/* Text */
+.ys-art section { margin-bottom: 40px; scroll-margin-top: 104px; }
+.ys-art h2 { margin: 0 0 12px; font-size: clamp(22px, 2vw, 25px); line-height: 1.28; letter-spacing: -0.015em; text-wrap: balance; }
+.ys-art p, .ys-art li { font-size: 18px; line-height: 1.72; color: var(--ink-900); text-wrap: pretty; }
+.ys-art p { margin-bottom: 18px; }
+.ys-art > section:first-child > p:first-of-type { font-size: 20px; line-height: 1.6; color: var(--ink-900); }
+.ys-art section > ul { margin: 0 0 20px; }
+.ys-art-code, .ys-art-figure { margin-top: 8px; margin-bottom: 28px; }
+
+/* Right rail */
+.ys-art-rail-block { padding-bottom: 20px; border-bottom: 1px solid var(--grey-200); }
+.ys-art-rail-block:last-child { border-bottom: 0; }
+.ys-art-rail-title { margin: 0 0 10px; font-size: 12.5px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-600); }
+.ys-art-rail ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+.ys-art-rail ul a { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; padding: 8px 0; font-size: 15px; line-height: 1.4; font-weight: 600; color: var(--ink-900); text-decoration: none; }
+.ys-art-rail ul a svg { margin-top: 2px; color: var(--blue-600); transition: transform 0.2s; }
+.ys-art-rail ul a:hover { color: var(--blue-600); }
+.ys-art-rail ul a:hover svg { transform: translateX(3px); }
+.ys-art-rail .ys-art-share { flex-direction: column; align-items: stretch; }
+.ys-art-rail .ys-art-share button, .ys-art-rail .ys-art-share a { justify-content: flex-start; }
+.ys-art-rail-talk p:not(.ys-art-rail-title) { margin: 0 0 10px; font-size: 14.5px; line-height: 1.55; color: var(--ink-600); }
+.ys-art-rail-talk .ys-link { font-size: 14.5px; font-weight: 600; }
+
+@media (prefers-reduced-motion: reduce) { .ys-art-progress span, .ys-art-rail ul a svg { transition: none; } }
+@media print { .ys-art-progress, .ys-art-rail, .ys-art-toc, .ys-art-share { display: none !important; } }
+@media (max-width: 720px) {
+  .ys-art-hero-meta { gap: 2px 16px; }
+  .ys-art-hero-meta span + span::before { display: none; }
+}
+
+/* ============================================================
+   "On this page" v2 (2026-11-12): structure-aware and progress-aware.
+   Navy text, amber marker for the section being read, blue ticks for
+   sections already read. Overrides the older .ys-art-toc rules.
+   ============================================================ */
+.ys-toc .ys-toc-desktop { display: none; }
+@media (min-width: 1024px) {
+  .ys-toc .ys-toc-mobile { display: none; }
+  .ys-toc .ys-toc-desktop { display: flex; flex-direction: column; max-height: calc(100vh - 128px); }
+}
+.ys-toc .ys-toc-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 10px; }
+.ys-toc .ys-toc-title { margin: 0; font-size: 12.5px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-600); }
+.ys-toc .ys-toc-count { margin: 0; font-size: 12.5px; font-variant-numeric: tabular-nums; color: var(--ink-600); }
+.ys-toc .ys-toc-count span { font-weight: 700; color: var(--navy-950); }
+.ys-toc .ys-toc-progress { height: 3px; margin-bottom: 14px; border-radius: 999px; background: var(--grey-200); overflow: hidden; }
+.ys-toc .ys-toc-progress span { display: block; height: 100%; border-radius: inherit; background: var(--amber-500); transition: width 240ms cubic-bezier(0.22, 1, 0.36, 1); }
+
+.ys-toc .ys-toc-scroll { overflow-y: auto; overscroll-behavior: contain; padding-right: 6px; scrollbar-width: thin; scrollbar-color: var(--grey-200) transparent; }
+.ys-toc .ys-toc-scroll::-webkit-scrollbar { width: 6px; }
+.ys-toc .ys-toc-scroll::-webkit-scrollbar-thumb { background: var(--grey-200); border-radius: 999px; }
+.ys-toc .ys-toc-scroll::-webkit-scrollbar-track { background: transparent; }
+
+.ys-toc .ys-toc-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 1px; border-left: 0; }
+
+/* Group label ("Part one: tool design") */
+.ys-toc .ys-toc-group { margin-top: 14px; }
+.ys-toc .ys-toc-group:first-child { margin-top: 0; }
+.ys-toc .ys-toc-group a { display: flex; flex-direction: column; gap: 1px; padding: 4px 0 6px; border: 0; text-decoration: none; }
+.ys-toc .ys-toc-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #8f6700; }
+.ys-toc .ys-toc-group-label { font-size: 14px; font-weight: 600; line-height: 1.35; color: var(--navy-950); }
+.ys-toc .ys-toc-group a:hover .ys-toc-group-label { color: var(--blue-600); }
+
+/* Entries */
+.ys-toc .ys-toc-item a { position: relative; display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 8px; align-items: start; padding: 6px 10px 6px 12px; margin: 0; border: 0; border-radius: 0 8px 8px 0; font-size: 13.5px; font-weight: 400; line-height: 1.4; color: var(--ink-600); text-decoration: none; transition: color 0.15s, background 0.15s; }
+.ys-toc .ys-toc-item a::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: var(--grey-200); transition: background 0.15s; }
+.ys-toc .ys-toc-num { display: inline-flex; align-items: center; justify-content: center; min-height: 19px; font-size: 11.5px; font-weight: 600; font-variant-numeric: tabular-nums; color: var(--ink-600); }
+.ys-toc .ys-toc-label { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.ys-toc .ys-toc-item a:hover { color: var(--navy-950); background: var(--grey-50); }
+.ys-toc .ys-toc-item a:hover::before { background: var(--ink-300); }
+
+.ys-toc .ys-toc-item.is-read a { color: var(--ink-600); }
+.ys-toc .ys-toc-item.is-read .ys-toc-num { color: var(--blue-600); }
+.ys-toc .ys-toc-item.is-read a::before { background: var(--blue-600); opacity: 0.35; }
+
+.ys-toc .ys-toc-item.is-active a { color: var(--navy-950); font-weight: 600; background: var(--grey-50); }
+.ys-toc .ys-toc-item.is-active a::before { width: 3px; background: var(--amber-500); opacity: 1; }
+.ys-toc .ys-toc-item.is-active .ys-toc-num { color: var(--blue-600); }
+.ys-toc .ys-toc-item a:focus-visible, .ys-toc .ys-toc-group a:focus-visible { outline: 2px solid var(--blue-600); outline-offset: 1px; }
+
+/* Small screens: collapsed, showing where you are */
+.ys-toc .ys-toc-mobile { border: 1px solid var(--grey-200); border-radius: var(--radius-md, 12px); background: var(--white); }
+.ys-toc .ys-toc-mobile summary { display: flex; flex-direction: column; gap: 2px; padding: 12px 16px; cursor: pointer; list-style: none; }
+.ys-toc .ys-toc-mobile summary::-webkit-details-marker { display: none; }
+.ys-toc .ys-toc-now { font-size: 14.5px; font-weight: 600; color: var(--navy-950); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ys-toc .ys-toc-mobile[open] summary { border-bottom: 1px solid var(--grey-200); }
+.ys-toc .ys-toc-mobile .ys-toc-progress { margin: 0; border-radius: 0; }
+.ys-toc .ys-toc-mobile .ys-toc-list { padding: 10px 12px 12px; max-height: 60vh; overflow-y: auto; }
+
+@media (prefers-reduced-motion: reduce) { .ys-toc .ys-toc-progress span, .ys-toc .ys-toc-item a, .ys-toc .ys-toc-item a::before { transition: none; } }
+
+/* "On this page": back matter divider (2026-11-12) */
+.ys-toc .ys-toc-divider { display: flex; align-items: center; gap: 8px; margin: 14px 0 4px; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-600); }
+.ys-toc .ys-toc-divider::after { content: ''; flex: 1; height: 1px; background: var(--grey-200); }
