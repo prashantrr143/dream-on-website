@@ -9,10 +9,15 @@
  */
 export const PUBLISHED_INSIGHT_SLUGS: string[] = [
   'aba-opinion-512-generative-ai-law-firms',
+  'ai-agent-kill-switches-approvals-audit-logs',
   'anatomy-of-mcp',
   'mcp-anti-patterns',
   'azure-finops-quick-wins',
   'azure-openai-uae-north-data-residency',
+  'enterprise-ai-governance-operating-model',
+  'sr-26-2-ai-agents-bank-supervisors',
+  'ai-agent-identity-access-delegation',
+  'testing-ai-agents-before-production',
   'eu-ai-act-for-financial-services-operations',
   'kyc-automation-without-black-boxes',
   'mcp-governance-for-regulated-firms',
