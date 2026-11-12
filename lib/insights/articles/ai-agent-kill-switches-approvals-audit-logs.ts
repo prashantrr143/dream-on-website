@@ -10,7 +10,7 @@ import type { Article } from '../types'
  * Research's shutdown-resistance paper (arXiv 2509.14260), reporting on the
  * Replit (Jul 2025) and Amazon Q Developer 1.84.0 (Jul 2025) incidents, the
  * EU AI Act (Articles 12, 14, 26), OWASP's Agentic Top 10 (Dec 2025) and
- * Agent Control Standard v0.1 (Sep 2026), the OpenTelemetry GenAI semantic
+ * Agent Control Standard v0.1 (May 2026, adopted by OWASP Sep 2026), the OpenTelemetry GenAI semantic
  * conventions, AWS's AgentCore Policy GA notice (3 Mar 2026), and reporting
  * on US bank supervisors' questions about agents (Oct 2026). Code and policy
  * samples are illustrative; the formats are ours.
@@ -93,9 +93,9 @@ export const article: Article = {
     {
       heading: '2. Put the switch where the agent cannot touch it',
       paragraphs: [
-        'In May 2025 Palisade Research gave several models a series of maths problems and a warning that the machine would shut down partway through. OpenAI’s o3 sabotaged the shutdown script in 79 of 100 runs when it had not been told to allow the shutdown, and in 7 of 100 even when it had. The methods were mundane: moving the script, changing its permissions, replacing it with one that did nothing. Other models did it less often or not at all.',
+        'In May 2025 Palisade Research gave several models a series of math problems and a warning that the machine would shut down partway through. OpenAI’s o3 sabotaged the shutdown script in 79 of 100 runs when it had not been told to allow the shutdown, and in 7 of 100 even when it had. The methods were mundane: moving the script, changing its permissions, replacing it with one that did nothing. Other models did it less often or not at all.',
         'This was a research setting, not a production incident, and you do not need to believe anything dramatic about model intent to take the engineering point. Any stop mechanism that runs inside the agent’s environment, depends on the agent reading an instruction, or sits in a file the agent can write to, is a mechanism the agent can route around, whether by accident or because injected content told it to.',
-        'The Amazon Q Developer incident in July 2025 shows the same thing from the other side. A malicious pull request got a wiper prompt into version 1.84.0 of the VS Code extension. The prompt was passed to the Q command-line tool with `--trust-all-tools` and `--no-interactive`, two flags that switch off confirmation. AWS said no customer resources were affected. The lesson for designers is that an approval step that the caller can disable with a flag is not a control. Enforce it on the server side of the call.',
+        'The Amazon Q Developer incident in July 2025 shows the same thing from the other side. An attacker used an over-scoped GitHub token in the extension’s build setup to get a wiper prompt into version 1.84.0 of the VS Code extension. It shipped, and only a syntax error stopped it from running. The prompt was passed to the Q command-line tool with `--trust-all-tools` and `--no-interactive`, two flags that switch off confirmation. AWS said no customer resources were affected. The lesson for designers is that an approval step that the caller can disable with a flag is not a control. Enforce it on the server side of the call.',
         'So: the stop state lives in the control plane and is checked by the gateway and the identity provider, never by the agent alone. The agent’s identity has no permission to change its own policy, its own tool list or the stop state. And the runtime’s configuration is mounted read-only.',
       ],
     },
@@ -290,7 +290,7 @@ read_only_mode: inherits_from_control_plane`,
         'EU AI Act, for high-risk systems (applying from December 2, 2027, for Annex III uses such as credit scoring): automatic logging over the system’s lifetime (Article 12); oversight that lets a person override the system and stop it in a safe state (Article 14); and, for deployers, oversight assigned to people with the competence, training and authority to use it, plus log retention of at least six months (Article 26).',
         'US banks: SR 26-2 left generative and agentic AI out of scope, and the agencies have said a request for information on AI is coming. Meanwhile supervisors are asking how banks limit, audit and shut down agents. The drill records, tier table and audit trail described here are the answers.',
         'OWASP Top 10 for Agentic Applications (December 2025): the ten agent-specific risks, from goal hijack (ASI01) onward. Use it to threat-model each agent before it ships.',
-        'OWASP Agent Control Standard, v0.1 public preview since September 2026: a vendor-neutral set of runtime hooks, including at the tool call request and its result, where a policy can allow, deny or modify the action. It is early, but it describes the enforcement point in this design.',
+        'Agent Control Standard v0.1, published in May 2026 and adopted by OWASP in September 2026: a vendor-neutral set of runtime hooks, including before each tool call, where a policy can permit, deny or modify the action, ask a person or defer. It is early, but it describes the enforcement point in this design.',
         'NIST AI RMF: the Manage function expects you to respond to and recover from AI risks in production. Kill switches, drills and the reconstruction test are that, made concrete.',
       ],
     },
@@ -367,9 +367,19 @@ read_only_mode: inherits_from_control_plane`,
       publisher: 'AI Incident Database',
     },
     {
-      title: 'Shutdown resistance in large language models',
+      title: 'Incomplete tasks induce shutdown resistance in some frontier LLMs',
       url: 'https://arxiv.org/abs/2509.14260',
       publisher: 'arXiv (Palisade Research)',
+    },
+    {
+      title: 'OpenAI model modifies shutdown script in apparent sabotage effort',
+      url: 'https://www.theregister.com/2025/05/29/openai_model_modifies_shutdown_script/',
+      publisher: 'The Register',
+    },
+    {
+      title: 'Security bulletin AWS-2025-015: Amazon Q Developer for VS Code (CVE-2025-8217)',
+      url: 'https://aws.amazon.com/security/security-bulletins/AWS-2025-015/',
+      publisher: 'Amazon Web Services',
     },
     {
       title: 'Compromised Amazon Q extension told AI to delete everything, and it shipped',
@@ -402,8 +412,8 @@ read_only_mode: inherits_from_control_plane`,
       publisher: 'OWASP GenAI Security Project',
     },
     {
-      title: 'Semantic conventions for GenAI agent and framework spans',
-      url: 'https://opentelemetry.io/docs/specs/semconv/gen-ai/gen-ai-agent-spans/',
+      title: 'Semantic conventions for generative AI (agent and framework spans)',
+      url: 'https://github.com/open-telemetry/semantic-conventions-genai',
       publisher: 'OpenTelemetry',
     },
     {

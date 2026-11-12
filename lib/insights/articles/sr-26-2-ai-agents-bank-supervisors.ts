@@ -10,7 +10,7 @@ import type { Article } from '../types'
  * Bulletin 2026-54 (4 Nov 2026) as summarized by King & Spalding (9 Nov) and
  * Ballard Spahr via Legal 500 (we could not retrieve the bulletin text
  * directly, so quotations from it are as those firms reported them); the
- * OCC Spring 2026 Semiannual Risk Perspective; Governor Bowman's May 1, 2026
+ * OCC Spring 2026 Semiannual Risk Perspective; Vice Chair Bowman's April 27, 2026
  * remarks as reported by Law360; Treasury / CRI FS AI RMF (19 Feb 2026);
  * FSB Sound Practices final report (15 Oct 2026); the interagency proposed
  * third-party risk management guidance (OCC Bulletin 2026-46, 11 Sep 2026;
@@ -47,14 +47,14 @@ export const article: Article = {
         'On April 17, 2026, the agencies issued revised model risk guidance: SR 26-2 from the Federal Reserve, Bulletin 2026-13 from the OCC and FIL-15-2026 from the FDIC. It replaces SR 11-7 from 2011 and the 2021 interagency statement on BSA/AML models, and the OCC withdrew its model risk handbook booklet and older bulletins with it.',
         'Three changes matter most. The guidance is now explicitly principles-based: in the OCC’s words it “does not set forth enforceable standards or prescriptive requirements, and non-compliance will not result in supervisory criticism.” The definition of a model is narrower and leaves out, among other things, simple spreadsheet arithmetic and deterministic rule-based software. And the Federal Reserve says the letter is “expected to be most relevant to banking organizations with over $30 billion in total assets,” and the OCC adds that it may also matter to smaller institutions with significant model risk.',
         'Then there is the sentence that matters for this article. The OCC’s release states that “generative AI and agentic AI models are novel and rapidly evolving. As such, they are not within the scope of this guidance.” The agencies said they would issue a request for information on model risk management and banks’ use of AI “in the near future.”',
-        'Two weeks later, Federal Reserve Vice Chair for Supervision Michelle Bowman explained the thinking at a Financial Stability Oversight Council roundtable: the revised guidance applies to traditional models and basic AI, not to generative or agentic AI, and “going forward, we expect other risk-management and governance practices to support adoption of generative and agentic AI.”',
+        'Ten days later, Federal Reserve Vice Chair for Supervision Michelle Bowman explained the thinking at a Financial Stability Oversight Council roundtable: the revised guidance applies to traditional models and basic AI, not to generative or agentic AI, and “going forward, we expect other risk-management and governance practices to support adoption of generative and agentic AI.”',
         'Notice what that leaves uncovered. The agent itself is out of scope as generative or agentic AI. Most of the tools it calls, such as a payments API or a case management system, are deterministic software and outside the narrower model definition too. Only the occasional statistical model the agent consults, like a fraud score, still sits squarely in model risk management. The thing an examiner actually worries about, an autonomous system taking actions across several of those components, belongs to no single guidance document.',
       ],
     },
     {
       heading: 'What supervisors are asking',
       paragraphs: [
-        'According to the Reuters report, which cited six people familiar with the matter, supervisors are putting these questions to large, mid-size and smaller banks:',
+        'According to the Reuters report, citing people familiar with the matter, supervisors are putting these questions to large, mid-size and smaller banks:',
       ],
       bullets: [
         'Do you use Chinese-developed technology?',
@@ -98,7 +98,7 @@ export const article: Article = {
     {
       heading: 'What still applies to your agents',
       paragraphs: [
-        'Being outside SR 26-2 does not make an agent unregulated. It means the obligations arrive through the rules that already govern what the agent does. The OCC framework makes the same point: using AI does not change a bank’s underlying legal obligations. Run each agent through these before you think about AI-specific frameworks.',
+        'Being outside SR 26-2 does not make an agent unregulated. It means the obligations arrive through the rules that already govern what the agent does. Using AI does not change a bank’s underlying legal obligations. Run each agent through these before you think about AI-specific frameworks.',
       ],
       bullets: [
         'The activity’s own rules: BSA/AML and sanctions screening for an alert-triage agent; fair lending and adverse action notices for anything near credit; UDAAP for a chatbot that quotes fees or account status.',
@@ -113,7 +113,7 @@ export const article: Article = {
       ],
       bullets: [
         'The Financial Services AI Risk Management Framework, released by Treasury with the Cyber Risk Institute and the Financial Services Sector Coordinating Council on February 19, 2026. It turns the NIST AI RMF into 230 control objectives, scoped by adoption stage: 21 at the initial stage, 126 at minimal, 193 at evolving and all 230 at embedded. It is the closest thing US banks have to an AI control catalog written for them.',
-        'The FSB’s Sound Practices for Responsible Adoption of AI, finalized on October 15, 2026: twelve non-binding practices that tell institutions to limit what agents can do, set triggers for human approval, consider dual authorization above thresholds for transactions, and test mechanisms that stop agents safely.',
+        'The FSB’s Sound Practices for Responsible Adoption of AI, finalized on October 15, 2026: twelve non-binding practices that tell institutions to limit what agents can do, set triggers for human approval, require human approval before transactions above a set value, and test mechanisms that stop agents safely.',
         'The NIST AI RMF, which both of the above build on, and which most auditors already recognize.',
       ],
     },
@@ -295,7 +295,7 @@ vendor_contract: AI change notice 30d; audit rights; incident notice 24h`,
     {
       title: 'U.S. bank regulators scrutinize AI use in routine bank exams',
       url: 'https://finance.yahoo.com/economy/policy/articles/u-bank-regulators-scrutinize-ai-130728511.html',
-      publisher: 'Yahoo Finance (Reuters)',
+      publisher: 'Quartz via Yahoo Finance (citing Reuters)',
     },
     {
       title: 'The OCC issues examiner framework for bank use of AI: what OCC Bulletin 2026-54 means',
@@ -313,9 +313,9 @@ vendor_contract: AI change notice 30d; audit rights; incident notice 24h`,
       publisher: 'Office of the Comptroller of the Currency',
     },
     {
-      title: 'OCC says AI presents a double-edged sword to banks (Bowman remarks, May 1, 2026)',
-      url: 'https://www.law360.com/articles/2475533',
-      publisher: 'Law360',
+      title: 'Remarks by Vice Chair for Supervision Michelle W. Bowman (delivered April 27, 2026)',
+      url: 'https://www.federalreserve.gov/newsevents/speech/bowman20260501a.htm',
+      publisher: 'Board of Governors of the Federal Reserve System',
     },
     {
       title: 'US Treasury releases new AI risk management resources for financial institutions',
@@ -341,11 +341,6 @@ vendor_contract: AI change notice 30d; audit rights; incident notice 24h`,
       title: 'Proposed Third-Party Risk Management Guidance (Federal Register notice)',
       url: 'https://www.occ.treas.gov/news-issuances/federal-register/2026/91fr58536.pdf',
       publisher: 'OCC, Federal Reserve, FDIC, NCUA',
-    },
-    {
-      title: 'Who teaches the Fed about AI in the Treasury market?',
-      url: 'https://www.forbes.com/sites/daraabasiita/2026/11/10/who-teaches-the-fed-about-ai-in-the-treasury-market/',
-      publisher: 'Forbes',
     },
   ],
   related: [

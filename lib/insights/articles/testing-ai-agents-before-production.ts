@@ -188,14 +188,14 @@ sign_off: [product_owner, model_risk, security]`,
     {
       heading: '13. Production is the best test author',
       paragraphs: [
-        'Once an agent is live, every failure, escalation, complaint and override is a candidate test case. Review a sample of production transcripts on a schedule, turn each new failure type into a case in the suite, and confirm the fix with a test before it ships. Replaying recorded sessions against a new version, which AWS calls batch evaluation in AgentCore, is a cheap way to check that a change does not break what already worked.',
+        'Once an agent is live, every failure, escalation, complaint and override is a candidate test case. Review a sample of production transcripts on a schedule, turn each new failure type into a case in the suite, and confirm the fix with a test before it ships. Re-running a curated set of real cases against a new version and scoring the results in bulk, which AgentCore supports as batch evaluation, is a cheap way to check that a change does not break what already worked.',
         'Online evaluation closes the loop. Score a sample of live runs with the same graders you use before release, and alert when quality drifts. Most organizations already trace their agents; using those traces to score them is the step that most have not yet taken.',
       ],
     },
     {
       heading: '14. Keep the evidence',
       paragraphs: [
-        'The test suite, its results, the gate thresholds and the sign-offs are evidence, and increasingly someone will ask for them. Bank supervisors, as our SR 26-2 article describes, now ask how agents are limited, audited and validated. The EU AI Act expects testing for high-risk systems, and internal audit will ask how you knew an agent was ready. Keep each release’s results with the version tested and the people who approved it, in the same place as the rest of your AI governance records.',
+        'The test suite, its results, the gate thresholds and the sign-offs are evidence, and increasingly someone will ask for them. Bank supervisors, as our SR 26-2 article describes, now ask how agents are limited, audited and shut down. The EU AI Act expects testing for high-risk systems, and internal audit will ask how you knew an agent was ready. Keep each release’s results with the version tested and the people who approved it, in the same place as the rest of your AI governance records.',
       ],
     },
     {
@@ -305,6 +305,11 @@ sign_off: [product_owner, model_risk, security]`,
     {
       title: 'Introducing agent quality optimization in AgentCore, now in preview',
       url: 'https://aws.amazon.com/blogs/machine-learning/introducing-the-agent-performance-loop-agentcore-optimization-now-in-preview/',
+      publisher: 'Amazon Web Services',
+    },
+    {
+      title: 'Batch evaluations on datasets (Amazon Bedrock AgentCore Developer Guide)',
+      url: 'https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/dataset-evaluations-batch.html',
       publisher: 'Amazon Web Services',
     },
   ],

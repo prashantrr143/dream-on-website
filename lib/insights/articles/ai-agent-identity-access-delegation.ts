@@ -6,12 +6,12 @@ import type { Article } from '../types'
  * agent its own identity"; this one shows how.
  *
  * Sources: Salesloft Drift incident (GTIG / Security Affairs / CyberScoop,
- * Aug 2025); NIST NCCoE concept paper (5 Feb 2026); OCC Bulletin
+ * Aug 2025); NIST NCCoE concept paper (Feb 5, 2026); OCC Bulletin
  * 2026-54 as summarized by King & Spalding; Microsoft Learn (Entra Agent ID
- * and ID Governance); MC1506733 on the blueprint creation default (Oct 2026); AWS (AgentCore Identity OBO GA, 30 Apr
+ * and ID Governance); MC1506733 on the blueprint creation default (Oct 2026); AWS (AgentCore Identity OBO GA, Apr 30,
  * 2026); RFC 8693, RFC 8707; IETF drafts for ID-JAG and on-behalf-of for AI
  * agents (work in progress); MCP Enterprise-Managed Authorization (stable
- * 18 Jun 2026). Token and policy samples are illustrative.
+ * Jun 18, 2026). Token and policy samples are illustrative.
  */
 export const article: Article = {
   slug: 'ai-agent-identity-access-delegation',
@@ -93,7 +93,7 @@ export const article: Article = {
     },
     {
       paragraphs: [
-        'Three rules make delegation safe. The delegated token must never grant more than the user could do directly, so the agent cannot be used to escalate. Its scope should be the subset the task needs, not everything the user has. And consent should name the agent: a person should know they are authorizing this specific agent, not a generic application. That last point is where current standards are still moving. An IETF draft on on-behalf-of authorization for AI agents adds parameters that name the requesting agent in the consent step and bind it into the token, but it is a draft, and you should treat it as a direction rather than something to build on today.',
+        'Three rules make delegation safe. The delegated token must never grant more than the user could do directly, so the agent cannot be used to escalate. Its scope should be the subset the task needs, not everything the user has. And consent should name the agent: a person should know they are authorizing this specific agent, not a generic application. That last point is where current standards are still moving. An individual Internet-Draft on on-behalf-of authorization for AI agents proposed a parameter that names the requesting agent and records the delegation chain in the token, but it has expired without IETF endorsement, and you should treat it as a direction rather than something to build on today.',
       ],
     },
     {
@@ -109,7 +109,7 @@ export const article: Article = {
       paragraphs: [
         'Real deployments are chains. A user asks an assistant; the assistant calls an MCP server; the server calls a document system; another agent is asked to check the result. Identity has to survive every hop without getting broader.',
         'Two rules carry most of the weight. First, every hop gets its own token for its own audience. RFC 8707 resource indicators let a client ask for a token that is only valid at one resource, and the MCP specification requires this and forbids passing a token received from a client on to an upstream API. If a server needs to call another system for the user, it exchanges the token for a new one rather than forwarding it. Second, keep the originating user visible all the way down. Token exchange can nest actor claims so the final resource knows the chain of agents involved, and the IETF is working on related ideas such as transaction tokens for agents. Whatever mechanism you use, the last system in the chain should still be able to answer “for whom, and through which agents?”',
-        'For connections between AI clients and MCP servers in an enterprise, there is now a better pattern than asking each employee to click through a consent screen. MCP’s Enterprise-Managed Authorization extension, stable since June 18, 2026, lets your identity provider decide which servers each user’s client may reach. The client exchanges the user’s single sign-on assertion for an Identity Assertion JWT Authorization Grant (ID-JAG) at your identity provider, then presents it to the MCP server’s authorization server for an ordinary access token. Okta markets the same pattern as Cross App Access, and Anthropic made it available for Claude Team and Enterprise connectors in August 2026. The ID-JAG specification itself is still an IETF draft, so check support with each vendor before you depend on it. Our MCP governance guide walks through the flow in detail.',
+        'For connections between AI clients and MCP servers in an enterprise, there is now a better pattern than asking each employee to click through a consent screen. MCP’s Enterprise-Managed Authorization extension, stable since June 18, 2026, lets your identity provider decide which servers each user’s client may reach. The client exchanges the user’s single sign-on assertion for an Identity Assertion JWT Authorization Grant (ID-JAG) at your identity provider, then presents it to the MCP server’s authorization server for an ordinary access token. Okta markets the same pattern as Cross App Access, and Anthropic made it generally available for Claude Team and Enterprise connectors in August 2026. The ID-JAG specification itself is still an IETF draft, so check support with each vendor before you depend on it. Our MCP governance guide walks through the flow in detail.',
       ],
     },
     {
@@ -147,7 +147,7 @@ last_review: 2026-10-30`,
     {
       heading: '7. Short-lived everything',
       paragraphs: [
-        'The Drift incident ran for ten days on stolen refresh tokens. Long-lived credentials are what turn a compromise of the agent, its vendor or its host into ongoing access to your systems.',
+        'The Drift incident ran for ten days on stolen OAuth tokens. Long-lived credentials are what turn a compromise of the agent, its vendor or its host into ongoing access to your systems.',
         'Keep agent access tokens to minutes, not hours. Avoid issuing refresh tokens to agents where the platform allows it, and where you cannot, keep their lifetime short and bind them to the client. Store any credential the agent depends on in a vault or platform credential store, so the agent code and its prompts never contain a secret that can be logged, leaked into a model context or committed to a repository. AgentCore Identity’s token vault and Entra’s blueprint credentials are examples of this separation. Where your identity provider and resources support sender-constrained tokens, such as DPoP or mutual TLS, use them, so a stolen token is useless from another machine.',
       ],
     },
@@ -260,7 +260,7 @@ last_review: 2026-10-30`,
       publisher: 'Security Affairs',
     },
     {
-      title: 'Salesforce customers hit in attack spree using stolen Salesloft Drift tokens',
+      title: 'Hundreds of Salesforce customers impacted by attack spree linked to third-party AI agent',
       url: 'https://cyberscoop.com/salesforce-salesloft-drift-attack-spree-google/',
       publisher: 'CyberScoop',
     },
@@ -312,7 +312,7 @@ last_review: 2026-10-30`,
     {
       title: 'OAuth 2.0 Extension: On-Behalf-Of User Authorization for AI Agents (Internet-Draft)',
       url: 'https://datatracker.ietf.org/doc/draft-oauth-ai-agents-on-behalf-of-user/',
-      publisher: 'IETF (work in progress)',
+      publisher: 'Individual Internet-Draft (expired)',
     },
     {
       title: 'Identity Assertion JWT Authorization Grant (Internet-Draft)',

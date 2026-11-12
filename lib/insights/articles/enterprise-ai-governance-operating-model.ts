@@ -35,7 +35,7 @@ export const article: Article = {
   sections: [
     {
       paragraphs: [
-        'Almost every large organization now has an AI policy. Far fewer have AI governance. In EY’s September 2026 survey of senior AI executives, 98% of large organizations said they had an AI governance policy in place, and 47% admitted bypassing it for urgent deployments. A policy that half the business routes around when it matters is a document, not a control.',
+        'Almost every large organization now has an AI policy. Far fewer have AI governance. In EY’s September 2026 survey of senior AI decision-makers at large US public companies, 98% said they had an AI governance policy in place, and 47% admitted bypassing it for urgent deployments. A policy that half the business routes around when it matters is a document, not a control.',
         'The gap shows up everywhere you look. When ISS reviewed the proxy disclosures of 3,048 US companies earlier this year, only 245 (8%) disclosed board-level oversight of AI. IANS found that 60% of organizations keep a register of approved AI tools, but only 23% periodically audit or recertify it. Meanwhile customers, regulators and auditors have moved from asking whether you have a policy to asking you to show how it works.',
         'This guide is about closing that gap from an enterprise point of view. It treats AI governance as an operating model, not an ethics statement: the decisions it has to make, the people who make them, the inventory and risk tiers that drive those decisions, the controls that enforce them, and the evidence that proves it all works. It is written for the people who have to build and run it: chief risk, compliance, information security, data and technology officers, general counsel and internal audit. It is not legal advice.',
       ],
@@ -67,7 +67,7 @@ export const article: Article = {
         'The regulatory picture is busy but not as chaotic as it looks. The useful move is to separate the obligations that bind you now from the ones that are coming, and to build one control set that you map to all of them.',
       ],
       bullets: [
-        'EU AI Act, as amended by the Digital Omnibus (Regulation (EU) 2026/1744, in force since July 27, 2026): prohibited practices and AI literacy have applied since February 2025, though the literacy duty is now to take measures to support it rather than to ensure a sufficient level; general-purpose model obligations since August 2025; transparency obligations since August 2026; high-risk obligations from December 2, 2027, for Annex III uses such as credit scoring and employment, and August 2, 2028, for AI in regulated products.',
+        'EU AI Act, as amended by the Digital Omnibus (Regulation (EU) 2026/1744, in force since July 27, 2026): prohibited practices and AI literacy have applied since February 2025, though the literacy duty is now to take measures to support it rather than to ensure a sufficient level; general-purpose model obligations since August 2025; transparency obligations since August 2026, with machine-readable marking for generative systems already on the market from December 2, 2026; high-risk obligations from December 2, 2027, for Annex III uses such as credit scoring and employment, and August 2, 2028, for AI in regulated products.',
         'United States, federal: there is still no general AI statute. An executive order of December 11, 2025, set out a policy of a national framework and created a Justice Department task force to challenge state AI laws, but an executive order cannot by itself preempt state law, so state laws remain enforceable unless courts or Congress say otherwise. Sector regulators continue to apply existing law: for banks, see our article on SR 26-2 and AI agents.',
         'United States, states: Colorado repealed and replaced its 2024 AI Act with SB 26-189, a narrower law on automated decision-making that takes effect on January 1, 2027. California’s rules on automated decision-making technology under the CCPA also become operative on January 1, 2027, with risk assessments for 2026 and 2027 activity to be submitted to the California Privacy Protection Agency by April 1, 2028.',
         'Standards and frameworks: the NIST AI RMF 1.0 remains the current US reference (NIST says it is being revised, with no successor published), with its Generative AI Profile. ISO/IEC 42001 is the certifiable AI management system standard, ISO/IEC 42005 covers AI impact assessments, and ISO/IEC 42006 sets the rules for the bodies that certify against 42001.',
@@ -343,12 +343,12 @@ incidents_12m: 0`,
     },
     {
       title: 'Mind the governance gap: the state of board oversight and AI policy in US companies',
-      url: 'https://insights.issgovernance.com/posts/mind-the-governance-gap-the-state-of-board-oversight-and-ai-policy-in-u-s-companies',
+      url: 'https://www.iss-stoxx.com/posts/mind-the-governance-gap-the-state-of-board-oversight-and-ai-policy-in-u-s-companies',
       publisher: 'ISS',
     },
     {
       title: 'AI governance is advancing while the attack surface expands',
-      url: 'https://www.iansresearch.com/resources/all-blogs/post/security-blog/2026/08/25/ai-governance-is-advancing-while-the-attack-surface-expands',
+      url: 'https://www.ians.com/blog/ians-research/ai-governance-is-advancing-while-the-attack-surface-expands',
       publisher: 'IANS Research',
     },
     {
