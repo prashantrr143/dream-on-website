@@ -46,9 +46,12 @@ const nextConfig: NextConfig = {
       // Preview deployments, *.vercel.app aliases and any other host must
       // never be indexed as a duplicate of yatisphere.com. Production
       // pages carry their own robots meta (index, or noindex where meant).
+      // www is excluded too: it only ever 308s to the apex (proxy.ts), and
+      // a noindex, nofollow on that redirect showed up in Search Console as
+      // "Excluded by noindex" instead of a clean redirect (2026-11-12).
       {
         source: '/:path*',
-        missing: [{ type: 'host', value: 'yatisphere.com' }],
+        missing: [{ type: 'host', value: '(?:www\\.)?yatisphere\\.com' }],
         headers: [{ key: 'X-Robots-Tag', value: 'noindex, nofollow' }],
       },
       {
