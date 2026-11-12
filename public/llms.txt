@@ -37,6 +37,7 @@ YatiSphere Technologies Private Limited is registered in Noida, India (CIN U6201
 
 - [MCP governance: a technical guide to letting AI agents into your systems](https://yatisphere.com/insights/mcp-governance-for-regulated-firms): authorization, tool metadata, gateways and audit logging for MCP in regulated firms.
 - [The anatomy of MCP](https://yatisphere.com/insights/anatomy-of-mcp): hosts, clients, servers, messages, transports, extensions and the registry, as of the 2026-07-28 specification.
+- [MCP anti-patterns](https://yatisphere.com/insights/mcp-anti-patterns): fifteen mistakes in MCP tool design, security and operations, each tied to a real incident or measurement.
 - [Generative AI in a law firm: what ABA Formal Opinion 512 asks of you](https://yatisphere.com/insights/aba-opinion-512-generative-ai-law-firms)
 - [Using the NIST AI RMF without a large compliance team](https://yatisphere.com/insights/nist-ai-rmf-for-mid-market-teams)
 - [Taking an AI pilot to production in a regulated business](https://yatisphere.com/insights/taking-an-ai-pilot-to-production)
