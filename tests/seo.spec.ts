@@ -101,6 +101,10 @@ test('production pages carry no blanket X-Robots-Tag; other hosts are noindex', 
   expect(prod.headers()['x-robots-tag']).toBeUndefined()
   const preview = await request.get('/who-we-are/about', { headers: { host: 'yatisphere-git-branch.vercel.app' } })
   expect(preview.headers()['x-robots-tag']).toContain('noindex')
+  // www only redirects to the apex; the redirect must not say noindex.
+  const www = await request.get('/who-we-are/about', { headers: { host: `www.${PROD}` }, maxRedirects: 0 })
+  expect(www.status()).toBe(308)
+  expect(www.headers()['x-robots-tag']).toBeUndefined()
 })
 
 // No customer stories yet: every stories URL goes to Insights in one
