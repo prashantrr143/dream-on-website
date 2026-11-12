@@ -762,89 +762,160 @@ export const pages: ContentPage[] = [
   {
     path: '/what-we-do/applied-ai/ai-governance',
     meta: {
-      title: 'AI governance: NIST AI RMF and EU AI Act | YatiSphere',
+      title: 'Enterprise AI governance services | YatiSphere',
       description:
-        'AI governance aligned to the NIST AI RMF, ISO/IEC 42001 and EU AI Act risk tiers: human oversight, logging and evaluation. Alignment, not certification.',
+        'Enterprise AI governance that runs: inventory, risk tiers, approvals, controls and evidence, aligned to the NIST AI RMF, ISO/IEC 42001 and the EU AI Act.',
     },
     hero: {
       kicker: 'APPLIED AI / AI GOVERNANCE',
-      h1: 'AI governance aligned to the NIST AI RMF and ISO/IEC 42001',
-      subhead: 'We design the controls that let AI reach production: clear data boundaries, human oversight and a record of every decision.',
+      h1: 'Enterprise AI governance that actually runs',
+      subhead: 'We build the operating model, controls and evidence that let your organization approve AI quickly and prove it stays under control.',
     },
     parents: [WHAT_WE_DO, APPLIED_AI],
     name: 'AI governance',
     contactInterest: 'Applied AI',
-    contact: { title: 'Need AI through a model risk or compliance review?', body: 'Tell us the use case and who has to approve it.' },
+    contact: { title: 'Need AI through a risk, audit or customer review?', body: 'Tell us what you are using AI for and who has to approve it.' },
     blocks: [
       {
         type: 'statement',
         text:
-          'AI projects stall when nobody can say what data a model touches, who approved its output or how to turn it off. We put data boundaries, audit trails, evaluation and policy controls in place, so the compliance team signs off rather than shuts it down. ' +
+          'Most organizations now have an AI policy, but far fewer can show who approved each use, what data it touches and how they would stop it. We turn policy into an operating model: an inventory that stays current, risk tiers that decide the controls, approval gates with a fast lane for low-risk work, and evidence your auditors, customers and regulators can check. ' +
           ALIGNMENT_LINE,
       },
       {
         type: 'cards',
-        title: 'AI governance services',
+        title: 'What we put in place',
         columns: 2,
         cards: [
           {
-            title: 'Risk classification',
-            body: 'An inventory of your AI use cases, assessed against EU AI Act risk tiers and your own risk appetite.',
+            title: 'Ownership and decisions',
+            body: 'A named executive, a small governance council and clear owners for every AI use, so decisions get made quickly and by the right people. We fit this to your existing risk committees rather than adding a new bureaucracy.',
+            bullets: ['Roles and decision rights', 'Short policy and acceptable-use standard', 'Board reporting'],
           },
           {
-            title: 'Framework alignment',
-            body: 'Policies and controls mapped to ISO/IEC 42001 and the NIST AI RMF. We help you align; we do not certify.',
+            title: 'Inventory and risk tiers',
+            body: 'A complete inventory of the AI you build, buy, find inside vendor products and that staff use directly, each use tiered by its consequences. The tier decides the controls, so low-risk requests move in days.',
+            bullets: ['Discovery, including shadow AI', 'Tiering and impact assessments', 'Vendor and contract review'],
           },
           {
-            title: 'Human oversight',
-            body: 'Approval points designed where liability sits with a person, with the authority to override or stop the system.',
+            title: 'Controls that run',
+            body: 'Controls built into a shared technical layer every approved use passes through, so they work whether or not anyone remembers the policy. That includes data rules, logging, evaluation, human oversight and a way to stop.',
+            bullets: ['AI gateway and data boundaries', 'Approvals and audit trails', 'Evaluation, monitoring, kill switches'],
           },
           {
-            title: 'Logging and evaluation',
-            body: 'Audit logs of inputs, outputs and approvals, and evaluation against targets before go-live and after each change.',
+            title: 'Assurance and evidence',
+            body: 'Evidence on demand that controls operated, organized for the reviewer in front of you: internal audit, a customer questionnaire, a supervisor or a certification body.',
+            bullets: ['Evidence register', 'Internal audit readiness', 'ISO/IEC 42001 readiness'],
           },
         ],
       },
       {
-        type: 'tabs',
-        title: 'Typical governance projects',
-        tabs: [
+        type: 'example',
+        kicker: 'Worked example',
+        title: 'One AI use case, from request to evidence',
+        lede: 'An illustrative request: a commercial team wants AI to extract key clauses from customer contracts.',
+        afterLabel: 'With governance that runs',
+        rows: [
           {
-            label: 'Governance baseline',
-            description: 'The policies, roles and inventory you need before AI use grows.',
-            bullets: ['AI use-case inventory', 'Acceptable-use and data policies', 'Roles and approval paths'],
+            step: 'The request',
+            today: 'A team buys a tool on a card or switches on a vendor feature. Legal hears about it months later.',
+            after: 'A short intake form creates an inventory record with an owner, a purpose and what the tool may not do.',
           },
           {
-            label: 'Controls in the build',
-            description: 'Governance built into each system, not added after.',
-            bullets: ['Data boundaries and access scoping', 'Human approval gates', 'Audit logging and retention'],
+            step: 'Classification',
+            today: 'Every request gets the same committee review, so simple ones wait weeks and people stop asking.',
+            after: 'The use is tiered on consequences, data and autonomy. Low tiers take a fast lane; this one is tier 2.',
           },
           {
-            label: 'Ongoing assurance',
-            description: 'Evidence that controls keep working once systems are live.',
-            bullets: ['Monitoring and incident handling', 'Regression evaluation on change', 'Periodic control reviews'],
+            step: 'Approval',
+            today: 'An email thread approves the idea. Nobody records the conditions or the residual risk.',
+            after: 'An impact assessment records harms, oversight and test results, and a named owner accepts the residual risk.',
+          },
+          {
+            step: 'Build or buy',
+            today: 'The vendor contract says nothing about training on your data or model changes.',
+            after: 'Contract terms cover data use, change notice and logs. The use runs behind the shared AI gateway with data rules applied.',
+          },
+          {
+            step: 'Go-live',
+            today: 'It goes live when the demo looks good.',
+            after: 'It goes live when it passes an evaluation set with thresholds agreed before the build, and a lawyer approves each output.',
+          },
+          {
+            step: 'Change',
+            today: 'The vendor swaps the underlying model. Nobody notices.',
+            after: 'A model, prompt or data change triggers re-testing in proportion to the tier, recorded in the inventory.',
+          },
+          {
+            step: 'Audit',
+            today: 'Someone spends two weeks reconstructing what happened from emails and screenshots.',
+            after: 'The evidence register points to the approval, test results, logs and recertification date in minutes.',
+          },
+        ],
+        note: 'Illustrative. The names of steps and tiers follow our method; your existing risk taxonomy can be used instead.',
+      },
+      {
+        type: 'offer',
+        kicker: 'Start here',
+        name: 'AI governance baseline',
+        summary: 'A fixed-scope first engagement that gives you a working governance program for the AI you already use, before you scale further.',
+        includes: [
+          'Discovery of AI in use: built, bought, embedded in vendor products and used by staff',
+          'Inventory with owners, purposes and risk tiers',
+          'Operating model: decision rights, council, fast lane and board reporting',
+          'Policy stack: AI policy, acceptable-use, risk and procurement standards',
+          'Impact assessments for your highest-risk uses',
+          'Control gap analysis against NIST AI RMF, ISO/IEC 42001 and the regulations that apply to you',
+        ],
+        deliverable:
+          'A working inventory and tiering method, a policy stack your teams can follow, impact assessments for the riskiest uses, and a prioritized twelve-month roadmap for controls and assurance.',
+      },
+      {
+        type: 'accordion',
+        title: 'Rules and standards we map your controls to',
+        items: [
+          {
+            title: 'EU AI Act',
+            body: 'As amended by the Digital Omnibus (Regulation (EU) 2026/1744): prohibitions and AI literacy already apply, general-purpose model and transparency obligations apply, and high-risk obligations start on December 2, 2027, for Annex III uses such as credit scoring and employment, and on August 2, 2028, for AI in regulated products.',
+          },
+          {
+            title: 'NIST AI RMF and ISO/IEC standards',
+            body: 'The NIST AI RMF 1.0 and its Generative AI Profile; ISO/IEC 42001 for an AI management system, ISO/IEC 42005 for impact assessments, and ISO/IEC 42006, which governs the bodies that certify against 42001.',
+          },
+          {
+            title: 'US state laws on automated decisions',
+            body: 'Colorado’s SB 26-189, which replaced its 2024 AI Act and takes effect on January 1, 2027, and California’s CCPA rules on automated decision-making technology, operative from January 1, 2027, with risk assessments to be filed with the state privacy agency from 2028.',
+          },
+          {
+            title: 'Sector regulators',
+            body: 'For US banks, the April 2026 model risk guidance (SR 26-2), which leaves generative and agentic AI out of scope, and the OCC’s November 2026 examiner framework for bank AI. For US law firms, ABA Formal Opinion 512 and state bar guidance.',
+          },
+          {
+            title: 'Customer and contract requirements',
+            body: 'AI sections in security questionnaires, requests for an AI management system or ISO/IEC 42001 certificate, and AI clauses in master service agreements.',
           },
         ],
       },
       {
         type: 'steps',
-        title: 'How a governance project runs',
+        title: 'How a governance program is built',
         steps: [
-          { title: 'Inventory', body: 'We list where AI is used or planned, what data it touches and who owns it.' },
-          { title: 'Assess', body: 'Each use case is classified by risk and mapped to the frameworks you need to align with.' },
-          { title: 'Implement', body: 'Policies, approval gates, logging and evaluation put in place, system by system.' },
-          { title: 'Assure', body: 'Monitoring, incident handling and periodic reviews keep the controls current.' },
+          { title: 'Discover', body: 'We find the AI you use, including vendor features and staff tools, and record owners and purposes.' },
+          { title: 'Tier', body: 'Each use is classified by consequences, data and autonomy, which sets the controls it needs.' },
+          { title: 'Design', body: 'Decision rights, policies, lifecycle gates and the control layer are designed to fit your existing risk structure.' },
+          { title: 'Implement', body: 'Controls go into the platform and the riskiest uses first: data rules, logging, evaluation, oversight and a way to stop.' },
+          { title: 'Assure', body: 'Monitoring, recertification, board reporting and an evidence register keep the program current and auditable.' },
         ],
       },
       {
         type: 'list',
         title: 'What you can show a reviewer',
         items: [
-          'An AI use-case inventory with risk classifications.',
-          'A control map against EU AI Act risk tiers, ISO/IEC 42001 and the NIST AI RMF.',
-          'Policies and approval paths your teams can follow.',
-          'Logging and evaluation built into each system.',
-          'Evidence packs your compliance and audit teams can review.',
+          'An AI inventory with owners, purposes, risk tiers and recertification dates.',
+          'Impact assessments and test results for every high-risk use.',
+          'A control map against the NIST AI RMF, ISO/IEC 42001 and the rules that apply to you.',
+          'Logs, approvals and evaluation results produced by the platform, not reconstructed.',
+          'Quarterly board reporting on coverage, speed, incidents and exceptions.',
         ],
       },
       {
@@ -852,29 +923,50 @@ export const pages: ContentPage[] = [
         title: 'Common questions',
         items: [
           {
+            q: 'Where should an AI governance program start?',
+            a: 'With the inventory. You cannot classify, control or report on AI you do not know about. A first inventory, including vendor features and the tools staff use directly, usually changes the priorities more than any framework does.',
+          },
+          {
+            q: 'Will governance slow our AI projects down?',
+            a: 'It should do the opposite. Risk tiers let low-risk requests take a fast lane decided in days, and answering the sign-off questions early is usually what lets higher-risk projects reach production instead of stalling at review.',
+          },
+          {
+            q: 'Does this cover AI built into the software we already buy?',
+            a: 'Yes. For most enterprises that is where most AI comes from. We help you find it, review vendors and add contract terms on data use, change notice, logging and incidents.',
+          },
+          {
+            q: 'What about AI agents?',
+            a: 'Agents need a few extra controls because they act rather than advise: their own identities and limited permissions, approvals bound to specific consequential actions, audit trails of every action, and a way to stop them that sits outside the agent.',
+          },
+          {
             q: 'Does this give us a certification?',
-            a: 'No. We help you align with ISO/IEC 42001, the NIST AI RMF and EU AI Act requirements. Certification, where you want it, is carried out by an accredited body.',
+            a: 'No. We help you align with ISO/IEC 42001, the NIST AI RMF and the rules that apply to you, and can prepare you for certification. Certification itself is carried out by an accredited certification body.',
           },
           {
             q: 'Do you provide legal advice?',
-            a: 'No. We work alongside your legal and compliance teams and put the technical and operational controls in place.',
-          },
-          {
-            q: 'Will governance slow our projects down?',
-            a: 'Governance designed in from the start is usually what lets a project reach production, because the sign-off questions are answered before they are asked.',
+            a: 'No. We work alongside your legal and compliance teams and build the operational and technical controls that put their requirements into practice.',
           },
         ],
       },
       {
         type: 'links',
-        title: 'Related services',
+        title: 'Guides and related services',
         links: [
-          RESPONSIBLE_AI_LINK,
-          CLAUDE_LINK,
           {
-            label: 'Enterprise AI platforms',
-            href: '/what-we-do/applied-ai/ai-platforms',
-            descriptor: 'A shared platform that enforces your controls.',
+            label: 'Enterprise AI governance: the full guide',
+            href: '/insights/enterprise-ai-governance-operating-model',
+            descriptor: 'Operating model, inventory, tiers, controls, assurance and a 12-month roadmap.',
+          },
+          {
+            label: 'Kill switches, approvals and audit logs',
+            href: '/insights/ai-agent-kill-switches-approvals-audit-logs',
+            descriptor: 'A reference design for controlling AI agents.',
+          },
+          RESPONSIBLE_AI_LINK,
+          {
+            label: 'Agentic automation',
+            href: '/what-we-do/applied-ai/agentic-automation',
+            descriptor: 'AI agents with approvals and audit trails built in.',
           },
           APPLIED_AI_LINK,
         ],

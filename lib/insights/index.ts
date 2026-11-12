@@ -10,6 +10,11 @@ import { article as nistRmf } from './articles/nist-ai-rmf-for-mid-market-teams'
 import { article as mcpGovernance } from './articles/mcp-governance-for-regulated-firms'
 import { article as mcpAnatomy } from './articles/anatomy-of-mcp'
 import { article as mcpAntiPatterns } from './articles/mcp-anti-patterns'
+import { article as agentControls } from './articles/ai-agent-kill-switches-approvals-audit-logs'
+import { article as sr262Agents } from './articles/sr-26-2-ai-agents-bank-supervisors'
+import { article as enterpriseAiGov } from './articles/enterprise-ai-governance-operating-model'
+import { article as agentIdentity } from './articles/ai-agent-identity-access-delegation'
+import { article as agentTesting } from './articles/testing-ai-agents-before-production'
 
 export type { Article, ArticleSection, ArticleSource } from './types'
 
@@ -33,6 +38,11 @@ export const ALL_ARTICLES: Article[] = [
   mcpGovernance,
   mcpAnatomy,
   mcpAntiPatterns,
+  agentControls,
+  sr262Agents,
+  enterpriseAiGov,
+  agentIdentity,
+  agentTesting,
 ]
 
 export const INSIGHTS_PREVIEW =
