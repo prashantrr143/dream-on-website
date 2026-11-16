@@ -42,7 +42,7 @@ export const pages: ContentPage[] = [
   {
     path: '/what-we-do/applied-ai',
     meta: {
-      title: 'AI pilot to production for banks, law firms and SaaS | YatiSphere',
+      title: 'AI implementation from pilot to production | YatiSphere',
       description:
         'Take an AI pilot into production: evaluation, human approval, audit trails and integration with the systems you run. Model- and cloud-neutral.',
     },
@@ -175,6 +175,36 @@ export const pages: ContentPage[] = [
         ],
       },
       { type: 'inFocus', title: 'Further reading', services: ['applied-ai'] },
+      {
+        type: 'faq',
+        title: 'Common questions',
+        items: [
+          {
+            q: 'Why do AI pilots stall before production?',
+            a: 'Usually for the same reasons: the demo runs on sample data, nobody owns integration or security, and nobody can say what the model touches or who approved its output. Fixing that is engineering and governance work more than a better model.',
+          },
+          {
+            q: 'Which models and clouds do you work with?',
+            a: 'Claude, OpenAI models and open-weight models, run on Amazon Bedrock, Google Cloud Vertex AI, Microsoft Foundry or direct APIs. We pick the model for the task and the cloud for your estate, and keep the option to switch.',
+          },
+          {
+            q: 'Do your AI agents act without human approval?',
+            a: 'Not where a decision carries liability. AI drafts, checks and routes the work; a named person approves consequential actions, and every step is logged in your environment.',
+          },
+          {
+            q: 'How do you test an AI system before go-live?',
+            a: 'Acceptance tests and pass thresholds are agreed with the business before the build starts, and a release goes ahead only when it meets them. The same tests run again after every change to the model, the prompts or the data.',
+          },
+          {
+            q: 'Can we use AI without sending data to a third-party AI service?',
+            a: 'Yes. Our local AI work runs open-weight models and agents on your own servers or private cloud, for data that cannot go to an outside provider.',
+          },
+          {
+            q: 'Do you use our data to train models?',
+            a: 'We do not use client data to train or fine-tune models, unless a client asks us to in writing for their own dedicated model.',
+          },
+        ],
+      },
     ],
   },
 

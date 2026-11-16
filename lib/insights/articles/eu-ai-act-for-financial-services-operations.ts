@@ -3,6 +3,7 @@ import type { Article } from '../types'
 export const article: Article = {
   slug: 'eu-ai-act-for-financial-services-operations',
   title: 'The EU AI Act for bank and insurance operations teams',
+  seoTitle: 'EU AI Act for banks and insurers: deployer duties and dates',
   summary:
     'Which credit and insurance uses are high-risk, what deployers must do, and the dates that apply after the Digital Omnibus on AI, as of October 2026.',
   category: 'Regulation',
@@ -41,10 +42,10 @@ export const article: Article = {
         'For high-risk systems, Article 26 sets the core deployer duties, Article 27 adds a fundamental rights impact assessment that applies specifically to deployers of the Annex III point 5(b) and 5(c) systems, and Article 86 gives affected people a right to an explanation of the role the system played in a decision about them. In practice that becomes a short operating checklist:',
       ],
       bullets: [
-        'An AI inventory. List every system in use, its provider, its intended purpose and the process it feeds, including general-purpose tools adopted informally.',
+        '[An AI inventory](/insights/enterprise-ai-governance-operating-model). List every system in use, its provider, its intended purpose and the process it feeds, including general-purpose tools adopted informally.',
         'Risk classification. Record for each system whether it falls under Annex III, and why, including any Article 6(3) reasoning a provider relies on.',
         'Use within the instructions for use. Article 26(1) requires appropriate technical and organizational measures so the system is used as the provider intended, and Article 26(4) requires input data under your control to be relevant and sufficiently representative.',
-        'Human oversight. Article 26(2) requires oversight to be assigned to people with the necessary competence, training, authority and support. Name the role and give it real authority to override.',
+        'Human oversight. Article 26(2) requires oversight to be assigned to people with the necessary competence, training, authority and support. Name the role and give it real authority to override. Where an AI agent takes actions, that means [approval gates the agent cannot bypass](/insights/ai-agent-kill-switches-approvals-audit-logs).',
         'Logging. Article 26(6) requires automatically generated logs under your control to be kept for a period appropriate to the purpose and at least six months. Financial institutions keep them as part of the documentation already required under financial services law.',
         'Monitoring and incidents. Article 26(5) requires deployers to monitor operation and inform the provider and authorities of risks and serious incidents. For financial institutions subject to internal governance rules, complying with those rules is treated as meeting the monitoring obligation.',
         'Transparency to people. Under Article 26(11), deployers of Annex III systems that make or assist decisions about natural persons must tell them they are subject to the system. Separately, Article 50 requires that people interacting directly with an AI system, such as a service chatbot, are made aware of it.',
@@ -75,8 +76,8 @@ export const article: Article = {
     {
       heading: 'Using the extra time well',
       paragraphs: [
-        'December 2027 is not far away for a firm that has not yet built an inventory. A sensible order is to complete the inventory and classification first, settle provider or deployer status with each vendor in the contract, then fold oversight, logging and impact assessments into the governance you already run for DORA and model risk.',
-        'When YatiSphere works on AI in regulated processes, the design starts from the same place: a person approves consequential actions, code and infrastructure stay in the client\'s own accounts, and the first step is a Solution Blueprint that maps systems, roles and controls before anything is built. We do not use client data to train or fine-tune models, unless a client asks us to in writing for their own dedicated model.',
+        'December 2027 is not far away for a firm that has not yet built an inventory. A sensible order is to complete the inventory and classification first, settle provider or deployer status with each vendor in the contract, then fold oversight, logging and impact assessments into the governance you already run for DORA and model risk. US banks face a parallel question under [SR 26-2](/insights/sr-26-2-ai-agents-bank-supervisors).',
+        'When YatiSphere works on AI in regulated processes, such as [KYC, onboarding and claims](/what-we-do/industries/financial-services), the design starts from the same place: a person approves consequential actions, code and infrastructure stay in the client\'s own accounts, and the first step is a [Solution Blueprint](/blueprint) that maps systems, roles and controls before anything is built. We do not use client data to train or fine-tune models, unless a client asks us to in writing for their own dedicated model.',
       ],
     },
   ],

@@ -7,6 +7,7 @@ import { PRIMARY_CTA, contactHref } from '@/lib/cta'
 import { publishedArticles } from '@/lib/insights'
 import { CONTENT_PAGES, type ContentPage } from '@/content/pages'
 import type { IndustryDetail } from '@/content/pages/types'
+import { PageFaqs } from '@/components/page/ContentPageView'
 
 /**
  * Industry page (rewrite, 2026-10-19). Shows every section in full, in the
@@ -243,6 +244,7 @@ export function IndustryView({ page, d }: { page: ContentPage; d: IndustryDetail
         primaryCta={{ label: PRIMARY_CTA.label, href: contactHref(page.contactInterest) }}
         secondaryCta={{ label: 'Start with a Blueprint', href: '/blueprint' }}
       />
+      <PageFaqs page={page} />
     </SharedLayout>
   )
 }
@@ -302,6 +304,7 @@ export function IndustriesHub({ page }: { page: ContentPage }) {
         primaryCta={{ label: PRIMARY_CTA.label, href: PRIMARY_CTA.href }}
         secondaryCta={{ label: 'Start with a Blueprint', href: '/blueprint' }}
       />
+      <PageFaqs page={page} />
     </SharedLayout>
   )
 }

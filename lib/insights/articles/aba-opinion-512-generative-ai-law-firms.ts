@@ -10,7 +10,7 @@ import type { Article } from '../types'
 export const article: Article = {
   slug: 'aba-opinion-512-generative-ai-law-firms',
   title: 'Generative AI in a law firm: what ABA Formal Opinion 512 asks of you',
-  seoTitle: 'ABA Formal Opinion 512 and generative AI in law firms',
+  seoTitle: 'ABA Formal Opinion 512: generative AI checklist for firms',
   summary:
     'How the ABA’s first generative AI opinion applies competence, confidentiality, communication and fee duties to the AI tools a law firm rolls out.',
   category: 'Regulation',
@@ -74,7 +74,7 @@ export const article: Article = {
     {
       heading: 'What a firm can put in place first',
       paragraphs: [
-        'None of this needs a large program. Most firms can cover the opinion with a short list of controls, agreed before the first tool is rolled out widely.',
+        'None of this needs a large program. Most firms can cover the opinion with a short list of controls, agreed before the first tool is rolled out widely. If the firm is writing a wider AI policy at the same time, our [AI governance operating model](/insights/enterprise-ai-governance-operating-model) shows how the pieces fit together.',
       ],
       bullets: [
         'A list of approved tools, with what each may and may not be used for',
@@ -83,13 +83,13 @@ export const article: Article = {
         'A consent process for client information in self-learning tools, specific to the tool, not boilerplate',
         'Training for lawyers and staff on each tool’s limits, the review step and citation checks',
         'Vendor due diligence on each provider, as for any outside service handling client data',
-        'A record of which matters used which tool, so questions can be answered later',
+        'A record of which matters used which tool, so questions can be answered later (for tools that act rather than draft, use the [audit log patterns](/insights/ai-agent-kill-switches-approvals-audit-logs) we apply to AI agents)',
       ],
     },
     {
       heading: 'Check your state bar as well',
       paragraphs: [
-        'The ABA Model Rules are a model. Each state adopts its own rules, and several state bars have issued their own guidance on generative AI. The opinion itself expects further guidance as tools develop. Before a rollout, check the guidance from the bars where the firm’s lawyers are admitted.',
+        'The ABA Model Rules are a model. Each state adopts its own rules, and several state bars have issued their own guidance on generative AI. The opinion itself expects further guidance as tools develop. Before a rollout, check the guidance from the bars where the firm’s lawyers are admitted. It is the same groundwork we lay before building [intake and conflict-check agents for law firms](/what-we-do/industries/legal-professional-services).',
         'This article is general information, not legal advice. Your firm’s general counsel or ethics counsel should confirm how these duties apply to your practice.',
       ],
     },

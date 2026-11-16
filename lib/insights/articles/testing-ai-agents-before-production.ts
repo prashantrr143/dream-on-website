@@ -123,7 +123,7 @@ graders: [state_check, policy_check, judge:customer_reply]`,
       heading: '7. Red team the actions, not just the words',
       paragraphs: [
         'Traditional red teaming of language models asks whether the model will say something harmful. For agents the more important question is whether it will do something harmful: call a tool it should not, move data where it should not, or exceed its authority. The Cloud Security Alliance made this point in its June 2026 evaluation of Microsoft’s PyRIT toolkit for agent red teaming, which concluded that automated tools help but that the real risk often lies between what an agent says and what it can do.',
-        'Automated tools now cover part of this. Microsoft’s AI Red Teaming Agent in Foundry, built on PyRIT, added agent-specific risk categories such as prohibited actions, sensitive data leakage and task adherence, and can run in CI pipelines. Use tools like these for breadth, then add targeted tests of your own: ask the agent to perform each action it must never perform, try to make it exceed a limit, and confirm that your gateway, approval steps and identity scopes block what the agent itself fails to refuse. A test that the agent politely declined is good; a test showing the gateway would have blocked it anyway is better.',
+        'Automated tools now cover part of this. Microsoft’s AI Red Teaming Agent in Foundry, built on PyRIT, added agent-specific risk categories such as prohibited actions, sensitive data leakage and task adherence, and can run in CI pipelines. Use tools like these for breadth, then add targeted tests of your own: ask the agent to perform each action it must never perform, try to make it exceed a limit, and confirm that your gateway, [approval steps](/insights/ai-agent-kill-switches-approvals-audit-logs) and [identity scopes](/insights/ai-agent-identity-access-delegation) block what the agent itself fails to refuse. A test that the agent politely declined is good; a test showing the gateway would have blocked it anyway is better.',
       ],
     },
     {
@@ -175,7 +175,7 @@ sign_off: [product_owner, model_risk, security]`,
     {
       heading: '11. Re-test whenever anything changes',
       paragraphs: [
-        'An agent is a combination of model, prompts, tools, tool descriptions, policies and data, and a change to any of them can change its behavior. Run the gate when you change a prompt, upgrade a model, add or update a tool or MCP server, change a policy or move to a new data source. Pin versions so you know what was tested, and treat a provider’s model update like any other dependency upgrade.',
+        'An agent is a combination of model, prompts, tools, tool descriptions, policies and data, and a change to any of them can change its behavior. Run the gate when you change a prompt, upgrade a model, add or update a tool or [MCP server](/insights/mcp-anti-patterns), change a policy or move to a new data source. Pin versions so you know what was tested, and treat a provider’s model update like any other dependency upgrade.',
         'A good suite pays for itself here. Anthropic notes that teams without evaluations face weeks of testing when a new model arrives, while teams with them can find out quickly whether to adopt it.',
       ],
     },
@@ -195,7 +195,7 @@ sign_off: [product_owner, model_risk, security]`,
     {
       heading: '14. Keep the evidence',
       paragraphs: [
-        'The test suite, its results, the gate thresholds and the sign-offs are evidence, and increasingly someone will ask for them. Bank supervisors, as our SR 26-2 article describes, now ask how agents are limited, audited and shut down. The EU AI Act expects testing for high-risk systems, and internal audit will ask how you knew an agent was ready. Keep each release’s results with the version tested and the people who approved it, in the same place as the rest of your AI governance records.',
+        'The test suite, its results, the gate thresholds and the sign-offs are evidence, and increasingly someone will ask for them. Bank supervisors, as our [SR 26-2 article](/insights/sr-26-2-ai-agents-bank-supervisors) describes, now ask how agents are limited, audited and shut down. The EU AI Act expects testing for high-risk systems, and internal audit will ask how you knew an agent was ready. Keep each release’s results with the version tested and the people who approved it, in the same place as the rest of your [AI governance records](/insights/enterprise-ai-governance-operating-model).',
       ],
     },
     {

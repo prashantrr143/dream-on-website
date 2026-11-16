@@ -30,7 +30,7 @@ export const article: Article = {
     {
       heading: 'Govern: name an owner and write down the rules',
       paragraphs: [
-        'Govern is about accountability. For one system, that means a named business owner, a short policy on what the system may and may not do, and an inventory entry: what it is, which model and provider it uses, and what data it touches.',
+        'Govern is about accountability. For one system, that means a named business owner, a short policy on what the system may and may not do, and an [inventory entry](/insights/enterprise-ai-governance-operating-model): what it is, which model and provider it uses, and what data it touches.',
       ],
     },
     {
@@ -42,13 +42,13 @@ export const article: Article = {
     {
       heading: 'Measure: test against thresholds agreed in advance',
       paragraphs: [
-        'Measure is evaluation. Build a test set from real, representative cases, including awkward ones, and agree pass thresholds with the business owner before the build starts. Run the same tests after every change to the model, the prompts or the data it retrieves.',
+        'Measure is evaluation. Build a test set from real, representative cases, including awkward ones, and agree pass thresholds with the business owner before the build starts. Run the same tests after every change to the model, the prompts or the data it retrieves. Agents need more than this, and we cover the extra tests in [testing AI agents before production](/insights/testing-ai-agents-before-production).',
       ],
     },
     {
       heading: 'Manage: monitor, respond and review suppliers',
       paragraphs: [
-        'Manage covers what happens once the system is live, including risks from third parties such as the model provider. Monitor quality and cost, decide in advance what triggers a rollback, keep a person on consequential actions, and review the provider’s terms on retention and training.',
+        'Manage covers what happens once the system is live, including risks from third parties such as the model provider. Monitor quality and cost, decide in advance what triggers a rollback, keep a person on [consequential actions](/insights/ai-agent-kill-switches-approvals-audit-logs), and review the provider’s terms on retention and training.',
       ],
       bullets: [
         'An owner and a one-page policy (Govern)',
@@ -60,7 +60,7 @@ export const article: Article = {
     {
       heading: 'Where to start',
       paragraphs: [
-        'Pick the AI system closest to production and produce the four items above for it. That gives a reviewer something concrete to read, and gives the team a template for the next system.',
+        'Pick the AI system [closest to production](/insights/taking-an-ai-pilot-to-production) and produce the four items above for it. That gives a reviewer something concrete to read, and gives the team a template for the next system.',
       ],
     },
     {

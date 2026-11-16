@@ -22,9 +22,9 @@ export const article: Article = {
     {
       heading: 'Agree what good looks like before you build',
       paragraphs: [
-        'A demo is judged by impression. A production system needs an evaluation set and acceptance thresholds that the business owner, the risk function and the engineering team sign off before the build starts. If the thresholds are set after the results come in, they will be set to match the results.',
+        'A demo is judged by impression. A production system needs an [evaluation set](/insights/testing-ai-agents-before-production) and acceptance thresholds that the business owner, the risk function and the engineering team sign off before the build starts. If the thresholds are set after the results come in, they will be set to match the results.',
         'The evaluation set should be built from real, representative cases, including the awkward ones: incomplete documents, ambiguous requests, out-of-scope questions and inputs that try to make the system misbehave. Each case needs an expected outcome a reviewer can check. Thresholds should be set per failure type, because a wrong answer that a person will catch is not the same as a wrong action that goes straight into a customer record.',
-        'This maps neatly onto the NIST AI Risk Management Framework, a voluntary framework published in January 2023. Its MAP function establishes the context needed to frame the risks of a specific system, and its MEASURE function uses quantitative, qualitative or mixed methods to assess them. Writing down the context and the acceptance criteria first is MAP; running the evaluation set on every change is MEASURE.',
+        'This maps neatly onto the [NIST AI Risk Management Framework](/insights/nist-ai-rmf-for-mid-market-teams), a voluntary framework published in January 2023. Its MAP function establishes the context needed to frame the risks of a specific system, and its MEASURE function uses quantitative, qualitative or mixed methods to assess them. Writing down the context and the acceptance criteria first is MAP; running the evaluation set on every change is MEASURE.',
       ],
       bullets: [
         'Name the decision the system supports and what a wrong output would cost.',
@@ -45,13 +45,13 @@ export const article: Article = {
       heading: 'Keep a person on consequential actions',
       paragraphs: [
         'Drafting, summarizing and classifying are low-stakes when a person reviews the output. Paying, approving, rejecting, sending or changing a record of fact are not. For those, the system should prepare the action and a person should approve it, with the approval, the approver and the evidence the model relied on written to an audit log.',
-        'This is how we build: a person approves consequential actions. Approval should be a real decision point with the relevant evidence on screen, not a button people learn to click through. If reviewers approve nearly everything without reading it, that is a signal to revisit the design, not to remove the step.',
+        'This is how we build: a person approves consequential actions. Our [reference design for approvals and kill switches](/insights/ai-agent-kill-switches-approvals-audit-logs) shows the detail. Approval should be a real decision point with the relevant evidence on screen, not a button people learn to click through. If reviewers approve nearly everything without reading it, that is a signal to revisit the design, not to remove the step.',
       ],
     },
     {
       heading: 'Connect to systems of record under real identities',
       paragraphs: [
-        'Pilots often run on exported spreadsheets and a shared API key. Production systems read from and write to the systems of record, so they inherit those systems’ access rules. The AI component should act under a defined identity with the least access it needs, and where it acts on behalf of a user it should be able to see only what that user can see.',
+        'Pilots often run on exported spreadsheets and a shared API key. Production systems read from and write to the systems of record, so they inherit those systems’ access rules. The AI component should act under a [defined identity](/insights/ai-agent-identity-access-delegation) with the least access it needs, and where it acts on behalf of a user it should be able to see only what that user can see.',
         'On Azure, Microsoft Entra ID lets an application call Azure OpenAI without storing an API key: the code requests a short-lived token for an identity that has been granted a role on the resource. Microsoft’s guidance uses a managed identity for apps hosted in Azure, with no secret to store or rotate, and the Cognitive Services OpenAI User role for inference. That removes a class of leaked-key incidents and puts model access in the same access reviews as everything else.',
         'Write-backs deserve particular care. Use the system of record’s own APIs and validation, make writes idempotent, and record which model version and prompt produced each change.',
       ],

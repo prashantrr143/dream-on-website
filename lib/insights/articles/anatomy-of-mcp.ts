@@ -149,7 +149,7 @@ export const article: Article = {
       bullets: [
         'MCP Apps (`io.modelcontextprotocol/ui`), the first official extension, released in January 2026. A server can ship an interactive HTML interface as a `ui://` resource, which supporting hosts render in a sandboxed iframe next to the conversation.',
         'Tasks (`io.modelcontextprotocol/tasks`), described above.',
-        'Enterprise-Managed Authorization, stable since June 2026, which lets an organization’s identity provider decide which servers each employee may use. Our MCP governance article walks through the token flow.',
+        'Enterprise-Managed Authorization, stable since June 2026, which lets an organization’s identity provider decide which servers each employee may use. Our [MCP governance article](/insights/mcp-governance-for-regulated-firms) walks through the token flow.',
       ],
     },
     {
@@ -183,9 +183,9 @@ export const article: Article = {
       paragraphs: [
         'A few things follow from the anatomy that are easy to miss on a first read of the specification.',
         'Design remote servers to be stateless from day one. The protocol no longer gives you a session, so anything a server needs to remember across a multi-step interaction belongs in `requestState`, a task, or your own data store, not in process memory.',
-        'Decide early which of your data is a resource and which actions are tools. Moving a read-only lookup from a tool to a resource changes who controls it, and that is a governance decision as much as a technical one.',
+        'Decide early which of your data is a resource and which actions are tools. Moving a read-only lookup from a tool to a resource changes who controls it, and that is a governance decision as much as a technical one. Our [MCP anti-patterns](/insights/mcp-anti-patterns) cover the most common design mistakes.',
         'Do not build new work on sampling, roots, the logging feature, HTTP+SSE or Dynamic Client Registration. They all still work, and they are all on a deprecation clock of at least twelve months.',
-        'Put the gateway in the drawing before you put it in production. The new headers make it cheap to run, and most of the controls in our MCP governance guide assume it is there.',
+        'Put the gateway in the drawing before you put it in production. The new headers make it cheap to run, and most of the controls in our [MCP governance guide](/insights/mcp-governance-for-regulated-firms) assume it is there.',
       ],
     },
   ],

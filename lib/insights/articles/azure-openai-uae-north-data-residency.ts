@@ -5,7 +5,7 @@ export const article: Article = {
   title: 'Azure OpenAI in UAE North: what data residency actually covers',
   summary:
     'A UAE North resource does not keep every prompt in the UAE. What each deployment type does, how abuse monitoring works, and what to configure.',
-  seoTitle: 'Azure OpenAI in UAE North: what data residency covers',
+  seoTitle: 'Azure OpenAI UAE North data residency: what stays in the UAE',
   category: 'Cloud',
   readTime: '6 min read',
   author: 'YatiSphere team',
@@ -69,16 +69,16 @@ export const article: Article = {
         'Avoid preview features and Global Batch for in-scope data unless your assessment covers them.',
         'Set public network access to Disabled and connect through a private endpoint in a virtual network in the same region. Confirm that DNS resolves to the private IP address from inside the network.',
         'Add a customer-managed key from a Key Vault or Managed HSM in the same region as the Foundry resource, with soft delete and purge protection on.',
-        'Turn off key-based access (disableLocalAuth set to true, or the built-in Azure Policy) and call the service with Microsoft Entra ID and managed identities, scoped by role.',
+        'Turn off key-based access (disableLocalAuth set to true, or the built-in Azure Policy) and call the service with Microsoft Entra ID and managed identities, scoped by role. If agents call the model, give each one [its own identity](/insights/ai-agent-identity-access-delegation).',
         'Send diagnostic logs to a Log Analytics workspace in the same geography. Decide whether gateway or application logs capture prompt text, and where they live.',
         'If you qualify, apply for modified abuse monitoring, then verify that ContentLogging shows false.',
-        'Record the deployment type, region and check date for each model in your record of processing.',
+        'Record the deployment type, region and check date for each model in your record of processing and your [AI inventory](/insights/enterprise-ai-governance-operating-model).',
       ],
     },
     {
       heading: 'How we approach it',
       paragraphs: [
-        'At YatiSphere we are cloud-neutral and model-agnostic. On Azure we build in the client\'s own tenant, and a person approves consequential actions. We do not use client data to train or fine-tune models, unless a client asks us to in writing for their own dedicated model. Our Solution Blueprint is where a design like this, and the questions for your counsel, get settled before anything is built.',
+        'At YatiSphere we are cloud-neutral and model-agnostic. Where data cannot leave a jurisdiction at all, we also run [models in your own infrastructure](/what-we-do/applied-ai/local-ai). On Azure we build in the client\'s own tenant, and a person approves consequential actions. We do not use client data to train or fine-tune models, unless a client asks us to in writing for their own dedicated model. Our [Solution Blueprint](/blueprint) is where a design like this, and the questions for your counsel, get settled before anything is built.',
       ],
     },
   ],
