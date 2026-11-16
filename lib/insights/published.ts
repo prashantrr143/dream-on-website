@@ -18,6 +18,7 @@ export const PUBLISHED_INSIGHT_SLUGS: string[] = [
   'sr-26-2-ai-agents-bank-supervisors',
   'ai-agent-identity-access-delegation',
   'testing-ai-agents-before-production',
+  'claude-enterprise-deployment-options',
   'eu-ai-act-for-financial-services-operations',
   'kyc-automation-without-black-boxes',
   'mcp-governance-for-regulated-firms',

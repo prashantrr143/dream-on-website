@@ -184,20 +184,20 @@ export const pages: ContentPage[] = [
   {
     path: '/what-we-do/applied-ai/claude',
     meta: {
-      title: 'Claude enterprise implementation services | YatiSphere',
+      title: 'Claude implementation services for enterprises | YatiSphere',
       description:
-        'Claude enterprise adoption, Claude Code rollout, agents and MCP integrations, run on the Anthropic API, Amazon Bedrock, Vertex AI or Microsoft Foundry.',
+        'Independent Claude implementation partner: Claude Enterprise and Claude Code rollout, agents and MCP integrations on Bedrock, Google Cloud, Foundry or API.',
     },
     hero: {
       kicker: 'APPLIED AI / CLAUDE',
-      h1: 'Claude implementation and Claude Code rollout',
+      h1: 'Claude implementation services for the enterprise',
       subhead:
-        'We help enterprises adopt Claude, build agents with it and connect it to their systems, inside the cloud boundary you choose.',
+        'An independent implementation partner for Claude Enterprise, Claude Code, Claude agents and MCP integrations, run inside the cloud boundary you choose.',
     },
     parents: [WHAT_WE_DO, APPLIED_AI],
     name: 'Claude practice',
     contactInterest: 'Claude',
-    contact: { title: 'Rolling out Claude or Claude Code?', body: 'Tell us how many people and which systems.' },
+    contact: { title: 'Rolling out Claude or Claude Code?', body: 'Tell us how many people, which systems and which cloud.' },
     blocks: [
       {
         type: 'cards',
@@ -205,35 +205,108 @@ export const pages: ContentPage[] = [
         columns: 3,
         cards: [
           {
-            title: 'Claude enterprise adoption',
-            body: 'Rollout, governance policies, access, data controls and enablement for teams using Claude.',
+            title: 'Claude Enterprise rollout',
+            body: 'SSO and SCIM, roles, connectors, retention settings, spend limits and enablement for teams using Claude.',
           },
           {
             title: 'Claude Code for engineering teams',
-            body: 'Rollout, guardrails, policies and productivity measurement for engineering teams using Claude Code.',
+            body: 'Managed policy, permissions, MCP allowlists, gateway routing and productivity measurement for Claude Code.',
           },
           {
             title: 'Agents built with Claude',
-            body: 'Workflow agents using the Claude API or the Claude Agent SDK, with human approval gates and audit logs.',
+            body: 'Workflow agents on the Claude API, the Claude Agent SDK or Managed Agents, with approval gates and audit logs.',
           },
           {
             title: 'Connecting Claude to your systems with MCP',
             body: 'Secure Model Context Protocol integrations to internal data and tools, with scoped access and logging.',
           },
           {
-            title: 'Evaluation and safety',
-            body: 'Test sets, red-teaming, monitoring and cost control for Claude-based systems.',
+            title: 'Evaluation and cost control',
+            body: 'Test sets, red-teaming, monitoring and model routing so the right Claude model handles each task.',
+          },
+          {
+            title: 'Choosing where Claude runs',
+            body: 'An independent comparison of Claude Enterprise, the API, Bedrock, Google Cloud and Microsoft Foundry for your data and contracts.',
           },
         ],
       },
       {
-        type: 'statement',
-        title: 'Where Claude can run',
-        text: "Claude is available through Anthropic's API and through Amazon Bedrock, Google Cloud Vertex AI and Microsoft Foundry, so we can run it inside the cloud boundary you choose.",
+        type: 'accordion',
+        title: 'Where Claude can run, and what changes',
+        items: [
+          {
+            title: 'Claude Enterprise (seats for your people)',
+            body: 'For when your staff use Claude themselves. You get the Claude apps, Claude Code, Cowork and connectors, with SSO, SCIM, audit logs, a Compliance API and your own retention settings. Anthropic processes the data, and you pay a seat fee plus usage at API rates.',
+          },
+          {
+            title: 'Claude API, direct from Anthropic',
+            body: 'Where new models and features land first, including Agent Skills, code execution and Managed Agents. Anthropic processes the data, and you can ask for zero data retention or HIPAA readiness. We use it when a build depends on the latest features.',
+          },
+          {
+            title: 'Claude Platform on AWS',
+            body: 'Anthropic’s own platform, reached through your AWS account with IAM, AWS billing and CloudTrail. You get features on Anthropic’s timetable, but Anthropic, not AWS, is the data processor, even though newer workspaces run on AWS infrastructure.',
+          },
+          {
+            title: 'Amazon Bedrock',
+            body: 'AWS runs the service and your data never leaves your AWS environment. New features follow Bedrock’s schedule, which can lag a little. For most regulated AWS customers, this is where we start.',
+          },
+          {
+            title: 'Google Cloud Agent Platform (formerly Vertex AI)',
+            body: 'Two versions: Google-managed, where Google processes the data, and Anthropic-managed, where Anthropic does. Check which Claude models your region offers before you commit.',
+          },
+          {
+            title: 'Microsoft Foundry',
+            body: 'Generally available since June 2026, hosted on Azure or on Anthropic, with Azure sign-in, billing and a US data zone. Anthropic still runs the models and processes the data, so check EU residency if it applies to you.',
+          },
+        ],
       },
       {
-        type: 'list',
-        items: ['Anthropic API', 'Amazon Bedrock', 'Google Cloud Vertex AI', 'Microsoft Foundry'],
+        type: 'tabs',
+        title: 'Claude Code rollout for engineering teams',
+        tabs: [
+          {
+            label: 'Access',
+            description: 'Decide how developers sign in and where model traffic goes before anyone installs it.',
+            bullets: [
+              'Enterprise seats with SSO and SCIM, or a cloud provider behind an LLM gateway',
+              'Allowed providers locked in managed settings',
+              'Spend limits per user and for the organization',
+            ],
+          },
+          {
+            label: 'Policy',
+            description: 'Organization-wide settings that developers cannot override.',
+            bullets: [
+              'Managed settings pushed from the server or by device management',
+              'Permission rules, sandboxing and hooks for risky commands',
+              'An allowlist of approved MCP servers',
+            ],
+          },
+          {
+            label: 'Measurement',
+            description: 'A baseline first, then the same measures after rollout.',
+            bullets: [
+              'Cycle time, review load and defect trends',
+              'Usage and cost by team from telemetry',
+              'Developer feedback, including where it does not help',
+            ],
+          },
+        ],
+      },
+      {
+        type: 'offer',
+        name: 'Claude rollout baseline',
+        summary:
+          'A fixed-scope first engagement for teams getting started with Claude or Claude Code. We help you pick the right route for your data, set it up the way your security team will want it, and prove it on one real piece of work.',
+        includes: [
+          'Route decision: Claude Enterprise, the API, Bedrock, Google Cloud or Microsoft Foundry, matched to your data processor and residency requirements',
+          'Identity, retention, logging and spend controls configured and documented',
+          'Claude Code managed policy and an approved MCP server list for one engineering team',
+          'One use case built and measured against a target you set',
+          'A rollout plan for the next teams, with owners and costs',
+        ],
+        deliverable:
+          'Claude running on the route you chose, with the controls in place, a pilot you’ve measured and a written plan that your security, legal and finance teams can sign off.',
       },
       {
         type: 'cards',
@@ -242,7 +315,7 @@ export const pages: ContentPage[] = [
         cards: [
           {
             title: 'Data boundaries',
-            body: 'We agree what data Claude may see and where it runs before anything is built. Your data stays inside the boundary you define.',
+            body: 'We agree what data Claude may see, where it runs and who processes it before anything is built.',
           },
           {
             title: 'No training on client data',
@@ -289,17 +362,25 @@ export const pages: ContentPage[] = [
         title: 'Common questions',
         items: [
           {
+            q: 'Who implements Claude for enterprises?',
+            a: 'Anthropic sells Claude directly and through AWS, Google Cloud and Microsoft. The hands-on work, choosing a route, setting up identity and data controls, rolling out Claude Code and building agents and MCP integrations, is usually done by an implementation partner. That’s what we do. We’re independent and not affiliated with Anthropic.',
+          },
+          {
+            q: 'Should we buy Claude Enterprise or use the API?',
+            a: 'It depends who’s using it. Claude Enterprise is for people using the Claude apps and Claude Code, and you pay seat fees plus usage at API rates. The API is for your own applications and agents. Most enterprises end up with both, usually with API access through the cloud they already run on.',
+          },
+          {
             q: 'Which cloud should we run Claude on?',
-            a: 'Usually the one where your data and security controls already live. Claude is available through the Anthropic API, Amazon Bedrock, Google Cloud Vertex AI and Microsoft Foundry. Feature availability and regions can differ by platform, so we check them against your requirements during readiness.',
+            a: 'Usually the one where your data and security controls already live. The bigger question is who processes the data: on Bedrock and Google-managed Agent Platform it’s the cloud provider, while on the direct API, Claude Platform on AWS and Microsoft Foundry it’s Anthropic. Features and regions differ too, so we check both against your requirements early on.',
           },
           {
             q: 'Does Anthropic train on our data?',
-            a: "Data use is governed by the commercial terms of the provider you run Claude through, whether that is Anthropic directly or a cloud platform, so check that provider's current terms. We review those terms with you, configure the relevant settings and confirm them in writing. " +
+            a: "Anthropic's commercial terms bar training on customer content from its commercial services, and on Bedrock or Google-managed Agent Platform the cloud provider's terms apply. We review the current terms with you, configure retention settings and confirm them in writing. " +
               NO_TRAINING,
           },
           {
-            q: 'How do you measure Claude Code impact?',
-            a: 'We agree the measures with your team before rollout, such as cycle time, review load, defect trends and developer feedback, and take a baseline first. We report what changes, including where it does not help.',
+            q: 'How do you roll out Claude Code safely?',
+            a: 'First we settle how developers sign in and where model traffic goes. Then we push managed settings for permissions, sandboxing and an approved list of MCP servers, and add a gateway if you need logging or budgets. We measure productivity before rollout and after, and we tell you where it isn’t helping as well as where it is.',
           },
           {
             q: 'Can Claude connect to our internal systems?',
@@ -313,8 +394,13 @@ export const pages: ContentPage[] = [
       },
       {
         type: 'links',
-        title: 'Related services',
+        title: 'Related services and guides',
         links: [
+          {
+            label: 'Claude deployment options compared',
+            href: '/insights/claude-enterprise-deployment-options',
+            descriptor: 'Claude Enterprise, the API, Bedrock, Google Cloud and Microsoft Foundry: who processes your data and which to choose.',
+          },
           {
             label: 'AI-assisted engineering',
             href: '/what-we-do/applied-ai/ai-assisted-engineering',

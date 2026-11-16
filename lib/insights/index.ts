@@ -15,6 +15,7 @@ import { article as sr262Agents } from './articles/sr-26-2-ai-agents-bank-superv
 import { article as enterpriseAiGov } from './articles/enterprise-ai-governance-operating-model'
 import { article as agentIdentity } from './articles/ai-agent-identity-access-delegation'
 import { article as agentTesting } from './articles/testing-ai-agents-before-production'
+import { article as claudeDeploy } from './articles/claude-enterprise-deployment-options'
 
 export type { Article, ArticleSection, ArticleSource } from './types'
 
@@ -43,6 +44,7 @@ export const ALL_ARTICLES: Article[] = [
   enterpriseAiGov,
   agentIdentity,
   agentTesting,
+  claudeDeploy,
 ]
 
 export const INSIGHTS_PREVIEW =
