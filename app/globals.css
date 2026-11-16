@@ -5092,6 +5092,10 @@ a.ys-open-item::before,
 @media (max-width: 560px) { .ys-route-list li { flex-direction: column; align-items: flex-start; } .ys-route-dest { align-items: flex-start; } }
 
 /* Insights: inline code and code samples (2026-11-11, technical articles). */
+/* In-text links between articles and to service pages (2026-11-16). */
+.ys-art p a, .ys-art li a { color: var(--blue-600); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; overflow-wrap: anywhere; }
+.ys-art p a:hover, .ys-art li a:hover { text-decoration-thickness: 2px; }
+.ys-art p a:focus-visible, .ys-art li a:focus-visible { outline: 2px solid var(--blue-600); outline-offset: 2px; border-radius: 2px; }
 .ys-art p code, .ys-art li code { padding: 1px 6px; border-radius: 5px; background: var(--grey-50); border: 1px solid var(--grey-200); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.86em; color: var(--ink-900); overflow-wrap: anywhere; }
 .ys-art-code { margin: 4px 0 24px; }
 .ys-art-code pre { margin: 0; padding: 18px 20px; border-radius: 12px; background: var(--navy-950); border: 1px solid var(--rule-navy); overflow-x: auto; }

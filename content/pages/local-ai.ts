@@ -351,7 +351,7 @@ export const pages: ContentPage[] = [
           },
           {
             q: 'Can Claude run locally?',
-            a: 'No. Claude is not released as open weights. You can use it through Amazon Bedrock, Google Cloud Vertex AI or Microsoft Foundry under your own cloud account and region, and route only the most sensitive work to a local model.',
+            a: 'No. Claude is not released as open weights. You can use it through Amazon Bedrock, Gemini Enterprise Agent Platform or Microsoft Foundry under your own cloud account and region, and route only the most sensitive work to a local model.',
           },
           {
             q: 'What hardware do we need?',

@@ -283,7 +283,7 @@ function BlockView({ block, tone }: { block: Block; tone: 'white' | 'light' }) {
             <div className="ys-open-item">
               <p className="ys-offer-label">Where they run</p>
               <ul className="ys-chip-row">
-                {['Amazon Bedrock', 'Google Cloud Vertex AI', 'Microsoft Foundry', 'Direct APIs'].map((m) => <li key={m}>{m}</li>)}
+                {['Amazon Bedrock', 'Gemini Enterprise Agent Platform', 'Microsoft Foundry', 'Direct APIs'].map((m) => <li key={m}>{m}</li>)}
               </ul>
             </div>
           </div>
@@ -336,6 +336,21 @@ function BlockView({ block, tone }: { block: Block; tone: 'white' | 'light' }) {
   }
 }
 
+/**
+ * A page's FAQ blocks, with FAQPage structured data. Rendered after the
+ * closing CTA; shared with the industry views (2026-11-16), which do not
+ * render other blocks.
+ */
+export function PageFaqs({ page }: { page: ContentPage }) {
+  return (
+    <>
+      {page.blocks.filter((b) => b.type === 'faq').map((block, i) => (
+        <BlockView key={`faq-${i}`} block={block} tone={i % 2 === 0 ? 'white' : 'light'} />
+      ))}
+    </>
+  )
+}
+
 export function ContentPageView({ page }: { page: ContentPage }) {
   const isService = page.parents.length > 0
   let tone: 'white' | 'light' = 'light'
@@ -365,9 +380,7 @@ export function ContentPageView({ page }: { page: ContentPage }) {
       />
       {/* FAQs sit after the closing CTA (marketing review, 2026-11-04): the
           ask comes first, answers for the undecided follow. */}
-      {page.blocks.filter((b) => b.type === 'faq').map((block, i) => (
-        <BlockView key={`faq-${i}`} block={block} tone={i % 2 === 0 ? 'white' : 'light'} />
-      ))}
+      <PageFaqs page={page} />
     </SharedLayout>
   )
 }

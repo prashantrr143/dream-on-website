@@ -18,7 +18,7 @@ import type { Article } from '../types'
 export const article: Article = {
   slug: 'mcp-governance-for-regulated-firms',
   title: 'MCP governance: a technical guide to letting AI agents into your systems',
-  seoTitle: 'MCP governance: a technical guide',
+  seoTitle: 'MCP server governance: security controls for AI agents',
   summary:
     'How MCP authorization, tool metadata and gateways work, what real incidents exploited, and the controls regulated firms need before agents go live.',
   category: 'Security & Compliance',
@@ -108,7 +108,7 @@ GET /.well-known/oauth-protected-resource
     {
       heading: 'Putting the identity provider back in charge',
       paragraphs: [
-        'Plain OAuth leaves the decision with each employee: they see a consent screen and click allow. That is the wrong place for a bank or a law firm to make access decisions. The Enterprise-Managed Authorization extension, declared stable on June 18, 2026, moves the decision to your identity provider.',
+        'Plain OAuth leaves the decision with each employee: they see a consent screen and click allow. That is the wrong place for a bank or a law firm to make access decisions. The Enterprise-Managed Authorization extension, declared stable on June 18, 2026, moves the decision to your identity provider. Our guide to [AI agent identity](/insights/ai-agent-identity-access-delegation) covers the rest of the access model.',
         'The flow has two token requests. After the user signs in to the MCP host with SSO, the client performs an RFC 8693 token exchange at your IdP and receives an Identity Assertion JWT Authorization Grant, or ID-JAG, scoped to one MCP server. The client then presents the ID-JAG to that server’s authorization server using the RFC 7523 JWT bearer grant and receives an ordinary access token. The user never sees a consent screen, and an administrator decides once, in the IdP, which groups may reach which servers.',
         'Two caveats. The ID-JAG itself is still an IETF draft. And the flow only works when the client, the IdP and the MCP server all support it, which in late 2026 is true for a growing but still partial set of products. Ask each vendor directly before you plan around it.',
       ],
@@ -205,13 +205,13 @@ kill_switch: enabled`,
     {
       heading: 'If you are starting this month',
       paragraphs: [
-        'Inventory first, including local servers on developer machines. Then block anything not on the list. Put your two or three most sensitive connections behind a gateway with per-user tokens and a recorded `tools/list` hash, switch on approval for every write tool those agents have, and start writing audit records to your own systems. Review one week of those records with the business owner before you add the next server. That is a month of work for a small team, and it covers most of what the incidents above exploited.',
+        'Inventory first, including local servers on developer machines. If you are new to the protocol, start with our [anatomy of MCP](/insights/anatomy-of-mcp). Then block anything not on the list. Put your two or three most sensitive connections behind a gateway with per-user tokens and a recorded `tools/list` hash, switch on [approval for every write tool](/insights/ai-agent-kill-switches-approvals-audit-logs) those agents have, and start writing audit records to your own systems. Review one week of those records with the business owner before you add the next server. That is a month of work for a small team, and it covers most of what the incidents above exploited.',
       ],
     },
     {
       heading: 'Where local models fit',
       paragraphs: [
-        'Running the model on your own hardware keeps prompts and documents inside your network, which matters for privileged and regulated data. It does nothing about what the agent can reach. An agent backed by a local model still connects to your systems over MCP, and a poisoned tool description or an over-privileged server is exactly as dangerous there. We treat the two as separate decisions: where the model runs, and what the agent is allowed to touch.',
+        'Running the model on your own hardware keeps prompts and documents inside your network, which matters for privileged and regulated data. It does nothing about what the agent can reach. An agent backed by a [local model](/what-we-do/applied-ai/local-ai) still connects to your systems over MCP, and a poisoned tool description or an over-privileged server is exactly as dangerous there. We treat the two as separate decisions: where the model runs, and what the agent is allowed to touch.',
       ],
     },
   ],

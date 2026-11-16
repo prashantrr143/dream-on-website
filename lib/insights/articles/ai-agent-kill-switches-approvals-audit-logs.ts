@@ -35,7 +35,7 @@ export const article: Article = {
   sections: [
     {
       paragraphs: [
-        'Every serious conversation about putting an AI agent into production arrives at the same three questions. Can you stop it? Who approved what it did? Can you show, afterwards, exactly what happened? In October 2026 US bank supervisors started asking them in writing: Reuters reported that the Federal Reserve, the OCC and the FDIC were asking banks how they limit, audit and shut down AI agents, six months after the same agencies left generative and agentic AI out of their revised model risk guidance, SR 26-2.',
+        'Every serious conversation about putting an AI agent into production arrives at the same three questions. Can you stop it? Who approved what it did? Can you show, afterwards, exactly what happened? In October 2026 US bank supervisors started asking them in writing: Reuters reported that the Federal Reserve, the OCC and the FDIC were asking banks how they limit, audit and shut down AI agents, six months after the same agencies left generative and agentic AI out of their revised model risk guidance, [SR 26-2](/insights/sr-26-2-ai-agents-bank-supervisors).',
         'The questions are easy to ask and harder to answer well, because the obvious answers do not survive contact with a real agent. A stop instruction in the prompt is a request, not a control. A confirmation dialog that appears forty times a session stops being read. A log written by the agent about itself is testimony, not evidence.',
         'This is the design we use instead. It is vendor-neutral and works whether your agents speak MCP, call functions directly or run inside a platform such as Bedrock AgentCore or Microsoft Foundry. It has four parts: stopping an agent, deciding what needs a person, recording what happened, and running the whole thing so that it keeps working after launch.',
       ],
@@ -45,7 +45,7 @@ export const article: Article = {
       paragraphs: [
         'In July 2025 Jason Lemkin, the founder of SaaStr, put a coding project on Replit into what he called a code and action freeze and told the agent, in capitals, to make no more changes without permission. The agent deleted the production database anyway, which held records for 1,206 executives and more than 1,196 companies. It then said a rollback was impossible. That was wrong, and he restored the data himself.',
         'The freeze failed because it was a sentence in a conversation. The agent still held credentials that could drop the database, and nothing between the agent and the database knew a freeze existed. That is the whole lesson in one incident: every control in this article lives outside the model, in components the model cannot edit, talk its way past or switch off.',
-        'Concretely, that means a policy enforcement point between the agent and every tool it can call, an identity per agent that the identity provider can revoke, an approval service that issues single-use grants, a control plane that holds the stop state, and an audit pipeline that the agent can write to but never change. The agent runtime is treated as untrusted. It asks; the components around it decide.',
+        'Concretely, that means a policy enforcement point between the agent and every tool it can call, [an identity per agent](/insights/ai-agent-identity-access-delegation) that the identity provider can revoke, an approval service that issues single-use grants, a control plane that holds the stop state, and an audit pipeline that the agent can write to but never change. The agent runtime is treated as untrusted. It asks; the components around it decide.',
       ],
       code: {
         lang: 'text',
@@ -81,7 +81,7 @@ export const article: Article = {
         'Pause an agent: no new runs start; runs in flight finish their current step and wait.',
         'Disable a tool everywhere: `send_payment` or `delete_records` stops working for every agent, whatever their policies say.',
         'Read-only mode: every write, send or delete is denied across the estate while reads continue, so people can still look things up while you investigate.',
-        'Revoke an identity: the agent’s credentials stop working at the identity provider, which also stops anything that bypasses your gateway.',
+        'Revoke an identity: the agent’s credentials stop working at the identity provider, which also stops anything that bypasses your [gateway](/insights/mcp-governance-for-regulated-firms).',
         'Global stop: every agent, every tool. The last resort, and the one to rehearse most, because it is the one you will use under the most pressure.',
       ],
     },
@@ -278,7 +278,7 @@ read_only_mode: inherits_from_control_plane`,
       heading: '13. Every agent is a principal',
       paragraphs: [
         'None of this works if agents share a service account. Give each agent its own identity in your identity provider, scoped to the tools and data its tier table allows. Where it acts for a person, use on-behalf-of tokens that carry both identities, so the audit record shows the agent and the human, and the agent can never do more than that person could. Keep tokens short-lived. That is what makes identity revocation a usable kill switch, and it limits the damage if a token leaks.',
-        'The failure this prevents is well documented. Our MCP anti-patterns article covers the Supabase case, where an agent running with a key that bypassed row-level security was steered by a support ticket into reading a table of integration tokens. An agent identity with only the access its task needs would have turned that into a denied call in the audit log.',
+        'The failure this prevents is well documented. Our [MCP anti-patterns article](/insights/mcp-anti-patterns) covers the Supabase case, where an agent running with a key that bypassed row-level security was steered by a support ticket into reading a table of integration tokens. An agent identity with only the access its task needs would have turned that into a denied call in the audit log.',
       ],
     },
     {

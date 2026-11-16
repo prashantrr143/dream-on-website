@@ -33,7 +33,7 @@ export const article: Article = {
     {
       paragraphs: [
         'Most MCP servers work in the demo. The trouble starts later, when the agent has forty tools to choose from, a real user’s data behind them and a support ticket written by a stranger in its context. At that point a few design decisions made in the first week turn out to matter a great deal.',
-        'This is a list of those decisions, made the wrong way. Each one is tied to something that actually happened or was measured: a published incident, a CVE, or a benchmark. We grouped them into three parts. The first six are about how tools are designed, the next five about security, and the last four about running MCP in production. If you are new to the protocol, our anatomy of MCP covers the vocabulary used here.',
+        'This is a list of those decisions, made the wrong way. Each one is tied to something that actually happened or was measured: a published incident, a CVE, or a benchmark. We grouped them into three parts. The first six are about how tools are designed, the next five about security, and the last four about running MCP in production. If you are new to the protocol, our [anatomy of MCP](/insights/anatomy-of-mcp) covers the vocabulary used here.',
       ],
     },
     {
@@ -132,7 +132,7 @@ export const article: Article = {
       heading: '7. Connecting with a god-mode credential',
       paragraphs: [
         'In July 2025 General Analysis showed how a developer using Cursor with the Supabase MCP server could leak a whole database. The agent ran with the `service_role` key, which bypasses row-level security by design. An attacker filed a support ticket containing instructions; when the developer asked the agent to look at recent tickets, it followed them, read the `integration_tokens` table and wrote the contents back into the ticket thread, where the attacker could read them.',
-        'The fix is boring and effective. Give each MCP connection the narrowest credential that does the job: a read-only role, a single project, a scoped token, ideally acting with the requesting user’s own permissions. If the agent only needs to read tickets, it should not hold a key that can read everything.',
+        'The fix is boring and effective. Give each MCP connection the narrowest credential that does the job: a read-only role, a single project, a scoped token, ideally acting with the requesting user’s own permissions. Our guide to [AI agent identity](/insights/ai-agent-identity-access-delegation) covers how. If the agent only needs to read tickets, it should not hold a key that can read everything.',
       ],
     },
     {
@@ -193,7 +193,7 @@ on_tainted_session:
     {
       heading: '14. Destructive tools with no brakes',
       paragraphs: [
-        'Models retry. Networks drop responses. A `send_payment` or `delete_record` tool that is not idempotent will eventually run twice. One that runs with no confirmation will eventually run when nobody meant it to.',
+        'Models retry. Networks drop responses. A `send_payment` or `delete_record` tool that is not idempotent will eventually run twice. One that runs with no confirmation will eventually run when nobody meant it to. Our [kill switch and approval design](/insights/ai-agent-kill-switches-approvals-audit-logs) covers the brakes.',
       ],
       bullets: [
         'Accept an idempotency key on every write tool and ignore repeats.',
@@ -206,7 +206,7 @@ on_tainted_session:
       heading: '15. Shipping without evaluations or telemetry',
       paragraphs: [
         'A server that works for the five prompts its developer tried is not tested. Tool selection, argument quality and error recovery all vary with the model, the other tools present and how users phrase things.',
-        'Build an evaluation set from realistic tasks with known correct outcomes, run it against each model and client you support, and rerun it whenever a tool, description or model changes. Anthropic’s guidance is to measure accuracy alongside runtime, token use, tool errors and the sequence of calls agents make. In production, log every tool call with the user, agent, tool, arguments and result, so you can see which tools are never used, which fail most, and which call sequences look wrong. Those logs are also your audit trail.',
+        'Build an evaluation set from realistic tasks with known correct outcomes, run it against each model and client you support, and rerun it whenever a tool, description or model changes. Anthropic’s guidance is to measure accuracy alongside runtime, token use, tool errors and the sequence of calls agents make. In production, log every tool call with the user, agent, tool, arguments and result, so you can see which tools are never used, which fail most, and which call sequences look wrong. Those logs are also your audit trail. For a full test plan, see [testing AI agents before production](/insights/testing-ai-agents-before-production).',
       ],
     },
     {

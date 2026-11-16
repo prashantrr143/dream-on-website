@@ -7,7 +7,7 @@ YatiSphere Technologies Private Limited is registered in Noida, India (CIN U6201
 ## Services
 
 - [Applied AI](https://yatisphere.com/what-we-do/applied-ai): take an AI pilot into production with evaluation, human approval, audit trails and integration. Model- and cloud-neutral.
-- [Claude implementation](https://yatisphere.com/what-we-do/applied-ai/claude): Claude enterprise adoption, Claude Code rollout, agents and MCP integrations on the Anthropic API, Amazon Bedrock, Vertex AI or Microsoft Foundry.
+- [Claude implementation](https://yatisphere.com/what-we-do/applied-ai/claude): Claude enterprise adoption, Claude Code rollout, agents and MCP integrations on the Anthropic API, Amazon Bedrock, Gemini Enterprise Agent Platform or Microsoft Foundry.
 - [AI agents for document-heavy workflows](https://yatisphere.com/what-we-do/applied-ai/agentic-automation): intake, KYC and claims agents and knowledge assistants with citations.
 - [Local AI](https://yatisphere.com/what-we-do/applied-ai/local-ai): open-weight LLMs and AI agents run on the client's own servers, private cloud or fully disconnected sites, with hybrid routing to cloud models for less sensitive work.
 - [AI governance](https://yatisphere.com/what-we-do/applied-ai/ai-governance): alignment to the NIST AI RMF, ISO/IEC 42001 and EU AI Act risk tiers.
@@ -43,6 +43,7 @@ YatiSphere Technologies Private Limited is registered in Noida, India (CIN U6201
 - [Your regulator is asking how you'd shut down your AI agents. SR 26-2 won't help you answer.](https://yatisphere.com/insights/sr-26-2-ai-agents-bank-supervisors): what US bank supervisors are asking about AI agents after SR 26-2, the OCC's November 2026 examiner framework, and how to build evidence-based answers.
 - [Every AI agent needs an identity: access, delegation and least privilege](https://yatisphere.com/insights/ai-agent-identity-access-delegation): agent identities, on-behalf-of token exchange, workload identity, task-scoped and short-lived tokens, revocation, lifecycle, vendor OAuth grants and an access review checklist.
 - [Testing AI agents before production: evals, red teaming and release gates](https://yatisphere.com/insights/testing-ai-agents-before-production): real task sets, graders, pass^k consistency, prompt injection and fault tests, budgets, release gates and production feedback.
+- [Claude for the enterprise: Claude Enterprise, the API, Bedrock, Google Cloud or Microsoft Foundry?](https://yatisphere.com/insights/claude-enterprise-deployment-options): the six ways to run Claude in an enterprise compared by data processor, retention, features, Claude Code support and cost, with a decision guide and checklist.
 - [Generative AI in a law firm: what ABA Formal Opinion 512 asks of you](https://yatisphere.com/insights/aba-opinion-512-generative-ai-law-firms)
 - [Using the NIST AI RMF without a large compliance team](https://yatisphere.com/insights/nist-ai-rmf-for-mid-market-teams)
 - [Taking an AI pilot to production in a regulated business](https://yatisphere.com/insights/taking-an-ai-pilot-to-production)

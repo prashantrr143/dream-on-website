@@ -181,6 +181,36 @@ export const pages: ContentPage[] = [
         ],
       },
       { type: 'inFocus', title: 'Further reading', services: ['cloud'] },
+      {
+        type: 'faq',
+        title: 'Common questions',
+        items: [
+          {
+            q: 'Should we choose AWS or Microsoft Azure?',
+            a: 'The one that fits your estate, your skills and your contracts. We advise on, build and run platforms on both, and we resell neither, so we have no reason to push one over the other.',
+          },
+          {
+            q: 'What is a landing zone?',
+            a: 'The foundation every workload lands on: accounts or subscriptions, identity, networking and policy, defined as code. New teams start compliant, instead of drifting apart the way hand-built accounts do.',
+          },
+          {
+            q: 'How do you migrate without a big-bang cutover?',
+            a: 'We map dependencies first, then move workloads in planned waves, each with its own runbook and a tested rollback. Cutovers are planned around your contracts and risk appetite, not a single weekend.',
+          },
+          {
+            q: 'Where do cloud cost savings usually come from?',
+            a: 'From giving every cost an owner, a budget and a reason, then removing what nobody uses, rightsizing, scheduling non-production, and only after that buying commitment discounts against the smaller baseline.',
+          },
+          {
+            q: 'Can you run the platform after it is built?',
+            a: 'Yes. We can run, monitor, patch and improve it during agreed hours alongside your team, or hand it over to your team with runbooks.',
+          },
+          {
+            q: 'Where does the infrastructure live?',
+            a: 'In your own accounts, defined as code in Terraform or the provider’s native tooling, so your team owns it and can change it.',
+          },
+        ],
+      },
     ],
     contactInterest: 'Cloud',
     contact: { title: 'Planning a landing zone, a migration or a cost review?', body: 'Tell us where the estate is today.' },
@@ -347,7 +377,7 @@ export const pages: ContentPage[] = [
     meta: {
       title: 'Google Cloud consulting services | YatiSphere',
       description:
-        'Google Cloud consulting: landing zones with Organization Policy, migration, data and AI with BigQuery and Vertex AI, FinOps and managed operations.',
+        'Google Cloud consulting: landing zones, migration, data and AI on BigQuery and Gemini Enterprise Agent Platform, FinOps and managed operations.',
     },
     hero: {
       kicker: 'CLOUD / GOOGLE CLOUD',
@@ -378,7 +408,7 @@ export const pages: ContentPage[] = [
           },
           {
             title: 'Data and AI on Google Cloud',
-            body: 'Data platforms on BigQuery, and AI workloads on Vertex AI, with access and cost visible per team.',
+            body: 'Data platforms on BigQuery, and AI workloads on Gemini Enterprise Agent Platform, with access and cost visible per team.',
           },
           {
             title: 'FinOps',
@@ -396,7 +426,7 @@ export const pages: ContentPage[] = [
         type: 'statement',
         id: 'ai',
         title: 'AI on Google Cloud',
-        text: 'Google Cloud Vertex AI gives you managed access to models inside your Google Cloud project, and Claude is available there, so you can build with it under the identity, networking and billing you already have.',
+        text: 'Gemini Enterprise Agent Platform (formerly Vertex AI) gives you managed access to models inside your Google Cloud project, and Claude is available there, so you can build with it under the identity, networking and billing you already have.',
       },
       {
         type: 'links',

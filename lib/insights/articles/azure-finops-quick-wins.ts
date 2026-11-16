@@ -69,7 +69,7 @@ export const article: Article = {
       heading: 'Where to begin',
       paragraphs: [
         'If you do only three things this quarter, enforce owner and cost center tags, turn on anomaly alerts for every production subscription, and clear unattached disks and unused public IPs. Then rightsize from Advisor, schedule non-production, and only after that size commitments against the smaller baseline.',
-        'If you would like a second pair of eyes, our team can review your estate and produce a savings report with prioritized actions and an estimated savings range for each. Any changes are made in your own Azure accounts, not ours.',
+        'If you would like a second pair of eyes, our [cloud team](/what-we-do/cloud) can review your estate and produce a savings report with prioritized actions and an estimated savings range for each. Any changes are made in your own Azure accounts, not ours. If AI usage is a growing line on the bill, our guide to [Claude deployment options](/insights/claude-enterprise-deployment-options) compares what each route costs.',
       ],
     },
   ],

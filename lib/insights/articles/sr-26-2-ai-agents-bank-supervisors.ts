@@ -104,7 +104,7 @@ export const article: Article = {
         'The activity’s own rules: BSA/AML and sanctions screening for an alert-triage agent; fair lending and adverse action notices for anything near credit; UDAAP for a chatbot that quotes fees or account status.',
         'Information security: your obligations to protect customer information apply to the data an agent reads, the systems it reaches and the logs it leaves.',
         'Third-party risk management: most agents run on a vendor’s model, and many arrive as features inside products you already license. The 2023 interagency guidance still applies, and the agencies proposed a shorter, principles-based replacement on September 11, 2026, with comments due on November 16.',
-        'Operational resilience and incident response: an agent failure is an operational event and belongs in the same runbooks, testing and reporting.',
+        'Operational resilience and incident response: an agent failure is an operational event and belongs in the same runbooks, [testing](/insights/testing-ai-agents-before-production) and reporting.',
       ],
     },
     {
@@ -122,7 +122,7 @@ export const article: Article = {
       paragraphs: [
         'The first decision is organizational, and examiners will ask about it. For each generative or agentic system, decide whether it stays inside your model risk management program or is governed by a parallel set of controls, and write down why.',
         'A workable rule is to split the agent along its seams. Statistical models the agent consults, such as a fraud score or a credit model, stay in model risk management and keep their validation. The agent as a whole, meaning its model, instructions, tools and permissions, is governed as an AI system under your AI governance policy, with an accountable business owner, operational risk oversight and controls designed for non-deterministic behavior: repeated sampling in testing, adversarial and red-team testing, and monitoring for drift in production. The tools it calls are governed as the software they are, through change management and access control.',
-        'Whatever split you choose, apply it consistently and record it in the inventory. An examiner is less likely to object to your boundary than to discover that nobody drew one.',
+        'Whatever split you choose, apply it consistently and record it in the [inventory](/insights/enterprise-ai-governance-operating-model). An examiner is less likely to object to your boundary than to discover that nobody drew one.',
       ],
     },
     {
@@ -135,7 +135,7 @@ export const article: Article = {
         'Agents in cyber defense: inventory entries for security agents, with their permissions, what they may do on their own (for example, isolate a host) and who is watching them.',
         'Limits, monitoring and approval: a tier for each agent and each action, written permitted-use boundaries, transaction and volume limits, and the approval design for consequential actions.',
         'Tracking and auditing decisions: an append-only audit trail that records each action, the rule that allowed it and any approval, plus evidence that someone outside the build team can reconstruct a decision from it.',
-        'Safeguards against exceeding authority: a separate identity per agent, least-privilege access, a policy enforcement point that denies by default, and alerts when an agent attempts something outside its purpose.',
+        'Safeguards against exceeding authority: a [separate identity per agent](/insights/ai-agent-identity-access-delegation), least-privilege access, a policy enforcement point that denies by default, and alerts when an agent attempts something outside its purpose.',
         'Humans in key decisions: the oversight design for each tier, the reviewers’ qualifications and authority, their workload, and override logs that show reviews are real rather than nominal.',
         'Shutting down: kill switches at several scopes, the fallback process the business uses while an agent is off, a customer remediation process, and dated records of stop drills with the time each switch took to work.',
       ],
@@ -241,7 +241,7 @@ vendor_contract: AI change notice 30d; audit rights; incident notice 24h`,
     },
     {
       paragraphs: [
-        'For the engineering detail behind the stop, approval and audit controls described here, see our reference design for kill switches, approvals and audit logs. It is written for the teams who will build what this article asks risk and compliance to evidence.',
+        'For the engineering detail behind the stop, approval and audit controls described here, see our [reference design for kill switches, approvals and audit logs](/insights/ai-agent-kill-switches-approvals-audit-logs). It is written for the teams who will build what this article asks risk and compliance to evidence.',
       ],
     },
   ],

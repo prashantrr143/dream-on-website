@@ -3,6 +3,7 @@ import type { Article } from '../types'
 export const article: Article = {
   slug: 'soc-2-evidence-from-pipelines',
   title: 'SOC 2 evidence your delivery pipeline can produce',
+  seoTitle: 'SOC 2 evidence from CI/CD: GitHub Actions and Azure DevOps',
   summary:
     'How GitHub Actions, Azure DevOps and an Azure estate map to SOC 2 change, access and operations criteria, and how to export evidence an auditor can sample.',
   category: 'Security & Compliance',
@@ -44,7 +45,7 @@ export const article: Article = {
       heading: 'Access (CC6.1 to CC6.3): reviews and just-in-time elevation',
       paragraphs: [
         'CC6.2 requires that users are registered and authorized before credentials are issued and that credentials are removed when access is no longer authorized. CC6.3 covers granting, changing and removing access based on roles, with attention to least privilege and segregation of duties. Periodic review of access is one of the points of focus under both.',
-        'In an Azure estate, Microsoft Entra access reviews handle the periodic part. They can review group membership, application assignments, Entra roles and Azure resource roles, and they can recur weekly, monthly, quarterly or annually. Privileged Identity Management (PIM) handles elevation: eligible rather than standing assignments, time-bound activation, approval, MFA and a recorded justification for each activation, plus downloadable audit history. Both are licensed features: access reviews need Microsoft Entra ID Governance or Microsoft Entra Suite, with some capabilities available on Entra ID P2, so check licensing before you build controls around them.',
+        'In an Azure estate, Microsoft Entra access reviews handle the periodic part. They can review group membership, application assignments, Entra roles and Azure resource roles, and they can recur weekly, monthly, quarterly or annually. Privileged Identity Management (PIM) handles elevation: eligible rather than standing assignments, time-bound activation, approval, MFA and a recorded justification for each activation, plus downloadable audit history. Both are licensed features: access reviews need Microsoft Entra ID Governance or Microsoft Entra Suite, with some capabilities available on Entra ID P2, so check licensing before you build controls around them. If AI agents touch production, they need the same treatment: [an identity and access review per agent](/insights/ai-agent-identity-access-delegation).',
         'Physical access (CC6.4) for Azure data centers is Microsoft\'s control, not yours. Download Azure\'s SOC 2 Type 2 report from the Service Trust Portal and read its "User Entity Responsibilities" section. It lists what Microsoft expects you to do for the overall system to meet the criteria, and your auditor will read it too.',
       ],
     },
@@ -67,14 +68,14 @@ export const article: Article = {
       ],
       bullets: [
         'Export on a schedule, not on request. The GitHub organization audit log covers 180 days and can be exported as JSON or CSV; enterprise accounts on GitHub Enterprise Cloud can stream audit and Git events to destinations including Azure Blob Storage and Azure Event Hubs. GitHub deployment records can be deleted through the API, so do not treat them as your system of record.',
-        'Store evidence where it cannot be edited. Azure Blob immutable storage holds data in a write-once, read-many state under a time-based retention policy, and once that policy is locked its retention period can be extended but not shortened.',
+        'Store evidence where it cannot be edited. Azure Blob immutable storage holds data in a write-once, read-many state under a time-based retention policy, and once that policy is locked its retention period can be extended but not shortened. The same storage makes [AI agent audit logs tamper-evident](/insights/ai-agent-kill-switches-approvals-audit-logs).',
         'Join records on identifiers. A pull request number, commit SHA, pipeline run ID and Azure deployment correlation ID let you trace one change from review to production without anyone hunting through screenshots.',
       ],
     },
     {
       heading: 'Where to start',
       paragraphs: [
-        'Settings take an afternoon. The harder work is deciding which controls you will claim, writing them as they actually operate, and setting up retention early enough that the evidence covers the whole period. If you are not yet ready for an auditor but need to answer enterprise questionnaires now, YatiSphere can help produce questionnaire answers, an evidence pack and a gap list, with all code and configuration kept in your own GitHub, Azure DevOps and Azure accounts. YatiSphere is not an audit firm. The SOC 2 opinion itself comes from an independent CPA firm.',
+        'Settings take an afternoon. The harder work is deciding which controls you will claim, writing them as they actually operate, and setting up retention early enough that the evidence covers the whole period. If you are not yet ready for an auditor but need to answer enterprise questionnaires now, YatiSphere [security and compliance](/what-we-do/services/security-compliance) work can help produce questionnaire answers, an evidence pack and a gap list, with all code and configuration kept in your own GitHub, Azure DevOps and Azure accounts. We do this often for [SaaS companies](/what-we-do/industries/software-saas) selling to enterprises. YatiSphere is not an audit firm. The SOC 2 opinion itself comes from an independent CPA firm.',
       ],
     },
   ],

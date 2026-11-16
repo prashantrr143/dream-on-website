@@ -99,6 +99,36 @@ export const pages: ContentPage[] = [
           { label: 'All industries', href: '/what-we-do/industries', descriptor: 'How we work in each sector' },
         ],
       },
+      {
+        type: 'faq',
+        title: 'Common questions',
+        items: [
+          {
+            q: 'What does YatiSphere do?',
+            a: 'We advise on, build and run the systems a business depends on: cloud platforms, software, data platforms and AI, on AWS, Microsoft Azure or Google Cloud. We focus on banks, law firms and SaaS companies. When AI is the right answer, we build it into those systems and govern it from day one.',
+          },
+          {
+            q: 'Where does a project usually start?',
+            a: 'With a Solution Blueprint: two to four weeks and a fixed fee to agree the design, the plan and the risks before anything is built. You can take the plan to another firm if you prefer.',
+          },
+          {
+            q: 'Do you only work on AI?',
+            a: 'No. Enterprise AI fails less often on the model than on everything around it, so we also do cloud foundations, data platforms, delivery pipelines, security and operations, with one accountable team.',
+          },
+          {
+            q: 'Which industries do you work in?',
+            a: 'Financial services, legal and professional services, and software and SaaS companies that sell to the enterprise. They have one thing in common: their systems have to answer to a regulator, a client or an enterprise buyer.',
+          },
+          {
+            q: 'Who owns the code and infrastructure?',
+            a: 'You do. We build in your own cloud accounts and repositories, so nothing has to be migrated out of our environment when the work ends.',
+          },
+          {
+            q: 'Do you use our data to train AI models?',
+            a: 'We do not use client data to train or fine-tune models, unless a client asks us to in writing for their own dedicated model.',
+          },
+        ],
+      },
     ],
   },
 ]

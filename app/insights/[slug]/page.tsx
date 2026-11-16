@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
+import Link from 'next/link'
+import { Fragment, type ReactNode } from 'react'
 import SharedLayout from '@/components/shared-layout'
 import { PageSection, PageCTA } from '@/components/enterprise'
 import { SITE_URL, SITE_NAME, socialMeta } from '@/lib/seo'
@@ -23,11 +25,25 @@ export function generateStaticParams() {
 const FIGURES = { 'mcp-anatomy': McpAnatomyDiagram } as const
 
 /** `backtick` spans in article text render as inline code. */
-function withCode(text: string) {
+function withCode(text: string, keyPrefix = ''): ReactNode {
   if (!text.includes('`')) return text
   return text.split(/(`[^`]+`)/g).map((part, i) =>
-    part.startsWith('`') && part.endsWith('`') && part.length > 2 ? <code key={i}>{part.slice(1, -1)}</code> : part,
+    part.startsWith('`') && part.endsWith('`') && part.length > 2 ? <code key={keyPrefix + i}>{part.slice(1, -1)}</code> : part,
   )
+}
+
+/**
+ * Article text: `backtick` spans render as inline code, and
+ * [label](/internal-path) renders as an internal link. Only site-relative
+ * paths are linked; anything else stays as plain text.
+ */
+function richText(text: string): ReactNode {
+  if (!text.includes('](/')) return withCode(text)
+  return text.split(/(\[[^\]]+\]\(\/[^)\s]*\))/g).map((part, i) => {
+    const m = /^\[([^\]]+)\]\((\/[^)\s]*)\)$/.exec(part)
+    const [, label, href] = m ?? []
+    return label && href ? <Link key={i} href={href}>{withCode(label, `${i}-`)}</Link> : <Fragment key={i}>{withCode(part, `${i}-`)}</Fragment>
+  })
 }
 
 /** Stable, unique anchors from section headings. */
@@ -155,12 +171,12 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
               <section key={i} id={section.heading ? ids[i] : undefined}>
                 {section.heading && <h2>{section.heading}</h2>}
                 {section.paragraphs.map((p, j) => (
-                  <p key={j}>{withCode(p)}</p>
+                  <p key={j}>{richText(p)}</p>
                 ))}
                 {section.bullets && (
                   <ul>
                     {section.bullets.map((b, j) => (
-                      <li key={j}>{withCode(b)}</li>
+                      <li key={j}>{richText(b)}</li>
                     ))}
                   </ul>
                 )}

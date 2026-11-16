@@ -55,7 +55,7 @@ export const article: Article = {
     },
     {
       paragraphs: [
-        'Only the third pattern holds up under the questions supervisors and auditors now ask. The OCC’s November 2026 examiner framework, as summarized by King & Spalding, says banks should manage AI agents’ identities and permissions with the same care as privileged human users. NIST’s National Cybersecurity Center of Excellence made the same point in a February 2026 concept paper on agent identity and authorization, which frames the work around identifying agents distinctly from people, authenticating them, authorizing them, delegating access from users, logging their actions and tracking the data they use.',
+        'Only the third pattern holds up under the questions supervisors and auditors now ask. [The OCC’s November 2026 examiner framework](/insights/sr-26-2-ai-agents-bank-supervisors), as summarized by King & Spalding, says banks should manage AI agents’ identities and permissions with the same care as privileged human users. NIST’s National Cybersecurity Center of Excellence made the same point in a February 2026 concept paper on agent identity and authorization, which frames the work around identifying agents distinctly from people, authenticating them, authorizing them, delegating access from users, logging their actions and tracking the data they use.',
       ],
     },
     {
@@ -109,7 +109,7 @@ export const article: Article = {
       paragraphs: [
         'Real deployments are chains. A user asks an assistant; the assistant calls an MCP server; the server calls a document system; another agent is asked to check the result. Identity has to survive every hop without getting broader.',
         'Two rules carry most of the weight. First, every hop gets its own token for its own audience. RFC 8707 resource indicators let a client ask for a token that is only valid at one resource, and the MCP specification requires this and forbids passing a token received from a client on to an upstream API. If a server needs to call another system for the user, it exchanges the token for a new one rather than forwarding it. Second, keep the originating user visible all the way down. Token exchange can nest actor claims so the final resource knows the chain of agents involved, and the IETF is working on related ideas such as transaction tokens for agents. Whatever mechanism you use, the last system in the chain should still be able to answer “for whom, and through which agents?”',
-        'For connections between AI clients and MCP servers in an enterprise, there is now a better pattern than asking each employee to click through a consent screen. MCP’s Enterprise-Managed Authorization extension, stable since June 18, 2026, lets your identity provider decide which servers each user’s client may reach. The client exchanges the user’s single sign-on assertion for an Identity Assertion JWT Authorization Grant (ID-JAG) at your identity provider, then presents it to the MCP server’s authorization server for an ordinary access token. Okta markets the same pattern as Cross App Access, and Anthropic made it generally available for Claude Team and Enterprise connectors in August 2026. The ID-JAG specification itself is still an IETF draft, so check support with each vendor before you depend on it. Our MCP governance guide walks through the flow in detail.',
+        'For connections between AI clients and MCP servers in an enterprise, there is now a better pattern than asking each employee to click through a consent screen. MCP’s Enterprise-Managed Authorization extension, stable since June 18, 2026, lets your identity provider decide which servers each user’s client may reach. The client exchanges the user’s single sign-on assertion for an Identity Assertion JWT Authorization Grant (ID-JAG) at your identity provider, then presents it to the MCP server’s authorization server for an ordinary access token. Okta markets the same pattern as Cross App Access, and Anthropic made it generally available for Claude Team and Enterprise connectors in August 2026. The ID-JAG specification itself is still an IETF draft, so check support with each vendor before you depend on it. Our [MCP governance guide](/insights/mcp-governance-for-regulated-firms) walks through the flow in detail.',
       ],
     },
     {
@@ -120,7 +120,7 @@ export const article: Article = {
       heading: '6. Scope by task, not by agent',
       paragraphs: [
         'The usual way to scope an agent is to list everything it might ever need and grant it once. That produces agents with the combined access of every task they perform, permanently. Scope by task instead: the token for a given step carries only the scopes that step needs, requested at the time it is needed.',
-        'Identity scopes are coarse, so add a second layer of authorization at the point where the agent calls tools. A policy enforcement point in front of the tools can check arguments as well as scopes: this agent may read invoices, but only for the user’s own business unit; may prepare a payment, but not above a threshold; may email, but only to internal domains. Deny by default, and allow elevated actions just in time, with an approval bound to the specific action. Our reference design for kill switches, approvals and audit logs covers that layer.',
+        'Identity scopes are coarse, so add a second layer of authorization at the point where the agent calls tools. A policy enforcement point in front of the tools can check arguments as well as scopes: this agent may read invoices, but only for the user’s own business unit; may prepare a payment, but not above a threshold; may email, but only to internal domains. Deny by default, and allow elevated actions just in time, with an approval bound to the specific action. Our [reference design for kill switches, approvals and audit logs](/insights/ai-agent-kill-switches-approvals-audit-logs) covers that layer.',
       ],
       code: {
         lang: 'yaml',
@@ -217,7 +217,7 @@ last_review: 2026-10-30`,
         'Week 1: inventory agent access, including borrowed credentials, shared keys, service accounts used by agents and OAuth grants to vendor AI features. Rank by what each can reach.',
         'Week 2: give the top five agents their own identities with sponsors, move their secrets into a vault or workload identity, and cut token lifetimes.',
         'Week 3: switch user-facing agents to delegated tokens with the agent as actor, and confirm downstream logs record both identities.',
-        'Week 4: run the access review above, revoke what fails it, test revocation as a stop drill, and set the tenant defaults for who may create agent identities.',
+        'Week 4: run the access review above, revoke what fails it, test revocation as a stop drill (see [testing AI agents before production](/insights/testing-ai-agents-before-production)), and set the tenant defaults for who may create agent identities.',
       ],
     },
     {

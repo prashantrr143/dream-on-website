@@ -38,7 +38,26 @@ export const pages: ContentPage[] = [
       subhead:
         'We focus on three sectors where a system has to answer to a regulator, a client or an enterprise buyer, as well as to its users.',
     },
-    blocks: [],
+    blocks: [
+      {
+        type: 'faq',
+        title: 'Common questions',
+        items: [
+          {
+            q: 'Which industries does YatiSphere specialize in?',
+            a: 'Financial services, legal and professional services, and software and SaaS. We focus on sectors where a system has to answer to a regulator, a client or an enterprise buyer as well as to its users.',
+          },
+          {
+            q: 'Do you work outside these three sectors?',
+            a: 'Yes. The same approach applies anywhere a system has to stand up to scrutiny: controls designed in from the start, a person approving consequential actions, and evidence you can show an auditor.',
+          },
+          {
+            q: 'Are you approved or certified by regulators in these sectors?',
+            a: 'No. The regimes on our pages are rules our clients answer to. We design and document controls so our clients can evidence them; the certifications and obligations stay with the client.',
+          },
+        ],
+      },
+    ],
   },
 
   // ---------------------------------------------------------------------------
@@ -60,7 +79,38 @@ export const pages: ContentPage[] = [
       subhead:
         'Agents gather documents, screen against sanctions and PEP lists and draft the case. Your analysts approve. Every check is logged for the examiner, on core systems we modernize where they hold the work back.',
     },
-    blocks: [],
+    blocks: [
+      {
+        type: 'faq',
+        title: 'Common questions',
+        items: [
+          {
+            q: 'Can an AI agent make KYC decisions on its own?',
+            a: 'Not in what we build. The agent gathers documents, runs sanctions, PEP and adverse-media screening and drafts the case. An analyst reviews every potential match and makes the decision to onboard, decline or escalate, and every check and approval is logged for the examiner.',
+          },
+          {
+            q: 'Which regulations do you design for?',
+            a: 'The ones your firm answers to: for example the SEC and FINRA in the US, the FCA and PRA in the UK, DORA, EBA guidelines and the EU AI Act in Europe, the CBUAE, DFSA and ADGM FSRA in the UAE, and the RBI, SEBI and DPDP Act in India. We are not approved by any regulator; we design and document controls so you can evidence them.',
+          },
+          {
+            q: 'Does SR 26-2 cover AI agents at US banks?',
+            a: 'Not directly. SR 26-2, the revised model risk guidance issued in April 2026, leaves generative and agentic AI out of scope, but supervisors still expect agents to be inventoried, controlled and tested under existing rules. Our SR 26-2 article sets out what examiners are asking.',
+          },
+          {
+            q: 'Where do the systems run?',
+            a: 'On AWS or Microsoft Azure, in your own accounts, with infrastructure as code and segregation of duties. Audit records and data residency are settled at design time, not retrofitted before an inspection.',
+          },
+          {
+            q: 'Do you use our data to train models?',
+            a: 'We do not use client data to train or fine-tune models, unless a client asks us to in writing for their own dedicated model.',
+          },
+          {
+            q: 'How does an engagement start?',
+            a: 'Usually with a Solution Blueprint: two to four weeks on one named problem, such as application to account opened. You get the target design, a phased delivery plan and the risks before any build begins.',
+          },
+        ],
+      },
+    ],
     industry: {
       slug: 'financial-services',
       forWho: ['Retail and commercial banks', 'Insurers', 'Wealth and asset managers', 'Payments and fintech', 'Brokers and market infrastructure'],
@@ -197,7 +247,38 @@ export const pages: ContentPage[] = [
       subhead:
         'Intake, conflict search and the practice-system plumbing behind new matters for US law firms, plus AI on client documents once your general counsel has agreed what it may see.',
     },
-    blocks: [],
+    blocks: [
+      {
+        type: 'faq',
+        title: 'Common questions',
+        items: [
+          {
+            q: 'Do we need a new conflicts system to automate conflict checks?',
+            a: 'Usually not. Most firms already own one. The work is in the data that feeds it: parties captured once and properly structured, corporate groups and former names resolved, and every decision recorded where a partner, an auditor or a client can find it.',
+          },
+          {
+            q: 'Does AI make the conflict clearance decision?',
+            a: 'No. Agents capture the parties, run the search and can draft the conflict memo from the results. A partner approves every clearance, and the record shows how each conflict was identified and resolved.',
+          },
+          {
+            q: 'Can an AI tool see a matter a lawyer is walled off from?',
+            a: 'Not in what we build. Retrieval is limited to the matters a user can already open, so ethical screens apply to search and AI tools too. Prompts and answers are logged under the firm’s retention policy, and a lawyer reviews anything that goes to a client.',
+          },
+          {
+            q: 'What does ABA Formal Opinion 512 mean for an AI rollout?',
+            a: 'It applies existing duties, including competence, confidentiality, communication, supervision and reasonable fees, to generative AI. In practice firms need approved tools, a data boundary for each one, a review step before work product leaves the firm, and informed consent before client information goes into self-learning tools. Check your state bar’s guidance as well.',
+          },
+          {
+            q: 'Do you handle lateral hire conflicts?',
+            a: 'Yes. We turn the incoming partner’s list of prior matters and clients into searchable parties, run it against the firm’s records before the start date, and set up the screens Rule 1.10 calls for where a conflict can be cured by screening.',
+          },
+          {
+            q: 'How does a project start?',
+            a: 'Most firms start with a Solution Blueprint on intake and conflicts: two to four weeks, a fixed fee, and a design your risk committee can review.',
+          },
+        ],
+      },
+    ],
     // Pilot of the less-templated industry page (2026-11-03): a worked
     // example, uneven further work and a point of view on AI, in place of
     // four identical problem/solution/bullets/outcome cards.
@@ -341,7 +422,38 @@ export const pages: ContentPage[] = [
       subhead:
         'We build agentic features your customers’ security teams can approve, and put agents to work on support, onboarding and engineering, with a person approving the actions that matter.',
     },
-    blocks: [],
+    blocks: [
+      {
+        type: 'faq',
+        title: 'Common questions',
+        items: [
+          {
+            q: 'How do we get enterprise security teams to approve an AI agent feature?',
+            a: 'Show them design decisions, not policy documents. Each agent has a defined job, a short list of tools, permissions inherited from the user and scoped to the tenant, approval steps and undo for consequential actions, and an exportable audit log. Test results against agreed cases before launch help too.',
+          },
+          {
+            q: 'Can an agent reach another customer’s data?',
+            a: 'Not if tenant isolation is enforced at the data layer, which is how we build it. An agent acting for one customer can never reach another customer’s records, whatever the prompt says.',
+          },
+          {
+            q: 'How do you answer the AI section of a security questionnaire?',
+            a: 'We document the AI parts the same way as your other controls: the data boundary, model providers, agent permissions, evaluation results and approval records, mapped to the Trust Services Criteria or ISO/IEC 27001 Annex A. That covers CAIQ, SIG and custom questionnaires.',
+          },
+          {
+            q: 'Is customer data used to train models?',
+            a: 'We configure providers so customer data is not retained for training. We do not use client data to train or fine-tune models, unless you ask us to in writing for your own dedicated model.',
+          },
+          {
+            q: 'Which frameworks do you align AI testing to?',
+            a: 'The NIST AI RMF and ISO/IEC 42001, where your customers ask for them. Agents are tested against representative cases with pass thresholds agreed before launch, re-run after every model, prompt or tool change, and monitored in production.',
+          },
+          {
+            q: 'Do you build MCP servers for SaaS products?',
+            a: 'Yes. We build MCP servers and APIs that your own agents and your customers’ agents can call, with permissions scoped per tenant and per user.',
+          },
+        ],
+      },
+    ],
     industry: {
       slug: 'software-saas',
       forWho: ['B2B SaaS companies', 'Product teams adding AI agents', 'Scale-ups selling to enterprises', 'Platform and engineering teams'],
