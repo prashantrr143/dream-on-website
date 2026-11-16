@@ -377,7 +377,7 @@ export const pages: ContentPage[] = [
     meta: {
       title: 'Google Cloud consulting services | YatiSphere',
       description:
-        'Google Cloud consulting: landing zones with Organization Policy, migration, data and AI with BigQuery and Vertex AI, FinOps and managed operations.',
+        'Google Cloud consulting: landing zones, migration, data and AI on BigQuery and Gemini Enterprise Agent Platform, FinOps and managed operations.',
     },
     hero: {
       kicker: 'CLOUD / GOOGLE CLOUD',
@@ -408,7 +408,7 @@ export const pages: ContentPage[] = [
           },
           {
             title: 'Data and AI on Google Cloud',
-            body: 'Data platforms on BigQuery, and AI workloads on Vertex AI, with access and cost visible per team.',
+            body: 'Data platforms on BigQuery, and AI workloads on Gemini Enterprise Agent Platform, with access and cost visible per team.',
           },
           {
             title: 'FinOps',
@@ -426,7 +426,7 @@ export const pages: ContentPage[] = [
         type: 'statement',
         id: 'ai',
         title: 'AI on Google Cloud',
-        text: 'Google Cloud Vertex AI gives you managed access to models inside your Google Cloud project, and Claude is available there, so you can build with it under the identity, networking and billing you already have.',
+        text: 'Gemini Enterprise Agent Platform (formerly Vertex AI) gives you managed access to models inside your Google Cloud project, and Claude is available there, so you can build with it under the identity, networking and billing you already have.',
       },
       {
         type: 'links',

@@ -4,7 +4,7 @@ import type { ContentPage } from './types'
  * Applied AI pillar, Claude practice and five capability pages.
  *
  * Model-neutral and cloud-neutral: Claude, OpenAI models and open-weight
- * models, run on Amazon Bedrock, Google Cloud Vertex AI, Microsoft Foundry
+ * models, run on Amazon Bedrock, Gemini Enterprise Agent Platform, Microsoft Foundry
  * or direct APIs. No clients, metrics or certifications are claimed.
  */
 
@@ -112,7 +112,7 @@ export const pages: ContentPage[] = [
       {
         type: 'modelNeutral',
         title: 'Models and clouds we work with',
-        lede: 'We work with Claude, OpenAI models and open-weight models, run on Amazon Bedrock, Google Cloud Vertex AI, Microsoft Foundry or direct APIs. We pick the model for the task and the cloud for your estate, and keep the option to switch.',
+        lede: 'We work with Claude, OpenAI models and open-weight models, run on Amazon Bedrock, Gemini Enterprise Agent Platform, Microsoft Foundry or direct APIs. We pick the model for the task and the cloud for your estate, and keep the option to switch.',
       },
       {
         type: 'tabs',
@@ -185,7 +185,7 @@ export const pages: ContentPage[] = [
           },
           {
             q: 'Which models and clouds do you work with?',
-            a: 'Claude, OpenAI models and open-weight models, run on Amazon Bedrock, Google Cloud Vertex AI, Microsoft Foundry or direct APIs. We pick the model for the task and the cloud for your estate, and keep the option to switch.',
+            a: 'Claude, OpenAI models and open-weight models, run on Amazon Bedrock, Gemini Enterprise Agent Platform, Microsoft Foundry or direct APIs. We pick the model for the task and the cloud for your estate, and keep the option to switch.',
           },
           {
             q: 'Do your AI agents act without human approval?',
@@ -281,7 +281,7 @@ export const pages: ContentPage[] = [
             body: 'AWS runs the service and your data never leaves your AWS environment. New features follow Bedrock’s schedule, which can lag a little. For most regulated AWS customers, this is where we start.',
           },
           {
-            title: 'Google Cloud Agent Platform (formerly Vertex AI)',
+            title: 'Gemini Enterprise Agent Platform (formerly Vertex AI)',
             body: 'Two versions: Google-managed, where Google processes the data, and Anthropic-managed, where Anthropic does. Check which Claude models your region offers before you commit.',
           },
           {
@@ -616,7 +616,7 @@ export const pages: ContentPage[] = [
     meta: {
       title: 'Enterprise AI platform and LLM gateway | YatiSphere',
       description:
-        'Enterprise AI platforms with an LLM gateway, model routing, evaluation and cost control, on Amazon Bedrock, Vertex AI, Microsoft Foundry or direct APIs.',
+        'AI platforms with an LLM gateway, model routing, evaluation and cost control, on Bedrock, Gemini Enterprise Agent Platform, Foundry or direct APIs.',
     },
     hero: {
       kicker: 'APPLIED AI / ENTERPRISE AI PLATFORMS',
@@ -629,7 +629,7 @@ export const pages: ContentPage[] = [
     blocks: [
       {
         type: 'statement',
-        text: 'When every team picks its own model, keys and logging, nobody can see costs, risks or what data is leaving. A shared AI platform gives every team the same foundations (gateway, routing, prompt and version control, evaluation, observability and cost management) in your own cloud account, on Amazon Bedrock, Google Cloud Vertex AI, Microsoft Foundry or direct APIs.',
+        text: 'When every team picks its own model, keys and logging, nobody can see costs, risks or what data is leaving. A shared AI platform gives every team the same foundations (gateway, routing, prompt and version control, evaluation, observability and cost management) in your own cloud account, on Amazon Bedrock, Gemini Enterprise Agent Platform, Microsoft Foundry or direct APIs.',
       },
       {
         type: 'cards',
@@ -722,7 +722,7 @@ export const pages: ContentPage[] = [
           },
           {
             q: 'Which cloud do you build on?',
-            a: 'The one your estate already uses. We build on Amazon Bedrock, Google Cloud Vertex AI and Microsoft Foundry, or with direct APIs.',
+            a: 'The one your estate already uses. We build on Amazon Bedrock, Gemini Enterprise Agent Platform and Microsoft Foundry, or with direct APIs.',
           },
         ],
       },

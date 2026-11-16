@@ -7,7 +7,7 @@ YatiSphere Technologies Private Limited is registered in Noida, India (CIN U6201
 ## Services
 
 - [Applied AI](https://yatisphere.com/what-we-do/applied-ai): take an AI pilot into production with evaluation, human approval, audit trails and integration. Model- and cloud-neutral.
-- [Claude implementation](https://yatisphere.com/what-we-do/applied-ai/claude): Claude enterprise adoption, Claude Code rollout, agents and MCP integrations on the Anthropic API, Amazon Bedrock, Vertex AI or Microsoft Foundry.
+- [Claude implementation](https://yatisphere.com/what-we-do/applied-ai/claude): Claude enterprise adoption, Claude Code rollout, agents and MCP integrations on the Anthropic API, Amazon Bedrock, Gemini Enterprise Agent Platform or Microsoft Foundry.
 - [AI agents for document-heavy workflows](https://yatisphere.com/what-we-do/applied-ai/agentic-automation): intake, KYC and claims agents and knowledge assistants with citations.
 - [Local AI](https://yatisphere.com/what-we-do/applied-ai/local-ai): open-weight LLMs and AI agents run on the client's own servers, private cloud or fully disconnected sites, with hybrid routing to cloud models for less sensitive work.
 - [AI governance](https://yatisphere.com/what-we-do/applied-ai/ai-governance): alignment to the NIST AI RMF, ISO/IEC 42001 and EU AI Act risk tiers.

@@ -283,7 +283,7 @@ function BlockView({ block, tone }: { block: Block; tone: 'white' | 'light' }) {
             <div className="ys-open-item">
               <p className="ys-offer-label">Where they run</p>
               <ul className="ys-chip-row">
-                {['Amazon Bedrock', 'Google Cloud Vertex AI', 'Microsoft Foundry', 'Direct APIs'].map((m) => <li key={m}>{m}</li>)}
+                {['Amazon Bedrock', 'Gemini Enterprise Agent Platform', 'Microsoft Foundry', 'Direct APIs'].map((m) => <li key={m}>{m}</li>)}
               </ul>
             </div>
           </div>
