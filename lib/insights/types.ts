@@ -25,7 +25,7 @@ export interface ArticleSection {
    */
   code?: { lang: string; caption?: string; text: string }
   /** Optional drawing from components/insights, by key, rendered before the code sample. */
-  figure?: { key: 'mcp-anatomy'; caption?: string }
+  figure?: { key: 'mcp-anatomy' | 'claude-reference-architecture' | 'claude-route-decision' | 'claude-network-boundary' | 'claude-agent-approval'; caption?: string }
 }
 
 export interface Article {

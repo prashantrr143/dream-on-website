@@ -11,6 +11,12 @@ import { ArrowRight } from 'lucide-react'
 import { ArticleToc } from '@/components/insights/ArticleToc'
 import { ReadingProgress, ShareActions } from '@/components/insights/ArticleChrome'
 import { McpAnatomyDiagram } from '@/components/insights/McpAnatomyDiagram'
+import {
+  ClaudeAgentApproval,
+  ClaudeNetworkBoundary,
+  ClaudeReferenceArchitecture,
+  ClaudeRouteDecision,
+} from '@/components/insights/ClaudeArchitectureDiagrams'
 import { authorOf, authorSchema } from '@/lib/insights/author'
 import { BreadcrumbSchema } from '@/components/seo/StructuredData'
 
@@ -22,7 +28,13 @@ export function generateStaticParams() {
 }
 
 /** Drawings an article section can include by key. */
-const FIGURES = { 'mcp-anatomy': McpAnatomyDiagram } as const
+const FIGURES = {
+  'mcp-anatomy': McpAnatomyDiagram,
+  'claude-reference-architecture': ClaudeReferenceArchitecture,
+  'claude-route-decision': ClaudeRouteDecision,
+  'claude-network-boundary': ClaudeNetworkBoundary,
+  'claude-agent-approval': ClaudeAgentApproval,
+} as const
 
 /** `backtick` spans in article text render as inline code. */
 function withCode(text: string, keyPrefix = ''): ReactNode {
