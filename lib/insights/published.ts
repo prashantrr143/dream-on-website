@@ -19,6 +19,7 @@ export const PUBLISHED_INSIGHT_SLUGS: string[] = [
   'ai-agent-identity-access-delegation',
   'testing-ai-agents-before-production',
   'claude-enterprise-deployment-options',
+  'secure-claude-enterprise-architecture',
   'eu-ai-act-for-financial-services-operations',
   'kyc-automation-without-black-boxes',
   'mcp-governance-for-regulated-firms',

@@ -16,6 +16,7 @@ import { article as enterpriseAiGov } from './articles/enterprise-ai-governance-
 import { article as agentIdentity } from './articles/ai-agent-identity-access-delegation'
 import { article as agentTesting } from './articles/testing-ai-agents-before-production'
 import { article as claudeDeploy } from './articles/claude-enterprise-deployment-options'
+import { article as secureClaude } from './articles/secure-claude-enterprise-architecture'
 
 export type { Article, ArticleSection, ArticleSource } from './types'
 
@@ -45,6 +46,7 @@ export const ALL_ARTICLES: Article[] = [
   agentIdentity,
   agentTesting,
   claudeDeploy,
+  secureClaude,
 ]
 
 export const INSIGHTS_PREVIEW =
